@@ -24,10 +24,6 @@ public class helloW {
                 System.out.println("-1- Hello  " + name);
                 System.out.println("-1- Hello  " + name);
                 System.out.println("-1- Hello  " + name);
-                System.out.println("-1- Hello  " + name);
-                System.out.println("-1- Hello  " + name);
-                System.out.println("-1- Hello  " + name);
-                System.out.println("-1- Hello  " + name);
                 System.out.println("-1- Ciao  " + name);
                 System.out.println("-1- Ciao  " + name);
                 System.out.println("-1- Ciao  " + name);
