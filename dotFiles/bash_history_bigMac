@@ -1,0 +1,500 @@
+clear
+history
+/Applications/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/adb ; exit;
+/Applications/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/adb ; exit;
+android update adb
+tcsh
+cd /Volumes/Uni/Reminyl/Seed_Analyse 
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM\ Hippocampus_subiculum_L_mask.hdr -bin 
+fslmaths
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_L_mask.hdr -bin 
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L.hdr 
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L.hdr -bin 
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_L.hdr -bin GM_Hippocampus_entorhinal_cortex_L_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_L.hdr -bin GM_Hippocampus_dentate_gyrus_L_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_L.hdr -bin GM_Hippocampus_subiculum_L_bin
+fslmaths
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_L_bin.nii.gz 1_2
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/1_2.nii.gz add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_L_bin.nii.gz 1_2_3
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/1_2.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_L_bin.nii.gz 1_2_3
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/1_2_3.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_L_bin.nii.gz 1_2_3_4_L
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L.hdr -bin GM_Hippocampus_cornu_ammonis_L_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_L_bin.nii.gz 1_2
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/1_2.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_L_bin.nii.gz 1_2_3
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/1_2_3.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_L_bin.nii.gz 1_2_3_4_L
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_L_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_L_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_L_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_L_bin.nii.gz test
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/test.nii.gz -bin test_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_R.hdr -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_R.hdr -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_R.hdr -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_R.hdr test
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_R.hdr -bin GM_Hippocampus_cornu_ammonis_R_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_R.hdr -bin GM_Hippocampus_dentate_gyrus_R_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_R.hdr -bin GM_Hippocampus_entorhinal_cortex_R_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_R.hdr -bin GM_Hippocampus_subiculum_R_bin
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_cornu_ammonis_R_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_dentate_gyrus_R_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_entorhinal_cortex_R_bin.nii.gz -add /Volumes/Uni/Reminyl/Seed_Analyse/GM_Hippocampus_subiculum_R_bin.nii.gz test
+fslmaths /Volumes/Uni/Reminyl/Seed_Analyse/test.nii.gz -bin test_bin
+3dmaskdump
+afni
+/Users/neuro/matlab/abino/1d_tool.py 
+cd /Volumes/Uni/Reminyl/Seed_Analyse 
+/Users/neuro/matlab/abino/3dmaskdump -noijk -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/BackUpMac/Backups.backupdb/Jan\ Blaus\ MacBook\ Pro/2015-03-29-221957/Macintosh\ HD/Users/janblau/Desktop/Reminyl_neu/A10_AD2-0_func_res2standard.nii.gz > A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dmaskdump 
+3dmaskdump
+/Users/neuro/matlab/abino/3dmaskdump -noijk -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/BackUpMac/Backups.backupdb/Jan\ Blaus\ MacBook\ Pro/2015-03-29-221957/Macintosh\ HD/Users/janblau/Desktop/Reminyl_neu/A10_AD2-0_func_res2standard.nii.gz > A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dmaskdump -noijk -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/Uni/Reminyl/Reminyl_neu/A10_AD2-0_func_res2standard.nii.gz > A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/1dtranspose /Volumes/Uni/Reminyl/Seed_Analyse/A10_AD2-0_func_res2standard Seed_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl_neu/A10_AD2-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Uni/Reminyl/Seed_Analyse/Seed_A10_AD2-0_func_res2standard -out Correlation -bucket Corr_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+
+/Users/neuro/matlab/abino/3dmaskave -noijk -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/Uni/Reminyl/Reminyl_neu/A10_AD2-0_func_res2standard.nii.gz > A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dmaskave
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/Uni/Reminyl/Reminyl_neu/A1_AD3-0_func_res2standard.nii.gz 
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/Uni/Reminyl/Reminyl_neu/A1_AD3-0_func_res2standard.nii.gz > A1_AD3-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl_neu/A1_AD3-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Uni/Reminyl/Seed_Analyse/A1_AD3-0_func_res2standard -out Correlation -bucket Corr_A1_AD3-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl_neu/A1_AD3-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Uni/Reminyl/Seed_Analyse/A1_AD3-0_func_res2standard -out Correlation -bucket Corr_A1_AD3-0_func_res2standard
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Seed_Analyse/Maske_rechts_bin.nii.gz /Volumes/Uni/Reminyl/Reminyl_neu/A1_AD3-0_func_res2standard.nii.gz > A1_AD3-0_func_res2standard_1
+whereis
+whereis fsl
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_cornu_ammonis_L.hdr -thr 50 -bin GM_Hippocampus_cornu_ammonis_L_mask 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_subiculum_L.hdr -thr 50 -bin mask_GM_Hippocampus_subiculum_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_dentate_gyrus_L.hdr -thr 50 -bin mask_GM_Hippocampus_dentate_gyrus_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_entorhinal_cortex_L.hdr -thr 50 -bin mask_GM_Hippocampus_entorhinal_cortex_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/mask_GM_Hippocampus_cornu_ammonis_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/mask_GM_Hippocampus_subiculum_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/mask_GM_Hippocampus_dentate_gyrus_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/mask_GM_Hippocampus_entorhinal_cortex_L.nii.gz Maske_Hippocampus_links
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/Maske_Hippocampus_links.nii.gz -bin
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_cornu_ammonis_L.hdr -thr 50 thr_GM_Hippocampus_cornu_ammonis_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_subiculum_L.hdr -thr 50 thr_GM_Hippocampus_subiculum_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_dentate_gyrus_L.hdr -thr 50 thr_GM_Hippocampus_dentate_gyrus_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/GM_Hippocampus_entorhinal_cortex_L.hdr -thr 50 thr_GM_Hippocampus_entorhinal_cortex_L
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/thr_GM_Hippocampus_entorhinal_cortex_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/thr_GM_Hippocampus_dentate_gyrus_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/thr_GM_Hippocampus_subiculum_L.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/thr_GM_Hippocampus_cornu_ammonis_L.nii.gz test 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_links/test.nii.gz -bin Maske_Hippocampus_links
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/GM_Hippocampus_cornu_ammonis_R.hdr -thr 50 thr_GM_Hippocampus_cornu_ammonis_R
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/GM_Hippocampus_entorhinal_cortex_R.hdr -thr 50 thr_GM_Hippocampus_entorhinal_cortex_R
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/GM_Hippocampus_dentate_gyrus_R.hdr -thr 50 thr_GM_Hippocampus_dentate_gyrus_R
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/GM_Hippocampus_subiculum_R.hdr -thr 50 thr_GM_Hippocampus_subiculum_R
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/thr_GM_Hippocampus_subiculum_R.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/thr_GM_Hippocampus_dentate_gyrus_R.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/thr_GM_Hippocampus_entorhinal_cortex_R.nii.gz -add /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/thr_GM_Hippocampus_cornu_ammonis_R.nii.gz test_R
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/test_R.nii.gz -bin Maske_Hippocampus_rechts
+cd /Volumes/Uni/Reminyl/Reminyl/AD_und_Gesunde/ica_data 
+fslsplit /Volumes/Uni/Reminyl/Reminyl/AD_und_Gesunde/ica_data/melodic_IC.nii.gz 
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/vol0018.hdr -bin Maske_Vol18
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/vol0018.hdr -bin Maske_Vol18
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk 
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol0018.hdr -bin Maske_Vol18
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol0018.hdr -bin Maske_Vol18
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol0018-mask.hdr -bin Maske_Vol18
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol0018.hdr -thr 500 -bin test_mask
+randomize
+randomise
+dual_regression
+glm_gui
+glm_gui
+dual_regression /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/dual_regression_vol18/vol0018.nii.gz 1 /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/dual_regression_vol18/dual_regression_vol18.mat /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/dual_regression_vol18/dual_regression_vol18.con 5000 vol_18 `cat /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/dual_regression_vol18/subjects_list.txt`
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_6_minus_0 
+fslmaths
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00013.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00000.nii.gz AD_4_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00013.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00000.nii.gz AD_4_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00014.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00001.nii.gz AD_17_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00015.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00002.nii.gz AD_18_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00016.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00003.nii.gz AD_22_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00017.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00004.nii.gz AD_23_6minus1
+cd /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_6_minus_0 
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00018.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00005.nii.gz AD_25_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00019.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_19/dr_stage2_subject00006.nii.gz AD_1_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00019.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00006.nii.gz AD_1_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00020.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00007.nii.gz AD_2_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00021.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00008.nii.gz AD_7_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00022.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00009.nii.gz AD11_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00023.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00010.nii.gz AD12_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00024.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00011.nii.gz AD13_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00025.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00012.nii.gz AD26_6minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00026.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00000.nii.gz AD4_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00027.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00001.nii.gz AD17_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00028.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00002.nii.gz AD18_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00029.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00003.nii.gz AD22_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00030.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00004.nii.gz AD23_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00031.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00005.nii.gz AD25_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00032.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00006.nii.gz AD1_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00033.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00007.nii.gz AD2_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00034.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00008.nii.gz AD7_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00035.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00009.nii.gz AD11_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00036.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00010.nii.gz AD12_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00037.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00011.nii.gz AD13_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00038.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00012.nii.gz AD26_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00050.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00039.nii.gz HC1_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00051.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00040.nii.gz HC1_12minus2
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00051.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00040.nii.gz HC2_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00052.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00041.nii.gz HC3_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00053.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00042.nii.gz HC4_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00054.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00043.nii.gz HC5_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00055.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00044.nii.gz HC6_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00056.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00045.nii.gz HC7_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00057.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00046.nii.gz HC8_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00058.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00047.nii.gz HC9_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00059.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00048.nii.gz HC10_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00060.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00049.nii.gz HC11_12minus1
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00026.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00013.nii.gz AD_Reminyl_1_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00027.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00014.nii.gz AD_Reminyl_2_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00028.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00015.nii.gz AD_Reminyl_3_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00029.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00016.nii.gz AD_Reminyl_4_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00030.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00017.nii.gz AD_Reminyl_5_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00031.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00018.nii.gz AD_Reminyl_6_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00032.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00019.nii.gz AD_Placebo_1_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00033.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00020.nii.gz AD_Placebo_2_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00034.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00021.nii.gz AD_Placebo_3_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00035.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00022.nii.gz AD_Placebo_4_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00036.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00023.nii.gz AD_Placebo_5_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00037.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00024.nii.gz AD_Placebo_6_12minus6
+fslmaths /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00038.nii.gz -sub /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/vol_18/dr_stage2_subject00025.nii.gz AD_Placebo_7_12minus6
+randomise
+fslmerge
+fslmerge -t AD_Reminyl_6minus1_merged /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_6_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_5_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_4_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_3_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_2_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_1_6minus1.nii.gz 
+fslmerge -t AD_Placebo_6minus1_merged /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_7_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_6_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_5_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_4_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_3_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_2_6minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_1_6minus1.nii.gz 
+fslmerge -t AD_Reminyl_12minus1 /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_6_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_5_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_4_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_3_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_2_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_1_12minus1.nii.gz 
+fslmerge -t AD_Reminyl_
+fslmerge -t AD_Placebo_12minus1 /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_7_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_6_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_5_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_4_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_3_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_2_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_1_12minus1.nii.gz 
+fslmerge -t HC_12minus1_merged /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC11_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC10_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC9_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC8_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC7_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC6_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC5_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC4_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC3_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC2_12minus1.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/HC1_12minus1.nii.gz 
+fslmerge -t AD_Reminyl_12minus6_merged /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_6_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_5_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_4_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_3_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_2_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_1_12minus6.nii.gz 
+fslmerge -t AD_Placebo_12minus6_merged /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_7_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_6_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_5_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_4_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_3_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_2_12minus6.nii.gz /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Placebo_1_12minus6.nii.gz 
+randomise
+randomise -i /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_6minus1_merged.nii.gz -o AD_Reminyl_6minus1 -m /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Maske_Vol18.nii.gz -1
+randomise -i /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Subtractions_individual/AD_Reminyl_6minus1_merged.nii.gz -o AD_Reminyl_6minus1 -m /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Hippocampus_Netzwerk/Maske_Vol18.nii.gz -1 -x 
+cd /Volumes/Transcend/Reminyl_September_2015 
+dual_regression /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed/vol0018.nii.gz 1 /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed/Reminyl.mat /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed/Reminyl.con 5000 vol_18_new `cat /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed/subjects_list.txt`
+/Users/neuro/matlab/abino/3dmaskave 
+cd /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI 
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz > /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.1D
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz >
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz > /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/A10_AD2-0_func_res2standard.1D
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz > /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/A10_AD2-0_func_res2standard.1D
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz > /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/A10_AD2-0_func_res2standard.1D
+/Users/neuro/matlab/abino/3dmaskave -mask /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/Maske_rechts/Maske_Hippocampus_rechts.nii.gz /Volumes/Uni/Reminyl/Reminyl/B14_AD13-1_func_res2standard.nii.gz > /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/B14_AD13-1_func_res2standard.1D
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/timecourse_extraction_afni.sh 
+chmod +x /Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/timecourse_extraction_afni.sh 
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/timecourse_extraction_afni.sh 
+/Users/neuro/matlab/abino/3dfim 
+/Users/neuro/matlab/abino/1dtranspose /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/C6_AD22-2_func_res2standard.1D test
+/Users/neuro/matlab/abino/3dfim+
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/A10_AD2-0_func_res2standard.1D -out Correlation -bucket Corr_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/A10_AD2-0_func_res2standard.1D[0] -out Correlation -bucket Corr_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/A10_AD2-0_func_res2standard.1D -out Correlation -bucket Corr_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/A10_AD2-0_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/A10_AD2-0_func_res2standard.1D -out Correlation -bucket Corr_A10_AD2-0_func_res2standard
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/B14_AD13-1_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/B14_AD13-1_func_res2standard.1D -out Correlation -bucket Corr_B14_AD13-1_func_res2standard
+/Volumes/Uni/Reminyl/Review_Neuropsychopharmacology/Seed_Analyse/correlation_analysis_afni.sh 
+/Users/neuro/matlab/abino/3dfim+ -input /Volumes/Uni/Reminyl/Reminyl/C2_AD4-2_func_res2standard.nii.gz -polort 2 -ideal_file /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI/C2_AD4-2_func_res2standard.1D -out Correlation -bucket Corr_C2_AD4-2_func_res2standard
+/Users/neuro/matlab/abino/3dcalc 
+cd /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI 
+/Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Fisher\'s\ Z\ transformation.sh 
+cd /Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Auswertung_AFNI 
+/Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Fisher\'s\ Z\ transformation.sh 
+/Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Fisher\'s\ Z\ transformation.sh 
+/Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Fisher\'s\ Z\ transformation.sh 
+/Volumes/Transcend/Reminyl_September_2015/Review_Neuropsychopharmacology/Seed_Analyse/Fisher\'s\ Z\ transformation.sh 
+cd /Users/neuro/git/FormTablet-7.8Sql2Sg2Verbessert/GSBS_tDCS_V2/_tst/Rater-Tst 
+pwd
+cd /Users/neuro/git/FormTablet-7.8Sql2Sg2Verbessert/GSBS_tDCS_V2/_tst/SOZI/ 
+fslmaths
+cd /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed 
+fslmaths /Volumes/Transcend/Reminyl_September_2015/raw_data_preprocessed/vol0018.nii.gz -mas /usr/local/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz vol0018_masked
+cd /Users/neuro/Documents/workspace/shuk/4Survey/inbox/tDCS-GCBS/D.Wiederholer_post_fMRI/
+vimdiff 10.CRQ.v1.xml 10.CRQ_1st_stim.xml 
+gvimdiff 10.CRQ.v1.xml 10.CRQ_1st_stim.xml 
+vimdiff 10.CRQ.v1.xml 10.CRQ_1st_stim.xml 
+pwd
+clear
+ls
+./cpr.sh 
+cd /Users/neuro/git/FormTablet-8.DNB-SUMM05CRF02/MainActivity/assets/base/
+ls
+chmod +x cpr.sh 
+./cpr.sh 
+clear
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+pwd
+vi 2cprmk.sh 
+clear
+clear
+clcd cd /Users/neuro/Desktop/studies/PTSD_Realtime/Resting_state/Kontrollen/AR/
+cd /Users/neuro/Desktop/studies/PTSD_Realtime/Resting_state/Kontrollen/AR 
+gzip AR_pre_func.nii
+gzip AR_pre_funcTst.nii 
+cd /Users/neuro/git/JN/assets/FormTablet-6/MainActivity/assets/base 
+cd /Users/neuro/git/FormTablet-9-CRF-Head-Overall-tss/MainActivity/assets/MS4d4 
+cd /Users/neuro/git/FormTablet-9.1-CRF-Head-Overall-BodyTopic-tssNew/MainActivity/assets/base 
+ls
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+clear
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+clear
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+clear
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+
+ls 
+ls DepressionDC/
+pqd
+pwd
+clear
+ls
+ls DepressionDC/
+ls DepressionDC/1st_Week/
+ls DepressionDC/1st_Week/Day01
+ls DepressionDC/1st_Week/Day01/Patient/
+ls DepressionDC/
+cd /Users/neuro/git/FormTablet-9.1-CRF-Head-Overall-BodyTopic-tssNew/MainActivity/assets/base 
+vi cpr.sh 
+./cpr.sh 
+./cpr.sh 
+./cpr.sh 
+vi cpr.sh 
+clear
+./cpr.sh 
+./cpr.sh 
+vi cpr.sh 
+vi cpr.sh 
+vi cpr.sh 
+./cpr.sh 
+./cpr.sh 
+vi cpr.sh 
+vi cpr.sh 
+clear
+cd /Users/neuro/Documents/BigBox/4Survey/log 
+ls
+vim -x log7.csv 
+vim  log6.csv 
+vim  log1.csv 
+vim  log1.csv 
+pwd
+cd ~
+pwd
+clear
+ls
+clear
+cd /Users/neuro/Documents/BigBox/4Survey/log 
+ls
+vi log2.csv 
+vi log2.csv 
+cd /Users/neuro/git/FormTablet-9.9-CRF-Head-Overall-BodyTopic-tssNew-BackDateErr/MainActivity/src/com/example/android/surveyapk 
+ctags -R .
+pwd
+ls
+cd ..
+ls
+cd ..
+ls
+cd android/
+ls
+cd surveyapk/directorychooser/
+ctags -R .
+cd ..
+ls
+ctags -R .
+ctags 
+ctags -h
+man ctags
+ctags -x
+ctags -x
+ctags --R
+ctags -xv
+ctags R .
+ctags 
+man ctags
+ctags -d
+pwd
+ls
+ctags -x
+which ctags
+ctags -R
+pwd
+clear
+pwd
+pwd
+su
+su
+sudo su
+pwd
+cd ~
+cp -r .vim vim2a
+cd .vim
+ls
+mkdir -p ~/.vim/autoload ~/.vim/bundle 
+ls
+ls autoload/
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+ls autoload/
+cd bundle/
+ls
+git clone https://github.com/scrooloose/syntastic.git 
+ls
+vi
+clear
+ls
+pwd
+ls
+vi syntastic/
+pwd
+cd ..
+cd ..
+ls
+ls
+pwd
+rm time.*
+pwd
+vi .vimrc 
+pwd
+mkdir .backupsvim
+mkdir .vim/tmp 
+pwd
+cp -r .vim vim2spf13
+pwd
+cd .vimrc
+cd .vim
+clear
+clear
+ls
+pwd
+ls bundle/
+cd ..
+ls
+gvim -S mks0.vim 
+vim -S mks0.vim 
+pwd
+vim ~/.vimrc.bundles.local
+echo Bundle \'AutoClose\' >> ~/.vimrc.bundles.local
+echo Bundle \'QuickRun\' >> ~/.vimrc.bundles.local
+echo Bundle \'Scratch\' >> ~/.vimrc.bundles.local
+vim
+vim
+vi .vimrc.bundles.local
+vim ttst.sh 
+ls
+vi .vim/bundle/.vundle/
+rm .vimrc.bundles.local
+vi Bundle 'thinca/vim-quickrun'
+vi .vimrc.bundles.local
+vi .vimrc.bundles.local
+vi ttst.sh 
+vim +BundleInstall! +BundleClean +q
+rm .vimrc.bundles.local
+ls
+vim -version
+clear
+cd /Users/neuro/git/FormTablet-10.2-CRF-Vor/MainActivity/assets/base/
+ls
+./cpr2.sh 
+./cpr3.sh 
+clear
+./cpr3.sh 
+./cpr3.sh 
+cd /Users/neuro/git/FormTablet-10.2-CRF-Vor/MainActivity/assets/baseGO/tst_Src/PatientZipEn 
+ls
+zip -e archivename.zip 00.BDI-II.xml 00.SF36.xml 00.SNI.xml 00.STAI-G-Trait.xml 
+ls
+pwd
+pwd
+cd /Users/neuro/git/FormTablet-9.9-CRF-Head-Overall-BodyTopic-tssNew-BackDateErr/MainActivity/src/com/example/android/surveyapk
+pwd
+pwd
+ctags -R
+ctags -R
+tcsh
+pw
+alias ctags="`brew --prefix`/bin/ctags"
+alias ctags="`neuro --prefix`/bin/ctags"
+alias ctags="`ctags --prefix`/bin/ctags"
+which ctags
+alias ctags="`ctags --prefix`/usr/bin/ctags"
+alias ctags="`ctags --prefix`/usr/bin/ctags"
+ctags -R
+pwd
+pwd
+clear
+ctags *.java
+ctags -R *.java
+ctags *.java
+ls
+vi directorychooser/DirectoryChooserDialog.java 
+ls -a
+ls tags 
+vi tags 
+ls
+vi MainActivity.java 
+vi MainActivity.java 
+vi tags 
+ctags *.java
+ls -al
+pwd
+ls -al directorychooser/
+clear
+ctags *.java
+pwd
+pwd
+pwd
+cd ~
+pwd
+vi .vimrc 
+cd /Users/neuro/git/FormTablet-10.0-gmail/MainActivity/assets/baseV8 
+./cpr2a.sh 
+./cpr3.sh 
+ls
+cd ~
+ls
+ls -a
+cd .ssh/
+ls
+pwd
+clear
+pwd
+cd ..
+cd .vim
+ls
+ls ftplugin/
+clear
+ls
+ls plugin/
+vi plugin/supertab.vim 
+ls plugin/
+ls
+ls
+pwd
+ls ftplugin/
+ls plugin/
+pwd
+cd ..
+cd NERD_tree/
+ls
+vi README.markdown 
+pwd
+cd ..
+ls
+cd ..
+cd 4vim/
+ls
+vi tcomment.vba 
+vi tst.txt
+ls
+cd ctags-5.8
+ls
+./configure 
+which ctags
+pwd
+pwd
+cd /Users/neuro/git/FormTablet-9.9-CRF-Head-Overall-BodyTopic-tssNew-BackDateErr/MainActivity/src/com/example/android/surveyapk
+pwd
+ctags -R
+brew install ctags
+pwd
+sudo su
+vim
+vim

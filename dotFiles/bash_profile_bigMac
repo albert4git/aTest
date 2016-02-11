@@ -1,0 +1,37 @@
+# FSL Setup
+FSLDIR=/usr/local/fsl
+PATH=${FSLDIR}/bin:${PATH}
+export FSLDIR PATH
+. ${FSLDIR}/etc/fslconf/fsl.sh
+
+# freesurfer
+export FREESURFER_HOME=/Applications/freesurfer
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+export SUBJECTS_DIR=/Users/neuro/scz_fs 
+
+PATH=/Users/neuro/abin:${PATH}
+PATH=/sw:${PATH}
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+# added by Anaconda 1.8.0 installer
+export PATH="/Users/neuro/anaconda/bin:$PATH"
+
+##
+# Your previous /Users/neuro/.bash_profile file was backed up as /Users/neuro/.bash_profile.macports-saved_2014-01-15_at_17:51:17
+##
+
+# MacPorts Installer addition on 2014-01-15_at_17:51:17: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+MINDBOGGLE_TOOLS=<path to mindboggle>/mindboggle_tools/bin/
+export MINDBOGGLE_TOOLS
+export PATH=$PATH:$MINDBOGGLE_TOOLS
+#export DYLD_LIBRARY_PATH=<path to anaconda>/lib/vtk-5.10:${DYLD_LIBRARY_PATH}
+
+# workbench
+
+export PATH="$PATH:/Applications/workbench/bin_macosx64"
+export PATH="$PATH:/Applications/workbench/macosx64_apps/wb_command.app"
+
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/lib
