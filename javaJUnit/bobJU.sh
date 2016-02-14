@@ -4,15 +4,18 @@ echo $STR
 
 #www.thegeekstuff.com
 
-javac hello.java
-java hello
+javac HelloWorld.java
+java  HelloWorld
 
-javac helloW.java
-java helloW
+export CLASSPATH=.:$CLASSPATH.:junit-4.10.jar
+javac -classpath .:junit-4.10.jar Summer.java Sumtester.java 
+java org.junit.runner.JUnitCore Sumtester
+
+# java org.junit.runner.JUnitCore AddSubTest
+java Summer
+java Sumtester
 
 
-javac hello2W.java
-java hello2W
 
 i    = 1
 ii   = 10

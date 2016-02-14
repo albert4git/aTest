@@ -30,6 +30,11 @@ macro "get_hyd_v21"{
     opendir_t2 = "qt2_stenk";
     opendir_ir = "qir_stenk";
     opendir_ir_fla = "qfla_stenk";
+    //
+    openpath = "/Volumes/INNAME/AB/";
+    opendir_t2 = "c4tif";
+    opendir_ir = "f3tif";
+    opendir_ir_fla = "ir8tif";
  //------------------------------------------
     f4t2ciss(openpath,opendir_t2);
  //------------------------------------------

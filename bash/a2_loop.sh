@@ -9,13 +9,9 @@ RawFOLDER=raw_data_folder
 ####################################################################
 clear
 echo "------------------a1_pre_prop-------START--------------------"
-pwd
 
-
-# Absolute path to this script. /home/user/bin/foo.sh
-SCRIPT=$(readlink -f $0)
 # Absolute path this script is in. /home/user/bin
-SCRIPTPATH=`dirname $SCRIPT`
+SCRIPTPATH=`pwd -P`
 
 clear
 echo "-------------------- $SCRIPTPATH --"
@@ -45,4 +41,13 @@ done
 # for i in "$LIST"; do
 #     echo " i ------------ $i ist"
 # done
+
+cd /Users/neuro/aTest/aTest/fiji/Fiji.app.oct.2013/Contents/MacOS
+./ImageJ-macosx /Users/neuro/aTest/fatiProjectA/nifti_bsp/AtlasIE1-Targets2/crAtlas-IE1-R.nii
+
+
+
+
+
+
 

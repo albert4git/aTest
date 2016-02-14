@@ -10,35 +10,52 @@ macro "get_hyd_v21"{
     openpath = "/Volumes/Daniel/AbtGH/3D_LEIM/subjects/auto_fiji/Kexler/";
     opendir_t2 = "Qt2_kex";
     opendir_ir = "QIR_kex";
+    //
+    openpath = "/Volumes/Daniel/AbtGH/3D_LEIM/subjects/7patients/Porcelli_250113/";
+    opendir_t2 = "CISS_Q2_tiff";
+    opendir_ir = "IR_Q2_T_tiff";
+    opendir_ir_fla = "Flair_Q2_T_tiff";
+    //
+    openpath = "/Volumes/Daniel/AbtGH/3D_LEIM/subjects/7patients/Ross_250113/";
+    opendir_t2 = "CISS_Q2_tiff";
+    opendir_ir = "IR_Q2_T_tiff";
+    opendir_ir_fla = "Flair_Q2_T_tiff";
+    //
+    openpath = "/Volumes/Daniel/AbtGH/3D_LEIM/subjects/auto_fiji/Blochinger/";
+    opendir_t2 = "qt2_bloch";
+    opendir_ir = "qir_bloch";
+    opendir_ir = "qfla_bloch";
+    //
     openpath = "/Volumes/Daniel/AbtGH/3D_LEIM/subjects/auto_fiji/Stenke/";
     opendir_t2 = "qt2_stenk";
     opendir_ir = "qir_stenk";
     opendir_ir_fla = "qfla_stenk";
  //------------------------------------------
-//    f4t2ciss(openpath,opendir_t2);
+    f4t2ciss(openpath,opendir_t2);
  //------------------------------------------
     f4ir(openpath,opendir_ir,opendir_t2);
  //------------------------------------------
     f4ir(openpath,opendir_ir_fla,opendir_t2);
 }
-//// // // // // // // // // // // // // // // //
-//                 ######                      //
-//              ############                   //
-//     #################################       //
-//              ############                   //
-//                #######                      //
-////  // // // // // // // // // // // // // / //
+                    //// // // // // // // // // // // // // // // //
+                    //                 ######                      //
+                    //              ############                   //
+                    //     #################################       //
 ////  // //////  /////  / ////  // // // // // // // // // // //  ///  / ////  // //// //// // //
 //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 ////  // //// // /// // / // // // // // // // // // // // // //  / // / // // // //// //// // //
-//                                         ######                                              //
-//                                      ############                                           //
-//              ##     ##      #################################      ##      ##               //
-//                                      ############                                           //
-//                                        #######                                              //
+//                                     ######                                                  //
+//                                  ############                                               //
+//          ##     ##      #################################      ##      ##                   //
+//                                  ############                                               //
+//                                    #######                                                  //
 ////  // //// // /// // / // // // // // // // // // // // // //  / // / // // // //// //// // //
 //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 ////// // / /  // //  // / /  // // // // // // // // // // // ////  // / /  // // / // / // / //
+                    //     #################################       //
+                    //              ############                   //
+                    //                #######                      //
+                    ////  // // // // // // // // // // // // // / //
 function f4ir(openpath,opendir_ir,opendir_t2) {
          fullpathname = openpath + opendir_ir;
          input = openpath + opendir_ir;
@@ -52,13 +69,17 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
               n_clahe100q  =     opendir_ir + "_04_clahe100q.tif";
               n_clahe100m  =     opendir_ir + "_04_clahe100m.tif";
               n_nib10      =     opendir_ir + "_05_nib10.tif";
+              n_nib15      =     opendir_ir + "_05_nib15.tif";
               n_nib20      =     opendir_ir + "_05_nib20.tif";
               n_nib5       =     opendir_ir + "_05_nib5.tif";
               n_Bernsen50  =     opendir_ir + "_05_Bernsen50.tif";
               n_ALThMean50 =     opendir_ir + "_05_ALThMean50.tif";
-              n_combA       =   openpath   + n_combA ;       
-              n_combB       =   openpath   + n_combB ;       
-              n_combC       =   openpath   + n_combC ;       
+              n_tmpB     =       opendir_ir + "_06_tmpB.tif";
+              n_tmpC     =       opendir_ir + "_06_tmpC.tif";
+              n_tmpD     =       opendir_ir + "_06_tmpD.tif";
+              n_combA     =      opendir_ir + "_07_combA.tif";
+              n_combB     =      opendir_ir + "_07_combB.tif";
+              n_combC     =      opendir_ir + "_07_combC.tif";
          //---------------------------------
               origin       =   openpath   + n_origin        ;
               gaus         =   openpath   + n_gaus          ;
@@ -67,6 +88,7 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
               clahe100q    =   openpath   + n_clahe100q     ;
               clahe100m    =   openpath   + n_clahe100m     ;
               nib10        =   openpath   + n_nib10         ;
+              nib15        =   openpath   + n_nib15         ;
               nib20        =   openpath   + n_nib20         ;
               nib5        =   openpath   + n_nib5         ;
               Bernsen50   =   openpath   + n_Bernsen50    ;
@@ -75,7 +97,7 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
               combB       =   openpath   + n_combB ;       
               combC       =   openpath   + n_combC ; 
               
-         //---------------------------------
+         //--------------- opendir_t2 ------------------
               n_t2_nib50      =   opendir_t2 + "_05_nib50.tif";
               t2_nib50        =   openpath   + n_t2_nib50 ;
               print(n_t2_nib50);
@@ -87,7 +109,7 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
              close();
          //---------------PreProces---------------------------
              open(origin);
-             run("physics");
+             //run("physics");
              print(n_origin);
              run("Gaussian Blur 3D...", "x=2 y=2 z=2");
              saveAs("tiff", gaus);
@@ -110,7 +132,7 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
              //test 
              //run("physics");
              //run("Conversions...", " ");
-             //run("8-bit");
+             run("8-bit");
              //test 
              saveAs("tiff", clahe100);
              print(n_clahe100);
@@ -134,6 +156,17 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
              close();
         //---------------Auto-Th-Block---------------------------
              open(clahe100m);
+             run("Auto Local Threshold", "method=Niblack radius=5 parameter_1=0 parameter_2=0 white stack");
+             run("Median (3D)");
+             run("Erode (3D)", "iso=255");
+             saveAs("tiff", nib5);
+             print(n_nib5);
+             selectWindow(n_nib5); 
+             close();
+             selectWindow(n_clahe100m);
+             close();
+         //------------------------------------------
+             open(clahe100m);
              run("Auto Local Threshold", "method=Niblack radius=10 parameter_1=0 parameter_2=0 white stack");
              run("Median (3D)");
              run("Erode (3D)", "iso=255");
@@ -145,12 +178,23 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
              close();
          //------------------------------------------
              open(clahe100m);
-             run("Auto Local Threshold", "method=Niblack radius=5 parameter_1=0 parameter_2=0 white stack");
+             run("Auto Local Threshold", "method=Niblack radius=10 parameter_1=0 parameter_2=0 white stack");
              run("Median (3D)");
              run("Erode (3D)", "iso=255");
-             saveAs("tiff", nib5);
-             print(n_nib5);
-             selectWindow(n_nib5); 
+             saveAs("tiff", nib15);
+             print(n_nib15);
+             selectWindow(n_nib15); 
+             close();
+             selectWindow(n_clahe100m);
+             close();
+         //------------------------------------------
+             open(clahe100m);
+             run("Auto Local Threshold", "method=Niblack radius=10 parameter_1=0 parameter_2=0 white stack");
+             run("Median (3D)");
+             run("Erode (3D)", "iso=255");
+             saveAs("tiff", nib20);
+             print(n_nib20);
+             selectWindow(n_nib20); 
              close();
              selectWindow(n_clahe100m);
              close();
@@ -168,8 +212,15 @@ function f4ir(openpath,opendir_ir,opendir_t2) {
              close();
              selectWindow(n_clahe100m);
              close();
+    //------------------------------------------
          /*
           */
+      //open(clahe100);
+      //open(nib10);
+
+      //run("Combine...", "stack1='n_clahe100' stack2='n_nib10'combine");
+      //saveAs("tiff", combB );
+      //close();
          //------------------------------------------
              print("ir_finish ");             
          //------------------------------------------
@@ -260,10 +311,9 @@ function f4t2ciss(openpath,opendir) {
       //Enter the desired values in the line below 
       run("Enhance Local Contrast (CLAHE)", "blocksize=100 histogram=256 maximum=2 mask=*None*"); 
      } 
-     run("physics");
      //run("physics");
      //run("Conversions...", " ");
-     //run("8-bit");
+     run("8-bit");
      saveAs("tiff", clahe100);
      print(n_clahe100);
      selectWindow(n_clahe100);
@@ -334,60 +384,17 @@ function f4t2ciss(openpath,opendir) {
  selectWindow(n_clahe100);
  close();
  //ooooooooooooooooooooooooooooooooooooooooooo
- //---------------------------------------------
-  open( AThYen );     
-  open( isod );
-  open( ALThMean50 );
-  open( Bernsen50 );
-  open( nib50 );
-  imageCalculator("Average create stack", n_AThYen , n_nib50);
-  saveAs("tiff", tmpA);
-  close();
-  open(tmpA);
-  imageCalculator("Average create stack", n_isod , n_Bernsen50);
-  saveAs("tiff", tmpB);
-  close();
-  open(tmpB);
-  imageCalculator("Average create stack", n_ALThMean50 , n_tmpA);
-  saveAs("tiff", tmpC);
-  close();
-  open(tmpC);
-  imageCalculator("Average create stack", n_tmpC , n_tmpB);
-  saveAs("tiff", tmpD);
-  close();
-  open(tmpD);
- 
-  selectWindow( n_tmpA );      
-  close();
-  selectWindow( n_tmpB );      
-  close();
-  selectWindow( n_tmpC );      
-  close();
-  selectWindow( n_tmpD );      
-  close();
- 
-  selectWindow( n_AThYen );      
-  close();
-  selectWindow( n_isod );        
-  close();
-  selectWindow( n_ALThMean50 );  
-  close();
-  selectWindow( n_Bernsen50 );   
-  close();
-  selectWindow( n_nib50 );       
-  close();
 //------------------------------------------
- open(clahe100);
- open(nib50);
-//------------------------------------------
-run("Combine...", "stack1='n_clahe100' stack2='n_nib50'combine");
-  saveAs("tiff", combA );
+  //open(clahe100);
+  //open(nib50);
+  //run("Combine...", "stack1='n_clahe100' stack2='n_nib50'combine");
+  //saveAs("tiff", combA );
   //close();
+  //
   //selectWindow( n_clahe100 );   
   //close();
   //selectWindow( n_nib50 );       
   //close();
-
  //------------------------------------------
      print("t2 ciss fin");             
  //------------------------------------------

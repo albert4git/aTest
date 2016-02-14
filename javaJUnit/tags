@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+HelloWorld	HelloWorld.java	/^    public  HelloWorld()$/;"	m	class:HelloWorld
+HelloWorld	HelloWorld.java	/^public class HelloWorld extends JFrame{$/;"	c
+Summer	Summer.java	/^public class Summer {$/;"	c
+Sumtester	Sumtester.java	/^public class Sumtester extends TestCase {$/;"	c
+add	Summer.java	/^	public void add(int number) {$/;"	m	class:Summer
+btn1	HelloWorld.java	/^      private JButton btn1 = new JButton("Klick!");$/;"	f	class:panel	file:
+calcSum	Summer.java	/^	public int calcSum() {$/;"	m	class:Summer
+main	HelloWorld.java	/^ public static void main(String[] args) {$/;"	m	class:HelloWorld
+main	Summer.java	/^        public static void main(String args[]) {$/;"	m	class:Summer
+panel	HelloWorld.java	/^      JPanel panel;$/;"	f	class:panel
+panel	HelloWorld.java	/^      public panel() {$/;"	m	class:panel
+panel	HelloWorld.java	/^   class panel {$/;"	c
+testNegativeNumbers	Sumtester.java	/^	public void testNegativeNumbers() {$/;"	m	class:Sumtester
+testPositiveNumbers	Sumtester.java	/^	public void testPositiveNumbers() {$/;"	m	class:Sumtester
+testZeros	Sumtester.java	/^	public void testZeros() {$/;"	m	class:Sumtester
+total	Summer.java	/^	int total;$/;"	f	class:Summer
+txt1	HelloWorld.java	/^      private JTextField txt1 = new JTextField(10);$/;"	f	class:panel	file:
+txt2	HelloWorld.java	/^      private JTextField txt2 = new JTextField(10);$/;"	f	class:panel	file:
