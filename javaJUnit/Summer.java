@@ -1,6 +1,6 @@
 /**
  * The Summer class sums up integers.
- * @author ynonperek
+ * @author alf
  *
  */
 public class Summer {
@@ -17,6 +17,12 @@ public class Summer {
 		this.total += number;
 	}
 
+    public void part(int number){
+        if (number!=0) {
+            this.total = this.total / number;
+        }
+
+    }
 	/**
 	 * Returns the sum of all the integers added so far
 	 */

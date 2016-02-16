@@ -2,7 +2,11 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 // import org.junit.Test;
 
-
+/** Description of Sumtester
+ * @version version
+ * @author alf
+ * @version 1.0z Build 9000 Jan 3, 1970.
+ */
 public class Sumtester extends TestCase {
 
 	/**
@@ -14,8 +18,9 @@ public class Sumtester extends TestCase {
 		s.add(10);
 		s.add(20);
 		s.add(30);
+    2016-02-14 2016-02-14T22:34:55
 
-		Assert.assertEquals(40, s.calcSum());
+		Assert.assertEquals(60, s.calcSum());
 	}
 
 	/**
@@ -31,6 +36,16 @@ public class Sumtester extends TestCase {
 		Assert.assertEquals(-60, s.calcSum());
 	}
 
+	/**
+	 * Verifies devision by 2
+	 *
+	 */
+	public void testParts() {
+		Summer s = new Summer();
+		s.add(20);
+		s.part(2);
+		Assert.assertEquals(10, s.calcSum());
+	}
 	/**
 	 * Verifies initial value
 	 */
