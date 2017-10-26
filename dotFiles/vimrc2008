@@ -1,0 +1,107 @@
+filetype on  " Automatically detect file types.
+syntax enable
+set nocompatible  " We don't want vi compatibility.
+" Add recently accessed projects menu (project plugin)
+set viminfo^=!
+" Minibuffer Explorer Settings
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+" alt+n or alt+p to navigate between entries in QuickFix //?
+set cf  " Enable error files & error jumping.
+set clipboard+=unnamed  " Yanks go on clipboard instead. // Great
+set history=2024  " Number of things to remember in history.
+set autowrite  " Writes on make/shell commands
+set ruler  " Ruler on
+set nu  " Line numbers on
+set nowrap  " Line wrapping off
+set timeoutlen=250  " Time to wait after ESC (default causes an annoying delay)
+" Visual
+set showmatch  " Show matching brackets.
+set mat=5  " Bracket blinking.
+" set list
+set visualbell
+set laststatus=2  " Always show status line.
+set mouse=a  " Mouse in all modes
+set backup                   " Enable creation of backup file.
+set backupdir=~/.backupsvim " Where backups will go.
+set directory=~/.vim/tmp     " Where temporary files will go.
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+"My stuff ---------------------------
+set wmh=0
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W>|
+map <C-L> <C-W>l<C-W>|
+map <C-=> <C-W>=
+"My stuff ---------------------------
+set wrapmargin=8
+" Show classes and functions in a separate window with F8
+nnoremap <silent> <F8> :Tlist<CR>
+set tags=./tags;tags;/
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+" Show (partial) command in status line.
+set showcmd
+"1280x1024 or CRT
+set guifont=Courier\ 10\ Pitch\ 13
+" Set the command line to one line high.
+set cmdheight=1
+" Ich muss das noch anpassen !!
+set statusline=[%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
+let php_sql_query = 1
+let php_htmlInStrings = 1
+let php_parent_error_close = 1
+let php_parent_error_open = 1
+" New -------------------------------------------------
+"set browsedir=buffer : Maki GUI File Open use current directory
+"set spell
+set dictionary=/usr/share/dict/words
+set pastetoggle=<f5>
+
+" Toggle line numbers and fold column for easy copying:
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+" Python ----------------------------------------------
+filetype plugin indent on
+autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+set incsearch
+set hlsearch
+set cinwords=if,else,while,do,for,switch,case
+"set cindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=80
+set smarttab
+set expandtab
+set smartindent
+filetype plugin indent on
+
+let g:pydoc_cmd = "/usr/bin/pydoc"
+let g:pydiction_location = "~/.vim/ftplugin/pydiction/complete-dict" 
+
+
+" Taglist variables
+" Display function name in status bar:
+let g:ctags_statusline=1
+" Automatically start script
+let generate_tags=1
+" Displays taglist results in a vertical window:
+let Tlist_Use_Horiz_Window=0
+" Shorter commands to toggle Taglist display
+nnoremap TT :TlistToggle<CR>
+map <F4> :TlistToggle<CR>
+" Various Taglist diplay config:
+let Tlist_Use_Right_Window = 1
+let Tlist_Compact_Format = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_File_Fold_Auto_Close = 1
+"----------------------------------------------
+
