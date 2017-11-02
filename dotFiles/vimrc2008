@@ -25,8 +25,8 @@ set visualbell
 set laststatus=2  " Always show status line.
 set mouse=a  " Mouse in all modes
 set backup                   " Enable creation of backup file.
-set backupdir=~/.backupsvim " Where backups will go.
-set directory=~/.vim/tmp     " Where temporary files will go.
+"set backupdir=~/.backupsvim " Where backups will go.
+"set directory=~/.vim/tmp     " Where temporary files will go.
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).

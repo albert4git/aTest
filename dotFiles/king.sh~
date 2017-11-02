@@ -16,6 +16,6 @@ rm ~/.emacs.d/init.el
 ln -s ~/atest/dotFiles/initEm2.el ~/.emacs.d/init.el
 
 
-cp ~/.vimrc ~/"1vimrc-$(date +"%s")"
+cp ~/.vimrc ~/"1vimrc-$(date +"%m-%d-%y-%r")"
 rm ~/.vimrc
 ln -s ~/atest/dotFiles/vimrc2008 ~/.vimrc 
