@@ -1,7 +1,7 @@
 
 ###########################################################################
 #!/usr/bin/octave -qf
- # a sample Octave program
+
  printf ("Hello, world!\n");
 
 #!/usr/bin/octave -qf
@@ -11,3 +11,4 @@ plot(x, y);
 figure;
 printf ("Hello, world!\n");
 
+###########################################################################
