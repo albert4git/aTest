@@ -1,0 +1,408 @@
+ls
+ls - a
+ls -a
+ls
+sudo su
+curl -L https://git.io/epre | sh
+emacs
+curl http://j.mp/spf13-vim3 -L -o - | sh
+system
+synaptic
+sudo su
+ls
+la
+clear
+ls
+cd .emacs.d/
+ls
+vi init.el 
+gvim init.el 
+cd ..
+ls
+mkdir git
+cd git/
+git clone https://github.com/albert4git/aTest
+ls
+gnome-control-center 
+unity-control-center 
+emacs
+cd .emacs.d/
+ls
+gvim init.el 
+emacs
+cd .emacs.d/
+gvim init.el 
+emacs
+cd .emacs.d/
+gvim init.el 
+emacs
+emacs
+emacs --no-desktop
+emacs
+emacs
+cd .emacs.d/
+ls
+gvim init.el 
+emacs
+la -a
+cd .emacs.d/
+ls
+cd .emacs.d/
+mkdir tmp
+touch savehist
+ls
+emacs
+emacs
+vi
+cd /media/alf/INTENSO/4emacs2018MPI/v02-powerline/
+la
+mv .emacs.d/ emacs.d
+ls
+exit
+emacs
+gvim
+cd ..
+mv .emacs.d/ Pictures/emacs.d.v3.albert.postParedit
+cd .emacs.d/
+ls
+cd ..
+la
+vi .emacs.d/init.el 
+la
+mv .emacs.d-gh-pages/ sasha.emacs.d-gh-pages/
+ls
+clear
+ls
+cp -r FunEmacs/ ../.emacs.d
+emacs
+cd .emacs.d/
+vi emacs.org 
+emacs
+export PATH="/home/alf/.cask/bin:$PATH"
+cask
+export PATH="/home/alf/Cask/bin:$PATH"
+cask
+rm -r Cask/
+ls Cask/
+sudo rm -r Cask/
+ls Cask/
+emacs
+cd .emacs.d/
+ag my2
+cd .emacs.d/
+ag my2
+ag my2spell
+ag my2spell *.el
+ag wgrep *.el
+java -v
+java --v
+java
+chromium-browser 
+emacs
+cd .emacs.d/
+ls
+gvim init.el 
+cd ..
+cd 23.Split21-Helm-iDoErr.emacs.d/
+vim
+cd ..
+vi .vimrc
+emacs --no-desktop
+cp -r .emacs.d/ 34.iDO-ok.hydra-F1.emacs.d
+emacs --no-desktop
+cp -r .emacs.d/ 35.iDO-ok.hydra-F1.AC-start.emacs.d
+cd .emacs.d/
+ls
+cd 4c/
+la
+ls gruss/
+ls gruss/HelloWorld/
+ls gruss/HelloWorld/bin/
+cd  gruss/HelloWorld/bin/
+./hello 
+cd ..
+ls
+vi Makefile 
+cd ..
+ls
+cd ..
+ls
+ls hello
+ls hello/
+clear
+cd  gruss/HelloWorld/bin/
+cd..
+cd ..
+ls
+ls src/
+la
+java -V
+java --V
+java --v
+javac
+javac -V
+javac --v
+clear
+cd git/aTest/
+ls
+ls 4c/
+cp -r 4c ~/.emacs.d/
+sudo su
+cd .emacs.d/
+emacs
+emacs --no-desktop
+cd ..
+cd Desktop/emacs-bb/
+ls
+clear
+cp *.el ../../.emacs.d/
+cd .emacs.d/
+gvim init.el 
+emacs --no-desktop
+cd .emacs.d/
+ls
+vi init.el 
+gvim init.el 
+emacs --debug-init
+ls
+la
+ll
+cd .emacs.d/
+mv my2smartCode.el my18smartCode.el 
+ls
+mv my2smartEdit.el my18smartEdit.el 
+clear
+ls
+gvim my18abreev-simple-hotKeys-binds.el 
+gvim me18ssamlung.el
+mv my22doom.el my2doom.el 
+clear
+ls
+mv my2abreev-simple-hotKeys-binds.el my18abreev-simple-hotKeys-binds.el 
+cd /home/alf/git/aTest/RStat/
+sudo su
+cd .emacs.d/
+la
+vim init.el 
+gvim init.el 
+gvim -S split17.vim 
+clea
+clear
+ls
+mv my18samlung.el me18samlung.el 
+clear
+ls
+mv my18maxiHelm.el me18maxiHelm.el 
+ls
+clear
+ls
+mv my18powerLine.el me18powerLine.el 
+clear
+ls
+gvim init.el 
+rm my2ido-ibuff-smex-dmenu.el 
+rm my2counsel-ivy-swiper.el 
+mv my18wgrep-ag-tags.el my18grep-ag-wgrep-ggtags-etags.el 
+mv my18clean-company-ac-ispell.el my18company-ac-ispell-yas-eldoc-elisp.el 
+emacs --no-desktop
+emacs --no-desktop\
+emacs --no-desktop
+clear
+emacs --no-desktop
+clear
+emacs --no-desktop
+clear
+emacs --no-desktop
+clear
+emacs --no-desktop
+cd ..
+cp -r .emacs.d/ 55.VorBigHelm.emacs.d/
+cp -r .emacs.d/ 56.MinusSkBigHelm.emacs.d/
+cp -r .emacs.d/ 57.NoHelm.emacs.d/
+cp -r .emacs.d/ 58.Tream1.NoHelm.emacs.d/
+cp -r .emacs.d/ 59.Tream1.YesHelm.emacs.d/
+cp -r .emacs.d/ 60.Tream1.YesHelm2.emacs.d/
+cp -r .emacs.d/ 61.Trimmr18.YesHelm2.emacs.d/
+ls
+cd  .vim/bundle/
+ls
+clear
+ls
+cd git/aTest/octave/
+ls
+vi hello.m 
+lcd
+cd ~/
+ls
+clear
+la
+tar cfvz vim030717.tar.gz .vim*
+cd git/aTest/octave/
+ls
+git add mini.m 
+ls
+git log mini.m
+git log hello.m
+cd ../dotFiles/
+ls
+ls 4vim2008/
+ls 4vim2008/vim
+cp 4vim2008/vimrc2008 vimrc2008.vim
+ls
+vimdiff vimrc2008 vimrc2008.vim 
+rm *.vim
+ls
+clear
+ls
+cd -
+ls
+git show-graph
+git show-branch
+git tag -a v2.0 -m 'Horst'
+git push -u origin master
+git show v2.0
+git show v1.0
+log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+git log --graph --topo-order --decorate --oneline --all
+cd Documents/vim-tests-zip/vim030717/
+ls
+la
+clear
+la
+ls .vimbackup/
+clear
+ls -laC
+ls .vimswap/
+ls .vimundo/
+clear
+ls
+la
+la .vimviews/
+clear
+ls
+la
+la .viminfo.tmp 
+cd .vimbackup/
+la
+rm *.*
+la
+clear
+la
+rm *
+la
+rm *~
+ls
+la
+rm .vimrc*
+ls
+la
+rm .net*
+la
+cd  ..
+ls
+clear
+ls
+la
+cd .vimswap/
+la
+rm *.*
+la
+rm *
+rm .vim*
+la
+rm .s*
+la
+cd ..
+clear
+ls
+la
+ls .vimviews/
+cd .vimviews/
+ls
+rm *.*
+la
+rm *vim*
+ls
+la
+cd ..
+ls
+la
+cd .vimundo/
+la
+rm *.*
+la
+cd ..
+clear
+ls
+la
+tar cfvz vim030718noSwap.tar.gz
+tar cfvz vim030718noSwap.tar.gz .vim*
+zip vim030718NoSwap2.zip .vim*
+ls
+cd ..
+ls
+bzip -z vim030717.tar.gz 
+bzip2 -z vim030717.tar.gz 
+la
+zip -r arch.zip vim030717 
+cd ~/
+ls
+cd git/aTest/
+ls
+mkdir 4emacs
+git
+clear
+cd octave/
+ls
+rm *.png
+ls
+rm *.ps
+rm *.pdf
+rm *.aux
+ls
+rm *.log
+rm *.tex
+ls
+cd ..
+git add octave/
+git add 4emacs/
+cd octave
+ls
+git add hello.m 
+cd ../4emacs/
+cp ~/61.Trimmr18.YesHelm2.emacs.d.tar.gz 
+cp ~/61.Trimmr18.YesHelm2.emacs.d.tar.gz .
+ls
+mv 61.Trimmr18.YesHelm2.emacs.d.tar.gz  61.Trimmr18.tar.gz 
+ls
+la
+ls -al
+ls -al ../bash/
+ls -al ../javaBsp/
+git add 61.Trimmr18.tar.gz 
+cd ..
+clear
+cd RStat/
+ls
+cd R1R/
+ls
+git add 2IntroR.R 
+la
+ls /al
+ls -al
+cd ..
+git commit -a -m '61 Emacs Trim versiom'
+git config --global user.email "you@example.com"
+git config --global user.email "berman.albert@gmail.com"
+git config --global user.name "Albert"
+git commit -a -m '61 Emacs Trim versiom'
+git config --global user.email "you@example.com"
+git config --global user.email "berman.albert@gmail.com"
+git push -u origin master
+clear
+cd octave/
+ls
+vi hello.m 
+vi mini.m 
+gvim mini.m 
