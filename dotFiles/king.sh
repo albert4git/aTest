@@ -5,29 +5,6 @@
 # ln ~sandra/prog.c .
 
 ############################################################################################
-# --- extract() {
-# ---     if [ -f "$1" ]; then
-# ---         case "$1" in
-# ---             *.tar.bz2)  tar -jxvf "$1"                        ;;
-# ---             *.tar.gz)   tar -zxvf "$1"                        ;;
-# ---             *.bz2)      bunzip2 "$1"                          ;;
-# ---             *.dmg)      hdiutil mount "$1"                    ;;
-# ---             *.gz)       gunzip "$1"                           ;;
-# ---             *.tar)      tar -xvf "$1"                         ;;
-# ---             *.tbz2)     tar -jxvf "$1"                        ;;
-# ---             *.tgz)      tar -zxvf "$1"                        ;;
-# ---             *.zip)      unzip "$1"                            ;;
-# ---             *.ZIP)      unzip "$1"                            ;;
-# ---             *.pax)      cat "$1" | pax -r                     ;;
-# ---             *.pax.Z)    uncompress "$1" --stdout | pax -r     ;;
-# ---             *.Z)        uncompress "$1"                       ;;
-# ---             *)          echo "'$1' cannot be extracted/mounted via extract()" ;;
-# ---         esac
-# ---     else
-# ---         echo "'$1' is not a valid file to extract"
-# ---     fi
-# --- }
-############################################################################################
 # -- dotfiles=(".vimrc" ".zshrc" ".gitconfig")
 # -- dir="${HOME}/Documents/dotfiles"
 # --
@@ -41,10 +18,6 @@
 # --  committed all the added files into the new local repository
 # --  hooked up our local git repository with the GitHub repository
 # --  pushed our files to the remote (GitHub) repository
-############################################################################################
-#.gitignore
-#.profile
-#git add -f somedirname
 ############################################################################################
 #  ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
 #  ln -nfs ~/Dropbox/dotfiles/.bash_osx ~/.bash_osx
@@ -81,17 +54,13 @@
 # --     fi
 # --   }
 # --   cond_source "$HOME/.bash/local/variables.sh"
-# --
 # --   cond_source "$HOME/.bash/aliases.sh"
 # --   cond_source "$HOME/.bash/local/aliases.sh"
-# --
 # --   cond_source "$HOME/.bash/completes.sh"
 # --   cond_source "$HOME/.bash/local/completes.sh"
-# --
 # --   cond_source "$HOME/.bash/bindings.sh"
 # --   cond_source "$HOME/.bash/local/bindings.sh"
-############################################################################################
-
+# --
 ############################################################################################
 #
 # mv ~/.bashrc ~/"1bashrc-$(date +"%m-%d-%y-%r")"
@@ -132,8 +101,25 @@ cp ~/.vimrc.local kong18/"18-vimrc.local.13.$NW"
 ls kong18
 
 
-cp -r kong18 king18
+######################################################################################
+# cp -r kong18 king18
+#---------------------------------------------------
 ls king18
+#--------------ToDo-------------------------------------
+#---------------------------------------------------
+#---------------------------------------------------
+    ls -a ~/
+    ln -b king18/18-bashrc.AB        ~/.bashrc
+#---------------------------------------------------
+#---------------------------------------------------
+#---------------------------------------------------
+ls -a ~/
+ln -b king18/18-gitconfig.AB     ~/.gitconfig
+ln -b king18/18-gitignore.AB     ~/.gitignore
+ls -a ~/
+#---------------------------------------------------
+######################################################################################
+
 ############################################################################################
 # zip -r arch.kong18.zip kong18
 # ls
@@ -141,8 +127,6 @@ ls king18
 # cp ~/.emacs.d/init.el ~/.emacs.d/"1emacs-$(date +"%m-%d-%y-%r")"
 # rm ~/.emacs.d/init.el
 # ln -s ~/atest/dotFiles/initEm2.el ~/.emacs.d/init.el
-############################################################################################
-
 ############################################################################################
 # cp ~/.vimrc ~/"1vimrc-$(date +"%s")"
 # rm ~/.vimrc
