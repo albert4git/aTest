@@ -41,6 +41,9 @@ curl -s "http://www.google.com/ig/api?weather=Moscow" | sed 's|.*<temp_c data="\
 
 
 Консольные хитрости #2
+echo "HHHHHallo"
+echo "HHHHHallo"
+echo "HHHHHallo"
 
 Продолжаем публикацию “однострочников” для bash, которые выполняют полезные и интересные действия :)
 
@@ -293,3 +296,7 @@ Diffing
 tar df directory.tar.bz2
 #=====================================
 #=====================================
+echo "run run ..."
+echo "run run ..."
+echo "run run ..."
+echo "run run ..."

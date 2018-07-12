@@ -3,64 +3,7 @@
 # ln -sf /full/path/to/parent/child/child ../child2
 # To make a link to a file in another user's home directory:
 # ln ~sandra/prog.c .
-
 ############################################################################################
-# -- dotfiles=(".vimrc" ".zshrc" ".gitconfig")
-# -- dir="${HOME}/Documents/dotfiles"
-# --
-# -- for dotfile in "${dotfiles[@]}";do
-# --  ln -sf "${HOME}/${dotfile}" "${dir}"
-# -- done
-############################################################################################
-# --  navigated to our newly created directory
-# --  turned it into a local git repository
-# --  added all the files it contained into our local Git repository
-# --  committed all the added files into the new local repository
-# --  hooked up our local git repository with the GitHub repository
-# --  pushed our files to the remote (GitHub) repository
-############################################################################################
-#  ln -nfs ~/Dropbox/dotfiles/.bash_profile ~/.bash_profile
-#  ln -nfs ~/Dropbox/dotfiles/.bash_osx ~/.bash_osx
-#  ln -nfs ~/Dropbox/dotfiles/.vimrc ~/.vimrc
-#  ln -nfs ~/Dropbox/dotfiles/.vim ~/.vim
-#  ln -nfs ~/Dropbox/dotfiles/.slate ~/.slate
-#  ln -nfs ~/Dropbox/dotfiles/.slate.js ~/.slate.js
-#  ln -nfs ~/Dropbox/dotfiles/.gemrc ~/.gemrc
-#  ln -nfs ~/Dropbox/dotfiles/.irbrc ~/.irbrc
-#  ln -nfs ~/Dropbox/dotfiles/.git_completion.bash ~/.git_completion.bash
-#  ln -nfs ~/Dropbox/dotfiles/.tmux.conf ~/.tmux.conf
-#  ln -nfs ~/Dropbox/dotfiles/.tmux.osx.clipboard ~/.tmux.osx.clipboard
-#  ln -nfs ~/Dropbox/dotfiles/.tmux.linux.clipboard ~/.tmux.linux.clipboard
-#  ln -nfs ~/Dropbox/dotfiles/.ackrc ~/.ackrc
-#  ln -nfs ~/Dropbox/dotfiles/.inputrc ~/.inputrc
-#  ln -nfs ~/Dropbox/dotfiles/.config ~/.config
-############################################################################################
-#  symlink_it.sh creates the symlinks to the versioned versions:
-# --
-# -- ln -sn etc/bash .bash
-# -- ln -sn etc/bashrc .bashrc
-# -- ln -sn etc/bash_profile .bash_profile
-# -- ln -sn etc/vim .vim
-# -- ln -sn etc/vimrc .vimrc
-# -- ln -sn etc/irbrc .irbrc
-############################################################################################
-# -- bash/local contains the shell scripts that are conditionally loaded to override the defaults
-# -- (svn propset svn:ignore local bash). Here’s a preview of the relevant parts from my .bashrc:
-# --
-# --   cond_source ()
-# --   {
-# --     if [ -f $1 ]; then
-# --       source $1
-# --     fi
-# --   }
-# --   cond_source "$HOME/.bash/local/variables.sh"
-# --   cond_source "$HOME/.bash/aliases.sh"
-# --   cond_source "$HOME/.bash/local/aliases.sh"
-# --   cond_source "$HOME/.bash/completes.sh"
-# --   cond_source "$HOME/.bash/local/completes.sh"
-# --   cond_source "$HOME/.bash/bindings.sh"
-# --   cond_source "$HOME/.bash/local/bindings.sh"
-# --
 ############################################################################################
 #
 # mv ~/.bashrc ~/"1bashrc-$(date +"%m-%d-%y-%r")"
@@ -107,8 +50,11 @@ ls kong18
 ls king18
 #--------------ToDo-------------------------------------
 #---------------------------------------------------
-#---------------------------------------------------
+#-----------------------------------------------
     ls -a ~/
+    rm ~/.bashrc
+    ls -a ~/
+    ln -b king18/king18/bashrc-alf-cc   ~/.bashrc
     ln -b king18/18-bashrc.AB        ~/.bashrc
 #---------------------------------------------------
 #---------------------------------------------------
@@ -118,11 +64,9 @@ ln -b king18/18-gitconfig.AB     ~/.gitconfig
 ln -b king18/18-gitignore.AB     ~/.gitignore
 ls -a ~/
 #---------------------------------------------------
-######################################################################################
 
 ############################################################################################
 # zip -r arch.kong18.zip kong18
-# ls
 ############################################################################################
 # cp ~/.emacs.d/init.el ~/.emacs.d/"1emacs-$(date +"%m-%d-%y-%r")"
 # rm ~/.emacs.d/init.el
