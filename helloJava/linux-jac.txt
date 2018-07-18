@@ -1,0 +1,9 @@
+#On Linux java9 cook book page 160
+javac -cp 'lib/*' -d classes -sourcepath src $(find src -name *.java)
+
+The simplest way to use jdeps is as follows:
+jdeps -cp classes/:lib/* classes/com/packt/Sample.class
+The preceding command is equivalent to the following:
+jdeps -verbose:package -cp classes/:lib/*
+classes/com/packt/Sample.class
+The output for the preceding code is as follows:

@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CPolygon	main.cpp	/^class CPolygon {$/;"	c	file:
+CRectangle	main.cpp	/^class CRectangle: public CPolygon {$/;"	c	file:
+CTriangle	main.cpp	/^class CTriangle: public CPolygon {$/;"	c	file:
+Hello	hello.cpp	/^void Hello()$/;"	f
+area	main.cpp	/^        int area (void)$/;"	f	class:CRectangle
+area	main.cpp	/^        int area (void)$/;"	f	class:CTriangle
+first	main.cpp	/^namespace first$/;"	n	file:
+height	main.cpp	/^        int width, height;$/;"	m	class:CPolygon	file:
+main	main.cpp	/^int main(int argc, const char* argv[])$/;"	f
+second	main.cpp	/^namespace second$/;"	n	file:
+set_values	main.cpp	/^        void set_values (int a, int b)$/;"	f	class:CPolygon
+width	main.cpp	/^        int width, height;$/;"	m	class:CPolygon	file:
+x	main.cpp	/^    double x = 3.1416;$/;"	m	namespace:second	file:
+x	main.cpp	/^    int x = 5;$/;"	m	namespace:first	file:
+y	main.cpp	/^    double y = 2.7183;$/;"	m	namespace:second	file:
+y	main.cpp	/^    int y = 10;$/;"	m	namespace:first	file:

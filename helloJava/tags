@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Calculator	Calculator.java	/^    public Calculator() {$/;"	m	class:Calculator
+Calculator	Calculator.java	/^public class Calculator extends JFrame {$/;"	c
+HelloWorld	hello2W.java	/^    interface HelloWorld {$/;"	i	class:hello2W
+HelloWorld	helloW.java	/^    interface HelloWorld {$/;"	i	class:helloW
+greet	hello2W.java	/^        public void greet();$/;"	m	interface:hello2W.HelloWorld
+greet	helloW.java	/^        public void greet();$/;"	m	interface:helloW.HelloWorld
+greetSomeone	hello2W.java	/^        public void greetSomeone(String someone);$/;"	m	interface:hello2W.HelloWorld
+greetSomeone	helloW.java	/^        public void greetSomeone(String someone);$/;"	m	interface:helloW.HelloWorld
+hello	hello.java	/^class hello {$/;"	c
+hello2W	hello2W.java	/^public class hello2W {$/;"	c
+helloW	helloW.java	/^public class helloW {$/;"	c
+main	Calculator.java	/^    public static void main(String[] args) {$/;"	m	class:Calculator
+main	hello.java	/^    public static void main(String args[]) {$/;"	m	class:hello
+main	hello2W.java	/^    public static void main(String... args) {$/;"	m	class:hello2W
+main	helloW.java	/^    public static void main(String... args) {$/;"	m	class:helloW
+sayHello	hello2W.java	/^    public void sayHello() {$/;"	m	class:hello2W
+sayHello	helloW.java	/^    public void sayHello() {$/;"	m	class:helloW

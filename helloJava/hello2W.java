@@ -24,6 +24,7 @@ public class hello2W {
                 System.out.println("-1- Israel  " + name);
                 for (int ia =0; ia >9; ia ++) {
                     System.out.println("-kkk-");
+					System.out.println("...Poter...");
                 }
                 for (int i =0; i>9; i ++) {
                     System.out.println ("www");
@@ -54,6 +55,7 @@ public class hello2W {
                     greetSomeone("-7- mundo");
                     greetSomeone("-NonSence");
                     greetSomeone ("/dev/machtrace/");
+                    greetSomeone ("/home/");
                     greetSomeone("-7- mundo");
                 }
                 public void greetSomeone(String someone) {
@@ -64,13 +66,13 @@ public class hello2W {
         };
         englishGreeting.greet();
         frenchGreeting.greetSomeone("-5- Fred");
-        spanishGreeting.greet();
     }
 
     /* Comment */
     public static void main(String... args) {
-        hello2W myApp = new hello2W();
+        hello2W myApp = new hello2W(); 
         myApp.sayHello();
         // myApp.sayHello();
+        
     }
 }

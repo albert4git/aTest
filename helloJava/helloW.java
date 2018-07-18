@@ -7,9 +7,10 @@ public class helloW {
     }
 
     public void sayHello() {
+    // TST  ERR  Albert
 
-        class EnglishGreeting implements HelloWorld {
-            String name = "-2- world";
+        clas EnglishGreeting implements HelloWorld {
+            tring name = "-2- world";
             public void greet() {
                 greetSomeone("world-woche ");
                 greetSomeone("-NonSence");

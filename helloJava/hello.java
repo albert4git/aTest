@@ -9,6 +9,14 @@ class hello {
             }
         }
         //xxx
+		//
+		//
+		for (i=0; i<7 ;i++ ) {
+			if (i>3) {
+			System.out.println("my i:"+i);
+			}
+		}
+        //xxx
         while ( i > 0) {
                 System.out.println("for: "+i);
             i--;
@@ -18,3 +26,4 @@ class hello {
         System.out.println("Heinemann");
     }
 }
+// The Stonehenge is the

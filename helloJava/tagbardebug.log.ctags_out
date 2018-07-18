@@ -1,0 +1,10 @@
+  Option: --language-force=java
+  Option: --java-kinds=pfgeicm
+Reading command line arguments
+OPENING /tmp/v75cBsW/28.java as Java language file
+helloW	/tmp/v75cBsW/28.java	/^public class helloW {$/;"	c	line:1
+HelloWorld	/tmp/v75cBsW/28.java	/^    interface HelloWorld {$/;"	i	line:4	class:helloW	access:default
+greet	/tmp/v75cBsW/28.java	/^        public void greet();$/;"	m	line:5	interface:helloW.HelloWorld	access:public	signature:()
+greetSomeone	/tmp/v75cBsW/28.java	/^        public void greetSomeone(String someone);$/;"	m	line:6	interface:helloW.HelloWorld	access:public	signature:(String someone)
+sayHello	/tmp/v75cBsW/28.java	/^    public void sayHello() {$/;"	m	line:9	class:helloW	access:public	signature:()
+main	/tmp/v75cBsW/28.java	/^    public static void main(String... args) {$/;"	m	line:80	class:helloW	access:public	signature:(String... args)

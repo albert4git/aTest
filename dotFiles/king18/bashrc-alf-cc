@@ -471,15 +471,17 @@ function __setprompt
         PS1+="\[${DARKGRAY}\]:\[${RED}\]Net $(awk 'END {print NR}' /proc/net/tcp)"
 
         PS1+="\[${DARKGRAY}\])-"
+# Total size of files in current directory
+        PS1+="(\[${GREEN}\]$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')\[${GREEN}\]:"
 # Skip to the next line
-            PS1+="\n"
-
-            if [[ $EUID -ne 0 ]]; then
-              PS1+="\[${CYAN}\]>\[${NOCOLOR}\] " # Normal user
-            else
-              PS1+="\[${RED}\]>\[${NOCOLOR}\] " # Root user
-                fi
-
+        PS1+="\n"
+#------------------------------------------------------------------
+        if [[ $EUID -ne 0 ]]; then
+          PS1+="\[${CYAN}\]>\[${NOCOLOR}\] " # Normal user
+        else
+          PS1+="\[${RED}\]>\[${NOCOLOR}\] " # Root user
+            fi
+#------------------------------------------------------------------
 # PS2 is used to continue a command using the \ character
                 PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
 
@@ -488,6 +490,8 @@ function __setprompt
 
 # PS4 is used for tracing a script in debug mode
                 PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
+
+
 }
 PROMPT_COMMAND='__setprompt'
 #
