@@ -6,6 +6,11 @@
 using namespace std;
 
 
+
+
+
+
+
 class CPolygon {
     protected:
         int width, height;
@@ -41,11 +46,12 @@ namespace second
 int main(int argc, const char* argv[])
 {
     Hello();
+	Hello();
     int ar =8;
     CRectangle rect;
     CTriangle trgl;
-    Hello();
     printf("%d Megabytes\n",  ar);
+    // seek
     try
     {
         throw 20;
@@ -55,10 +61,9 @@ int main(int argc, const char* argv[])
     printf("%d Megabytes\n",  ar);
     }
     try {
-    
     }catch(int e) {
-    
     }
+    Hello();
 
 
     return 0;

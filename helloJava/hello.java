@@ -3,6 +3,10 @@ class hello {
         int i = 0;
         int count = 10;
         //xxx
+        //xxx
+		//
+        //xxx
+        //xxx
         for ( i=0; i<7; i++) {
             if (i==3) {
             System.out.println("for: "+i);
@@ -11,6 +15,8 @@ class hello {
         //xxx
 		//
 		//
+		//
+        //xxx
 		for (i=0; i<7 ;i++ ) {
 			if (i>3) {
 			System.out.println("my i:"+i);
@@ -23,7 +29,9 @@ class hello {
         }
         //xxx
         count = 0;
-        System.out.println("Heinemann");
+        System.out.println("Hinemann");
+        System.out.println("Hinemann");
+        System.out.println("Beschleunigen");
     }
 }
 // The Stonehenge is the

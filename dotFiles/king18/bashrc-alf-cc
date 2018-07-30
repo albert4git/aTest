@@ -16,6 +16,8 @@ esac
 
 HISTSIZE=1000
 HISTFILESIZE=2000
+# Remap the CapsLock key to a Control key for the console.
+(dumpkeys | grep keymaps; echo "keycode 58 = Control") | loadkeys
 
 # If set, the pattern "**" used in a pathname expansion context will
 #shopt -s globstar

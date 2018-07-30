@@ -18,7 +18,7 @@ SRC=$(SRCPATH)/hello.cpp \
     $(SRCPATH)/main.cpp
 OBJ=$(OBJPATH)/hello.o \
     $(OBJPATH)/main.o
-EXEC=$(BINPATH)/hello
+EXEC=$(BINPATH)/main
 
 INCLUDES=-I ./$(INCPATH)
 

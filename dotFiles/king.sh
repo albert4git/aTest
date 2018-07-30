@@ -69,14 +69,36 @@ ls -a ~/
 ln -b king18/18-gitconfig.AB     ~/.gitconfig
 ln -b king18/18-gitignore.AB     ~/.gitignore
 ls -a ~/
-############################################################################################
+
+ln -b  ~/git/aTest/2run/vim-plug.vim           ~/vim-plug.vim
+ln -b  ~/git/aTest/2run/vim-preSet.vim         ~/vim-preSet.vim
+
+ln -b  ~/git/aTest/2run/vim-2optic.vim         ~/vim-2optic.vim
+ln -b  ~/git/aTest/2run/vim-2syntastic.vim     ~/vim-2syntastic.vim
+ln -b  ~/git/aTest/2run/vim-abbr.vim           ~/vim-abbr.vim
+
+ln -b  ~/git/aTest/2run/vim-deopleteA.vim      ~/vim-deopleteA.vim
+ln -b  ~/git/aTest/2run/vim-make.vim           ~/vim-make.vim
+ln -b  ~/git/aTest/2run/vim-maps.vim           ~/vim-maps.vim
+ln -b  ~/git/aTest/2run/vim-searchA.vim        ~/vim-searchA.vim
+
+ln -b  ~/git/aTest/2run/vim-postSet.vim        ~/vim-postSet.vim
+ln -b  ~/git/aTest/2run/viminfo                ~/viminfo
+
+cp -r ~/git/dot-vim-mpi/                       ~/.vim
+
+
+
+#########################################################################################
+# mount --bind /home/shared/files /home/website/files/
+#########################################################################################
 # zip -r arch.kong18.zip kong18
-############################################################################################
+#########################################################################################
 # cp ~/.emacs.d/init.el ~/.emacs.d/"1emacs-$(date +"%m-%d-%y-%r")"
 # rm ~/.emacs.d/init.el
 # ln -s ~/atest/dotFiles/initEm2.el ~/.emacs.d/init.el
-############################################################################################
+#########################################################################################
 # cp ~/.vimrc ~/"1vimrc-$(date +"%s")"
 # rm ~/.vimrc
 # ln -s ~/atest/dotFiles/vimrc2008 ~/.vimrc 
-############################################################################################
+#########################################################################################
