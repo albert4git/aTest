@@ -1,10 +1,13 @@
-" echo($MYVIMRC)
+" ------------------VimRC--Short--MPI--Last-------------------------------------
+" ln -s /usr/etc/vim_settings/vimrc /home/user/.vimrc
+" ln -s /usr/etc/vim_settings/vim /home/user/.vim
+"------------------------------------------------
+" ln -s ~/.vim/vimrc ~/.vimrc               "I use symbolic link...
+" ln ~/.vimrc .vim/.vimrc                   "hard links are the best ...
+" export VIMINIT="source ~/.vim/vimrc"
 " set viminfo+=n~/.vim/viminfo
 " echo ($VIMRUNTIME)
-" ln -s ~/.vim/vimrc ~/.vimrc  "I use symbolic link:
-" ln ~/.vimrc .vim/.vimrc      "For me hard links are the best for this purpose,
-"------------------------------------------------
-" export VIMINIT="source ~/.vim/vimrc"
+" echo($MYVIMRC)
 "------------------------------------------------
 " set runtimepath=/home/b/.vim,$VIMRUNTIME
 " let $VIMHOME = $HOME."/.vim"
@@ -19,10 +22,7 @@
 "        defaults file: "$VIMRUNTIME/defaults.vim"
 "     system menu file: "$VIMRUNTIME/menu.vim"
 "   fall-back for $VIM: "/usr/share/vim"
-" ln -s /usr/etc/vim_settings/vimrc /home/user/.vimrc
-" ln -s /usr/etc/vim_settings/vim /home/user/.vim
 "-------------------------------------------------------------------------------
-"--XXX--------ToDO--------------------EEE---------------------------------------
 
 source ~/vim-plug.vim
 source ~/vim-preSet.vim
@@ -37,6 +37,4 @@ source ~/vim-searchA.vim
 source ~/vim-abbr.vim
 source ~/vim-postSet.vim
 
-
-"-------------------------------------------------------------------------------
 "-------------------------------------------------------------------------------
