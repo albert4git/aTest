@@ -8,10 +8,12 @@ CPolygon	main.cpp	/^class CPolygon {$/;"	c	file:
 CRectangle	main.cpp	/^class CRectangle: public CPolygon {$/;"	c	file:
 CTriangle	main.cpp	/^class CTriangle: public CPolygon {$/;"	c	file:
 Hello	hello.cpp	/^void Hello()$/;"	f
+PrintMatches	banas-calc.cpp	/^void PrintMatches(std::string str,$/;"	f
 area	main.cpp	/^        int area (void)$/;"	f	class:CRectangle
 area	main.cpp	/^        int area (void)$/;"	f	class:CTriangle
 first	main.cpp	/^namespace first$/;"	n	file:
 height	main.cpp	/^        int width, height;$/;"	m	class:CPolygon	file:
+main	banas-calc.cpp	/^int main()$/;"	f
 main	main.cpp	/^int main(int argc, const char* argv[])$/;"	f
 second	main.cpp	/^namespace second$/;"	n	file:
 set_values	main.cpp	/^        void set_values (int a, int b)$/;"	f	class:CPolygon

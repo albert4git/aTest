@@ -6,11 +6,6 @@
 using namespace std;
 
 
-
-
-
-
-
 class CPolygon {
     protected:
         int width, height;

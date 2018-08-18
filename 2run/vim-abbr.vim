@@ -1,18 +1,4 @@
 "-------------------------------------------------------------------------------
-    iabbr str start
-    iabbr supe superuser
-    iabbr que question
-    iabbrev #i #include
-    iabbrev #d #define
-    iab cmnt /*<CR><CR>*/<Up>
-    iabbrev @@  alf@nomail.com
-    iabbrev ccopy Copyright 2013 Alf , no rights reserved.
-
-"-------------------------------------------------------------------------------
-command! Wq :wq
-command! W :w
-"-------------------------------------------------------------------------------
-
 "=    function! PreviewTag2(top)
 "=        set previewheight=25
 "=        exe "silent! pclose"

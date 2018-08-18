@@ -85,6 +85,13 @@ ln -b  ~/git/aTest/2run/vim-searchA.vim        ~/vim-searchA.vim
 ln -b  ~/git/aTest/2run/vim-postSet.vim        ~/vim-postSet.vim
 ln -b  ~/git/aTest/2run/viminfo                ~/viminfo
 
+ln -b  ~/git/aTest/2run/vim-1lab.vim         ~/vim-1lab.vim
+ln -b  ~/git/aTest/2run/vim-2lab.vim         ~/vim-2lab.vim
+ln -b  ~/git/aTest/2run/vim-3lab.vim         ~/vim-3lab.vim
+
+ls ~/vim-*
+ls ~/git/dot-vim-mpi/
+
 cp -r ~/git/dot-vim-mpi/                       ~/.vim
 
 
