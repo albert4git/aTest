@@ -7,8 +7,6 @@
                                     \ 'active_filetypes': ['javascript', 'php'],
                                     \ 'passive_filetypes': ['css', 'html', 'xhtml', 'scss', 'sass'] }
 
-
-
 Completion can be done for:
 
 1. Whole lines                                          i_CTRL-X_CTRL-L
@@ -30,6 +28,7 @@ augroup BgHighlight
     autocmd WinEnter * set number
     autocmd WinLeave * set nonumber
 augroup END
+
 augroup BgHighlight
     autocmd!
     autocmd WinEnter * set colorcolumn=80
@@ -70,8 +69,8 @@ hi StatusLineNC                ctermfg=2     ctermbg=8     cterm=NONE
 
 Plug 'Rykka/trans.vim'
 "--set spelllang=en,de
-"--spell-check: $(FILE).tex
-"--    hunspell -d en_GB -t $<
+"--spell-check:(FILE).tex
+"--    hunspell -d en_GB -t<
 "--set spelllang=de_de
 
 TransPo [[en],[de]]
@@ -226,39 +225,38 @@ highlight Comment ctermbg=gray ctermfg=Red
 	Vim*scrollForeground:		Blue
 
 The resources can also be set with arguments to Vim:
-
-    argument		meaning	~
-							*-gui*
-   -display {display}	Run vim on {display}		*-display*
-   -iconic		Start vim iconified		*-iconic*
-   -background {color}	Use {color} for the background	*-background*
-   -bg {color}		idem				*-bg*
-   -foreground {color}	Use {color} for normal text	*-foreground*
-   -fg {color}		idem				*-fg*
-   -ul {color}		idem				*-ul*
-   -font {font}		Use {font} for normal text	*-font*
-   -fn {font}		idem				*-fn*
-   -boldfont {font}	Use {font} for bold text	*-boldfont*
-   -italicfont {font}	Use {font} for italic text	*-italicfont*
-   -menufont {font}	Use {font} for menu items	*-menufont*
-   -menufontset {fontset} Use {fontset} for menu items	*-menufontset*
-   -mf {font}		idem				*-mf*
-   -geometry {geom}	Use {geom} for initial geometry	*-geometry*
-   -geom {geom}		idem, see |-geometry-example|	*-geom*
-   -borderwidth {width}	Use a border width of {width}	*-borderwidth*
-   -bw {width}		idem				*-bw*
-							*-scrollbarwidth*
-   -scrollbarwidth {width}	Use a scrollbar width of {width}
-   -sw {width}		idem				*-sw*
-   -menuheight {height}	Use a menu bar height of {height} *-menuheight*
-   -mh {height}		idem				*-mh*
-			NOTE: On Motif the value is ignored, the menu height
-			is computed to fit the menus.
-   -reverse		Use reverse video		*-reverse*
-   -rv			idem				*-rv*
-   +reverse		Don't use reverse video		*-+reverse*
-   +rv			idem				*-+rv*
-   -xrm {resource}	Set the specified resource	*-xrm*
+argument		meaning	~
+*-gui*
+-display {display}	Run vim on {display}		*-display*
+-iconic		Start vim iconified		*-iconic*
+-background {color}	Use {color} for the background	*-background*
+-bg {color}		idem				*-bg*
+-foreground {color}	Use {color} for normal text	*-foreground*
+-fg {color}		idem				*-fg*
+-ul {color}		idem				*-ul*
+-font {font}		Use {font} for normal text	*-font*
+-fn {font}		idem				*-fn*
+-boldfont {font}	Use {font} for bold text	*-boldfont*
+-italicfont {font}	Use {font} for italic text	*-italicfont*
+-menufont {font}	Use {font} for menu items	*-menufont*
+-menufontset {fontset} Use {fontset} for menu items	*-menufontset*
+-mf {font}		idem				*-mf*
+-geometry {geom}	Use {geom} for initial geometry	*-geometry*
+-geom {geom}		idem, see |-geometry-example|	*-geom*
+-borderwidth {width}	Use a border width of {width}	*-borderwidth*
+-bw {width}		idem				*-bw*
+*-scrollbarwidth*
+-scrollbarwidth {width}	Use a scrollbar width of {width}
+-sw {width}		idem				*-sw*
+-menuheight {height}	Use a menu bar height of {height} *-menuheight*
+-mh {height}		idem				*-mh*
+NOTE: On Motif the value is ignored, the menu height
+is computed to fit the menus.
+-reverse		Use reverse video		*-reverse*
+-rv			idem				*-rv*
++reverse		Don't use reverse video		*-+reverse*
++rv			idem				*-+rv*
+-xrm {resource}	Set the specified resource	*-xrm*
 
 Note about reverse video: Vim checks that the result is actually a light text
 on a dark background.  The reason is that some X11 versions swap the colors,

@@ -63,7 +63,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'Shougo/echodoc.vim'
-    "Generic Programming Support 
+    "Generic Programming Support
     "Plug 'janko-m/vim-test'
     "Plug 'neomake/neomake'
     Plug 'tpope/vim-sleuth'
@@ -81,21 +81,4 @@ call plug#begin('~/.vim/plugged')
     "-Plug 'uguu-org/vim-matrix-screensaver'
     "Plug 'artur-shaik/vim-javacomplete2'
 call plug#end()
-
-"========================================================================
-" let g:ycm_semantic_triggers.tex = [
-"       \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-"       \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-"       \ 're!\\hyperref\[[^]]*',
-"       \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-"       \ 're!\\(include(only)?|input){[^}]*'
-"       \ ]
-"========================================================================
-" if !exists('g:ycm_semantic_triggers')
-"   let g:ycm_semantic_triggers = {}
-" endif
-" let g:EclimCompletionMethod = 'omnifunc'
-" let g:ycm_key_list_select_completion=[]
-" let g:ycm_key_list_previous_completion=[]
-" let g:ycm_key_invoke_completion = '<C-a>'
-"========================================================================
+"--------------------------------------------------------------------------------

@@ -2,9 +2,9 @@
 "compiler javac
 "set makeprg =javac\ hello2W.java
 "-------------------------------------------------------------------------------
-"set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ some_custom_command;fi
+"set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\*;else\ some_custom_command;fi
 "-------------------------------------------------------------------------------
-    autocmd FileType c set makeprg=gcc\ -O2\ -g\ -Wall\ -Wextra\ -o'%<'\ '%'\ -lm
+autocmd FileType c set makeprg=gcc\ -O2\ -g\ -Wall\ -Wextra\ -o'%<'\ '%'\ -lm
 "--------------------------------------------------------------------------------
     let g:quickrun_known_file_types = {
             \"cpp": ["!g++ %", "./a.out"],

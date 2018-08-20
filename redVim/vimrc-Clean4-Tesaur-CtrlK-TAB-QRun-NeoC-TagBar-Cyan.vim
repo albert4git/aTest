@@ -288,11 +288,12 @@ let g:UltiSnipsEditSplit="horizontal"
     "au FileType * execute 'setlocal dict+=~/.vim/words/'.&filetype.'.txt'
     "set dictionary+=~/git/aTest/dotFiles/el-king18/misc/english-words.txt
 "My stuff --------------------------------------------------------------------------------
+    let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
     set dictionary+=~/git/aTest/redVim/dikt/english-words.txt
     set complete=.,w,b,u,t,k
     let g:neocomplete#sources#dictionary#dictionaries = {
           \ 'default' : '',
-          \ 'vimshell' : $CACHE.'/vimshell/command-history',
+          \ 'vimshell' :CACHE.'/vimshell/command-history',
           \ 'java' : '~/.vim/dict/java.dict,~/.vim/dict/ruby.dict',
           \ 'ruby' : '~/.vim/dict/ruby.dict',
           \ 'scala' : '~/.vim/dict/scala.dict',
@@ -405,7 +406,7 @@ let g:UltiSnipsEditSplit="horizontal"
     " the window is altered by the preview window split and manipulation
     " so wincmd _ sets it back... your mileage may vary
     ""----------------------------------------------------------------------------------
-    inoremap <C-]> <Esc>:call PreviewTa2(0)<CR>
+    inoremap <C-]> <Esc>:call PreviewTag2(0)<CR>
     nnoremap <C-]> :call PreviewTag2(0)<CR>
     " simple above the caller preview window,
     nnoremap <M-]> :call PreviewTag2(1)<CR>

@@ -223,34 +223,35 @@ call plug#end()
 "My stuff --------------------------------------------------------------------------
 "https://github.com/Shougo/neocomplete.vim/issues/332
 if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_auto_select = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#auto_completion_start_length = 2
-    let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
-    let g:neocomplete#enable_fuzzy_completion = 1
-    if !exists('g:neocomplete#same_filetypes')
-      let g:neocomplete#same_filetypes = {}
-    endif
-    let g:neocomplete#same_filetypes._ = '_'
-    g:neocomplcache_enable_at_startup = 1
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " disable for Python
-    """"""""""""""""""""
-    " \'')
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Plugin key-mappings.
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    inoremap <expr> <C-g> neocomplete#undo_completion()
-    inoremap <expr> <C-l> neocomplete#complete_common_string()
-    """ <CR>: cancel popup and insert newline.
-    """ <TAB>: completion.
-    inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr> <C-e> neocomplete#cancel_popup()
-    " <C-h>, <BS>: close popup and delete backword char.
+  let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_auto_select = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#auto_completion_start_length = 2
+  let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
+  let g:neocomplete#enable_fuzzy_completion = 1
+  if !exists('g:neocomplete#same_filetypes')
+    let g:neocomplete#same_filetypes = {}
   endif
+
+  let g:neocomplete#same_filetypes._ = '_'
+  g:neocomplcache_enable_at_startup = 1
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " disable for Python
+  """"""""""""""""""""
+  " \'')
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " Plugin key-mappings.
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  inoremap <expr> <C-g> neocomplete#undo_completion()
+  inoremap <expr> <C-l> neocomplete#complete_common_string()
+  """ <CR>: cancel popup and insert newline.
+  """ <TAB>: completion.
+  inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr> <C-e> neocomplete#cancel_popup()
+  " <C-h>, <BS>: close popup and delete backword char.
+endif
 
     " Enable heavy omni completion.
     if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -270,7 +271,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
     set complete=.,w,b,u,t,k
     let g:neocomplete#sources#dictionary#dictionaries = {
           \ 'default' : '',
-          \ 'vimshell' : $CACHE.'/vimshell/command-history',
+          \ 'vimshell' :CACHE.'/vimshell/command-history',
           \ 'java' : '~/.vim/dict/java.dict,~/.vim/dict/ruby.dict',
           \ 'ruby' : '~/.vim/dict/ruby.dict',
           \ 'scala' : '~/.vim/dict/scala.dict',
