@@ -9,6 +9,10 @@
         noremap gj j
         noremap gk k
 
+        setlocal foldmarker={{{,}}}
+        setlocal foldmethod=marker
+        setlocal foldminlines=7
+
         set whichwrap=b,s,h,l,<,>,[,]         " Backspace and cursor keys wrap too
         ""My stuff --------------------------------------------------------------------------
         let wordUnderCursor = expand("<cword>")
@@ -33,12 +37,12 @@
         " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
         " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
+        hi def DoubleSpace ctermbg=Gray
 "---AAA1---------------------------------------------------------------------------------------------------------- {{{
         if &compatible | set nocompatible | endif
-
-        " Appearance
+        " Appearance  # matchtime=1
         silent! set number background=dark display=lastline,uhex wrap wrapmargin=0 guioptions=ce key=
-        silent! set noshowmatch matchtime=1 noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 showbreak=
+        silent! set noshowmatch  noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 showbreak=
         silent! set noshowcmd noruler rulerformat= laststatus=2 statusline=%t\ %=\ %m%r%y%w\ %3l:%-2c
         silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
         silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
@@ -71,7 +75,7 @@
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
 
         " Command line
-        silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
+        "silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
         silent! set wildignore=*.~,*.?~,*.o,*.sw?,*.bak,*.hi,*.pyc,*.out,*.lock suffixes=*.pdf
 
         " Performance
@@ -101,9 +105,6 @@
         " Setting lazyredraw causes a problem on startup
         autocmd vimrc VimEnter * redraw
 
-        " remove spaces at the end of lines
-        nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
-
         " smart Enter
         inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
 
@@ -115,6 +116,7 @@
 
         " Go to the first non-blank character of the line after paragraph motions
         noremap } }^
+        noremap ; :
 
         " select last paste
         nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
@@ -142,15 +144,13 @@
 " }}}
 
 
-
-
 "---AAA2---------------------------------------------------------------------------------------------------------- {{{
         nnoremap gF <C-W>gf
 
         " open ctag in tab/vertical split
         map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-        "-------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         map <F2> "zyiw:exe "vertical h ".@z.""<CR>
         map <F3> :Scratch<CR>
         map <S-F3> :ScratchPreview<CR>
@@ -159,14 +159,14 @@
         map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
         map <S-F4> "zY<C-w>wo<Esc>"zp<C-w>W
 
-        "-----------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         sign define fixme text=!! linehl=Todo
         function! SignFixme()
             execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
         endfunction
         map <F5> :call SignFixme()<CR>
 
-        "-----------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         function! OnlineDoc8()
                 let s:browser = "firefox"
                 let s:wordUnderCursor = expand("<cword>")
@@ -181,18 +181,18 @@
                 redraw!
         endfunction
         map <F6> :call OnlineDoc8()<CR>
-        "Albert F9???"
+
         map <S-F6> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-        "-----------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         nnoremap <C-down> :m .+1<CR>==
         nnoremap <C-up> :m .-2<CR>==
 
-        "-----------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         " Super useful! From an idea by Michael Naumann
         vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
         vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-        "-----------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
         nnoremap <leader>g :grep -R <cword> .<cr>
         nnoremap <leader>l :lgrep -R <cword> .<cr>
         nnoremap <leader><leader> :Ag <cword> .<cr>
@@ -201,16 +201,12 @@
 
 
 "---AAA3---------------------------------------------------------------------------------------------------------- {{{
-        nnoremap zz z=
-        nnoremap z= :echo "use zz you idiot"<cr>
-
         "inoremap <M-i> <Tab>
         " Map auto complete of (, ", ', [
-        inoremap<M-1> ()<esc>i
-        inoremap<M-2> []<esc>i
-        inoremap<M-3> {}<esc>i
-        inoremap<M-4> {<esc>o}<esc>O
-        hi def DoubleSpace ctermbg=Gray
+        inoremap <C-q> ()<esc>i
+        inoremap <C-w> []<esc>i
+        inoremap <C-e> {}<esc>i
+        inoremap <C-r> {<esc>o}<esc>O
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " Map auto complete of (, ", ', [
         "inoremap1 ()<esc>i
@@ -431,7 +427,8 @@
         2match Error / ERR /
         3match Title / Albert /
         syn match DoubleSpace " "
-        set matchpairs+=<:> " Match, to used with %
+        "set matchpairs+=<:> " Match, to used with %
+        "set mat=2            " How many tenths of a second to blink when matching brackets
         "------------------------------------------
 
         highlight Comment ctermbg=6 ctermfg=White cterm=bold
@@ -624,8 +621,12 @@
 " }}}
 
 "---AAA14---------------------------------------------------------------------------------------------------------- {{{
+        set splitbelow splitright
 " }}}
 
 "---AAA15---------------------------------------------------------------------------------------------------------- {{{
         set nospell
+        nnoremap zz z=
+        nnoremap z= :echo "use zz you idiot"<cr>
+
 " }}}

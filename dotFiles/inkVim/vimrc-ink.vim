@@ -43,7 +43,6 @@
         let maplocalleader= ','
         let mapleader=' '
         set vb t_vb=         " disable beep sound
-        set mat=2            " How many tenths of a second to blink when matching brackets
         set foldcolumn=1     " Add a bit extra margin to the left
 
         "--magic-------------------------------------------------------------------
@@ -83,16 +82,9 @@
         "--Circular windows navigation-------------
         nnoremap <Tab>   <c-W>w
         nnoremap <S-Tab> <c-W>W
+        set nosm
 
-"My stuff --------------------------------------------------------------------------
-" echo (leader)
-" echo (localleader)
-"-------------------------------------------------------------------------------
-
-
-augroup NrHighlight
-  autocmd!
-  autocmd WinEnter * hi LineNr ctermfg=247 guifg=#9e9e9e ctermbg=233 guibg=#121212
-  autocmd WinLeave * hi LineNr ctermfg=274 guifg=#e9e9e9 ctermbg=133 guibg=#212121
-augroup END
-
+        "My stuff --------------------------------------------------------------------------
+        " echo (leader)
+        " echo (localleader)
+        "-------------------------------------------------------------------------------
