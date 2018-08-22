@@ -2,30 +2,31 @@
 "           / |            \ \ / / | '_ ` _ \            / |
 "           | |             \ V /| | | | | | |           | |
 "           |_|            (_)_/ |_|_| |_| |__|          |_|
-"----------------------------------------------------------------------------------------------------------------------
-        " It's 2013.
+        " It's 2013.                                       .
         noremap j gj
         noremap k gk
         noremap gj j
         noremap gk k
+        "noremap ; :
+        syntax enable
+        syntax on
 
-        setlocal foldmarker={{{,}}}
-        setlocal foldmethod=marker
-        setlocal foldminlines=7
+        "Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+        "inoremap <tab> <c-n>
+        "inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+        "inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
+        "set completeopt=menu,longest,preview
+        "------------------------------------------
+        " nnoremap <left>  :cprev<cr>zvzz
+        " nnoremap <right> :cnext<cr>zvzz
+        " nnoremap <up>    :lprev<cr>zvzz
+        " nnoremap <down>  :lnext<cr>zvzz
+        "------------------------------------------
+        " set list
+        " set listchars=tab:▸\ ,eol:¬,trail:⋅
+        " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+        " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
-        ""My stuff --------------------------------------------------------------------------
-        let wordUnderCursor = expand("<cword>")
-        let currentLine   = getline(".")
-
-        ""My stuff --------------------------------------------------------------------------
-
-        "[ syntax & highlight ] {{{
-                syntax enable
-                syntax on
-        " }}}
-
-
-        " F1~12 {{{
         function! ShowFuncKeys(bang)
                 for i in range(1,12)
                         redir! => map
@@ -37,44 +38,48 @@
                 endfor
         endfunction
         com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
-        ":ShowFuncKeys
+
+        " [ position & session & marker ] {{{
+                " vim-session {{{ Extended session management for Vim ':mksession'
+                " - :SaveSession
+                " - :OpenSession
+                " - :CloseSession
+                " - :DeleteSession
+                " - :ViewSession
+                " - :RestartVim
+                let g:session_autoload = 'prompt' " 'prompt'/'yes' - auto load session or prompt ?
+                let g:session_autosave = 1
+                let g:session_directory = "~/.vim/sessions/"
+                let g:session_default_to_last = 0 " default open last session instead of default
+                let g:session_command_aliases = 1 " :SessionOpen <-> :OpenSession
+                set sessionoptions+=blank
+                set sessionoptions+=buffers
+                set sessionoptions+=curdir
+                set sessionoptions+=folds
+                set sessionoptions-=help
+                set sessionoptions+=options
+                set sessionoptions+=tabpages
+                set sessionoptions+=resize
+                set sessionoptions+=winsize
+                set sessionoptions+=winpos
         " }}}
 
+        " undotree {{{ Display your undo history in a graph.
+            " ?, u, <C-r>, g+, g-, :earlier, :later.
+            "let g:undotree_SplitLocation = 'topleft'
+            "let g:undotree_WindowLayout = 'topleft'
+            let g:undotree_SetFocusWhenToggle = 1
+            let g:undotree_SplitWidth = 35
+            let g:undotree_diffAutoOpen = 1
+            let g:undotree_diffpanelHeight = 25
+            let g:undotree_RelativeTimestamp = 1
+            let g:undotree_TreeNodeShape = '*'
+            let g:undotree_HighlightChangedText = 1 " highlight changed text line
+            let g:undotree_HighlightSyntax = "UnderLined"
+            nnoremap <S-F12> :UndotreeToggle<CR>
+        " }}}
 
-        set sessionoptions+=blank
-        set sessionoptions+=buffers
-        set sessionoptions+=curdir
-        set sessionoptions+=folds
-        set sessionoptions-=help
-        set sessionoptions+=options
-        set sessionoptions+=tabpages
-        set sessionoptions+=resize
-        set sessionoptions+=winsize
-        set sessionoptions+=winpos
-
-    "au BufReadPost *
-                "\if line("'\"") > 1 && line("'\"") <= line("$")
-                "\| exe "normal! g`\""
-                "\| endif
-    "set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
-    " }}}
-
-        " Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-        ""inoremap <tab> <c-n>
-        ""inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-        ""inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-        ""set completeopt=menu,longest,preview
-        "------------------------------------------
-        " nnoremap <left>  :cprev<cr>zvzz
-        " nnoremap <right> :cnext<cr>zvzz
-        " nnoremap <up>    :lprev<cr>zvzz
-        " nnoremap <down>  :lnext<cr>zvzz
-        "------------------------------------------
-        " set list
-        " chars to show for list
-        " set listchars=tab:▸\ ,eol:¬,trail:⋅
-        " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-        " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+        set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
 
 "---AAA1---------------------------------------------------------------------------------------------------------- {{{
         if &compatible | set nocompatible | endif
@@ -85,7 +90,7 @@
         silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
         silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
         silent! set list listchars=tab:>\ ,nbsp:_ synmaxcol=3000 ambiwidth=double breakindent breakindentopt=
-        silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=0 sidescroll=0
+        silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=1 sidescroll=0
         silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
         silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
         if has('gui_running') | set lines=999 columns=999 | else | set t_Co=256 | endif
@@ -148,19 +153,29 @@
         " smart Enter
         inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
 
+        " Diffget/diffput in visual mode
+        vmap            \do             :diffget<CR>
+        vmap            \dp             :diffput<CR>
+
         " diff
         nnoremap <silent> <expr> ,d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
+
+        " Diffoff
+        nnoremap <leader>D :diffoff!<cr>
+
+        " diffoff used to set wrap as a side effect
+        command! Diffoff                        diffoff | setlocal nowrap
 
         " Clear hlsearch and set nopaste
         nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
 
         " Go to the first non-blank character of the line after paragraph motions
         noremap } }^
-        noremap ; :
 
         " select last paste
         nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
+        set history=4024
         " Command line history
         cnoremap <C-p> <Up>
         cnoremap <C-n> <Down>
@@ -178,14 +193,16 @@
         " For when you forget to sudo.. Really Write the file.
         cmap w!! w !sudo tee % >/dev/null
 
-        set wrapscan
+        setlocal foldmarker={{{,}}}
+        setlocal foldmethod=marker
+        setlocal foldminlines=7
+
         set nowrap
         set mouse=a
 " }}}
 
 
 "---AAA2---------------------------------------------------------------------------------------------------------- {{{
-
         " open ctag in tab/vertical split
         map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -193,7 +210,7 @@
         map <F2> "zyiw:exe "vertical h ".@z.""<CR>
         map <F3> :Scratch<CR>
         map <S-F3> :ScratchPreview<CR>
-        ":vNEW
+
         "map <Fx> "zyiw:exe "vs ".@z.""<CR>
         map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
         map <S-F4> "zY<C-w>wo<Esc>"zp<C-w>W
@@ -206,6 +223,9 @@
         map <F5> :call SignFixme()<CR>
 
         "------------------------------------------------------------------------------------------
+        let wordUnderCursor = expand("<cword>")
+        let currentLine   = getline(".")
+
         function! OnlineDoc8()
                 let s:browser = "firefox"
                 let s:wordUnderCursor = expand("<cword>")
@@ -237,24 +257,19 @@
         nnoremap <leader><leader> :Ag <cword> .<cr>
         nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
         "nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
-
         " bind \ (backward slash) to grep shortcut
-        nnoremap \ :Ag<SPACE>
+        " nnoremap \ :Ag<SPACE>
 
 " }}}
 
 
-        " Map  Samaritans of (, ", ', [
-
 "---AAA3---------------------------------------------------------------------------------------------------------- {{{
         "inoremap <M-i> <Tab>
-        " Map auto complete of (, ", ', [
         inoremap <C-q> ()<esc>i
         inoremap <C-t> []<esc>i
         inoremap <C-e> {}<esc>i
         inoremap <C-r> {<esc>o}<esc>O
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " Map auto complete of (, ", ', [
         "inoremap1 ()<esc>i
         "inoremap2 []<esc>i
         "inoremap3 {}<esc>i
@@ -273,25 +288,12 @@
             autocmd BufWritePre *.vim,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
         endif
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        hi def DoubleSpace ctermbg=Gray
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        if !has('gui_running')
-            set background=dark
-        endif
-
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " => Turn persistent undo on
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "hi def DoubleSpace ctermbg=Gray
         "set noruler
         set hidden
-        set history=4024
         set cinoptions=N-s,g0,+2s,l-s,i2s
-        set scrolloff=2                       " 3 lines to keep above and below cursor
-        set timeoutlen=250                    " Time to wait after ESC (default annoying)
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " => Turn persistent undo on
-        "    means that you can undo even when you close a buffer/VIM
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         set nobackup
         set nowb
         set noswapfile
@@ -316,11 +318,11 @@
         let g:miniBufExplModSelTarget = 1
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         function! s:vimscript()
-            setlocal tabstop=4 " number of space for tab
-            setlocal shiftwidth=4 " width of auto indent
+            setlocal tabstop=8 " number of space for tab
+            setlocal shiftwidth=8 " width of auto indent
             setlocal expandtab
         endfunction
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """""""""
         augroup vimrc-vimscript
             autocmd!
             autocmd FileType vim call s:vimscript()
@@ -344,11 +346,6 @@
 " }}}
 
 
-
-
-
-
-
 "---AAA5---------------------------------------------------------------------------------------------------------- {{{
         " Man
         nnoremap M K
@@ -360,7 +357,6 @@
         " inoremap <c-k><c-k> <esc>:help digraph-table<cr>
 
         " Enter, I never use the default behavior of <cr> and this saves me a keystroke...
-        "
         inoremap <C-m>  <cr>
         nnoremap <C-m>  <cr>
         nnoremap <cr> o<esc>
@@ -370,14 +366,12 @@
 
         " Reselect last-pasted text
         nnoremap gv `[v`]
+
         " select last paste in visual mode
         nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-        " Reselect last-pasted text
-
-
-        " Diffoff
-        nnoremap <leader>D :diffoff!<cr>
+        " See :help DiffOrig
+        command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
 
         " Formatting, TextMate-style
         vnoremap W gq
@@ -405,7 +399,6 @@
 
 
         " Unfuck my screen
-        " my screen
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
         " Bash like keys for the command line
@@ -418,7 +411,7 @@
         "-X-Insert Mode Completion-X---------------
         inoremap <silent> <C-]> <C-x><C-]>
         inoremap <silent> <C-o> <C-x><C-o>
-        "inoremap <silent> <C-k> <C-x><C-k>
+        inoremap <silent> <C-k> <C-x><C-k>
         inoremap <silent> <C-d> <C-x><C-d>
         inoremap <silent> <C-u> <C-x><C-u>
         inoremap <silent> <C-f> <C-x><C-f>
@@ -461,20 +454,26 @@
 "---AAA6---------------------------------------------------------------------------------------------------------- {{{
         hi StatusLineNC  ctermbg=3 ctermfg=6 cterm=NONE
         hi statuslineNC guifg=White
-        hi statusline ctermbg=Cyan ctermfg=Black
-        hi statusline ctermfg=White
-        hi StatusLine cterm=bold
+        hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
         "--------------------------------------------------------------
+
+        " for less intrusive signs
+        highlight SignColumn ctermbg=255 guibg=#ffffd7
         hi clear SignColumn
         hi SignColumn ctermbg =4
+        if exists("*gitgutter#highlight#define_highlights")
+                " let vim-gitgutter know we changed the SignColumn colors!
+                call gitgutter#highlight#define_highlights()
+        endif
         "Curr line number row, same bg color in rel mode
         highlight clear LineNr
         highlight LineNr ctermfg=Black ctermbg=2
-        highlight LineNr ctermfg=White ctermbg=5
+        highlight LineNr ctermfg=White ctermbg=1
         "--------------------------------------------------------------
         set colorcolumn=8,100,120
         highlight clear ColorColumn
         highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
+        highlight ColorColumn ctermbg=1 guibg=DarkGray
         "--------------------------------------------------------------
         set cursorline
         hi Cursor ctermbg=Cyan
@@ -492,12 +491,11 @@
 
         highlight Comment ctermbg=6 ctermfg=White cterm=bold
         highlight Constant ctermbg=Blue
-        highlight NonText ctermbg=DarkBlue
         hi VariableType ctermbg=Yellow
         hi VariableType ctermfg=brown
         hi VarName ctermfg=darkblue
         highlight Special ctermbg=0
-        "highlight Normal ctermbg=DarkBlue
+        highlight Normal ctermbg=Black
         "highlight Cursor ctermbg=Green
 
         syn keyword VariableType real void String int nextgroup=VarName skipwhite
@@ -506,8 +504,8 @@
         hi VariableType ctermfg=brown
         hi VarName ctermfg=darkblue
 
-        highlight NonText             ctermfg=gray guifg=gray term=standout
-        highlight SpecialKey          ctermfg=gray guifg=gray term=standout
+        highlight NonText  ctermbg=DarkBlue  ctermfg=gray guifg=gray term=standout
+        highlight SpecialKey  ctermbg=Blue  ctermfg=gray guifg=gray term=standout
         "highlight MatchParen         gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=255
         highlight SpellBad            cterm=underline ctermfg=red ctermbg=NONE
         highlight SpellCap            cterm=underline ctermfg=blue ctermbg=NONE
@@ -710,28 +708,6 @@
         "------------------------------------------------------------------------------------------
 " }}}
 
-"---AAA13---------------------------------------------------------------------------------------------------------- {{{
-    ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
-    ""set guifont=Monospace\ Bold\ 18
-    ""5amenu First.first :echo 'first'<cr>
-    """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
-    ""set guioptions-=r
-    ""set guioptions-=R
-    ""set guioptions-=l
-    ""set guioptions-=L
-    ""hi Pmenu ctermbg=208 gui=bold
-    ""hi Pmenu guibg=brown gui=bold
-    ""set guioptions+=T
-    """set guioptions-=mTrlb
-    ""set nolinebreak
-    """amenu Help.usr_08.txt
-    """nmap Q gqap
-    """amenu Help.-SEP- :
-    """set grepprg=ack
-    """set grepformat=%f:%l:%m
-    """set keywordprg=man, ri, perldoc, <== K, 7K ??
-" }}}
-
 "---AAA14---------------------------------------------------------------------------------------------------------- {{{
         set splitbelow splitright
 " }}}
@@ -785,10 +761,6 @@
         " red
         highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
 
-        " Learn Vim Script the Hard Way Exercises
-        " noremap _ ddkP
-        " noremap - ddp
-
         " Define operator-pending mappings to quickly apply commands to function names
         " and/or parameter lists in the current line
         onoremap inf :<c-u>normal! 0f(hviw<cr>
@@ -807,40 +779,31 @@
         " Bind <F1> to show the keyword under cursor general help can still be entered manually, with :h
         autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
         autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-
 " }}}
 
 
+        " Extra vi-compatibility {{{
+                "set cpoptions+=$         " when changing a line, don't redisplay, but put a '$' at the end during the change
+                set switchbuf=useopen    " reveal already opened files from the
+                set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
+                au filetype vim set formatoptions-=o
+        " }}}
 
-" Extra vi-compatibility {{{
-        set switchbuf=useopen    " reveal already opened files from the
-        "set cpoptions+=$         " when changing a line, don't redisplay, but put a '$' at the end during the change
-        set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
-        au filetype vim set formatoptions-=o
-" }}}
 
-
-" Conflict markers {{{
-        " vim-flake8 default configuration
-        let g:flake8_show_in_gutter=1
-        " highlight conflict markers
-        match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
-        " shortcut to jump to next conflict marker
-        nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
-" }}}
-
-        " column, so swap them
-        nnoremap ' `
-        nnoremap ` '
+        " Conflict markers {{{
+                " vim-flake8 default configuration
+                let g:flake8_show_in_gutter=1
+                " highlight conflict markers
+                match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
+                " shortcut to jump to next conflict marker
+                nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
+        " }}}
 
         " YankRing stuff
         let g:yankring_history_dir = '$HOME/.vim/tmp'
-        nnoremap <leader>r :YRShow<CR>
 
         " Pull word under cursor into LHS of a substitute (for quick search and replace)
         nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
-
-
 
         " Get rid of italics (they look ugly)
         highlight htmlItalic            gui=NONE guifg=orange
@@ -853,18 +816,8 @@
         highlight Red                   guibg=red ctermbg=red
         highlight Green                 guibg=green ctermbg=green
 
-        " for less intrusive signs
-        highlight SignColumn ctermbg=255 guibg=#ffffd7
-        if exists("*gitgutter#highlight#define_highlights")
-                " let vim-gitgutter know we changed the SignColumn colors!
-                call gitgutter#highlight#define_highlights()
-        endif
-
-        " gutter on the right of the text
-        highlight ColorColumn ctermbg=2 guibg=#ffffd7
-
         " gutter below the text
-        highlight NonText ctermbg=3 guibg=#ffffd7
+        highlight NonText ctermbg=0 guibg=#ffffd7
 
         " suppress intro message because the above makes it look bad
         set shortmess+=I
@@ -912,21 +865,12 @@
         map             <C-F9>          :copen<CR>
         imap            <C-F9>          <C-O><C-F9>
 
-        " Diffget/diffput in visual mode
-        vmap            \do             :diffget<CR>
-        vmap            \dp             :diffput<CR>
-
         if has("digraphs")
                 digraph -- 8212               " em dash
                 digraph `` 8220               " left double quotation mark
                 digraph '' 8221               " right double quotation mark
                 digraph ,, 8222               " double low-9 quotation mark
         endif
-
-        " diffoff used to set wrap as a side effect
-        command! Diffoff                        diffoff | setlocal nowrap
-        " See :help DiffOrig
-        command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
 
         if has("eval")
                 " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
@@ -937,7 +881,6 @@
 
         " Sometimes pytest prepends an 'E' marker at the beginning of a traceback line
         " set errorformat+= \E\ %#File\ \"%f\"\\,\ line\ %l%.%#
-
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
             "   - :Git[!] [args]
             "   - :Gstatus
@@ -1119,12 +1062,33 @@
         " }}}
 
 
-
-""" <F12> = show the Unicode name of the character under cursor
-""" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
-""" better
+"" <F12> = show the Unicode name of the character under cursor
+"" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
+"" better
 ""map             <F12>           <Plug>(characterize)
-""" <S-F12> = show highlight group under cursor
+"" <S-F12> = show highlight group under cursor
 ""map             <S-F12>         :ShowHighlightGroup<CR>
-""" <C-F12> = show syntax stack under cursor
+"" <C-F12> = show syntax stack under cursor
 ""map             <C-F12>         :ShowSyntaxStack<CR>
+
+"---AAA13---------------------------------------------------------------------------------------------------------- {{{
+    ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
+    ""set guifont=Monospace\ Bold\ 18
+    ""5amenu First.first :echo 'first'<cr>
+    """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
+    ""set guioptions-=r
+    ""set guioptions-=R
+    ""set guioptions-=l
+    ""set guioptions-=L
+    ""hi Pmenu ctermbg=208 gui=bold
+    ""hi Pmenu guibg=brown gui=bold
+    ""set guioptions+=T
+    """set guioptions-=mTrlb
+    ""set nolinebreak
+    """amenu Help.usr_08.txt
+    """nmap Q gqap
+    """amenu Help.-SEP- :
+    """set grepprg=ack
+    """set grepformat=%f:%l:%m
+    """set keywordprg=man, ri, perldoc, <== K, 7K ??
+" }}}
