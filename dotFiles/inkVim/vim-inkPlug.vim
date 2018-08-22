@@ -28,7 +28,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-abolish'         " Extended abbreviation/substition.
     Plug 'tpope/vim-repeat'          " Intelligent repeat with '.'
     "Plug 'Townk/vim-autoclose'
-    "Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
+    Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
+    Plug 'jremmen/vim-ripgrep'
+    Plug 'kien/ctrlp.vim'
+    Plug 'tomtom/tcomment_vim'
     "Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
     "Plug 'balta2ar/deoplete-matcherkey'
     Plug 'tpope/vim-sleuth'          " indet reight ?
@@ -81,4 +84,3 @@ call plug#begin('~/.vim/plugged')
     "-Plug 'uguu-org/vim-matrix-screensaver'
     "Plug 'artur-shaik/vim-javacomplete2'
 call plug#end()
-"--------------------------------------------------------------------------------

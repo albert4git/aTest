@@ -47,9 +47,7 @@
 
         "--magic-------------------------------------------------------------------
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-        hi Search ctermbg=yellow
 
-"--------------------------------------------------------------------------
 "--------------------------------------------------------------------------
         source ~/git/aTest/dotFiles/inkVim/vim-inkPlug.vim
         colorscheme dracula
@@ -71,7 +69,6 @@
         "source ~/vim-postSet.vim
         "source ~/vim-mashine.vim
 "--------------------------------------------------------------------------
-"--------------------------------------------------------------------------
         set wmh=0
         map <C-J> <C-W>j<C-W>_
         map <C-K> <C-W>k<C-W>_
@@ -83,6 +80,7 @@
         nnoremap <Tab>   <c-W>w
         nnoremap <S-Tab> <c-W>W
         set nosm
+        hi Search ctermbg=yellow
 
         "My stuff --------------------------------------------------------------------------
         " echo (leader)
