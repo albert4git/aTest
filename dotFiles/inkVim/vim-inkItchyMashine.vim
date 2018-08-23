@@ -25,31 +25,6 @@
         " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
 
-        " Ctrl-P {{{
-        let g:ctrlp_dont_split = 'NERD_tree_2'
-        let g:ctrlp_jump_to_buffer = 0
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_match_window_reversed = 1
-        let g:ctrlp_split_window = 0
-        let g:ctrlp_max_height = 20
-        let g:ctrlp_extensions = ['tag']
-
-        let g:ctrlp_map = '<leader>,'
-        nnoremap <leader>. :CtrlPTag<cr>
-        nnoremap <leader>b :CtrlPBuffer<cr>
-
-        let g:ctrlp_prompt_mappings = {
-                                \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
-                                \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
-                                \ 'PrtHistory(-1)':       ['<c-n>'],
-                                \ 'PrtHistory(1)':        ['<c-p>'],
-                                \ 'ToggleFocus()':        ['<c-tab>'],
-                                \ }
-
-        let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
-        let g:ctrlp_user_command = my_ctrlp_ffind_command
-        " }}}
-
         "------------------------------------------------------------------------------------------
         function! ShowFuncKeys(bang)
                 for i in range(1,12)
@@ -102,33 +77,6 @@
         " }}}
 
 
-        " [ position & session & marker ] {{{
-                " Extended session management for Vim ':mksession'
-                " Extended session management for Vim ':mksession'
-                " - :SaveSession
-                " - :OpenSession
-                " - :CloseSession
-                " - :DeleteSession
-                " - :ViewSession
-                " - :RestartVim
-                let g:session_autoload = 'prompt' " 'prompt'/'yes' - auto load session or prompt ?
-                let g:session_autosave = 1
-                let g:session_directory = "~/.vim/sessions/"
-                let g:session_default_to_last = 0 " default open last session instead of default
-                let g:session_command_aliases = 1 " :SessionOpen <-> :OpenSession
-                set sessionoptions+=blank
-                set sessionoptions+=buffers
-                set sessionoptions+=curdir
-                set sessionoptions+=folds
-                set sessionoptions-=help
-                set sessionoptions+=options
-                set sessionoptions+=tabpages
-                set sessionoptions+=resize
-                set sessionoptions+=winsize
-                set sessionoptions+=winpos
-        " }}}
-
-
         " undotree {{{ Display your undo history in a graph.
             " ?, u, <C-r>, g+, g-, :earlier, :later.
             "let g:undotree_SplitLocation = 'topleft'
@@ -157,7 +105,7 @@
         silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=1 sidescroll=0
         silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
         silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
-        if has('gui_running') | set lines=999 columns=999 | else | set t_Co=256 | endif
+        set splitbelow splitright
 
         " Editing
         silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
@@ -183,33 +131,6 @@
         " Search
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
 
-        " Wildmenu completion {{{
-        " Save when losing focus
-        au FocusLost * :silent! wall
-        set completeopt=longest,menuone
-
-        " Command line
-        "silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
-        silent! set wildignore=*.~,*.?~,*.o,*.sw?,*.bak,*.hi,*.pyc,*.out,*.lock suffixes=*.pdf
-        set wildmenu
-        set wildmode=list:longest
-        set wildignore+=.hg,.git,.svn                    " Version control
-        set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-        set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-        set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-        set wildignore+=*.spl                            " compiled spelling word lists
-        set wildignore+=*.sw?                            " Vim swap files
-        set wildignore+=*.DS_Store                       " OSX bullshit
-        set wildignore+=*.luac                           " Lua byte code
-        set wildignore+=migrations                       " Django migrations
-        set wildignore+=*.pyc                            " Python byte code
-        set wildignore+=*.orig                           " Merge resolution files
-        set wildignore+=*.fasl                           " Lisp FASLs
-        set wildignore+=*.dx64fsl                        " CCL
-        " Clojure/Leiningen
-        set wildignore+=classes
-        set wildignore+=lib
-        " }}}
 
         " Performance
         silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
@@ -398,33 +319,8 @@
         "set noruler
         set hidden
         set cinoptions=N-s,g0,+2s,l-s,i2s
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " => Turn persistent undo on
-        set nobackup
-        set nowb
-        set noswapfile
-        set nowritebackup
 
-        set undodir=~/.vim/undoDir/     " undo files
-        set backupdir=~/.vim/backup/ " backups
-        set directory=~/.vim/swap/   " swap files
 
-        " Make those folders automatically if they don't already exist.
-        if !isdirectory(expand(&undodir))
-                call mkdir(expand(&undodir), "p")
-        endif
-        if !isdirectory(expand(&backupdir))
-                call mkdir(expand(&backupdir), "p")
-        endif
-        if !isdirectory(expand(&directory))
-                call mkdir(expand(&directory), "p")
-        endif
-
-        try
-            set undodir=~/.vim/undoDir/
-            set undofile
-        catch
-        endtry
 
         " Window Resizing {{{
         " right/up : bigger
@@ -473,12 +369,6 @@
         " }}}
 
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        if has('persistent_undo')
-            set undofile                " So is persistent undo ...
-            set undolevels=2000         " Maximum number of changes that can be undo
-            set undoreload=20000        " Maximum number lines to save for undo on
-        endif
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         let g:miniBufExplMapWindowNavVim = 1
@@ -600,31 +490,6 @@
         iabbrev ccopy Copyright 2013 Alf , no rights reserved.
         iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
         iab ydate <c-r>=strftime("%Y %b %d")<cr>
-
-        "#NEW#"
-        "-----------------------------------
-        vnoremap <F6>  i(
-        vnoremap <S-F6>  a(
-
-        vnoremap <F7> i{
-        vnoremap <S-F7> a{
-
-        inoremap <C-q> ()<esc>i
-        inoremap <C-w> {<esc>o}<esc>O
-
-
-        "-----------------------------------
-        "inoremap <C-t> []<esc>i
-        "inoremap <C-e> {}<esc>i
-        "inoremap <M-i> <Tab>
-
-        "-----------------------------------
-        "vnoremap <F9> i[
-        "vnoremap <S-F9> a[
-        "vnoremap <F10> i<
-        "vnoremap <S-F10> a<
-
-        "#NEW#"
 
         imap jj <Esc>
         noremap jj :w<cr>
@@ -804,9 +669,6 @@
         "------------------------------------------------------------------------------------------
 " }}}
 
-"---AAA14---------------------------------------------------------------------------------------------------------- {{{
-        set splitbelow splitright
-" }}}
 
 "---AAA15---------------------------------------------------------------------------------------------------------- {{{
         set nospell
@@ -816,17 +678,39 @@
 " }}}
 
 
-"---AAA14---------------------------------------------------------------------------------------------------------- {{{
+"---AAA15---------------------------------------------------------------------------------------------------------- {{{
+        "Quote current selection TODO: This only works for selections that are created "forwardly"
+        vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
+        vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
         "Quote words under cursor
         nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
         nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 
-        "Quote current selection TODO: This only works for selections that are created "forwardly"
-        vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
-        vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
-
         nnoremap <F12> :TagbarToggle<CR>
 
+        "#NEW#"
+        "------------------------------------------------
+                "#one
+                vnoremap <F6>  i(
+                vnoremap <S-F6>  a(
+                "#two
+                vnoremap <F7> i{
+                vnoremap <S-F7> a{
+                "#three
+                inoremap <C-q> ()<esc>i
+                inoremap <C-w> {<esc>o}<esc>O
+
+                "-----------------------------------
+                "inoremap <C-t> []<esc>i
+                "inoremap <C-e> {}<esc>i
+                "inoremap <M-i> <Tab>
+                "-----------------------------------
+                "vnoremap <F9> i[
+                "vnoremap <S-F9> a[
+                "vnoremap <F10> i<
+                "vnoremap <S-F10> a<
+        "------------------------------------------------
+        "#NEW#"
 
         " Define operator-pending mappings to quickly apply commands to function names
         "XXX and/or parameter lists in the current line
@@ -863,35 +747,28 @@
 
         " XXX Jumps  {{{
         function! JumpTo(jumpcommand)
-        execute a:jumpcommand
-        call FocusLine()
-        Pulse
+                execute a:jumpcommand
+                call FocusLine()
+                Pulse
         endfunction
 
         function! JumpToInSplit(jumpcommand)
-        execute "normal! \<c-w>v"
-        execute a:jumpcommand
-        Pulse
+                execute "normal! \<c-w>v"
+                execute a:jumpcommand
+                Pulse
         endfunction
 
         function! JumpToTag()
-        call JumpTo("normal! \<c-]>")
+                call JumpTo("normal! \<c-]>")
         endfunction
 
         function! JumpToTagInSplit()
-        call JumpToInSplit("normal! \<c-]>")
+                call JumpToInSplit("normal! \<c-]>")
         endfunction
 
         nnoremap <c-]> :silent! call JumpToTag()<cr>
         nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
         " }}}
-
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        if has('persistent_undo')
-            set undofile                " So is persistent undo ...
-            set undolevels=2000         " Maximum number of changes that can be undo
-            set undoreload=20000        " Maximum number lines to save for undo on
-        endif
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         let g:miniBufExplMapWindowNavVim = 1
@@ -946,75 +823,43 @@
                 let g:UltiSnipsListSnippets="<C-R><tab>"
         endif
 
-        " Sometimes pytest prepends an 'E' marker at the beginning of a traceback line
-        " set errorformat+= \E\ %#File\ \"%f\"\\,\ line\ %l%.%#
-        " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
-        "   - :Git[!] [args]
-        "   - :Gstatus
-        "   - :Gcommit [args]
-        "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
-        "   - :Gwrite/:Gwq {path}
-        "   - :Gmove {destination}
-        "   - :Gremove
-        "   - :{range}Gread [revision]/[args]
-        "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
-        "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
-        "   - :Glog [args] -- load all previous revisions of current file into quickfix
-        "   - :[range]Gblame {flags}
-        "   - :[range]Gbrowse {revision}
-        " XXX   auto open quickfix window for :Ggrep.
-        autocmd QuickFixCmdPost grep cwindow
-        " }}}
+"---AAA13---------------------------------------------------------------------------------------------------------- {{{
+        "" <F12> = show the Unicode name of the character under cursor
+        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
+        "" better
+        ""map             <F12>           <Plug>(characterize)
+        "" <S-F12> = show highlight group under cursor
+        ""map             <S-F12>         :ShowHighlightGroup<CR>
+        "" <C-F12> = show syntax stack under cursor
+        ""map             <C-F12>         :ShowSyntaxStack<CR>
+" }}}
 
-        let g:commentChar = {
-                                \ 'vim': '"',
-                                \ 'c': '//',
-                                \ 'cpp': '//',
-                                \ 'sh': '#',
-                                \ 'python': '#'
+        " Ctrl-P {{{
+        let g:ctrlp_dont_split = 'NERD_tree_2'
+        let g:ctrlp_jump_to_buffer = 0
+        let g:ctrlp_working_path_mode = 0
+        let g:ctrlp_match_window_reversed = 1
+        let g:ctrlp_split_window = 0
+        let g:ctrlp_max_height = 20
+        let g:ctrlp_extensions = ['tag']
+
+        let g:ctrlp_map = '<leader>,'
+        nnoremap <leader>. :CtrlPTag<cr>
+        nnoremap <leader>b :CtrlPBuffer<cr>
+
+        let g:ctrlp_prompt_mappings = {
+                                \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
+                                \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
+                                \ 'PrtHistory(-1)':       ['<c-n>'],
+                                \ 'PrtHistory(1)':        ['<c-p>'],
+                                \ 'ToggleFocus()':        ['<c-tab>'],
                                 \ }
 
-        " Syntastic {{{ :w saving to check. or daemon automatic check.
-        " :Errors, :SyntasticToggleMode, :SyntasticCheck,
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_quiet_messages = {'level': 'warnings'}
-        let g:syntastic_check_on_open = 0 " check when buffers first loaded/save
-        let g:syntastic_echo_current_error = 1 " error associated with lines
-        let g:syntastic_enable_signs = 1 " :sign interface to mark syntax errors
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_style_error_symbol = 'S✗'
-        let g:syntastic_warning_symbol = '⚠'
-        let g:syntastic_style_warning_symbol = 'S⚠'
-        let g:syntastic_enable_balloons = 1     " mouse hover, need '+balloon_eval'
-        let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors
-        let g:syntastic_auto_jump = 0           " jump to first detected error
-        let g:syntastic_auto_loc_list = 2       " 0/1/2: auto open/close error window
-        let g:syntastic_loc_list_height = 10
-        let g:syntastic_c_checker = "gcc"
-        let g:syntastic_c_compiler = "gcc"      " gcc/clang
-        let g:syntastic_c_check_header = 1      " check header files
-        let g:syntastic_c_no_include_search = 0
-        let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
-        let g:syntastic_c_auto_refresh_includes = 1
-        let g:syntastic_c_remove_include_errors = 1
-        let g:syntastic_c_compiler_options = ' -ansi'
-        let g:syntastic_cpp_compiler = 'g++'    " clang++, g++
-        let g:syntastic_cpp_check_header = 1    " check header files
-        let g:syntastic_cp_no_include_search = 0
-        let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
-        let g:syntastic_cpp_auto_refresh_includes = 1
-        let g:syntastic_cpp_remove_include_errors = 1
-        " alternately, set buffer local variable.
-        let g:syntastic_cpp_compiler_options = ' -std=c++0x'
-        " let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
-        " add additional compiler options.
-        " let g:syntastic_cpp_config_file = '.config'
-        " default: '.syntastic_cpp_config'
-        " let g:syntastic_cpp_errorformat = ''
-        " use this variable to override the default error format.
-        " let g:syntastic_javascript_checker = "jslint"
-        " let g:syntastic_csslint_options = "--warning=none" " disable warning
+        let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
+        let g:ctrlp_user_command = my_ctrlp_ffind_command
         " }}}
+
+
 
         " [ completion ] {{{
         " unite.vim {{{ Ultimate interface to unite all sources
@@ -1046,82 +891,5 @@
         let g:unite_quick_match_table = {}
         let g:unite_data_directory = expand('~/.unite')
         " }}}
-
-
-        " clang_complete {{{ use of clang to complete in C/C++.
-        " let g:clang_user_options = '-std=gnu++0x -include malloc.h -fms-extensions -fgnu-runtime'
-        " let g:clang_user_options = '-std=c++11 -stdlib=libc++'
-        " you can use g:ClangUpdateQuickFix() with a mapping to do this
-        " disable with 0 to solve neocomplcache problem
-        " clang_complete, snipmate, ultisnips
-        " :h clang_complete.txt
-        let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
-        let g:clang_complete_auto = 1 " auto complete after -> . ::
-        let g:clang_complete_copen = 1 " 1: open quickfix window on error
-        let g:clang_hl_errors = 1 " highlight warnings and errors
-        let g:clang_periodic_quickfix = 0 " periodically update quickfix
-        let g:clang_snippets = 1
-        let g:clang_snippets_engine = "ultisnips"
-        let g:clang_conceal_snippets = 1
-        let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
-        let g:clang_close_preview = 0 " auto close preview window after completion
-        let g:clang_exec = "clang" " name or path of clang executable.
-        let g:clang_user_options =
-                                \ '-std=gnu99' .
-                                \ '-stdlib=libc' .
-                                \ '-I /usr/include'
-        let g:clang_auto_user_options = "path, .clang_complete, clang"
-        let g:clang_use_library = 1
-        let g:clang_library_path = "/usr/lib/"
-        let g:clang_sort_algo = "priority"
-        let g:clang_complete_macros = 1
-        let g:clang_complete_patterns = 1
-        " }}}
-
-
-        " neocomplcache-clang {{{ clang_complete for neocomplcache.
-        " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
-        "clang.so, clang.dll, libclang.dylib
-        let g:neocomplcache_clang_use_library = 1 " use clang library
-        let g:neocomplcache_clang_library_path = '/usr/lib/'
-        let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
-        let g:neocomplcache_clang_macros = 1   " -code-completion-macros option
-        let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-        let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
-        let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
-        let g:neocomplcache_clang_debug = 0 " enable debug message.
-        " }}}
-
-
-"---AAA13---------------------------------------------------------------------------------------------------------- {{{
-        "" <F12> = show the Unicode name of the character under cursor
-        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
-        "" better
-        ""map             <F12>           <Plug>(characterize)
-        "" <S-F12> = show highlight group under cursor
-        ""map             <S-F12>         :ShowHighlightGroup<CR>
-        "" <C-F12> = show syntax stack under cursor
-        ""map             <C-F12>         :ShowSyntaxStack<CR>
-" }}}
-
-"---AAA13---------------------------------------------------------------------------------------------------------- {{{
-        ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
-        ""set guifont=Monospace\ Bold\ 18
-        ""5amenu First.first :echo 'first'<cr>
-        """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
-        ""set guioptions-=r
-        ""set guioptions-=R
-        ""set guioptions-=l
-        ""set guioptions-=L
-        ""hi Pmenu ctermbg=208 gui=bold
-        ""hi Pmenu guibg=brown gui=bold
-        ""set guioptions+=T
-        """set guioptions-=mTrlb
-        ""set nolinebreak
-        """amenu Help.usr_08.txt
-        """nmap Q gqap
-        """amenu Help.-SEP- :
-        """set grepprg=ack
-        """set grepformat=%f:%l:%m
-        """set keywordprg=man, ri, perldoc, <== K, 7K ??
+"---AAA14---------------------------------------------------------------------------------------------------------- {{{
 " }}}

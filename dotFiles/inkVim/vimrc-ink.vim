@@ -50,12 +50,14 @@
 
 "--------------------------------------------------------------------------
         source ~/git/aTest/dotFiles/inkVim/vim-inkPlug.vim
+        source ~/git/aTest/dotFiles/inkVim/vim-inkEnv.vim
         colorscheme dracula
         colorscheme Benokai
         colorscheme vividchalk
         colorscheme inkpot
         source ~/git/aTest/dotFiles/inkVim/vim-inkItchyMashine.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
+        source ~/git/aTest/dotFiles/inkVim/vim-inkGUI.vim
         "--------------------------------
         "source ~/vim-preSet.vim
         "source ~/vim-deopleteA.vim
@@ -64,11 +66,9 @@
         "source ~/vim-make.vim
         "source ~/vim-autocmd.vim
         "source ~/vim-maps.vim
-        "source ~/vim-2optic.vim
         "source ~/vim-searchA.vim
         "source ~/vim-abbr.vim
         "source ~/vim-postSet.vim
-        "source ~/vim-mashine.vim
 "--------------------------------------------------------------------------
         set wmh=0
         map <C-J> <C-W>j<C-W>_
