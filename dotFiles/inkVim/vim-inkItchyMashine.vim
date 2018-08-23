@@ -120,9 +120,33 @@
         " Search
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
 
+        " Wildmenu completion {{{
+        " Save when losing focus
+        au FocusLost * :silent! wall
+        set completeopt=longest,menuone
+
         " Command line
         "silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
         silent! set wildignore=*.~,*.?~,*.o,*.sw?,*.bak,*.hi,*.pyc,*.out,*.lock suffixes=*.pdf
+        set wildmenu
+        set wildmode=list:longest
+        set wildignore+=.hg,.git,.svn                    " Version control
+        set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+        set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+        set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+        set wildignore+=*.spl                            " compiled spelling word lists
+        set wildignore+=*.sw?                            " Vim swap files
+        set wildignore+=*.DS_Store                       " OSX bullshit
+        set wildignore+=*.luac                           " Lua byte code
+        set wildignore+=migrations                       " Django migrations
+        set wildignore+=*.pyc                            " Python byte code
+        set wildignore+=*.orig                           " Merge resolution files
+        set wildignore+=*.fasl                           " Lisp FASLs
+        set wildignore+=*.dx64fsl                        " CCL
+        " Clojure/Leiningen
+        set wildignore+=classes
+        set wildignore+=lib
+        " }}}
 
         " Performance
         silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
@@ -299,11 +323,63 @@
         set noswapfile
         set nowritebackup
 
+        set undodir=~/.vim/undoDir/     " undo files
+        set backupdir=~/.vim/backup/ " backups
+        set directory=~/.vim/swap/   " swap files
+
+        " Make those folders automatically if they don't already exist.
+        if !isdirectory(expand(&undodir))
+                call mkdir(expand(&undodir), "p")
+        endif
+        if !isdirectory(expand(&backupdir))
+                call mkdir(expand(&backupdir), "p")
+        endif
+        if !isdirectory(expand(&directory))
+                call mkdir(expand(&directory), "p")
+        endif
+
         try
             set undodir=~/.vim/undoDir/
             set undofile
         catch
         endtry
+
+        " Window Resizing {{{
+        " right/up : bigger
+        " left/down : smaller
+        nnoremap <m-right> :vertical resize +3<cr>
+        nnoremap <m-left> :vertical resize -3<cr>
+        nnoremap <m-up> :resize +3<cr>
+        nnoremap <m-down> :resize -3<cr>
+
+        " Use sane regexes.
+        nnoremap / /\v
+        vnoremap / /\v
+        " }}}
+
+        function! JumpTo(jumpcommand)
+        execute a:jumpcommand
+        call FocusLine()
+        Pulse
+        endfunction
+
+        function! JumpToInSplit(jumpcommand)
+        execute "normal! \<c-w>v"
+        execute a:jumpcommand
+        Pulse
+        endfunction
+
+        function! JumpToTag()
+        call JumpTo("normal! \<c-]>")
+        endfunction
+
+        function! JumpToTagInSplit()
+        call JumpToInSplit("normal! \<c-]>")
+        endfunction
+
+        nnoremap <c-]> :silent! call JumpToTag()<cr>
+        nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         if has('persistent_undo')
             set undofile                " So is persistent undo ...
@@ -825,7 +901,6 @@
 
 
         " Extra vi-compatibility {{{
-                "when changing a line, don't redisplay, but put a '$' at the end during the change
                 set switchbuf=useopen    " reveal already opened files from the
                 set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
                 au filetype vim set formatoptions-=o
@@ -838,6 +913,53 @@
                 " highlight conflict markers
                 match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
                 " shortcut to jump to next conflict marker
+        " }}}
+
+        " XXX Jumps  {{{
+        function! JumpTo(jumpcommand)
+        execute a:jumpcommand
+        call FocusLine()
+        Pulse
+        endfunction
+
+        function! JumpToInSplit(jumpcommand)
+        execute "normal! \<c-w>v"
+        execute a:jumpcommand
+        Pulse
+        endfunction
+
+        function! JumpToTag()
+        call JumpTo("normal! \<c-]>")
+        endfunction
+
+        function! JumpToTagInSplit()
+        call JumpToInSplit("normal! \<c-]>")
+        endfunction
+
+        nnoremap <c-]> :silent! call JumpToTag()<cr>
+        nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+        " }}}
+
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        if has('persistent_undo')
+            set undofile                " So is persistent undo ...
+            set undolevels=2000         " Maximum number of changes that can be undo
+            set undoreload=20000        " Maximum number lines to save for undo on
+        endif
+
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        let g:miniBufExplMapWindowNavVim = 1
+        let g:miniBufExplMapWindowNavArrows = 1
+        let g:miniBufExplMapCTabSwitchBufs = 1
+        let g:miniBufExplModSelTarget = 1
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        function! s:vimscript()
+            setlocal tabstop=8 " number of space for tab
+            setlocal shiftwidth=8 " width of auto indent
+            setlocal expandtab
+        endfunction
+        """""""""
+        augroup vimrc-vimscript
                 nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
         " }}}
 
