@@ -2,7 +2,7 @@
 "           / |            \ \ / / | '_ ` _ \            / |
 "           | |             \ V /| | | | | | |           | |
 "           |_|            (_)_/ |_|_| |_| |__|          |_|
-        " It's 2013.                                       .
+        " It's 2018.                                       .
         noremap j gj
         noremap k gk
         noremap gj j
@@ -10,6 +10,8 @@
         "noremap ; :
         syntax enable
         syntax on
+        set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
+
 
         "Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
         "inoremap <tab> <c-n>
@@ -17,16 +19,38 @@
         "inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
         "set completeopt=menu,longest,preview
         "------------------------------------------
-        " nnoremap <left>  :cprev<cr>zvzz
-        " nnoremap <right> :cnext<cr>zvzz
-        " nnoremap <up>    :lprev<cr>zvzz
-        " nnoremap <down>  :lnext<cr>zvzz
-        "------------------------------------------
         " set list
         " set listchars=tab:▸\ ,eol:¬,trail:⋅
         " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
         " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
+
+        " Ctrl-P {{{
+        let g:ctrlp_dont_split = 'NERD_tree_2'
+        let g:ctrlp_jump_to_buffer = 0
+        let g:ctrlp_working_path_mode = 0
+        let g:ctrlp_match_window_reversed = 1
+        let g:ctrlp_split_window = 0
+        let g:ctrlp_max_height = 20
+        let g:ctrlp_extensions = ['tag']
+
+        let g:ctrlp_map = '<leader>,'
+        nnoremap <leader>. :CtrlPTag<cr>
+        nnoremap <leader>b :CtrlPBuffer<cr>
+
+        let g:ctrlp_prompt_mappings = {
+                                \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
+                                \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
+                                \ 'PrtHistory(-1)':       ['<c-n>'],
+                                \ 'PrtHistory(1)':        ['<c-p>'],
+                                \ 'ToggleFocus()':        ['<c-tab>'],
+                                \ }
+
+        let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
+        let g:ctrlp_user_command = my_ctrlp_ffind_command
+        " }}}
+
+        "------------------------------------------------------------------------------------------
         function! ShowFuncKeys(bang)
                 for i in range(1,12)
                         redir! => map
@@ -38,6 +62,45 @@
                 endfor
         endfunction
         com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+        "------------------------------------------------------------------------------------------
+
+        " Diff {{{
+        " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
+        function! DiffFoldLevel()
+                let l:line=getline(v:lnum)
+
+                if l:line =~# '^\(diff\|Index\)'     " file
+                        return '>1'
+                elseif l:line =~# '^\(@@\|\d\)'  " hunk
+                        return '>2'
+                elseif l:line =~# '^\*\*\* \d\+,\d\+ \*\*\*\*$' " context: file1
+                        return '>2'
+                elseif l:line =~# '^--- \d\+,\d\+ ----$'     " context: file2
+                        return '>2'
+                else
+                        return '='
+                endif
+        endfunction
+
+        augroup ft_diff
+            au!
+
+            autocmd FileType diff setlocal foldmethod=expr
+            autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
+        augroup END
+
+        " }}}
+
+        " QuickFix {{{
+        augroup ft_quickfix
+        au!
+        au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
+
+        " vimscript is a joke
+        au Filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
+        augroup END
+        " }}}
+
 
         " [ position & session & marker ] {{{
                 " Extended session management for Vim ':mksession'
@@ -65,6 +128,7 @@
                 set sessionoptions+=winpos
         " }}}
 
+
         " undotree {{{ Display your undo history in a graph.
             " ?, u, <C-r>, g+, g-, :earlier, :later.
             "let g:undotree_SplitLocation = 'topleft'
@@ -80,7 +144,6 @@
             nnoremap <S-F12> :UndotreeToggle<CR>
         " }}}
 
-        set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
 
 "---AAA1---------------------------------------------------------------------------------------------------------- {{{
         if &compatible | set nocompatible | endif
@@ -98,7 +161,7 @@
 
         " Editing
         silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
-        silent! set smartindent autoindent shiftround shiftwidth=4 expandtab tabstop=4 smarttab softtabstop=4
+        silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=8 smarttab softtabstop=8
         silent! set foldclose=all foldcolumn=0 nofoldenable foldlevel=0 foldmarker& foldmethod=indent
         silent! set textwidth=0 backspace=indent,eol,start nrformats=hex formatoptions=cmMj nojoinspaces
         silent! set nohidden autoread noautowrite noautowriteall nolinebreak mouse= modeline& modelines&
@@ -240,6 +303,25 @@
         map <F3> :Scratch<CR>
         map <S-F3> :ScratchPreview<CR>
 
+
+        command! ScratchToggle call ScratchToggle()
+
+        function! ScratchToggle()
+                if exists("w:is_scratch_window")
+                        unlet w:is_scratch_window
+                        exec "q"
+                else
+                        exec "normal! :Sscratch\<cr>\<C-W>L"
+                        let w:is_scratch_window = 1
+                endif
+        endfunction
+
+        nnoremap <silent> <leader><tab> :ScratchToggle<cr>
+
+
+
+
+
         "map <Fx> "zyiw:exe "vs ".@z.""<CR>
         map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
         map <S-F4> "zY<C-w>wo<Esc>"zp<C-w>W
@@ -351,12 +433,9 @@
         nnoremap <m-left> :vertical resize -3<cr>
         nnoremap <m-up> :resize +3<cr>
         nnoremap <m-down> :resize -3<cr>
-
-        " Use sane regexes.
-        nnoremap / /\v
-        vnoremap / /\v
         " }}}
 
+        "  XXX Jumps Jump {{{
         function! JumpTo(jumpcommand)
         execute a:jumpcommand
         call FocusLine()
@@ -376,9 +455,23 @@
         function! JumpToTagInSplit()
         call JumpToInSplit("normal! \<c-]>")
         endfunction
-
+        "------------------------------------------
+        " nnoremap <left>  :cprev<cr>zvzz
+        " nnoremap <right> :cnext<cr>zvzz
+        " nnoremap <up>    :lprev<cr>zvzz
+        " nnoremap <down>  :lnext<cr>zvzz
         nnoremap <c-]> :silent! call JumpToTag()<cr>
         nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+
+        " Use sane regexes.
+        "nnoremap / /\v
+        "vnoremap / /\v
+
+        " gi already moves to "last place you exited insert mode", so we'll map gI to
+        " something similar: move to last change
+        nnoremap gI `.
+        " }}}
+
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         if has('persistent_undo')
@@ -538,124 +631,6 @@
         noremap qq :q<cr>
 " }}}
 
-"---AAA6---------------------------------------------------------------------------------------------------------- {{{
-        hi StatusLineNC  ctermbg=3 ctermfg=6 cterm=NONE
-        hi statuslineNC guifg=White
-        hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
-        "--------------------------------------------------------------
-
-        " for less intrusive signs
-        highlight SignColumn ctermbg=255 guibg=#ffffd7
-        hi clear SignColumn
-        hi SignColumn ctermbg =4
-        if exists("*gitgutter#highlight#define_highlights")
-                " let vim-gitgutter know we changed the SignColumn colors!
-                call gitgutter#highlight#define_highlights()
-        endif
-
-        "Curr line number row, same bg color in rel mode
-        highlight clear LineNr
-        highlight LineNr ctermfg=Black ctermbg=2
-
-        " number column aka gutter on the left
-        highlight LineNr ctermbg=3 guibg=#ffffd7
-        "--------------------------------------------------------------
-        set colorcolumn=1,8,100,120
-        highlight clear ColorColumn
-        highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
-        highlight ColorColumn ctermbg=4 guibg=DarkGray
-
-        "--------------------------------------------------------------
-        set cursorline
-        hi Cursor ctermbg=Cyan
-        hi CursorLine guibg=White ctermbg=1 term=bold cterm=bold
-
-        " Get rid of italics (they look ugly)
-        highlight htmlItalic            gui=NONE guifg=orange
-        highlight htmlUnderlineItalic   gui=underline guifg=orange
-
-        " Make error messages more readable
-        highlight ErrorMsg              guifg=red guibg=white
-
-        " for custom :match commands
-        highlight Red                   guibg=red ctermbg=red
-        highlight Green                 guibg=green ctermbg=green
-
-        " gutter below the text
-        highlight NonText ctermbg=0 guibg=#ffffd7
-
-        " suppress intro message because the above makes it look bad
-        set shortmess+=I
-
-        " fold column aka gutter on the left
-        highlight FoldColumn ctermbg=2 ctermfg=0 guibg=#ffffd7
-
-        " cursor column
-        highlight CursorColumn ctermbg=7 guibg=#ffffd7
-
-        " avoid invisible color combination (red on red)
-        highlight DiffText ctermbg=1
-
-        " easier on the eyes
-        highlight Folded ctermbg=229 guibg=#ffffaf
-" }}}
-
-"---AAA7---------------------------------------------------------------------------------------------------------- {{{
-        match Todo / TST /
-        2match Error / ERR /
-        3match Title / Albert /
-        syn match DoubleSpace " "
-        "set matchpairs+=<:> " Match, to used with %
-        "set mat=2            " How many tenths of a second to blink when matching brackets
-        "------------------------------------------
-
-        highlight Comment ctermbg=6 ctermfg=White cterm=bold
-        highlight Comment ctermbg=3 ctermfg=White cterm=bold
-        highlight Constant ctermbg=Blue
-        hi VariableType ctermbg=Yellow
-        hi VariableType ctermfg=brown
-        hi VarName ctermfg=darkblue
-        highlight Special ctermbg=0
-        highlight Normal ctermbg=Black
-        "highlight Cursor ctermbg=Green
-
-        syn keyword VariableType real void String int nextgroup=VarName skipwhite
-        syn match VarName '\i\+' contained
-        hi VariableType ctermbg=LightYellow
-        hi VariableType ctermfg=brown
-        hi VarName ctermfg=darkblue
-
-        highlight NonText  ctermbg=DarkBlue  ctermfg=gray guifg=gray term=standout
-        highlight SpecialKey  ctermbg=Blue  ctermfg=gray guifg=gray term=standout
-        "highlight MatchParen         gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=255
-        highlight SpellBad            cterm=underline ctermfg=red ctermbg=NONE
-        highlight SpellCap            cterm=underline ctermfg=blue ctermbg=NONE
-
-        highlight StatusLine          ctermfg=white ctermbg=black cterm=bold
-        highlight StatusLineNC        ctermfg=white ctermbg=black cterm=NONE
-        highlight VertSplit           ctermfg=white ctermbg=black cterm=NONE
-        "My stuff ---------------------------------
-        hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=magenta
-        call matchadd('CustomPink', '\<System\>')
-" }}}
-
-"---AAA8---------------------------------------------------------------------------------------------------------- {{{
-        "Airline
-        let g:ctags_statusline=1
-        let generate_tags=1
-        set noshowmode
-        set showcmd      " Show partial commands in status line and
-        "----------------------------------------
-        let g:airline#extensions#tabline#enabled = 2
-        let g:airline#extensions#tabline#fnamemod = ':t'
-        let g:airline#extensions#tabline#buffer_min_count = 1
-        "------------------------------------------
-        function! LightlineFilename()
-                let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-                let modified = &modified ? ' +M' : ''
-                return filename . modified
-        endfunction
-" }}}
 
 "---AAA9---------------------------------------------------------------------------------------------------------- {{{
         "let g:gitgutter_highlight_lines = 1
@@ -851,36 +826,7 @@
         vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
         nnoremap <F12> :TagbarToggle<CR>
-        highlight TagListTagName    ctermfg=250
-        highlight TagListTagScope   ctermfg=045
-        highlight TagListTitle      ctermfg=226
-        highlight TagListComment    ctermfg=235
-        highlight TagListFileName   ctermfg=255 ctermbg=232
 
-        " cyan
-        highlight TagbarHighlight       ctermfg=051 ctermbg=none cterm=bold
-        " gray
-        highlight TagbarComment         ctermfg=238 ctermbg=none cterm=none
-        " green
-        highlight TagbarKind            ctermfg=154 ctermbg=none cterm=bold
-        " dark green
-        highlight TagbarNestedKind      ctermfg=070 ctermbg=none cterm=none
-        " blue
-        highlight TagbarScope           ctermfg=039 ctermbg=none cterm=none
-        " yellow
-        highlight TagbarType            ctermfg=190 ctermbg=none cterm=none
-        " orange
-        highlight TagbarSignature       ctermfg=202 ctermbg=none cterm=none
-        " pink
-        highlight TagbarPseudoID        ctermfg=205 ctermbg=none cterm=bold
-        " red
-        highlight TagbarFoldIcon        ctermfg=197 ctermbg=none cterm=none
-        " dark green
-        highlight TagbarAccessPublic    ctermfg=022 ctermbg=none cterm=none
-        " dark red
-        highlight TagbarAccessProtected ctermfg=088 ctermbg=none cterm=bold
-        " red
-        highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
 
         " Define operator-pending mappings to quickly apply commands to function names
         "XXX and/or parameter lists in the current line
@@ -960,17 +906,16 @@
         endfunction
         """""""""
         augroup vimrc-vimscript
-                nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
+        " Errors confclits
+        nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
         " }}}
 
         " YankRing stuff
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
         " Pull word under cursor into LHS of a substitute (for quick search and replace)
-        "_______________________________________________________________________________
         nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
         nnoremap <leader>; :<C-r>=getline(".")<CR>
-        "________________________________________________________________________________
 
         " Alt-Backspace  deletes word backwards
         cnoremap        <A-BS>          <C-W>
@@ -993,13 +938,6 @@
         " <C-F9> = turn off quickfix
         map             <C-F9>          :copen<CR>
         imap            <C-F9>          <C-O><C-F9>
-
-        if has("digraphs")
-                digraph -- 8212               " em dash
-                digraph `` 8220               " left double quotation mark
-                digraph '' 8221               " right double quotation mark
-                digraph ,, 8222               " double low-9 quotation mark
-        endif
 
         if has("eval")
                 " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
@@ -1152,41 +1090,6 @@
         let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
         let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
         let g:neocomplcache_clang_debug = 0 " enable debug message.
-        " }}}
-
-        " Go {{{
-        let g:tagbar_type_go = {
-                                \ 'ctagstype': 'go',
-                                \ 'kinds' : [
-                                \'p:package',
-                                \'f:function',
-                                \'v:variables',
-                                \'t:type',
-                                \'c:const'
-                                \ ]
-                                \ }
-        " }}}
-
-        " Markdown {{{
-        let g:tagbar_type_markdown = {
-                                \ 'ctagstype' : 'markdown',
-                                \ 'kinds' : [
-                                \ 'h:Heading_L1',
-                                \ 'i:Heading_L2',
-                                \ 'k:Heading_L3'
-                                \ ]
-                                \ }
-        " }}}
-
-        " Xquery {{{
-        let g:tagbar_type_xquery = {
-                                \ 'ctagstype' : 'xquery',
-                                \ 'kinds'     : [
-                                \ 'f:function',
-                                \ 'v:variable',
-                                \ 'm:module',
-                                \ ]
-                                \ }
         " }}}
 
 

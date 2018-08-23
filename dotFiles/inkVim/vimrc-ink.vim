@@ -55,6 +55,7 @@
         colorscheme vividchalk
         colorscheme inkpot
         source ~/git/aTest/dotFiles/inkVim/vim-inkItchyMashine.vim
+        source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
         "--------------------------------
         "source ~/vim-preSet.vim
         "source ~/vim-deopleteA.vim
