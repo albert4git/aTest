@@ -40,7 +40,8 @@
         com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
 
         " [ position & session & marker ] {{{
-                " vim-session {{{ Extended session management for Vim ':mksession'
+                " Extended session management for Vim ':mksession'
+                " Extended session management for Vim ':mksession'
                 " - :SaveSession
                 " - :OpenSession
                 " - :CloseSession
@@ -207,7 +208,11 @@
         map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
         "------------------------------------------------------------------------------------------
+        " Bind <F1> to show the keyword under cursor general help can still be entered manually, with :h
         map <F2> "zyiw:exe "vertical h ".@z.""<CR>
+        autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+        autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+
         map <F3> :Scratch<CR>
         map <S-F3> :ScratchPreview<CR>
 
@@ -239,9 +244,9 @@
                 execute s:cmd
                 redraw!
         endfunction
-        map <F6> :call OnlineDoc8()<CR>
+        map <F10> :call OnlineDoc8()<CR>
 
-        map <S-F6> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+        map <S-F10> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
         "------------------------------------------------------------------------------------------
         nnoremap <C-down> :m .+1<CR>==
         nnoremap <C-up> :m .-2<CR>==
@@ -264,11 +269,6 @@
 
 
 "---AAA3---------------------------------------------------------------------------------------------------------- {{{
-        "inoremap <M-i> <Tab>
-        inoremap <C-q> ()<esc>i
-        inoremap <C-t> []<esc>i
-        inoremap <C-e> {}<esc>i
-        inoremap <C-r> {<esc>o}<esc>O
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "inoremap1 ()<esc>i
         "inoremap2 []<esc>i
@@ -402,9 +402,9 @@
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
         " Bash like keys for the command line
+        " cnoremap <C-K> <C-U>
         cnoremap <C-A> <Home>
         cnoremap <C-E> <End>
-        "cnoremap <C-K> <C-U>
         cnoremap <C-P> <Up>
         cnoremap <C-N> <Down>
 
@@ -433,17 +433,28 @@
         iab ydate <c-r>=strftime("%Y %b %d")<cr>
 
         "#NEW#"
-        vnoremap <F7>  i(
-        vnoremap <S-F7>  a(
+        "-----------------------------------
+        vnoremap <F6>  i(
+        vnoremap <S-F6>  a(
 
-        vnoremap <F8> i{
-        vnoremap <S-F8> a{
+        vnoremap <F7> i{
+        vnoremap <S-F7> a{
 
-        vnoremap <F9> i[
-        vnoremap <S-F9> a[
+        inoremap <C-q> ()<esc>i
+        inoremap <C-w> {<esc>o}<esc>O
 
-        vnoremap <F10> i<
-        vnoremap <S-F10> a<
+
+        "-----------------------------------
+        "inoremap <C-t> []<esc>i
+        "inoremap <C-e> {}<esc>i
+        "inoremap <M-i> <Tab>
+
+        "-----------------------------------
+        "vnoremap <F9> i[
+        "vnoremap <S-F9> a[
+        "vnoremap <F10> i<
+        "vnoremap <S-F10> a<
+
         "#NEW#"
 
         imap jj <Esc>
@@ -465,19 +476,52 @@
                 " let vim-gitgutter know we changed the SignColumn colors!
                 call gitgutter#highlight#define_highlights()
         endif
+
         "Curr line number row, same bg color in rel mode
         highlight clear LineNr
         highlight LineNr ctermfg=Black ctermbg=2
-        highlight LineNr ctermfg=White ctermbg=1
+
+        " number column aka gutter on the left
+        highlight LineNr ctermbg=3 guibg=#ffffd7
         "--------------------------------------------------------------
-        set colorcolumn=8,100,120
+        set colorcolumn=1,8,100,120
         highlight clear ColorColumn
         highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
-        highlight ColorColumn ctermbg=1 guibg=DarkGray
+        highlight ColorColumn ctermbg=4 guibg=DarkGray
+
         "--------------------------------------------------------------
         set cursorline
         hi Cursor ctermbg=Cyan
         hi CursorLine guibg=White ctermbg=1 term=bold cterm=bold
+
+        " Get rid of italics (they look ugly)
+        highlight htmlItalic            gui=NONE guifg=orange
+        highlight htmlUnderlineItalic   gui=underline guifg=orange
+
+        " Make error messages more readable
+        highlight ErrorMsg              guifg=red guibg=white
+
+        " for custom :match commands
+        highlight Red                   guibg=red ctermbg=red
+        highlight Green                 guibg=green ctermbg=green
+
+        " gutter below the text
+        highlight NonText ctermbg=0 guibg=#ffffd7
+
+        " suppress intro message because the above makes it look bad
+        set shortmess+=I
+
+        " fold column aka gutter on the left
+        highlight FoldColumn ctermbg=2 ctermfg=0 guibg=#ffffd7
+
+        " cursor column
+        highlight CursorColumn ctermbg=7 guibg=#ffffd7
+
+        " avoid invisible color combination (red on red)
+        highlight DiffText ctermbg=1
+
+        " easier on the eyes
+        highlight Folded ctermbg=229 guibg=#ffffaf
 " }}}
 
 "---AAA7---------------------------------------------------------------------------------------------------------- {{{
@@ -490,6 +534,7 @@
         "------------------------------------------
 
         highlight Comment ctermbg=6 ctermfg=White cterm=bold
+        highlight Comment ctermbg=3 ctermfg=White cterm=bold
         highlight Constant ctermbg=Blue
         hi VariableType ctermbg=Yellow
         hi VariableType ctermfg=brown
@@ -762,7 +807,7 @@
         highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
 
         " Define operator-pending mappings to quickly apply commands to function names
-        " and/or parameter lists in the current line
+        "XXX and/or parameter lists in the current line
         onoremap inf :<c-u>normal! 0f(hviw<cr>
         onoremap anf :<c-u>normal! 0f(hvaw<cr>
         onoremap in( :<c-u>normal! 0f(vi(<cr>
@@ -776,14 +821,11 @@
         onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
         vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
 
-        " Bind <F1> to show the keyword under cursor general help can still be entered manually, with :h
-        autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-        autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
 " }}}
 
 
         " Extra vi-compatibility {{{
-                "set cpoptions+=$         " when changing a line, don't redisplay, but put a '$' at the end during the change
+                "when changing a line, don't redisplay, but put a '$' at the end during the change
                 set switchbuf=useopen    " reveal already opened files from the
                 set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
                 au filetype vim set formatoptions-=o
@@ -803,52 +845,18 @@
         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
         " Pull word under cursor into LHS of a substitute (for quick search and replace)
+        "_______________________________________________________________________________
         nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+        nnoremap <leader>; :<C-r>=getline(".")<CR>
+        "________________________________________________________________________________
 
-        " Get rid of italics (they look ugly)
-        highlight htmlItalic            gui=NONE guifg=orange
-        highlight htmlUnderlineItalic   gui=underline guifg=orange
-
-        " Make error messages more readable
-        highlight ErrorMsg              guifg=red guibg=white
-
-        " for custom :match commands
-        highlight Red                   guibg=red ctermbg=red
-        highlight Green                 guibg=green ctermbg=green
-
-        " gutter below the text
-        highlight NonText ctermbg=0 guibg=#ffffd7
-
-        " suppress intro message because the above makes it look bad
-        set shortmess+=I
-
-        " fold column aka gutter on the left
-        highlight FoldColumn ctermbg=4 guibg=#ffffd7
-
-        " number column aka gutter on the left
-        highlight LineNr ctermbg=5 guibg=#ffffd7
-
-        " cursor column
-        highlight CursorColumn ctermbg=7 guibg=#ffffd7
-
-        " avoid invisible color combination (red on red)
-        highlight DiffText ctermbg=1
-
-        " easier on the eyes
-        highlight Folded ctermbg=229 guibg=#ffffaf
-
-        " Alt+b,f move word backwards/forwards
-        cnoremap        <Esc>b          <S-Left>
-        cnoremap        <Esc>f          <S-Right>
-
-        " Alt-Backspace deletes word backwards
+        " Alt-Backspace  deletes word backwards
         cnoremap        <A-BS>          <C-W>
-        cnoremap        <C-BS>          <C-W>
 
         " Do not lose "complete all" (gvim-only)
         cnoremap        <C-S-A>         <C-A>
 
-        "XXX ToDo Insert line under cursor (builtin in vim 8.0.1787)
+        "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
         cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
 
         " <S-F8> = turn off location list
@@ -857,7 +865,6 @@
         " <S-F8> = turn off location list
         map             <C-F8>          :lopen<CR>
         imap            <C-F8>          <C-O><C-F8>
-
         " <C-F9> = turn off quickfix
         map             <S-F9>          :cclose<CR>
         imap            <S-F9>          <C-O><S-F7>
@@ -882,213 +889,214 @@
         " Sometimes pytest prepends an 'E' marker at the beginning of a traceback line
         " set errorformat+= \E\ %#File\ \"%f\"\\,\ line\ %l%.%#
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
-            "   - :Git[!] [args]
-            "   - :Gstatus
-            "   - :Gcommit [args]
-            "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
-            "   - :Gwrite/:Gwq {path}
-            "   - :Gmove {destination}
-            "   - :Gremove
-            "   - :{range}Gread [revision]/[args]
-            "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
-            "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
-            "   - :Glog [args] -- load all previous revisions of current file into quickfix
-            "   - :[range]Gblame {flags}
-            "   - :[range]Gbrowse {revision}
-            " auto open quickfix window for :Ggrep.
-            autocmd QuickFixCmdPost grep cwindow
+        "   - :Git[!] [args]
+        "   - :Gstatus
+        "   - :Gcommit [args]
+        "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
+        "   - :Gwrite/:Gwq {path}
+        "   - :Gmove {destination}
+        "   - :Gremove
+        "   - :{range}Gread [revision]/[args]
+        "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
+        "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
+        "   - :Glog [args] -- load all previous revisions of current file into quickfix
+        "   - :[range]Gblame {flags}
+        "   - :[range]Gbrowse {revision}
+        " XXX   auto open quickfix window for :Ggrep.
+        autocmd QuickFixCmdPost grep cwindow
         " }}}
 
         let g:commentChar = {
-                \ 'vim': '"',
-                \ 'c': '//',
-                \ 'cpp': '//',
-                \ 'sh': '#',
-                \ 'python': '#'
-                \ }
+                                \ 'vim': '"',
+                                \ 'c': '//',
+                                \ 'cpp': '//',
+                                \ 'sh': '#',
+                                \ 'python': '#'
+                                \ }
 
-
-        " :Errors, :SyntasticToggleMode, :SyntasticCheck,
         " Syntastic {{{ :w saving to check. or daemon automatic check.
-            let g:syntastic_always_populate_loc_list = 1
-            let g:syntastic_quiet_messages = {'level': 'warnings'}
-            let g:syntastic_check_on_open = 0 " check when buffers first loaded/save
-            let g:syntastic_echo_current_error = 1 " error associated with lines
-            let g:syntastic_enable_signs = 1 " :sign interface to mark syntax errors
-            let g:syntastic_error_symbol = '✗'
-            let g:syntastic_style_error_symbol = 'S✗'
-            let g:syntastic_warning_symbol = '⚠'
-            let g:syntastic_style_warning_symbol = 'S⚠'
-            let g:syntastic_enable_balloons = 1     " mouse hover, need '+balloon_eval'
-            let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors
-            let g:syntastic_auto_jump = 0           " jump to first detected error
-            let g:syntastic_auto_loc_list = 2       " 0/1/2: auto open/close error window
-            let g:syntastic_loc_list_height = 10
-            let g:syntastic_c_checker = "gcc"
-            let g:syntastic_c_compiler = "gcc"      " gcc/clang
-            let g:syntastic_c_check_header = 1      " check header files
-            let g:syntastic_c_no_include_search = 0
-            let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
-            let g:syntastic_c_auto_refresh_includes = 1
-            let g:syntastic_c_remove_include_errors = 1
-            let g:syntastic_c_compiler_options = ' -ansi'
-            let g:syntastic_cpp_compiler = 'g++'    " clang++, g++
-            let g:syntastic_cpp_check_header = 1    " check header files
-            let g:syntastic_cp_no_include_search = 0
-            let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
-            let g:syntastic_cpp_auto_refresh_includes = 1
-            let g:syntastic_cpp_remove_include_errors = 1
-            " alternately, set buffer local variable.
-            let g:syntastic_cpp_compiler_options = ' -std=c++0x'
-            " let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
-            " add additional compiler options.
-            " let g:syntastic_cpp_config_file = '.config'
-            " default: '.syntastic_cpp_config'
-            " let g:syntastic_cpp_errorformat = ''
-            " use this variable to override the default error format.
-            " let g:syntastic_javascript_checker = "jslint"
-            " let g:syntastic_csslint_options = "--warning=none" " disable warning
+        " :Errors, :SyntasticToggleMode, :SyntasticCheck,
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_quiet_messages = {'level': 'warnings'}
+        let g:syntastic_check_on_open = 0 " check when buffers first loaded/save
+        let g:syntastic_echo_current_error = 1 " error associated with lines
+        let g:syntastic_enable_signs = 1 " :sign interface to mark syntax errors
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_style_error_symbol = 'S✗'
+        let g:syntastic_warning_symbol = '⚠'
+        let g:syntastic_style_warning_symbol = 'S⚠'
+        let g:syntastic_enable_balloons = 1     " mouse hover, need '+balloon_eval'
+        let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors
+        let g:syntastic_auto_jump = 0           " jump to first detected error
+        let g:syntastic_auto_loc_list = 2       " 0/1/2: auto open/close error window
+        let g:syntastic_loc_list_height = 10
+        let g:syntastic_c_checker = "gcc"
+        let g:syntastic_c_compiler = "gcc"      " gcc/clang
+        let g:syntastic_c_check_header = 1      " check header files
+        let g:syntastic_c_no_include_search = 0
+        let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
+        let g:syntastic_c_auto_refresh_includes = 1
+        let g:syntastic_c_remove_include_errors = 1
+        let g:syntastic_c_compiler_options = ' -ansi'
+        let g:syntastic_cpp_compiler = 'g++'    " clang++, g++
+        let g:syntastic_cpp_check_header = 1    " check header files
+        let g:syntastic_cp_no_include_search = 0
+        let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
+        let g:syntastic_cpp_auto_refresh_includes = 1
+        let g:syntastic_cpp_remove_include_errors = 1
+        " alternately, set buffer local variable.
+        let g:syntastic_cpp_compiler_options = ' -std=c++0x'
+        " let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
+        " add additional compiler options.
+        " let g:syntastic_cpp_config_file = '.config'
+        " default: '.syntastic_cpp_config'
+        " let g:syntastic_cpp_errorformat = ''
+        " use this variable to override the default error format.
+        " let g:syntastic_javascript_checker = "jslint"
+        " let g:syntastic_csslint_options = "--warning=none" " disable warning
         " }}}
 
         " [ completion ] {{{
-                " unite.vim {{{ Ultimate interface to unite all sources
-                "   - :Unite [{options}] {source's'}
-                "       - {source's'}
-                "           - parameters of source
-                "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
-                "               - e.g. file:foo\:bar -- use \ to escape
-                "               - e.g. file:foo::bar -- ['foo', '', 'bar']
-                "   - press 'I' to search after prompt '>'
-                "       - *word,
-                "       - **/foo (directory recursively)
-                "       - foo bar (AND)
-                "       - foo|bar (OR)
-                "       - foo !bar (negative)
-                "   - :UniteResume, :UniteBookmarkAdd
-                let g:unite_update_time = 500 " update time interval of candidates
-                let g:unite_enable_start_insert = 1 " startup into insert mode
-                let g:unite_split_rule = "topleft"
-                let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
-                let g:unite_winheight = 15
-                let g:unite_winwidth = 50
-                let g:unite_kind_openable_cd_command = "cd"
-                let g:unite_kind_openable_lcd_command = "lcd"
-                let g:unite_cursor_line_highlight = "PmenuSel"
-                let g:unite_abbr_highlight = "Normal"
-                let g:unite_enable_use_short_source_names = 0
-              let g:unite_quick_match_table = {}
-                let g:unite_data_directory = expand('~/.unite')
-                " let g:unite_no_default_keymappings = 1 " don't map default key mappings
+        " unite.vim {{{ Ultimate interface to unite all sources
+        "   - :Unite [{options}] {source's'}
+        "       - {source's'}
+        "           - parameters of source
+        "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
+        "               - e.g. file:foo\:bar -- use \ to escape
+        "               - e.g. file:foo::bar -- ['foo', '', 'bar']
+        "   - press 'I' to search after prompt '>'
+        "       - *word,
+        "       - **/foo (directory recursively)
+        "       - foo bar (AND)
+        "       - foo|bar (OR)
+        "       - foo !bar (negative)
+        "   - :UniteResume, :UniteBookmarkAdd
+        " let g:unite_no_default_keymappings = 1 " don't map default key mappings
+        let g:unite_update_time = 500 " update time interval of candidates
+        let g:unite_enable_start_insert = 1 " startup into insert mode
+        let g:unite_split_rule = "topleft"
+        let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
+        let g:unite_winheight = 15
+        let g:unite_winwidth = 50
+        let g:unite_kind_openable_cd_command = "cd"
+        let g:unite_kind_openable_lcd_command = "lcd"
+        let g:unite_cursor_line_highlight = "PmenuSel"
+        let g:unite_abbr_highlight = "Normal"
+        let g:unite_enable_use_short_source_names = 0
+        let g:unite_quick_match_table = {}
+        let g:unite_data_directory = expand('~/.unite')
         " }}}
 
 
         " clang_complete {{{ use of clang to complete in C/C++.
-            " :h clang_complete.txt
-            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
-            " disable with 0 to solve neocomplcache problem
-            let g:clang_complete_auto = 1 " auto complete after -> . ::
-            let g:clang_complete_copen = 1 " 1: open quickfix window on error
-            let g:clang_hl_errors = 1 " highlight warnings and errors
-            let g:clang_periodic_quickfix = 0 " periodically update quickfix
-            " you can use g:ClangUpdateQuickFix() with a mapping to do this
-            let g:clang_snippets = 1
-            " clang_complete, snipmate, ultisnips
-            let g:clang_snippets_engine = "ultisnips"
-            let g:clang_conceal_snippets = 1
-            let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
-            let g:clang_close_preview = 0 " auto close preview window after completion
-            let g:clang_exec = "clang" " name or path of clang executable.
-            let g:clang_user_options =
-                        \ '-std=gnu99' .
-                        \ '-stdlib=libc' .
-                        \ '-I /usr/include'
-            " let g:clang_user_options = '-std=gnu++0x -include malloc.h -fms-extensions -fgnu-runtime'
-            " let g:clang_user_options = '-std=c++11 -stdlib=libc++'
-            let g:clang_auto_user_options = "path, .clang_complete, clang"
-            let g:clang_use_library = 1
-            let g:clang_library_path = "/usr/lib/"
-            let g:clang_sort_algo = "priority"
-            let g:clang_complete_macros = 1
-            let g:clang_complete_patterns = 1
+        " let g:clang_user_options = '-std=gnu++0x -include malloc.h -fms-extensions -fgnu-runtime'
+        " let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+        " you can use g:ClangUpdateQuickFix() with a mapping to do this
+        " disable with 0 to solve neocomplcache problem
+        " clang_complete, snipmate, ultisnips
+        " :h clang_complete.txt
+        let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
+        let g:clang_complete_auto = 1 " auto complete after -> . ::
+        let g:clang_complete_copen = 1 " 1: open quickfix window on error
+        let g:clang_hl_errors = 1 " highlight warnings and errors
+        let g:clang_periodic_quickfix = 0 " periodically update quickfix
+        let g:clang_snippets = 1
+        let g:clang_snippets_engine = "ultisnips"
+        let g:clang_conceal_snippets = 1
+        let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
+        let g:clang_close_preview = 0 " auto close preview window after completion
+        let g:clang_exec = "clang" " name or path of clang executable.
+        let g:clang_user_options =
+                                \ '-std=gnu99' .
+                                \ '-stdlib=libc' .
+                                \ '-I /usr/include'
+        let g:clang_auto_user_options = "path, .clang_complete, clang"
+        let g:clang_use_library = 1
+        let g:clang_library_path = "/usr/lib/"
+        let g:clang_sort_algo = "priority"
+        let g:clang_complete_macros = 1
+        let g:clang_complete_patterns = 1
         " }}}
 
 
         " neocomplcache-clang {{{ clang_complete for neocomplcache.
-            "clang.so, clang.dll, libclang.dylib
-            let g:neocomplcache_clang_use_library = 1 " use clang library
-            let g:neocomplcache_clang_library_path = '/usr/lib/'
-            let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
-            let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
-            let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
-            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
-            let g:neocomplcache_clang_debug = 0 " enable debug message.
-            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
+        " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
+        "clang.so, clang.dll, libclang.dylib
+        let g:neocomplcache_clang_use_library = 1 " use clang library
+        let g:neocomplcache_clang_library_path = '/usr/lib/'
+        let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
+        let g:neocomplcache_clang_macros = 1   " -code-completion-macros option
+        let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
+        let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
+        let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
+        let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
 
         " Go {{{
         let g:tagbar_type_go = {
-                \ 'ctagstype': 'go',
-                \ 'kinds' : [
-                        \'p:package',
-                        \'f:function',
-                        \'v:variables',
-                        \'t:type',
-                        \'c:const'
-                        \ ]
-                \ }
+                                \ 'ctagstype': 'go',
+                                \ 'kinds' : [
+                                \'p:package',
+                                \'f:function',
+                                \'v:variables',
+                                \'t:type',
+                                \'c:const'
+                                \ ]
+                                \ }
         " }}}
 
         " Markdown {{{
         let g:tagbar_type_markdown = {
-                \ 'ctagstype' : 'markdown',
-                \ 'kinds' : [
-                \ 'h:Heading_L1',
-                \ 'i:Heading_L2',
-                \ 'k:Heading_L3'
-                \ ]
-                \ }
+                                \ 'ctagstype' : 'markdown',
+                                \ 'kinds' : [
+                                \ 'h:Heading_L1',
+                                \ 'i:Heading_L2',
+                                \ 'k:Heading_L3'
+                                \ ]
+                                \ }
         " }}}
 
         " Xquery {{{
         let g:tagbar_type_xquery = {
-                \ 'ctagstype' : 'xquery',
-                \ 'kinds'     : [
-                        \ 'f:function',
-                        \ 'v:variable',
-                        \ 'm:module',
-                        \ ]
-                \ }
+                                \ 'ctagstype' : 'xquery',
+                                \ 'kinds'     : [
+                                \ 'f:function',
+                                \ 'v:variable',
+                                \ 'm:module',
+                                \ ]
+                                \ }
         " }}}
 
 
-"" <F12> = show the Unicode name of the character under cursor
-"" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
-"" better
-""map             <F12>           <Plug>(characterize)
-"" <S-F12> = show highlight group under cursor
-""map             <S-F12>         :ShowHighlightGroup<CR>
-"" <C-F12> = show syntax stack under cursor
-""map             <C-F12>         :ShowSyntaxStack<CR>
+"---AAA13---------------------------------------------------------------------------------------------------------- {{{
+        "" <F12> = show the Unicode name of the character under cursor
+        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
+        "" better
+        ""map             <F12>           <Plug>(characterize)
+        "" <S-F12> = show highlight group under cursor
+        ""map             <S-F12>         :ShowHighlightGroup<CR>
+        "" <C-F12> = show syntax stack under cursor
+        ""map             <C-F12>         :ShowSyntaxStack<CR>
+" }}}
 
 "---AAA13---------------------------------------------------------------------------------------------------------- {{{
-    ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
-    ""set guifont=Monospace\ Bold\ 18
-    ""5amenu First.first :echo 'first'<cr>
-    """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
-    ""set guioptions-=r
-    ""set guioptions-=R
-    ""set guioptions-=l
-    ""set guioptions-=L
-    ""hi Pmenu ctermbg=208 gui=bold
-    ""hi Pmenu guibg=brown gui=bold
-    ""set guioptions+=T
-    """set guioptions-=mTrlb
-    ""set nolinebreak
-    """amenu Help.usr_08.txt
-    """nmap Q gqap
-    """amenu Help.-SEP- :
-    """set grepprg=ack
-    """set grepformat=%f:%l:%m
-    """set keywordprg=man, ri, perldoc, <== K, 7K ??
+        ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
+        ""set guifont=Monospace\ Bold\ 18
+        ""5amenu First.first :echo 'first'<cr>
+        """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
+        ""set guioptions-=r
+        ""set guioptions-=R
+        ""set guioptions-=l
+        ""set guioptions-=L
+        ""hi Pmenu ctermbg=208 gui=bold
+        ""hi Pmenu guibg=brown gui=bold
+        ""set guioptions+=T
+        """set guioptions-=mTrlb
+        ""set nolinebreak
+        """amenu Help.usr_08.txt
+        """nmap Q gqap
+        """amenu Help.-SEP- :
+        """set grepprg=ack
+        """set grepformat=%f:%l:%m
+        """set keywordprg=man, ri, perldoc, <== K, 7K ??
 " }}}
