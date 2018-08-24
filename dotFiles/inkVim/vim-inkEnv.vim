@@ -1,4 +1,3 @@
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " => Turn persistent undo on
         set nobackup
         set nowb
@@ -31,10 +30,8 @@
         endif
 
 
-
-
+        "------:Errors, :SyntasticToggleMode, :SyntasticCheck,-------------"
         " Syntastic {{{ :w saving to check. or daemon automatic check.
-        " :Errors, :SyntasticToggleMode, :SyntasticCheck,
         let g:syntastic_always_populate_loc_list = 1
         let g:syntastic_quiet_messages = {'level': 'warnings'}
         let g:syntastic_check_on_open = 0 " check when buffers first loaded/save
@@ -126,28 +123,6 @@
         au FocusLost * :silent! wall
         set completeopt=longest,menuone
 
-
-
-        " Sometimes pytest prepends an 'E' marker at the beginning of a traceback line
-        " set errorformat+= \E\ %#File\ \"%f\"\\,\ line\ %l%.%#
-        " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
-        "   - :Git[!] [args]
-        "   - :Gstatus
-        "   - :Gcommit [args]
-        "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
-        "   - :Gwrite/:Gwq {path}
-        "   - :Gmove {destination}
-        "   - :Gremove
-        "   - :{range}Gread [revision]/[args]
-        "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
-        "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
-        "   - :Glog [args] -- load all previous revisions of current file into quickfix
-        "   - :[range]Gblame {flags}
-        "   - :[range]Gbrowse {revision}
-        " XXX   auto open quickfix window for :Ggrep.
-        autocmd QuickFixCmdPost grep cwindow
-        " }}}
-
         let g:commentChar = {
                                 \ 'vim': '"',
                                 \ 'c': '//',
@@ -155,9 +130,6 @@
                                 \ 'sh': '#',
                                 \ 'python': '#'
                                 \ }
-
-
-
 
 
         " Command line
@@ -209,4 +181,25 @@
                 set sessionoptions+=winpos
         " }}}
 
+
+
+        " Sometimes pytest prepends an 'E' marker at the beginning of a traceback line
+        " set errorformat+= \E\ %#File\ \"%f\"\\,\ line\ %l%.%#
+        " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
+        "   - :Git[!] [args]
+        "   - :Gstatus
+        "   - :Gcommit [args]
+        "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
+        "   - :Gwrite/:Gwq {path}
+        "   - :Gmove {destination}
+        "   - :Gremove
+        "   - :{range}Gread [revision]/[args]
+        "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
+        "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
+        "   - :Glog [args] -- load all previous revisions of current file into quickfix
+        "   - :[range]Gblame {flags}
+        "   - :[range]Gbrowse {revision}
+        " XXX   auto open quickfix window for :Ggrep.
+        autocmd QuickFixCmdPost grep cwindow
+        " }}}
 

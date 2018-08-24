@@ -12,13 +12,15 @@
         syntax on
         set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
 
+        " set file path completion.
+        set path+=.,/usr/include,/usr/local/include
 
-        "Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-        "inoremap <tab> <c-n>
-        "inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-        "inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-        "set completeopt=menu,longest,preview
-        "------------------------------------------
+        " Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+        " inoremap <tab> <c-n>
+        " inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+        " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
+        " set completeopt=menu,longest,preview
+        "------------------------------------------------------------------
         " set list
         " set listchars=tab:▸\ ,eol:¬,trail:⋅
         " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
@@ -43,7 +45,6 @@
         " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
         function! DiffFoldLevel()
                 let l:line=getline(v:lnum)
-
                 if l:line =~# '^\(diff\|Index\)'     " file
                         return '>1'
                 elseif l:line =~# '^\(@@\|\d\)'  " hunk
@@ -59,37 +60,29 @@
 
         augroup ft_diff
             au!
-
             autocmd FileType diff setlocal foldmethod=expr
             autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
         augroup END
-
         " }}}
 
-        " QuickFix {{{
-        augroup ft_quickfix
-        au!
-        au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
-
-        " vimscript is a joke
-        au Filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
+        " Auto commands
+        augroup vimrc
+                autocmd!
         augroup END
-        " }}}
-
 
         " undotree {{{ Display your undo history in a graph.
-            " ?, u, <C-r>, g+, g-, :earlier, :later.
-            "let g:undotree_SplitLocation = 'topleft'
-            "let g:undotree_WindowLayout = 'topleft'
-            let g:undotree_SetFocusWhenToggle = 1
-            let g:undotree_SplitWidth = 35
-            let g:undotree_diffAutoOpen = 1
-            let g:undotree_diffpanelHeight = 25
-            let g:undotree_RelativeTimestamp = 1
-            let g:undotree_TreeNodeShape = '*'
-            let g:undotree_HighlightChangedText = 1 " highlight changed text line
-            let g:undotree_HighlightSyntax = "UnderLined"
-            nnoremap <S-F12> :UndotreeToggle<CR>
+        " ?, u, <C-r>, g+, g-, :earlier, :later.
+        "let g:undotree_SplitLocation = 'topleft'
+        "let g:undotree_WindowLayout = 'topleft'
+                let g:undotree_SetFocusWhenToggle = 1
+                let g:undotree_SplitWidth = 35
+                let g:undotree_diffAutoOpen = 1
+                let g:undotree_diffpanelHeight = 25
+                let g:undotree_RelativeTimestamp = 1
+                let g:undotree_TreeNodeShape = '*'
+                let g:undotree_HighlightChangedText = 1 " highlight changed text line
+                let g:undotree_HighlightSyntax = "UnderLined"
+        nnoremap <S-F12> :UndotreeToggle<CR>
         " }}}
 
 
@@ -117,20 +110,15 @@
         silent! set tags=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
         silent! set tags+=../../../../../../tags,../../../../../../../tags,~/Documents/scala/tags,~/Documents/*/tags tagstack
 
+        setlocal foldmarker={{{,}}}
+        setlocal foldmethod=marker
+        setlocal foldminlines=7
+
         set whichwrap=b,s,h,l,<,>,[,]         " Backspace and cursor keys wrap too
 
         " Clipboard
         silent! set clipboard=unnamed
         silent! set clipboard+=unnamedplus
-
-        " Auto commands
-        augroup vimrc
-        autocmd!
-        augroup END
-
-        " Search
-        silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-
 
         " Performance
         silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
@@ -141,10 +129,6 @@
         " Move to the directory each buffer
         autocmd vimrc BufEnter * silent! lcd %:p:h
 
-        " Open Quickfix window automatically
-        autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
-        autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
-
         " Fix window position of help
         autocmd vimrc FileType help if &l:buftype ==# 'help' | wincmd K | endif
 
@@ -153,7 +137,6 @@
 
         " Automatically set expandtab
         autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
-
         autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
 
         " Setting lazyredraw causes a problem on startup
@@ -175,21 +158,18 @@
         " diffoff used to set wrap as a side effect
         command! Diffoff                        diffoff | setlocal nowrap
 
-        " Clear hlsearch and set nopaste
-        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-
         " Go to the first non-blank character of the line after paragraph motions
         noremap } }^
 
         " select last paste
         nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
-        set history=4024
         " Command line history
         cnoremap <C-p> <Up>
         cnoremap <C-n> <Down>
         "cnoremap <Up> <C-p>
         "cnoremap <Down> <C-n>
+        set history=4024
 
         " Visual shifting (does not exit Visual mode)
         vnoremap < <gv
@@ -201,10 +181,6 @@
 
         " For when you forget to sudo.. Really Write the file.
         cmap w!! w !sudo tee % >/dev/null
-
-        setlocal foldmarker={{{,}}}
-        setlocal foldmethod=marker
-        setlocal foldminlines=7
 
         set nowrap
         set mouse=a
@@ -224,7 +200,6 @@
         map <F3> :Scratch<CR>
         map <S-F3> :ScratchPreview<CR>
 
-
         command! ScratchToggle call ScratchToggle()
 
         function! ScratchToggle()
@@ -238,10 +213,6 @@
         endfunction
 
         nnoremap <silent> <leader><tab> :ScratchToggle<cr>
-
-
-
-
 
         "map <Fx> "zyiw:exe "vs ".@z.""<CR>
         map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
@@ -296,12 +267,6 @@
 
 
 "---AAA3---------------------------------------------------------------------------------------------------------- {{{
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        "inoremap1 ()<esc>i
-        "inoremap2 []<esc>i
-        "inoremap3 {}<esc>i
-        "inoremap4 {<esc>o}<esc>O
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " Delete trailing white space on save, useful for some filetypes ;)
         fun! CleanExtraSpaces()
             let save_cursor = getpos(".")
@@ -320,8 +285,6 @@
         set hidden
         set cinoptions=N-s,g0,+2s,l-s,i2s
 
-
-
         " Window Resizing {{{
         " right/up : bigger
         " left/down : smaller
@@ -332,43 +295,37 @@
         " }}}
 
         "  XXX Jumps Jump {{{
-        function! JumpTo(jumpcommand)
-        execute a:jumpcommand
-        call FocusLine()
-        Pulse
-        endfunction
+                function! JumpTo(jumpcommand)
+                        execute a:jumpcommand
+                        call FocusLine()
+                        Pulse
+                endfunction
 
-        function! JumpToInSplit(jumpcommand)
-        execute "normal! \<c-w>v"
-        execute a:jumpcommand
-        Pulse
-        endfunction
+                function! JumpToInSplit(jumpcommand)
+                        execute "normal! \<c-w>v"
+                        execute a:jumpcommand
+                        Pulse
+                endfunction
 
-        function! JumpToTag()
-        call JumpTo("normal! \<c-]>")
-        endfunction
+                function! JumpToTag()
+                        call JumpTo("normal! \<c-]>")
+                endfunction
 
-        function! JumpToTagInSplit()
-        call JumpToInSplit("normal! \<c-]>")
-        endfunction
-        "------------------------------------------
-        " nnoremap <left>  :cprev<cr>zvzz
-        " nnoremap <right> :cnext<cr>zvzz
-        " nnoremap <up>    :lprev<cr>zvzz
-        " nnoremap <down>  :lnext<cr>zvzz
-        nnoremap <c-]> :silent! call JumpToTag()<cr>
-        nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+                function! JumpToTagInSplit()
+                        call JumpToInSplit("normal! \<c-]>")
+                endfunction
+                "------------------------------------------
+                " nnoremap <left>  :cprev<cr>zvzz
+                " nnoremap <right> :cnext<cr>zvzz
+                " nnoremap <up>    :lprev<cr>zvzz
+                " nnoremap <down>  :lnext<cr>zvzz
+                nnoremap <c-]> :silent! call JumpToTag()<cr>
+                nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
 
-        " Use sane regexes.
-        "nnoremap / /\v
-        "vnoremap / /\v
-
-        " gi already moves to "last place you exited insert mode", so we'll map gI to
-        " something similar: move to last change
-        nnoremap gI `.
+                " gi already moves to "last place you exited insert mode", so we'll map gI to
+                " something similar: move to last change
+                nnoremap gI `.
         " }}}
-
-
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         let g:miniBufExplMapWindowNavVim = 1
@@ -386,9 +343,11 @@
             autocmd!
             autocmd FileType vim call s:vimscript()
         augroup END
+
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " utomatically delete whitespace, trailing dos returns
         autocmd BufRead * silent! %s/[\r \t]\+\$//
+
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "#- go to last edit position when opening files -#
         au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -456,7 +415,6 @@
         command! -bang Wq wq<bang>
         command! -bang WQ wq<bang>
 
-
         " Unfuck my screen
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
@@ -491,6 +449,8 @@
         iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
         iab ydate <c-r>=strftime("%Y %b %d")<cr>
 
+        "------------------------------------------
+        iabbr str start
         imap jj <Esc>
         noremap jj :w<cr>
         noremap qq :q<cr>
@@ -525,17 +485,17 @@
         set omnifunc=syntaxcomplete#Complete
 
         if !exists('g:neocomplete#sources#omni#input_patterns')
-            let g:neocomplete#sources#omni#input_patterns = {}
+                let g:neocomplete#sources#omni#input_patterns = {}
         endif
 
         if !exists('g:neocomplete#force_omni_input_patterns')
-            let g:neocomplete#force_omni_input_patterns = {}
+                let g:neocomplete#force_omni_input_patterns = {}
         endif
 
         imap <c-s> <plug>(fzf-complete-line)
 
         command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
-            \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
+                                \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
 
         " Insert completion
         silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
@@ -560,9 +520,6 @@
 
         " [ preview ] window
         set previewheight=15
-
-        " set file path completion.
-        set path+=.,/usr/include,/usr/local/include
 
         set report=0 " always report changed lines
 " }}}
@@ -608,11 +565,9 @@
         let g:deoplete#skip_chars = ['(', ')', '<', '>']
         let g:deoplete#tag#cache_limit_size = 800000
         let g:deoplete#file#enable_buffer_path = 1
-
         let g:deoplete#sources#jedi#statement_length = 30
         let g:deoplete#sources#jedi#show_docstring = 1
         let g:deoplete#sources#jedi#short_types = 1
-
         "--------------------------------------------------------------------------------
         call deoplete#custom#source('padawan',       'rank', 660)
         call deoplete#custom#source('go',            'rank', 650)
@@ -671,9 +626,11 @@
 
 
 "---AAA15---------------------------------------------------------------------------------------------------------- {{{
+        set spelllang=en
+        "set spelllang=en,de
+        "nnoremap zz z=
+        "nnoremap z= :echo "use zz you idiot"<cr>
         set nospell
-        nnoremap zz z=
-        nnoremap z= :echo "use zz you idiot"<cr>
 
 " }}}
 
@@ -809,6 +766,19 @@
         " <S-F8> = turn off location list
         map             <C-F8>          :lopen<CR>
         imap            <C-F8>          <C-O><C-F8>
+
+        " QuickFix {{{
+        augroup ft_quickfix
+                au!
+                au filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
+                " vimscript is a joke
+                au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
+        augroup end
+        " Open Quickfix window automatically
+        autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
+        autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
+        " }}}
+
         " <C-F9> = turn off quickfix
         map             <S-F9>          :cclose<CR>
         imap            <S-F9>          <C-O><S-F7>
@@ -823,16 +793,6 @@
                 let g:UltiSnipsListSnippets="<C-R><tab>"
         endif
 
-"---AAA13---------------------------------------------------------------------------------------------------------- {{{
-        "" <F12> = show the Unicode name of the character under cursor
-        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is
-        "" better
-        ""map             <F12>           <Plug>(characterize)
-        "" <S-F12> = show highlight group under cursor
-        ""map             <S-F12>         :ShowHighlightGroup<CR>
-        "" <C-F12> = show syntax stack under cursor
-        ""map             <C-F12>         :ShowSyntaxStack<CR>
-" }}}
 
         " Ctrl-P {{{
         let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -858,7 +818,6 @@
         let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
         let g:ctrlp_user_command = my_ctrlp_ffind_command
         " }}}
-
 
 
         " [ completion ] {{{
@@ -891,5 +850,36 @@
         let g:unite_quick_match_table = {}
         let g:unite_data_directory = expand('~/.unite')
         " }}}
+
 "---AAA14---------------------------------------------------------------------------------------------------------- {{{
+        " Search
+        silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
+        " Clear hlsearch and set nopaste
+        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
+" }}}
+
+
+  nmap <localleader><localleader> <Plug>BookmarkToggle
+  nmap <localleader>i <Plug>BookmarkAnnotate
+  nmap <localleader>a <Plug>BookmarkShowAll
+  nmap <localleader>j <Plug>BookmarkNext
+  nmap <localleader>k <Plug>BookmarkPrev
+  nmap <localleader>c <Plug>BookmarkClear
+  nmap <localleader>x <Plug>BookmarkClearAll
+
+  " these will also work with a [count] prefix
+  nmap <localleader>kk <Plug>BookmarkMoveUp
+  nmap <localleader>jj <Plug>BookmarkMoveDown
+  nmap <localleader>g <Plug>BookmarkMoveToLine
+
+
+
+"---AAA13---------------------------------------------------------------------------------------------------------- {{{
+        "" <F12> = show the Unicode name of the character under cursor
+        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is better
+        ""map             <F12>           <Plug>(characterize)
+        "" <S-F12> = show highlight group under cursor
+        ""map             <S-F12>         :ShowHighlightGroup<CR>
+        "" <C-F12> = show syntax stack under cursor
+        ""map             <C-F12>         :ShowSyntaxStack<CR>
 " }}}

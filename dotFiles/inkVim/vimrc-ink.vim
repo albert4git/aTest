@@ -32,8 +32,6 @@
         set fileencodings=utf-8,sjis
         set shell=/bin/bash
         set nospell
-        set spelllang=en
-        "set spelllang=en,de
         "----------------------------------------
         filetype on
         filetype plugin on
@@ -51,12 +49,14 @@
 "--------------------------------------------------------------------------
         source ~/git/aTest/dotFiles/inkVim/vim-inkPlug.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkEnv.vim
-        colorscheme dracula
-        colorscheme Benokai
-        colorscheme vividchalk
-        colorscheme inkpot
         source ~/git/aTest/dotFiles/inkVim/vim-inkItchyMashine.vim
+        "colorscheme dracula
+        "colorscheme Benokai
+        "colorscheme vividchalk
+        "colorscheme inkpot
+        colorscheme ego
         source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
+        source ~/git/aTest/dotFiles/inkVim/vim-inkFileType.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkGUI.vim
         "--------------------------------
         "source ~/vim-preSet.vim
@@ -76,6 +76,9 @@
         map <C-H> <C-W>h<C-W>|
         map <C-L> <C-W>l<C-W>|
         map <C-=> <C-W>=
+
+        nnoremap <S-j> :bn<cr>
+        nnoremap <S-k> :bp<cr>
 
         "--Circular windows navigation-------------
         nnoremap <Tab>   <c-W>w
