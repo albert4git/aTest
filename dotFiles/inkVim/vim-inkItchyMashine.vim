@@ -1,7 +1,11 @@
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "           (_)            __   _(_)_ __ ___             (_)
 "           / |            \ \ / / | '_ ` _ \            / |
 "           | |             \ V /| | | | | | |           | |
 "           |_|            (_)_/ |_|_| |_| |__|          |_|
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " It's 2018.                                       .
         noremap j gj
         noremap k gk
@@ -70,6 +74,7 @@
                 autocmd!
         augroup END
 
+
         " undotree {{{ Display your undo history in a graph.
         " ?, u, <C-r>, g+, g-, :earlier, :later.
         "let g:undotree_SplitLocation = 'topleft'
@@ -86,7 +91,7 @@
         " }}}
 
 
-"---AAA1---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA1------------------------------------------------------------------------------------------------------{{{
         if &compatible | set nocompatible | endif
         " Appearance  # matchtime=1
         silent! set number background=dark display=lastline,uhex wrap wrapmargin=0 guioptions=ce key=
@@ -184,10 +189,10 @@
 
         set nowrap
         set mouse=a
-" }}}
+        "}}}
 
 
-"---AAA2---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA2------------------------------------------------------------------------------------------------------{{{
         " open ctag in tab/vertical split
         map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -255,18 +260,17 @@
         vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
         "------------------------------------------------------------------------------------------
+        "nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
+        "bind \ (backward slash) to grep shortcut
+        "nnoremap \ :Ag<SPACE>
         nnoremap <leader>g :grep -R <cword> .<cr>
         nnoremap <leader>l :lgrep -R <cword> .<cr>
         nnoremap <leader><leader> :Ag <cword> .<cr>
         nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-        "nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
-        " bind \ (backward slash) to grep shortcut
-        " nnoremap \ :Ag<SPACE>
-
-" }}}
+        "}}}
 
 
-"---AAA3---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA3------------------------------------------------------------------------------------------------------{{{
         " Delete trailing white space on save, useful for some filetypes ;)
         fun! CleanExtraSpaces()
             let save_cursor = getpos(".")
@@ -286,12 +290,12 @@
         set cinoptions=N-s,g0,+2s,l-s,i2s
 
         " Window Resizing {{{
-        " right/up : bigger
-        " left/down : smaller
-        nnoremap <m-right> :vertical resize +3<cr>
-        nnoremap <m-left> :vertical resize -3<cr>
-        nnoremap <m-up> :resize +3<cr>
-        nnoremap <m-down> :resize -3<cr>
+                " right/up : bigger
+                " left/down : smaller
+                nnoremap <m-right> :vertical resize +3<cr>
+                nnoremap <m-left> :vertical resize -3<cr>
+                nnoremap <m-up> :resize +3<cr>
+                nnoremap <m-down> :resize -3<cr>
         " }}}
 
         "  XXX Jumps Jump {{{
@@ -339,10 +343,6 @@
             setlocal expandtab
         endfunction
         """""""""
-        augroup vimrc-vimscript
-            autocmd!
-            autocmd FileType vim call s:vimscript()
-        augroup END
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         " utomatically delete whitespace, trailing dos returns
@@ -351,9 +351,9 @@
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "#- go to last edit position when opening files -#
         au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" }}}
+        "}}}
 
-"---AAA4---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA4------------------------------------------------------------------------------------------------------{{{
         nmap <silent> n nzz
         nmap <silent> N Nzz
         nmap <silent> g* g*zz
@@ -361,10 +361,10 @@
 
         " switch to the directory of the open buffer
         map <leader>cd :cd %:p:h<cr>
-" }}}
+        "}}}
 
 
-"---AAA5---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA5------------------------------------------------------------------------------------------------------{{{
         " Man
         nnoremap M K
 
@@ -454,10 +454,10 @@
         imap jj <Esc>
         noremap jj :w<cr>
         noremap qq :q<cr>
-" }}}
+        "}}}
 
 
-"---AAA9---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA6------------------------------------------------------------------------------------------------------{{{
         "let g:gitgutter_highlight_lines = 1
         let g:gitgutter_signs = 1
         let g:gitgutter_max_signs = 1000
@@ -471,10 +471,10 @@
         highlight GitGutterChange ctermfg=yellow
         highlight GitGutterDelete ctermfg=red
         highlight GitGutterChangeDelete ctermfg=yellow
-" }}}
+        "}}}
 
 
-"---AAA10---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA7-----------------------------------------------------------------------------------------------------{{{
         set thesaurus=mthesaur.txt
         set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
         let s:thesaurus_pat = "~/git/aTest/redVim/dikt/.txt"
@@ -502,7 +502,7 @@
         let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
         set dictionary+=~/git/aTest/redVim/dikt/english-words.txt
 
-        " [ completion ] {{{ auto popup menu: Tab, C-x + C-?, C-y, C-e
+        " [ completion ] auto popup menu: Tab, C-x + C-?, C-y, C-e
         set complete=.,w,b,t,i,u,k       " completion buffers
         "            | | | | | | |
         "            | | | | | | `-dict
@@ -520,12 +520,11 @@
 
         " [ preview ] window
         set previewheight=15
-
         set report=0 " always report changed lines
-" }}}
+        "}}}
 
 
-"---AAA11---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA7------------------------------------------------------------------------------------------------------{{{
         let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
         let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
         let g:deoplete#sources#clang#sort_algo = 'priority' " alphabetical
@@ -565,9 +564,11 @@
         let g:deoplete#skip_chars = ['(', ')', '<', '>']
         let g:deoplete#tag#cache_limit_size = 800000
         let g:deoplete#file#enable_buffer_path = 1
+
         let g:deoplete#sources#jedi#statement_length = 30
         let g:deoplete#sources#jedi#show_docstring = 1
         let g:deoplete#sources#jedi#short_types = 1
+
         "--------------------------------------------------------------------------------
         call deoplete#custom#source('padawan',       'rank', 660)
         call deoplete#custom#source('go',            'rank', 650)
@@ -601,15 +602,19 @@
         call deoplete#custom#source('tmux-complete', 'mark', '⊶')
         call deoplete#custom#source('syntax',        'mark', '♯')
         call deoplete#custom#source('member', 'mark', '.')
-" }}}
+        " }}}
 
-"---AAA12---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA8------------------------------------------------------------------------------------------------------{{{
         autocmd FileType c set makeprg=gcc\ -O2\ -g\ -Wall\ -Wextra\ -o'%<'\ '%'\ -lm
         autocmd filetype c nnoremap <C-c> :w <bar> !gcc -std=c99 -lm % -o %:p:h/%:t:r.out && ./%:r.out<CR>
         autocmd filetype java nnoremap <C-c> :w <bar> !javac % && java -enableassertions %:p <CR>
         autocmd filetype python nnoremap <C-c> :w <bar> !python % <CR>
         autocmd filetype perl nnoremap <C-c> :w <bar> !perl % <CR>
         autocmd filetype go nnoremap <C-c> :w <bar> !go build % && ./%:p <CR>
+        "------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
+        "compiler javac
+        "set makeprg =javac\ hello2W.java
         "------------------------------------------------------------------------------------------
         let g:quickrun_known_file_types = {
                 \"cpp": ["!g++ %", "./a.out"],
@@ -618,30 +623,23 @@
                 \"vim": ["source %"],
                 \"py": ["!python %"],
                 \}
-        "------------------------------------------------------------------------------------------
-        "compiler javac
-        "set makeprg =javac\ hello2W.java
-        "------------------------------------------------------------------------------------------
-" }}}
+        "}}}
 
 
-"---AAA15---------------------------------------------------------------------------------------------------------- {{{
-        set spelllang=en
-        "set spelllang=en,de
-        "nnoremap zz z=
-        "nnoremap z= :echo "use zz you idiot"<cr>
+        "-AAA9------------------------------------------------------------------------------------------------------{{{
         set nospell
+        nnoremap zz z=
+        nnoremap z= :echo "use zz you idiot"<cr>
+        "}}}
 
-" }}}
 
-
-"---AAA15---------------------------------------------------------------------------------------------------------- {{{
+        "-AAA10-----------------------------------------------------------------------------------------------------{{{
         "Quote current selection TODO: This only works for selections that are created "forwardly"
-        vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
-        vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
+                vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
+                vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
         "Quote words under cursor
-        nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
-        nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
+                nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
+                nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 
         nnoremap <F12> :TagbarToggle<CR>
 
@@ -702,89 +700,82 @@
                 " shortcut to jump to next conflict marker
         " }}}
 
-        " XXX Jumps  {{{
-        function! JumpTo(jumpcommand)
-                execute a:jumpcommand
-                call FocusLine()
-                Pulse
-        endfunction
+        "XXX Jumps  {{{
+                function! JumpTo(jumpcommand)
+                        execute a:jumpcommand
+                        call FocusLine()
+                        Pulse
+                endfunction
 
-        function! JumpToInSplit(jumpcommand)
-                execute "normal! \<c-w>v"
-                execute a:jumpcommand
-                Pulse
-        endfunction
+                function! JumpToInSplit(jumpcommand)
+                        execute "normal! \<c-w>v"
+                        execute a:jumpcommand
+                        Pulse
+                endfunction
 
-        function! JumpToTag()
-                call JumpTo("normal! \<c-]>")
-        endfunction
+                function! JumpToTag()
+                        call JumpTo("normal! \<c-]>")
+                endfunction
 
-        function! JumpToTagInSplit()
-                call JumpToInSplit("normal! \<c-]>")
-        endfunction
+                function! JumpToTagInSplit()
+                        call JumpToInSplit("normal! \<c-]>")
+                endfunction
 
-        nnoremap <c-]> :silent! call JumpToTag()<cr>
-        nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+                nnoremap <c-]> :silent! call JumpToTag()<cr>
+                nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
         " }}}
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        let g:miniBufExplMapWindowNavVim = 1
-        let g:miniBufExplMapWindowNavArrows = 1
-        let g:miniBufExplMapCTabSwitchBufs = 1
-        let g:miniBufExplModSelTarget = 1
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         function! s:vimscript()
             setlocal tabstop=8 " number of space for tab
             setlocal shiftwidth=8 " width of auto indent
             setlocal expandtab
         endfunction
         """""""""
-        augroup vimrc-vimscript
         " Errors confclits
         nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
-        " }}}
+        "}}}
 
-        " YankRing stuff
-        let g:yankring_history_dir = '$HOME/.vim/tmp'
+        "XXX YankRing stuff
+                let g:yankring_history_dir = '$HOME/.vim/tmp'
 
         " Pull word under cursor into LHS of a substitute (for quick search and replace)
-        nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
-        nnoremap <leader>; :<C-r>=getline(".")<CR>
+                nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+                nnoremap <leader>; :<C-r>=getline(".")<CR>
 
         " Alt-Backspace  deletes word backwards
-        cnoremap        <A-BS>          <C-W>
+                cnoremap        <A-BS>          <C-W>
 
         " Do not lose "complete all" (gvim-only)
-        cnoremap        <C-S-A>         <C-A>
+                cnoremap        <C-S-A>         <C-A>
 
         "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
-        cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
+                cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
 
         " <S-F8> = turn off location list
-        map             <S-F8>          :lclose<CR>
-        imap            <S-F8>          <C-O><S-F8>
+                map             <S-F8>          :lclose<CR>
+                imap            <S-F8>          <C-O><S-F8>
         " <S-F8> = turn off location list
-        map             <C-F8>          :lopen<CR>
-        imap            <C-F8>          <C-O><C-F8>
+                map             <C-F8>          :lopen<CR>
+                imap            <C-F8>          <C-O><C-F8>
 
         " QuickFix {{{
-        augroup ft_quickfix
-                au!
-                au filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
-                " vimscript is a joke
-                au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
-        augroup end
-        " Open Quickfix window automatically
-        autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
-        autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
+                augroup ft_quickfix
+                        au!
+                        au filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
+                        " vimscript is a joke
+                        au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
+                augroup end
+                " Open Quickfix window automatically
+                autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
+                autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
         " }}}
 
         " <C-F9> = turn off quickfix
-        map             <S-F9>          :cclose<CR>
-        imap            <S-F9>          <C-O><S-F7>
-        " <C-F9> = turn off quickfix
-        map             <C-F9>          :copen<CR>
-        imap            <C-F9>          <C-O><C-F9>
+                map         <S-F9>     :cclose<CR>
+                imap        <S-F9>     <C-O><S-F7>
+        " <C-F9> =    off quickfix
+                map         <C-F9>     :copen<CR>
+                imap        <C-F9>     <C-O><C-F9>
 
         if has("eval")
                 " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
@@ -793,93 +784,66 @@
                 let g:UltiSnipsListSnippets="<C-R><tab>"
         endif
 
+        " [ completion ] {{{
+                " unite.vim Ultimate interface to unite all sources
+                "   - :Unite [{options}] {source's'}
+                "       - {source's'}
+                "           - parameters of source
+                "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
+                "               - e.g. file:foo\:bar -- use \ to escape
+                "               - e.g. file:foo::bar -- ['foo', '', 'bar']
+                "   - press 'I' to search after prompt '>'
+                "       - *word,
+                "       - **/foo (directory recursively)
+                "       - foo bar (AND)
+                "       - foo|bar (OR)
+                "       - foo !bar (negative)
+                "   - :UniteResume, :UniteBookmarkAdd
+                " let g:unite_no_default_keymappings = 1 " don't map default key mappings
+                let g:unite_update_time = 500 " update time interval of candidates
+                let g:unite_enable_start_insert = 1 " startup into insert mode
+                let g:unite_split_rule = "topleft"
+                let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
+                let g:unite_winheight = 15
+                let g:unite_winwidth = 50
+                let g:unite_kind_openable_cd_command = "cd"
+                let g:unite_kind_openable_lcd_command = "lcd"
+                let g:unite_cursor_line_highlight = "PmenuSel"
+                let g:unite_abbr_highlight = "Normal"
+                let g:unite_enable_use_short_source_names = 0
+                let g:unite_quick_match_table = {}
+                let g:unite_data_directory = expand('~/.unite')
+        "}}}
 
         " Ctrl-P {{{
-        let g:ctrlp_dont_split = 'NERD_tree_2'
-        let g:ctrlp_jump_to_buffer = 0
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_match_window_reversed = 1
-        let g:ctrlp_split_window = 0
-        let g:ctrlp_max_height = 20
-        let g:ctrlp_extensions = ['tag']
+                let g:ctrlp_dont_split = 'NERD_tree_2'
+                let g:ctrlp_jump_to_buffer = 0
+                let g:ctrlp_working_path_mode = 0
+                let g:ctrlp_match_window_reversed = 1
+                let g:ctrlp_split_window = 0
+                let g:ctrlp_max_height = 20
+                let g:ctrlp_extensions = ['tag']
 
-        let g:ctrlp_map = '<leader>,'
-        nnoremap <leader>. :CtrlPTag<cr>
-        nnoremap <leader>b :CtrlPBuffer<cr>
+                let g:ctrlp_map = '<leader>,'
+                nnoremap <leader>. :CtrlPTag<cr>
+                nnoremap <leader>b :CtrlPBuffer<cr>
 
-        let g:ctrlp_prompt_mappings = {
-                                \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
-                                \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
-                                \ 'PrtHistory(-1)':       ['<c-n>'],
-                                \ 'PrtHistory(1)':        ['<c-p>'],
-                                \ 'ToggleFocus()':        ['<c-tab>'],
-                                \ }
+                let g:ctrlp_prompt_mappings = {
+                                        \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
+                                        \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
+                                        \ 'PrtHistory(-1)':       ['<c-n>'],
+                                        \ 'PrtHistory(1)':        ['<c-p>'],
+                                        \ 'ToggleFocus()':        ['<c-tab>'],
+                                        \ }
 
-        let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
-        let g:ctrlp_user_command = my_ctrlp_ffind_command
-        " }}}
+                let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
+                let g:ctrlp_user_command = my_ctrlp_ffind_command
+        "}}}
 
+        "-AAA11-Search----------------------------------------------------------------------------------------------{{{
+                silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
+                " Clear hlsearch and set nopaste
+                nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
+        "}}}
 
-        " [ completion ] {{{
-        " unite.vim {{{ Ultimate interface to unite all sources
-        "   - :Unite [{options}] {source's'}
-        "       - {source's'}
-        "           - parameters of source
-        "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
-        "               - e.g. file:foo\:bar -- use \ to escape
-        "               - e.g. file:foo::bar -- ['foo', '', 'bar']
-        "   - press 'I' to search after prompt '>'
-        "       - *word,
-        "       - **/foo (directory recursively)
-        "       - foo bar (AND)
-        "       - foo|bar (OR)
-        "       - foo !bar (negative)
-        "   - :UniteResume, :UniteBookmarkAdd
-        " let g:unite_no_default_keymappings = 1 " don't map default key mappings
-        let g:unite_update_time = 500 " update time interval of candidates
-        let g:unite_enable_start_insert = 1 " startup into insert mode
-        let g:unite_split_rule = "topleft"
-        let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
-        let g:unite_winheight = 15
-        let g:unite_winwidth = 50
-        let g:unite_kind_openable_cd_command = "cd"
-        let g:unite_kind_openable_lcd_command = "lcd"
-        let g:unite_cursor_line_highlight = "PmenuSel"
-        let g:unite_abbr_highlight = "Normal"
-        let g:unite_enable_use_short_source_names = 0
-        let g:unite_quick_match_table = {}
-        let g:unite_data_directory = expand('~/.unite')
-        " }}}
-
-"---AAA14---------------------------------------------------------------------------------------------------------- {{{
-        " Search
-        silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-        " Clear hlsearch and set nopaste
-        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-" }}}
-
-
-  nmap <localleader><localleader> <Plug>BookmarkToggle
-  nmap <localleader>i <Plug>BookmarkAnnotate
-  nmap <localleader>a <Plug>BookmarkShowAll
-  nmap <localleader>j <Plug>BookmarkNext
-  nmap <localleader>k <Plug>BookmarkPrev
-  nmap <localleader>c <Plug>BookmarkClear
-  nmap <localleader>x <Plug>BookmarkClearAll
-
-  " these will also work with a [count] prefix
-  nmap <localleader>kk <Plug>BookmarkMoveUp
-  nmap <localleader>jj <Plug>BookmarkMoveDown
-  nmap <localleader>g <Plug>BookmarkMoveToLine
-
-
-
-"---AAA13---------------------------------------------------------------------------------------------------------- {{{
-        "" <F12> = show the Unicode name of the character under cursor
-        "" I used to have my own :UnicodeName for this, but tpope/vim-characterize is better
-        ""map             <F12>           <Plug>(characterize)
-        "" <S-F12> = show highlight group under cursor
-        ""map             <S-F12>         :ShowHighlightGroup<CR>
-        "" <C-F12> = show syntax stack under cursor
-        ""map             <C-F12>         :ShowSyntaxStack<CR>
-" }}}
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
