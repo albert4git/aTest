@@ -12,6 +12,16 @@
         noremap gj j
         noremap gk k
         "noremap ; :
+        " Auto commands
+        augroup vimrc
+                autocmd!
+        augroup END
+        "-Extra vi-compatibility {{{
+                set switchbuf=useopen    " reveal already opened files from the
+                set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
+                au filetype vim set formatoptions-=o
+        "}}}
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         syntax enable
         syntax on
         set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
@@ -43,9 +53,8 @@
                 endfor
         endfunction
         com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
-        "------------------------------------------------------------------------------------------
 
-        " Diff {{{
+        "-Diff---------------------------------------------------------------------------------{{{
         " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
         function! DiffFoldLevel()
                 let l:line=getline(v:lnum)
@@ -67,15 +76,11 @@
             autocmd FileType diff setlocal foldmethod=expr
             autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
         augroup END
-        " }}}
 
-        " Auto commands
-        augroup vimrc
-                autocmd!
-        augroup END
+        "}}}
 
 
-        " undotree {{{ Display your undo history in a graph.
+        "-undotree------------------------------------------------------------------------------{{{
         " ?, u, <C-r>, g+, g-, :earlier, :later.
         "let g:undotree_SplitLocation = 'topleft'
         "let g:undotree_WindowLayout = 'topleft'
@@ -88,7 +93,7 @@
                 let g:undotree_HighlightChangedText = 1 " highlight changed text line
                 let g:undotree_HighlightSyntax = "UnderLined"
         nnoremap <S-F12> :UndotreeToggle<CR>
-        " }}}
+        "}}}
 
 
         "-AAA1------------------------------------------------------------------------------------------------------{{{
@@ -189,11 +194,11 @@
 
         set nowrap
         set mouse=a
-        "}}}
+        "-1-}}}
 
 
         "-AAA2------------------------------------------------------------------------------------------------------{{{
-        " open ctag in tab/vertical split
+        "-open ctag in tab/vertical split
         map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
         "------------------------------------------------------------------------------------------
@@ -267,8 +272,7 @@
         nnoremap <leader>l :lgrep -R <cword> .<cr>
         nnoremap <leader><leader> :Ag <cword> .<cr>
         nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-        "}}}
-
+        "-2-}}}
 
         "-AAA3------------------------------------------------------------------------------------------------------{{{
         " Delete trailing white space on save, useful for some filetypes ;)
@@ -351,289 +355,263 @@
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "#- go to last edit position when opening files -#
         au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-        "}}}
+        "-3-}}}
+
 
         "-AAA4------------------------------------------------------------------------------------------------------{{{
-        nmap <silent> n nzz
-        nmap <silent> N Nzz
-        nmap <silent> g* g*zz
-        nmap <silent> g# g#zz
+                " Man
+                nnoremap M K
 
-        " switch to the directory of the open buffer
-        map <leader>cd :cd %:p:h<cr>
-        "}}}
+                " Kill window
+                nnoremap K :q<cr>
+
+                " My garbage brain can't ever remember digraph codes
+                " inoremap <c-k><c-k> <esc>:help digraph-table<cr>
+
+                " Enter, I never use the default behavior of <cr> and this saves me a keystroke...
+                inoremap <C-m>  <cr>
+                nnoremap <C-m>  <cr>
+                nnoremap <cr> o<esc>
+
+                " Yank to end of line
+                nnoremap Y y$
+
+                " Reselect last-pasted text
+                nnoremap gv `[v`]
+
+                " select last paste in visual mode
+                nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+                " See :help DiffOrig
+                command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
+
+                " Formatting, TextMate-style
+                vnoremap W gq
+                nnoremap W gqip
+
+                " Keep the cursor in place while joining lines
+                nnoremap J mzJ`z
+
+                " The normal use of S is covered by cc, so don't worry about shadowing it.
+                nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+                "Select (charwise) cont of the cur line, Great for pasting Python lines into REPLs.
+                nnoremap vv ^vg_
+
+                " Typos
+                command! -bang E e<bang>
+                command! -bang Q q<bang>
+                command! -bang W w<bang>
+                command! -bang QA qa<bang>
+                command! -bang Qa qa<bang>
+                command! -bang Wa wa<bang>
+                command! -bang WA wa<bang>
+                command! -bang Wq wq<bang>
+                command! -bang WQ wq<bang>
+
+                " Unfuck my screen
+                nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
+                " Bash like keys for the command line
+                " cnoremap <C-K> <C-U>
+                cnoremap <C-A> <Home>
+                cnoremap <C-E> <End>
+                cnoremap <C-P> <Up>
+                cnoremap <C-N> <Down>
+
+                "-X-Insert Mode Completion-X---------------
+                inoremap <silent> <C-]> <C-x><C-]>
+                inoremap <silent> <C-o> <C-x><C-o>
+                inoremap <silent> <C-k> <C-x><C-k>
+                inoremap <silent> <C-d> <C-x><C-d>
+                inoremap <silent> <C-u> <C-x><C-u>
+                inoremap <silent> <C-f> <C-x><C-f>
+                inoremap <silent> <C-l> <C-x><C-l>
+                inoremap <c-f> <c-x><c-f>
+                inoremap <c-]> <c-x><c-]>
+                inoremap <c-l> <c-x><c-l>
+
+                "------------------------------------------
+                iabbr str start
+                iabbr supe superuser
+                iabbr que question
+                iabbrev #i #include
+                iabbrev #d #define
+                iab cmnt /*<CR><CR>*/<Up>
+                iabbrev @@  alf@nomail.com
+                iabbrev ccopy Copyright 2013 Alf , no rights reserved.
+                iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+                iab ydate <c-r>=strftime("%Y %b %d")<cr>
+
+                "------------------------------------------
+                iabbr str start
+                imap jj <Esc>
+                noremap jj :w<cr>
+                noremap qq :q<cr>
+        "-4-}}}
 
 
         "-AAA5------------------------------------------------------------------------------------------------------{{{
-        " Man
-        nnoremap M K
+                "let g:gitgutter_highlight_lines = 1
+                let g:gitgutter_signs = 1
+                let g:gitgutter_max_signs = 1000
 
-        " Kill window
-        nnoremap K :q<cr>
+                nmap ]c <Plug>GitGutterNextHunk
+                nmap [c <Plug>GitGutterPrevHunk
+                nmap <Leader>hs <Plug>GitGutterStageHunk
+                nmap <Leader>hu <Plug>GitGutterUndoHunk
 
-        " My garbage brain can't ever remember digraph codes
-        " inoremap <c-k><c-k> <esc>:help digraph-table<cr>
-
-        " Enter, I never use the default behavior of <cr> and this saves me a keystroke...
-        inoremap <C-m>  <cr>
-        nnoremap <C-m>  <cr>
-        nnoremap <cr> o<esc>
-
-        " Yank to end of line
-        nnoremap Y y$
-
-        " Reselect last-pasted text
-        nnoremap gv `[v`]
-
-        " select last paste in visual mode
-        nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-        " See :help DiffOrig
-        command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
-
-        " Formatting, TextMate-style
-        vnoremap W gq
-        nnoremap W gqip
-
-        " Keep the cursor in place while joining lines
-        nnoremap J mzJ`z
-
-        " The normal use of S is covered by cc, so don't worry about shadowing it.
-        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-        "Select (charwise) cont of the cur line, Great for pasting Python lines into REPLs.
-        nnoremap vv ^vg_
-
-        " Typos
-        command! -bang E e<bang>
-        command! -bang Q q<bang>
-        command! -bang W w<bang>
-        command! -bang QA qa<bang>
-        command! -bang Qa qa<bang>
-        command! -bang Wa wa<bang>
-        command! -bang WA wa<bang>
-        command! -bang Wq wq<bang>
-        command! -bang WQ wq<bang>
-
-        " Unfuck my screen
-        nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
-
-        " Bash like keys for the command line
-        " cnoremap <C-K> <C-U>
-        cnoremap <C-A> <Home>
-        cnoremap <C-E> <End>
-        cnoremap <C-P> <Up>
-        cnoremap <C-N> <Down>
-
-        "-X-Insert Mode Completion-X---------------
-        inoremap <silent> <C-]> <C-x><C-]>
-        inoremap <silent> <C-o> <C-x><C-o>
-        inoremap <silent> <C-k> <C-x><C-k>
-        inoremap <silent> <C-d> <C-x><C-d>
-        inoremap <silent> <C-u> <C-x><C-u>
-        inoremap <silent> <C-f> <C-x><C-f>
-        inoremap <silent> <C-l> <C-x><C-l>
-        inoremap <c-f> <c-x><c-f>
-        inoremap <c-]> <c-x><c-]>
-        inoremap <c-l> <c-x><c-l>
-
-        "------------------------------------------
-        iabbr str start
-        iabbr supe superuser
-        iabbr que question
-        iabbrev #i #include
-        iabbrev #d #define
-        iab cmnt /*<CR><CR>*/<Up>
-        iabbrev @@  alf@nomail.com
-        iabbrev ccopy Copyright 2013 Alf , no rights reserved.
-        iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-        iab ydate <c-r>=strftime("%Y %b %d")<cr>
-
-        "------------------------------------------
-        iabbr str start
-        imap jj <Esc>
-        noremap jj :w<cr>
-        noremap qq :q<cr>
-        "}}}
+                highlight GitGutterAdd ctermfg=green
+                highlight GitGutterChange ctermfg=yellow
+                highlight GitGutterDelete ctermfg=red
+                highlight GitGutterChangeDelete ctermfg=yellow
+        "-5-}}}
 
 
-        "-AAA6------------------------------------------------------------------------------------------------------{{{
-        "let g:gitgutter_highlight_lines = 1
-        let g:gitgutter_signs = 1
-        let g:gitgutter_max_signs = 1000
+        "-AAA6-----------------------------------------------------------------------------------------------------{{{
+                set thesaurus=mthesaur.txt
+                set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
+                let s:thesaurus_pat = "~/git/aTest/redVim/dikt/.txt"
 
-        nmap ]c <Plug>GitGutterNextHunk
-        nmap [c <Plug>GitGutterPrevHunk
-        nmap <Leader>hs <Plug>GitGutterStageHunk
-        nmap <Leader>hu <Plug>GitGutterUndoHunk
+                imap <C-b>     <Plug>(neosnippet_expand_or_jump)
+                smap <C-b>     <Plug>(neosnippet_expand_or_jump)
+                xmap <C-b>     <Plug>(neosnippet_expand_target)
+                set omnifunc=syntaxcomplete#Complete
 
-        highlight GitGutterAdd ctermfg=green
-        highlight GitGutterChange ctermfg=yellow
-        highlight GitGutterDelete ctermfg=red
-        highlight GitGutterChangeDelete ctermfg=yellow
-        "}}}
+                if !exists('g:neocomplete#sources#omni#input_patterns')
+                        let g:neocomplete#sources#omni#input_patterns = {}
+                endif
 
+                if !exists('g:neocomplete#force_omni_input_patterns')
+                        let g:neocomplete#force_omni_input_patterns = {}
+                endif
 
-        "-AAA7-----------------------------------------------------------------------------------------------------{{{
-        set thesaurus=mthesaur.txt
-        set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
-        let s:thesaurus_pat = "~/git/aTest/redVim/dikt/.txt"
+                imap <c-s> <plug>(fzf-complete-line)
 
-        imap <C-b>     <Plug>(neosnippet_expand_or_jump)
-        smap <C-b>     <Plug>(neosnippet_expand_or_jump)
-        xmap <C-b>     <Plug>(neosnippet_expand_target)
-        set omnifunc=syntaxcomplete#Complete
+                command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
+                                        \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
 
-        if !exists('g:neocomplete#sources#omni#input_patterns')
-                let g:neocomplete#sources#omni#input_patterns = {}
-        endif
+                " Insert completion
+                silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
+                let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
+                set dictionary+=~/git/aTest/redVim/dikt/english-words.txt
 
-        if !exists('g:neocomplete#force_omni_input_patterns')
-                let g:neocomplete#force_omni_input_patterns = {}
-        endif
+                " [ completion ] auto popup menu: Tab, C-x + C-?, C-y, C-e
+                set complete=.,w,b,t,i,u,k       " completion buffers
+                "            | | | | | | |
+                "            | | | | | | `-dict
+                "            | | | | | `-unloaded buffers
+                "            | | | | `-include files
+                "            | | | `-tags
+                "            | | `-other loaded buffers
+                "            | `-windows buffers
+                "            `-the current buffer
+                set completeopt=menuone " menu,menuone,longest,preview
+                set completeopt-=preview " dont show preview window
 
-        imap <c-s> <plug>(fzf-complete-line)
+                " [ popup menu ]
+                set pumheight=20 " popup menu height. 0: long
 
-        command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
-                                \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
-
-        " Insert completion
-        silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
-        let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
-        set dictionary+=~/git/aTest/redVim/dikt/english-words.txt
-
-        " [ completion ] auto popup menu: Tab, C-x + C-?, C-y, C-e
-        set complete=.,w,b,t,i,u,k       " completion buffers
-        "            | | | | | | |
-        "            | | | | | | `-dict
-        "            | | | | | `-unloaded buffers
-        "            | | | | `-include files
-        "            | | | `-tags
-        "            | | `-other loaded buffers
-        "            | `-windows buffers
-        "            `-the current buffer
-        set completeopt=menuone " menu,menuone,longest,preview
-        set completeopt-=preview " dont show preview window
-
-        " [ popup menu ]
-        set pumheight=20 " popup menu height. 0: long
-
-        " [ preview ] window
-        set previewheight=15
-        set report=0 " always report changed lines
-        "}}}
+                " [ preview ] window
+                set previewheight=15
+                set report=0 " always report changed lines
+        "-6-}}}
 
 
         "-AAA7------------------------------------------------------------------------------------------------------{{{
-        let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
-        let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-        let g:deoplete#sources#clang#sort_algo = 'priority' " alphabetical
-        " JAVA -------------------------------------------------------------------------
-        "https://github.com/Shougo/deoplete.nvim/issues/277
-        "-------------------------------------------------------------------------------
-        let g:deoplete#enable_at_startup = 1
-        call deoplete#custom#option('sources', {
-                \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
-                \})
-        call deoplete#custom#source('omni', 'input_patterns', {
-                \ 'tex' : '\\(?:'
-                \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-                \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-                \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-                \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-                \ . '|\w*'
-                \ .')',
-                \}
-                \)
-        "--------------------------------------------------------------------------------
-        call deoplete#custom#option('refresh_always', v:true)
-        let g:deoplete#enable_ignore_case = 1
-        let g:deoplete#enable_smart_case = 1
-        let g:deoplete#enable_camel_case = 1
-        let g:deoplete#enable_refresh_always = 1
-        let g:deoplete#max_abbr_width = 0
-        let g:deoplete#max_menu_width = 0
+                let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
+                let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+                let g:deoplete#sources#clang#sort_algo = 'priority' " alphabetical
+                "-------------------------------------------------------------------------------
+                let g:deoplete#enable_at_startup = 1
+                call deoplete#custom#option('sources', {
+                        \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
+                        \})
+                call deoplete#custom#source('omni', 'input_patterns', {
+                        \ 'tex' : '\\(?:'
+                        \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+                        \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+                        \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+                        \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
+                        \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
+                        \ . '|\w*'
+                        \ .')',
+                        \}
+                        \)
+                "--------------------------------------------------------------------------------
+                call deoplete#custom#option('refresh_always', v:true)
+                let g:deoplete#enable_ignore_case = 1
+                let g:deoplete#enable_smart_case = 1
+                let g:deoplete#enable_camel_case = 1
+                let g:deoplete#enable_refresh_always = 1
+                let g:deoplete#max_abbr_width = 0
+                let g:deoplete#max_menu_width = 0
 
-        "--------------------------------------------------------------------------------
-        let g:deoplete#sources#ternjs#timeout = 3
-        let g:deoplete#sources#ternjs#types = 1
-        let g:deoplete#sources#ternjs#docs = 1
-        call deoplete#custom#source('_', 'min_pattern_length', 2)
-        "--------------------------------------------------------------------------------
-        let g:deoplete#skip_chars = ['(', ')', '<', '>']
-        let g:deoplete#tag#cache_limit_size = 800000
-        let g:deoplete#file#enable_buffer_path = 1
+                "--------------------------------------------------------------------------------
+                let g:deoplete#sources#ternjs#timeout = 3
+                let g:deoplete#sources#ternjs#types = 1
+                let g:deoplete#sources#ternjs#docs = 1
+                call deoplete#custom#source('_', 'min_pattern_length', 2)
+                "--------------------------------------------------------------------------------
+                let g:deoplete#skip_chars = ['(', ')', '<', '>']
+                let g:deoplete#tag#cache_limit_size = 800000
+                let g:deoplete#file#enable_buffer_path = 1
 
-        let g:deoplete#sources#jedi#statement_length = 30
-        let g:deoplete#sources#jedi#show_docstring = 1
-        let g:deoplete#sources#jedi#short_types = 1
+                let g:deoplete#sources#jedi#statement_length = 30
+                let g:deoplete#sources#jedi#show_docstring = 1
+                let g:deoplete#sources#jedi#short_types = 1
 
-        "--------------------------------------------------------------------------------
-        call deoplete#custom#source('padawan',       'rank', 660)
-        call deoplete#custom#source('go',            'rank', 650)
-        call deoplete#custom#source('vim',           'rank', 640)
-        call deoplete#custom#source('flow',          'rank', 630)
-        call deoplete#custom#source('TernJS',        'rank', 620)
-        call deoplete#custom#source('jedi',          'rank', 610)
-        call deoplete#custom#source('omni',          'rank', 600)
-        call deoplete#custom#source('neosnippet',    'rank', 510)
-        call deoplete#custom#source('member',        'rank', 500)
-        call deoplete#custom#source('file_include',  'rank', 420)
-        call deoplete#custom#source('file',          'rank', 410)
-        call deoplete#custom#source('tag',           'rank', 400)
-        call deoplete#custom#source('around',        'rank', 330)
-        call deoplete#custom#source('buffer',        'rank', 320)
-        call deoplete#custom#source('dictionary',    'rank', 310)
-        call deoplete#custom#source('tmux-complete', 'rank', 300)
-        call deoplete#custom#source('syntax', 'rank', 200)
-        "--------------------------------------------------------------------------------
-        call deoplete#custom#source('omni',          'mark', '⌾')
-        call deoplete#custom#source('flow',          'mark', '⌁')
-        call deoplete#custom#source('padawan',       'mark', '⌁')
-        call deoplete#custom#source('TernJS',        'mark', '⌁')
-        call deoplete#custom#source('go',            'mark', '⌁')
-        call deoplete#custom#source('jedi',          'mark', '⌁')
-        call deoplete#custom#source('vim',           'mark', '⌁')
-        call deoplete#custom#source('neosnippet',    'mark', '⌘')
-        call deoplete#custom#source('tag',           'mark', '⌦')
-        call deoplete#custom#source('around',        'mark', '↻')
-        call deoplete#custom#source('buffer',        'mark', 'ℬ')
-        call deoplete#custom#source('tmux-complete', 'mark', '⊶')
-        call deoplete#custom#source('syntax',        'mark', '♯')
-        call deoplete#custom#source('member', 'mark', '.')
-        " }}}
+                "--------------------------------------------------------------------------------
+                call deoplete#custom#source('padawan',       'rank', 660)
+                call deoplete#custom#source('go',            'rank', 650)
+                call deoplete#custom#source('vim',           'rank', 640)
+                call deoplete#custom#source('flow',          'rank', 630)
+                call deoplete#custom#source('TernJS',        'rank', 620)
+                call deoplete#custom#source('jedi',          'rank', 610)
+                call deoplete#custom#source('omni',          'rank', 600)
+                call deoplete#custom#source('neosnippet',    'rank', 510)
+                call deoplete#custom#source('member',        'rank', 500)
+                call deoplete#custom#source('file_include',  'rank', 420)
+                call deoplete#custom#source('file',          'rank', 410)
+                call deoplete#custom#source('tag',           'rank', 400)
+                call deoplete#custom#source('around',        'rank', 330)
+                call deoplete#custom#source('buffer',        'rank', 320)
+                call deoplete#custom#source('dictionary',    'rank', 310)
+                call deoplete#custom#source('tmux-complete', 'rank', 300)
+                call deoplete#custom#source('syntax', 'rank', 200)
+                "--------------------------------------------------------------------------------
+                call deoplete#custom#source('omni',          'mark', '⌾')
+                call deoplete#custom#source('flow',          'mark', '⌁')
+                call deoplete#custom#source('padawan',       'mark', '⌁')
+                call deoplete#custom#source('TernJS',        'mark', '⌁')
+                call deoplete#custom#source('go',            'mark', '⌁')
+                call deoplete#custom#source('jedi',          'mark', '⌁')
+                call deoplete#custom#source('vim',           'mark', '⌁')
+                call deoplete#custom#source('neosnippet',    'mark', '⌘')
+                call deoplete#custom#source('tag',           'mark', '⌦')
+                call deoplete#custom#source('around',        'mark', '↻')
+                call deoplete#custom#source('buffer',        'mark', 'ℬ')
+                call deoplete#custom#source('tmux-complete', 'mark', '⊶')
+                call deoplete#custom#source('syntax',        'mark', '♯')
+                call deoplete#custom#source('member', 'mark', '.')
+        "-7-}}}
 
         "-AAA8------------------------------------------------------------------------------------------------------{{{
-        autocmd FileType c set makeprg=gcc\ -O2\ -g\ -Wall\ -Wextra\ -o'%<'\ '%'\ -lm
-        autocmd filetype c nnoremap <C-c> :w <bar> !gcc -std=c99 -lm % -o %:p:h/%:t:r.out && ./%:r.out<CR>
-        autocmd filetype java nnoremap <C-c> :w <bar> !javac % && java -enableassertions %:p <CR>
-        autocmd filetype python nnoremap <C-c> :w <bar> !python % <CR>
-        autocmd filetype perl nnoremap <C-c> :w <bar> !perl % <CR>
-        autocmd filetype go nnoremap <C-c> :w <bar> !go build % && ./%:p <CR>
-        "------------------------------------------------------------------------------------------
-        "------------------------------------------------------------------------------------------
-        "compiler javac
-        "set makeprg =javac\ hello2W.java
-        "------------------------------------------------------------------------------------------
-        let g:quickrun_known_file_types = {
-                \"cpp": ["!g++ %", "./a.out"],
-                \"c": ["!gcc %", "./a.out"],
-                \"php": ["!php %"],
-                \"vim": ["source %"],
-                \"py": ["!python %"],
-                \}
-        "}}}
+                "-JAVA- https://github.com/Shougo/deoplete.nvim/issues/277
+                "------------------------------------------------------------------------------------------
+                "compiler javac
+                "set makeprg =javac\ hello2W.java
+                "------------------------------------------------------------------------------------------
+                let g:quickrun_known_file_types = {
+                                        \"cpp": ["!g++ %", "./a.out"],
+                                        \"c": ["!gcc %", "./a.out"],
+                                        \"php": ["!php %"],
+                                        \"vim": ["source %"],
+                                        \"py": ["!python %"],
+                                        \}
+        "-8-}}}
 
-
-        "-AAA9------------------------------------------------------------------------------------------------------{{{
-        set nospell
-        nnoremap zz z=
-        nnoremap z= :echo "use zz you idiot"<cr>
-        "}}}
-
-
-        "-AAA10-----------------------------------------------------------------------------------------------------{{{
+        "-AAA9-----------------------------------------------------------------------------------------------------{{{
         "Quote current selection TODO: This only works for selections that are created "forwardly"
                 vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
                 vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
@@ -643,64 +621,31 @@
 
         nnoremap <F12> :TagbarToggle<CR>
 
-        "#NEW#"
-        "------------------------------------------------
-                "#one
-                vnoremap <F6>  i(
-                vnoremap <S-F6>  a(
-                "#two
-                vnoremap <F7> i{
-                vnoremap <S-F7> a{
-                "#three
-                inoremap <C-q> ()<esc>i
-                inoremap <C-w> {<esc>o}<esc>O
-
-                "-----------------------------------
-                "inoremap <C-t> []<esc>i
-                "inoremap <C-e> {}<esc>i
-                "inoremap <M-i> <Tab>
-                "-----------------------------------
-                "vnoremap <F9> i[
-                "vnoremap <S-F9> a[
-                "vnoremap <F10> i<
-                "vnoremap <S-F10> a<
-        "------------------------------------------------
-        "#NEW#"
-
         " Define operator-pending mappings to quickly apply commands to function names
         "XXX and/or parameter lists in the current line
-        onoremap inf :<c-u>normal! 0f(hviw<cr>
-        onoremap anf :<c-u>normal! 0f(hvaw<cr>
-        onoremap in( :<c-u>normal! 0f(vi(<cr>
-        onoremap an( :<c-u>normal! 0f(va(<cr>
+                onoremap inf :<c-u>normal! 0f(hviw<cr>
+                onoremap anf :<c-u>normal! 0f(hvaw<cr>
+                onoremap in( :<c-u>normal! 0f(vi(<cr>
+                onoremap an( :<c-u>normal! 0f(va(<cr>
 
-        " "Next" tag
-        onoremap int :<c-u>normal! 0f<vit<cr>
-        onoremap ant :<c-u>normal! 0f<vat<cr>
+        "-Next---TAG---
+                onoremap int :<c-u>normal! 0f<vit<cr>
+                onoremap ant :<c-u>normal! 0f<vat<cr>
 
         " Function argument selection (change "around argument", change "inside argument")
         onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
         vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+        "-9-}}}
 
-" }}}
-
-
-        " Extra vi-compatibility {{{
-                set switchbuf=useopen    " reveal already opened files from the
-                set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
-                au filetype vim set formatoptions-=o
-        " }}}
-
-
-        " Conflict markers {{{
+        "-Conflict markers----------------------------------------------------------------------{{{
                 " vim-flake8 default configuration
                 let g:flake8_show_in_gutter=1
                 " highlight conflict markers
                 match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
                 " shortcut to jump to next conflict marker
-        " }}}
+        "}}}
 
-        "XXX Jumps  {{{
+        "-XXX---Jumps---------------------------------------------------------------------------{{{
                 function! JumpTo(jumpcommand)
                         execute a:jumpcommand
                         call FocusLine()
@@ -723,17 +668,10 @@
 
                 nnoremap <c-]> :silent! call JumpToTag()<cr>
                 nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
-        " }}}
-
-        function! s:vimscript()
-            setlocal tabstop=8 " number of space for tab
-            setlocal shiftwidth=8 " width of auto indent
-            setlocal expandtab
-        endfunction
-        """""""""
-        " Errors confclits
-        nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
         "}}}
+
+        " Errors confclits
+                nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
 
         "XXX YankRing stuff
                 let g:yankring_history_dir = '$HOME/.vim/tmp'
@@ -745,7 +683,7 @@
         " Alt-Backspace  deletes word backwards
                 cnoremap        <A-BS>          <C-W>
 
-        " Do not lose "complete all" (gvim-only)
+        " Do not lose -complete all- (gvim-only)
                 cnoremap        <C-S-A>         <C-A>
 
         "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
@@ -758,7 +696,7 @@
                 map             <C-F8>          :lopen<CR>
                 imap            <C-F8>          <C-O><C-F8>
 
-        " QuickFix {{{
+        "-QuickFix------------------------------------------------------------------------------{{{
                 augroup ft_quickfix
                         au!
                         au filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
@@ -768,7 +706,7 @@
                 " Open Quickfix window automatically
                 autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
                 autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
-        " }}}
+        "}}}
 
         " <C-F9> = turn off quickfix
                 map         <S-F9>     :cclose<CR>
@@ -784,7 +722,7 @@
                 let g:UltiSnipsListSnippets="<C-R><tab>"
         endif
 
-        " [ completion ] {{{
+        "-[completion]--------------------------------------------------------------------------{{{
                 " unite.vim Ultimate interface to unite all sources
                 "   - :Unite [{options}] {source's'}
                 "       - {source's'}
@@ -815,7 +753,7 @@
                 let g:unite_data_directory = expand('~/.unite')
         "}}}
 
-        " Ctrl-P {{{
+        "-Ctrl-P--------------------------------------------------------------------------------{{{
                 let g:ctrlp_dont_split = 'NERD_tree_2'
                 let g:ctrlp_jump_to_buffer = 0
                 let g:ctrlp_working_path_mode = 0
@@ -840,10 +778,43 @@
                 let g:ctrlp_user_command = my_ctrlp_ffind_command
         "}}}
 
-        "-AAA11-Search----------------------------------------------------------------------------------------------{{{
+        "-AAA10-Search----------------------------------------------------------------------------------------------{{{
+                set nospell
+                nnoremap zz z=
+                nnoremap z= :echo "use zz you idiot"<cr>
+
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
                 " Clear hlsearch and set nopaste
                 nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-        "}}}
+
+                nmap <silent> n nzz
+                nmap <silent> N Nzz
+                nmap <silent> g* g*zz
+                nmap <silent> g# g#zz
+
+                " switch to the directory of the open buffer
+                map <leader>cd :cd %:p:h<cr>
+        "-10-}}}
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "#NEW#"
+                "#one
+                vnoremap <F6>  i(
+                vnoremap <S-F6>  a(
+                "#two
+                vnoremap <F7> i{
+                vnoremap <S-F7> a{
+                "#three
+                inoremap <C-q> ()<esc>i
+                inoremap <C-w> {<esc>o}<esc>O
+
+                "-----------------------------------
+                "inoremap <C-t> []<esc>i
+                "inoremap <C-e> {}<esc>i
+                "inoremap <M-i> <Tab>
+                "-----------------------------------
+                "vnoremap <F9> i[
+                "vnoremap <S-F9> a[
+                "vnoremap <F10> i<
+                "vnoremap <S-F10> a<
+        "#NEW#"
