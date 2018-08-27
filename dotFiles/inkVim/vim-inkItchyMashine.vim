@@ -4,12 +4,15 @@
         "   | |             \ V /| | | | | | |           | |
         "   |_|            (_)_/ |_|_| |_| |__|          |_|
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "noremap ; :
+        syntax enable
+        syntax on
+
         " It's 2018.
         noremap j gj
         noremap k gk
         noremap gj j
         noremap gk k
-        "noremap ; :
 
         " Auto commands
         augroup vimrc
@@ -17,46 +20,10 @@
         augroup END
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        if has("eval")
-                " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
-                let g:UltiSnipsJumpForwardTrigger="<tab>"
-                let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-                let g:UltiSnipsListSnippets="<C-R><tab>"
-        endif
-
+        set viminfo='10,\"100,:20,%,n~/.viminfo "help :viminfo, notice permis.n is wrong on viminfo
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        syntax enable
-        syntax on
-        set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
 
-        "set file path completion.
-        set path+=.,/usr/include,/usr/local/include
-
-        " Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
-        " inoremap <tab> <c-n>
-        " inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-        " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
-        " set completeopt=menu,longest,preview
-        "------------------------------------------------------------------
-
-        " set list
-        " set listchars=tab:▸\ ,eol:¬,trail:⋅
-        " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-        " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-        "------------------------------------------------------------------------------------------
-        function! ShowFuncKeys(bang)
-                for i in range(1,12)
-                        redir! => map
-                        exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
-                        redir end
-                        if map !~ 'No mapping found'
-                                echomsg map
-                        endif
-                endfor
-        endfunction
-        "- com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
-
-        "-AAA1--Appearance--Edit--Clipboard--etc------------------------------------------------{{{
+        "-AAA1--Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter-------------------{{{
         if &compatible | set nocompatible | endif
         " Appearance  # matchtime=1
                 silent! set number background=dark display=lastline,uhex nowrap wrapmargin=0 guioptions=ce key=
@@ -111,21 +78,9 @@
         " Setting lazyredraw causes a problem on startup
                 autocmd vimrc VimEnter * redraw
 
-        " smart Enter
+        " Smart Enter
                 inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
 
-        " Diffget/diffput in visual mode
-                vmap            \do             :diffget<CR>
-                vmap            \dp             :diffput<CR>
-
-        " diff-diff-diff
-                nnoremap <silent> <expr> ,d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
-
-        " Diffoff-Diffoff
-                nnoremap <leader>D :diffoff!<cr>
-
-        " diffoff used to set wrap as a side effect
-                command! Diffoff        diffoff | setlocal nowrap
 
         " Go to the first non-blank character of the line after paragraph motions
                 noremap } }^
@@ -162,10 +117,12 @@
                 set mouse=a
         "-1-}}}
 
-        "-AAA2--F2-Help--C-\-vCTAG--F3-SCRATCH--F4-ZYIW--<L>s-Sign------------------------------{{{
+        "-AAA2--F12-TagbarToggle--F2-Help--cTAG--F3-SCRATCH--F4-ZYIW--<L>s-Sign-----------------{{{
+
+                nnoremap <F12> :TagbarToggle<CR>
 
                 "----------------------------------------------------------------------------------
-                "-open ctag in tab/vertical split
+                "-open-ctag in tab/vertical split
                 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
                 "----------------------------------------------------------------------------------
@@ -190,18 +147,23 @@
 
         "-2-}}}
 
-        "-AAA3------------------------------------------------------------------------------------------------------{{{
+        "-AAA3--CleanExtrSps--WindResiz--Jump---------------------------------------------------{{{
+
+                """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                " Agutomatically clean / delete whitespace, trailing dos returns
+                autocmd BufRead * silent! %s/[\r \t]\+\$//
+
                 " Delete trailing white space on save, useful for some filetypes ;)
                 fun! CleanExtraSpaces()
-                let save_cursor = getpos(".")
-                let old_query = getreg('/')
-                silent! %s/\s\+$//e
-                call setpos('.', save_cursor)
-                call setreg('/', old_query)
+                        let save_cursor = getpos(".")
+                        let old_query = getreg('/')
+                        silent! %s/\s\+$//e
+                        call setpos('.', save_cursor)
+                        call setreg('/', old_query)
                 endfun
                 "#==>
                 if has("autocmd")
-                autocmd BufWritePre *.vim,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+                        autocmd BufWritePre *.vim,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
                 endif
                 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
                 "hi def DoubleSpace ctermbg=Gray
@@ -209,16 +171,15 @@
                 set hidden
                 set cinoptions=N-s,g0,+2s,l-s,i2s
 
-        "-Window Resizing {{{
-                " right/up : bigger
-                " left/down : smaller
+                " right/up :Wind. bigger
+                " left/down :Wind. smaller
                 nnoremap <m-right> :vertical resize +3<cr>
                 nnoremap <m-left> :vertical resize -3<cr>
                 nnoremap <m-up> :resize +3<cr>
                 nnoremap <m-down> :resize -3<cr>
-        "Wind}}}
 
-        "-XXX-Jumps-Jump {{{
+                """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                """""""
                 function! JumpTo(jumpcommand)
                         execute a:jumpcommand
                         call FocusLine()
@@ -239,42 +200,21 @@
                         call JumpToInSplit("normal! \<c-]>")
                 endfunction
 
-                "------------------------------------------
-                " XXX Wichtig for C++
-                " nnoremap <left>  :cprev<cr>zvzz
-                " nnoremap <right> :cnext<cr>zvzz
-                " nnoremap <up>    :lprev<cr>zvzz
-                " nnoremap <down>  :lnext<cr>zvzz
-                "------------------------------------------
-
                 nnoremap <c-]> :silent! call JumpToTag()<cr>
                 nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
+                """""""
+                """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
                 " gi already moves to "last place you exited insert mode", so we'll map gI to
                 " something similar: move to last change
                 nnoremap gI `.
-        "Jump}}}
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " agutomatically delete whitespace, trailing dos returns
-                autocmd BufRead * silent! %s/[\r \t]\+\$//
-
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "#- go to last edit position when opening files -#
                 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
         "-3-}}}
 
-        "-AAA4----------------------------------------------------------------------------------{{{
-                " Man
-                nnoremap M K
-
-                " Kill window
-                nnoremap K :q<cr>
-
-                " My garbage brain can't ever remember digraph codes
-                " inoremap <c-k><c-k> <esc>:help digraph-table<cr>
-
+        "-AAA4--EnterO--ReSel-LastPast--FormatBlock--UnFuck--Join--Typos--Maps--Abbr------------{{{
                 " Enter, I never use the default behavior of <cr> and this saves me a keystroke...
                 inoremap <C-m>  <cr>
                 nnoremap <C-m>  <cr>
@@ -286,21 +226,12 @@
                 " Reselect last-pasted text
                 nnoremap gv `[v`]
 
-                " select last paste in visual mode
-                nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-                " See :help DiffOrig
-                command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
-
                 " Formatting, TextMate-style
                 vnoremap W gq
                 nnoremap W gqip
 
                 " Keep the cursor in place while joining lines
-                nnoremap J mzJ`z
-
-                " The normal use of S is covered by cc, so don't worry about shadowing it.
-                "-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+                nnoremap H mzJ`z
 
                 "Select (charwise) cont of the cur line, Great for pasting Python lines into REPLs.
                 nnoremap vv ^vg_
@@ -357,7 +288,7 @@
                 noremap qq :q<cr>
         "-4-}}}
 
-        "-AAA5----------------------------------------------------------------------------------{{{
+        "-AAA5--GitGutter-----------------------------------------------------------------------{{{
                 "let g:gitgutter_highlight_lines = 1
                 let g:gitgutter_signs = 1
                 let g:gitgutter_max_signs = 1000
@@ -373,15 +304,25 @@
                 highlight GitGutterChangeDelete ctermfg=yellow
         "-5-}}}
 
-        "-AAA6----------------------------------------------------------------------------------{{{
+        "-AAA6--thesaur--Complet-Ulti-NeoSnipp--NeoComp--C-s-FZF-Compl-Line--Pumheight--Preview-{{{
+
+                "set file path completion.
+                set path+=.,/usr/include,/usr/local/include
+
                 set thesaurus=mthesaur.txt
                 set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
                 let s:thesaurus_pat = "~/git/aTest/redVim/dikt/.txt"
 
-                imap <C-b>     <Plug>(neosnippet_expand_or_jump)
-                smap <C-b>     <Plug>(neosnippet_expand_or_jump)
-                xmap <C-b>     <Plug>(neosnippet_expand_target)
-                set omnifunc=syntaxcomplete#Complete
+                if has("eval")
+                        " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
+                        let g:UltiSnipsJumpForwardTrigger="<tab>"
+                        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+                        let g:UltiSnipsListSnippets="<C-R><tab>"
+                endif
+                        imap <C-b>    <Plug>(neosnippet_expand_or_jump)
+                        smap <C-b>    <Plug>(neosnippet_expand_or_jump)
+                        xmap <C-b>    <Plug>(neosnippet_expand_target)
+                        set omnifunc=syntaxcomplete#Complete
 
                 if !exists('g:neocomplete#sources#omni#input_patterns')
                         let g:neocomplete#sources#omni#input_patterns = {}
@@ -401,7 +342,7 @@
                 let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
                 set dictionary+=~/git/aTest/redVim/dikt/english-words.txt
 
-                " [ completion ] auto popup menu: Tab, C-x + C-?, C-y, C-e
+                "-[completion]-auto popup menu: Tab, C-x + C-?, C-y, C-e
                 set complete=.,w,b,t,i,u,k       " completion buffers
                 "            | | | | | | |
                 "            | | | | | | `-dict
@@ -414,15 +355,13 @@
                 set completeopt=menuone " menu,menuone,longest,preview
                 set completeopt-=preview " dont show preview window
 
-                " [ popup menu ]
-                set pumheight=20 " popup menu height. 0: long
-
-                " [ preview ] window
+                "-[preview]-window
                 set previewheight=15
                 set report=0 " always report changed lines
         "-6-}}}
 
-        "-AAA7----------------------------------------------------------------------------------{{{
+        "-AAA7--Deoplete------------------------------------------------------------------------{{{
+
                 let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
                 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
                 let g:deoplete#sources#clang#sort_algo = 'priority' " alphabetical
@@ -498,12 +437,14 @@
                 call deoplete#custom#source('tmux-complete', 'mark', '⊶')
                 call deoplete#custom#source('syntax',        'mark', '♯')
                 call deoplete#custom#source('member', 'mark', '.')
+
         "-7-}}}
 
-        "-AAA8----------------------------------------------------------------------------------{{{
+        "-AAA8--QuickRun--Compiler--Java--------------------------------------------------------{{{
+
                 "-JAVA- https://github.com/Shougo/deoplete.nvim/issues/277
                 "----------------------------------------------------------------------------------
-                "compiler javac
+                "Compiler javac
                 "set makeprg =javac\ hello2W.java
                 "----------------------------------------------------------------------------------
                 let g:quickrun_known_file_types = {
@@ -515,16 +456,14 @@
                                         \}
         "-8-}}}
 
-        "-AAA9----------------------------------------------------------------------------------{{{
+        "-AAA9--Surround-'_'--onoremap-???-XXX--------------------------------------------------{{{
 
         "Quote current selection TODO: This only works for selections that are created "forwardly"
                 vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
                 vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
         "Quote words under cursor
                 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
-                nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
-
-        nnoremap <F12> :TagbarToggle<CR>
+                nnoremap <leader>' viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 
         " Define operator-pending mappings to quickly apply commands to function names
         "XXX and/or parameter lists in the current line
@@ -538,12 +477,12 @@
                 onoremap ant :<c-u>normal! 0f<vat<cr>
 
         " Function argument selection (change "around argument", change "inside argument")
-        onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
-        vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+                onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+                vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
 
         "-9-}}}
 
-        "-YYY-Conflict-Markers------------------------------------------------------------------{{{
+        "-AAA10-Conflict-Markers--YankRing--ComplAllGUI--InsertLine-???-------------------------{{{
                 "vim-flake8 default configuration
                         let g:flake8_show_in_gutter=1
                 "highlight conflict markers
@@ -556,46 +495,17 @@
                 "XXX YankRing stuff
                         let g:yankring_history_dir = '$HOME/.vim/tmp'
 
-                "Pull word under cursor into LHS of a substitute (for quick search and replace)
-                        nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
-                        nnoremap <leader>; :<C-r>=getline(".")<CR>
-
                 "Alt-Backspace  deletes word backwards
                         cnoremap        <A-BS>          <C-W>
 
                 "Do not lose -complete all- (gvim-only)
                         cnoremap        <C-S-A>         <C-A>
 
-                "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
+                "XXX ??? ToDo Insert line under cursor (builtin in vim 8.0.1787)
                         cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
-        "}}}
+        "-10-}}}
 
-        "-XXX---Jumps---------------------------------------------------------------------------{{{
-                function! JumpTo(jumpcommand)
-                        execute a:jumpcommand
-                        call FocusLine()
-                        Pulse
-                endfunction
-
-                function! JumpToInSplit(jumpcommand)
-                        execute "normal! \<c-w>v"
-                        execute a:jumpcommand
-                        Pulse
-                endfunction
-
-                function! JumpToTag()
-                        call JumpTo("normal! \<c-]>")
-                endfunction
-
-                function! JumpToTagInSplit()
-                        call JumpToInSplit("normal! \<c-]>")
-                endfunction
-
-                nnoremap <c-]> :silent! call JumpToTag()<cr>
-                nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
-        "}}}
-
-        "-QuickFix------------------------------------------------------------------------------{{{
+        "-AAA11-QuickFix------------------------------------------------------------------------{{{
                 augroup ft_quickfix
                         au!
                         au filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
@@ -621,9 +531,9 @@
                 " <S-F9> = turn off location list
                         map             <C-F9>          :lopen<CR>
                         imap            <C-F9>          <C-O><C-F9>
-        "QFix}}}
+        "-11-QFix-}}}
 
-        "-[unite-completion]--------------------------------------------------------------------{{{
+        "-AAA12-[unite-completion]--------------------------------------------------------------{{{
                 " unite.vim Ultimate interface to unite all sources
                 "   - :Unite [{options}] {source's'}
                 "       - {source's'}
@@ -652,9 +562,9 @@
                 let g:unite_enable_use_short_source_names = 0
                 let g:unite_quick_match_table = {}
                 let g:unite_data_directory = expand('~/.unite')
-        "Unite}}}
+        "-12-Unite-}}}
 
-        "-Ctrl-P--------------------------------------------------------------------------------{{{
+        "-AAA13-Ctrl-P--------------------------------------------------------------------------{{{
                 let g:ctrlp_dont_split = 'NERD_tree_2'
                 let g:ctrlp_jump_to_buffer = 0
                 let g:ctrlp_working_path_mode = 0
@@ -677,12 +587,17 @@
 
                 let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
                 let g:ctrlp_user_command = my_ctrlp_ffind_command
-        "CtrlP}}}
+        "-13-CtrlP-}}}
 
-        "-AAA10-Search--------------------------------------------------------------------------{{{
+        "-AAA14-Search--------------------------------------------------------------------------{{{
                 set nospell
                 "nnoremap zz z=
                 nnoremap z= :echo "use zz you idiot"<cr>
+
+                "-------------------------------------------------------------------------
+                "Pull word under cursor into LHS of a substitute (for quick search and replace)
+                        nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+                        nnoremap <leader>; :<C-r>=getline(".")<CR>
 
                 "-------------------------------------------------------------------------
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
@@ -731,59 +646,36 @@
                 nnoremap <leader>l :lgrep -R <cword> .<cr>
                 nnoremap <leader><leader> :Ag <cword> .<cr>
                 nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-        "-10-}}}
+        "-14-Search-}}}
 
-        "-Diff---------------------------------------------------------------------------------{{{
-        " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
+        "-AAA16-vnoremap-ipk$-------------------------------------------------------------------{{{
 
-        function! DiffFoldLevel()
-                let l:line=getline(v:lnum)
-                if l:line =~# '^\(diff\|Index\)'     " file
-                        return '>1'
-                elseif l:line =~# '^\(@@\|\d\)'  " hunk
-                        return '>2'
-                elseif l:line =~# '^\*\*\* \d\+,\d\+ \*\*\*\*$' " context: file1
-                        return '>2'
-                elseif l:line =~# '^--- \d\+,\d\+ ----$'     " context: file2
-                        return '>2'
-                else
-                        return '='
-                endif
-        endfunction
-
-        augroup ft_diff
-            au!
-            " autocmd FileType diff setlocal foldmethod=expr
-            autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
-        augroup END
-
-        "Diff}}}
-
-        "#NEW#"
-                "#one
+                "#one#
                 vnoremap <F5>  i(
                 vnoremap <S-F5>  a(
-                "#vier
+                "#two#
                 vnoremap <F6> ipk$
                 vnoremap <S-F6> ip
                 vnoremap <C-F6> ap
-                "#two
+                "#three#
                 vnoremap <F7> i{k$
                 vnoremap <S-F7> i{
                 vnoremap <C-F7> a{k$
-                "#three
+                "#vier#
                 inoremap <C-q> ()<esc>i
                 inoremap <C-w> {<esc>o}<esc>O
 
-                "-------------------------
-                "inoremap <C-t> []<esc>i
-                "inoremap <C-e> {}<esc>i
-                "inoremap <M-i> <Tab>
+        "-16-vnoremap-}}}
 
-                "-------------------------
-                "vnoremap <F9> i[
-                "vnoremap <S-F9> a[
-                "vnoremap <F10> i<
-                "vnoremap <S-F10> a<
-                "-------------------------
-        "#NEW#"
+        function! ShowFuncKeys(bang)
+                for i in range(1,12)
+                        redir! => map
+                        exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
+                        redir end
+                        if map !~ 'No mapping found'
+                                echomsg map
+                        endif
+                endfor
+        endfunction
+        com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+
