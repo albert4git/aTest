@@ -5,6 +5,11 @@ call plug#begin('~/.vim/plugged')
     "Plug 'junegunn/seoul256.vim'
     "Plug 'bkad/CamelCaseMotion'
     "Plug 'tpope/vim-sensible'
+
+    Plug 'vim-scripts/marvim'
+    Plug 'gergap/keystroke'
+
+    Plug 'kshenoy/vim-signature'
     Plug 'flazz/vim-colorschemes'
     Plug 'Shougo/vimproc.vim'
     Plug 'Shougo/neocomplete.vim'
@@ -16,12 +21,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'Chun-Yang/vim-action-ag'
     Plug 'rking/ag.vim'
     Plug 'airblade/vim-gitgutter'
-    Plug 'majutsushi/tagbar'
     Plug 'dhruvasagar/vim-zoom'
     Plug 'vim-scripts/ReplaceWithRegister'
+    Plug 'majutsushi/tagbar'
     Plug 'ludovicchabant/vim-gutentags'
     "Plug 'scrooloose/nerdtree'
-    "Plug 'wincent/loupe'
+    Plug 'wincent/loupe'
     "-------------------------------------------------------------------------
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
@@ -47,10 +52,10 @@ call plug#begin('~/.vim/plugged')
     "-------------------------------------------------------------------------
     Plug 'mbbill/undotree'
     Plug 'Shougo/vimfiler.vim'
-    "Plug 'vim-scripts/SearchComplete'
-    "Plug 'Shougo/vimshell.vim'
+    Plug 'vim-scripts/SearchComplete'
+    Plug 'Shougo/vimshell.vim'
     "-------------------------------------------------------------------------
-    "Plug 'tpope/vim-dispatch'
+    Plug 'tpope/vim-dispatch'
         Plug 'Shougo/deoplete.nvim'
         Plug 'nixprime/cpsm'
         Plug 'roxma/nvim-yarp'
@@ -64,6 +69,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+    Plug 'MarcWeber/vim-addon-mw-utils'
+    Plug 'garbas/vim-snipmate'
+
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'Shougo/echodoc.vim'
     "Generic Programming Support
@@ -79,7 +88,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rafi/awesome-vim-colorschemes'
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
-    "Plug 'sonph/onehalf'
+    Plug 'sonph/onehalf'
     "Plug 'vim-scripts/matrix.vim'
     "-Plug 'uguu-org/vim-matrix-screensaver'
     "Plug 'artur-shaik/vim-javacomplete2'

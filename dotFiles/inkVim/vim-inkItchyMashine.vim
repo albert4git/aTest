@@ -1,32 +1,35 @@
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "   (_)            __   _(_)_ __ ___             (_)
+        "   / |  itchy     \ \ / / | '_ ` _ \            / |
+        "   | |             \ V /| | | | | | |           | |
+        "   |_|            (_)_/ |_|_| |_| |__|          |_|
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"           (_)            __   _(_)_ __ ___             (_)
-"           / |            \ \ / / | '_ ` _ \            / |
-"           | |             \ V /| | | | | | |           | |
-"           |_|            (_)_/ |_|_| |_| |__|          |_|
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " It's 2018.                                       .
+        " It's 2018.
         noremap j gj
         noremap k gk
         noremap gj j
         noremap gk k
         "noremap ; :
+
         " Auto commands
         augroup vimrc
                 autocmd!
         augroup END
-        "-Extra vi-compatibility {{{
-                set switchbuf=useopen    " reveal already opened files from the
-                set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
-                au filetype vim set formatoptions-=o
-        "}}}
+
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        if has("eval")
+                " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
+                let g:UltiSnipsJumpForwardTrigger="<tab>"
+                let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+                let g:UltiSnipsListSnippets="<C-R><tab>"
+        endif
+
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         syntax enable
         syntax on
         set viminfo='10,\"100,:20,%,n~/.viminfo " help :viminfo , notice permission is wrong on viminfo
 
-        " set file path completion.
+        "set file path completion.
         set path+=.,/usr/include,/usr/local/include
 
         " Tab completion for vim-lsp inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -35,12 +38,11 @@
         " inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<cr>"
         " set completeopt=menu,longest,preview
         "------------------------------------------------------------------
+
         " set list
         " set listchars=tab:▸\ ,eol:¬,trail:⋅
         " set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
         " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-
-
         "------------------------------------------------------------------------------------------
         function! ShowFuncKeys(bang)
                 for i in range(1,12)
@@ -52,257 +54,171 @@
                         endif
                 endfor
         endfunction
-        com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+        "- com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
 
-        "-Diff---------------------------------------------------------------------------------{{{
-        " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
-        function! DiffFoldLevel()
-                let l:line=getline(v:lnum)
-                if l:line =~# '^\(diff\|Index\)'     " file
-                        return '>1'
-                elseif l:line =~# '^\(@@\|\d\)'  " hunk
-                        return '>2'
-                elseif l:line =~# '^\*\*\* \d\+,\d\+ \*\*\*\*$' " context: file1
-                        return '>2'
-                elseif l:line =~# '^--- \d\+,\d\+ ----$'     " context: file2
-                        return '>2'
-                else
-                        return '='
-                endif
-        endfunction
-
-        augroup ft_diff
-            au!
-            autocmd FileType diff setlocal foldmethod=expr
-            autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
-        augroup END
-
-        "}}}
-
-
-        "-undotree------------------------------------------------------------------------------{{{
-        " ?, u, <C-r>, g+, g-, :earlier, :later.
-        "let g:undotree_SplitLocation = 'topleft'
-        "let g:undotree_WindowLayout = 'topleft'
-                let g:undotree_SetFocusWhenToggle = 1
-                let g:undotree_SplitWidth = 35
-                let g:undotree_diffAutoOpen = 1
-                let g:undotree_diffpanelHeight = 25
-                let g:undotree_RelativeTimestamp = 1
-                let g:undotree_TreeNodeShape = '*'
-                let g:undotree_HighlightChangedText = 1 " highlight changed text line
-                let g:undotree_HighlightSyntax = "UnderLined"
-        nnoremap <S-F12> :UndotreeToggle<CR>
-        "}}}
-
-
-        "-AAA1------------------------------------------------------------------------------------------------------{{{
+        "-AAA1--Appearance--Edit--Clipboard--etc------------------------------------------------{{{
         if &compatible | set nocompatible | endif
         " Appearance  # matchtime=1
-        silent! set number background=dark display=lastline,uhex wrap wrapmargin=0 guioptions=ce key=
-        silent! set noshowmatch  noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 showbreak=
-        silent! set noshowcmd noruler rulerformat= laststatus=2 statusline=%t\ %=\ %m%r%y%w\ %3l:%-2c
-        silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
-        silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
-        silent! set list listchars=tab:>\ ,nbsp:_ synmaxcol=3000 ambiwidth=double breakindent breakindentopt=
-        silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=1 sidescroll=0
-        silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
-        silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
-        set splitbelow splitright
+                silent! set number background=dark display=lastline,uhex nowrap wrapmargin=0 guioptions=ce key=
+                silent! set noshowmatch  noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 showbreak=
+                silent! set noshowcmd noruler rulerformat= laststatus=2 statusline=%t\ %=\ %m%r%y%w\ %3l:%-2c
+                silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
+                silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
+                silent! set list listchars=tab:>\ ,nbsp:_ synmaxcol=3000 ambiwidth=double breakindent breakindentopt=
+                silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=1 sidescroll=0
+                silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
+                silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
+                set splitbelow splitright
 
         " Editing
-        silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
-        silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=8 smarttab softtabstop=8
-        silent! set foldclose=all foldcolumn=0 nofoldenable foldlevel=0 foldmarker& foldmethod=indent
-        silent! set textwidth=0 backspace=indent,eol,start nrformats=hex formatoptions=cmMj nojoinspaces
-        silent! set nohidden autoread noautowrite noautowriteall nolinebreak mouse= modeline& modelines&
-        silent! set noautochdir write nowriteany writedelay=0 verbose=0 verbosefile= notildeop noinsertmode
-        silent! set tags=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
-        silent! set tags+=../../../../../../tags,../../../../../../../tags,~/Documents/scala/tags,~/Documents/*/tags tagstack
+                silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
+                silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=8 smarttab softtabstop=8
+                silent! set foldclose=all foldcolumn=0 nofoldenable foldlevel=0 foldmarker& foldmethod=indent
+                silent! set textwidth=0 backspace=indent,eol,start nrformats=hex formatoptions=cmMj nojoinspaces
+                silent! set nohidden autoread noautowrite noautowriteall nolinebreak mouse= modeline& modelines&
+                silent! set noautochdir write nowriteany writedelay=0 verbose=0 verbosefile= notildeop noinsertmode
+                silent! set tags=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
+                silent! set tags+=~/Documents/scala/tags,~/Documents/*/tags tagstack
 
-        setlocal foldmarker={{{,}}}
-        setlocal foldmethod=marker
-        setlocal foldminlines=7
-
-        set whichwrap=b,s,h,l,<,>,[,]         " Backspace and cursor keys wrap too
+                setlocal foldmarker={{{,}}}
+                setlocal foldmethod=marker
+                setlocal foldminlines=7
+                "set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
         " Clipboard
-        silent! set clipboard=unnamed
-        silent! set clipboard+=unnamedplus
+                silent! set clipboard=unnamed
+                silent! set clipboard+=unnamedplus
 
         " Performance
-        silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
+                silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
 
-        " Bell
-        silent! set noerrorbells visualbell t_vb=
+        " Bell-Bell-Bell
+                silent! set noerrorbells visualbell t_vb=
 
         " Move to the directory each buffer
-        autocmd vimrc BufEnter * silent! lcd %:p:h
+                autocmd vimrc BufEnter * silent! lcd %:p:h
 
         " Fix window position of help
-        autocmd vimrc FileType help if &l:buftype ==# 'help' | wincmd K | endif
+                autocmd vimrc FileType help if &l:buftype ==# 'help' | wincmd K | endif
 
         " Always open read-only when a swap file is found
-        autocmd vimrc SwapExists * let v:swapchoice = 'o'
+                autocmd vimrc SwapExists * let v:swapchoice = 'o'
 
         " Automatically set expandtab
-        autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
-        autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
+                autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
+                autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
 
         " Setting lazyredraw causes a problem on startup
-        autocmd vimrc VimEnter * redraw
+                autocmd vimrc VimEnter * redraw
 
         " smart Enter
-        inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
+                inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
 
         " Diffget/diffput in visual mode
-        vmap            \do             :diffget<CR>
-        vmap            \dp             :diffput<CR>
+                vmap            \do             :diffget<CR>
+                vmap            \dp             :diffput<CR>
 
-        " diff
-        nnoremap <silent> <expr> ,d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
+        " diff-diff-diff
+                nnoremap <silent> <expr> ,d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
 
-        " Diffoff
-        nnoremap <leader>D :diffoff!<cr>
+        " Diffoff-Diffoff
+                nnoremap <leader>D :diffoff!<cr>
 
         " diffoff used to set wrap as a side effect
-        command! Diffoff                        diffoff | setlocal nowrap
+                command! Diffoff        diffoff | setlocal nowrap
 
         " Go to the first non-blank character of the line after paragraph motions
-        noremap } }^
+                noremap } }^
 
         " select last paste
-        nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
+                nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
         " Command line history
-        cnoremap <C-p> <Up>
-        cnoremap <C-n> <Down>
-        "cnoremap <Up> <C-p>
-        "cnoremap <Down> <C-n>
-        set history=4024
+                set history=4024
+                cnoremap <C-p> <Up>
+                cnoremap <C-n> <Down>
+                "cnoremap <Up> <C-p>
+                "cnoremap <Down> <C-n>
 
         " Visual shifting (does not exit Visual mode)
-        vnoremap < <gv
-        vnoremap > >gv
+                vnoremap < <gv
+                vnoremap > >gv
 
         " Allow using the repeat operator with a visual selection (!)
         " http://stackoverflow.com/a/8064607/127816
-        vnoremap . :normal .<CR>
+                vnoremap . :normal .<CR>
 
         " For when you forget to sudo.. Really Write the file.
-        cmap w!! w !sudo tee % >/dev/null
+                cmap w!! w !sudo tee % >/dev/null
 
-        set nowrap
-        set mouse=a
+        " switch to the directory of the open buffer
+                map <leader>cd :cd %:p:h<cr>
+                "-1.1-Extra vi-compatibility----------------------------------------------------{{{
+                        set switchbuf=useopen    " reveal already opened files from the
+                        set formatoptions-=o     " don't start new lines w/ comment leader on pressing 'o'
+                        au filetype vim set formatoptions-=o
+                "1.1}}}
+                set nowrap
+                set mouse=a
         "-1-}}}
 
+        "-AAA2--F2-Help--C-\-vCTAG--F3-SCRATCH--F4-ZYIW--<L>s-Sign------------------------------{{{
 
-        "-AAA2------------------------------------------------------------------------------------------------------{{{
-        "-open ctag in tab/vertical split
-        map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+                "----------------------------------------------------------------------------------
+                "-open ctag in tab/vertical split
+                map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-        "------------------------------------------------------------------------------------------
-        " Bind <F1> to show the keyword under cursor general help can still be entered manually, with :h
-        map <F2> "zyiw:exe "vertical h ".@z.""<CR>
-        autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
-        autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+                "----------------------------------------------------------------------------------
+                " Bind <F1> to show the keyword under cursor general help can still be entered manually, with :h
+                map <F2> "zyiw:exe "vertical h ".@z.""<CR>
+                autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+                autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
 
-        map <F3> :Scratch<CR>
-        map <S-F3> :ScratchPreview<CR>
+                "map <Fx> "zyiw:exe "vs ".@z.""<CR>
+                map <F3> :Scratch<CR>
+                map <S-F3> :ScratchPreview<CR>
 
-        command! ScratchToggle call ScratchToggle()
+                map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
+                map <S-F4> "zY<C-w>wo<Esc>"zp<C-w>W
 
-        function! ScratchToggle()
-                if exists("w:is_scratch_window")
-                        unlet w:is_scratch_window
-                        exec "q"
-                else
-                        exec "normal! :Sscratch\<cr>\<C-W>L"
-                        let w:is_scratch_window = 1
-                endif
-        endfunction
+                "----------------------------------------------------------------------------------
+                sign define fixme text=!! linehl=Todo
+                function! SignFixme()
+                execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
+                endfunction
+                map <leader>s :call SignFixme()<CR>
 
-        nnoremap <silent> <leader><tab> :ScratchToggle<cr>
-
-        "map <Fx> "zyiw:exe "vs ".@z.""<CR>
-        map <F4> "zyiw<C-w>wo<Esc>"zp<C-w>W
-        map <S-F4> "zY<C-w>wo<Esc>"zp<C-w>W
-
-        "------------------------------------------------------------------------------------------
-        sign define fixme text=!! linehl=Todo
-        function! SignFixme()
-            execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
-        endfunction
-        map <F5> :call SignFixme()<CR>
-
-        "------------------------------------------------------------------------------------------
-        let wordUnderCursor = expand("<cword>")
-        let currentLine   = getline(".")
-
-        function! OnlineDoc8()
-                let s:browser = "firefox"
-                let s:wordUnderCursor = expand("<cword>")
-                let s:langs = ["c", "cpp", "ruby", "python", "php", "java", "css"]
-                if  ((match(s:langs, &ft) > -1) && (&ft != ""))
-                        let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor."+lang:".&ft
-                else
-                        let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor
-                endif
-                let s:cmd ="silent ! " . s:browser . " " . s:url
-                execute s:cmd
-                redraw!
-        endfunction
-        map <F10> :call OnlineDoc8()<CR>
-
-        map <S-F10> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-        "------------------------------------------------------------------------------------------
-        nnoremap <C-down> :m .+1<CR>==
-        nnoremap <C-up> :m .-2<CR>==
-
-        "------------------------------------------------------------------------------------------
-        " Super useful! From an idea by Michael Naumann
-        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-        "------------------------------------------------------------------------------------------
-        "nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
-        "bind \ (backward slash) to grep shortcut
-        "nnoremap \ :Ag<SPACE>
-        nnoremap <leader>g :grep -R <cword> .<cr>
-        nnoremap <leader>l :lgrep -R <cword> .<cr>
-        nnoremap <leader><leader> :Ag <cword> .<cr>
-        nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
         "-2-}}}
 
         "-AAA3------------------------------------------------------------------------------------------------------{{{
-        " Delete trailing white space on save, useful for some filetypes ;)
-        fun! CleanExtraSpaces()
-            let save_cursor = getpos(".")
-            let old_query = getreg('/')
-            silent! %s/\s\+$//e
-            call setpos('.', save_cursor)
-            call setreg('/', old_query)
-        endfun
-        "#==>
-        if has("autocmd")
-            autocmd BufWritePre *.vim,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-        endif
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        "hi def DoubleSpace ctermbg=Gray
-        "set noruler
-        set hidden
-        set cinoptions=N-s,g0,+2s,l-s,i2s
+                " Delete trailing white space on save, useful for some filetypes ;)
+                fun! CleanExtraSpaces()
+                let save_cursor = getpos(".")
+                let old_query = getreg('/')
+                silent! %s/\s\+$//e
+                call setpos('.', save_cursor)
+                call setreg('/', old_query)
+                endfun
+                "#==>
+                if has("autocmd")
+                autocmd BufWritePre *.vim,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+                endif
+                """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                "hi def DoubleSpace ctermbg=Gray
+                "set noruler
+                set hidden
+                set cinoptions=N-s,g0,+2s,l-s,i2s
 
-        " Window Resizing {{{
+        "-Window Resizing {{{
                 " right/up : bigger
                 " left/down : smaller
                 nnoremap <m-right> :vertical resize +3<cr>
                 nnoremap <m-left> :vertical resize -3<cr>
                 nnoremap <m-up> :resize +3<cr>
                 nnoremap <m-down> :resize -3<cr>
-        " }}}
+        "Wind}}}
 
-        "  XXX Jumps Jump {{{
+        "-XXX-Jumps-Jump {{{
                 function! JumpTo(jumpcommand)
                         execute a:jumpcommand
                         call FocusLine()
@@ -322,43 +238,34 @@
                 function! JumpToTagInSplit()
                         call JumpToInSplit("normal! \<c-]>")
                 endfunction
+
                 "------------------------------------------
+                " XXX Wichtig for C++
                 " nnoremap <left>  :cprev<cr>zvzz
                 " nnoremap <right> :cnext<cr>zvzz
                 " nnoremap <up>    :lprev<cr>zvzz
                 " nnoremap <down>  :lnext<cr>zvzz
+                "------------------------------------------
+
                 nnoremap <c-]> :silent! call JumpToTag()<cr>
                 nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
 
                 " gi already moves to "last place you exited insert mode", so we'll map gI to
                 " something similar: move to last change
                 nnoremap gI `.
-        " }}}
+        "Jump}}}
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        let g:miniBufExplMapWindowNavVim = 1
-        let g:miniBufExplMapWindowNavArrows = 1
-        let g:miniBufExplMapCTabSwitchBufs = 1
-        let g:miniBufExplModSelTarget = 1
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        function! s:vimscript()
-            setlocal tabstop=8 " number of space for tab
-            setlocal shiftwidth=8 " width of auto indent
-            setlocal expandtab
-        endfunction
-        """""""""
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        " agutomatically delete whitespace, trailing dos returns
+                autocmd BufRead * silent! %s/[\r \t]\+\$//
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " utomatically delete whitespace, trailing dos returns
-        autocmd BufRead * silent! %s/[\r \t]\+\$//
-
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "#- go to last edit position when opening files -#
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+                au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
         "-3-}}}
 
-
-        "-AAA4------------------------------------------------------------------------------------------------------{{{
+        "-AAA4----------------------------------------------------------------------------------{{{
                 " Man
                 nnoremap M K
 
@@ -393,7 +300,7 @@
                 nnoremap J mzJ`z
 
                 " The normal use of S is covered by cc, so don't worry about shadowing it.
-                nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+                "-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
                 "Select (charwise) cont of the cur line, Great for pasting Python lines into REPLs.
                 nnoremap vv ^vg_
@@ -450,8 +357,7 @@
                 noremap qq :q<cr>
         "-4-}}}
 
-
-        "-AAA5------------------------------------------------------------------------------------------------------{{{
+        "-AAA5----------------------------------------------------------------------------------{{{
                 "let g:gitgutter_highlight_lines = 1
                 let g:gitgutter_signs = 1
                 let g:gitgutter_max_signs = 1000
@@ -467,8 +373,7 @@
                 highlight GitGutterChangeDelete ctermfg=yellow
         "-5-}}}
 
-
-        "-AAA6-----------------------------------------------------------------------------------------------------{{{
+        "-AAA6----------------------------------------------------------------------------------{{{
                 set thesaurus=mthesaur.txt
                 set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
                 let s:thesaurus_pat = "~/git/aTest/redVim/dikt/.txt"
@@ -517,8 +422,7 @@
                 set report=0 " always report changed lines
         "-6-}}}
 
-
-        "-AAA7------------------------------------------------------------------------------------------------------{{{
+        "-AAA7----------------------------------------------------------------------------------{{{
                 let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
                 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
                 let g:deoplete#sources#clang#sort_algo = 'priority' " alphabetical
@@ -596,12 +500,12 @@
                 call deoplete#custom#source('member', 'mark', '.')
         "-7-}}}
 
-        "-AAA8------------------------------------------------------------------------------------------------------{{{
+        "-AAA8----------------------------------------------------------------------------------{{{
                 "-JAVA- https://github.com/Shougo/deoplete.nvim/issues/277
-                "------------------------------------------------------------------------------------------
+                "----------------------------------------------------------------------------------
                 "compiler javac
                 "set makeprg =javac\ hello2W.java
-                "------------------------------------------------------------------------------------------
+                "----------------------------------------------------------------------------------
                 let g:quickrun_known_file_types = {
                                         \"cpp": ["!g++ %", "./a.out"],
                                         \"c": ["!gcc %", "./a.out"],
@@ -611,7 +515,8 @@
                                         \}
         "-8-}}}
 
-        "-AAA9-----------------------------------------------------------------------------------------------------{{{
+        "-AAA9----------------------------------------------------------------------------------{{{
+
         "Quote current selection TODO: This only works for selections that are created "forwardly"
                 vnoremap <localleader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
                 vnoremap <localleader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
@@ -635,14 +540,34 @@
         " Function argument selection (change "around argument", change "inside argument")
         onoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
         vnoremap ia :<c-u>execute "normal! ?[,(]\rwv/[),]\rh"<cr>
+
         "-9-}}}
 
-        "-Conflict markers----------------------------------------------------------------------{{{
-                " vim-flake8 default configuration
-                let g:flake8_show_in_gutter=1
-                " highlight conflict markers
-                match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
-                " shortcut to jump to next conflict marker
+        "-YYY-Conflict-Markers------------------------------------------------------------------{{{
+                "vim-flake8 default configuration
+                        let g:flake8_show_in_gutter=1
+                "highlight conflict markers
+                        match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
+                "shortcut to jump to next conflict marker
+
+                "Errors confclits
+                        nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
+
+                "XXX YankRing stuff
+                        let g:yankring_history_dir = '$HOME/.vim/tmp'
+
+                "Pull word under cursor into LHS of a substitute (for quick search and replace)
+                        nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+                        nnoremap <leader>; :<C-r>=getline(".")<CR>
+
+                "Alt-Backspace  deletes word backwards
+                        cnoremap        <A-BS>          <C-W>
+
+                "Do not lose -complete all- (gvim-only)
+                        cnoremap        <C-S-A>         <C-A>
+
+                "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
+                        cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
         "}}}
 
         "-XXX---Jumps---------------------------------------------------------------------------{{{
@@ -670,32 +595,6 @@
                 nnoremap <c-\> :silent! call JumpToTagInSplit()<cr>
         "}}}
 
-        " Errors confclits
-                nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
-
-        "XXX YankRing stuff
-                let g:yankring_history_dir = '$HOME/.vim/tmp'
-
-        " Pull word under cursor into LHS of a substitute (for quick search and replace)
-                nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
-                nnoremap <leader>; :<C-r>=getline(".")<CR>
-
-        " Alt-Backspace  deletes word backwards
-                cnoremap        <A-BS>          <C-W>
-
-        " Do not lose -complete all- (gvim-only)
-                cnoremap        <C-S-A>         <C-A>
-
-        "XXX ?? ToDo Insert line under cursor (builtin in vim 8.0.1787)
-                cnoremap        <C-R><C-L>      <C-R>=getline(".")<CR>
-
-        " <S-F8> = turn off location list
-                map             <S-F8>          :lclose<CR>
-                imap            <S-F8>          <C-O><S-F8>
-        " <S-F8> = turn off location list
-                map             <C-F8>          :lopen<CR>
-                imap            <C-F8>          <C-O><C-F8>
-
         "-QuickFix------------------------------------------------------------------------------{{{
                 augroup ft_quickfix
                         au!
@@ -703,26 +602,28 @@
                         " vimscript is a joke
                         au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
                 augroup end
+
+                " <C-F8> = turn off quickfix
+                        map         <S-F8>     :cclose<CR>
+                        imap        <S-F8>     <C-O><S-F7>
+                " <C-F8> =    off quickfix
+
+                map         <C-F8>     :copen<CR>
+                imap        <C-F8>     <C-O><C-F8>
+
                 " Open Quickfix window automatically
                 autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
                 autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
-        "}}}
 
-        " <C-F9> = turn off quickfix
-                map         <S-F9>     :cclose<CR>
-                imap        <S-F9>     <C-O><S-F7>
-        " <C-F9> =    off quickfix
-                map         <C-F9>     :copen<CR>
-                imap        <C-F9>     <C-O><C-F9>
+                " <S-F9> = turn off location list
+                        map             <S-F9>          :lclose<CR>
+                        imap            <S-F9>          <C-O><S-F9>
+                " <S-F9> = turn off location list
+                        map             <C-F9>          :lopen<CR>
+                        imap            <C-F9>          <C-O><C-F9>
+        "QFix}}}
 
-        if has("eval")
-                " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
-                let g:UltiSnipsJumpForwardTrigger="<tab>"
-                let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-                let g:UltiSnipsListSnippets="<C-R><tab>"
-        endif
-
-        "-[completion]--------------------------------------------------------------------------{{{
+        "-[unite-completion]--------------------------------------------------------------------{{{
                 " unite.vim Ultimate interface to unite all sources
                 "   - :Unite [{options}] {source's'}
                 "       - {source's'}
@@ -751,7 +652,7 @@
                 let g:unite_enable_use_short_source_names = 0
                 let g:unite_quick_match_table = {}
                 let g:unite_data_directory = expand('~/.unite')
-        "}}}
+        "Unite}}}
 
         "-Ctrl-P--------------------------------------------------------------------------------{{{
                 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -776,45 +677,113 @@
 
                 let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
                 let g:ctrlp_user_command = my_ctrlp_ffind_command
-        "}}}
+        "CtrlP}}}
 
-        "-AAA10-Search----------------------------------------------------------------------------------------------{{{
+        "-AAA10-Search--------------------------------------------------------------------------{{{
                 set nospell
-                nnoremap zz z=
+                "nnoremap zz z=
                 nnoremap z= :echo "use zz you idiot"<cr>
 
+                "-------------------------------------------------------------------------
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
+                "-------------------------------------------------------------------------
                 " Clear hlsearch and set nopaste
                 nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-
+                "-------------------------------------------------------------------------
                 nmap <silent> n nzz
                 nmap <silent> N Nzz
                 nmap <silent> g* g*zz
                 nmap <silent> g# g#zz
 
-                " switch to the directory of the open buffer
-                map <leader>cd :cd %:p:h<cr>
+                "-------------------------------------------------------------------------
+                let wordUnderCursor = expand("<cword>")
+                let currentLine   = getline(".")
+
+                function! OnlineDoc8()
+                        let s:browser = "firefox"
+                        let s:wordUnderCursor = expand("<cword>")
+                        let s:langs = ["c", "cpp", "ruby", "python", "php", "java", "css"]
+                        if  ((match(s:langs, &ft) > -1) && (&ft != ""))
+                                let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor."+lang:".&ft
+                        else
+                                let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor
+                        endif
+                        let s:cmd ="silent ! " . s:browser . " " . s:url
+                        execute s:cmd
+                        redraw!
+                endfunction
+                map <F10> :call OnlineDoc8()<CR>
+                map <S-F10> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+                "------------------------------------------------------------------------------------------
+                nnoremap <C-down> :m .+1<CR>==
+                nnoremap <C-up> :m .-2<CR>==
+
+                "------------------------------------------------------------------------------------------
+                " Super useful! From an idea by Michael Naumann
+                vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+                vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+                "------------------------------------------------------------------------------------------
+                "nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
+                "bind \ (backward slash) to grep shortcut
+                "nnoremap \ :Ag<SPACE>
+                nnoremap <leader>g :grep -R <cword> .<cr>
+                nnoremap <leader>l :lgrep -R <cword> .<cr>
+                nnoremap <leader><leader> :Ag <cword> .<cr>
+                nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
         "-10-}}}
 
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "-Diff---------------------------------------------------------------------------------{{{
+        " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
+
+        function! DiffFoldLevel()
+                let l:line=getline(v:lnum)
+                if l:line =~# '^\(diff\|Index\)'     " file
+                        return '>1'
+                elseif l:line =~# '^\(@@\|\d\)'  " hunk
+                        return '>2'
+                elseif l:line =~# '^\*\*\* \d\+,\d\+ \*\*\*\*$' " context: file1
+                        return '>2'
+                elseif l:line =~# '^--- \d\+,\d\+ ----$'     " context: file2
+                        return '>2'
+                else
+                        return '='
+                endif
+        endfunction
+
+        augroup ft_diff
+            au!
+            " autocmd FileType diff setlocal foldmethod=expr
+            autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
+        augroup END
+
+        "Diff}}}
+
         "#NEW#"
                 "#one
-                vnoremap <F6>  i(
-                vnoremap <S-F6>  a(
+                vnoremap <F5>  i(
+                vnoremap <S-F5>  a(
+                "#vier
+                vnoremap <F6> ipk$
+                vnoremap <S-F6> ip
+                vnoremap <C-F6> ap
                 "#two
-                vnoremap <F7> i{
-                vnoremap <S-F7> a{
+                vnoremap <F7> i{k$
+                vnoremap <S-F7> i{
+                vnoremap <C-F7> a{k$
                 "#three
                 inoremap <C-q> ()<esc>i
                 inoremap <C-w> {<esc>o}<esc>O
 
-                "-----------------------------------
+                "-------------------------
                 "inoremap <C-t> []<esc>i
                 "inoremap <C-e> {}<esc>i
                 "inoremap <M-i> <Tab>
-                "-----------------------------------
+
+                "-------------------------
                 "vnoremap <F9> i[
                 "vnoremap <S-F9> a[
                 "vnoremap <F10> i<
                 "vnoremap <S-F10> a<
+                "-------------------------
         "#NEW#"
