@@ -157,3 +157,33 @@
                 highlight TagbarAccessProtected ctermfg=088 ctermbg=none cterm=bold
                 " red
                 highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
+
+
+
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        " My colour overrides
+        highlight NonText               ctermfg=gray guifg=gray term=standout
+        highlight SpecialKey            ctermfg=gray guifg=gray term=standout
+        highlight MatchParen            gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=255
+        highlight SpellBad              cterm=underline ctermfg=red ctermbg=NONE
+        highlight SpellCap              cterm=underline ctermfg=blue ctermbg=NONE
+
+        highlight StatusLine          ctermfg=white ctermbg=red cterm=bold
+        highlight StatusLineNC        ctermfg=white ctermbg=green cterm=NONE
+        highlight VertSplit           ctermfg=white ctermbg=blue cterm=NONE
+
+        " for custom :match commands
+        highlight Red                   guibg=red ctermbg=red
+        highlight Green                 guibg=green ctermbg=green
+
+        " gutter on the right of the text
+        highlight ColorColumn ctermbg=5
+
+        " gutter below the text
+        highlight NonText ctermbg=2
+        set shortmess+=I " suppress intro message because the above makes it look bad
+
+        " fold column aka gutter on the left
+        highlight FoldColumn ctermbg=3
+

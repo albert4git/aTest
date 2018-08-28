@@ -183,3 +183,35 @@
 "-                 command! Diffoff        diffoff | setlocal nowrap
 "-
 "-         "-15-Diff-}}}
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                " Create missing directory on save                              {{{2
+"                augroup MkDirOnSave
+"                        au!
+"                        au BufWritePre * call mkdirondemand#doit()
+"                augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                " Autodetect filetype on first save                             {{{2
+"                augroup FiletypeOnSave
+"                        au!
+"                        au BufWritePost * if &ft == "" | filetype detect | endif
+"                augroup END
+"
+"                " chmod +x on save                                              {{{2
+"                augroup MakeExecutableOnSave
+"                        " https://unix.stackexchange.com/questions/39982/vim-create-file-with-x-bit
+"                        " See also http://vim.wikia.com/wiki/Setting_file_attributes_without_reloading_a_buffer
+"                        au!
+"                        au BufWritePost * call chmodx#doit()
+"                augroup END
+"
+"                " Make fugitive's fake buffers visually distinguishable         {{{2
+"                augroup MakeFugitiveVisible
+"                        au!
+"                        au BufNew,BufReadPost fugitive://* Margin 0
+"                augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

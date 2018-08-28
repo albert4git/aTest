@@ -79,7 +79,44 @@
 
         set nosm
         hi Search ctermbg=yellow
-
         "-------------------------------------------------------------------------------
         let g:airline_section_c = '%{strftime("%D - %H:%M")}'
+        "-------------------------------------------------------------------------------
+        " number column aka gutter on the left
+        highlight LineNr ctermbg=230
+        highlight CursorLineNr ctermbg=200 cterm=bold
 
+        " cursor column
+        highlight CursorColumn ctermbg=2
+        highlight CursorLine ctermbg=1 cterm=bold
+
+        " easier on the eyes
+        highlight Folded ctermbg=2
+
+        "set fillchars=vert:│,fold:-
+        highlight VertSplit cterm=reverse ctermbg=150
+
+        nnoremap <silent> vv <C-w>v
+        "nnoremap <silent> G :GitGrep <cword><CR>
+        "
+        " Autocommands                                                  {{{1
+        "
+
+        if has("autocmd")
+                " Kill visual bell! kill!                                       {{{2
+                augroup GUI
+                        au!
+                        au GUIEnter * set t_vb=
+                augroup END
+
+                " Remember last position in a file                              {{{2
+                " see :help last-position-jump
+                augroup LastPositionJump
+                        au!
+                        au BufReadPost *
+                                                \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                                                \ |   exe "normal! g`\""
+                                                \ | endif
+                augroup END
+
+        endif

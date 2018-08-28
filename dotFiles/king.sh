@@ -7,18 +7,18 @@
 ############################################################################################
 #
 # mv ~/.bashrc ~/"1bashrc-$(date +"%m-%d-%y-%r")"
-# ln -s ~/atest/dotFiles/bashrc_color ~/.bashrc 
+# ln -s ~/atest/dotFiles/bashrc_color ~/.bashrc
 #
 # mv ~/.bashrc_help ~/"1bashrc_help-$(date +"%m-%d-%y-%r")"
-# ln -s ~/atest/dotFiles/bashrc_help_color ~/.bashrc_help 
+# ln -s ~/atest/dotFiles/bashrc_help_color ~/.bashrc_help
 #
 ############################################################################################
-if [ $HOME ]; then
-    mkdir -p $HOME/kong18acer/
+if [HOME ]; then
+    mkdir -pHOME/kong18acer/
 fi;
 ############################################################################################
 $NOW=$(date +"%m-%d-%Y-%T")
-echo $NOW
+echoNOW
 ############################################################################################
 mkdir -p kong18
 rm *.*~
@@ -94,6 +94,8 @@ ls ~/git/dot-vim-mpi/
 
 cp -r ~/git/dot-vim-mpi/                       ~/.vim
 
+cp -r ~/git/aTest/dotFiles/inkVim      /media/red/A5A1-FBC4/4inkVim
+cp -r ~/git/aTest/dotFiles/inkWim      /media/red/A5A1-FBC4/4inkWim
 
 
 #########################################################################################
@@ -107,5 +109,5 @@ cp -r ~/git/dot-vim-mpi/                       ~/.vim
 #########################################################################################
 # cp ~/.vimrc ~/"1vimrc-$(date +"%s")"
 # rm ~/.vimrc
-# ln -s ~/atest/dotFiles/vimrc2008 ~/.vimrc 
+# ln -s ~/atest/dotFiles/vimrc2008 ~/.vimrc
 #########################################################################################

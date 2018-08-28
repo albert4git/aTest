@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'vim-scripts/marvim'
     Plug 'gergap/keystroke'
-
     Plug 'kshenoy/vim-signature'
     Plug 'flazz/vim-colorschemes'
     Plug 'Shougo/vimproc.vim'
@@ -25,21 +24,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'majutsushi/tagbar'
     Plug 'ludovicchabant/vim-gutentags'
-    "Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
     Plug 'wincent/loupe'
     "-------------------------------------------------------------------------
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-abolish'         " Extended abbreviation/substition.
     Plug 'tpope/vim-repeat'          " Intelligent repeat with '.'
-    "Plug 'Townk/vim-autoclose'
     Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
     Plug 'jremmen/vim-ripgrep'
     Plug 'kien/ctrlp.vim'
     Plug 'tomtom/tcomment_vim'
+    "Plug 'Townk/vim-autoclose'
     "Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
     "Plug 'balta2ar/deoplete-matcherkey'
-    Plug 'tpope/vim-sleuth'          " indet reight ?
+    Plug 'tpope/vim-sleuth'    " indet reight ?
     Plug 'tpope/vim-eunuch'
     "-------------------------------------------------------------------------
     Plug 'burnettk/vim-angular'
@@ -76,8 +75,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'Shougo/echodoc.vim'
     "Generic Programming Support
-    "Plug 'janko-m/vim-test'
-    "Plug 'neomake/neomake'
+    Plug 'janko-m/vim-test'
+    Plug 'neomake/neomake'
     Plug 'tpope/vim-sleuth'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -89,7 +88,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline'
     Plug 'sonph/onehalf'
-    "Plug 'vim-scripts/matrix.vim'
-    "-Plug 'uguu-org/vim-matrix-screensaver'
+    Plug 'vim-scripts/TagHighlight'
+    Plug 'aghareza/vim-gitgrep'
     "Plug 'artur-shaik/vim-javacomplete2'
 call plug#end()

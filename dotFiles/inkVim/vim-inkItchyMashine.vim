@@ -19,8 +19,17 @@
                 autocmd!
         augroup END
 
+        " Maybe these mappings should be moved into FT_C() ?
+        map             ,h              :call ToggleHeader()<CR>
+        map             <C-F6>          ,h
+        imap            <C-F6>          <C-O><C-F6>
+
+        map <Leader>s :source MYVIMRC<CR>
+        map <Leader>e :e MYVIMRC<CR>
+        "set pastetoggle=<F8>
+
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        set viminfo='10,\"100,:20,%,n~/.viminfo "help :viminfo, notice permis.n is wrong on viminfo
+        set viminfo='100,\"100,:200,%,n~/.viminfo "help :viminfo, notice permis.n is wrong on viminfo
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
         "-AAA1--Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter-------------------{{{
@@ -47,10 +56,22 @@
                 silent! set tags=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
                 silent! set tags+=~/Documents/scala/tags,~/Documents/*/tags tagstack
 
+                "???"set formatoptions = tcqw
+                " set tw = 150
+
                 setlocal foldmarker={{{,}}}
                 setlocal foldmethod=marker
                 setlocal foldminlines=7
                 "set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+
+                " Mappings to easily toggle fold levels
+                nnoremap z0 :set foldlevel=0<cr>
+                nnoremap z1 :set foldlevel=1<cr>
+                nnoremap z2 :set foldlevel=2<cr>
+                nnoremap z3 :set foldlevel=3<cr>
+                nnoremap z4 :set foldlevel=4<cr>
+                nnoremap z5 :set foldlevel=5<cr>
+
 
         " Clipboard
                 silent! set clipboard=unnamed
@@ -72,8 +93,8 @@
                 autocmd vimrc SwapExists * let v:swapchoice = 'o'
 
         " Automatically set expandtab
-                autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
-                autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
+               " autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
+                " autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
 
         " Setting lazyredraw causes a problem on startup
                 autocmd vimrc VimEnter * redraw
@@ -334,9 +355,6 @@
 
                 imap <c-s> <plug>(fzf-complete-line)
 
-                command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
-                                        \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
-
                 " Insert completion
                 silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
                 let g:tq_mthesaur_file="~/git/aTest/redVim/dikt/mthesaur.txt"
@@ -564,18 +582,25 @@
                 let g:unite_data_directory = expand('~/.unite')
         "-12-Unite-}}}
 
-        "-AAA13-Ctrl-P--------------------------------------------------------------------------{{{
+        "-AAA13-CtrlP---------------------------------------------------------------------------{{{
+
+                "CtrlP
+                let g:ctrlp_match_window_bottom = 0
+                let g:ctrlp_match_window_reversed = 0
+                let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+                let g:ctrlp_working_path_mode = 0
+                let g:ctrlp_dotfiles = 0
+                let g:ctrlp_switch_buffer = 0
+
                 let g:ctrlp_dont_split = 'NERD_tree_2'
                 let g:ctrlp_jump_to_buffer = 0
-                let g:ctrlp_working_path_mode = 0
-                let g:ctrlp_match_window_reversed = 1
                 let g:ctrlp_split_window = 0
                 let g:ctrlp_max_height = 20
                 let g:ctrlp_extensions = ['tag']
 
+                nnoremap ; :CtrlPBuffer<CR>
                 let g:ctrlp_map = '<leader>,'
                 nnoremap <leader>. :CtrlPTag<cr>
-                nnoremap <leader>b :CtrlPBuffer<cr>
 
                 let g:ctrlp_prompt_mappings = {
                                         \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
@@ -587,6 +612,7 @@
 
                 let my_ctrlp_ffind_command = "ffind --semi-restricted --dir %s --type e -B -f"
                 let g:ctrlp_user_command = my_ctrlp_ffind_command
+
         "-13-CtrlP-}}}
 
         "-AAA14-Search--------------------------------------------------------------------------{{{
@@ -648,7 +674,51 @@
                 nmap <Leader>m [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
         "-14-Search-}}}
 
+
+
+
         "-AAA16-vnoremap-ipk$-------------------------------------------------------------------{{{
+                function! ShowFuncKeys(bang)
+                        for i in range(1,12)
+                                redir! => map
+                                exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
+                                redir end
+                                if map !~ 'No mapping found'
+                                        echomsg map
+                                endif
+                        endfor
+                endfunction
+                com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+
+                " The Silver Searcher
+                if executable('ag')
+                        " Use ag over grep
+                        set grepprg=ag\ --nogroup\ --nocolor
+                        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+                        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+                        " ag is fast enough that CtrlP doesn't need to cache
+                        let g:ctrlp_use_caching = 0
+                endif
+                " bind K to grep word under cursor
+                " cnoremap <C-p> <Up>
+                nnoremap <C-a> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+                "#EEE#
+                nnoremap <C-E> :e#<CR>
+
+                " bind \ (backward slash) to grep shortcut
+                " command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
+                "                        \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
+                "
+
+                command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+                nnoremap \ :Ag<SPACE>
+                "
+                "- :Ag -i Stripe app/models
+                "- Standard ag arguments may be passed in at this point:
+                "
+
+        "-16-vnoremap-}}}
 
                 "#one#
                 vnoremap <F5>  i(
@@ -665,17 +735,61 @@
                 inoremap <C-q> ()<esc>i
                 inoremap <C-w> {<esc>o}<esc>O
 
-        "-16-vnoremap-}}}
+                map  <A-!>  1gt
+                map  <A-@>  2gt
+                map  <A-#>  3gt
+                map  <A-$>  4gt
+                map  <A-%>  5gt
+                map  <A-^>  6gt
+                map  <A-&>  7gt
+                map  <A-*>  8gt
 
-        function! ShowFuncKeys(bang)
-                for i in range(1,12)
-                        redir! => map
-                        exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
-                        redir end
-                        if map !~ 'No mapping found'
-                                echomsg map
-                        endif
-                endfor
-        endfunction
-        com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+                " <S-F3> = turn off location list
+                map             <S-F3>          :lclose<CR>
+                imap            <S-F3>          <C-O><S-F3>
 
+                " <C-F3> = turn off quickfix
+                map             <C-F3>          :cclose<CR>
+                imap            <C-F3>          <C-O><C-F3>
+
+                " <F4> = next error/grep match
+                "" depends on plugin/quickloclist.vim
+                map             <F4>            :FirstOrNextInList<CR>
+                imap            <F4>            <C-O><F4>
+                " <S-F4> = previous error/grep match
+                map             <S-F4>          :PrevInList<CR>
+                imap            <S-F4>          <C-O><S-F4>
+                " <C-F4> = current error/grep match
+                map             <C-F4>          :CurInList<CR>
+                imap            <C-F4>          <C-O><C-F4>
+
+                """ <F5> = close location list (overriden by ImportName in .py files)
+                ""map             <F5>            :lclose<CR>
+                ""imap            <F5>            <C-O><F5>
+
+                " <F6> = cycle through buffers
+                map             <F6>            :bn<CR>
+                imap            <F6>            <C-O><F6>
+                " <S-F6> = cycle through buffers backwards
+                map             <S-F6>          :bN<CR>
+                imap            <S-F6>          <C-O><S-F6>
+                " <C-F6> = toggle .c/.h (see above) or code/test (see below)
+
+                " <F7> = jump to tag/filename+linenumber in the clipboard
+                map             <F7>            :ClipboardTest<CR>
+                imap <F7> <C-O><F7>
+
+
+
+                " <F9> = make (often overwritten by filetype plugins)
+                map             <F9>    :Make<CR>
+                imap            <F9>    <C-O><F9>
+                " <S-F9> = toggle quickfix window
+                map             <S-F9>  :call asyncrun#quickfix_toggle(8)<bar>call mg#statusline_update()<CR>
+                imap            <S-F9>  <C-O><S-F9>
+
+                " Make fugitive's fake buffers visually distinguishable         {{{2
+                augroup MakeFugitiveVisible
+                au!
+                au BufNew,BufReadPost fugitive://* Margin 0
+                augroup END
