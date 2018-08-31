@@ -24,15 +24,13 @@
                 return filename . modified
         endfunction
 
-
-                hi StatusLineNC  ctermbg=3 ctermfg=6 cterm=NONE
-                hi statuslineNC guifg=White
                 hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
+                hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
         "--------------------------------------------------------------
-                " for less intrusive signs
-                highlight SignColumn ctermbg=255 guibg=#ffffd7
-                hi clear SignColumn
-                hi SignColumn ctermbg =4
+                "for less intrusive signs
+                "highlight SignColumn ctermbg=255 guibg=#ffffd7
+                "hi clear SignColumn
+                "hi SignColumn ctermbg =4
         "--------------------------------------------------------------
                 if exists("*gitgutter#highlight#define_highlights")
                         " let vim-gitgutter know we changed the SignColumn colors!
@@ -49,13 +47,13 @@
         "--------------------------------------------------------------
                 set colorcolumn=1,8,16,24,100,120
                 highlight clear ColorColumn
-                highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
-                highlight ColorColumn ctermbg=4 guibg=DarkGray
+                "highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
+                highlight ColorColumn ctermbg=DarkGray
 
         "--------------------------------------------------------------
                 set cursorline
-                hi Cursor ctermbg=Cyan
-                hi CursorLine guibg=White ctermbg=1 term=bold cterm=bold
+                "hi Cursor ctermbg=Cyan
+                "hi CursorLine guibg=White ctermbg=1 term=bold cterm=bold
 
         " Get rid of italics (they look ugly)
                 highlight htmlItalic            gui=NONE guifg=orange
@@ -75,7 +73,9 @@
                 set shortmess+=I
 
         " fold column aka gutter on the left
-                highlight FoldColumn ctermbg=2 ctermfg=0 guibg=#ffffd7
+                highlight FoldColumn ctermbg=5 ctermfg=0 guibg=#ffffd7
+        " easier on the eyes
+                highlight Folded ctermbg=229 guibg=#ffffaf
 
         " cursor column
                 highlight CursorColumn ctermbg=7 guibg=#ffffd7
@@ -83,8 +83,6 @@
         " avoid invisible color combination (red on red)
                 highlight DiffText ctermbg=1
 
-        " easier on the eyes
-                highlight Folded ctermbg=229 guibg=#ffffaf
         "------------------------------------------
                 match Todo / TST /
                 2match Error / ERR /
@@ -125,13 +123,14 @@
                 hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=magenta
                 call matchadd('CustomPink', '\<System\>')
 
-                highlight Comment ctermbg=6 ctermfg=White cterm=bold
-                highlight Comment ctermbg=3 ctermfg=White cterm=bold
                 highlight TagListTagName    ctermfg=250
                 highlight TagListTagScope   ctermfg=045
                 highlight TagListTitle      ctermfg=226
                 highlight TagListComment    ctermfg=235
                 highlight TagListFileName   ctermfg=255 ctermbg=232
+
+                highlight Comment ctermbg=6 ctermfg=White cterm=bold
+                highlight Comment ctermbg=3 ctermfg=White cterm=bold
 
                 " cyan
                 highlight TagbarHighlight       ctermfg=051 ctermbg=none cterm=bold
@@ -161,29 +160,28 @@
 
 
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " My colour overrides
-        highlight NonText               ctermfg=gray guifg=gray term=standout
-        highlight SpecialKey            ctermfg=gray guifg=gray term=standout
-        highlight MatchParen            gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=255
-        highlight SpellBad              cterm=underline ctermfg=red ctermbg=NONE
-        highlight SpellCap              cterm=underline ctermfg=blue ctermbg=NONE
+                " My colour overrides
+                highlight NonText               ctermfg=gray guifg=gray term=standout
+                highlight SpecialKey            ctermfg=gray guifg=gray term=standout
+                highlight MatchParen            gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=255
+                highlight SpellBad              cterm=underline ctermfg=red ctermbg=NONE
+                highlight SpellCap              cterm=underline ctermfg=blue ctermbg=NONE
 
-        highlight StatusLine          ctermfg=white ctermbg=red cterm=bold
-        highlight StatusLineNC        ctermfg=white ctermbg=green cterm=NONE
-        highlight VertSplit           ctermfg=white ctermbg=blue cterm=NONE
+                highlight StatusLine          ctermfg=white ctermbg=red cterm=bold
+                highlight StatusLineNC        ctermfg=white ctermbg=green cterm=NONE
+                highlight VertSplit           ctermfg=white ctermbg=blue cterm=NONE
 
-        " for custom :match commands
-        highlight Red                   guibg=red ctermbg=red
-        highlight Green                 guibg=green ctermbg=green
+                " for custom :match commands
+                highlight Red                   guibg=red ctermbg=red
+                highlight Green                 guibg=green ctermbg=green
 
-        " gutter on the right of the text
-        highlight ColorColumn ctermbg=5
+                " gutter on the right of the text
+                highlight ColorColumn ctermbg=5
 
-        " gutter below the text
-        highlight NonText ctermbg=2
-        set shortmess+=I " suppress intro message because the above makes it look bad
+                " gutter below the text
+                highlight NonText ctermbg=2
+                set shortmess+=I " suppress intro message because the above makes it look bad
 
-        " fold column aka gutter on the left
-        highlight FoldColumn ctermbg=3
+                " fold column aka gutter on the left
+                highlight FoldColumn ctermbg=3
 

@@ -50,20 +50,61 @@
         source ~/git/aTest/dotFiles/inkVim/vim-inkPlug.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkEnv.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkItchyMashine.vim
-                "colorscheme dracula
                 "colorscheme Benokai
                 "colorscheme vividchalk
                 "colorscheme inkpot
                 colorscheme ego
-                        source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
+                        "source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
                         "source ~/git/aTest/dotFiles/inkVim/vim-inkFileType.vim
                         source ~/git/aTest/dotFiles/inkVim/vim-inkAutoGroupAutoCommand.vim
                         source ~/git/aTest/dotFiles/inkVim/vim-inkGUI.vim
-                colorscheme ego
-
-        "-------------------------------------------------------------------------------
+                "colorscheme redstring
+                "colorscheme anderson
+                source ~/git/aTest/dotFiles/inkVim/vim-mopOptic.vim
+                colorscheme mopkai
+        highlight CursorLine ctermbg=240 term=bold cterm=bold
+        "My stuff-----------------------------------------------------------
+        "hi CustomPink ctermbg=205 guibg=hotpink guifg=black ctermfg=magenta
+        hi CustomPink ctermbg=190
+        call matchadd('CustomPink', '\< System\>')
+        call matchadd('CustomPink', '\<map\>')
+        call matchadd('CustomPink', '\<nnoremap\>')
+        call matchadd('CustomPink', '\<<C-\>')
+        call matchadd('CustomPink', '\<c-\>')
+        call matchadd('CustomPink', '\<Leader\>')
+        "-------------------------------------------------------------------
         " cyan
-        highlight TagbarHighlight       ctermfg=051 ctermbg=none cterm=bold
+        highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
+        highlight TagListTagName    ctermfg=250
+        "My stuff------------------------------------------------------------
+
+        highlight LineNr ctermfg=1 ctermbg=200 "pink
+        highlight LineNr ctermfg=1 ctermbg=220 "yello
+        highlight LineNr ctermfg=1 ctermbg=230 "white
+        highlight LineNr ctermfg=1 ctermbg=240 "DarkGray
+        highlight LineNr ctermfg=1 ctermbg=250 "lightGray
+        highlight LineNr ctermfg=1 ctermbg=190 "yellowBright
+        highlight LineNr ctermfg=1 ctermbg=180 "rosaCream
+        highlight LineNr ctermfg=1 ctermbg=170 "pinkPlume
+        highlight LineNr ctermfg=1 ctermbg=160 "RedOrange
+        highlight LineNr ctermfg=1 ctermbg=150 "lightGreen
+        highlight LineNr ctermfg=1 ctermbg=140 "lightPurple
+        highlight LineNr ctermfg=1 ctermbg=130 "darkOrange
+        highlight LineNr ctermfg=1 ctermbg=120 "mintBright
+        highlight LineNr ctermfg=1 ctermbg=110 "lightBlue
+        highlight LineNr ctermfg=1 ctermbg=100 "DarkYellow
+        highlight LineNr ctermfg=1 ctermbg=90  "Purple
+        highlight LineNr ctermfg=1 ctermbg=80  "brightLightBlue
+        highlight LineNr ctermfg=1 ctermbg=70  "lightGreen
+        highlight LineNr ctermfg=1 ctermbg=50  "lightGreenBlue
+        highlight LineNr ctermfg=1 ctermbg=30  "DarkCyan
+        highlight LineNr ctermfg=1 ctermbg=20  "Blue
+        highlight LineNr ctermfg=1 ctermbg=10  "NiceGreen
+        highlight LineNr ctermfg=1 ctermbg=9   "NiceReds
+        highlight LineNr ctermfg=1 ctermbg=8   "DarkGray
+        highlight LineNr ctermfg=1 ctermbg=7   "LightGray
+        highlight LineNr ctermfg=1 ctermbg=120 "mintBright
+
         "-------------------------------------------------------------------------------
         set nowrap
         set wmh=0
@@ -76,41 +117,22 @@
         "-------------------------------------------------------------------------------
         nnoremap <S-j> :bn<cr>
         nnoremap <S-k> :bp<cr>
-
+        nnoremap <m-j> :bn<cr>
+        nnoremap <m-k> :bp<cr>
+        "-------------------------------------------------------------------------------
         set nosm
-        hi Search ctermbg=yellow
-        "-------------------------------------------------------------------------------
-        let g:airline_section_c = '%{strftime("%D - %H:%M")}'
-        "-------------------------------------------------------------------------------
-        " number column aka gutter on the left
-        highlight LineNr ctermbg=230
-        highlight CursorLineNr ctermbg=200 cterm=bold
+        let g:bling_time = 100
+        let g:bling_color_fg = 'green'
+        let g:bling_color_cterm = 'reverse'
 
-        " cursor column
-        highlight CursorColumn ctermbg=2
-        highlight CursorLine ctermbg=1 cterm=bold
-
-        " easier on the eyes
-        highlight Folded ctermbg=2
-
-        "set fillchars=vert:│,fold:-
-        highlight VertSplit cterm=reverse ctermbg=150
-
-        nnoremap <silent> vv <C-w>v
-        "nnoremap <silent> G :GitGrep <cword><CR>
-        "
-        " Autocommands                                                  {{{1
-        "
 
         if has("autocmd")
-                " Kill visual bell! kill!                                       {{{2
+                " Kill visual bell! kill!
                 augroup GUI
                         au!
                         au GUIEnter * set t_vb=
                 augroup END
 
-                " Remember last position in a file                              {{{2
-                " see :help last-position-jump
                 augroup LastPositionJump
                         au!
                         au BufReadPost *
@@ -118,5 +140,5 @@
                                                 \ |   exe "normal! g`\""
                                                 \ | endif
                 augroup END
-
         endif
+        "-------------------------------------------------------------------------------

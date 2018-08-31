@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
     Plug 'jremmen/vim-ripgrep'
     Plug 'kien/ctrlp.vim'
+    Plug 'wincent/command-t'
     Plug 'tomtom/tcomment_vim'
     "Plug 'Townk/vim-autoclose'
     "Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
@@ -72,6 +73,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'garbas/vim-snipmate'
 
+Plug 'ivyl/vim-bling'
+Plug 'brooth/far.vim'
+Plug 'kmnk/vim-unite-giti'
+Plug 'cskeeters/unite-fzf'
+Plug 'tsukkee/unite-tag'
+Plug'SpaceVim/unite-ctags'
+Plug 'Shougo/unite-outline/'
+Plug 'tsukkee/unite-help'
+
+Plug 'idanarye/vim-vebugger'
+Plug 'davidhalter/jedi-vim'
+    Plug 'Shougo/neoyank.vim'
+    Plug 'Shougo/neomru.vim'
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'Shougo/echodoc.vim'
     "Generic Programming Support
@@ -90,5 +104,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sonph/onehalf'
     Plug 'vim-scripts/TagHighlight'
     Plug 'aghareza/vim-gitgrep'
+    "Plug 'xolox/vim-misc'
+    "Plug 'xolox/vim-easytags'
     "Plug 'artur-shaik/vim-javacomplete2'
 call plug#end()

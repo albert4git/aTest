@@ -1,3 +1,11 @@
+                nnoremap <Leader>b :Unite bookmark<CR>
+                nnoremap <Leader>a :UniteBookmarkAdd<CR>
+                " tasks
+                nnoremap <silent><Leader>; :Unite -silent -toggle
+                                                \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
+
+                " buffers
+                nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 "-         "------------------------------------------
 "-         " XXX Wichtig for C++
 "-         " nnoremap <left>  :cprev<cr>zvzz
