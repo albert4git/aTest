@@ -1,11 +1,9 @@
 " Typing: ci', ci", or ci)
 "--------------------------GVIM-------------------------------------------------
-
 call plug#begin('~/.vim/plugged')
     "Plug 'junegunn/seoul256.vim'
     "Plug 'bkad/CamelCaseMotion'
     "Plug 'tpope/vim-sensible'
-
     Plug 'vim-scripts/marvim'
     Plug 'gergap/keystroke'
     Plug 'kshenoy/vim-signature'
@@ -29,18 +27,18 @@ call plug#begin('~/.vim/plugged')
     "-------------------------------------------------------------------------
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-abolish'         " Extended abbreviation/substition.
-    Plug 'tpope/vim-repeat'          " Intelligent repeat with '.'
+    Plug 'tpope/vim-abolish'        " Extended abbreviation/substition.
+    Plug 'tpope/vim-repeat'         " Intelligent repeat with '.'
     Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
+    Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
+    Plug 'tpope/vim-sleuth'         " indet reight ?
     Plug 'jremmen/vim-ripgrep'
     Plug 'kien/ctrlp.vim'
-    Plug 'wincent/command-t'
     Plug 'tomtom/tcomment_vim'
-    "Plug 'Townk/vim-autoclose'
-    "Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
-    "Plug 'balta2ar/deoplete-matcherkey'
-    Plug 'tpope/vim-sleuth'    " indet reight ?
     Plug 'tpope/vim-eunuch'
+    Plug 'wincent/command-t'
+    "Plug 'Townk/vim-autoclose'
+    "Plug 'balta2ar/deoplete-matcherkey'
     "-------------------------------------------------------------------------
     Plug 'burnettk/vim-angular'
     Plug 'fatih/vim-go'
@@ -73,17 +71,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'garbas/vim-snipmate'
 
-Plug 'ivyl/vim-bling'
-Plug 'brooth/far.vim'
-Plug 'kmnk/vim-unite-giti'
-Plug 'cskeeters/unite-fzf'
-Plug 'tsukkee/unite-tag'
-Plug'SpaceVim/unite-ctags'
-Plug 'Shougo/unite-outline/'
-Plug 'tsukkee/unite-help'
+    Plug 'ivyl/vim-bling'
+    Plug 'brooth/far.vim'
+    Plug 'kmnk/vim-unite-giti'
+    Plug 'cskeeters/unite-fzf'
+    Plug 'tsukkee/unite-tag'
+    Plug'SpaceVim/unite-ctags'
+    Plug 'Shougo/unite-outline/'
+    Plug 'tsukkee/unite-help'
 
-Plug 'idanarye/vim-vebugger'
-Plug 'davidhalter/jedi-vim'
+    Plug 'idanarye/vim-vebugger'
+    Plug 'davidhalter/jedi-vim'
+
     Plug 'Shougo/neoyank.vim'
     Plug 'Shougo/neomru.vim'
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
@@ -94,8 +93,7 @@ Plug 'davidhalter/jedi-vim'
     Plug 'tpope/vim-sleuth'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-
+    "!"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
     Plug 'AndrewRadev/undoquit.vim'
     Plug 'MattesGroeger/vim-bookmarks'
     Plug 'rafi/awesome-vim-colorschemes'
@@ -107,4 +105,14 @@ Plug 'davidhalter/jedi-vim'
     "Plug 'xolox/vim-misc'
     "Plug 'xolox/vim-easytags'
     "Plug 'artur-shaik/vim-javacomplete2'
+    Plug 'mantiz/vim-plugin-dirsettings'
+    Plug 'ervandew/supertab'
+    Plug 'exvim/ex-matchit'
+    Plug 'AndrewRadev/switch.vim'
+    Plug 'itchyny/calendar.vim'
+    Plug 'guns/xterm-color-table.vim'
+    Plug 'termhn/i3-vim-nav'
+    Plug 'vim-scripts/spreadsheet.vim'
+    Plug 'bronson/vim-crosshairs'
+    Plug 'fergdev/vim-cursor-hist'
 call plug#end()

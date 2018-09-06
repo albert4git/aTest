@@ -286,6 +286,11 @@ endif
     iabbrev @@  alf@nomail.com
     iabbrev ccopy Copyright 2013 Alf , no rights reserved.
     "My stuff --------------------------------------------------------------------------
+    "My stuff ------------------------------
+    match TODO / ToDo / Todo / TST /
+    2match Error / ERR /
+    3match Title / Albert /
+    "My stuff ------------------------------
     syn keyword VariableType real void String int nextgroup=VarName skipwhite
     syn match VarName '\i\+' contained
     hi VariableType ctermbg=LightYellow
