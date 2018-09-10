@@ -182,16 +182,20 @@
                 autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
                 autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
 
-                "map <Fx> "zyiw:exe "vs ".@z.""<CR>
                 map <C-F12> :Scratch<CR>
                 map <S-F12> :ScratchPreview<CR>
 
-                "--???-----------------------------------------------------------------------------
-                sign define fixme text=!! linehl=Todo
-                function! SignFixme()
-                        execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
+                function! ScratchToggle()
+                        if exists("w:is_scratch_window")
+                                unlet w:is_scratch_window
+                                exec "q"
+                        else
+                                exec "normal! :Scratch\<cr>\<C-W>L"
+                                let w:is_scratch_window = 1
+                        endif
                 endfunction
-                map <Leader>1 :call SignFixme()<CR>
+                nnoremap <leader>s :ScratchToggle<cr>
+                command! ScratchToggle call ScratchToggle()
 
         "-2-}}}
 
@@ -228,10 +232,42 @@
                         function! JumpToTagInSplit()
                                 call JumpToInSplit("normal! \<c-]>")
                         endfunction
-                        "nnoremap <C-]> :silent! call JumpToTag()<cr>
-                        nnoremap <C-;> :silent! call JumpToTag()<cr>
+                        nnoremap <C-]> :silent! call JumpToTag()<cr>
                         nnoremap <S-C-]> :silent! call JumpToTagInSplit()<cr>
+                        nnoremap <C-g> :silent! call JumpToTagInSplit()<cr>
+                        nnoremap <C-g> :silent! call JumpToTagInSplit()<cr>
                 """""""
+                        function PreviewTag2(top)
+                        set previewheight=25
+                        exe "silent! pclose"
+                        if &previewwindow " don't do this in the preview window
+                                return
+                        endif
+                        let w = expand("<cword>") " get the word under cursor
+                        exe "ptjump " . w
+                        " if any non False arg, open in simple horiz window so simply return
+                        if a:top
+                                return
+                        endif
+                        " otherwise, make it vertical
+                        exe "silent! wincmd P"
+                        if &previewwindow " if we really get there...
+                                if has("folding")
+                                silent! .foldopen " don't want a closed fold
+                                endif
+                                wincmd L " move preview window to the left
+                                wincmd p " back to caller
+                                if !&previewwindow " got back
+                                wincmd _
+                                endif
+                        endif
+                        endfunction
+                "inoremap <C-]> <Esc>:call PreviewTa2(0)<CR>
+                "nnoremap <C-]> :call PreviewTag2(0)<CR>
+                ""-------------------------------------------------------------------------------
+                " wincmd _ make caller full size (I use minibufexplorer and for some reason
+                " the window is altered by the preview window split and manipulation
+                " so wincmd _ sets it back... your mileage may vary
                 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
                 "#- go to last edit position when opening files -#
                 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -248,6 +284,9 @@
 
                 "-HHJ- Keep the cursor in place while joining lines
                 nnoremap H mzJ`z
+
+                "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
+                nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
                 "??? Sel (charwise) cont of the cur line, Great for pasting Python lines into REPLs
                 "nnoremap vv ^vg_
@@ -288,7 +327,9 @@
                 imap jj <Esc>
                 noremap ss :w<cr>
                 noremap qq :q<cr>
-                noremap sq :wq<cr>
+                noremap sq :wa<cr> :qa<cr>
+                "- " Kill window
+                "- nnoremap K :q<cr>
 
         "-4-}}}
 
@@ -457,15 +498,24 @@
                 nnoremap <Leader>n :cnext<cr>zvzz
                 "turn-on-location-list-----------------------------------------
                 "--------------------------------------------------------------
-                map             <S-F9>          :lopen<CR>
-                imap            <S-F9>          <C-O><C-F9>
+                map         <S-F9>     :lopen<CR>
+                imap        <S-F9>     <C-O><C-F9>
                 "turn-off-location-list-----------------------------------------
-                map             <C-F9>          :lclose<CR>
-                imap            <C-F9>          <C-O><S-F9>
+                map         <C-F9>     :lclose<CR>
+                imap        <C-F9>     <C-O><S-F9>
                 "--------------------------------------------------------------
                 nnoremap <LocalLeader>b :lprev<cr>zvzz
                 nnoremap <LocalLeader>n :lnext<cr>zvzz
                 "--------------------------------------------------------------
+                """ <C-t> create a new tab 
+                nnoremap <C-t>                :tabnew<Space>
+                inoremap <C-t> <Esc>          :tabnew<Space>
+                """ <C-Tab> next tab
+                noremap  <C-Tab>              :<C-U>tabnext<CR>
+                inoremap <C-Tab> <C-\><C-N>   :tabnext<CR>
+                cnoremap <C-Tab> <C-C>        :tabnext<CR>
+                """
+                """
                 "--------------------------------------------------------------
                 " <F4> = next error/grep match
                 map             <F4>            :FirstOrNextInList<CR>
@@ -477,7 +527,13 @@
                 map             <C-F4>          :CurInList<CR>
                 imap            <C-F4>          <C-O><C-F4>
 
+                "My-stuff--NotWorkingProper-----------------------------------
+                " map <F5> "zyiw:exe "vs ".@z.""<CR>
+                " map <S-F5> "zyiw<C-w>wo<Esc>"zp<C-w>w
+                " map <C-F5> "zY<C-w>wo<Esc>"zp<C-w>w
+                " map <F6> "zyiw:exe "vertical h ".@z.""<CR>
                 "--------------------------------------------------------------
+
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
                 set nospell
                 "nnoremap zz z=
@@ -494,6 +550,7 @@
                 nmap <silent> N Nzz
                 nmap <silent> g* g*zz
                 nmap <silent> g# g#zz
+
 
                 "-------------------------------------------------------------------------
                 let wordUnderCursor = expand("<cword>")
@@ -515,7 +572,7 @@
 
                 map <C-F10> :call OnlineDoc8()<CR>
                 " OnlineDoc8
-                "-------------------------------------------------------------------------------
+                "----------------------------------------------------------------------------------
                 "----------------------------------------------------------------------------------
                 " Super useful! From an idea by Michael Naumann
                 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
@@ -539,9 +596,7 @@
                                 endif
                         endfor
                 endfunction
-                
                 com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
-                "------------------------------------------------------------------------------
                 "------------------------------------------------------------------------------
                 function! s:ShowMaps()
                         let old_reg = getreg("a")          " save the current content of register a
@@ -562,7 +617,6 @@
                 endfunction
                 com! ShowMaps call s:ShowMaps()      " Enable :ShowMaps to call the function
                 nnoremap \m :ShowMaps<CR>            " Map keys to call the function
-                "------------------------------------------------------------------------------
 
         "-16-vnoremap-}}}
 
@@ -603,9 +657,19 @@
                 " This is the default extra key bindings
                 imap <C-o> <plug>(fzf-complete-word)
                 imap <C-S> <plug>(fzf-complete-line)
+                imap <A-o> <plug>(fzf-complete-word)
+                imap <A-S> <plug>(fzf-complete-line)
                 "imap <c-x><c-f> <plug>(fzf-complete-path)
                 "imap <c-x><c-j> <plug>(fzf-complete-file-ag)
                 "imap <c-x><c-l> <plug>(fzf-complete-line)
+
+                function! s:fzf_statusline()
+                        " Override statusline as you like
+                        highlight fzf1 ctermfg=161 ctermbg=251
+                        highlight fzf2 ctermfg=23 ctermbg=251
+                        highlight fzf2 ctermfg=237 ctermbg=251
+                        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+                endfunction
 
         "-Unite-
                 "#EEE# Toggle Two 
@@ -642,7 +706,6 @@
                 nnoremap <Leader>m :Unite file buffer file_mru <CR>
                 nnoremap <Leader>\ :Unite grep<CR>
                 nnoremap <Leader>i :Unite -silent history/yank<CR>
-                nnoremap <C-h> :UniteWithCursorWord -silent help<CR>
                 nnoremap <Leader>h :UniteWithCursorWord -silent help<CR>
                 " buffer search--------------------------------------
                 nnoremap <Leader>f :Unite -silent -no-split -start-insert -auto-preview
@@ -694,7 +757,7 @@
                 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
         "-UnitE-}}}
 
-        " Wildmenu completion------------------------------------------------------------------{{{
+        "-Wildmenu-completion------------------------------------------------------------------{{{
                 " Save when losing focus
                 au FocusLost * :silent! wall
                 set wildmenu
@@ -724,9 +787,9 @@
 "-surok----------------------------------------------------------------------------------------------------------------
         function! s:fzf_statusline()
                 " Override statusline as you like
-                highlight fzf1 ctermfg=161 ctermbg=251
-                highlight fzf2 ctermfg=23 ctermbg=251
-                highlight fzf2 ctermfg=237 ctermbg=251
+                highlight fzf1 ctermfg=161 ctermbg=1
+                highlight fzf2 ctermfg=23 ctermbg=1
+                highlight fzf2 ctermfg=237 ctermbg=1
                 setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
         endfunction
         autocmd! User FzfStatusLine call <SID>fzf_statusline()

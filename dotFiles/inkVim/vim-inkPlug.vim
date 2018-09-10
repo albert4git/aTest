@@ -115,4 +115,5 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-scripts/spreadsheet.vim'
     Plug 'bronson/vim-crosshairs'
     Plug 'fergdev/vim-cursor-hist'
+    Plug 'brookhong/cscope.vim'
 call plug#end()

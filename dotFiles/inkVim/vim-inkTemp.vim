@@ -58,7 +58,6 @@ nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 "-         " inoremap <c-k><c-k> <esc>:help digraph-table<cr>
 "-
 "-
-"-         " The normal use of S is covered by cc, so don't worry about shadowing it.
 "-         "-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 "-
 "-         " Kill window

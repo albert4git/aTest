@@ -124,9 +124,12 @@
         set cursorcolumn
         "-------------------------------------------------------------------------------
         highlight LineNr ctermfg=1 ctermbg=120
+        set nuw =5
         highlight cursorcolumn ctermbg=0
-        highlight CursorLine ctermbg=0 term=bold cterm=bold
+        "highlight CursorLine ctermbg=0 term=bold
+        highlight CursorLine ctermbg=0
         highlight Cursor ctermbg=1 term= bold
+        highlight Normal ctermbg=234 "!!!-XXX
         "-------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------
         if &term =~ "xterm\\|rxvt"
@@ -140,12 +143,41 @@
                 "use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
         endif
         "-------------------------------------------------------------------------------
-        "autocmd InsertEnter * set cul
-        "autocmd InsertLeave * set nocul
-        "hi Cursor ctermbg=red
-        hi Normal ctermbg=234
         "-------------------------------------------------------------------------------
         map <C-F2> :Scratch<CR>
         map <S-F2> :ScratchPreview<CR>
 
         set tags=~/git/aTest/dotFiles/inkVim/tags
+        " Auto format codes
+        "noremap <F7> :Autoformat<CR>
+        """ formatt upon saving
+        """ au BufWrite * :Autoformat
+        hi LineNr ctermfg=247 guifg=#9e9e9e ctermbg=233 guibg=#121212
+        set statusline+=%<%f\
+        " Pushing
+        nnoremap <leader>Go :Start! git push origin<cr>
+        nnoremap <leader>Gu :Start! git push upstream<cr>
+        " HTML tag closing
+        inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
+
+        noremap <leader>a =ip
+        noremap cp yap<S-}>p
+
+        "--???-----------------------------------------------------------------------------
+        sign define fixme text=!! linehl=Error
+        function! SignFixme()
+                execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
+        endfunction
+        map <Leader>1 :call SignFixme()<CR>
+
+        function! SignLines() range
+        let n = a:firstline
+        execute(":sign define fixme text=?! texthl=Error")
+        while n <= a:lastline
+                if getline(n) =~ '\(TODO\|FIXME\)'
+                execute(":sign place ".n." line=".n." name=fixme file=".expand("%:p"))
+                endif
+                let n = n + 1
+        endwhile
+        endfunction
+        map <Leader>2 :call SignLines()<CR>
