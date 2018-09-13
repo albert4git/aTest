@@ -1,3 +1,66 @@
+                " s: Windows and buffers(High priority)
+                " The prefix key.
+                nnoremap    [Window]   <Nop>
+                nmap    s [Window]
+                nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
+                nnoremap <silent> [Window]o  :<C-u>only<CR>
+                """
+                """
+
+                " Pushing
+                "nnoremap <leader>Go :Start! git push origin<cr>
+                "nnoremap <leader>Gu :Start! git push upstream<cr>
+                " HTML tag closing
+                "inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
+                "?noremap <leader>a =ip
+                "?noremap cp yap<S-}>p
+                "nnoremap g; g;zz
+                "nnoremap g, g,zz
+                "nnoremap <left>  :cprev<cr>zvzz
+                "nnoremap <right> :cnext<cr>zvzz
+                "nnoremap <up>    :lprev<cr>zvzz
+                "nnoremap <down>  :lnext<cr>zvzz
+
+        " e: Change basic commands
+        " The prefix key.
+        nnoremap [Alt]   <Nop>
+        nmap    S  [Alt]
+        "Test[Alt]
+        nnoremap <silent> [Alt]w :w<cr>
+        nnoremap <silent> [Alt]s :<C-u>update<CR>
+        "Test[Alt]
+        nnoremap <silent> <m-w> :w<cr>
+        nnoremap <silent> <m-s> :<C-u>update<CR>
+        "Test[Alt]
+        nnoremap <silent> <A-w> :w<cr>
+        nnoremap <silent> <A-s> :<C-u>update<CR>
+        "-Indent-paste------------------------------------------
+        nnoremap <silent> [Alt]p o<Esc>pm``[=`]``^
+        nnoremap <silent> [Alt]P O<Esc>Pm``[=`]``^
+        " Useless command.
+        " nnoremap M  m
+        " Smart <C-f>, <C-b>.
+        noremap <expr> <C-f> max([winheight(0) - 2, 1])
+        \ . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+        noremap <expr> <C-b> max([winheight(0) - 2, 1])
+        \ . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+
+        " silent! digr -. 8230 "U+2026=…    HORIZONTAL ELLIPSIS
+        " silent! digr !, 8816 "U+2270=≰    NEITHER LESS-THAN NOR EQUAL TO
+        " silent! digr !. 8817 "U+2271=≱    NEITHER GREATER-THAN NOR EQUAL TO
+        " silent! digr xs 8339 "U+2093=ₓ    SUBSCRIPT X
+        " a>, i], etc...
+        " <angle>
+        onoremap aa  a>
+        xnoremap aa  a>
+        onoremap ia  i>
+        xnoremap ia  i>
+
+        " [rectangle]
+        onoremap ar  a]
+        xnoremap ar  a]
+        onoremap ir  i]
+        xnoremap ir  i]
 " " Use ag for Search
 " if executable('ag')
 "   let g:unite_source_grep_command = 'ag'

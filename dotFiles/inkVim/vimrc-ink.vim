@@ -29,44 +29,35 @@
         "     set dictionary+=~/Documents/dictionary "Add dictionary file for ^X^K
         "-------------------------------------------------------------------------------------------
         "let MYVIMRC ='~/.vimrc'
-        "-???-- path + 
+        "set dictionary=/usr/share/
         set path+=.,/usr/include,/usr/local/include
         set thesaurus=mthesaur.txt
-        "set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
-        "set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
-        "set dictionary=/usr/share/
-        set dictionary+="~/git/aTest/redVim/dikt/words.txt"
-        set dictionary+="~/git/aTest/redVim/dikt/100w.txt"
-        set dictionary+="~/git/aTest/redVim/dikt/english-words.txt"
-        set dictionary="~/git/aTest/redVim/dikt/english-words.txt"
-        set dictionary="/home/red/git/aTest/dotFiles/DICT/"
+        set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
+        let s:thesaurus_pat = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
         set dictionary=/home/red/git/aTest/dotFiles/DICT/english-words.txt
-        "-???-- path + 
         set tags=""
-        "-???-- path + 
-        let s:thesaurus_pat = "~/git/aTest/redVim/dikt/mthesaur.txt"
+        set tags=~/git/aTest/dotFiles/inkVim/tags
         set runtimepath+=~/.vim/plugged/vimproc/
         set nocompatible
         set encoding=utf-8
         set fileencodings=utf-8,sjis
         set shell=/bin/bash
         set spell
-        "----------------------------------------
+        set nospell
+        "-------------------------------------------------------------------------------------------
         filetype on
         filetype plugin on
         filetype indent on
-        "----------------------------------------
+        "-------------------------------------------------------------------------------------------
         let maplocalleader= ','
         let mapleader=' '
         set vb t_vb=         " disable beep sound
-        "--magic-------------------------------------------------------------------
+        "--magic------------------------------------------------------------------------------------
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-        "--------------------------------------------------------------------------
-
+        "-------------------------------------------------------------------------------------------
         source ~/git/aTest/dotFiles/inkVim/vim-inkPlug.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkEnv.vim
         source ~/git/aTest/dotFiles/inkVim/vim-inkItchyMashine.vim
-                "colorscheme Benokai
                 "colorscheme inkpot
                 "colorscheme ego
                         "source ~/git/aTest/dotFiles/inkVim/vim-inkOptic.vim
@@ -74,110 +65,18 @@
                         source ~/git/aTest/dotFiles/inkVim/vim-inkAutoGroupAutoCommand.vim
                         source ~/git/aTest/dotFiles/inkVim/vim-inkGUI.vim
                         source ~/git/aTest/dotFiles/inkVim/vim-mopOptic.vim
-                "colorscheme redstring
                 "colorscheme anderson
                 colorscheme mopkai
-        "-------------------------------------------------------------------------------
-        "hi customPink ctermbg=205 guibg=hotpink guifg=black ctermfg=magenta
-        set nowrap
-        set wmh=0
-        "-------------------------------------------------------------------------------
-        map <C-J> <C-W>j<C-W>_
-        map <C-K> <C-W>k<C-W>_
-        map <C-H> <C-W>h<C-W>|
-        map <C-L> <C-W>l<C-W>|
-        map <C-=> <C-W>=
-        "-------------------------------------------------------------------------------
-        nnoremap <S-j> :bn<cr>
-        nnoremap <S-k> :bp<cr>
-        nnoremap <m-j> :bn<cr>
-        nnoremap <m-k> :bp<cr>
-        "-------------------------------------------------------------------------------
-        "brackets show match
-        set nosm
-        "-------------------------------------------------------------------------------
-        "-------------------------------------------------------------------------------
-                " Insert completion
-                silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
-
-                "-[completion]-auto popup menu: Tab, C-x + C-?, C-y, C-e
-                set complete=.,w,b,t,i,u,k       " completion buffers
-                "            | | | | | | |
-                "            | | | | | | `-dict
-                "            | | | | | `-unloaded buffers
-                "            | | | | `-include files
-                "            | | | `-tags
-                "            | | `-other loaded buffers
-                "            | `-windows buffers
-                "            `-the current buffer
-                "set completeopt-=preview " dont show preview window
-                set completeopt=menu
-                set completeopt=menuone " menu,menuone,longest,preview
-                set completeopt=longest,menuone
-        "-------------------------------------------------------------------------------
-        highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
-        "-------------------------------------------------------------------------------
-        "=====[ Comments are important ]==================
-        "highlight Comment term=bold ctermfg=white
-        "-------------------------------------------------------------------------------
-        set cursorline
-        set cursorcolumn
-        "-------------------------------------------------------------------------------
-        highlight LineNr ctermfg=1 ctermbg=120
-        set nuw =5
-        highlight cursorcolumn ctermbg=0
-        "highlight CursorLine ctermbg=0 term=bold
-        highlight CursorLine ctermbg=0
-        highlight Cursor ctermbg=1 term= bold
-        highlight Normal ctermbg=234 "!!!-XXX
-        "-------------------------------------------------------------------------------
-        "-------------------------------------------------------------------------------
-        if &term =~ "xterm\\|rxvt"
-                "use an orange cursor in insert mode
-                let &t_SI = "\<Esc>]12;orange\x7"
-                "use a red cursor otherwise
-                let &t_EI = "\<Esc>]12;green\x7"
-                silent !echo -ne "\033]12;green\007"
-                "reset cursor when vim exits
-                autocmd VimLeave * silent !echo -ne "\033]112\007"
-                "use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
-        endif
-        "-------------------------------------------------------------------------------
-        "-------------------------------------------------------------------------------
-        map <C-F2> :Scratch<CR>
-        map <S-F2> :ScratchPreview<CR>
-
-        set tags=~/git/aTest/dotFiles/inkVim/tags
-        " Auto format codes
-        "noremap <F7> :Autoformat<CR>
-        """ formatt upon saving
-        """ au BufWrite * :Autoformat
-        hi LineNr ctermfg=247 guifg=#9e9e9e ctermbg=233 guibg=#121212
-        set statusline+=%<%f\
-        " Pushing
-        nnoremap <leader>Go :Start! git push origin<cr>
-        nnoremap <leader>Gu :Start! git push upstream<cr>
-        " HTML tag closing
-        inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
-
-        noremap <leader>a =ip
-        noremap cp yap<S-}>p
-
+        source ~/git/aTest/dotFiles/inkVim/vim-post.vim
         "--???-----------------------------------------------------------------------------
-        sign define fixme text=!! linehl=Error
-        function! SignFixme()
-                execute(":sign place ".line(".")." line=".line(".")." name=fixme file=".expand("%:p"))
-        endfunction
-        map <Leader>1 :call SignFixme()<CR>
+        let w:persistent_cursorline = 1
+        " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=black guifg=NON 
+        " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=black guifg=NONE
+        "IndentGuidesDisable
+        "IndentGuidesToggle
+        "set IndentGuidesEnable
+        let g:indent_guides_auto_colors = 0
+        "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=147
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=238
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=247
 
-        function! SignLines() range
-        let n = a:firstline
-        execute(":sign define fixme text=?! texthl=Error")
-        while n <= a:lastline
-                if getline(n) =~ '\(TODO\|FIXME\)'
-                execute(":sign place ".n." line=".n." name=fixme file=".expand("%:p"))
-                endif
-                let n = n + 1
-        endwhile
-        endfunction
-        map <Leader>2 :call SignLines()<CR>

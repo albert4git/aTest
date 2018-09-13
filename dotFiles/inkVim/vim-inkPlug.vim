@@ -1,6 +1,34 @@
 " Typing: ci', ci", or ci)
 "--------------------------GVIM-------------------------------------------------
 call plug#begin('~/.vim/plugged')
+    "---TESTED----
+    Plug 'kien/ctrlp.vim'
+    Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
+    "---PreTESTED----
+    Plug 'mtth/scratch.vim'
+    "---TODO-------
+    Plug 'tpope/vim-fugitive'
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    "---NEW--------
+    Plug '/yssl/QFEnter'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'henrik/git-grep-vim'
+    Plug 'henrik/vim-qargs'
+    Plug 'mileszs/ack.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'vim-scripts/YankRing.vim'
+    " Plug 'kana/vim-textobj-user'
+    " Plug 'glts/vim-textobj-indblock'
+    " Plug 'gilligan/textobj-gitgutter'
+    " Plug 'kana/vim-textobj-line'
+    " Plug 'paulhybryant/vim-textobj-path'
+    " Plug 'saaguero/vim-textobj-pastedtext'
+    " Plug 'killphi/vim-textobj-signify-hunk'
+    " Plug 'beloglazov/vim-textobj-quotes'
+    "Plug ''
+    "---2EXPLORE---
     "Plug 'junegunn/seoul256.vim'
     "Plug 'bkad/CamelCaseMotion'
     "Plug 'tpope/vim-sensible'
@@ -13,7 +41,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'Rykka/trans.vim'
     Plug 'ron89/thesaurus_query.vim'
     Plug 'thinca/vim-quickrun'
-    Plug 'mtth/scratch.vim'
     Plug 'scrooloose/syntastic'
     Plug 'Chun-Yang/vim-action-ag'
     Plug 'rking/ag.vim'
@@ -26,15 +53,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'wincent/loupe'
     "-------------------------------------------------------------------------
     Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
+    Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-abolish'        " Extended abbreviation/substition.
     Plug 'tpope/vim-repeat'         " Intelligent repeat with '.'
     Plug 'tpope/vim-surround'       " Work with pairs of quotes/anything.
-    Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
     Plug 'tpope/vim-sleuth'         " indet reight ?
     Plug 'jremmen/vim-ripgrep'
-    Plug 'kien/ctrlp.vim'
-    Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-eunuch'
     Plug 'wincent/command-t'
     "Plug 'Townk/vim-autoclose'
@@ -64,15 +88,13 @@ call plug#begin('~/.vim/plugged')
           "Plug 'zchee/deoplete-zsh'
         let g:deoplete#enable_at_startup = 1
         let g:deoplete#enable_smart_case = 1
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     Plug 'MarcWeber/vim-addon-mw-utils'
     Plug 'garbas/vim-snipmate'
 
     Plug 'ivyl/vim-bling'
     Plug 'brooth/far.vim'
+    Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'kmnk/vim-unite-giti'
     Plug 'cskeeters/unite-fzf'
     Plug 'tsukkee/unite-tag'
@@ -85,7 +107,6 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'Shougo/neoyank.vim'
     Plug 'Shougo/neomru.vim'
-    Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'Shougo/echodoc.vim'
     "Generic Programming Support
     Plug 'janko-m/vim-test'

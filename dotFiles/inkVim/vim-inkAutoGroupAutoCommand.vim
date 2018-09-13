@@ -2,9 +2,9 @@
         augroup ft_quickfix
                 au!
                 au filetype qf setlocal colorcolumn=1,2,3,4,5,6,7,8,9,10,11,12 nolist cursorline nowrap tw=0
-                au filetype qf highlight ColorColumn ctermbg=2
-                au filetype qf highlight CursorColumn ctermbg=White
-                au filetype qf highlight CursorLine ctermbg=White term=bold cterm=bold
+                "au filetype qf highlight ColorColumn ctermbg=2
+                "au filetype qf highlight CursorColumn ctermbg=White
+                au filetype qf highlight CursorLine ctermbg=DarkGray term=bold cterm=bold
                 "au filetype qf hi Normal ctermbg=DarkBlue
                 "!!!Vimscript is a joke
                 "au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
@@ -94,3 +94,16 @@
                 autocmd WinLeave * hi LineNr ctermfg=274 guifg=#e9e9e9 ctermbg=133 guibg=#212121
         augroup END
 
+        "------------------------------------------------------------------------ 
+        " let g:qfenter_keymap = {}
+        " let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+        " let g:qfenter_keymap.vopen = ['<Leader><CR>']
+        " let g:qfenter_keymap.hopen = ['<Leader><Space>']
+        " let g:qfenter_keymap.topen = ['<Leader><Tab>']
+        "
+        " If you're a CtrlP user, for instance, you might like these for familiarity:
+
+        let g:qfenter_keymap = {}
+        let g:qfenter_keymap.vopen = ['<C-v>']
+        let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+        let g:qfenter_keymap.topen = ['<C-t>']

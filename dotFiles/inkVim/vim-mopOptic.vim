@@ -30,6 +30,19 @@
         let g:airline#extensions#tabline#fnamemod = ':t'
         let g:airline#extensions#tabline#buffer_min_count = 1
         let g:airline_section_c = '%{strftime("%D - %H:%M")}'
+        """"
+        """"
+        "let g:airline_theme='powerlineish'
+        "let g:airline_theme='wombat'
+        "let g:airline_theme='badwolf'
+        "let g:airline_theme='sol'
+        "let g:airline_theme='solarized'
+        let g:airline_theme='light'
+
+        let g:airline_powerline_fonts=1
+        let g:airline#extensions#branch#enabled=1
+        let g:airline#extensions#whitespace#enabled = 1
+        let g:airline#extensions#hunks#non_zero_only = 1
         "-----------------------------------------------------------
         function! LightlineFilename()
                 let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
