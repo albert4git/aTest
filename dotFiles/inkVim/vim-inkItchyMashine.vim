@@ -1,4 +1,5 @@
 "-surok----------------------------------------------------------------------------------------------------------------
+"-surok----------------------------------------------------------------------------------------------------------------
 "                        (_)            __   _(_)_ __ ___             (_)
 "                        / |  itchy     \ \ / / | '_ ` _ \            / |
 "                        | |             \ V /| | | | | | |           | |
@@ -105,7 +106,6 @@
                 "
                 "silent! set tags+=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
                 "silent! set tags=tags,./tags 
-
                 "set tw = 300
                 "easier on the eyes
                 "-???- set formatoptions = tcqw
@@ -126,67 +126,50 @@
         " Clipboard
                 silent! set clipboard=unnamed
                 silent! set clipboard+=unnamedplus
-
         " Performance
                 silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
-
         " Bell-Bell-Bell
                 silent! set noerrorbells visualbell t_vb=
-
         " Move to the directory each buffer
                 autocmd vimrc BufEnter * silent! lcd %:p:h
-
         " Fix window position of help
                 autocmd vimrc FileType help if &l:buftype ==# 'help' | wincmd K | endif
-
         " Always open read-only when a swap file is found
                 autocmd vimrc SwapExists * let v:swapchoice = 'o'
-
         " Automatically set expandtab
         " autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
         " autocmd vimrc BufWinEnter * if &buftype == 'terminal' | setlocal nonumber | endif
 
         " Setting lazyredraw causes a problem on startup
                 autocmd vimrc VimEnter * redraw
-
         " Enter, I never use the default behavior of <cr> and this saves me a keystroke...
-                inoremap <C-m>  <cr>
-                nnoremap <C-m>  <cr>
+               " inoremap <C-m>  <cr>
+               " nnoremap <C-m>  <cr>
                 nnoremap <cr> o<esc>
-
         " Smart Enter -???-
                 inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
-
         " Go to the first non-blank character of the line after paragraph motions
                 noremap } }^
-
         " select last paste
                 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
-
         " Command line history
                 set history=4024
                 cnoremap <C-p> <Up>
                 cnoremap <C-n> <Down>
                 cnoremap <Up> <C-p>
                 cnoremap <Down> <C-n>
-
         " Visual shifting (does not exit Visual mode)
                 vnoremap < <gv
                 vnoremap > >gv
-
         " Allow using the repeat operator with a visual selection (!)
         " http://stackoverflow.com/a/8064607/127816
                 vnoremap . :normal .<CR>
-
         " For when you forget to sudo.. Really Write the file.
                 cmap w!! w !sudo tee % >/dev/null
-
         " switch to the directory of the open buffer
                 map cd :cd %:p:h<cr>
-
                 set nowrap
                 set mouse=a
-
         "-1-}}}
 
         "-AAA1.2--Demian-Conway-----------------------------------------------------------------{{{
@@ -206,13 +189,11 @@
                 set viminfo=h,'500,<10000,s1000,/1000,:1000
                 "set viminfo='100,\"100,:200,%,n~/.viminfo "help :viminfo, notice permis.n is wrong on viminfo
                 "====[ Toggle visibility of naughty characters ]============
-
                 " Make naughty characters visible...
                 " (uBB is right double angle, uB7 is middle dot)
                 "? set lcs=tab:»·,trail:␣,nbsp:˷
                 highlight InvisibleSpaces ctermfg=Blue ctermbg=Black
                 call matchadd('InvisibleSpaces', '\S\@<=\s\+\%#\ze\s*$', -10)
-
                 " Indent/outdent current block...
                 nmap %% $>i}``
                 nmap $$ $<i}``
@@ -248,7 +229,12 @@
                 endfunction
                 nnoremap <leader>s :ScratchToggle<cr>
                 command! ScratchToggle call ScratchToggle()
+                "<td><tr> new way </tr> </td>
+                "<td><tr> new way </tr> </td>
+                "<td><tr> new way </tr> </td>
+                "<td><tr> new way </tr> </td>
         "-2-}}}
+
 
         "-AAA3--CleanExtrSps--WindResiz--Jump---------------------------------------------------{{{
                 hi def DoubleSpace ctermbg=Blue
@@ -281,35 +267,35 @@
                         function! JumpToTagInSplit()
                                 call JumpToInSplit("normal! \<c-]>")
                         endfunction
+
                         nnoremap <C-]> :silent! call JumpToTag()<cr>
                         nnoremap <S-C-]> :silent! call JumpToTagInSplit()<cr>
                         nnoremap <C-g> :silent! call JumpToTagInSplit()<cr>
                         nnoremap <C-g> :silent! call JumpToTagInSplit()<cr>
-                """""""
+
                         function PreviewTag2(top)
-                        set previewheight=25
-                        exe "silent! pclose"
-                        if &previewwindow " don't do this in the preview window
-                                return
-                        endif
-                        let w = expand("<cword>") " get the word under cursor
-                        exe "ptjump " . w
-                        " if any non False arg, open in simple horiz window so simply return
-                        if a:top
-                                return
-                        endif
-                        " otherwise, make it vertical
-                        exe "silent! wincmd P"
-                        if &previewwindow " if we really get there...
-                                if has("folding")
-                                silent! .foldopen " don't want a closed fold
+                                set previewheight=25
+                                exe "silent! pclose"
+                                if &previewwindow " don't do this in the preview window
+                                        return
                                 endif
-                                wincmd L " move preview window to the left
-                                wincmd p " back to caller
-                                if !&previewwindow " got back
-                                wincmd _
+                                let w = expand("<cword>") " get the word under cursor
+                                exe "ptjump " . w
+                                " if any non False arg, open in simple horiz window so simply return
+                                if a:top
+                                        return
                                 endif
-                        endif
+                                " otherwise, make it vertical
+                                exe "silent! wincmd P"
+                                if &previewwindow " if we really get there...
+                                        if has("folding")
+                                                silent! .foldopen " don't want a closed fold
+                                        endif
+                                        wincmd L " move preview window to the left
+                                        wincmd p " back to caller
+                                        if !&previewwindow " got back
+                                                wincmd _ endif
+                                endif
                         endfunction
                 "inoremap <C-]> <Esc>:call PreviewTa2(0)<CR>
                 "nnoremap <C-]> :call PreviewTag2(0)<CR>
@@ -349,10 +335,8 @@
                 command! -bang WA wa<bang>
                 command! -bang Wq wq<bang>
                 command! -bang WQ wq<bang>
-
                 "DDD Unfuck my screen
                 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
-
                 " Bash like keys for the command line
                 " cnoremap <C-K> <C-U>
                 cnoremap <C-A> <Home>
@@ -376,7 +360,6 @@
                 cnoremap <C-g>          <C-c>
                 " <C-d>: delete char.
                 cnoremap <C-d>          <Del>
-
                 iabbrev yyy "------------------------------------------------------------------------
                 iabbrev str start
                 iabbrev supe superuser
@@ -663,7 +646,6 @@
                 endfunction
                 com! ShowMaps call s:ShowMaps()      " Enable :ShowMaps to call the function
                 nnoremap \m :ShowMaps<CR>            " Map keys to call the function
-
         "-16-vnoremap-}}}
 
         "-Complete------------------------------------------------------------------------------{{{
@@ -745,6 +727,7 @@
                 "-------------------------------------------------------------------------
                 " The Silver Searcher
                 if executable('ag')
+                        let g:ag_working_path_mode="r"
                         " Use ag over grep
                         set grepprg=ag\ --nogroup\ --nocolor
                         " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
@@ -753,7 +736,7 @@
                         let g:ctrlp_use_caching = 0
                 endif
 
-                let g:ctrlp_map='<c-p>'
+                let g:ctrlp_map='<c-q>'
                 let g:ctrlp_cmd = 'CtrlPMRU'
                 let g:ctrlp_extensions = ['tag']
                 let g:ctrlp_match_window_bottom = 0
@@ -764,29 +747,36 @@
                 let g:ctrlp_working_path_mode = 0
                 let g:ctrlp_working_path_mode = 'ar'
                 "-------------------------------------------------------------------------------
+                "let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+                "nnoremap <silent> <C-o> :let g:cpsm_match_empty_query = 0<CR>:CtrlPMRU<CR>
+                "nnoremap <silent> <C-p> :let g:cpsm_match_empty_query = 1<CR>:CtrlP<CR>
                 "-------------------------------------------------------------------------------
                 nmap <C-u> :Unite file buffer file_mru <CR>
-                nmap <M-u> :Unite file buffer file_mru <CR>
                 nnoremap <C-\> :Unite line<CR>
-                nnoremap <Leader>m :Unite file buffer file_mru <CR>
+                "nnoremap <Leader>u :Unite file buffer file_mru <CR>
                 nnoremap <Leader>\ :Unite grep<CR>
                 nnoremap <Leader>i :Unite -silent history/yank<CR>
                 nnoremap <Leader>h :UniteWithCursorWord -silent help<CR>
                 " buffer search--------------------------------------
                 nnoremap <Leader>f :Unite -silent -no-split -start-insert -auto-preview
                         \ line<CR>
-                "-outlines (also ctags)------------------------------------
-                nnoremap <Leader>t :Unite -silent -vertical -winwidth=40
-                                        \ -direction=topleft -toggle outline<CR>
-                "-???-Line------------------------------------------------------------
+                "-outlines (also ctags)-------------------------------------------
+                "nnoremap <Leader>t :Unite -silent -vertical -winwidth=40
+                "                        \ -direction=topleft -toggle outline<CR>
+                "-Line------------------------------------------------------------
                 nnoremap <Leader>v :UniteWithCursorWord -silent -no-split -auto-preview
                         \ line<CR>
                 "-------------------------------------------------------------------------------
-                " nnoremap <Leader>' :Unite file buffer bookmark file_mru history/yank file_rec <CR>
-                " call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-                " \ 'ignore_pattern', join([
-                " \ '\.git/',
-                " \ ], '\|'))
+                 nnoremap <Leader>' :Unite  buffer bookmark  <CR>
+                 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+                 \ 'ignore_pattern', join([
+                 \ '\.git/',
+                 \ ], '\|'))
+                 " nnoremap <Leader>' :Unite file buffer bookmark file_mru history/yank file_rec <CR>
+                 " call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+                 " \ 'ignore_pattern', join([
+                 " \ '\.git/',
+                 " \ ], '\|'))
                 "-------------------------------------------------------------------------------
                 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
                                         \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
@@ -849,14 +839,92 @@
         highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
         highlight TagListTagName    ctermfg=250
 "-surok----------------------------------------------------------------------------------------------------------------
+        let g:SuperTabDefaultCompletionType = "<c-n>"
+        let g:SuperTabContextDefaultCompletionType = "<c-n>"
 "-surok----------------------------------------------------------------------------------------------------------------
-        function! s:fzf_statusline()
-                " Override statusline as you like
-                highlight fzf1 ctermfg=161 ctermbg=1
-                highlight fzf2 ctermfg=23 ctermbg=1
-                highlight fzf2 ctermfg=237 ctermbg=1
-                setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+        "flag = false
+        let g:switch_mapping = "-"
+"-surok----------------------------------------------------------------------------------------------------------------
+        " | Action                                          | Shortcut    | Command                      |
+        " |-------------------------------------------------|-------------|------------------------------|
+        " | Add/remove bookmark at current line             | `mm`        | `:BookmarkToggle`            |
+        " | Add/edit/remove annotation at current line      | `mi`        | `:BookmarkAnnotate <TEXT>`   |
+        " | Jump to next bookmark in buffer                 | `mn`        | `:BookmarkNext`              |
+        " | Jump to previous bookmark in buffer             | `mp`        | `:BookmarkPrev`              |
+        " | Show all bookmarks (toggle)                     | `ma`        | `:BookmarkShowAll`           |
+        " | Clear bookmarks in current buffer only          | `mc`        | `:BookmarkClear`             |
+        " | Clear bookmarks in all buffers                  | `mx`        | `:BookmarkClearAll`          |
+        " | Move up bookmark at current line                | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
+        " | Move down bookmark at current line              | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
+        " | Move bookmark at current line to another line   | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
+        " | Save all bookmarks to a file                    |             | `:BookmarkSave <FILE_PATH>`  |
+        " | Load bookmarks from a file                      |             | `:BookmarkLoad <FILE_PATH>`  |
+        " |-------------------------------------------------|-------------|------------------------------|
+        "`let g:bookmark_sign = '>>'`                  
+        "`let g:bookmark_annotation_sign = '##'`       
+        "`let g:bookmark_save_per_working_dir = 1`     
+        "`let g:bookmark_manage_per_buffer = 1`        
+        "`let g:bookmark_auto_save_file = '/bookmarks'`
+        let g:bookmark_auto_close = 1
+        let g:bookmark_highlight_lines = 1          
+        let g:bookmark_show_warning = 0           
+        let g:bookmark_show_toggle_warning = 0      
+        let g:bookmark_sign = '♥'
+        let g:bookmark_highlight_lines = 1
+        let g:bookmark_save_per_working_dir = 1
+        let g:bookmark_auto_save = 1
+
+        nmap <Leader>m <Plug>BookmarkShowAll
+
+        call unite#custom#profile('source/vim_bookmarks', 'context', {
+                                \   'winheight': 13,
+                                \   'direction': 'botright',
+                                \   'start_insert': 0,
+                                \   'keep_focus': 1,
+                                \   'no_quit': 1,
+                                \ })
+
+        let g:bookmark_no_default_key_mappings = 1
+        function! BookmarkMapKeys()
+                nmap mm :BookmarkToggle<CR>
+                nmap mi :BookmarkAnnotate<CR>
+                nmap mn :BookmarkNext<CR>
+                nmap mp :BookmarkPrev<CR>
+                nmap ma :BookmarkShowAll<CR>
+                nmap mc :BookmarkClear<CR>
+                nmap mx :BookmarkClearAll<CR>
+                nmap mkk :BookmarkMoveUp
+                nmap mjj :BookmarkMoveDown
         endfunction
-        autocmd! User FzfStatusLine call <SID>fzf_statusline()
-"-surok----------------------------------------------------------------------------------------------------------------
-"-surok----------------------------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------ 
+        function! BookmarkUnmapKeys()
+                unmap mm
+                unmap mi
+                unmap mn
+                unmap mp
+                unmap ma
+                unmap mc
+                unmap mx
+                unmap mkk
+                unmap mjj
+        endfunction
+        autocmd BufEnter * :call BookmarkMapKeys()
+        autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+        "---XXX-???--------------------------------------------------------------------
+        nnoremap <leader>j :call g:CursorHistForward()<CR>
+        nnoremap <leader>k :call g:CursorHistBack()<CR>
+
+
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
+        " if ! exists('g:TagHighlightSettings')
+        "         let g:TagHighlightSettings = {}
+        " endif
+        " let g:TagHighlightSettings['ForcedPythonVariant'] = 'if_pyth'
+        " let g:TagHighlightSettings['CtagsExecutable'] = 'etags'
+        "------------------------------------------------------------------------ 
+        " if ! exists('g:TagHighlightSettings')
+        "         let g:TagHighlightSettings = {}
+        " endif
+        " let g:TagHighlightSettings['TagFileName'] = 'tags'
+        "------------------------------------------------------------------------ 
+

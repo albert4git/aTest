@@ -28,8 +28,8 @@
         "highlight CursorLine ctermbg=0 term=bold
         highlight LineNr ctermfg=1 ctermbg=120
         set nuw =5
-        highlight cursorcolumn ctermbg=0
-        highlight CursorLine ctermbg=0
+        highlight cursorcolumn ctermbg=22
+        highlight CursorLine ctermbg=22
         highlight Cursor ctermbg=1 term= bold
         highlight Normal ctermbg=234 "-!!!-XXX-
         "-------------------------------------------------------------------------------
@@ -37,7 +37,7 @@
                 "use an orange cursor in insert mode
                 let &t_SI = "\<Esc>]12;orange\x7"
                 "use a red cursor otherwise
-                let &t_EI = "\<Esc>]12;green\x7"
+                let &t_EI = "\<Esc>]12;cyan\x7"
                 silent !echo -ne "\033]12;green\007"
                 "reset cursor when vim exits
                 autocmd VimLeave * silent !echo -ne "\033]112\007"

@@ -1,38 +1,69 @@
 " Typing: ci', ci", or ci)
 "--------------------------GVIM-------------------------------------------------
 call plug#begin('~/.vim/plugged')
-    "---TESTED----
+    "---TESTED-----------------------------------------
     Plug 'kien/ctrlp.vim'
-    Plug 'tpope/vim-unimpaired'     " Handy bracket mappings.
-    "---PreTESTED----
+    Plug 'tpope/vim-unimpaired'  " Handy bracket mappings.
+    "---PreTESTED--------------------------------------
     Plug 'mtth/scratch.vim'
-    "---TODO-------
+    "---TODO--------------------------------------------
     Plug 'tpope/vim-fugitive'
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    "---NEW--------
-    Plug '/yssl/QFEnter'
+    "---NEW----------------------------------------------
+    Plug 'yssl/QFEnter'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'henrik/git-grep-vim'
     Plug 'henrik/vim-qargs'
     Plug 'mileszs/ack.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'vim-scripts/YankRing.vim'
-    " Plug 'kana/vim-textobj-user'
-    " Plug 'glts/vim-textobj-indblock'
-    " Plug 'gilligan/textobj-gitgutter'
-    " Plug 'kana/vim-textobj-line'
-    " Plug 'paulhybryant/vim-textobj-path'
-    " Plug 'saaguero/vim-textobj-pastedtext'
-    " Plug 'killphi/vim-textobj-signify-hunk'
-    " Plug 'beloglazov/vim-textobj-quotes'
+    "---New-Txt-Object-----------------------------------
+
+    Plug 'reedes/vim-textobj-sentence'
+    Plug 'sgur/vim-textobj-parameter'
+    Plug 'adriaanzon/vim-textobj-matchit'
+    Plug 'vimtaku/vim-textobj-keyvalue'
+    Plug 'kana/vim-textobj-lastpat'
+    Plug 'kana/vim-textobj-function'
+    Plug 'kana/vim-textobj-fold'
+    Plug 'whatyouhide/vim-textobj-erb'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-diff'
+    Plug 'rhysd/vim-textobj-continuous-line'
+    Plug 'Julian/vim-textobj-brace'
+    Plug 'deathlyfrantic/vim-textobj-blanklines'
+    Plug 'kana/vim-textobj-user'
+     Plug 'beloglazov/vim-textobj-quotes'
+     Plug 'kana/vim-textobj-line'
+     Plug 'glts/vim-textobj-indblock'
+     Plug 'jceb/vim-textobj-uri'
+     Plug 'mattn/vim-textobj-url'
+     Plug 'Julian/vim-textobj-variable-segment'
+     Plug 'whatyouhide/vim-textobj-xmlattr'
+     Plug 'rsrchboy/vim-textobj-heredocs'
+     Plug 'michaeljsmith/vim-indent-object'
+     Plug 'Yggdroot/indentLine'
+     "-------------------------------------
+     Plug 'vim-scripts/c.vim'
+     Plug 'romainl/vim-qf'
+     Plug 'sk1418/QFGrep'
+     Plug 'AndrewRadev/qftools.vim'
+     Plug 'itchyny/vim-qfedit'
+     Plug 'jceb/vim-editqf'
+     Plug 'xero/sourcerer.vim'
+    "-------------------------------------
+     Plug 'killphi/vim-textobj-signify-hunk'
+     Plug 'gilligan/textobj-gitgutter'
+     Plug 'paulhybryant/vim-textobj-path'
+     Plug 'saaguero/vim-textobj-pastedtext'
     "Plug ''
-    "---2EXPLORE---
+    "---2EXPLORE--------------------------
     "Plug 'junegunn/seoul256.vim'
     "Plug 'bkad/CamelCaseMotion'
     "Plug 'tpope/vim-sensible'
-    Plug 'vim-scripts/marvim'
+    "!"Plug 'vim-scripts/marvim'
     Plug 'gergap/keystroke'
     Plug 'kshenoy/vim-signature'
     Plug 'flazz/vim-colorschemes'
@@ -98,7 +129,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kmnk/vim-unite-giti'
     Plug 'cskeeters/unite-fzf'
     Plug 'tsukkee/unite-tag'
-    Plug'SpaceVim/unite-ctags'
+    Plug 'SpaceVim/unite-ctags'
     Plug 'Shougo/unite-outline/'
     Plug 'tsukkee/unite-help'
 

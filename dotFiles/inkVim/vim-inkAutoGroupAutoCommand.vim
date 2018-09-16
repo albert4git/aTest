@@ -1,14 +1,14 @@
 
-        augroup ft_quickfix
-                au!
-                au filetype qf setlocal colorcolumn=1,2,3,4,5,6,7,8,9,10,11,12 nolist cursorline nowrap tw=0
-                "au filetype qf highlight ColorColumn ctermbg=2
-                "au filetype qf highlight CursorColumn ctermbg=White
-                au filetype qf highlight CursorLine ctermbg=DarkGray term=bold cterm=bold
-                "au filetype qf hi Normal ctermbg=DarkBlue
-                "!!!Vimscript is a joke
-                "au filetype qf nnoremap <buffer> <cr> :execute "normal! \<lt>cr>"<cr>
-                "au filetype qf highlight ColorColumn ctermbg=220
+        augroup ft_quickfix au! au filetype qf setlocal
+                "colorcolumn=1,2,3,4,5,6,7,8,9,10,11,12 nolist cursorline
+                "nowrap tw=0
+                "au filetype qf highlight ColorColumn ctermbg=2 au filetype qf
+                "highlight CursorColumn ctermbg=White
+                au filetype qf highlight CursorLine ctermbg=DarkGray term=bold
+                "au filetype qf hi Normal ctermbg=DarkBlue !!!Vimscript is a
+                "joke au filetype qf nnoremap <buffer> <cr> :execute "normal!
+                "\<lt>cr>"<cr> au filetype qf highlight ColorColumn
+                "ctermbg=220
         augroup end
 
 
@@ -72,11 +72,6 @@
                 au!
                 "au BufWritePre * call mkdirondemand#doit()
         augroup END
-
-        if ! exists('g:TagHighlightSettings')
-                let g:TagHighlightSettings = {}
-        endif
-        let g:TagHighlightSettings['TagFileName'] = 'tags'
 
 
         "My stuff ------------------------------
