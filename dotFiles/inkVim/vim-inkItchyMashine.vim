@@ -202,6 +202,8 @@
         "-AAA2--F12-TagbarToggle--F2-Help--cTAG--F3-SCRATCH--F4-ZYIW--<L>s-Sign-----------------{{{
                 "-???- set pastetoggle=<Fxxx>
                 nnoremap <F12> :TagbarToggle<CR>
+                autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+                autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
                 "-???------------------------------------------------------------------------------
                 "-open-ctag in tab/vertical split
                 "-map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -212,8 +214,6 @@
                  map <F5> "zyiw:exe "vs ".@z.""<CR>
                  map <S-F5> "zyiw<C-w>wo<Esc>"zp<C-w>w
                  map <C-F5> "zY<C-w>wo<Esc>"zp<C-w>w
-                autocmd filetype vim noremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
-                autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
 
                 map <C-F12> :Scratch<CR>
                 map <S-F12> :ScratchPreview<CR>
@@ -916,6 +916,8 @@
 
 
 "-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
         " if ! exists('g:TagHighlightSettings')
         "         let g:TagHighlightSettings = {}
         " endif
@@ -926,5 +928,7 @@
         "         let g:TagHighlightSettings = {}
         " endif
         " let g:TagHighlightSettings['TagFileName'] = 'tags'
-        "------------------------------------------------------------------------ 
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
+"-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
 

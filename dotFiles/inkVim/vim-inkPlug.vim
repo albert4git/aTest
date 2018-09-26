@@ -19,10 +19,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'mileszs/ack.vim'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'vim-scripts/YankRing.vim'
-    "---New-Txt-Object-----------------------------------
-
-    Plug 'reedes/vim-textobj-sentence'
+    "-NewNew---------------------------------------------
+    Plug 'haya14busa/vim-easyoperator-line'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'unblevable/quick-scope' "---New-Txt-Object-----------------------------------------------------
     Plug 'sgur/vim-textobj-parameter'
+     Plug 'saaguero/vim-textobj-pastedtext'
+    Plug 'reedes/vim-textobj-sentence'
     Plug 'adriaanzon/vim-textobj-matchit'
     Plug 'vimtaku/vim-textobj-keyvalue'
     Plug 'kana/vim-textobj-lastpat'
@@ -38,14 +41,15 @@ call plug#begin('~/.vim/plugged')
      Plug 'beloglazov/vim-textobj-quotes'
      Plug 'kana/vim-textobj-line'
      Plug 'glts/vim-textobj-indblock'
-     Plug 'jceb/vim-textobj-uri'
-     Plug 'mattn/vim-textobj-url'
      Plug 'Julian/vim-textobj-variable-segment'
      Plug 'whatyouhide/vim-textobj-xmlattr'
      Plug 'rsrchboy/vim-textobj-heredocs'
+    " Plug 'paulhybryant/vim-textobj-path'
+     "Plug 'jceb/vim-textobj-uri'
+     "Plug 'mattn/vim-textobj-url'
+     "------------------------------------------------------------------------ 
      Plug 'michaeljsmith/vim-indent-object'
      Plug 'Yggdroot/indentLine'
-     "-------------------------------------
      Plug 'vim-scripts/c.vim'
      Plug 'romainl/vim-qf'
      Plug 'sk1418/QFGrep'
@@ -53,14 +57,11 @@ call plug#begin('~/.vim/plugged')
      Plug 'itchyny/vim-qfedit'
      Plug 'jceb/vim-editqf'
      Plug 'xero/sourcerer.vim'
-    "-------------------------------------
+    "----------
      Plug 'killphi/vim-textobj-signify-hunk'
      Plug 'gilligan/textobj-gitgutter'
-     Plug 'paulhybryant/vim-textobj-path'
-     Plug 'saaguero/vim-textobj-pastedtext'
     "Plug ''
-    "---2EXPLORE--------------------------
-    "Plug 'junegunn/seoul256.vim'
+    "---2EXPLORE---
     "Plug 'bkad/CamelCaseMotion'
     "Plug 'tpope/vim-sensible'
     "!"Plug 'vim-scripts/marvim'
@@ -127,7 +128,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'brooth/far.vim'
     Plug 'Shougo/unite.vim' " One plugin to unite them all. Cool utilities
     Plug 'kmnk/vim-unite-giti'
-    Plug 'cskeeters/unite-fzf'
+
+    Plug 'junegunn/seoul256.vim'
+        Plug 'junegunn/fzf'
+        Plug 'junegunn/fzf.vim'
+        Plug 'pbogut/fzf-mru.vim'
+        Plug 'cskeeters/unite-fzf'
+
     Plug 'tsukkee/unite-tag'
     Plug 'SpaceVim/unite-ctags'
     Plug 'Shougo/unite-outline/'
@@ -143,8 +150,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'janko-m/vim-test'
     Plug 'neomake/neomake'
     Plug 'tpope/vim-sleuth'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
+
     "!"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
     Plug 'AndrewRadev/undoquit.vim'
     Plug 'MattesGroeger/vim-bookmarks'
@@ -168,4 +174,5 @@ call plug#begin('~/.vim/plugged')
     Plug 'bronson/vim-crosshairs'
     Plug 'fergdev/vim-cursor-hist'
     Plug 'brookhong/cscope.vim'
+    Plug 'abudden/EasyColour'
 call plug#end()

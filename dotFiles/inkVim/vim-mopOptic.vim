@@ -1,3 +1,12 @@
+        " highlight clear ColorColumn
+        " highlight clear SignColumn      " SignColumn should match background
+        " highlight clear LineNr          " Current line number row will have same background color in relative mode
+        "-----------------------------------------------------------
+        " function! LightlineFilename()
+        "         let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+        "         let modified = &modified ? ' +M' : ''
+        "         return filename . modified
+        " endfunction
         "-------------------------------------------------------------------
         "TODO TST  ERR  Albert TRUMP
         match  Todo / TODO /
@@ -19,84 +28,7 @@
                 digraph '' 8221               " right double quotation mark
                 digraph ,, 8222               " double low-9 quotation mark
         endif
-        "-----------------------------------------------------------
-        "Airline
-        let g:ctags_statusline=1
-        let generate_tags=1
-        set noshowmode
-        set showcmd      " Show partial commands in status line and
-        "----------------------------------------
-        let g:airline#extensions#tabline#enabled = 2
-        let g:airline#extensions#tabline#fnamemod = ':t'
-        let g:airline#extensions#tabline#buffer_min_count = 1
-        let g:airline_section_c = '%{strftime("%D - %H:%M")}'
-        """"
-        """"
-        "let g:airline_theme='powerlineish'
-        "let g:airline_theme='wombat'
-        "let g:airline_theme='badwolf'
-        "let g:airline_theme='sol'
-        "let g:airline_theme='solarized'
-        let g:airline_theme='light'
 
-        let g:airline_powerline_fonts=1
-        let g:airline#extensions#branch#enabled=1
-        let g:airline#extensions#whitespace#enabled = 1
-        let g:airline#extensions#hunks#non_zero_only = 1
-        "-----------------------------------------------------------
-        function! LightlineFilename()
-                let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-                let modified = &modified ? ' +M' : ''
-                return filename . modified
-        endfunction
-        "-----------------------------------------------------------
-        hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
-        hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
-        "--------------------------------------------------------------
-        "for less intrusive signs
-        "highlight SignColumn ctermbg=255 guibg=#ffffd7
-        "--------------------------------------------------------------
-        if exists("*gitgutter#highlight#define_highlights")
-                " let vim-gitgutter know we changed the SignColumn colors!
-                call gitgutter#highlight#define_highlights()
-        endif
-        "highlight LineNr ctermfg=1 ctermbg=6
-        highlight LineNr ctermfg=5
-
-        "easier on the eyes
-        highlight Folded ctermbg=0
-
-        "set fillchars=vert:│,fold:-
-        highlight VertSplit cterm=reverse ctermbg=150
-
-        set tabpagemax=15               " Only show 15 tabs
-        set showmode                    " Display the current mode
-        set cursorline                  " Highlight current line
-        set colorcolumn=1,8,16,24,100,120
-        highlight clear ColorColumn
-        "highlight ColorColumn term=reverse ctermbg=1 guibg=DarkGray
-        highlight ColorColumn ctermbg=DarkGray
-        highlight clear SignColumn      " SignColumn should match background
-        "hi SignColumn ctermbg =0
-        highlight clear LineNr          " Current line number row will have same background color in relative mode
-        set showcmd                     " Show partial commands in status line and
-        set ruler                       " Show the ruler
-        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-
-        "suppress intro message because the above makes it look bad
-        set shortmess+=I
-        highlight ErrorMsg              guifg=red guibg=white
-        "fold column aka gutter on the left
-        highlight FoldColumn ctermbg=5 ctermfg=0 guibg=#ffffd7
-        "easier on the eyes
-        highlight Folded ctermbg=6 guibg=#ffffaf
-        "cursor column
-        highlight CursorColumn ctermbg=7
-        "avoid invisible color combination (red on red)
-        highlight DiffText ctermbg=1
-        " gutter on the right of the text
-        highlight ColorColumn ctermbg=5
-        hi Search ctermbg=yellow
         "-------------------------------------------------------------------------------
         "set fillchars=vert:│,fold:-
         highlight VertSplit cterm=reverse ctermbg=150

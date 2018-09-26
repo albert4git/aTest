@@ -70,6 +70,7 @@ ln -b king18/18-gitconfig.AB     ~/.gitconfig
 ln -b king18/18-gitignore.AB     ~/.gitignore
 ls -a ~/
 
+#---------------------------------------------------
 ln -b  ~/git/aTest/2run/vim-plug.vim           ~/vim-plug.vim
 ln -b  ~/git/aTest/2run/vim-preSet.vim         ~/vim-preSet.vim
 
@@ -88,6 +89,11 @@ ln -b  ~/git/aTest/2run/viminfo                ~/viminfo
 ln -b  ~/git/aTest/2run/vim-1lab.vim         ~/vim-1lab.vim
 ln -b  ~/git/aTest/2run/vim-2lab.vim         ~/vim-2lab.vim
 ln -b  ~/git/aTest/2run/vim-3lab.vim         ~/vim-3lab.vim
+#---------------------------------------------------
+
+
+ln -b  ~/git/aTest/dotFiles/inkVim/vimrc-ink.vim ~/.vimrc
+
 
 ls ~/vim-*
 ls ~/git/dot-vim-mpi/
