@@ -41,6 +41,12 @@
                 autocmd SwapExists * sleep 2
         augroup END
 
+        " Make fugitive's fake buffers visually distinguishable
+        augroup MakeFugitiveVisible
+                au!
+                au BufNew,BufReadPost fugitive://* Margin 0
+        augroup END
+
 
         "====[ Edit and auto-update this config file and plugins ]==========
 
@@ -48,7 +54,6 @@
                 autocmd!
                 autocmd BufWritePost $MYVIMRC source $MYVIMRC
         augroup END
-
 
         augroup VisibleNaughtiness
                 autocmd!
@@ -74,11 +79,6 @@
         augroup END
 
 
-        "My stuff ------------------------------
-        autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r <CR>
-        autocmd filetype cpp nnoremap<F7> :!g++ % -ggdb -o %:r && ./%:r <CR>
-        autocmd filetype cpp nnoremap<F7> :!g++ % -ggdb -o %:r && gdb -tui %:r <CR>
-
         " Auto format codes
         "noremap <F7> :Autoformat<CR>
         """ formatt upon saving
@@ -89,6 +89,32 @@
                 autocmd WinLeave * hi LineNr ctermfg=274 guifg=#e9e9e9 ctermbg=133 guibg=#212121
         augroup END
 
+        augroup configgroup
+                autocmd!
+                autocmd VimEnter * highlight clear SignColumn
+                autocmd BufWritePre *.php, *.py, *.js, *.txt, *.hs, *.java, *.md
+                \:call <SID>StripTrailingWhitespaces()
+                autocmd FileType java setlocal noexpandtab
+                autocmd FileType java setlocal list
+                autocmd FileType java setlocal listchars=tab:+\ ,eol:-
+                autocmd FileType java setlocal formatprg=par\ -w80\ -T4
+                autocmd FileType php setlocal expandtab
+                autocmd FileType php setlocal list
+                autocmd FileType php setlocal listchars=tab:+\ ,eol:-
+                autocmd FileType php setlocal formatprg=par\ -w80\ -T4
+                autocmd FileType ruby setlocal tabstop=2
+                autocmd FileType ruby setlocal shiftwidth=2
+                autocmd FileType ruby setlocal softtabstop=2
+                autocmd FileType ruby setlocal commentstring=#\ %s
+                autocmd FileType python setlocal commentstring=#\ %s
+                autocmd BufEnter *.cls setlocal filetype=java
+                autocmd BufEnter *.zsh-theme setlocal filetype=zsh
+                autocmd BufEnter Makefile setlocal noexpandtab
+                autocmd BufEnter *.sh setlocal tabstop=2
+                autocmd BufEnter *.sh setlocal shiftwidth=2
+                autocmd BufEnter *.sh setlocal softtabstop=2
+        augroup END
+
         "------------------------------------------------------------------------ 
         " let g:qfenter_keymap = {}
         " let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
@@ -97,8 +123,8 @@
         " let g:qfenter_keymap.topen = ['<Leader><Tab>']
         "
         " If you're a CtrlP user, for instance, you might like these for familiarity:
+        " let g:qfenter_keymap = {}
+        " let g:qfenter_keymap.vopen = ['<C-v>']
+        " let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+        " let g:qfenter_keymap.topen = ['<C-t>']
 
-        let g:qfenter_keymap = {}
-        let g:qfenter_keymap.vopen = ['<C-v>']
-        let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
-        let g:qfenter_keymap.topen = ['<C-t>']

@@ -1,9 +1,4 @@
         "-------------------------------------------------------------------------------------------
-        "                 __   _(_)_ __ ___  _ __ ___
-        "                 \ \ / / | '_ ` _ \| '__/ __|
-        "                  \ V /| | | | | | | | | (__
-        "                   \_/ |_|_| |_| |_|_|  \___|
-        "-------------------------------------------------------------------------------------------
         " ln -s /usr/etc/vim_settings/vimrc /home/user/.vimrc
         " ln -s /usr/etc/vim_settings/vim /home/user/.vim
         "------------------------------------------------
@@ -28,8 +23,19 @@
         "     set thesaurus+=~/Documents/thesaurus "Add thesaurus file for ^X^T
         "     set dictionary+=~/Documents/dictionary "Add dictionary file for ^X^K
         "-------------------------------------------------------------------------------------------
+        "let $VIMHOME='~/13-ErrShift-Vim'
+        "let &runtimepath='~/13-ErrShift-Vim'
+        "let $MYVIMRC='/path/to/vimdir/vimrc'
         "let MYVIMRC ='~/.vimrc'
         "set dictionary=/usr/share/
+        "cnoremap <Up> <Nope>
+        "cnoremap <Down> <Nope>
+        "cnoremap <Left> <Nope>
+        "cnoremap <Right> <Nope>
+        "-------------------------------------------------------------------------------------------
+        "-------------------------------------------------------------------------------------------
+        "-------------------------------------------------------------------------------------------
+
         set path+=.,/usr/include,/usr/local/include
         set thesaurus=mthesaur.txt
         set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
@@ -72,8 +78,10 @@
         "!!!" IndentGuidesDisable "!!!"
         "!!!" IndentGuidesToggle  "!!!"
         let g:indent_guides_auto_colors = 0
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray26 ctermbg=238
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray33 ctermbg=247
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=238
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=247
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=200
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=120
 
 "-TOP-------------------------------------------------------------------------------------------------------------------
         highlight BookmarkSign ctermbg=9 ctermfg=1
@@ -90,16 +98,21 @@
         set cursorcolumn
         let w:persistent_cursorline = 1
         "hi Search                      ctermbg=10
-        hi CursorColumn                ctermbg=16
+        hi Pmenue                      ctermbg=16
+        hi Pmenue                      ctermfg=11
         hi CursorLine                  ctermbg=16
-        hi ColorColumn                 ctermbg=23
-        set colorcolumn=1,8,16,24,100,120
+        hi CursorColumn                ctermbg=16
+        hi ColorColumn                 ctermbg=25
+        hi ColorColumn                 ctermbg=52
+        set colorcolumn=1,8,92,100,112,120
         hi LineNr ctermfg=1 ctermbg=123 
-        hi Normal  ctermbg=236
+        hi Normal  ctermbg=235
         let g:indentLine_color_term = 133
         set nuw =5
         "highlight Cursor ctermbg=1 term= bold
 "-TOP-------------------------------------------------------------------------------------------------------------------
+        "brackets show match
+        set nosm
         set nowrap
         set wmh=0
         "-------------------------------------------------------------------------------
@@ -113,9 +126,6 @@
         nnoremap <S-k> :bp<cr>
         nnoremap <m-j> :bn<cr>
         nnoremap <m-k> :bp<cr>
-        "-------------------------------------------------------------------------------
-        "brackets show match
-        set nosm
         "-------------------------------------------------------------------------------
         highlight Visual cterm=bold ctermbg=0 ctermfg=NONE
 "-TOP-------------------------------------------------------------------------------------------------------------------
@@ -140,7 +150,6 @@
         "-----------------------------------------------------------
         hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
         hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
-"-TOP-------------------------------------------------------------------------------------------------------------------
 
 "-AAA---------------------------------------------------------------------------------------------------------------{{{
         "suppress intro message because the above makes it look bad
@@ -158,34 +167,26 @@
         nnoremap <leader>j :call g:CursorHistForward()<CR>
         nnoremap <leader>k :call g:CursorHistBack()<CR>
 "-TOP-------------------------------------------------------------------------------------------------------------------
+        let g:EasyMotion_smartcase = 1
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
         "nmap <Leader>/ <Plug>(easymotion-w)
-        nmap <LocalLeader><LocalLeader> <Plug>(easymotion-w)
         "map  <Leader>w <Plug>(easymotion-bd-w)
-        nmap <Leader>w <Plug>(easymotion-overwin-w)
+        "------------------------------------------------------------------------ 
         nmap s <Plug>(easymotion-s)
+        omap <LocalLeader>l  <Plug>(easyoperator-line-select)
+        xmap <LocalLeader>l  <Plug>(easyoperator-line-select)
+        nmap <LocalLeader>w <Plug>(easymotion-overwin-w)
+        nmap <LocalLeader><LocalLeader> <Plug>(easymotion-w)
 "-TOP-------------------------------------------------------------------------------------------------------------------
-        omap <Leader>l  <Plug>(easyoperator-line-select)
-        xmap <Leader>l  <Plug>(easyoperator-line-select)
+        "inoremap <expr>  <C-K>   BDG_GetDigraph()   ##
 "-TOP-------------------------------------------------------------------------------------------------------------------
-        "test
-        " Trigger a highlight in the appropriate direction when pressing these keys:
-        " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-        " let g:qs_highlight_on_keys = ['b']
-        "test
-"-}}}
-
-"-TOP-------------------------------------------------------------------------------------------------------------------
-    inoremap <expr>  <C-K>   BDG_GetDigraph()   ##
-
-"------------------------------------------------------------------------ 
-         if ! exists('g:TagHighlightSettings')
-                 let g:TagHighlightSettings = {}
-         endif
-         let g:TagHighlightSettings['TagFileName'] = 'tags'
-  
+        if ! exists('g:TagHighlightSettings')
+                let g:TagHighlightSettings = {}
+        endif
+        let g:TagHighlightSettings['TagFileName'] = 'tags'
         let g:TagHighlightSettings = {'TagFileName': 'tags', 'CtagsExecutable': 'etags.exe'}
-  
-  
-"   let &runtimepath='/path/to/vimdir'
-" let $VIMHOME='/path/to/vimdir'
-" let $MYVIMRC='/path/to/vimdir/vimrc'
+
+
+
+
+

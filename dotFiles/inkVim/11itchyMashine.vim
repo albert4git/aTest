@@ -4,25 +4,16 @@
         let s:sessionfile = expand(s:sessiondir . "/session.vim", 1)
         let s:sessionlock = expand(s:sessiondir . "/session.lock", 1)
 "-surok----------------------------------------------------------------------------------------------------------------
-                "Toggle line numbers
-                nnoremap <LocalLeader>n :setlocal number!<cr>
-                "Indent/dedent/autoindent what you just pasted.
-                nnoremap <lt>> V`]<
-                nnoremap ><lt> V`]>
-                nnoremap =- V`]=
+        "Toggle line numbers
+        nnoremap <LocalLeader>n :setlocal number!<cr>
+        "Indent/dedent/autoindent what you just pasted.
+        nnoremap <lt>> V`]<
+        nnoremap ><lt> V`]>
+        nnoremap =- V`]=
 "-surok----------------------------------------------------------------------------------------------------------------
-"                        (_)            __   _(_)_ __ ___             (_)
-"                        / |  itchy     \ \ / / | '_ ` _ \            / |
-"                        | |             \ V /| | | | | | |           | |
-"                        |_|            (_)_/ |_|_| |_| |__|          |_|
-"-surok----------------------------------------------------------------------------------------------------------------
-" Monospace
-"-surok----------------------------------------------------------------------------------------------------------------
-        """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "!" map <LocalLeader>s :source $MYVIMRC<CR>
         "!" map <LocalLeader>v :e $MYVIMRC<CR>
         """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
         function! ScratchToggle()
                 if exists("w:is_scratch_window")
                         unlet w:is_scratch_window
@@ -34,38 +25,6 @@
         endfunction
         "nnoremap <leader>s :ScratchToggle<cr>
         command! ScratchToggle call ScratchToggle()
-
-
-
-
-        "-AAA6--thesaur--Complet-Ulti-NeoSnipp--NeoComp--C-s-FZF-Compl-Line--Pumheight--Preview-{{{
-                "-TODO- 
-                if has("eval")
-                        " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
-                        let g:UltiSnipsJumpForwardTrigger="<tab>"
-                        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-                        "-???-
-                        let g:UltiSnipsListSnippets="<C-R><tab>"
-                endif
-                        imap <C-b>    <Plug>(neosnippet_expand_or_jump)
-                        smap <C-b>    <Plug>(neosnippet_expand_or_jump)
-                        xmap <C-b>    <Plug>(neosnippet_expand_target)
-                        set omnifunc=syntaxcomplete#Complete
-
-                if !exists('g:neocomplete#force_omni_input_patterns')
-                        let g:neocomplete#force_omni_input_patterns = {}
-                endif
-
-                "-[preview]-window
-                set previewheight=15
-                set report=0 " always report changed lines
-                "-------------------------------------------------------------------------------
-                nnoremap <silent> vv <C-w>v
-                "----------------------------------------------------------------------------------
-                "-Line Transporter-
-                nnoremap <C-down> :m .+1<CR>==
-                nnoremap <C-up> :m .-2<CR>==
-        "-6-}}}
 
         "-AAA7--Deoplete------------------------------------------------------------------------{{{
                 let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-6.0/lib/libclang.so.1"
@@ -166,11 +125,6 @@
                         nnoremap <silent> <Leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
         "-10-}}}
 
-
-        
-        " cyan
-        highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
-        highlight TagListTagName    ctermfg=250
 "-surok----------------------------------------------------------------------------------------------------------------
         let g:SuperTabDefaultCompletionType = "<c-n>"
         let g:SuperTabContextDefaultCompletionType = "<c-n>"
@@ -178,26 +132,6 @@
         "flag = false
         let g:switch_mapping = "-"
 "-surok----------------------------------------------------------------------------------------------------------------
-
-        "func   OnlineDoc8()
-
-        " |-------------|------------------------------|
-        " | Shortcut    | Command                      |
-        " |-------------|------------------------------|
-        " | `mm`        | `:BookmarkToggle`            |
-        " | `mi`        | `:BookmarkAnnotate <TEXT>`   |
-        " | `mn`        | `:BookmarkNext`              |
-        " | `mp`        | `:BookmarkPrev`              |
-        " | `ma`        | `:BookmarkShowAll`           |
-        " | `mc`        | `:BookmarkClear`             |
-        " | `mx`        | `:BookmarkClearAll`          |
-        " | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
-        " | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
-        " | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
-        " |             | `:BookmarkSave <FILE_PATH>`  |
-        " |             | `:BookmarkLoad <FILE_PATH>`  |
-        " |-------------|------------------------------|
-
         "-TOPModel-Qute:cq-dq-yq--il/al--Date:id/it---Indent:io----------------------------------
         " [daf] to Delete A Function, and
         " [vif] to Visually select the code Inside a Function.
@@ -211,7 +145,6 @@
         " gag  :to search the selected text
         " -vio-"
         " -viO-"
-
         " -viq-"
         "'-cq-'"
         "'-cq-'"
@@ -232,7 +165,6 @@
         "------------------------------------------------------------------------------------------
         " 14/09/18 14:13:00 
         " ad/id to select a date such as 2013-03-16, and define at/it to select a time such as 22:04:21:
-        " ad/id to select a date such as 2013-03-16, and define at/it to select a time such as 22:04:21:
         "------------------------------------------------------------------------------------------
 
         " * `as` - select ‘_around_’ sentence with trailing whitespace
@@ -243,7 +175,6 @@
         " ? `g)` - jump to end of current sentence
         " ? `g(` - jump to end of previous sentence
 
- 
         " You can manipulate text just as with Vim’s original `as` and `is`
         " commands, such as 
         "  cis for change,
@@ -258,22 +189,15 @@
         " let g:textobj#sentence#move_p = '('
         " let g:textobj#sentence#move_n = ')'
 
-
-"-TOP-------------------------------------------------------------------------------------------------------------------
-"       Trigger a highlight in the appropriate direction when pressing these keys:
-"       let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-"       let g:qs_highlight_on_keys = ['b']
-"-TOP-------------------------------------------------------------------------------------------------------------------
-
 "-surok----Nop Phython 2.6+--------------------------------------------------------------------------------------------
         " if ! exists('g:TagHighlightSettings')
         "         let g:TagHighlightSettings = {}
         " endif
         " let g:TagHighlightSettings['ForcedPythonVariant'] = 'if_pyth'
         " let g:TagHighlightSettings['CtagsExecutable'] = 'etags'
-        "--BBB------------------------------------------------------------------- 
-        if ! exists('g:TagHighlightSettings')
-                let g:TagHighlightSettings = {}
-        endif
-        let g:TagHighlightSettings['TagFileName'] = 'tags'
-        "------------------------------------------------------------------------ 
+"--BBB------------------------------------------------------------------- 
+if ! exists('g:TagHighlightSettings')
+        let g:TagHighlightSettings = {}
+endif
+let g:TagHighlightSettings['TagFileName'] = 'tags'
+"------------------------------------------------------------------------ 

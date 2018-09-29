@@ -505,6 +505,7 @@
                 call deoplete#custom#source('syntax',        'mark', '♯')
                 call deoplete#custom#source('member', 'mark', '.')
 
+                call deoplete#custom#source('dictionary',    'rank', 310)
         "-7-}}}
 
         "-AAA8--QuickRun--Compiler-CPP-Java--------------------------------------------------------{{{
@@ -873,9 +874,9 @@
         let g:bookmark_highlight_lines = 1
         let g:bookmark_save_per_working_dir = 1
         let g:bookmark_auto_save = 1
-
+        "------------------------------------------------------------------------ 
         nmap <Leader>m <Plug>BookmarkShowAll
-
+        "------------------------------------------------------------------------ 
         call unite#custom#profile('source/vim_bookmarks', 'context', {
                                 \   'winheight': 13,
                                 \   'direction': 'botright',

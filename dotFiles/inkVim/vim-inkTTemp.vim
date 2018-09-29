@@ -109,11 +109,6 @@
 " endif
 "
 " "---------------------------------------------------------------------------------
-" " Make fugitive's fake buffers visually distinguishable
-" augroup MakeFugitiveVisible
-" au!
-" au BufNew,BufReadPost fugitive://* Margin 0
-" augroup END
 " "---------------------------------------------------------------------------------
 " if ! exists('g:TagHighlightSettings')
 "         let g:TagHighlightSettings = {}
@@ -338,3 +333,10 @@
 " let g:ctrlp_user_command = my_ctrlp_ffind_command
 "
 " "-13-CtrlP-}}}
+
+
+        " Create missing directory on save                              {{{2
+        augroup MkDirOnSave
+                au!
+                au BufWritePre * call mkdirondemand#doit()
+        augroup END

@@ -1,5 +1,4 @@
 "---AAA13---------------------------------------------------------------------------------------------------------- {{{
-        ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
         if has('gui_running') | set lines=999 columns=999 | else | set t_Co=256 | endif
         set guifont=Monospace\ Bold\ 16
         set guioptions-=T

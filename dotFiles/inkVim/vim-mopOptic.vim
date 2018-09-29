@@ -28,7 +28,6 @@
                 digraph '' 8221               " right double quotation mark
                 digraph ,, 8222               " double low-9 quotation mark
         endif
-
         "-------------------------------------------------------------------------------
         "set fillchars=vert:│,fold:-
         highlight VertSplit cterm=reverse ctermbg=150
@@ -71,13 +70,13 @@
         hi niceGreen    ctermbg=10
         hi lightGreen   ctermbg=70
         hi lightGreenBlue ctermbg=50
-        hi customPink   ctermbg=200 ctermfg=White
-        hi lightGray   ctermbg=7
+        hi customPink   ctermbg=241 ctermfg=White
+        hi lightGray   ctermbg=12
         hi darkGray   ctermbg=8
         hi darkCyan   ctermbg=30
         hi darkCyan   ctermbg=30
         hi rosaCream    ctermbg=180
-        hi rosaWhite    ctermbg=230
+        hi rosaWhite    ctermbg=4
         "-----------------------------------------------
         "call matchadd('mintBright', '\<map\>')
         "call matchadd('lightGreenBlue', '\<nmap\>')
