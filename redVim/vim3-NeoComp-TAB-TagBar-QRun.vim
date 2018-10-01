@@ -36,13 +36,13 @@ call plug#end()
 "--------------------------------------------------------------------------------
     noremap <silent><leader>lc :lcl<CR>
     noremap <silent><leader>lo :lw<CR>
-    "noremap <F10> :SyntasticCheck<CR>
     "map <F10> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 " Syntastic commands-------------------------------------------------------------
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 "--------------------------------------------------------------------------------
+    "noremap <F10> :SyntasticCheck<CR>
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
@@ -52,7 +52,6 @@ call plug#end()
     let g:systastic_python_checkers = ['pylint', 'python']
     let g:syntastic_mode_map = {'mode': 'active'}
     let g:syntastic_python_pylint_quiet_messages = {}
-
     let g:syntastic_enable_signs = 1
     let g:syntastic_auto_jump = 1
     let g:syntastic_enable_highlighting = 1
@@ -237,10 +236,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#same_filetypes._ = '_'
   g:neocomplcache_enable_at_startup = 1
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " disable for Python
-  """"""""""""""""""""
-  " \'')
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Plugin key-mappings.
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   inoremap <expr> <C-g> neocomplete#undo_completion()
@@ -415,7 +410,7 @@ endif
          autocmd!
          autocmd VimEnter * highlight clear SignColumn
          autocmd BufWritePre *.php, *.py, *.js, *.txt, *.hs, *.java, *.md
-                     \:call <SID>StripTrailingWhitespaces()
+               \:call <SID>StripTrailingWhitespaces()
          autocmd FileType java setlocal noexpandtab
          autocmd FileType java setlocal list
          autocmd FileType java setlocal listchars=tab:+\ ,eol:-

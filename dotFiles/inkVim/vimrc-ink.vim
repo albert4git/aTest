@@ -1,4 +1,9 @@
         "-------------------------------------------------------------------------------------------
+        "                 __   _(_)_ __ ___  _ __ ___
+        "                 \ \ / / | '_ ` _ \| '__/ __|
+        "                  \ V /| | | | | | | | | (__
+        "                   \_/ |_|_| |_| |_|_|  \___|
+        "-------------------------------------------------------------------------------------------
         " ln -s /usr/etc/vim_settings/vimrc /home/user/.vimrc
         " ln -s /usr/etc/vim_settings/vim /home/user/.vim
         "------------------------------------------------
@@ -31,7 +36,7 @@
         "cnoremap <Up> <Nope>
         "cnoremap <Down> <Nope>
         "cnoremap <Left> <Nope>
-        "cnoremap <Right> <Nope>
+                        "cnoremap <Right> <Nope>
         "-------------------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------------------
@@ -163,20 +168,6 @@
         highlight DiffText ctermbg=1
 "-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-        nnoremap <leader>j :call g:CursorHistForward()<CR>
-        nnoremap <leader>k :call g:CursorHistBack()<CR>
-"-TOP-------------------------------------------------------------------------------------------------------------------
-        let g:EasyMotion_smartcase = 1
-        let g:EasyMotion_do_mapping = 0 " Disable default mappings
-        "nmap <Leader>/ <Plug>(easymotion-w)
-        "map  <Leader>w <Plug>(easymotion-bd-w)
-        "------------------------------------------------------------------------ 
-        nmap s <Plug>(easymotion-s)
-        omap <LocalLeader>l  <Plug>(easyoperator-line-select)
-        xmap <LocalLeader>l  <Plug>(easyoperator-line-select)
-        nmap <LocalLeader>w <Plug>(easymotion-overwin-w)
-        nmap <LocalLeader><LocalLeader> <Plug>(easymotion-w)
 "-TOP-------------------------------------------------------------------------------------------------------------------
         "inoremap <expr>  <C-K>   BDG_GetDigraph()   ##
 "-TOP-------------------------------------------------------------------------------------------------------------------
@@ -186,7 +177,56 @@
         let g:TagHighlightSettings['TagFileName'] = 'tags'
         let g:TagHighlightSettings = {'TagFileName': 'tags', 'CtagsExecutable': 'etags.exe'}
 
+"-TOP-------------------------------------------------------------------------------------------------------------------
+highlight signcolumn  ctermfg=15
 
 
+"-TOP-------------------------------------------------------------------------------------------------------------------
+" Signify and VimDiff style
+" highlight lines in Signify and vimdiff etc.
 
-
+" highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+" highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+" highlight DiffChange        cterm=bold ctermbg=11 ctermfg=227
+ highlight DiffChange        cterm=bold ctermbg=10 "greenBright
+ highlight DiffChange        cterm=bold ctermbg=9 "red
+ highlight DiffChange        cterm=bold ctermbg=8 "gray
+ highlight DiffChange        cterm=bold ctermbg=7 "red
+"-TOP-------------------------------------------------------------------------------------------------------------------
+"  ---------------------------------+------------------------------------------
+"  Mapping                          | Description                              ~
+"  ---------------------------------+------------------------------------------
+"  <plug>(fzf-maps-n)               | Normal mode mappings
+"  <plug>(fzf-maps-i)               | Insert mode mappings
+"  <plug>(fzf-maps-x)               | Visual mode mappings
+"  <plug>(fzf-maps-o)               | Operator-pending mappings
+"  <plug>(fzf-complete-word)        |  `cat /usr/share/dict/words`
+"  <plug>(fzf-complete-path)        | Path completion using  `find`  (file + dir)
+"  <plug>(fzf-complete-file)        | File completion using  `find`
+"  <plug>(fzf-complete-file-ag)     | File completion using  `ag`
+"  <plug>(fzf-complete-line)        | Line completion (all open buffers)
+"  <plug>(fzf-complete-buffer-line) | Line completion (current buffer only)
+"  ---------------------------------+------------------------------------------
+"  nnoremap <leader>gs :Gstatus<CR>
+"  nnoremap <leader>gc :Gcommit -v -q<CR>
+"  nnoremap <leader>ga :Gcommit --amend<CR>
+"  nnoremap <leader>gt :Gcommit -v -q %<CR>
+"  nnoremap <leader>gd :Gdiff<CR>
+"  nnoremap <leader>ge :Gedit<CR>
+"  nnoremap <leader>gr :Gread<CR>
+"  nnoremap <leader>gw :Gwrite<CR><CR>
+"  nnoremap <leader>gl :silent! Glog<CR>
+"  nnoremap <leader>gp :Ggrep<Space>
+"  nnoremap <leader>gm :Gmove<Space>
+"  nnoremap <leader>gb :Git branch<Space>
+"  nnoremap <leader>go :Git checkout<Space>
+"  nnoremap <leader>gps :Dispatch! git push<CR>
+"  nnoremap <leader>gpl :Dispatch! git pull<CR>
+"  ---------------------------------+------------------------------------------
+" With that configuration, my workflow is:
+" <leader>gl to view history
+" ]q and [q to move between versions (unimpaired.vim)
+" <leader>gd to open diff
+" :q to end diff
+" <leader>ge to return to my working copy.
+"  ---------------------------------+------------------------------------------

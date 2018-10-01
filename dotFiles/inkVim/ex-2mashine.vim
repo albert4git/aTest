@@ -12,6 +12,9 @@
         noremap k gk
         noremap gj j
         noremap gk k
+
+        "====[ Go back to alternate file (but retain other g<whatever> mappings)]====
+        nmap ge :w<CR>:e #<CR>
         "-Auto-Commands----------------------
         augroup vimrc
                 autocmd!
@@ -55,8 +58,7 @@
                 execute s:cmd
                 redraw!
         endfunction
-        " OnlineDoc8
-        map <C-F10> :call OnlineDoc8()<CR>
+        map <F10> :call OnlineDoc8()<CR>
         "------------------------------------------------------------------------ 
         function! OpenUrlUnderCursor()
                 let path="/Applications/Safari.app"
@@ -70,10 +72,12 @@
                 endif
         endfunction
         nmap <leader>o :call OpenUrlUnderCursor()<CR>
+
+        " OnlineDoc8
 "-14-Search-QFix-}}}
 
 "-AAA---------------------------------------------------------------------------------------------------------------{{{
-        nnoremap <c-z> :call FocusLine()<cr>
+        "nnoremap <c-z> :call FocusLine()<cr>
         nnoremap zO zczO    " Make zO recursively open whatever fold 
         " Focus the current line.  Basically:
         function! FocusLine()
@@ -444,7 +448,7 @@
          " nnoremap <Leader>e :Unite bookmark<CR>
          " nnoremap <Leader>d :UniteBookmarkAdd<CR>
          "----------------------------------------------------------------------------------------
-        nmap <C-u> :Unite file buffer file_mru <CR>
+        nmap <C-m> :Unite file buffer file_mru <CR>
         "nnoremap <C-\> :Unite line<CR>
         "nnoremap <Leader>u :Unite file buffer file_mru <CR>
         "nnoremap <Leader>\ :Unite grep<CR>
@@ -529,10 +533,12 @@
 
 "-AAA---------------------------------------------------------------------------------------------------------------{{{
         imap jj <Esc>
-        noremap ss :w<cr>
-        noremap sq :wq<cr>
+        noremap ss :wa<cr>
+        noremap sq :wa<cr> :qa<cr>
         noremap qq :w<cr> :bd<cr>
-        noremap xx :wa<cr> :qa<cr>
+        noremap xz :qa!<cr>
+        noremap xc :q<cr>
+
 "-}}}
 
 "-AAA4--EnterO--ReSel-LastPast--FormatBlock--UnFuck--Join--Typos--Maps--Abbr------------{{{
@@ -560,9 +566,10 @@
         " Bash like keys for the command line
         cnoremap <C-A> <Home>
         cnoremap <C-E> <End>
+        cnoremap <C-d> <Del>
+        "------------------------
         nnoremap <C-P> <Up>
         nnoremap <C-N> <Down>
-        cnoremap <C-d> <Del>
 
 iabbrev yyy "---------------------------------------------------------------------------------
 iabbrev yyy1 "---------------------------------------------------------------------------------------------
@@ -615,7 +622,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
                 endfunction
 
                 nnoremap <C-]> :silent! call JumpToTag()<cr>
-                nnoremap <C-g> :silent! call JumpToTagInSplit()<cr>
+                nnoremap <C-s> :silent! call JumpToTagInSplit()<cr>
 
                 function PreviewTag3(top)
                         set previewheight=25
@@ -657,8 +664,8 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
 
 "-AAA---TextObjects-------------------------------------------------------------------------------------------------{{{
         "QUTES?"
-        xmap q iq
-        omap q iq
+        "xmap q iq
+        "omap q iq
         "QUTES?"
         call textobj#user#plugin('datetime', {
                                 \   'date': {
@@ -887,16 +894,16 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
                 map         <C-F9>     :cclose<CR>
                 imap        <C-F9>     <C-O><C-F9>
                 "--------------------------------
-                nnoremap <Leader>b :cprev<cr>zvzz
-                nnoremap <Leader>n :cnext<cr>zvzz
+                nnoremap <LocalLeader>b :cprev<cr>zvzz
+                nnoremap <LocalLeader>n :cnext<cr>zvzz
                 "-on-location-list----------------------------------------------
                 nmap <silent> <f8> :LocationToggle<cr>
                 map         <S-F8>     :lopen<CR>
                 imap        <S-F8>     <C-O><C-F8>
                 map         <C-F8>     :lclose<CR>
                 imap        <C-F8>     <C-O><S-F8>
-                nnoremap <LocalLeader>n :lnext<cr>zvzz
-                nnoremap <LocalLeader>b :lprev<cr>zvzz
+                nnoremap <Leader>n :lnext<cr>zvzz
+                nnoremap <Leader>b :lprev<cr>zvzz
                 "---------------------------------------------------------------
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
                 "Ex: Pull word under cursor into LHS of a subs ztitute (replace)
@@ -1034,7 +1041,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         augroup END
 "-}}}
 "-AAA---------------------------------------------------------------------------------------------------------------{{{
-        noremap <F10> :SyntasticCheck<CR>
+        noremap <C-F10> :SyntasticCheck<CR>
         let g:syntastic_always_populate_loc_list = 1
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
@@ -1100,9 +1107,9 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
         let g:fzf_history_dir = '~/.vim/tmp/fzf-history'
         "---------------------------------------------------------------------------------
-        imap <C-w> <plug>(fzf-complete-word)
-        imap <C-s> <plug>(fzf-complete-line)
-        imap <C-v> <plug>(fzf-complete-file-ag)
+        "imap <C-w> <plug>(fzf-complete-word)
+        "imap <C-s> <plug>(fzf-complete-line)
+        "imap <C-v> <plug>(fzf-complete-file-ag)
         "imap <c-x><c-f> <plug>(fzf-complete-path)
         "imap <c-x><c-j> <plug>(fzf-complete-file-ag)
         "imap <c-x><c-l> <plug>(fzf-complete-line)
@@ -1111,7 +1118,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         imap <c-x><c-j> <plug>(fzf-complete-file-ag)
         imap <c-x><c-l> <plug>(fzf-complete-line)
         " Advanced customization using autoload functions
-        inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+        inoremap <expr> <c-z>fzf#vim#complete#word({'left': '15%'})
         inoremap <expr> <c-k> fzf#vim#complete ('cat  /home/red/git/aTest/dotFiles/DICT/english-words.txt')
         " Global line completion (not just open buffers. ripgrep required.)
         inoremap <expr> <c-c> fzf#vim#complete(fzf#wrap({
@@ -1160,14 +1167,26 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         "------------------------------------------------------------
 "-fzf-}}}
 
+"-AAA---------------------------------------------------------------------------------------------------------------{{{
+        nnoremap <leader>j :call g:CursorHistForward()<CR>
+        nnoremap <leader>k :call g:CursorHistBack()<CR>
+"-TOP-------------------------------------------------------------------------------------------------------------------
+        let g:EasyMotion_smartcase = 1
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
+        "nmap <Leader>/ <Plug>(easymotion-w)
+        "map  <Leader>w <Plug>(easymotion-bd-w)
+        "------------------------------------------------------------------------ 
+        nmap s <Plug>(easymotion-s)
+        omap <LocalLeader>l  <Plug>(easyoperator-line-select)
+        xmap <LocalLeader>l  <Plug>(easyoperator-line-select)
+        nmap <LocalLeader>w <Plug>(easymotion-overwin-w)
+        nmap <LocalLeader><LocalLeader> <Plug>(easymotion-w)
+"------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------
 "  nnoremap <c-p> :Files<CR>
 "  nnoremap <c-l> :Lines<CR>
 "  nnoremap <c-c> :Commits<CR>
 "  nnoremap <c-k> :Commands<CR>
-"------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------
 "       *[q*     |:cprevious|

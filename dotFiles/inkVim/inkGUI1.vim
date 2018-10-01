@@ -12,8 +12,8 @@
         ""set guioptions-=R
         ""set guioptions-=l
         ""set guioptions-=L
-        ""hi Pmenu ctermbg=208 gui=bold
-        ""hi Pmenu guibg=brown gui=bold
+        ""hy Pmenu ctermbg=208 gui=bold
+        ""hy Pmenu guibg=brown gui=bold
         """set guioptions-=mTrlb
         ""set nolinebreak
         """amenu Help.usr_08.txt
