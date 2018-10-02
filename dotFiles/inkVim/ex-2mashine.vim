@@ -77,7 +77,7 @@
 "-14-Search-QFix-}}}
 
 "-AAA---------------------------------------------------------------------------------------------------------------{{{
-        "nnoremap <c-z> :call FocusLine()<cr>
+        nnoremap <c-z> :call FocusLine()<cr>
         nnoremap zO zczO    " Make zO recursively open whatever fold 
         " Focus the current line.  Basically:
         function! FocusLine()
@@ -448,7 +448,7 @@
          " nnoremap <Leader>e :Unite bookmark<CR>
          " nnoremap <Leader>d :UniteBookmarkAdd<CR>
          "----------------------------------------------------------------------------------------
-        nmap <C-m> :Unite file buffer file_mru <CR>
+        nmap <C-u> :Unite file buffer file_mru <CR>
         "nnoremap <C-\> :Unite line<CR>
         "nnoremap <Leader>u :Unite file buffer file_mru <CR>
         "nnoremap <Leader>\ :Unite grep<CR>
@@ -538,6 +538,7 @@
         noremap qq :w<cr> :bd<cr>
         noremap xz :qa!<cr>
         noremap xc :q<cr>
+        noremap ee :e#<CR>
 
 "-}}}
 
@@ -1118,7 +1119,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         imap <c-x><c-j> <plug>(fzf-complete-file-ag)
         imap <c-x><c-l> <plug>(fzf-complete-line)
         " Advanced customization using autoload functions
-        inoremap <expr> <c-z>fzf#vim#complete#word({'left': '15%'})
+        "inoremap <expr> <c-z>fzf#vim#complete#word({'left': '15%'})
         inoremap <expr> <c-k> fzf#vim#complete ('cat  /home/red/git/aTest/dotFiles/DICT/english-words.txt')
         " Global line completion (not just open buffers. ripgrep required.)
         inoremap <expr> <c-c> fzf#vim#complete(fzf#wrap({
@@ -1181,38 +1182,4 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         xmap <LocalLeader>l  <Plug>(easyoperator-line-select)
         nmap <LocalLeader>w <Plug>(easymotion-overwin-w)
         nmap <LocalLeader><LocalLeader> <Plug>(easymotion-w)
-"------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------
-"  nnoremap <c-p> :Files<CR>
-"  nnoremap <c-l> :Lines<CR>
-"  nnoremap <c-c> :Commits<CR>
-"  nnoremap <c-k> :Commands<CR>
-"------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------
-"       *[q*     |:cprevious|
-"       *]q*     |:cnext|
-"       *[Q*     |:cfirst|
-"       *]Q*     |:clast|
-"       nnoremap <Leader>b :cprev<cr>zvzz
-"       nnoremap <Leader>n :cnext<cr>zvzz
-"       *[l*     |:lprevious|
-"       *]l*     |:lnext|
-"       *[L*     |:lfirst|
-"       *]L*     |:llast|
-"       *[<C-L>* |:lpfile|
-"       *]<C-L>* |:lnfile|
-"------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------
-" :map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
-" :nmap  :nnoremap :nunmap    Normal
-" :vmap  :vnoremap :vunmap    Visual and Select
-" :smap  :snoremap :sunmap    Select
-" :xmap  :xnoremap :xunmap    Visual
-" :omap  :onoremap :ounmap    Operator-pending
-" :map!  :noremap! :unmap!    Insert and Command-line
-" :imap  :inoremap :iunmap    Insert
-" :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
-" :cmap  :cnoremap :cunmap    Command-line
-" :tmap  :tnoremap :tunmap    Terminal-Job
-"------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------

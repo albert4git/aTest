@@ -6,17 +6,21 @@
         set guioptions-=m
         set guioptions-=M
         ""set gfn=Lucida_Sans_Typewriter:h14:cANSI
+
         ""5amenu First.first :echo 'first'<cr>
         """ Disable scrollbars (real hackers don't use scrollbars for navigation!)
         ""set guioptions-=r
+
         ""set guioptions-=R
         ""set guioptions-=l
         ""set guioptions-=L
         ""hy Pmenu ctermbg=208 gui=bold
         ""hy Pmenu guibg=brown gui=bold
+
         """set guioptions-=mTrlb
         ""set nolinebreak
         """amenu Help.usr_08.txt
+
         """nmap Q gqap
         """amenu Help.-SEP- :
         """set grepprg=ack

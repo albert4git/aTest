@@ -36,7 +36,7 @@
         "cnoremap <Up> <Nope>
         "cnoremap <Down> <Nope>
         "cnoremap <Left> <Nope>
-                        "cnoremap <Right> <Nope>
+        "cnoremap <Right> <Nope>
         "-------------------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------------------
@@ -178,13 +178,9 @@
         let g:TagHighlightSettings = {'TagFileName': 'tags', 'CtagsExecutable': 'etags.exe'}
 
 "-TOP-------------------------------------------------------------------------------------------------------------------
-highlight signcolumn  ctermfg=15
-
+highlight signcolumn  ctermfg=17
 
 "-TOP-------------------------------------------------------------------------------------------------------------------
-" Signify and VimDiff style
-" highlight lines in Signify and vimdiff etc.
-
 " highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
 " highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
 " highlight DiffChange        cterm=bold ctermbg=11 ctermfg=227
@@ -206,7 +202,7 @@ highlight signcolumn  ctermfg=15
 "  <plug>(fzf-complete-file-ag)     | File completion using  `ag`
 "  <plug>(fzf-complete-line)        | Line completion (all open buffers)
 "  <plug>(fzf-complete-buffer-line) | Line completion (current buffer only)
-"  ---------------------------------+------------------------------------------
+"------------------------------------------------------------------------------------------
 "  nnoremap <leader>gs :Gstatus<CR>
 "  nnoremap <leader>gc :Gcommit -v -q<CR>
 "  nnoremap <leader>ga :Gcommit --amend<CR>
@@ -222,11 +218,40 @@ highlight signcolumn  ctermfg=15
 "  nnoremap <leader>go :Git checkout<Space>
 "  nnoremap <leader>gps :Dispatch! git push<CR>
 "  nnoremap <leader>gpl :Dispatch! git pull<CR>
-"  ---------------------------------+------------------------------------------
-" With that configuration, my workflow is:
+"------------------------------------------------------------------------------------------
 " <leader>gl to view history
 " ]q and [q to move between versions (unimpaired.vim)
 " <leader>gd to open diff
 " :q to end diff
 " <leader>ge to return to my working copy.
-"  ---------------------------------+------------------------------------------
+"------------------------------------------------------------------------------------------
+"  nnoremap <c-p> :Files<CR>
+"  nnoremap <c-l> :Lines<CR>
+"  nnoremap <c-c> :Commits<CR>
+"  nnoremap <c-k> :Commands<CR>
+"------------------------------------------------------------------------------------------
+"       *[q*     |:cprevious|
+"       *]q*     |:cnext|
+"       *[Q*     |:cfirst|
+"       *]Q*     |:clast|
+"       nnoremap <Leader>b :cprev<cr>zvzz
+"       nnoremap <Leader>n :cnext<cr>zvzz
+"       *[l*     |:lprevious|
+"       *]l*     |:lnext|
+"       *[L*     |:lfirst|
+"       *]L*     |:llast|
+"       *[<C-L>* |:lpfile|
+"       *]<C-L>* |:lnfile|
+"------------------------------------------------------------------------------------------
+" :map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
+" :nmap  :nnoremap :nunmap    Normal
+" :vmap  :vnoremap :vunmap    Visual and Select
+" :smap  :snoremap :sunmap    Select
+" :xmap  :xnoremap :xunmap    Visual
+" :omap  :onoremap :ounmap    Operator-pending
+" :map!  :noremap! :unmap!    Insert and Command-line
+" :imap  :inoremap :iunmap    Insert
+" :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
+" :cmap  :cnoremap :cunmap    Command-line
+" :tmap  :tnoremap :tunmap    Terminal-Job
+"------------------------------------------------------------------------------------------
