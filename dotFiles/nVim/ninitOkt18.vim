@@ -38,18 +38,7 @@
 "OOO------------------------------------------------------------------------------
         set nu
         set cf  " Enable error files & error jumping.
-        set clipboard+=unnamed  
-        set history=2024  
         set autowrite  " Writes on make/shell commands
-        set ruler
-        set tabstop=4
-        set softtabstop=4
-        set shiftwidth=4
-        set textwidth=80
-        set smarttab
-        set expandtab
-        set smartindent
-        set timeoutlen=250  " Time to wait after ESC (default causes an annoying delay)
         set guifont=Monospace\ 14
         set cinwords=if,else,while,do,for,switch,case
 "OOO--------------------------------------------------------------------------------
@@ -106,8 +95,14 @@
         nnoremap H mzJ`z
         "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
         nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-"-}}}
-
+        "#- go to last edit position when opening files -#
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+        "nnoremap vv ^vg_
+        nnoremap <silent> vv <C-w>v
+        "-Line Transporter-------------
+        nnoremap <C-down> :m .+1<CR>==
+        nnoremap <C-up> :m .-2<CR>==
+"-Misc-}}}
 
 "-AAA1--Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter-----------------------------------------------{{{
         if &compatible | set nocompatible | endif
@@ -142,7 +137,6 @@
                 silent! set tags=tags,./tags 
                 "set tw = 300
                 "easier on the eyes
-                "-???- set formatoptions = tcqw
                 highlight Folded ctermbg=1
                 setlocal foldmarker={{{,}}}
                 setlocal foldmethod=marker
@@ -159,7 +153,7 @@
                 silent! set clipboard=unnamed
                 silent! set clipboard+=unnamedplus
         " Performance
-                silent! set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
+                silent! set updatetime=300 timeout timeoutlen=300 ttimeout ttimeoutlen=50 ttyfast lazyredraw
         " Bell-Bell-Bell
                 silent! set noerrorbells visualbell t_vb=
         " Move to the directory each buffer
@@ -187,7 +181,6 @@
                 vnoremap < <gv
                 vnoremap > >gv
         " Allow using the repeat operator with a visual selection (!)
-        " http://stackoverflow.com/a/8064607/127816
                 vnoremap . :normal .<CR>
         " For when you forget to sudo.. Really Write the file.
                 cmap w!! w !sudo tee % >/dev/null
@@ -308,7 +301,6 @@
                                 \ .')',
                                 \}
                                 \)
-        " autoindent
         " omnipotent
         " omnifunc ???
         set omnifunc=syntaxcomplete#Complete
@@ -380,7 +372,6 @@
 "-5-}}}
 
 "-AAA4--EnterO--ReSel-LastPast--FormatBlock--UnFuck--Join--Typos--Maps--Abbr------------{{{
-"??? Sel (charwise) cont of the cur line, Great for pasting Python lines into REPLs
 command! -bang E e<bang>
 command! -bang Q q<bang>
 command! -bang W w<bang>
@@ -390,7 +381,7 @@ command! -bang Wa wa<bang>
 command! -bang WA wa<bang>
 command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
-"DDD Unfuck my screen
+"Unfuck my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 iabbrev yyy "---------------------------------------------------------------------------------
@@ -412,8 +403,379 @@ iabbrev ydate <c-r>=strftime("%Y %b %d")<cr>
 iabbrev todo TODO
 "-4-}}}
 
-"-TOP-------------------------------------------------------------------------------------------------------------------
-"-TOP-------------------------------------------------------------------------------------------------------------------
+"-AAA3--CleanExtrSps--WindResiz--Jump-------------------------------------------------------------------------------{{{
+        set hidden
+        set cinoptions=N-s,g0,+2s,l-s,i2s
+        "----------------------------------------------------------------------------------
+        nnoremap <m-right> :vertical resize +3<cr>
+        nnoremap <m-left> :vertical resize -3<cr>
+        nnoremap <m-up> :resize +3<cr>
+        nnoremap <m-down> :resize -3<cr>
+        "----------------------------------------------------------------------------------
+                function! JumpTo(jumpcommand)
+                        execute a:jumpcommand
+                        call FocusLine()
+                        Pulse
+                endfunction
+
+                function! JumpToInSplit(jumpcommand)
+                        execute "normal! \<c-w>v"
+                        execute a:jumpcommand
+                        Pulse
+                endfunction
+
+                function! JumpToTag()
+                        call JumpTo("normal! \<c-]>")
+                endfunction
+
+                function! JumpToTagInSplit()
+                        call JumpToInSplit("normal! \<c-]>")
+                endfunction
+
+                nnoremap <C-]> :silent! call JumpToTag()<cr>
+                nnoremap <C-s> :silent! call JumpToTagInSplit()<cr>
+
+                function PreviewTag3(top)
+                        set previewheight=25
+                        exe "silent! pclose"
+                        if &previewwindow " don't do this in the preview window
+                                return
+                        endif
+                        let w = expand("<cword>") " get the word under cursor
+                        exe "ptjump " . w
+                        " if any non False arg, open in simple horiz window so simply return
+                        if a:top
+                                return
+                        endif
+                        " otherwise, make it vertical
+                        exe "silent! wincmd P"
+                        if &previewwindow " if we really get there...
+                                if has("folding")
+                                        silent! .foldopen " don't want a closed fold
+                                endif
+                                wincmd L " move preview window to the left
+                                wincmd p " back to caller
+                                if !&previewwindow " got back
+                                        wincmd _ endif
+                        endif
+                endfunction
+        "inoremap <C-]> <Esc>:call PreviewTa2(0)<CR>
+        "nnoremap <C-]> :call PreviewTag3(0)<CR>
+"-3-}}}
+
+"-AAA--Bookmarks----------------------------------------------------------------------------------------------------{{{
+        "let g:bookmark_save_per_working_dir = 1`     
+        "let g:bookmark_manage_per_buffer = 1`        
+        "let g:bookmark_auto_save_file = '/bookmarks'`
+        " |------------------------------------------|-------------|------------------------------|
+        " | Action                                   | Shortcut    | Command                      |
+        " |------------------------------------------|-------------|------------------------------|
+        " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
+        " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
+        " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
+        " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
+        " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
+        " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
+        " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
+        " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
+        " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
+        " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
+        " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
+        " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
+        " |------------------------------------------|-------------|------------------------------|
+        let g:bookmark_auto_close = 1
+        let g:bookmark_highlight_lines = 1          
+        let g:bookmark_show_warning = 0           
+        let g:bookmark_show_toggle_warning = 0      
+        let g:bookmark_sign = '♥'
+        let g:bookmark_highlight_lines = 1
+        let g:bookmark_save_per_working_dir = 1
+        let g:bookmark_auto_save = 1
+        "------------------------------------------------------------------------ 
+        nmap <Leader>m <Plug>BookmarkShowAll
+        "------------------------------------------------------------------------ 
+        "-   call unite#custom#profile('source/vim_bookmarks', 'context', {
+        "-                           \   'winheight': 13,
+        "-                           \   'direction': 'botright',
+        "-                           \   'start_insert': 0,
+        "-                           \   'keep_focus': 1,
+        "-                           \   'no_quit': 1,
+        "-                           \ })
+        "------------------------------------------------------------------------ 
+        let g:bookmark_no_default_key_mappings = 1
+        function! BookmarkMapKeys()
+                nmap mm :BookmarkToggle<CR>
+                nmap mi :BookmarkAnnotate<CR>
+                nmap mn :BookmarkNext<CR>
+                nmap mp :BookmarkPrev<CR>
+                nmap ma :BookmarkShowAll<CR>
+                nmap mc :BookmarkClear<CR>
+                nmap mx :BookmarkClearAll<CR>
+                nmap mkk :BookmarkMoveUp
+                nmap mjj :BookmarkMoveDown
+        endfunction
+        "------------------------------------------------------------------------ 
+        function! BookmarkUnmapKeys()
+                unmap mm
+                unmap mi
+                unmap mn
+                unmap mp
+                unmap ma
+                unmap mc
+                unmap mx
+                unmap mkk
+                unmap mjj
+        endfunction
+        autocmd BufEnter * :call BookmarkMapKeys()
+        autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+"-}}}
+
+"-AAA--Ulty--Neo----------------------------------------------------------------------------------------------------{{{
+        "-TODO- 
+        if has("eval")
+                " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
+                let g:UltiSnipsJumpForwardTrigger="<tab>"
+                let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+                "-???-
+                let g:UltiSnipsListSnippets="<C-R><tab>"
+        endif
+                imap <C-b>    <Plug>(neosnippet_expand_or_jump)
+                smap <C-b>    <Plug>(neosnippet_expand_or_jump)
+                xmap <C-b>    <Plug>(neosnippet_expand_target)
+                set omnifunc=syntaxcomplete#Complete
+
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        "inoremap <expr> <C-g> neocomplete#undo_completion()
+        "inoremap <expr> <C-l> neocomplete#complete_common_string()
+        "inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        "inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
+        "inoremap <expr> <C-e> neocomplete#cancel_popup()
+        "??? let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
+        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#enable_auto_select = 1
+        let g:neocomplete#enable_smart_case = 1
+        let g:neocomplete#auto_completion_start_length = 2
+        let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
+        let g:neocomplete#enable_fuzzy_completion = 1
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        set previewheight=15
+        set report=0 " always report changed lines
+"-6-}}}
+
+"-AAA---MiniPlugIn--------------------------------------------------------------------------------------------------{{{
+        " Error Toggles {{{
+                command! ErrorsToggle call ErrorsToggle()
+                function! ErrorsToggle() " {{{
+                        if exists("w:is_error_window")
+                                unlet w:is_error_window
+                                exec "q"
+                        else
+                                exec "Errors"
+                                lopen
+                                let w:is_error_window = 1
+                        endif
+                endfunction " }}}
+
+                command! LocationToggle call LocationToggle()
+                function! LocationToggle() " {{{
+                        if exists("w:is_location_window")
+                                unlet w:is_location_window
+                                exec "q"
+                        else
+                                lopen
+                                let w:is_location_window = 1
+                        endif
+                endfunction " }}}
+
+                command! -bang -nargs=? QFixToggle call QFixToggle(<bang>0)
+                function! QFixToggle(forced) " {{{
+                        if exists("g:qfix_win") && a:forced == 0
+                                cclose
+                                unlet g:qfix_win
+                        else
+                                copen 10
+                                let g:qfix_win = bufnr("$")
+                        endif
+                endfunction " }}}
+                " nmap <silent> <fx> :ErrorsToggle<cr>
+
+                "-Open-Quickfix-window-automatically---------------------------
+                autocmd vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
+                autocmd vimrc QuickfixCmdPost l* nested lopen | wincmd p
+                "--------------------------------------------------------------
+                "-Next error/grep match
+                map          <F7>       :FirstOrNextInList<CR>
+                imap         <F7>       <C-O><F7>
+                "-previous error/grep match
+                map          <S-F7>      :PrevInList<CR>
+                imap         <S-F7>      <C-O><S-F7>
+                "-current error/grep match
+                map          <C-F7>      :CurInList<CR>
+                imap         <C-F7>      <C-O><C-F7>
+                "-on-quickfix--------------------------------------------------
+                nmap <silent> <F9> :QFixToggle<cr>
+                map         <S-F9>     :copen<CR>
+                imap        <S-F9>     <C-O><C-F9>
+                map         <C-F9>     :cclose<CR>
+                imap        <C-F9>     <C-O><C-F9>
+                "--------------------------------
+                nnoremap <LocalLeader>b :cprev<cr>zvzz
+                nnoremap <LocalLeader>n :cnext<cr>zvzz
+                "-on-location-list----------------------------------------------
+                nmap <silent> <f8> :LocationToggle<cr>
+                map         <S-F8>     :lopen<CR>
+                imap        <S-F8>     <C-O><C-F8>
+                map         <C-F8>     :lclose<CR>
+                imap        <C-F8>     <C-O><S-F8>
+                nnoremap <Leader>n :lnext<cr>zvzz
+                nnoremap <Leader>b :lprev<cr>zvzz
+                "---------------------------------------------------------------
+                silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
+                "Ex: Pull word under cursor into LHS of a subs ztitute (replace)
+                nnoremap <LocalLeader>w :%s#\<<C-r>=expand("<cword>")<CR>\>#
+                nnoremap <LocalLeader>z :%s#\<<C-r>=getline(".")<CR>\>#
+                "-------------------------------------------------------------------------
+                " Clear hlsearch and set nopaste
+                nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
+                "-------------------------------------------------------------------------
+                nmap <silent> n nzz
+                nmap <silent> N Nzz
+                nmap <silent> g* g*zz
+                nmap <silent> g# g#zz
+                "-------------------------------------------------------------------------
+                nnoremap <F12> :TagbarToggle<CR>
+                "-------------------------------------------------------------------------
+                autocmd filetype vim noremap! <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+                "-------------------------------------------------------------------------
+                " Super useful! From an idea by Michael Naumann
+                vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+                vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+                "----------------------------------------------------------------------------------
+                "nnoremap <Leader>g :grep -R <cword> .<cr>
+                "----------------------------------------------------------------------------------
+                nnoremap <Leader>l :lgrep -R <cword> .<cr>
+                nnoremap <leader>g :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+                nnoremap <Leader>a :Ag <cword> .<cr>
+        "-Toggle-}}}
+
+"-Mini}}}
+
+"-NERD-Tree---------------------------------------------------------------------------------------------------------{{{
+        noremap  <F3> :NERDTreeToggle<cr>
+        inoremap <F3> <esc>:NERDTreeToggle<cr>
+
+        augroup ps_nerdtree
+                au!
+
+                au Filetype nerdtree setlocal nolist
+                au Filetype nerdtree nnoremap <buffer> H :vertical resize -10<cr>
+                au Filetype nerdtree nnoremap <buffer> L :vertical resize +10<cr>
+                " au Filetype nerdtree nnoremap <buffer> K :q<cr>
+        augroup END
+
+        let NERDTreeHighlightCursorline = 1
+        let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
+                        \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
+                        \ '.*\.o$', 'db.db', 'tags.bak', '.*\.pdf$', '.*\.mid$',
+                        \ '^tags$',
+                        \ '^.*\.meta$',
+                        \ '^.*\.fasl$',
+                        \ '^.*\.dx64fsl$',
+                        \ '.*\.bcf$', '.*\.blg$', '.*\.fdb_latexmk$', '.*\.bbl$', '.*\.aux$', '.*\.run.xml$', '.*\.fls$',
+                        \ '.*\.midi$']
+
+        let NERDTreeMinimalUI = 1
+        let NERDTreeDirArrows = 1
+        let NERDChristmasTree = 1
+        let NERDTreeChDirMode = 2
+        let NERDTreeMapJumpFirstChild = 'gK'
+" }}}
+
+"-Fugitive----------------------------------------------------------------------------------------------------------{{{
+        augroup ft_fugitive
+                au!
+                nnoremap <leader>gd :Gdiff<cr>
+                nnoremap <leader>gs :Gstatus<cr>
+                nnoremap <leader>gw :Gwrite<cr>
+                nnoremap <leader>ga :Gadd<cr>
+                nnoremap <leader>gb :Gblame<cr>
+                nnoremap <leader>gco :Gcheckout<cr>
+                nnoremap <leader>gci :Gcommit<cr>
+                nnoremap <leader>gm :Gmove<cr>
+                nnoremap <leader>gr :Gremove<cr>
+                nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
+                au BufNewFile,BufRead .git/index setlocal nolist
+        augroup END
+        " " "Hub"
+        " vnoremap <leader>H :Gbrowse<cr>
+        " nnoremap <leader>H V:Gbrowse<cr>
+        "
+        " " "(Upstream) Hub"
+        " vnoremap <leader>u :Gbrowse @upstream<cr>
+        " nnoremap <leader>u V:Gbrowse @upstream<cr>
+"-}}}
+
+"-AAA15-Diff--------------------------------------------------------------------------------------------------------{{{
+         " This is from https://github.com/sgeb/vim-diff-fold/ without the extra
+         function! DiffFoldLevel()
+                 let l:line=getline(v:lnum)
+                 if l:line =~# '^\(diff\|Index\)'     " file
+                         return '>1'
+                 elseif l:line =~# '^\(@@\|\d\)'  " hunk
+                         return '>2'
+                 elseif l:line =~# '^\*\*\* \d\+,\d\+ \*\*\*\*$' " context: file1
+                         return '>2'
+                 elseif l:line =~# '^--- \d\+,\d\+ ----$'     " context: file2
+                         return '>2'
+                 else
+                         return '='
+                 endif
+         endfunction
+        "----------------------------------------------------------------------------------
+         augroup ft_diff
+             au!
+             " autocmd FileType diff setlocal foldmethod=expr
+             autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
+         augroup END
+         " See :help DiffOrig
+                 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
+         " Diffget/diffput in visual mode
+                 vmap            dg             :diffget<CR>
+                 vmap            dp             :diffput<CR>
+         " diff-diff-diff
+                 nnoremap <silent> <expr> <leader>d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
+         " Diffoff-Diffoff
+                 nnoremap do :diffoff!<cr>
+         " diffoff used to set wrap as a side effect
+                 command! Diffoff        diffoff | setlocal nowrap
+"-15-Diff-}}}
+
+"-AAA--SyntasticCheck----------------------------------------------------------------------------------------------{{{
+        noremap <C-F10> :SyntasticCheck<CR>
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+        ""let g:syntastic_java_checkers = ['checkstyle']
+        let g:syntastic_java_javac_executable = '~/.vim/plugged/syntastic/syntax_checkers/java/javac.vim'
+        let g:systastic_python_checkers = ['pylint', 'python']
+        let g:syntastic_mode_map = {'mode': 'active'}
+        let g:syntastic_python_pylint_quiet_messages = {}
+        let g:syntastic_enable_signs = 1
+        let g:syntastic_auto_jump = 1
+        let g:syntastic_enable_highlighting = 1
+        let g:syntastic_echo_current_error  = 1
+        let g:syntastic_javascript_checkers=['jshint']
+        let g:syntastic_php_checkers=['php']
+        let g:syntastic_css_checkers=['csslint']
+        let g:syntastic_check_on_w = 1
+"-}}}
+
+
+"-BBB-------------------------------------------------------------------------------------------------------------------
+        " cyan
+        highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
+        highlight TagListTagName    ctermfg=250
         set tabpagemax=15               " Only show 15 tabs
         set ruler                       " Show the ruler
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -421,8 +783,7 @@ iabbrev todo TODO
         set cursorcolumn
         let w:persistent_cursorline = 1
         "hi Search                      ctermbg=10
-        hi Pmenue                      ctermbg=16
-        hi Pmenue                      ctermfg=16
+        hi Pmenue                      ctermfg=17
         hi CursorLine                  ctermbg=16
         hi CursorColumn                ctermbg=16
         hi ColorColumn                 ctermbg=52
@@ -432,7 +793,7 @@ iabbrev todo TODO
         hi Normal  ctermbg=235
         let g:indentLine_color_term = 133
         set nuw =5
-        "highlight Cursor ctermbg=1 term= bold
+        highlight Cursor ctermbg=2 term= bold
         ""-------------------------------------------------------
         hi StatusLine       ctermfg=7    ctermbg=9     cterm=bold
         hi StatusLineNC     ctermfg=9     ctermbg=4     term=bold
@@ -441,7 +802,18 @@ iabbrev todo TODO
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
-"-TOP-------------------------------------------------------------------------------------------------------------------
+
+        "-TOP-------------------------------------------------------------------------------------------------------------------
+        " highlight signcolumn  ctermfg=20
+        "-TOP-------------------------------------------------------------------------------------------------------------------
+        " highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+        " highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+        " highlight DiffChange        cterm=bold ctermbg=11 ctermfg=227
+        highlight DiffChange        cterm=bold ctermbg=10 "greenBright
+        highlight DiffChange        cterm=bold ctermbg=8 "gray
+        highlight DiffChange        cterm=bold ctermbg=7 "red
+
+"-CCC-------------------------------------------------------------------------------------------------------------------
         "brackets show match
         set nosm
         set nowrap
@@ -460,7 +832,7 @@ iabbrev todo TODO
         "-------------------------------------------------------------------------------
         highlight Visual cterm=bold ctermbg=0 ctermfg=NONE
 
-"-AAA01--------------------------------------------------------------------------------------
+"-DDD--------------------------------------------------------------------------------------
         "suppress intro message because the above makes it look bad
         set shortmess+=I
         highlight ErrorMsg  guifg=red guibg=white

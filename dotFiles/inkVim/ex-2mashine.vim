@@ -61,7 +61,14 @@
         nnoremap H mzJ`z
         "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
         nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-"-}}}
+        "#- go to last edit position when opening files -#
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+        "nnoremap vv ^vg_
+        nnoremap <silent> vv <C-w>v
+        "-Line Transporter-------------
+        nnoremap <C-down> :m .+1<CR>==
+        nnoremap <C-up> :m .-2<CR>==
+"-Misc-}}}
 
 "-AAA11-QuickFix---Search-------------------------------------------------------------------------------------------{{{
         let wordUnderCursor = expand("<cword>")
@@ -337,28 +344,6 @@
         let g:SuperTabCrMapping = 1
 "-}}}
 
-"-AAA-Wildmenu-completion-------------------------------------------------------------------------------------------{{{
-        " Save when losing focus
-        au FocusLost * :silent! wall
-        set wildmenu
-        set wildmode=list:longest
-        set wildignore+=.hg,.git,.svn                    " Version control
-        set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-        set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-        set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-        set wildignore+=*.spl                            " compiled spelling word lists
-        set wildignore+=*.sw?                            " Vim swap files
-        set wildignore+=*.DS_Store                       " OSX bullshit
-        set wildignore+=*.luac                           " Lua byte code
-        set wildignore+=migrations                       " Django migrations
-        set wildignore+=*.pyc                            " Python byte code
-        set wildignore+=*.orig                           " Merge resolution files
-        set wildignore+=*.fasl                           " Lisp FASLs
-        set wildignore+=*.dx64fsl                        " CCL
-        " Clojure/Leiningen
-        set wildignore+=classes
-        set wildignore+=lib
-"-Wild-}}}
 
 "-AAA-Complete------------------------------------------------------------------------------------------------------{{{
         " Insert completion
@@ -552,18 +537,18 @@
 
 
 "-AAA4--EnterO--ReSel-LastPast--FormatBlock--UnFuck--Join--Typos--Maps--Abbr------------{{{
-        "??? Sel (charwise) cont of the cur line, Great for pasting Python lines into REPLs
-        command! -bang E e<bang>
-        command! -bang Q q<bang>
-        command! -bang W w<bang>
-        command! -bang QA qa<bang>
-        command! -bang Qa qa<bang>
-        command! -bang Wa wa<bang>
-        command! -bang WA wa<bang>
-        command! -bang Wq wq<bang>
-        command! -bang WQ wq<bang>
-        "DDD Unfuck my screen
-        nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+"??? Sel (charwise) cont of the cur line, Great for pasting Python lines into REPLs
+command! -bang E e<bang>
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
+"DDD Unfuck my screen
+nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
 iabbrev yyy "---------------------------------------------------------------------------------
 iabbrev yyy1 "---------------------------------------------------------------------------------------------
@@ -571,22 +556,20 @@ iabbrev yyy2 "------------------------------------------------------------------
 iabbrev yyy3 "-}}}
 iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10....+...11....+..12<esc>
 
-        iabbrev str start
-        iabbrev supe superuser
-        iabbrev que question
-        iabbrev #i #include
-        iabbrev #d #define
-        iabbrev cmnt /*<CR><CR>*/<Up>
-        iabbrev @@  alf@nomail.com
-        iabbrev ccopy Copyright 2013 Alf , no rights reserved.
-        iabbrev xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-        iabbrev ydate <c-r>=strftime("%Y %b %d")<cr>
-        "-Fuck you, help key.---------------------------------------
-        iabbrev todo TODO
+iabbrev str start
+iabbrev supe superuser
+iabbrev que question
+iabbrev #i #include
+iabbrev #d #define
+iabbrev cmnt /*<CR><CR>*/<Up>
+iabbrev @@  alf@nomail.com
+iabbrev ccopy Copyright 2013 Alf , no rights reserved.
+iabbrev xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iabbrev ydate <c-r>=strftime("%Y %b %d")<cr>
+iabbrev todo TODO
 "-4-}}}
 
 "-AAA3--CleanExtrSps--WindResiz--Jump-------------------------------------------------------------------------------{{{
-        set ruler
         set hidden
         set cinoptions=N-s,g0,+2s,l-s,i2s
         "----------------------------------------------------------------------------------
@@ -651,10 +634,6 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         ""-------------------------------------------------------------------------------
 "-3-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-        "#- go to last edit position when opening files -#
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"-}}}
 
 "-AAA---TextObjects-------------------------------------------------------------------------------------------------{{{
         "QUTES?"
@@ -700,7 +679,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         endfunction
 "-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA--Bookmarks----------------------------------------------------------------------------------------------------{{{
         "let g:bookmark_save_per_working_dir = 1`     
         "let g:bookmark_manage_per_buffer = 1`        
         "let g:bookmark_auto_save_file = '/bookmarks'`
@@ -790,16 +769,9 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
         set wildignore+=lib
 "-Wild-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-        "nnoremap vv ^vg_
-        nnoremap <silent> vv <C-w>v
-        "-Line Transporter-------------
-        nnoremap <C-down> :m .+1<CR>==
-        nnoremap <C-up> :m .-2<CR>==
-"-}}}
 
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA--Ulty--Neo----------------------------------------------------------------------------------------------------{{{
         "-TODO- 
         if has("eval")
                 " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
@@ -1027,14 +999,7 @@ iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+.
 "-15-Diff-}}}
 
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-        " Make fugitive's fake buffers visually distinguishable
-        augroup MakeFugitiveVisible
-                au!
-                au BufNew,BufReadPost fugitive://* Margin 0
-        augroup END
-"-}}}
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA--SyntasticCheck----------------------------------------------------------------------------------------------{{{
         noremap <C-F10> :SyntasticCheck<CR>
         let g:syntastic_always_populate_loc_list = 1
         let g:syntastic_auto_loc_list = 1
