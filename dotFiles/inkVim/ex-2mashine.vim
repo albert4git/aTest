@@ -7,14 +7,6 @@
         map <LocalLeader>v :e $MYVIMRC<CR>
         map <LocalLeader>s :source $MYVIMRC<CR>
 
-        "-It's-2018--------------------------
-        noremap j gj
-        noremap k gk
-        noremap gj j
-        noremap gk k
-
-        "====[ Go back to alternate file (but retain other g<whatever> mappings)]====
-        nmap ge :w<CR>:e #<CR>
         "-Auto-Commands----------------------
         augroup vimrc
                 autocmd!
@@ -22,8 +14,29 @@
 "-}}}
 
 "-AAA-Misc----------------------------------------------------------------------------------------------------------{{{
+        imap jj <Esc>
+        noremap ss :wa<cr>
+        noremap sq :wa<cr> :qa<cr>
+        noremap qq :w<cr> :bd<cr>
+        noremap xz :qa!<cr>
+        noremap xc :q<cr>
+        "-toggle---------------
+        nmap ge :w<CR>:e #<CR>
+        noremap ee :e#<CR>
+        " Bash like keys for the command line
+        cnoremap <C-A> <Home>
+        cnoremap <C-E> <End>
+        cnoremap <C-d> <Del>
+        "------------------------
+        nnoremap <C-P> <Up>
+        nnoremap <C-N> <Down>
+        "-It's-2018------------
+        noremap j gj
+        noremap k gk
+        noremap gj j
+        noremap gk k
         "Better x
-        nnoremap x "_x
+        "nnoremap x "_x
         "Disable Ex-mode.
         nnoremap Q  q
         "Underline the current line with '-'
@@ -39,6 +52,15 @@
         let g:bling_time = 42
         let g:bling_color_fg = 'green'
         let g:bling_color_cterm = 'reverse'
+        " Yank to end of line
+        nnoremap Y y$
+        " Formatting, TextMate-style
+        vnoremap W gq
+        nnoremap W gqip
+        "-HHJ- Keep the cursor in place while joining lines
+        nnoremap H mzJ`z
+        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
+        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 "-}}}
 
 "-AAA11-QuickFix---Search-------------------------------------------------------------------------------------------{{{
@@ -162,8 +184,6 @@
                 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
         " Command line history
                 set history=4024
-                cnoremap <C-p> <Up>
-                cnoremap <C-n> <Down>
         " Visual shifting (does not exit Visual mode)
                 vnoremap < <gv
                 vnoremap > >gv
@@ -240,9 +260,8 @@
 "-16-vnoremap-}}}
 
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA--CScope-------------------------------------------------------------------------------------------------------{{{
         nnoremap ff :call CscopeFindInteractive(expand('<cword>'))<CR>
-
         nnoremap <leader>f :call CscopeFindInteractive(expand('<cword>'))<CR>
         nnoremap <leader>\ :call ToggleLocationList()<CR>
         " s: Find this C symbol
@@ -263,7 +282,7 @@
         nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 "-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA--TextObjects-------------------------------------------------------------------------------------------------{{{
         "QUTES?"
         xmap q iq
         omap q iq
@@ -318,7 +337,7 @@
         let g:SuperTabCrMapping = 1
 "-}}}
 
-"-Wildmenu-completion-----------------------------------------------------------------------------------------------{{{
+"-AAA-Wildmenu-completion-------------------------------------------------------------------------------------------{{{
         " Save when losing focus
         au FocusLost * :silent! wall
         set wildmenu
@@ -341,7 +360,7 @@
         set wildignore+=lib
 "-Wild-}}}
 
-"-Complete-----------------------------------------------------------------------------------------------------------{{{
+"-AAA-Complete------------------------------------------------------------------------------------------------------{{{
         " Insert completion
         silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
         "-[completion]-auto popup menu: Tab, C-x + C-?, C-y, C-e
@@ -361,8 +380,7 @@
         set completeopt=preview,menuone
 "-16-Complete-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-
+"-AAA--Deoplete-----------------------------------------------------------------------------------------------------{{{
         call deoplete#custom#option('sources', {
                                 \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
                                 \})
@@ -377,6 +395,7 @@
                                 \ .')',
                                 \}
                                 \)
+        " auto 
         "----------------------------------------------------------------------------------
         call deoplete#custom#option('refresh_always', v:true)
         let g:deoplete#enable_ignore_case = 1
@@ -404,11 +423,11 @@
         call deoplete#custom#source('around',        'mark', '↻')
         call deoplete#custom#source('buffer',        'mark', 'ℬ')
         call deoplete#custom#source('member', 'mark', '.')
-"-}}}
+"-Deoplete-}}}
 
 
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
+"-AAA-Ag-----------------------------------------------------------------------------------------------------------{{{
         " command! -nargs=1 -bang Locate call fzf#run(fzf#wrap(
         "                        \ {'source': 'locate <q-args>', 'options': '-m'}, <bang>0))
         "-------------------------------------------------------------------------
@@ -531,27 +550,8 @@
         endif
 "-5-}}}
 
-"-AAA---------------------------------------------------------------------------------------------------------------{{{
-        imap jj <Esc>
-        noremap ss :wa<cr>
-        noremap sq :wa<cr> :qa<cr>
-        noremap qq :w<cr> :bd<cr>
-        noremap xz :qa!<cr>
-        noremap xc :q<cr>
-        noremap ee :e#<CR>
-
-"-}}}
 
 "-AAA4--EnterO--ReSel-LastPast--FormatBlock--UnFuck--Join--Typos--Maps--Abbr------------{{{
-        " Yank to end of line
-        nnoremap Y y$
-        " Formatting, TextMate-style
-        vnoremap W gq
-        nnoremap W gqip
-        "-HHJ- Keep the cursor in place while joining lines
-        nnoremap H mzJ`z
-        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
-        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
         "??? Sel (charwise) cont of the cur line, Great for pasting Python lines into REPLs
         command! -bang E e<bang>
         command! -bang Q q<bang>
@@ -564,13 +564,6 @@
         command! -bang WQ wq<bang>
         "DDD Unfuck my screen
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
-        " Bash like keys for the command line
-        cnoremap <C-A> <Home>
-        cnoremap <C-E> <End>
-        cnoremap <C-d> <Del>
-        "------------------------
-        nnoremap <C-P> <Up>
-        nnoremap <C-N> <Down>
 
 iabbrev yyy "---------------------------------------------------------------------------------
 iabbrev yyy1 "---------------------------------------------------------------------------------------------

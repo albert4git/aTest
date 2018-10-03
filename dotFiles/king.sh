@@ -94,6 +94,7 @@ ln -b  ~/git/aTest/2run/vim-3lab.vim         ~/vim-3lab.vim
 
 ln -b  ~/git/aTest/dotFiles/inkVim/vimrc-ink.vim ~/.vimrc
 
+ln -b  ~/git/aTest/dotFiles/nVim/ninitOkt18.vim ~/.config/nvim/init.vim
 
 ls ~/vim-*
 ls ~/git/dot-vim-mpi/

@@ -98,7 +98,6 @@
         set tabpagemax=15               " Only show 15 tabs
         set ruler                       " Show the ruler
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-
         set cursorline
         set cursorcolumn
         let w:persistent_cursorline = 1
