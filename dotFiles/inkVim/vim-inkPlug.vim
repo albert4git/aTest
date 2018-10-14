@@ -22,7 +22,8 @@ call plug#begin('~/.vim/plugged')
     "-NewNew---------------------------------------------
     Plug 'haya14busa/vim-easyoperator-line'
     Plug 'easymotion/vim-easymotion'
-    Plug 'unblevable/quick-scope' "---New-Txt-Object-----------------------------------------------------
+    Plug 'unblevable/quick-scope'
+    "---New-Txt-Object-----------------------------------------------------
     Plug 'sgur/vim-textobj-parameter'
      Plug 'saaguero/vim-textobj-pastedtext'
     Plug 'reedes/vim-textobj-sentence'
@@ -98,7 +99,6 @@ call plug#begin('~/.vim/plugged')
     "-------------------------------------------------------------------------
     Plug 'burnettk/vim-angular'
     Plug 'fatih/vim-go'
-    Plug 'mileszs/ack.vim'
     Plug 'motemen/git-vim'
     Plug 'nvie/vim-flake8'
     Plug 'jalvesaq/Nvim-R'
