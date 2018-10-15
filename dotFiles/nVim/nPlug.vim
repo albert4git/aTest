@@ -80,7 +80,7 @@ call plug#begin()
         Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
         Plug 'burnettk/vim-angular'
-        Plug 'fatih/vim-go'
+        "Plug 'fatih/vim-go'
         Plug 'motemen/git-vim'
         Plug 'nvie/vim-flake8'
         "-------------------------------------------------------------------------
@@ -108,18 +108,19 @@ call plug#begin()
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
 
+        "! Plug 'Shougo/neocomplete.vim'
+        "! Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+        "! Plug 'Valloric/YouCompleteMe'
         Plug 'balta2ar/deoplete-matcherkey'
         Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
                 let g:deoplete#enable_at_startup = 1
                 let g:deoplete#enable_smart_case = 1
-        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
         Plug 'duythinht/inori'
 
         Plug 'tpope/vim-eunuch'
         Plug 'rking/ag.vim'
-                Plug 'Shougo/neocomplete.vim'
                 Plug 'Shougo/neosnippet.vim'
                 Plug 'Shougo/neosnippet-snippets'
                 Plug 'honza/vim-snippets'
@@ -129,7 +130,7 @@ call plug#begin()
         Plug 'ron89/thesaurus_query.vim'
 "--------------------------------------------------------------------------------- 
         Plug 'MarcWeber/vim-addon-mw-utils'
-        Plug 'garbas/vim-snipmate'
+        "Plug 'garbas/vim-snipmate'
 
         Plug 'ivyl/vim-bling'
 
@@ -170,20 +171,20 @@ call plug#begin()
         Plug 'itchyny/calendar.vim'
         Plug 'guns/xterm-color-table.vim'
         Plug 'termhn/i3-vim-nav'
-        Plug 'vim-scripts/spreadsheet.vim'
+        "Plug 'vim-scripts/spreadsheet.vim'
         Plug 'brookhong/cscope.vim'
         Plug 'abudden/EasyColour'
         "------------------------------------
         Plug 'xolox/vim-misc'
         Plug 'xolox/vim-easytags'
-        Plug 'vim-scripts/TagHighlight'
+        "Plug 'vim-scripts/TagHighlight'
 call plug#end()
 
-        "---2EXPLORE---------------------------
+"-------2EXPLORE---------------------------------------------------------------------------
         "Plug 'christoomey/vim-tmux-navigator'
         "Plug 'bkad/CamelCaseMotion'
         "Plug 'tpope/vim-sensible'
-        "!"Plug 'vim-scripts/marvim'
+        "!Plug 'vim-scripts/marvim'
         "Plug 'Yggdroot/indentLine'
         "Plug 'xero/sourcerer.vim'
         "Plug 'Shougo/neco-vim'

@@ -68,6 +68,7 @@
         "-Line Transporter-------------
         nnoremap <C-down> :m .+1<CR>==
         nnoremap <C-up> :m .-2<CR>==
+        "-------------------------------------------------------------------------
 "-Misc-}}}
 
 "-AAA11-QuickFix---Search-------------------------------------------------------------------------------------------{{{
@@ -872,9 +873,9 @@ iabbrev todo TODO
                 nnoremap <Leader>b :lprev<cr>zvzz
                 "---------------------------------------------------------------
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-                "Ex: Pull word under cursor into LHS of a subs ztitute (replace)
-                nnoremap <LocalLeader>w :%s#\<<C-r>=expand("<cword>")<CR>\>#
-                nnoremap <LocalLeader>z :%s#\<<C-r>=getline(".")<CR>\>#
+                "Ex: Put Pull word under cursor into LHS of a subs ztitute (replace)
+                "nnoremap <LocalLeader>w :%s#\<<C-r>=expand("<cword>")<CR>\>#
+                nnoremap <Leader>; :%s#\<<C-r>=getline(".")<CR>\>#
                 "-------------------------------------------------------------------------
                 " Clear hlsearch and set nopaste
                 nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>

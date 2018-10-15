@@ -1,11 +1,29 @@
-""""""""""""""""""""""""""" nVIM Neo VIM """"""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""Neo-VIM"""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "set runtimepath+=~/.vim/plugged/vimproc/
         set path+=.,/usr/include,/usr/local/include
         set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
         let s:thesaurus_pat = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
         set dictionary=/home/red/git/aTest/dotFiles/DICT/english-words.txt
+"-------------------------------------------------------------------------------------------
+        " set tags=""
+        " set tags=~/git/aTest/dotFiles/nVim/tags
+        " set tags=tags,./tags,../tags,../../tags,../../../tags
+        " set tags+=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
+        " set tags=./tags,~/.vimtags
         set tags=""
-        set tags=~/git/aTest/dotFiles/nVim/tags
+        set tags=tags,./tags 
+"-------------------------------------------------------------------------------------------
+        let g:easytags_auto_highlight = 1
+        let g:easytags_syntax_keyword = 'always'
+        let g:easytags_events = ['BufWritePost']
+        " let g:easytags_on_cursorhold = 1
+        " let g:easytags_auto_update = 1
+        " If you like one of the existing styles you can link them:
+        " highlight link cMember Special
+        " As mentioned above the plug-in will store your tags in `~/.vimtags` 
+        " let g:easytags_file = '~/.vim/tags'
+"-------------------------------------------------------------------------------------------
         set nocompatible
         "set encoding=utf-8
         "set fileencodings=utf-8,sjis
@@ -16,48 +34,72 @@
         filetype on
         filetype plugin on
         filetype indent on
-        syntax enable
-"-map--------------------------------------------------------------------------------------
+"-map---------------------------------------------------------------------------------------
         let maplocalleader= ','
         let mapleader=' '
         set vb t_vb=         " disable beep sound
-"-magic------------------------------------------------------------------------------------
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-"-AAA01------------------------------------------------------------------------------------
+"-nPlug------------------------------------------------------------------------------------
         source ~/git/aTest/dotFiles/nVim/nPlug.vim
-        "colorscheme anderson
-        colorscheme molokai
+"-AAA01------------------------------------------------------------------------------------
+        set backup                        " enable backups
+        set noswapfile                    " it's 2013, Vim.
+        set undodir=~/.config/nvim/undoDir/    " undo files
+        set backupdir=~/.config/nvim/backUpDir/ " backups
+        set directory=~/.config/nvim/swapDir/   " swap files
+
+        " Make those folders automatically if they don't already exist.
+        if !isdirectory(expand(&undodir))
+            call mkdir(expand(&undodir), "p")
+        endif
+        if !isdirectory(expand(&backupdir))
+            call mkdir(expand(&backupdir), "p")
+        endif
+        if !isdirectory(expand(&directory))
+            call mkdir(expand(&directory), "p")
+        endif
+
+        set undofile
+        set undoreload=10000
+        set matchtime=3
+        set showbreak=↪
+        set linebreak
+        set colorcolumn=+1
+"-AAA01------------------------------------------------------------------------------------
+        " colorscheme anderson
+        " colorscheme desert
+        " colorscheme ron
+        " colorscheme darkblue
+        " colorscheme anderson
+        " colorscheme delek
+        " colorscheme molokai
+        " colorscheme molokayo
         syntax on
-        colorscheme desert
-        colorscheme ron
         syntax enable
-        colorscheme darkblue
-        colorscheme anderson
-        colorscheme delek
-        colorscheme molokayo
-"OOO------------------------------------------------------------------------------
+        colorscheme mopkai
+"-AAA01------------------------------------------------------------------------------------
         set nu
-        set cf  " Enable error files & error jumping.
+        set cf         " Enable error files & error jumping.
         set autowrite  " Writes on make/shell commands
         set guifont=Monospace\ 14
         set cinwords=if,else,while,do,for,switch,case
-"OOO--------------------------------------------------------------------------------
+"-AAA01------------------------------------------------------------------------------------
 
 "-AAA0-Misc---------------------------------------------------------------------------------------------------------{{{
         imap jj <Esc>
         noremap ss :wa<cr>
+        noremap qq :wa<cr> :bd<cr>
         noremap sq :wa<cr> :qa<cr>
-        noremap qq :w<cr> :bd<cr>
-        noremap xz :qa!<cr>
-        noremap xc :q<cr>
-        "-toggle---------------
+        noremap qa :qa!<cr>
+        "noremap xc :q<cr>
+        "-toggle-----------------------------
         nmap ge :w<CR>:e #<CR>
         noremap ee :e#<CR>
         "-Auto-Commands----------------------
         augroup vimrc
                 autocmd!
         augroup END
-        "-It's-2018------------
+        "-It's-2018--------------------------
         noremap j gj
         noremap k gk
         noremap gj j
@@ -66,10 +108,9 @@
         cnoremap <C-A> <Home>
         cnoremap <C-E> <End>
         cnoremap <C-d> <Del>
-        "------------------------
+        "------------------------------------
         nnoremap <C-P> <Up>
         nnoremap <C-N> <Down>
-        "Better x
         "nnoremap x "_x
         "Disable Ex-mode.
         nnoremap Q  q
@@ -108,10 +149,9 @@
         if &compatible | set nocompatible | endif
         " magic
                 silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-                set nospell
         " Appearance  # matchtime=1
                 silent! display=lastline,uhex nowrap wrapmargin=0 guioptions=ce key=
-                silent! set noshowmatch  noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 showbreak=
+                silent! set noshowmatch  noshowmode shortmess+=I cmdheight=1 cmdwinheight=10 
                 silent! set noshowcmd noruler rulerformat= laststatus=2 statusline=%t\ %=\ %m%r%y%w\ %3l:%-2c
                 silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
                 silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
@@ -120,12 +160,13 @@
                 silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
                 silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
                 set splitbelow splitright
-                set number
-                "-AAA1.1-Extra vi-compatibility---------------------------------------------------{{{
+
+                "-AAA1.1-Extra vi-compatibility-------------------------------------------------------------{{{
                         set switchbuf=useopen    " reveal already opened files from the
                         set formatoptions-=o     " don't start new lines w/ com leader on press 'o'
                         au filetype vim set formatoptions-=o
                 "1.1}}}
+
         " Editing
                 silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
                 silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=4 smarttab softtabstop=8
@@ -133,8 +174,7 @@
                 silent! set textwidth=0 backspace=indent,eol,start nrformats=hex formatoptions=cmMj nojoinspaces
                 silent! set nohidden autoread noautowrite noautowriteall nolinebreak mouse= modeline& modelines&
                 silent! set noautochdir write nowriteany writedelay=0 verbose=0 verbosefile= notildeop noinsertmode
-                "silent! set tags+=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
-                silent! set tags=tags,./tags 
+
                 "set tw = 300
                 "easier on the eyes
                 highlight Folded ctermbg=1
@@ -162,7 +202,6 @@
                 autocmd vimrc FileType help if &l:buftype ==# 'help' | wincmd K | endif
         " Always open read-only when a swap file is found
                 autocmd vimrc SwapExists * let v:swapchoice = 'o'
-        " Automatically set expandtab
         " autocmd vimrc FileType * execute 'setlocal ' . (search('^\t.*\n\t.*\n\t', 'n') ? 'no' : '') . 'expandtab'
 
         " Setting lazyredraw causes a problem on startup
@@ -391,7 +430,6 @@ iabbrev yyy3 "-}}}
 iabbrev yyyr "....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10....+...11....+..12<esc>
 
 iabbrev str start
-iabbrev supe superuser
 iabbrev que question
 iabbrev #i #include
 iabbrev #d #define
@@ -554,7 +592,7 @@ iabbrev todo TODO
         let g:neocomplete#enable_at_startup = 1
         let g:neocomplete#enable_auto_select = 1
         let g:neocomplete#enable_smart_case = 1
-        let g:neocomplete#auto_completion_start_length = 2
+        let g:neocomplete#auto_completion_start_length = 3 "-XXX
         let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
         let g:neocomplete#enable_fuzzy_completion = 1
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -630,7 +668,6 @@ iabbrev todo TODO
                 nnoremap <Leader>n :lnext<cr>zvzz
                 nnoremap <Leader>b :lprev<cr>zvzz
                 "---------------------------------------------------------------
-                silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
                 "Ex: Pull word under cursor into LHS of a subs ztitute (replace)
                 nnoremap <LocalLeader>w :%s#\<<C-r>=expand("<cword>")<CR>\>#
                 nnoremap <LocalLeader>z :%s#\<<C-r>=getline(".")<CR>\>#
@@ -706,11 +743,11 @@ iabbrev todo TODO
                 nnoremap <leader>gl :Shell git gl -18<cr>:wincmd \|<cr>
                 au BufNewFile,BufRead .git/index setlocal nolist
         augroup END
-        " " "Hub"
+        " Hub XXX"
         " vnoremap <leader>H :Gbrowse<cr>
         " nnoremap <leader>H V:Gbrowse<cr>
         "
-        " " "(Upstream) Hub"
+        " (Upstream) Hub"
         " vnoremap <leader>u :Gbrowse @upstream<cr>
         " nnoremap <leader>u V:Gbrowse @upstream<cr>
 "-}}}
@@ -795,13 +832,36 @@ iabbrev todo TODO
         set nuw =5
         highlight Cursor ctermbg=2 term= bold
         ""-------------------------------------------------------
-        hi StatusLine       ctermfg=7    ctermbg=9     cterm=bold
-        hi StatusLineNC     ctermfg=9     ctermbg=4     term=bold
+        " hi StatusLine       ctermfg=7    ctermbg=9     cterm=bold
+        " hi StatusLineNC     ctermfg=9     ctermbg=4     term=bold
         ""-------------------------------------------------------
-        set statusline=[%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
+        " set statusline=[%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
+        " set statusline+=%#warningmsg#
+        " set statusline+=%{SyntasticStatuslineFlag()}
+        " set statusline+=%*
+"-TOP-------------------------------------------------------------------------------------------------------------------
+        "Airline
+        let g:ctags_statusline=1
+        let generate_tags=1
+        set noshowmode
+        set showmode                    " Display the current mode
+        set showcmd      " Show partial commands in status line and
+        "----------------------------------------
+        let g:airline#extensions#tabline#enabled = 2
+        let g:airline#extensions#tabline#fnamemod = ':t'
+        let g:airline#extensions#tabline#buffer_min_count = 1
+        let g:airline_section_c = '%{strftime("%D - %H:%M")}'
+        "let g:airline_theme='powerlineish'
+        "let g:airline_theme='solarized'
+        let g:airline_theme='light'
+        let g:airline_powerline_fonts=1
+        let g:airline#extensions#branch#enabled=1
+        let g:airline#extensions#whitespace#enabled = 1
+        let g:airline#extensions#hunks#non_zero_only = 1
+        "-----------------------------------------------------------
+        hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
+        hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
+
 
         "-TOP-------------------------------------------------------------------------------------------------------------------
         " highlight signcolumn  ctermfg=20
@@ -843,6 +903,49 @@ iabbrev todo TODO
         "avoid invisible color combination (red on red)
         highlight DiffText ctermbg=1
 
+"-AAA11-QuickFix---Search-------------------------------------------------------------------------------------------{{{
+        let wordUnderCursor = expand("<cword>")
+        let currentLine   = getline(".")
+        "-------------------------------------------------------------------------
+        function! OnlineDoc8()
+                let s:browser = "firefox"
+                let s:wordUnderCursor = expand("<cword>")
+                let s:langs = ["c", "cpp", "ruby", "python", "php", "java", "css"]
+                if  ((match(s:langs, &ft) > -1) && (&ft != ""))
+                        let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor."+lang:".&ft
+                else
+                        let s:url = "http://www.google.com/search\\?q=".s:wordUnderCursor
+                endif
+                let s:cmd ="silent ! " . s:browser . " " . s:url
+                execute s:cmd
+                redraw!
+        endfunction
+        map <F10> :call OnlineDoc8()<CR>
+        "------------------------------------------------------------------------ 
+        "------------------------------------------------------------------------ 
+        function! OpenUrlUnderCursor()
+                let path="/Applications/Safari.app"
+                execute "normal BvEy"
+                let url=matchstr(@0, '[a-z]*:\/\/[^ >,;]*')
+                if url != ""
+                        silent exec "!open -a ".path." '".url."'" | redraw! 
+                        echo "opened ".url
+                else
+                        echo "No URL under cursor."
+                endif
+        endfunction
+        nmap <leader>o :call OpenUrlUnderCursor()<CR>
+        "------------------------------------------------------------------------ 
+        " OnlineDoc8
+        highlight TagbarHighlight   ctermfg=009 ctermbg=14 cterm=bold
+        highlight TagListTagName    ctermfg=3
+"-14-Search-QFix-}}}
+"-TODO-------------------------------------------------------------------------------------------------------------------
+" if ! exists('g:TagHighlightSettings')
+"         let g:TagHighlightSettings = {}
+" endif
+" let g:TagHighlightSettings['TagFileName'] = 'tags'
+" let g:TagHighlightSettings = {'TagFileName': 'tags', 'CtagsExecutable': 'etags.exe'}
 
 
 "-----XXX-------ToDO--------------------FFF-------------------------------------------------

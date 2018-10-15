@@ -464,4 +464,79 @@ is computed to fit the menus.
 +rv			idem				*-+rv*
 -xrm {resource}	Set the specified resource	*-xrm*
 "========================================================================
+VimTip	{{{1 24: changing the default syntax highlighting
+http://vim.sourceforge.net/tip_view.php?tip_id=
+
+1. I want *.foo files to be highlighted like HTML files.
+
+:help new-filetype  http://www.vim.org/html/autocmd.html#new-filetype
+
+2. I want to define a syntax file for *.bar files.  Read the above and also
+
+:help mysyntaxfile  http://www.vim.org/html/syntax.html#mysyntaxfile
+
+3. I want to make a few changes to the existing syntax highlighting.  Depending on the x in 5.x, either read the above and page down a few screens, or you may be able to skip right to
+
+:help mysyntaxfile-add  http://www.vim.org/html/syntax.html#mysyntaxfile-add
+
+4. I want to change some of the colors from their defaults.  Again, read
+
+:help mysyntaxfile  http://www.vim.org/html/syntax.html#mysyntaxfile
+"------------------------------------------------------------------------
+1. replace all extraneous ^M:
+:%s/^M$//g
+
+BE SURE YOU MAKE the ^M USING "CTRL-V CTRL-M" NOT BY TYPING "CARROT M"! This expression will replace all the ^M's that have carriage returns after them with nothing. (The dollar ties the search to the end of a line)
+2. replace all ^M's that need to have carriage returns:
+
+:%s/^M//g
+"------------------------------------------------------------------------
+ma       -    set current cursor location as mark a
+
+'a       -    jump to beginning of line of mark a
+
+`a       -    jump to postition of mark a
+
+d'a      -    delete from current line to line of mark a
+
+d`a      -    delete from current cursor position to mark a
+
+c'a      -    change text from current line to line of mark a
+
+y`a      -    yank text to unnamed buffer from cursor to mark a
+
+:marks   -    list all the current marks
+"------------------------------------------------------------------------
+$       - move to the end of the line          
+<End>   - same as $
+0       - move to the beginning of the line
+<Home>  - same as 0
+
+)   - jump forward one sentence
+(   - jump backward one sentence
+
+}   - jump forward one paragraph
+{   - jump backward one paragraph
+
+H   - jump to the top of the display       
+M   - jump to the middle of the display   
+L   - jump to the bottom of the display
+
+'m  - jump to the beginning of the line of mark m
+`m  - jump to the location of mark m
+
+G   - jump to end of file
+1G  - jump to beginning of file
+50G - jump to line 50
+
+'' - return to the line where the cursor was before the latest jump
+`` - return to the cursor position before the latest jump (undo the jump).
+
+%  - jump to corresponding item, e.g. from an open brace to its 
+     matching closing brace
+------------------------------------------------------------------------
+"------------------------------------------------------------------------
+"------------------------------------------------------------------------
+"------------------------------------------------------------------------
+"------------------------------------------------------------------------
 "------------------------------------------------------------------------

@@ -39,6 +39,14 @@
         "cnoremap <Right> <Nope>
         "-------------------------------------------------------------------------------------------
         "-------------------------------------------------------------------------------------------
+        " let $VIMHOME='~/13-ErrShift-Vim'
+        " let s:VIMROOT = $HOME."/13RVim"
+        " let &runtimepath=s:VIMROOT
+        " let &runtimepath=s:VIMROOT."," . &runtimepath
+        " let &runtimepath=s:VIMROOT."/plugged," . &runtimepath
+        "-------------------------------------------------------------------------------------------
+        "====[ I hate modelines ]===================
+        set modelines=0
         "-------------------------------------------------------------------------------------------
 
         set path+=.,/usr/include,/usr/local/include
@@ -79,6 +87,8 @@
                         source ~/git/aTest/dotFiles/inkVim/vim-mopOptic.vim
                 "colorscheme anderson
         source ~/git/aTest/dotFiles/inkVim/vim-post.vim
+        "=====[ Comments are important ]==================
+        highlight Comment term=bold ctermfg=230
 "-TOP-------------------------------------------------------------------------------------------------------------------
         "!!!" IndentGuidesDisable "!!!"
         "!!!" IndentGuidesToggle  "!!!"
@@ -186,6 +196,10 @@
  highlight DiffChange        cterm=bold ctermbg=9 "red
  highlight DiffChange        cterm=bold ctermbg=8 "gray
  highlight DiffChange        cterm=bold ctermbg=7 "red
+
+ set laststatus=2
+
+
 "-TOP-------------------------------------------------------------------------------------------------------------------
 "  ---------------------------------+------------------------------------------
 "  Mapping                          | Description                              ~
@@ -253,3 +267,13 @@
 " :cmap  :cnoremap :cunmap    Command-line
 " :tmap  :tnoremap :tunmap    Terminal-Job
 "------------------------------------------------------------------------------------------
+
+" set makeprg=tidy -quiet -e %
+" At this point you can use make to clean up the full file or you can use = to clean up sections.
+" :help =
+" :help equalprg
+" :help makeprg
+" In my .vimrc, I have taught vim my common typos:
+" command! Q  quit
+" command! W  write
+" command! Wq wq
