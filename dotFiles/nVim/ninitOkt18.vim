@@ -940,12 +940,15 @@ iabbrev todo TODO
         highlight TagbarHighlight   ctermfg=009 ctermbg=14 cterm=bold
         highlight TagListTagName    ctermfg=3
 "-14-Search-QFix-}}}
-"-TODO-------------------------------------------------------------------------------------------------------------------
+
+
+"-TODO------------------------------------------------------------------------------------------------------------------
 " if ! exists('g:TagHighlightSettings')
 "         let g:TagHighlightSettings = {}
 " endif
 " let g:TagHighlightSettings['TagFileName'] = 'tags'
 " let g:TagHighlightSettings = {'TagFileName': 'tags', 'CtagsExecutable': 'etags.exe'}
+"-TODO------------------------------------------------------------------------------------------------------------------
 
 
 "-----XXX-------ToDO--------------------FFF-------------------------------------------------
