@@ -1,5 +1,3 @@
-
-
 By default it creates the following mapping:
     gb
 To change it, modify the `g:pastedtext_select_key` variable. For example:
@@ -35,9 +33,7 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 "-----------------------------------------------------------------------------
 "-----------------------------------------------------------------------------
 :Ack [options] {pattern} [{directories}]
-
 The quickfix results window is augmented with these convenience mappings:
-
     ?    a quick summary of these keys, repeat to close
     o    to open (same as Enter)
     O    to open and close the quickfix window
@@ -49,6 +45,7 @@ The quickfix results window is augmented with these convenience mappings:
     v    to open in vertical split
     gv   to open in vertical split, keeping focus on the results
     q    to close the quickfix window
+"-----------------------------------------------------------------------------
 
 ### Gotchas
 
@@ -63,29 +60,21 @@ foo'` to search for '#define foo'. See [issue #5].
 "-----------------------------------------------------------------------------
 "-----------------------------------------------------------------------------
 
-
-
-#### :Far {pattern} {replace-with} {file-mask} [params]
-Find the text to replace.
-
-#### :Farp [params]
-Same as `Far`, but allows to enter {pattern}, {replace-with} and {file-mask}
-one after the other.
-
-#### :Fardo [params]
-Runs the replacement task.
-
-#### :Refar [params]
-Change `Far`/`Farp` params.
-
-#### :Farundo [params]
-Undo last (or all) replacement(s).
-
-#### :F {pattern} {file-mask} [params]
-Find only.
-
-#### Need help?
-:help far.vim
+" #### :Far {pattern} {replace-with} {file-mask} [params]
+" Find the text to replace.
+" #### :Farp [params]
+" Same as `Far`, but allows to enter {pattern}, {replace-with} and {file-mask}
+" one after the other.
+" #### :Fardo [params]
+" Runs the replacement task.
+" #### :Refar [params]
+" Change `Far`/`Farp` params.
+" #### :Farundo [params]
+" Undo last (or all) replacement(s).
+" #### :F {pattern} {file-mask} [params]
+" Find only.
+" #### Need help?
+" :help far.vim
 
 "-----------------------------------------------------------------------------
 "-----------------------------------------------------------------------------

@@ -41,42 +41,48 @@ if v:version >= 700
 endif
 
 
-hi Boolean           ctermfg=45    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#00d7ff  guibg=NONE
-hi Cursor            ctermfg=66    ctermbg=15    gui=NONE       cterm=NONE      guifg=#080808  guibg=#6c6c6c
-hi Constant          ctermfg=33    ctermbg=NONE  gui=bold       cterm=bold      guifg=#0087ff  guibg=NONE
-hi Character         ctermfg=207   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#ff5fff  guibg=NONE
-hi Conditional       ctermfg=201   ctermbg=NONE  gui=bold       cterm=bold      guifg=#ff00ff  guibg=NONE
-hi Comment           ctermfg=244   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#808080  guibg=NONE
-hi CursorLine        ctermfg=NONE  ctermbg=235   gui=NONE       cterm=NONE      guifg=NONE     guibg=#262626
-hi cursorcolumn      ctermfg=NONE  ctermbg=235   gui=NONE       cterm=NONE      guifg=NONE     guibg=#262626
-hi CursorLineNr      ctermfg=45    ctermbg=235   gui=bold       cterm=bold      guifg=#00d7ff  guibg=#262626
-hi Define            ctermfg=61    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#5f5faf  guibg=NONE
-hi DefinedName       ctermfg=200   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#ff00d7  guibg=NONE
-hi Delimiter         ctermfg=207   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#ff5fff  guibg=NONE
-hi Directory         ctermfg=45    ctermbg=NONE  gui=bold       cterm=bold      guifg=#00d7ff  guibg=NONE
-hi Error             ctermfg=196   ctermbg=232   gui=bold       cterm=bold      guifg=#ff0000  guibg=#080808
-hi ErrorMsg          ctermfg=196   ctermbg=232   gui=bold       cterm=bold      guifg=#ff0000  guibg=#080808
-hi Exception         ctermfg=201   ctermbg=NONE  gui=bold       cterm=bold      guifg=#ff00ff  guibg=NONE
-hi Float             ctermfg=37    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#00afaf  guibg=NONE
-hi FoldColumn        ctermfg=33    ctermbg=233   gui=NONE       cterm=NONE      guifg=#0087ff  guibg=#121212
-hi Folded            ctermfg=33    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#0087ff  guibg=NONE
-hi Function          ctermfg=38    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#00afd7  guibg=NONE
-hi Identifier        ctermfg=201   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#ff00ff  guibg=NONE
-hi Include           ctermfg=69    ctermbg=NONE  gui=bold       cterm=bold      guifg=#5f87ff  guibg=NONE
-hi IncSearch         ctermfg=232   ctermbg=33    gui=NONE       cterm=NONE      guifg=#080808  guibg=#0087ff
-hi jsonKeyword       ctermfg=45    ctermbg=NONE  gui=bold       cterm=bold      guifg=#00d7ff  guibg=NONE
-hi Keyword           ctermfg=201   ctermbg=NONE  gui=bold       cterm=bold      guifg=#ff00ff  guibg=NONE
-hi Label             ctermfg=201   ctermbg=NONE  gui=bold       cterm=bold      guifg=#ff00ff  guibg=NONE
-hi LineNr            ctermfg=36    ctermbg=233   gui=NONE       cterm=NONE      guifg=#00af87  guibg=#121212
-hi Macro             ctermfg=69    ctermbg=NONE  gui=bold       cterm=bold      guifg=#5f87ff  guibg=NONE
-hi MatchParen        ctermfg=50    ctermbg=39    gui=NONE       cterm=NONE      guifg=#00ffd7  guibg=#00afff
-hi ModeMsg           ctermfg=39    ctermbg=232   gui=bold       cterm=bold      guifg=#00afff  guibg=#080808
-hi MoreMsg           ctermfg=46    ctermbg=NONE  gui=bold       cterm=bold      guifg=#00ff00  guibg=NONE
-hi NonText           ctermfg=201   ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#ff00ff  guibg=NONE
-hi Normal            ctermfg=105   ctermbg=234   gui=NONE       cterm=NONE      guifg=#8787ff  guibg=#1c1c1c
-hi Number            ctermfg=31    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#0087af  guibg=NONE
-hi Operator          ctermfg=39    ctermbg=NONE  gui=NONE       cterm=NONE      guifg=#00afff  guibg=NONE
-                                                               
+hi Boolean        ctermfg=45       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#00d7ff     guibg=NONE
+hi Cursor         ctermfg=66       ctermbg=15       gui=NONE       cterm=NONE      guifg=#080808     guibg=#6c6c6c
+
+hi Constant       ctermfg=33       ctermbg=NONE     gui=bold       cterm=bold      guifg=#0087ff     guibg=NONE
+hi Character      ctermfg=207      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff5fff     guibg=NONE
+hi Conditional    ctermfg=201      ctermbg=NONE     gui=bold       cterm=bold      guifg=#ff00ff     guibg=NONE
+
+hi Comment        ctermfg=15      ctermbg=NONE      gui=NONE       cterm=NONE      guifg=#808080     guibg=NONE
+"hi Comment       ctermfg=103                                                                       
+
+hi CursorLine     ctermfg=NONE     ctermbg=235      gui=NONE       cterm=NONE      guifg=NONE        guibg=#262626
+hi cursorcolumn   ctermfg=NONE     ctermbg=235      gui=NONE       cterm=NONE      guifg=NONE        guibg=#262626
+hi CursorLineNr   ctermfg=45       ctermbg=235      gui=bold       cterm=bold      guifg=#00d7ff     guibg=#262626
+hi Define         ctermfg=61       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#5f5faf     guibg=NONE
+hi DefinedName    ctermfg=200      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff00d7     guibg=NONE
+hi Delimiter      ctermfg=207      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff5fff     guibg=NONE
+hi Directory      ctermfg=45       ctermbg=NONE     gui=bold       cterm=bold      guifg=#00d7ff     guibg=NONE
+hi Error          ctermfg=196      ctermbg=232      gui=bold       cterm=bold      guifg=#ff0000     guibg=#080808
+hi ErrorMsg       ctermfg=196      ctermbg=232      gui=bold       cterm=bold      guifg=#ff0000     guibg=#080808
+hi Exception      ctermfg=201      ctermbg=NONE     gui=bold       cterm=bold      guifg=#ff00ff     guibg=NONE
+hi Float          ctermfg=37       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#00afaf     guibg=NONE
+hi FoldColumn     ctermfg=33       ctermbg=233      gui=NONE       cterm=NONE      guifg=#0087ff     guibg=#121212
+hi Folded         ctermfg=33       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#0087ff     guibg=NONE
+hi Function       ctermfg=38       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#00afd7     guibg=NONE
+hi Identifier     ctermfg=201      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff00ff     guibg=NONE
+hi Include        ctermfg=69       ctermbg=NONE     gui=bold       cterm=bold      guifg=#5f87ff     guibg=NONE
+hi IncSearch      ctermfg=232      ctermbg=33       gui=NONE       cterm=NONE      guifg=#080808     guibg=#0087ff
+hi jsonKeyword    ctermfg=45       ctermbg=NONE     gui=bold       cterm=bold      guifg=#00d7ff     guibg=NONE
+
+hi Keyword        ctermfg=201      ctermbg=NONE     gui=bold       cterm=bold      guifg=#ff00ff     guibg=NONE
+hi Label          ctermfg=201      ctermbg=NONE     gui=bold       cterm=bold      guifg=#ff00ff     guibg=NONE
+
+hi LineNr         ctermfg=36       ctermbg=233      gui=NONE       cterm=NONE      guifg=#00af87     guibg=#121212
+hi Macro          ctermfg=69       ctermbg=NONE     gui=bold       cterm=bold      guifg=#5f87ff     guibg=NONE
+hi MatchParen     ctermfg=50       ctermbg=39       gui=NONE       cterm=NONE      guifg=#00ffd7     guibg=#00afff
+hi ModeMsg        ctermfg=39       ctermbg=232      gui=bold       cterm=bold      guifg=#00afff     guibg=#080808
+hi MoreMsg        ctermfg=46       ctermbg=NONE     gui=bold       cterm=bold      guifg=#00ff00     guibg=NONE
+hi NonText        ctermfg=201      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff00ff     guibg=NONE
+hi Normal         ctermfg=105      ctermbg=234      gui=NONE       cterm=NONE      guifg=#8787ff     guibg=#1c1c1c
+hi Number         ctermfg=31       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#0087af     guibg=NONE
+hi Operator       ctermfg=39       ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#00afff     guibg=NONE
+                                                                                                       
                                                                
 " For matching over X length of chars; non-essential.
 " That is, if you have a match property in your vimrc.
