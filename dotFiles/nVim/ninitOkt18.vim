@@ -143,8 +143,9 @@
         " Yank to end of line
         nnoremap Y y$
         " Formatting, TextMate-style
-        vnoremap W gq
-        nnoremap W gqip
+        "vnoremap W gq
+        "nnoremap W gqip
+
         "-HHJ- Keep the cursor in place while joining lines
         nnoremap H mzJ`z
         "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
