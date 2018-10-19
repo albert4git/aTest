@@ -1,3 +1,4 @@
+"---Paredit ???---
 call plug#begin()
         "----------
         "Plug 'Shougo/vimproc.vim'
@@ -115,6 +116,7 @@ call plug#begin()
         Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
+
                 let g:deoplete#enable_at_startup = 1
                 let g:deoplete#enable_smart_case = 1
         Plug 'duythinht/inori'

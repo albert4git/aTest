@@ -523,6 +523,7 @@
         " To disable omni complete, add the following to your .vimrc.before.local file:
         "   let g:spf13_no_omni_complete = 1
         if !exists('g:spf13_no_omni_complete')
+
             if has("autocmd") && exists("+omnifunc")
                 autocmd Filetype *
                     \if &omnifunc == "" |
@@ -552,7 +553,6 @@
 
     " Ctags {
         set tags=./tags;/,~/.vimtags
-
         " Make tags placed in .git/tags file available in all levels of a repository
         let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
         if gitroot != ''

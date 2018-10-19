@@ -86,7 +86,7 @@
                         colorscheme mopkai
                         source ~/git/aTest/dotFiles/inkVim/vim-mopOptic.vim
                 "colorscheme anderson
-        source ~/git/aTest/dotFiles/inkVim/vim-post.vim
+        "source ~/git/aTest/dotFiles/inkVim/vim-post.vim
         "=====[ Comments are important ]==================
         highlight Comment term=bold ctermfg=230
 "-TOP-------------------------------------------------------------------------------------------------------------------
