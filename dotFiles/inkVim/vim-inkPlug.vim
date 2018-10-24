@@ -103,6 +103,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvie/vim-flake8'
     Plug 'jalvesaq/Nvim-R'
     "Plug 'christoomey/vim-tmux-navigator'
+    Plug 'Shougo/neoyank.vim'
+    Plug 'Shougo/neomru.vim'
     "-------------------------------------------------------------------------
     Plug 'mbbill/undotree'
     Plug 'Shougo/vimfiler.vim'
@@ -175,4 +177,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'fergdev/vim-cursor-hist'
     Plug 'brookhong/cscope.vim'
     Plug 'abudden/EasyColour'
+    Plug 'MarcWeber/vim-addon-mw-utils'
+    Plug 'garbas/vim-snipmate'
 call plug#end()

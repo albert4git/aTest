@@ -93,7 +93,7 @@ call plug#begin()
         Plug 'brooth/far.vim'
         Plug 'neomake/neomake'
         Plug 'airblade/vim-gitgutter'
-        Plug '/wincent/command-t'
+        "Plug '/wincent/command-t'
         Plug 'dhruvasagar/vim-zoom'
         Plug 'Shougo/vimshell.vim'
         Plug 'majutsushi/tagbar'
@@ -137,10 +137,6 @@ call plug#begin()
         Plug 'ivyl/vim-bling'
 
         Plug 'junegunn/seoul256.vim'
-        Plug 'junegunn/fzf'
-        Plug 'junegunn/fzf.vim'
-        Plug 'pbogut/fzf-mru.vim'
-        Plug 'cskeeters/unite-fzf'
 
         Plug 'Shougo/unite.vim' 
         Plug 'kmnk/vim-unite-giti'
@@ -148,6 +144,11 @@ call plug#begin()
         Plug 'SpaceVim/unite-ctags'
         Plug 'Shougo/unite-outline/'
         Plug 'tsukkee/unite-help'
+        Plug 'cskeeters/unite-fzf'
+        Plug 'junegunn/fzf'
+        Plug 'junegunn/fzf.vim'
+        Plug 'pbogut/fzf-mru.vim'
+
 
         Plug 'idanarye/vim-vebugger'
         Plug 'davidhalter/jedi-vim'
@@ -179,10 +180,18 @@ call plug#begin()
         "------------------------------------
         Plug 'xolox/vim-misc'
         Plug 'xolox/vim-easytags'
-        "Plug 'vim-scripts/TagHighlight'
+        Plug 'vim-scripts/tagselect'
+        Plug 'junegunn/vader.vim'
+        Plug 'vim-scripts/paredit.vim'
+        Plug 'alvan/vim-closetag'
+        Plug 'Townk/vim-autoclose'
+        Plug 'python-mode/python-mode', { 'branch': 'develop' }
+        Plug 'maxbrunsfeld/vim-yankstack'
+        "-------------------------------------------------------------------------
 call plug#end()
 
 "-------2EXPLORE---------------------------------------------------------------------------
+        "Plug 'vim-scripts/TagHighlight'
         "Plug 'christoomey/vim-tmux-navigator'
         "Plug 'bkad/CamelCaseMotion'
         "Plug 'tpope/vim-sensible'

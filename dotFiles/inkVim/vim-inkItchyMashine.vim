@@ -701,6 +701,7 @@
                 inoremap <silent> <C-d> <C-x><C-d>
                 inoremap <silent> <C-f> <C-x><C-f>
                 inoremap <silent> <C-l> <C-x><C-l>
+                "----------------------------------------------------------------------------------
                 " This is the default extra key bindings
                 imap <C-o> <plug>(fzf-complete-word)
                 imap <C-S> <plug>(fzf-complete-line)

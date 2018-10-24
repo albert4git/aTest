@@ -26,7 +26,9 @@ If that doesn't save you a lot of typing, I don't know what will.
 VimTip	{{{1 2: easy edit of files in the same directory
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It was often frustrating when I would open a file deep in the code tree and then realize I wanted to open another file in that same directory. Douglas Potts taught me a nice way to do this. Add the following snipit to your vimrc:
+It was often frustrating when I would open a file deep in the code tree and
+then realize I wanted to open another file in that same directory. Douglas
+Potts taught me a nice way to do this. Add the following snipit to your vimrc:
 
 "   Edit another file in the same directory as the current file
 "   uses expression to extract path from current file's path
@@ -38,7 +40,8 @@ else
     map ,e :e <C-R>=expand("%:p:h") . "\" <CR>
 endif
 
-Then when you type ,e in normal mode you can use tab to complete to the file. You can also expand this to allow for spitting, etc. Very very nice.
+Then when you type ,e in normal mode you can use tab to complete to the file.
+You can also expand this to allow for spitting, etc. Very very nice.
 
 
 
@@ -69,7 +72,13 @@ To setup your classpath environment either launch gvim from a shell that has you
 VimTip	{{{1 4: Any word completion
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Either when programming or writing, I tend to have some identifiers or words that I use all the time. By sheer accident, I noticed the 'ctrl-n' command, that will attempt to complete the word under the cursor. Hit it once, and it will try to complete it with the first match in the current file. If there is no match, it will (at least in the case of C code) search through all files included from the current one. Repeated invocations will cycle through all found matches.
+Either when programming or writing, I tend to have some identifiers or words
+that I use all the time. By sheer accident, I noticed the 'ctrl-n' command,
+that will attempt to complete the word under the cursor. Hit it once, and it
+will try to complete it with the first match in the current file. If there is
+no match, it will (at least in the case of C code) search through all files
+included from the current one. Repeated invocations will cycle through all
+found matches.
 
 
 
@@ -1256,15 +1265,11 @@ H   - jump to the top of the display
 M   - jump to the middle of the display   
 L   - jump to the bottom of the display
 
-'m  - jump to the beginning of the line of mark m
-`m  - jump to the location of mark m
 
 G   - jump to end of file
 1G  - jump to beginning of file
 50G - jump to line 50
 
-'' - return to the line where the cursor was before the latest jump
-`` - return to the cursor position before the latest jump (undo the jump).
 
 %  - jump to corresponding item, e.g. from an open brace to its 
      matching closing brace
@@ -1624,13 +1629,13 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Sometimes I think it's helpful if your working directory is always the same as the buffer you are editing.  You need to put this in your .vimrc:
 
-function! CHANGE_CURR_DIR()
+function! change_curr_dir()
 	let _dir = expand("%:p:h")
 	exec "cd " . _dir
 	unlet _dir
 endfunction
 
-autocmd BufEnter * call CHANGE_CURR_DIR()
+autocmd bufenter * call change_curr_dir()
 
 Doing this will make a "cd" command to your the current buffer each time you switch to it.  This is actually similar to vimtip#2 but more automatic.
 
@@ -2100,7 +2105,8 @@ endfunction
 
 personally, i never let it get to the -1 state by always having an s: set with SOME default value.
 
-
+"xxxx71
+"bbbb
 
 
 
@@ -2300,7 +2306,7 @@ if you forget your key you will lose your document.
 So please DO NOT forget your key,
  
 
-
+"xxxx70 
 
 
 
@@ -2368,7 +2374,11 @@ I don't know if this helps, but if someone likes to compress documents... this c
 VimTip	{{{1 93: if you use 'highlight search' feature, map a key to :noh
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It is very convenient to use 'hlsearch' option.  However it can be annoying to have the highlight stick longer than you want it.  In order to run it off you have to type at least 4 keystrokes, ":noh".  So, it's a good idea to map this to a key.  I like to map it to control-n.  This is the line I use in my .vimrc file to do it:
+It is very convenient to use 'hlsearch' option.  However it can be annoying to
+have the highlight stick longer than you want it.  In order to run it off you
+have to type at least 4 keystrokes, ":noh".  So, it's a good idea to map this
+to a key.  I like to map it to control-n.  This is the line I use in my .vimrc
+file to do it:
 
 nmap <silent> <C-N> :silent noh<CR>
 
@@ -2757,9 +2767,17 @@ use, :help <helpkeyword> in Vim.
 VimTip	{{{1 95: How do I pipe the output from ex commands into the text buffer?
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is a *request* for a tip.  I need to be able to pipe the output of a :blah ex command into the vim text buffer for editing.  I wanted to do this many times for different reasons and could never find a way!
+This is a *request* for a tip.  I need to be able to pipe the output of a :blah
+ex command into the vim text buffer for editing.  I wanted to do this many
+times for different reasons and could never find a way!
 
-I would just love to be able to do :hi --> textBuffer and examine the output at my own leasure scrolling up and down and using vim search commands on it.  Same thing for :set all, and other things.  Considering that cut and paste is horrible in windows, I can't for example do :set guioptions? then cut and paste!  So I have to retype it, or cut and paste from the help manual.  I really want to be able to pipe the output of ex commands into the text buffer.  Can someone help me?
+I would just love to be able to do :hi --> textBuffer and examine the output at
+my own leasure scrolling up and down and using vim search commands on it.  Same
+thing for :set all, and other things.  Considering that cut and paste is
+horrible in windows, I can't for example do :set guioptions? then cut and
+paste!  So I have to retype it, or cut and paste from the help manual.  I
+really want to be able to pipe the output of ex commands into the text buffer.
+Can someone help me?
 
 
 
@@ -2974,7 +2992,7 @@ Add the line above the endif and restart vim/gvim.
 
 
 
-
+"xxxx69  ???
 
 
 VimTip	{{{1 102: smart mapping for tab completion
@@ -3010,7 +3028,9 @@ Benoit
 VimTip	{{{1 103: Move to next/previous line with same indentation
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When working with Python and other languages which don't use braces, it's useful to be able to jump to and from lines which have the same indentation as the line you are currently on.
+When working with Python and other languages which don't use braces, it's
+useful to be able to jump to and from lines which have the same indentation as
+the line you are currently on.
 
 nn <M-,> k:call search ("^". matchstr (getline (line (".")+ 1), '\(\s*\)') ."\\S", 'b')<CR>^
 nn <M-.> :call search ("^". matchstr (getline (line (".")), '\(\s*\)') ."\\S")<CR>^
@@ -3277,7 +3297,11 @@ endfunc
 VimTip	{{{1 111: Printing with syntax highlighting independent of your normal highlighting
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I have found it undesirable to use :hardcopy directly because it uses the current syntax highlighting to determine how to print the text.  For example, I like to print comments in italics, but I don't like italic fonts on the screen. This tip will show you how to set up a colorscheme for printing and use it only when you print.
+I have found it undesirable to use :hardcopy directly because it uses the
+current syntax highlighting to determine how to print the text.  For example, I
+like to print comments in italics, but I don't like italic fonts on the screen.
+This tip will show you how to set up a colorscheme for printing and use it only
+when you print.
 
 I copied an existing colorscheme to ~/.vim/colors/print.vim, and changed all the lines like this:
 
@@ -3317,10 +3341,10 @@ or just
 
 
 VimTip	{{{1 112: Back and forth between indented lines again
-http://vim.sourceforge.net/tip_view.php?tip_id=
 
-
-Paul Wright posted a tip which explained how to jump back and forth between lines with the same indentation level. I do this a lot, so I came up with this slightly more comprehensive solution.
+Paul Wright posted a tip which explained how to jump back and forth between
+lines with the same indentation level. I do this a lot, so I came up with this
+slightly more comprehensive solution.
 
 The example mappings below work as follows:
 
@@ -3396,8 +3420,17 @@ onoremap <silent> ]L :call NextIndent(1, 1, 1, 1)<cr>
 VimTip	{{{1 113: Translator in vim (Windows solution)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Hallo, today I found script "translate.vim", but on Windows this will be probably difficult to run it (maybe with Cygwin is it possible). I've simpler solution of keymap for vim interlacing to dictionary: 
-Must exist file with vocabulary (e.g. "an-cs.txt"), which is called for word under cursor. In 'normal' is only displayed window with translations, in 'insert' is word under cursor deleted and is insert selected form of word from translantion window (select it by mouse and than press right button: It works fine on W2k). Key _F12_ is looking for "word", shifted _S-F12_ is looking for "pattern". 
+Hallo, today I found script "translate.vim", but on Windows this will be
+probably difficult to run it (maybe with Cygwin is it possible). I've simpler
+solution of keymap for vim interlacing to dictionary: 
+
+Must exist file with vocabulary (e.g. "an-cs.txt"), which is called for word
+under cursor. In 'normal' is only displayed window with translations, in
+'insert' is word under cursor deleted and is insert selected form of word from
+translantion window (select it by mouse and than press right button: It works
+fine on W2k). Key _F12_ is looking for "word", shifted _S-F12_ is looking for
+"pattern". 
+
 For windows is needed agrep, which is localy placed on http://www.tgries.de/agrep/index.html
 
 map <F12> b"*yw<Esc>:! c:/bin/agrep -wih <C-R>* "c:/dict/an-cs.txt"<CR>
@@ -3441,7 +3474,9 @@ It can be done by reaching the blank lines in up and down directions just by pre
 VimTip	{{{1 116: Search all occurances of the word under cursor in all the open files
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Sometimes it is useful to know all the occurances of the word under cursor in all the open files. This can be done by pressing [I ( bracket and capital I ) . it shows the results found in the command window.
+Sometimes it is useful to know all the occurances of the word under cursor in
+all the open files. This can be done by pressing [I ( bracket and capital I ) .
+it shows the results found in the command window.
 
 
 
@@ -3547,7 +3582,16 @@ VimTip	{{{1 119: Explorer startup and shutdown
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-I really like the new explorer window, but I wanted it to function a little more seemlessly in the editor.  The following code does two things.  First, the explorer is started when vim is started.   I also noticed and fixed that the explorers size is not equal to the window size, hence the strange behavior when popping between two windows.  The other major function of the code is to close the explorer when it's the only window that's left.  I'd actually like to take this a step further and close the window if the last _document_ window is closed.  I'd prefer that multiple explorers or help windows don't keep the application running - only having a file open keeps the application running.  But I didn't see an easy way to do this... anyone else?
+I really like the new explorer window, but I wanted it to function a little
+more seemlessly in the editor.  The following code does two things.  First, the
+explorer is started when vim is started.   I also noticed and fixed that the
+explorers size is not equal to the window size, hence the strange behavior when
+popping between two windows.  The other major function of the code is to close
+the explorer when it's the only window that's left.  I'd actually like to take
+this a step further and close the window if the last _document_ window is
+closed.  I'd prefer that multiple explorers or help windows don't keep the
+application running - only having a file open keeps the application running.
+But I didn't see an easy way to do this... anyone else?
 
 BTW, thank you Bram for the help figuring this out.
 
@@ -3682,7 +3726,11 @@ other keys if you want to, also.
 VimTip	{{{1 122: Skip blank lines when folding text.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I love the text folding capabilities of vim.  I didn't like that it would display the first line of the range as the "title" for the fold.  I like to write my comments with the "/*" on a line by itself.  So I wrote this little function that will skip over anything that isn't a character, and then display whatever it finds after that character.
+I love the text folding capabilities of vim.  I didn't like that it would
+display the first line of the range as the "title" for the fold.  I like to
+write my comments with the "/*" on a line by itself.  So I wrote this little
+function that will skip over anything that isn't a character, and then display
+whatever it finds after that character.
 
 Just include this in your ~/.vimrc (or ~/.gvimrc):
 
@@ -3724,9 +3772,14 @@ map GR :grep \b<cword>\b %:p:h/*<cr>
 
 
 mapping one will search for the word under the cursor (like g*) in any of the files in the current directory 
-mapping two will search for the word under the cursor (like g*) in any of the files in the same directory as the current file
-mapping three will search for the word under the cursor by itself (i.e. surrounded by word boundary like *) in any of the files in the current directory
-mapping four will search for the word under the cursor by itself (i.e. surrounded by word boundary like *) in any of the files in the same directory as the current file
+mapping two will search for the word under the cursor (like g*) in any of the files in the same directoryr
+as the current file
+
+mapping three will search for the word under the cursor by itself (i.e. surrounded by word boundary like *)r
+in any of the files in the current directory
+
+mapping four will search for the word under the cursor by itself (i.e. surrounded by word boundary like *)
+in any of the files in the same directory as the current file
 
 Benoit
 
@@ -3753,6 +3806,22 @@ tree
 
 " Description:
 " This provides a command and a function.  They both can be called with or
+VimTip	{{{1 131: Scroll alternate window
+http://vim.sourceforge.net/tip_view.php?tip_id=
+This mapping allow you to quickly scroll inactive window when displaying several windows concurrently.
+
+nmap <silent> <M-Down> :call ScrollOtherWindow("down")<CR>
+nmap <silent> <M-Up> :call ScrollOtherWindow("up")<CR>
+
+fun! ScrollOtherWindow(dir)
+	if a:dir == "down"
+		let move = "\<C-E>"
+	elseif a:dir == "up"
+		let move = "\<C-Y>"
+	endif
+	exec "normal \<C-W>p" . move . "\<C-W>p"
+endfun
+
 " without a range.  In addition, they can be called with or without
 " arguments.  Without a range they operate on the current line.
 "
@@ -3801,13 +3870,16 @@ endfunction
 
 
 
-
+"xxxx68 ???
 
 
 VimTip	{{{1 125: Auto commenting for "}"
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I always wanted a script that would auto-comment the end of a conditional block.  So, I wrote one.  This function searches for the previous matching "{", grabs the line, and inserts it as a comment after the "}".  If there is no previous matching "{", it inserts nothing.
+I always wanted a script that would auto-comment the end of a conditional
+block.  So, I wrote one.  This function searches for the previous matching "{",
+grabs the line, and inserts it as a comment after the "}".  If there is no
+previous matching "{", it inserts nothing.
 
 So...
 
@@ -3969,8 +4041,6 @@ to your VIMRC file, BEFORE the ":filetype ftplugin on" line.
 
 VimTip	{{{1 131: Scroll alternate window
 http://vim.sourceforge.net/tip_view.php?tip_id=
-
-
 This mapping allow you to quickly scroll inactive window when displaying several windows concurrently.
 
 nmap <silent> <M-Down> :call ScrollOtherWindow("down")<CR>
@@ -4030,9 +4100,14 @@ map <Leader>max :call ToggleMaxWins ()<CR>
 VimTip	{{{1 133: Windo and Bufdo
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-i like bufdo and windo but i don't like the fact that the commands end in a different window/buffer than from where i executed them.  these versions (starts with a capital letter) will restore the current window or buffer when the command's done.
+i like bufdo and windo but i don't like the fact that the commands end in a
+different window/buffer than from where i executed them.  these versions
+(starts with a capital letter) will restore the current window or buffer when
+the command's done.
 
-for example, to turn on line numbers everywhere, i use :Windo set nu -- :windo set nu does the trick also but leaves me in a different window than where i started.
+for example, to turn on line numbers everywhere, i use :Windo set nu -- :windo
+  set nu does the trick also but leaves me in a different window than where i
+  started.
 
 " just like windo but restores the current window when it's done
 function! WinDo(command)
@@ -4468,7 +4543,10 @@ Regards
 VimTip	{{{1 137: automatically wrap left and right
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I hate it when I hit left (or h) and my screen flickers.  I want it to go up to the next line.  Ditto fir right (or l).  Below are two functions / mappings to help with that.  I'm pretty sure that if you remove the <silent>, then it will work in 5.x...
+I hate it when I hit left (or h) and my screen flickers.  I want it to go up to
+the next line.  Ditto fir right (or l).  Below are two functions / mappings to
+help with that.  I'm pretty sure that if you remove the <silent>, then it will
+work in 5.x...
 
 nnoremap <silent> <Left>  :call WrapLeft()<cr>
 nnoremap <silent> <Right> :call WrapRight()<cr>
@@ -4517,7 +4595,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Hi All,
  
-While browsing code one always needs to know which function you are currently looking. Getting the name is very painful when the functions are lengthy and you are currently browsing NOT near to the start of the function. You can get the function's name by using this simple mapping.
+While browsing code one always needs to know which function you are currently
+looking. Getting the name is very painful when the functions are lengthy and
+you are currently browsing NOT near to the start of the function. You can get
+the function's name by using this simple mapping.
  
 Just place this in your .vimrc.
  
@@ -4653,7 +4734,9 @@ this tips are probably true for other scripting languages
 VimTip	{{{1 141: Add your function heading with a keystroke
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Below is a tip that the C/C++ Newbies may find interesting and handy to use.  The following code will add a function heading and position your cursor just after Description so that one can document as one proceeds with code.
+Below is a tip that the C/C++ Newbies may find interesting and handy to use.
+The following code will add a function heading and position your cursor just
+after Description so that one can document as one proceeds with code.
 
 function FileHeading()
 	let s:line=line(".")
@@ -4677,7 +4760,9 @@ Where <esc> stands for ^V+ESC and <RET> for ^V+ENTER
 VimTip	{{{1 142: Automatic function end commenting for C++ and Java
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Some people have a habit of adding the function name as a comment to the end of that function, if it is long, so that he/she knows which function the '}' ends. Here's a way to automate the process.
+Some people have a habit of adding the function name as a comment to the end of
+that function, if it is long, so that he/she knows which function the '}' ends.
+Here's a way to automate the process.
 
 Use the following abbreviation:
 iab }// } // END: <esc>10h%$?\w\+\s*(<cr>"xy/\s*(<cr>/{<cr>:nohl<cr>%$"xpa
@@ -4938,6 +5023,7 @@ write out either of the files you are diff'ing.  This autocmd will take
 care of doing that for you.
 
 
+VimTip	{{{1 149: Automatically update your diff upon writing.
 " If doing a diff.  Upon writing changes to file, automatically update the
   " differences
   au BufWritePost                  *              if &diff == 1
@@ -5089,6 +5175,7 @@ Because this is not as general like the kind of visual mode mapping, I use
 this kind of "word bracketing" only for surrounding the word right behind the cursor in insert mode with **.  I use the following macro to "emphasize" the word i just typed,
 for newsgroup articles.
 
+"word bracketing" only for surrounding the word right behind the cursor in insert mode with **.  I use the following macro to "emphasize" the word i just typed,
 	:imap _* <Esc>bi*<Esc>ea*<Space>
 
 
@@ -5131,6 +5218,7 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 " Please send me feedback.  
 " 
 
+VimTip	{{{1 154: Mappings to facilitate the creation of text
 "To allow overriding the Alt key
 set winaltkeys=no  
 "To enable viewing messages from commands issued using the mappings presented here 
@@ -5200,14 +5288,18 @@ imap <A-.>  <C-o>.
 
 
 
-
+"xxxx67 ???
 
 
 VimTip	{{{1 155: Decompile Java .class files automatically
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-Here's a plugin to automatically decompile Java .class files as they're read in.  Tweak the javap flags for what you want to see.  I didn't post this as a script because it's too simple and it's really more useful for demonstrating how to read decompilable files (or other binary files that can be converted to text).
+Here's a plugin to automatically decompile Java .class files as they're read
+in.  Tweak the javap flags for what you want to see.  I didn't post this as a
+script because it's too simple and it's really more useful for demonstrating
+how to read decompilable files (or other binary files that can be converted to
+text).
 
 function s:ReadClass(dir, classname)
     execute "cd " . a:dir
@@ -5651,7 +5743,7 @@ GVIM has an excellent syntax highlighting for XPM images, but sometimes it's use
 VimTip	{{{1 169: <Tab> = <C-I> and <Esc> = <C-[>
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-     An FAQ on the vim users' mailing list is whether <Tab> and <C-I>
+An FAQ on the vim users' mailing list is whether <Tab> and <C-I>
 can be mapped to different things.  The answer is no.  As I understand
 it, this is a low level issue:  <Tab> and <C-I> are different names
 for the same ASCII code, and there is no way for vim to tell them
@@ -5933,7 +6025,11 @@ will restore them when the mode is stopped.
 VimTip	{{{1 178: Making a "derived" colorscheme without copy & paste
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Suppose there's a colorscheme that you're pretty fond of, but hate one or two particular aspects about.  For example, I love the "blue" colorscheme that ships with vim, but I find it's colors for the non-active status line to be unreadable.  Here's how to create a colorscheme which extends "blue" without copying it to a new file and editing it.
+Suppose there's a colorscheme that you're pretty fond of, but hate one or two
+particular aspects about.  For example, I love the "blue" colorscheme that
+ships with vim, but I find it's colors for the non-active status line to be
+unreadable.  Here's how to create a colorscheme which extends "blue" without
+copying it to a new file and editing it.
 
 In my ~/.vim/colors, I created a "my-blue.vim" file with these contents:
 
@@ -6030,6 +6126,7 @@ i hope i don't hear a collective 'DUH!' from around the world but i just did thi
 
 in your .vimrc add...
 
+"182: Keep your cursor centered vertically on the screen
 map j jzz
 map k kzz
 
@@ -6045,7 +6142,10 @@ obviously it doesn't work when you page up/ down.
 VimTip	{{{1 183: Select a buffer from those matching a pattern
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The :bu command will take a pattern as an argument and jump to the matching buffer.  However, it's not very helpful if there is more than one buffer matching the pattern.  In that case, it will jump to the first match, which may not be what you want.  The following function and user-command will print a list of the matching buffers in the command-line area, and allow you to select one of the matching buffers by number.
+The :bu command will take a pattern as an argument and jump to the matching buffer.
+However, it's not very helpful if there is more than one buffer matching the pattern. 
+In that case, it will jump to the first match, which may not be what you want. 
+The following function and user-command will print a list of the matching buffers in the command-line area, and allow you to select one of the matching buffers by number.
 
 "Select from buffers matching a certain pattern
 "the 'pattern' argument shouldn't be prepended with a slash
@@ -6260,7 +6360,11 @@ Njoy
 VimTip	{{{1 189: Make Ctrl-Backspace delete previous word (like GTK inputs)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Stuff this into your ~/.gvimrc and then you'll be able to type Control-Backspace to delete the previous word.  I had gotten so used to C-BS working a certain way in all my editors with a ceezy input area (like mozilla/galeon, gabber, etc...), that I wanted the same behaviour when I used gvim.
+Stuff this into your ~/.gvimrc and then you'll be able to type
+Control-Backspace to delete the previous word.  I had gotten so used to C-BS
+working a certain way in all my editors with a ceezy input area (like
+mozilla/galeon, gabber, etc...), that I wanted the same behaviour when I used
+gvim.
 
 " map control-backspace to delete the previous word
 :imap <C-BS>        <Esc>vBc
@@ -6409,6 +6513,7 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I found this one good for when I was starting to learn Java, it simply inserts the current filename, at the cursor position, when you are in insert mode.  Honestly, its a mish-mash of some other tips I found here, but I thought it might be useful.
 
+"1 193: Insert the current filename at cursor postion.
 imap \fn   <C-R>=expand("%:t:r")<CR>
 
 Enjoy!
@@ -6469,8 +6574,9 @@ Normally typing Ctrl-X Ctrl-F is used to complete FileName under cursor.
 But this does not work if used on lines given above.
 This is because vim treats "=" sign as a valid filename character.
 Since the actual possibility of "=" being in any filename is very less, this
-char can be removed from the list of valid filename char.
 
+"JAVA_HOME=/opt/java/jdk1.4
+"char = can be removed from the list of valid filename char.
 set isfname-==
 
 putting the above line in .vimrc will remove "=" from the list of valid filename chars.
@@ -6479,7 +6585,7 @@ Njoy
 
 
 
-
+"xxxx66 ???
 
 
 VimTip	{{{1 197: Open file in already running vim from elsewhere
@@ -6502,11 +6608,21 @@ It requires X windows (but works in terminal version of vim there too) or MS win
 VimTip	{{{1 198: Pasting code with syntax coloring in emails
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When sending code snippets or diffs to your colleagues either for code review or for something else as email, how nice and clear it will be if you can paste it with the Vim syntax highlighting? I am sure they will be impressed and feel much easier to read the code. It is also very easy and fast (once you practice it) to do this.
+When sending code snippets or diffs to your colleagues either for code review
+or for something else as email, how nice and clear it will be if you can paste
+it with the Vim syntax highlighting? I am sure they will be impressed and feel
+much easier to read the code. It is also very easy and fast (once you practice
+it) to do this.
 
-This probably works only on windows and requires you to use Internet Explorer and an email client that understand RTF content coming from clipboard, such as Outlook or Outlook Express. At least that would make the process faster. I haven't tried on any other combination though. This is what you need to do:
+This probably works only on windows and requires you to use Internet Explorer
+and an email client that understand RTF content coming from clipboard, such as
+Outlook or Outlook Express. At least that would make the process faster. I
+haven't tried on any other combination though. This is what you need to do:
 
-- Open the file containing the code/code snippet/diff etc. in gvim. If you use dark background for GVim (like me), then I would suggest you to change your color scheme temporarily to something else that has a white background or just use the "-U NONE" as below:
+- Open the file containing the code/code snippet/diff etc. in gvim. If you use
+  dark background for GVim (like me), then I would suggest you to change your
+  color scheme temporarily to something else that has a white background or
+  just use the "-U NONE" as below:
 
     gvim -U NONE <file>
 
@@ -6568,6 +6684,7 @@ When one is inserting parentheses some folks like to see the cursor
 bounce off the matching parenthesis.  To do that, put the following
 map into your <.vimrc> file:
 
+"Bouncing Parentheses (during insertion)
     inoremap ) )<c-o>%<c-o>:sleep 500m<CR><c-o>%<c-o>a
 
 Adjust the time delay (its 500 milliseconds above) to suit your needs.
@@ -6593,7 +6710,9 @@ Simply do:
 VimTip	{{{1 202: debugging window autocommands
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Don't know how people debug autocommands, but I just found out that you can debug (at least) those that result due to window close by just doing a debug quit, i.e.,
+Don't know how people debug autocommands, but I just found out that you can
+debug (at least) those that result due to window close by just doing a debug
+quit, i.e.,
 
 :debug quit
 
@@ -6613,10 +6732,9 @@ Then instead of "make" use "Make".
 
 " Command Make will call make and then cwindow which
 " opens a 3 line error window if any errors are found.
+
 " if no errors, it closes any open cwindow.
 :command -nargs=* Make make <args> | cwindow 3
-
-
 
 
 
@@ -6624,7 +6742,8 @@ Then instead of "make" use "Make".
 VimTip	{{{1 204: Some mappings for using cscope with vim.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-These mappings can make using cscope a fun. You can copy the word under the cursor in one window, and search for it from other window.
+These mappings can make using cscope a fun. You can copy the word under the
+cursor in one window, and search for it from other window.
 
 " Copy and paste the word under cursor
 map <silent> <C-Space> :let@m=expand("<cword>")<CR>
@@ -6636,7 +6755,7 @@ map <C-F7> :cscope find g <C-R>=@m<CR><CR>
 
 
 
-
+"xxxx65 Maths
 
 
 
@@ -6848,7 +6967,9 @@ Njoy
 VimTip	{{{1 210: compiling the actual file with gcc
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-if you use  set makeprg=gcc\ -o\ %<\ % in your .vimrc, and your actual file is file.c,  then :make will compile file.c with the output file. (gcc file.c -o file).
+set makeprg=gcc\ -o\ %<\ % 
+:make
+will compile file.c with the output file. (gcc file.c -o file).
 
 
 
@@ -6898,7 +7019,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
 While creating scripts and others executable files with Vim it is needed to set UNIX executable bit on the file.
-You can do this from inside Vim with :!chmod a+x %. The % represents current buffer's filename.
+You can do this from inside Vim with
+:!chmod a+x %
+
+The % represents current buffer's filename.
 The problem is that Vim will notice attribute changes and prompt you to reload a file. If you do this, your undo history for the file will be lost.
 
 The following function facilitate changing executable attributes without reloading a buffer.
@@ -6931,9 +7055,7 @@ I needed this one when I was editing an ldif file:
 
 I needed to delete all lines containing "profile":
 
-:g/profile/d
 
-very handydandy
 
 
 
@@ -6943,13 +7065,16 @@ very handydandy
 VimTip	{{{1 214: Current buffer based menus
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you have different menus for different filetypes, and you want to have only the menu relevant to current buffer displayed, you can use this approach:
+If you have different menus for different filetypes, and you want to have only
+the menu relevant to current buffer displayed, you can use this approach:
 
 in .vimrc:
 au BufEnter * if exists('b:BuffEnter')|exec b:BuffEnter|endif
 au BufLeave * if exists('b:BuffEnter')|exec b:BuffLeave|endif
 
-In appropriate ftplugin/?.vim, there are assigned commands to create or destroy the menus - here typed in directly, may be of course call to a menu-generating function or whatever.
+In appropriate ftplugin/?.vim, there are assigned commands to create or destroy
+the menus - here typed in directly, may be of course call to a menu-generating
+function or whatever.
 
 let b:BuffEnter='amenu C.added ...'
 let b:BuffLeave='unmenu! C|unmenu C'
@@ -6964,11 +7089,24 @@ let b:BuffLeave='unmenu! C|unmenu C'
 VimTip	{{{1 215: Edit configuration files for a filetype
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When you open a file, vim may load several scripts to customize itself for editing the file type the file is associated with (for example a file "test.c" is associated with the filetype "c").
-Such configurations include the setting of syntax highlighting colors (:help syntax) and support for indentation (:help filetype-indent-on).
-When you start to override these files for yourself, it can sometimes be confusing, which file sets a specific option.
-The following function can be used, to edit the configuration files which are associated with a specific filename. It open a buffer for all files which get loaded.
+When you open a file, vim may load several scripts to customize itself for
+editing the file type the file is associated with (for example a file "test.c"
+is associated with the filetype "c").
+
+
+Such configurations include the setting of syntax highlighting colors (:help
+syntax) and support for indentation (:help filetype-indent-on).
+
+When you start to override these files for yourself, it can sometimes be
+confusing, which file sets a specific option.
+
+The following function can be used, to edit the configuration files which are
+associated with a specific filename. It open a buffer for all files which get
+loaded.
+
+
 If I invoke it with ':call Edit_ft_conf("test.c")', for example, I end up with the following buffers / windows:
+
   1  a   "[No File]"                    line 1
   2  a   "test.c"                       line 1
   3  a=  "/usr/local/share/vim/vim60/syntax/c.vim" line 1
@@ -6985,6 +7123,7 @@ Here comes the function:
 "   (syntax highlighting, indentation, filetype plugins, ..)
 "   The order of windows reflects the order of script loading (but "file" is
 "   the topmost window)
+
 fun! Edit_ft_conf(name)
     " we may not do this with a loaded file, since this won't trigger the
     " configuration file loading as desired.
@@ -7019,14 +7158,20 @@ endfun
 
 
 
-
+"xxxx64 ??? Mathe Maths
 
 VimTip	{{{1 216: calculate equations from within vim
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The following map and function calculates equations using the program 'bc' (found on most linux systems, available for most systems).  Visually select the equation you want to calculate, then hit ;bc - if the selection ends with an '=' sign, the answer will be appended after the equal, otherwise, the answer is echoed as a message.  The code to put in a vimrc and source is at the end.
+The following map and function calculates equations using the program 'bc'
+(found on most linux systems, available for most systems).  Visually select the
+equation you want to calculate, then hit ;bc - if the selection ends with an
+'=' sign, the answer will be appended after the equal, otherwise, the answer is
+echoed as a message.  The code to put in a vimrc and source is at the end.
 
-Equations can span multiple lines, and the full bc syntax is probably supported.  Additionally, sin (), cos (), etc, are transformed into the names used by bc (s () c (), etc).
+Equations can span multiple lines, and the full bc syntax is probably
+supported.  Additionally, sin (), cos (), etc, are transformed into the names
+used by bc (s () c (), etc).
 
 Here are some example lines:
 
@@ -7034,7 +7179,7 @@ Here are some example lines:
 
 3 * (2 - 1) + 4.0 ^ 6 = 
 
-4 / 3 = 
+(standard_in) 1: syntax error
 
 3 + 
    4 -
@@ -7108,7 +7253,10 @@ endfunction
 VimTip	{{{1 217: Translate &#nnn; in html source to readable ascii
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I found a website *cough*Tivoli.com*cough* that likes to obfuscate some of its help file web pages using &#nnn; instead of normal ascii.  If you load the source with Vim (in Opera you can just designate Vim as your source viewing program), you can :so the following code to make it readable.
+I found a website *cough*Tivoli.com*cough* that likes to obfuscate some of its
+help file web pages using &#nnn; instead of normal ascii.  If you load the
+source with Vim (in Opera you can just designate Vim as your source viewing
+program), you can :so the following code to make it readable.
 
 let n = 32
 while n < 127
@@ -7157,7 +7305,8 @@ will detect additionally, if the cursor is inside of a string or some preprocess
 VimTip	{{{1 219: make from command line, open vim on errors
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-A simple alias (*csh) or shell function (bash) will let you run make from your shell, then automatically open vim or gvim on the errors (if there were any):
+A simple alias (*csh) or shell function (bash) will let you run make from your
+shell, then automatically open vim or gvim on the errors (if there were any):
 
 csh or tcsh:
 
@@ -7196,7 +7345,7 @@ The non-magic version is:
 
 
 
-
+"xxxx63
 
 
 
@@ -7331,7 +7480,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 VimTip	{{{1 226: Edit file under cursor after a horizontal split
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I use the command 'gf' quite often. But with this command the current buffer is hidden. To avoid that I use the following mapping :
+I use the command 'gf' quite often. But with this command the current buffer is
+hidden. To avoid that I use the following mapping :
 
 map gw <Esc>:sp %<CR> gf
 
@@ -7718,8 +7868,13 @@ set splitbelow
 VimTip	{{{1 238: Very basic session persistence
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I use the following code in my plugins dir to ease session persistance. If I want my session to persist I use :mks! and then whenever I open the Session.vim file, my session is restored. If I am working from a restored session and I close VIM, the session is saved automatically. Drawback is that it makes editing the Session.vim file a bit cumbersome ;)
+I use the following code in my plugins dir to ease session persistance. If I
+want my session to persist I use :mks! and then whenever I open the Session.vim
+file, my session is restored. If I am working from a restored session and I
+close VIM, the session is saved automatically. Drawback is that it makes
+editing the Session.vim file a bit cumbersome ;)
 
+VimTip	{{{1 238: Very basic session persistence
   au BufRead Session.vim so %
   au VimLeave * call SaveCurrentSession()
 
@@ -8154,7 +8309,8 @@ or using the mapping above, visually select the lines and press 'L'
 VimTip	{{{1 253: The power of | (v75|r- actually...)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-'|' as you may well be aware is the goto column motion, and that "75|" will place your cursor on column 75 of the current line.
+'|' as you may well be aware is the goto column motion,
+and that "75|" will place your cursor on column 75 of the current line.
 
 That in itself is pretty handy at times, but some true power arises when used in conjuction with visual mode and replace. Or you could just say a sneaky trick :)
 
@@ -8417,8 +8573,6 @@ in normal mode.
 
 
 VimTip	{{{1 263: color active line
-http://vim.sourceforge.net/tip_view.php?tip_id=
-
 This tip shows how to color the active line, the line in which the cursor is, for better reading.
 You should try possibility 2 before 1, IMHO it is mostly usable.
 
@@ -8530,21 +8684,16 @@ Yes, this tip is trivial but I still see the -c ":so x" way too often. Time to u
 VimTip	{{{1 267: selectively displaying abbreviations
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Hi Vimmers,
-abbreviations have always been one of the most useful parts of vi(m), trouble is when you've got too many you forgot what you called them.
+Hi Vimmers, abbreviations have always been one of the most useful parts of
+vi(m), trouble is when you've got too many you forgot what you called them.
 
 You can of course list the whole lot with
-
 :ab<cr>
-
 But did you know that you can type the first few letters of your abbreviations and get a list of just thos abs eg
-
 :ab php<cr>
 gives me all my php abs
-&
 :ab perl<cr>
 gives me all my perls
-
 also try control-D instrad of <cr>
 
 zzapper
@@ -8559,7 +8708,12 @@ zzapper
 VimTip	{{{1 268: Get cursor position as byte percentage instead of line percentage
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-On line 300 of a thousand line file, Vim will show you that you're 30% through the file.  But what if most of the lines have one character in them, and some of them have twenty thousand?  Sometimes it comes in handy to know your percentage through the file in terms of current-byte / total-bytes.  I looked through the Vim docs and couldn't find a way to do this, so I wrote a Vim function to show it.
+On line 300 of a thousand line file, Vim will show you that you're 30% through
+the file.  But what if most of the lines have one character in them, and some
+of them have twenty thousand?  Sometimes it comes in handy to know your
+percentage through the file in terms of current-byte / total-bytes.  I looked
+through the Vim docs and couldn't find a way to do this, so I wrote a Vim
+function to show it.
 
 Put this in your .vimrc:
 
@@ -8650,7 +8804,9 @@ BUG: Repeating the insertion with . doesn't work.
 VimTip	{{{1 271: easy (un)commenting out of source code
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Something that I do quite alot is comment out blocks of text, only to uncomment that same block later. The following mappings have proven useful to me. They can be applied using visually selected blocks, or with motion keys.
+Something that I do quite alot is comment out blocks of text, only to uncomment
+that same block later. The following mappings have proven useful to me. They
+can be applied using visually selected blocks, or with motion keys.
 
 " lhs comments
 map ,# :s/^/#/<CR>
@@ -8993,7 +9149,7 @@ inoremap <buffer> ( <C-R>=PreviewFunctionSignature()<LF>
 
 
 
-
+"xxxx62 ???
 
 
 
@@ -9324,14 +9480,18 @@ Need to change line 7 of print_bw from "syntax reset" to "syntax off"
 VimTip	{{{1 285: Don't use the escape key!
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Vim (any vi really) is a dream for touch typists... Until you want to switch from insert mode to normal mode.  Then you've got to reach way up to whack the escape key.
+Vim (any vi really) is a dream for touch typists... Until you want to switch
+from insert mode to normal mode.  Then you've got to reach way up to whack the
+escape key.
 
 Or at least that's what I was doing until I realized that (drum roll please)
 
                     Esc is exactly equivalent to control-[  (that's the control key plus the left square bracket key)
 
 
-That little bit of knowledge, plus mapping my caps lock to another control key, was what turned my fascination with Vim into true love.  You never have to lose track of the home row again!
+That little bit of knowledge, plus mapping my caps lock to another control key,
+was what turned my fascination with Vim into true love.  You never have to lose
+track of the home row again!
 
 For Xfree86 users - you can make the capslock key another control key by adding
 
@@ -9355,7 +9515,9 @@ REGEDIT4
 VimTip	{{{1 286: Recover after doing something... ugly.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I was once editing a file and wanted to test something. The test was meant to add a line at the end of the file, from outside vim. All was fine, but instead of >>, I wrote >. You can imagine what happened... :)
+I was once editing a file and wanted to test something. The test was meant to
+add a line at the end of the file, from outside vim. All was fine, but instead
+of >>, I wrote >. You can imagine what happened... :)
 
 If you happen to do something like that, the solution is:
 
@@ -9379,7 +9541,8 @@ In the gvim if you want to decrement any number just put ur curcor on that numbe
 VimTip	{{{1 288: A keymapping to generate Java setters and getters automatically
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This mapping makes it much simpler to write new java classes by simplifying some of the dull repetative coding (ie setters and getters).
+This mapping makes it much simpler to write new java classes by simplifying
+some of the dull repetative coding (ie setters and getters).
 
 To use, first write a basic class with the following format:
 
@@ -9406,7 +9569,8 @@ map jgs mawv/ <Enter>"ty/ <Enter>wvwh"ny/getters<Enter>$a<Enter><Enter>public <E
 
 (the above should be one long line with no spaces between the end of the lines above).
 
-To use this to generate a class go to the variable that should have a setter/getter and place the curser at the beginning of the 'private':
+To use this to generate a class go to the variable that should have a
+setter/getter and place the curser at the beginning of the 'private':
 
    private <type> <variable> = <initvalue>'
    ^
@@ -9415,9 +9579,13 @@ Then type:
 
 jgs
 
-this will create the first getter/setter and then move up to the next variable.  You can just keep typing jgs until all the  getters/setters have been generated.
+this will create the first getter/setter and then move up to the next variable.
+You can just keep typing jgs until all the  getters/setters have been
+generated.
 
-This should mapping isn't perfect and someone could probably make it a little cleaner.  It could also relatively easily be adapted to C++.  Please feel free to send me any feedback/enhancements as I am trying to compile a list of these.
+This should mapping isn't perfect and someone could probably make it a little
+cleaner.  It could also relatively easily be adapted to C++.  Please feel free
+to send me any feedback/enhancements as I am trying to compile a list of these.
 
 
 
@@ -9539,7 +9707,12 @@ Tom Kimpton
 VimTip	{{{1 295: Line/word/file/whatever completion
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-In addition to vimtip #291 you can use whole <C-x> completion mode. It can complete whole lines (<C-x>l, then <C-p>, <C-n>), filenames (<C-f>), keywords, words from custom dictionary and many, many others. During coding it usually saves a LOT of key strokes ;) This mode has many other powerful features, for example when completing word (by <C-x><C-p> or just by <C-p>) you can continue completion with another <C-x><C-p>. For example, after writing such text:
+In addition to vimtip #291 you can use whole <C-x> completion mode. It can
+complete whole lines (<C-x>l, then <C-p>, <C-n>), filenames (<C-f>), keywords,
+words from custom dictionary and many, many others. During coding it usually
+saves a LOT of key strokes ;) This mode has many other powerful features, for
+example when completing word (by <C-x><C-p> or just by <C-p>) you can continue
+completion with another <C-x><C-p>. For example, after writing such text:
 
 this is first line
 second line is here
@@ -9758,6 +9931,7 @@ parameters
 
 
 
+"xxxx61
 
 
 VimTip	{{{1 305: Best of VIM Tips (VIM's best Features)
@@ -9960,7 +10134,7 @@ gvim.exe -c "/$1"  $(grep -isl "$1" *) &
 ------------------------------------------------------------------------------
 
 
-
+"xxxx61
 
 
 
@@ -10147,8 +10321,10 @@ tomte
 VimTip	{{{1 314: Insert and back...
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-this is related to vimtip #289 in terms of programmers (like I) too lazy to move their hands to reach the far far away <esc> key.... joking! :)
-  actually the less your hands move around the faster you type, and the fester you type the more time you have on your hands to think of "what" you type...
+this is related to vimtip #289 in terms of programmers (like I) too lazy to
+move their hands to reach the far far away <esc> key.... joking! :) actually
+the less your hands move around the faster you type, and the fester you type
+the more time you have on your hands to think of "what" you type...
 
 here is a small snippet from my mappings file, ready to speed things up:
 // the key overloading might be a somewhat confusing at first....
@@ -10202,19 +10378,28 @@ what this snippet does is make the <home> key behave as it does in such IDEs as 
 VimTip	{{{1 316: Using /pattern/ search in a script
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There are a number of ways you can search for a pattern in a script.   The search function is the typical way to search for a pattern.  But, it has limited options.  In particular, there are no options to control the position of the cursor after it matches the pattern.   
+There are a number of ways you can search for a pattern in a script.   The
+search function is the typical way to search for a pattern.  But, it has
+limited options.  In particular, there are no options to control the position
+of the cursor after it matches the pattern.   
 
-Instead you can use :normal command.  The secret is to add a <CR> (^M) on the end of the command.   For example, to search for "pattern" and move the cursor to the end of the matching pattern issue the command:
+Instead you can use :normal command.  The secret is to add a <CR> (^M) on the
+end of the command.   For example, to search for "pattern" and move the cursor
+to the end of the matching pattern issue the command:
 
 :normal /pattern/e+1^M
 
 where ^M is a real carriage return.  It can be entered with <c-v><c-m>.
 
-Another use is when you want to enter a bunch of normal commands together.  For example, if you were looking to find a '{' to highlight and delete a C block.  The '{' may not be on the same line so you can't use the "f" normal command.   
+Another use is when you want to enter a bunch of normal commands together.  For
+example, if you were looking to find a '{' to highlight and delete a C block.
+The '{' may not be on the same line so you can't use the "f" normal command.   
 
 :normal V/{/^M%d
 
-A drawback to using the normal command is that if the pattern does not match then it is difficult to detect.  Also, you can get in trouble with the wrapscan setting.
+A drawback to using the normal command is that if the pattern does not match
+then it is difficult to detect.  Also, you can get in trouble with the wrapscan
+setting.
 
 For more information about these commands look at
 
@@ -10467,9 +10652,13 @@ noremap <S-Down> :call MySwapDown()<CR>
 VimTip	{{{1 322: text template with placeholders
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Many scripts/ftplugin provide text or code templates. Sadly none of the marks the places where you are supposed to "fill in the form".
-My own code templates for C/C++ insert a triple percent (%%%) where you are supposed to enter something. I mapped ;; to find the next %%% and change them. 
-All the template mappings are insert-mode only, while the "skip to next placeholder" is both insert and normal mode enabled.
+Many scripts/ftplugin provide text or code templates. Sadly none of the marks
+the places where you are supposed to "fill in the form".
+
+My own code templates for C/C++ insert a triple percent (%%%) where you are
+supposed to enter something. I mapped ;; to find the next %%% and change them.
+All the template mappings are insert-mode only, while the "skip to next
+placeholder" is both insert and normal mode enabled.
 
 A complete for-loop template for C++ looks like:
 
@@ -10574,7 +10763,7 @@ As suggested in the Vim help files :-) but, I wanted to go and find only these f
 
 
 
-
+"xxxx60
 
 
 
@@ -10776,7 +10965,7 @@ Hope this helps...
 Mail me with bugs at jdsumsion at earthlink.net.
 
 
-
+"xxxx60
 
 
 
@@ -10957,10 +11146,9 @@ method and so on.
 
 the syntax is as follows:
 
+VimTip	{{{1 331: modline magic...
 // vim:set ts=4 sw=4 nowrap:
-
 or
-
 /* vim:noai:ts=2:sw=4: */
 
   The modlines can be contained in comments so as to not interfere with 
@@ -10975,20 +11163,23 @@ refer to ':help modline'
 
 
 
-
+"xxxx59
 
 
 VimTip	{{{1 332: make footnotes in vim
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I found at http://groups.google.com/groups?q=vim+changing+shell+to+zsh&hl=en&lr=&ie=UTF-8&selm=S_Rh9.716%24a5.124150%40news.uchicago.edu&rnum=4
-a macro to insert footnotes in vim, but it doesn't work as of vim6.0.
-so i wrote my own; this macro requires two differents shortcuts, one for entering the first footnote, the other one for all subsequent footnotes.
+I found at
+http://groups.google.com/groups?q=vim+changing+shell+to+zsh&hl=en&lr=&ie=UTF-8&selm=S_Rh9.716%24a5.124150%40news.uchicago.edu&rnum=4
+a macro to insert footnotes in vim, but it doesn't work as of vim6.0. so i
+wrote my own; this macro requires two differents shortcuts, one for entering
+the first footnote, the other one for all subsequent footnotes.
 
 when you hit "K0" (first footnote) or "KK" (all other footnotes) in normal mode, your cursor is positionned at the end of the document, in the footnote & in insert mode. The "a" bookmark is set to the place where you entered the footnote in the text. so a "`a" will bring you back to the location of the footnote in the text.
 
-" for now requires entering K0 for the first footnote and then KK                                  nmap K0 i[0]<esc>maG$i<end><enter>[0]
-nmap KK maG$?\[[0-9]*\]<enter>yt]G$i<end><enter><esc>p<C-a>i<end>]<esc>`aP<C-a><right>i]<esc>maG$i<end><end>
+" for now requires entering K0 for the first footnote and then KK
+nmap K0 i[0]<esc>maG$i<end><enter>[0] nmap KK
+maG$?\[[0-9]*\]<enter>yt]G$i<end><enter><esc>p<C-a>i<end>]<esc>`aP<C-a><right>i]<esc>maG$i<end><end>
 
 
 
@@ -11064,13 +11255,20 @@ endif
 VimTip	{{{1 335: Copy C++ function declaration into implementation file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There's a handy plug in for MS Visual Studio called CodeWiz that has a nifty ability to copy a function declaration and deposit it into the implementation file on command.  I actually missed while using vim, so I wrote an approximation of that capability.  This isn't foolproof, but it works alright.  
+There's a handy plug in for MS Visual Studio called CodeWiz that has a nifty
+ability to copy a function declaration and deposit it into the implementation
+file on command.  I actually missed while using vim, so I wrote an
+approximation of that capability.  This isn't foolproof, but it works alright.  
 
 " Copy Function Declaration from a header file into the implementation file.
 nmap <F5> "lYml[[kw"cye'l
 nmap <F6> ma:let @n=@/<cr>"lp==:s/\<virtual\>/\/\*&\*\//e<cr>:s/\<static\>/\/\*&\*\//e<cr>:s/\s*=\s*0\s*//e<cr>:s/(.\{-}\zs=\s*[^,)]\{-1,}\>\ze\(\*\/\)\@!.*)/\/\*&\*\//e<cr>:s/(.\{-}\zs=\s*[^,)]\{-1,}\>\ze\(\*\/\)\@!.*)/\/\*&\*\//e<cr>:s/(.\{-}\zs=\s*[^,)]\{-1,}\>\ze\(\*\/\)\@!.*)/\/\*&\*\//e<cr>:let @/=@n<cr>'ajf(b"cPa::<esc>f;s<cr>{<cr>}<cr><esc>kk
 
-To use this, source it into vim, for example by placing it in your vimrc, press F5 in normal mode with the cursor on the line in the header file that declares the function you wish to copy.  Then go to your implementation file and hit F6 in normal mode with the cursor where you want the function implementation inserted.
+To use this, source it into vim, for example by placing it in your vimrc, press
+F5 in normal mode with the cursor on the line in the header file that declares
+the function you wish to copy.  Then go to your implementation file and hit F6
+in normal mode with the cursor where you want the function implementation
+inserted.
 
 
 
@@ -11163,7 +11361,9 @@ That should do it. Somebody in charge of distribution please make this standard.
 VimTip	{{{1 339: "tabbed windows"
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is what I use to emulate the multi-tab environment of certain editors like EditPlus, and easly switch between multiple files being edited (opened with the :split command):
+This is what I use to emulate the multi-tab environment of certain editors like
+EditPlus, and easly switch between multiple files being edited (opened with the
+:split command):
 
 " put this in your .vimrc file to rotate windows with Alt-K / Alt-J
 set winminheight=0
@@ -11562,7 +11762,9 @@ Open your code in vim and do a ":cfile debug.txt"
 VimTip	{{{1 352: disabling cabbrev
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Have you ever been annoyed by an over-zealous cabbrev? A simple way to temporarily disable it is to set invpaste. Very convenient in combination with the pastetoggle key.
+Have you ever been annoyed by an over-zealous cabbrev? A simple way to
+temporarily disable it is to set invpaste. Very convenient in combination with
+the pastetoggle key.
 
 
 
@@ -11669,9 +11871,13 @@ Karthick.
 VimTip	{{{1 355: Comment Lines according to a given filetype
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There is probably an easier way to do this, but, if I cannot find an easy solution for a given problem, I just device one that works for the meantime -- which usually becomes permanent :-) .
+There is probably an easier way to do this, but, if I cannot find an easy
+solution for a given problem, I just device one that works for the meantime --
+which usually becomes permanent :-) .
 
-This function comments out lines according to file type. So if a file is .sh, it uses # to comment lines. And if a file is type .c it will start the comments with /* and end them with */.
+This function comments out lines according to file type. So if a file is .sh,
+it uses # to comment lines. And if a file is type .c it will start the comments
+with /* and end them with */.
 
 Put this lines in your .vimrc file:
 " -------- vimrc ---------
@@ -11729,7 +11935,10 @@ All set, now whenever you are editing a file of those you have defined in your f
 VimTip	{{{1 356: Quick yank and paste
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Since I didn't want to interfere with the standard Vim mappings I removed all the <C-c>, <C-v>, etc. mappings found in the default vimrc. But quickly copy-pasting text is a must, so I added the following keymaps. This is very simple, but it works like a charm.
+Since I didn't want to interfere with the standard Vim mappings I removed all
+the <C-c>, <C-v>, etc. mappings found in the default vimrc. But quickly
+copy-pasting text is a must, so I added the following keymaps. This is very
+simple, but it works like a charm.
 
 vmap <C-Space> "ay
 nmap <C-Space> "aP
@@ -11742,6 +11951,7 @@ My vimrc if you're interested: http://home.student.utwente.nl/n.h.m.aandebrugh/_
 
 
 
+"xxxx59
 
 
 
@@ -11905,7 +12115,7 @@ Acknowledgment:
 
 
 
-
+"xxxx58
 
 
 
@@ -11962,10 +12172,6 @@ Here is the annoucement: http://marc.theaimsgroup.com/?l=vim&m=103629270123503&w
 Here is the download link: http://nirvani.org/software/vim/
 
 
-
-
-
-
 VimTip	{{{1 360: ':e <dir>' enter files and directories
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
@@ -11976,6 +12182,10 @@ If you then double click on an entry the directory is opened in the same way (if
 or the file is opened for editing (if it's a file).
 
 (Don't ask me, if it's normal vim behaviour or the effect of any script.)
+
+
+
+
 
 
 
@@ -12050,7 +12260,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Hi VIMmites
 
-I couldn't get any tags to match in Coldfusion files *.cfm either HTML Javascript or ColdFusion tags themselves <cfif ..> ... </cfif>
+I couldn't get any tags to match in Coldfusion files *.cfm either HTML
+Javascript or ColdFusion tags themselves <cfif ..> ... </cfif>
 
 Much pain was gone thru before I realised that the Syntax File for ColdFusion
  (/syntax/cf.vim) was called cf and not cfm
@@ -12085,14 +12296,17 @@ Njoy
 
 
 
-
+"xxxx57 ???
 
 VimTip	{{{1 364: Automatic file type detection with fully qualified ClearCase names
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I am using the great plugin from Douglas Potts (vimscript #15).
 
-When you load a specific ClearCase version of a file, vim cannot find the correct file type in the full name (ex. filename.c@@/main/foo/1). To improve that, you can create an autocommand in the filetype.vim file in your user runtime directory.
+When you load a specific ClearCase version of a file, vim cannot find the
+correct file type in the full name (ex. filename.c@@/main/foo/1). To improve
+that, you can create an autocommand in the filetype.vim file in your user
+runtime directory.
 
 augroup filetypedetect
   au BufNewFile,BufRead */*@@*
@@ -12461,7 +12675,9 @@ NJoy.
 VimTip	{{{1 377: Microsoft Natural Multimedia Keyboard Scancodes
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I have collected most of the special keys' scancodes on the Microsoft Natural Multimedia Keyboard.  This might be helpful for those of you that do lots of key-bindings.
+I have collected most of the special keys' scancodes on the Microsoft Natural
+Multimedia Keyboard.  This might be helpful for those of you that do lots of
+key-bindings.
 
 http://nirvani.org/docs/Microsoft_natural_multimedia_keyboard_scancodes.html
 
@@ -12478,13 +12694,15 @@ http://nirvani.org/software/vim/
 VimTip	{{{1 378: Auto insert Java class template when editing a new Java file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you are lazy like me, tend to use lengthy and verbose Java class names, then this tip is for you.  When creating a new Java class file, the first thing that I do after creating it is to add the following block of text:
+If you are lazy like me, tend to use lengthy and verbose Java class names, then
+this tip is for you.  When creating a new Java class file, the first thing that
+I do after creating it is to add the following block of text:
 
+VimTip	{{{1 378: Auto insert Java class template when editing a new Java file
 public class ClassName
 {
 }
 
-Rather than have to type the ClassName twice (once when you first opened the new file, and then again for this block), you can use this autocmd to insert that text for you automatically:
 
   autocmd BufNewFile *.java
     \ exe "normal Opublic class " .  expand('%:t:r') . "\n{\n}\<Esc>1G"
@@ -12500,11 +12718,18 @@ Rather than have to type the ClassName twice (once when you first opened the new
 VimTip	{{{1 379: 1,$ s/^M//g  gets rid of control-Ms (windows carriage returns)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This has got to be in the tips somewhere else, but darned if I could find it.  I had been bothered by the pesky ^M characters that appeared at the end of lines in files that were generated in MS Windows -- particulary appserver log files for me.  My new best friend showed me this regex substitution that gets rid of them:
+This has got to be in the tips somewhere else, but darned if I could find it.
+I had been bothered by the pesky ^M characters that appeared at the end of
+lines in files that were generated in MS Windows -- particulary appserver log
+files for me.  My new best friend showed me this regex substitution that gets
+rid of them:
 
 :1,$ s/^M//g
 
-Note - If I don't have this in the command buffer, I usually wind up copying and pasting the ^M into the regex if I'm in windows, since I'm not sure how to type it from the keyboard (shift 6 followed by capital M doesn't work).  In unix, I can ususally type ctrl-V followed by Enter to get the ^M.
+Note - If I don't have this in the command buffer, I usually wind up copying
+and pasting the ^M into the regex if I'm in windows, since I'm not sure how to
+type it from the keyboard (shift 6 followed by capital M doesn't work).  In
+unix, I can ususally type ctrl-V followed by Enter to get the ^M.
 
 
 
@@ -12516,14 +12741,18 @@ Note - If I don't have this in the command buffer, I usually wind up copying and
 VimTip	{{{1 380: Using gvim as frontend for dbx
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There is a easy, fast way to use gvim as somewhat like a frontend for the solaris dbx - debugger. Add the following to your .dbxrc:
+There is a easy, fast way to use gvim as somewhat like a frontend for the
+solaris dbx - debugger. Add the following to your .dbxrc:
 
 alias sc=" gvim --remote +$vlineno $vfile" 
 when stop { gvim --remote +$vlineno $vfile ;}
 
-Allways the debugger stops it shows you the current positon in the gvim. My gvim does'nt take the focus, I dont know why, but so I just can walk through the code.
+Allways the debugger stops it shows you the current positon in the gvim. My
+gvim does'nt take the focus, I dont know why, but so I just can walk through
+the code.
 
-The sc alias shows the current position and is helpful after loading the executable to show the start (we have'nt stopped at this point).
+The sc alias shows the current position and is helpful after loading the
+executable to show the start (we have'nt stopped at this point).
 
 Unfortunately it doesn't work at the first stop after attaching to a process.
 
@@ -12602,8 +12831,10 @@ Sean
 VimTip	{{{1 383: a Map to jump to a subroutine/function from where it is called
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Hi
-When writing/debugging code you often want to jump from where a subroutine/function is called to where it actually  is . Hitting the "*" key is frustrating if the sub/func is called many times. The following mapping solves the problem. (Notice how it can be altered for other lanaguages)
+Hi When writing/debugging code you often want to jump from where a
+subroutine/function is called to where it actually  is . Hitting the "*" key is
+frustrating if the sub/func is called many times. The following mapping solves
+the problem. (Notice how it can be altered for other lanaguages)
 
 nmap gx yiw/^\(sub\<bar>function\)\s\+<C-R>"<CR>
 
@@ -12627,9 +12858,12 @@ yiw : Yank inner work to un-named register
 VimTip	{{{1 384: Easily switch between source and header file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-To switch between header and source files very quickly, all you need to do is add a few key mappings in your filetype plugin files. Let me explain with an example:
+To switch between header and source files very quickly, all you need to do is
+add a few key mappings in your filetype plugin files. Let me explain with an
+example:
 
-Let's say that you're editing C files, so all you would have to do is edit your ftplugin/c_extra.vim file and include
+Let's say that you're editing C files, so all you would have to do is edit your
+ftplugin/c_extra.vim file and include
 
 nmap ,s :find %:t:r.c<cr>
 nmap ,S :sf %:t:r.c<cr>
@@ -12641,7 +12875,10 @@ nmap ,H :sf %:t:r.h<cr>
 
 to switch to the corresponding header file.
 
-The built-in 'find' command will search (recursively or not) for the specified file anywhere in your vim 'path' setting. The 'sf' is short for split-find, meaning that if vim finds your file it will open it in a split window. Simply add the 'vert' keyword before 'sf' if you want a vertical split.
+The built-in 'find' command will search (recursively or not) for the specified
+file anywhere in your vim 'path' setting. The 'sf' is short for split-find,
+meaning that if vim finds your file it will open it in a split window. Simply
+add the 'vert' keyword before 'sf' if you want a vertical split.
 
 See these help pages for a full description of these built-in features:
 help expand   # for a description of the %, :t, :r expansion
@@ -12649,9 +12886,12 @@ help find   # for a description of the 'find' and 'sf' features
 help ftplugin   # for a description of how filetype plugins work
 help path   # for a description of how the path setting works
 
-This method is also highly configurable. All you have to do is change the 'path' setting when switching to different projects, and modify the corresponding filetype plugin to support other languages.
+This method is also highly configurable. All you have to do is change the
+'path' setting when switching to different projects, and modify the
+corresponding filetype plugin to support other languages.
 
-This tip is very similar to vimscript #31 by Mike Sharpe, however this method only takes a few lines, and his script spans several pages!
+This tip is very similar to vimscript #31 by Mike Sharpe, however this method
+only takes a few lines, and his script spans several pages!
 
 
 
@@ -12661,11 +12901,17 @@ This tip is very similar to vimscript #31 by Mike Sharpe, however this method on
 VimTip	{{{1 385: some java & vim tips
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-i started to aggregate some java & vim tips (in part because i easily forget stuff).  they're the kind of tips that are a little elusive but deliver a big bang for their effort; like actually getting quickfix to work with java, using ctags with java, etc....
+i started to aggregate some java & vim tips (in part because i easily forget
+stuff).  they're the kind of tips that are a little elusive but deliver a big
+bang for their effort; like actually getting quickfix to work with java, using
+ctags with java, etc....
 
 http://www.ophinity.com/papers/jim/index.html
 
-...on that note, i wonder if vim.org should start organizing tips and scripts into areas of interest or perhaps cross-indexing?  some things that come to mind are document generation (tex/ latex), oracle/ db integration, java development, c/ c++ coding, win32 issues, etc...
+...on that note, i wonder if vim.org should start organizing tips and scripts
+into areas of interest or perhaps cross-indexing?  some things that come to
+mind are document generation (tex/ latex), oracle/ db integration, java
+development, c/ c++ coding, win32 issues, etc...
 
 
 
@@ -12702,6 +12948,7 @@ This is a way to quickly prefix a char(or chars) to a parameter list, via :s
 In the thought that others may like the same preferred style as I, here is an
 easy way to prefix each param with an underscore.
 
+This is a way to quickly prefix a char(or chars) to a parameter list, via :s
 The command:
 :s/\<\(\I\i*\s\{-}[,)]\)/_\1/g
 
@@ -12814,10 +13061,14 @@ endfunction
 VimTip	{{{1 391: Simple programmers TODO list using grep and quickfix
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I use this to maintain a TODO list for projects I am working on. All my projects are pretty small scale with each project stored in it's own directory so this tip was writtten with that in mind.  Basically it is two keymappings one which inserts 
-//TODO_ITEM 
-leaving Vim in insert mode so you can add a note to help you remember what you wanted to do ;) 
-The other mapping uses :grep to search for all occurrences of TODO_ITEM in files in the current directory excluding ~ files and then opens the error window displaying the list of TODO_ITEMs. 
+I use this to maintain a TODO list for projects I am working on. All my
+projects are pretty small scale with each project stored in it's own directory
+so this tip was writtten with that in mind.  Basically it is two keymappings
+one which inserts //TODO_ITEM leaving Vim in insert mode so you can add a note
+to help you remember what you wanted to do ;) The other mapping uses :grep to
+search for all occurrences of TODO_ITEM in files in the current directory
+excluding ~ files and then opens the error window displaying the list of
+TODO_ITEMs. 
 
 imap \q <ESC>i//TODO_ITEM<SPACE>
 map \q i//TODO_ITEM<SPACE>
@@ -13102,9 +13353,15 @@ If not, please apologize, I cannot know all the tips and possibilites published.
 VimTip	{{{1 403: Request for tip - interleaving '.' and '@:'
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I'm looking for a way to repeat the last command, whether it is an ex command or not. '.' repeats the last non-ex command, while '@:' repeats the last ex command. Can anyone think of a way to interleave the two? It may not seem very useful, but since you can map a keystroke to an ex command (or a sequence of them), isn't it reasonable to expect a uniform way to repeat the last keystroke, without having to remember how it's implemented?
+I'm looking for a way to repeat the last command, whether it is an ex command
+or not. '.' repeats the last non-ex command, while '@:' repeats the last ex
+command. Can anyone think of a way to interleave the two? It may not seem very
+useful, but since you can map a keystroke to an ex command (or a sequence of
+them), isn't it reasonable to expect a uniform way to repeat the last
+keystroke, without having to remember how it's implemented?
 
-As a random note, it occurs to me that the undo command probably maintains sufficient information to do this - if only we could get at it.
+As a random note, it occurs to me that the undo command probably maintains
+sufficient information to do this - if only we could get at it.
 
 
 
@@ -13114,7 +13371,10 @@ As a random note, it occurs to me that the undo command probably maintains suffi
 VimTip	{{{1 404: Tags for Mixed Assembly and C
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Probably this is a no-brainer, but thought would share it just the same. While accessing C functions/variables from assembly (esp for those DSP/low level guys out there) the usual exhuberant ctags doesn't work. 
+Probably this is a no-brainer, but thought would share it just the same. While
+accessing C functions/variables from assembly (esp for those DSP/low level guys
+out there) the usual exhuberant ctags doesn't work. 
+
 The solution
 a) Make a copy of 'tags' file 
 b) Search and replace all variables & functions of C files with _variables & _functions in the copy file, say 'Tags' 
@@ -13122,7 +13382,9 @@ b) Search and replace all variables & functions of C files with _variables & _fu
 c) In Vim :set tags=tags,Tags 
 d) Use Ctrl-] to sail through.
 
-Tried to find an elegant (read complicated) solution, but then gave up :). Of course if you need to be doing ctags all the time write a perl scripts or something to do this.
+Tried to find an elegant (read complicated) solution, but then gave up :). Of
+course if you need to be doing ctags all the time write a perl scripts or
+something to do this.
 
 Cheers
 
@@ -13134,7 +13396,9 @@ Cheers
 VimTip	{{{1 405: ShowBlockName one-liner equivalent for one coding style
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I use [[ and its look-alikes a lot for browsing my C++ code.  You can use ShowLine() and the following mapping to obtain something close to ShowBlockName (and it's pretty fast):
+I use [[ and its look-alikes a lot for browsing my C++ code.  You can use
+ShowLine() and the following mapping to obtain something close to ShowBlockName
+(and it's pretty fast):
 
 map <silent> z[ [[k:call ShowLine()<CR>``
 
@@ -13156,7 +13420,10 @@ This text is from http://www.troubleshooters.com/lpm/200212/200212.htm
 
 -- pasted text --
 
-In many VI implementations you don't need to use the slash character as the expression delimiter. You can use most non-alphanumeric characters (but not \, " or |). This is very handy when working with UNIX filenames, as in the following example:
+In many VI implementations you don't need to use the slash character as the
+expression delimiter. You can use most non-alphanumeric characters (but not \,
+" or |). This is very handy when working with UNIX filenames, as in the
+following example:
 
 :s+/usr/local/+/opt/+Whatever character follows the :s is defined to be the delimiter character. If your implementation doesn't support this, you can represent slashes in search and replace expressions by escaping them with backslashes, as follows:
 
@@ -13306,7 +13573,8 @@ Note:  The preceding constitutes basic support for display of special dates.
 VimTip	{{{1 409: Using selected text as part of a command?
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I wish to use selected text as part of a command  - say, to substitute instances of a very long variable with a shorter name:
+I wish to use selected text as part of a command  - say, to substitute
+instances of a very long variable with a shorter name:
 
 :%s/<selected text>/ShorterName/g
 
@@ -13320,9 +13588,11 @@ How would I do this? (Hope its OK to ask a question, as opposed to presenting an
 VimTip	{{{1 410: Allow Inform header files to be distinguished from C headers
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Inform is an Interactive Fiction authoring language.  It's header files often use a '.h' extension, which causes VIM to think they are
-C files, or do not have any extension at all, leaving VIM unable to determine what kind of file they are.  This is irritating to Inform
-developers using VIM with syntax highlighting.
+Inform is an Interactive Fiction authoring language.  It's header files often
+use a '.h' extension, which causes VIM to think they are C files, or do not
+have any extension at all, leaving VIM unable to determine what kind of file
+they are.  This is irritating to Inform developers using VIM with syntax
+highlighting.
 
 The solution is to use a custom 'filetype.vim' and 'scripts.vim'.  Create a '$HOME/.vim/filetype.vim':
 
@@ -13416,14 +13686,16 @@ in the tip above)
 VimTip	{{{1 412: Easy menu-style switch between files with a simple map
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When there are several files opened in a vim session, it becomes difficult to keep track of the files and their respective buffer numbers.
+When there are several files opened in a vim session, it becomes difficult to
+keep track of the files and their respective buffer numbers.
 
 Switching to a different file is made easier using a simple map:
-
 :map <F5> :buffers<CR>:e #
 
-When F5 is pressed, a numbered list of file names is printed, and the user needs to type a single number based on the "menu".
-Another good thing is that the "menu" disappears after choosing the number and hitting enter. So it appears only when you need it.
+When F5 is pressed, a numbered list of file names is printed, and the user
+needs to type a single number based on the "menu". Another good thing is that
+the "menu" disappears after choosing the number and hitting enter. So it
+appears only when you need it.
 
 
 
@@ -13488,8 +13760,11 @@ This allows the user to split the screen using 'K', then switch between the two 
 VimTip	{{{1 416: Fix error "E97: Cannot create diffs" on VIM for Windows
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I read a couple postings of people having this issue, even if they have a diff program in their path when running on Windows platforms.
-Check out your _vimrc file, function "MyDiff". If the path to the diff file contains ANY spaces, enclose the path in double quotes. Alternatively you can remove the path and just leave the diff file and check.
+I read a couple postings of people having this issue, even if they have a diff
+program in their path when running on Windows platforms. Check out your _vimrc
+file, function "MyDiff". If the path to the diff file contains ANY spaces,
+enclose the path in double quotes. Alternatively you can remove the path and
+just leave the diff file and check.
 
 This is the line that if fixed in my _vimrc:
 
@@ -13511,9 +13786,16 @@ I am running the diff program that comes with CygWin and it works just fine.
 VimTip	{{{1 417: combining move and scroll [IMPROVED]
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-A long time ago, I entered vimtip #105.  I used that mapping for a long time, but it always had a couple problems.  One, it reset the scroll parameter.  Two, it didn't work in visual mode, because :set scroll exits visual mode.  I was reviewing my vim configuration and learning some new tricks, and in the process I improved this mapping.
+A long time ago, I entered vimtip #105.  I used that mapping for a long time,
+but it always had a couple problems.  One, it reset the scroll parameter.  Two,
+it didn't work in visual mode, because :set scroll exits visual mode.  I was
+reviewing my vim configuration and learning some new tricks, and in the process
+I improved this mapping.
 
-Now, Ctrl-J and Ctrl-K will move the cursor one line down or up, and scroll one line down or up--so the cursor remains on the same screen line (except near the beginning and end of the file)--in both normal and visual modes.  And the scroll parameter is unaffected.
+Now, Ctrl-J and Ctrl-K will move the cursor one line down or up, and scroll one
+line down or up--so the cursor remains on the same screen line (except near the
+beginning and end of the file)--in both normal and visual modes.  And the
+scroll parameter is unaffected.
 
     " N<C-D> and N<C-U> idiotically change the scroll setting
     function! s:Saving_scroll(cmd)
@@ -13767,11 +14049,21 @@ William
 VimTip	{{{1 423: Finding more available keys to map
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-One of my ongoing problem with VIM is finding more keys on my keyboard onto which I can map functions without losing some other functionality.  I finally went on a search of terminal emulations that maximize the programability of the keyboard when accessing Linux servers from a Windows 2000 client.
+One of my ongoing problem with VIM is finding more keys on my keyboard onto
+which I can map functions without losing some other functionality.  I finally
+went on a search of terminal emulations that maximize the programability of the
+keyboard when accessing Linux servers from a Windows 2000 client.
 
- I am in no way associated with the author or the company, but I wanted to give other VIM users a pointer to check out the ZOC terminal emulator from Emtec at http://www.emtec.com/zoc.  Not only does this support full use of the Alt key, but it also supports compete remapping based on the NumLock and ScrollLock keys.  Keys can be mapped to send any string including binary codings.  ZOC also supports a Linux console terminal mode.
+ I am in no way associated with the author or the company, but I wanted to give
+ other VIM users a pointer to check out the ZOC terminal emulator from Emtec at
+ http://www.emtec.com/zoc.  Not only does this support full use of the Alt key,
+ but it also supports compete remapping based on the NumLock and ScrollLock
+ keys.  Keys can be mapped to send any string including binary codings.  ZOC
+ also supports a Linux console terminal mode.
 
-Again I'm not advertising for a particular product; I'm just passing on my solution to a particularly onerous problem when attempting to use the full potential of VIM.
+Again I'm not advertising for a particular product; I'm just passing on my
+solution to a particularly onerous problem when attempting to use the full
+potential of VIM.
 
 
 
@@ -13875,7 +14167,10 @@ The map eliminates the need for time-consuming chording and if you liked chordin
 VimTip	{{{1 428: Wordwise Ctrl-Y in insert mode
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Ctrl-Y in insert mode is one of Vim's handy extensions that inserts character which is above cursor (see :help i_CTRL-Y).  However, sometimes this is not very useful when a user wants to insert many characters.  In this case it's better to get a *word* above cursor.
+Ctrl-Y in insert mode is one of Vim's handy extensions that inserts character
+which is above cursor (see :help i_CTRL-Y).  However, sometimes this is not
+very useful when a user wants to insert many characters.  In this case it's
+better to get a *word* above cursor.
 
 Put this in ~/.vimrc:
 
@@ -13912,6 +14207,7 @@ This is one for Tab key fans. I use these mapping to quickly cycle between buffe
 Shift-Tab. I use them in normal more as I use tab for word completion when in editing more. Put these in your
 .vimrc or gvimrc. The buffer will be written before switching to the next one. The test makes sure that the file can be written to and is modified.
 
+VimTip	{{{1 430: Fast switching between buffers
 nmap <tab> :if &modifiable && !&readonly && &modified <cr> :w<cr> :endif<cr> :bn<cr>
 nmap <s-tab> :if &modifiable && !&readonly && &modified <cr> :w<cr> :endif<cr> :bp<cr>
 
@@ -13957,11 +14253,15 @@ vn <silent><Bslash> y:let c=getline(line("."))[col(".")-1]
 VimTip	{{{1 432: Putting the current file on the Windows clipboard
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Sometimes I want to use the file I'm editing in Vim (on Windows) in another application; I created the following command:
+Sometimes I want to use the file I'm editing in Vim (on Windows) in another
+application; I created the following command:
 
 com! Copyfile let @*=substitute(expand("%:p"), '/', '\\', 'g')
 
-This simply copies the entire path and filename of the current file -- substituting backslashes for slashes (in case there are any) -- onto the Windows clipboard.  I can then just go and paste the value wherever I want (such as a File -> Open dialog).
+This simply copies the entire path and filename of the current file --
+substituting backslashes for slashes (in case there are any) -- onto the
+Windows clipboard.  I can then just go and paste the value wherever I want
+(such as a File -> Open dialog).
 
 For example, for my _vimrc file, I get c:\vim\_vimrc in the clipboard.
 
@@ -14202,12 +14502,20 @@ Thomas
 VimTip	{{{1 436: Accidently typed control-u and lost your input?
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you've accidently typed control-U to delete a line then accidently typed ESC straight after that because you've been using web forms and ESC in IE forms is like undo and basically you really didn't want to do that then you should do this:
+If you've accidently typed control-U to delete a line then accidently typed ESC
+straight after that because you've been using web forms and ESC in IE forms is
+like undo and basically you really didn't want to do that then you should do
+this:
 
+The . register is basically everything you've just typed in input mode
 :let @a = @.
 "aP
 
-The . register is basically everything you've just typed in input mode including the control-U.  When you paste this buffer it acts like you're typing it again and deletes the line.  You need to reassign it to another register with the let command before you can paste it properly and get at your nice input.
+The . register is basically everything you've just typed in input mode
+including the control-U.  When you paste this buffer it acts like you're typing
+it again and deletes the line.  You need to reassign it to another register
+with the let command before you can paste it properly and get at your nice
+input.
 
 
 
@@ -14359,14 +14667,15 @@ Thanks
 
 
 
-
+"xxxx56
 
 VimTip	{{{1 442: Show all lines that contain keyword under cursor
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Started finding this one pretty useful.
 
-If you want to view a list of all the lines in the current buffer that contain a word, place your cursor over the word and press [I
+VimTip	{{{1 442: Show all lines that contain keyword under cursor
+a word, place your cursor over the word and press [I
+Started finding this one pretty useful.
 
 Handy to see where you last used variables, functions, etc.
 
@@ -14461,9 +14770,14 @@ thanks to freenode #vim for inspiration.
 VimTip	{{{1 445: Formatting stuff
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Hello all, Im new to VIM, but I wanted to post some of my ideas for everyone here. Mark T, a friend of mine, just reciently got me in to VIM and I havent looked back yet! I really like this program, and I feel it's a valuable tool. 
+Hello all, Im new to VIM, but I wanted to post some of my ideas for everyone
+here. Mark T, a friend of mine, just reciently got me in to VIM and I havent
+looked back yet! I really like this program, and I feel it's a valuable tool. 
 
-Mark and I program in Lisp and Visual lisp for AutoCAD. (Its a program for drafting) and I have been adding stuff to my 'rc' file for lisp programing for abbout a month now. Mark has convinced me to post some tips here. So here they are: 
+Mark and I program in Lisp and Visual lisp for AutoCAD. (Its a program for
+drafting) and I have been adding stuff to my 'rc' file for lisp programing for
+abbout a month now. Mark has convinced me to post some tips here. So here they
+are: 
 
 **********************************************************************
 imap <Backspace> <left><del>
@@ -14500,8 +14814,11 @@ John
 VimTip	{{{1 446: Quick and dirty Postgres query
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Here is a simple and usefull mapping for anyone who can't stand developing queries on the psql prompt or messing around with the single \e psql edit buffer. 
+Here is a simple and usefull mapping for anyone who can't stand developing
+queries on the psql prompt or messing around with the single \e psql edit
+buffer. 
 
+VimTip	{{{1 446: Quick and dirty Postgres query
 map <F9> :!psql -d yourdb < % <BAR> less
 
 
@@ -14863,7 +15180,8 @@ When you need to do more than one thing in the mapping, you can
 VimTip	{{{1 460: how to implement vertical lines showing tab groups..
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When browsing the jEdit screenshots page, I saw a feature I wanted and didn't have in vim.  It was a vertical line showing tab groups.   
+When browsing the jEdit screenshots page, I saw a feature I wanted and didn't
+have in vim.  It was a vertical line showing tab groups.   
 
 if (this) {
 |   if (that) {
@@ -14890,7 +15208,9 @@ Hope this helps you... join #vim on irc.freenode.net for all your vim help needs
 VimTip	{{{1 461: Open a Perl module based on it's module name
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This may be of interest to Perl programmers using vim. Sometimes I want to open up the source code of a system Perl module that's installed. Here's one way to do that:
+This may be of interest to Perl programmers using vim. Sometimes I want to open
+up the source code of a system Perl module that's installed. Here's one way to
+do that:
 
 :e `perldoc -l Module::Name`
 
@@ -15321,7 +15641,9 @@ vmap    <leader>fold mz:<esc>'<O// {{{<esc>'>o// }}}<esc>`z?{{{<cr>A<space>
 VimTip	{{{1 476: multime errorformat & makeprgs
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I was fiddling around with the errorformat and makeprg opts, and as I code in different languages, i was wondering if there was a way of specifiing a special makeprg and errorformat parameter for each language.... and THERE IS!!
+I was fiddling around with the errorformat and makeprg opts, and as I code in
+different languages, i was wondering if there was a way of specifiing a special
+makeprg and errorformat parameter for each language.... and THERE IS!!
 
 just edit the $VIM/ftplugin/[syntaxfile].vim
 
@@ -15462,7 +15784,6 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 Actually, this is just a more flexible completion.
 
 I made the following (example) to have a unique abbreviation:
-
   iabbrev date^A  <c-r>=strftime("%F")<cr>
 
 Note that ^A is Control-A (insert with <c-v><c-a>).
@@ -15784,10 +16105,6 @@ The col command may differ on your version of Unix, see col(1) for details.
 
 
 VimTip	{{{1 486: Search for word under cursor, but don't move.
-http://vim.sourceforge.net/tip_view.php?tip_id=
-
-This is very, very simple:
-
 :noremap <F1> #*
 
 I find this helpful when editing multiple files and I want to search for the word under the cursor in *another* file.
@@ -16066,6 +16383,7 @@ the reserved words.
 
 Inserting in your .vimrc a line like that
 
+:set  complete=k
 autocmd Syntax * exec('set dict=/usr/share/vim/syntax/' .expand('<amatch>') .'.vim')
 
 you can avoid to select the dictionary for each filetype. 
@@ -16153,13 +16471,15 @@ nn cc :call <SID>Show()<Cr>
 
 
 
-
+"xxxx55
 
 
 VimTip	{{{1 502: View character class
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This one shows the definition of a predefined character class. ([:alpha:], [:graph:] etc.) The cursor is assumed to point to the name of the character class one wants to examine. Press "cc" ...
+This one shows the definition of a predefined character class. ([:alpha:],
+[:graph:] etc.) The cursor is assumed to point to the name of the character
+class one wants to examine. Press "cc" ...
 
 fun! s:Show()
   norm! viwy
@@ -16217,10 +16537,15 @@ Michael Metzger
 VimTip	{{{1 505: email from vim!
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I always found myself typing <ESC> into my email editor and wishing that it had the nice features of Vim. There are a bunch of hacky ways to email from Vim, but there's actually an elegant solution: Pine!
+I always found myself typing <ESC> into my email editor and wishing that it had
+the nice features of Vim. There are a bunch of hacky ways to email from Vim,
+but there's actually an elegant solution: Pine!
 
-The University of Washington has turned what was once a lame console program into a sopohisticated IMAP email client with server-based address books and configuration files. Among its many options is one that allows you to use your favorite text editor to edit emails. There's even a very good port for Windows called PC-Pine. Here's the link:
- http://www.washington.edu/pine/
+The University of Washington has turned what was once a lame console program
+into a sopohisticated IMAP email client with server-based address books and
+configuration files. Among its many options is one that allows you to use your
+favorite text editor to edit emails. There's even a very good port for Windows
+called PC-Pine. Here's the link: http://www.washington.edu/pine/
 
 
 
@@ -16287,7 +16612,10 @@ augroup END
 VimTip	{{{1 509: Commands that don't clobber the search register
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I frequently execute commands (mappings, usually) that perform operations that change the value of the search register for the sake of the mapping.  They might do a :s or some such that affects the search register.  I don't always want this side effect, so I use the following command/function:
+I frequently execute commands (mappings, usually) that perform operations that
+change the value of the search register for the sake of the mapping.  They
+might do a :s or some such that affects the search register.  I don't always
+want this side effect, so I use the following command/function:
 
 " Executes a command  (across a given range) and restores  the search register
 " when done.
@@ -16303,7 +16631,11 @@ com! -range -nargs=+ SS call SafeSearchCommand(<line1>, <line2>, <q-args>)
 " A nicer version of :s that doesn't clobber the search register
 com! -range -nargs=* S call SafeSearchCommand(<line1>, <line2>, 's' . <q-args>)
 
-Basically, :SS followed by any command will execute that command (to simulate keystrokes, use :normal as the command) and restore the search register when it's done.  :S is a replacement for :s which works EXACTLY the same way (without or without range, flags etc. etc.) but doesn't clobber the search register in the process.
+Basically, :SS followed by any command will execute that command (to simulate
+keystrokes, use :normal as the command) and restore the search register when
+it's done.  :S is a replacement for :s which works EXACTLY the same way
+(without or without range, flags etc. etc.) but doesn't clobber the search
+register in the process.
 
 
 
@@ -16548,7 +16880,6 @@ VimTip	{{{1 518: errorformat for icc7
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 This is a errorformat for Intel icc7 compiler:
-
 errorformat=%E%f(%l): %m,%-C,%-C%p,%Z
 
 
@@ -16846,7 +17177,7 @@ nmap # #mzz.`z
 nmap g* g*mzz.`z
 nmap g# g#mzz.`z
 
-
+"xxxx53 "tttt
 
 
 
@@ -18067,7 +18398,7 @@ vangelise@lynxx.org
 
 
 
-
+"tttt
 
 
 VimTip	{{{1 547: Smarter Table Editing
@@ -18332,8 +18663,10 @@ I use vim's session file feature a lot to switch between projects. Preserving al
 3. Restart with different session file:
  vim -S ~/v/project2.vim
 
-I was exiting and re-opening vim because if I just loaded the second project file, a list of /both/ projects buffers would appear in my buffer list. This was not what I wanted-- I wanted to replace the first buffer list completely wtih the second.
-There is a simple way to do this. 
+I was exiting and re-opening vim because if I just loaded the second project
+file, a list of /both/ projects buffers would appear in my buffer list. This
+was not what I wanted-- I wanted to replace the first buffer list completely
+wtih the second. There is a simple way to do this. 
 
 At the top of a session file, add this:
 
@@ -18367,7 +18700,7 @@ Have a nice day.
 
 
 
-
+"TTTT
 
 
 
@@ -18457,7 +18790,7 @@ The script can also be downloaded from http://www.techuser.net/files
 
 
 
-
+"xxxx52 ???
 
 
 
@@ -18506,7 +18839,8 @@ Mozilla 1.4
 VimTip	{{{1 556: Help on <F2> for Python with pydoc
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Add the following 2 lines to your ~/.vim/ftplugin/python.vim, open an pythonscript place the cursor over an keyword and press F2 and be happy.
+Add the following 2 lines to your ~/.vim/ftplugin/python.vim,
+open an pythonscript place the cursor over an keyword and press F2 and be happy.
 
 map <F2> :exec "!xterm -e 'pydoc ".expand("<cword>")."'"<CR><CR>
 imap <F2> <ESC>:exec "!xterm -e 'pydoc ".expand("<cword>")."'"<CR><CR>i
@@ -18832,7 +19166,8 @@ Setting the option expandtab will force tabs to be converted to spaces.
 Near the top of the file I put a line that says:
 # vim: set expandtab:
 
-When I open the file after that it will replace ^I (tab characters) with the correct number of spaces.
+When I open the file after that it will replace ^I (tab characters) with the
+correct number of spaces.
 
 
 
@@ -18879,7 +19214,10 @@ endfunction
 VimTip	{{{1 564: mouse wheel for scroll only - disable paste on middle button press.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I have had a problem when using the mousewheel for scrolling. I occasionaly press the wheel and it pastes text in the clipboard's "*" register at the place where the scroll wheel was pressed accidentally. This has been a constant irritation.
+I have had a problem when using the mousewheel for scrolling. I occasionaly
+press the wheel and it pastes text in the clipboard's "*" register at the place
+where the scroll wheel was pressed accidentally. This has been a constant
+irritation.
 
 The workaround is documented in VIM help - 
 :help <MiddleMouse>
@@ -19405,16 +19743,21 @@ http://mozex.mozdev.org
 
 
 
-
-
-
 VimTip	{{{1 582: Quick way to write to your file.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Put this in your .vimrc
 map , :w^M
 
-When you need to save your file instead of typing :w and hitting enter, just hit the comma (,) Note that with vim you may need to type CTRL-Q first to get the verbose CTRL-M character in your file.  For those who have earlier versions or non-PC compatible, CTRL-V before CTRL-M will get that character in there.  Has been life-changing for me :-).  I can't take the credit as I found this one years back when scanning info about building html pages.  The author had a little script that checked the update of the file and sent a message to the browser to re-read the file when the file was written.  He's the one who suggested mapping an unmapped button to do this.
+When you need to save your file instead of typing :w and hitting enter, just
+hit the comma (,) Note that with vim you may need to type CTRL-Q first to get
+the verbose CTRL-M character in your file.  For those who have earlier versions
+or non-PC compatible, CTRL-V before CTRL-M will get that character in there.
+Has been life-changing for me :-).  I can't take the credit as I found this one
+years back when scanning info about building html pages.  The author had a
+little script that checked the update of the file and sent a message to the
+browser to re-read the file when the file was written.  He's the one who
+suggested mapping an unmapped button to do this.
 
 
 
@@ -19427,7 +19770,8 @@ VimTip	{{{1 583: Vim as XML Editor
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-If Vim is your main text editor, and if you do a lot of XML editing, then this mini howto might help you to make that even more fun:
+If Vim is your main text editor, and if you do a lot of XML editing, then this
+mini howto might help you to make that even more fun:
 
 Vim as XML Editor
 http://www.pinkjuice.com/howto/vimxml/
@@ -19437,7 +19781,7 @@ http://www.pinkjuice.com/howto/vimxml/
 
 
 
-
+"xxxx51
 
 
 VimTip	{{{1 584: Awesome text formatter
@@ -19937,7 +20281,10 @@ bjoern@michaelsen.kicks-ass.net
 VimTip	{{{1 586: Smarter Pasting
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Frequently I yank a few words or part of a line and like to have them pasted on a separate line. Vim provides the put and put! commands for that purpose but they are not mapped by default to anything.  Typing the commands is much slower than inserting a line and pasting to it so I have created the following maps:
+Frequently I yank a few words or part of a line and like to have them pasted on
+a separate line. Vim provides the put and put! commands for that purpose but
+they are not mapped by default to anything.  Typing the commands is much slower
+than inserting a line and pasting to it so I have created the following maps:
 
 nnoremap ,p :pu "<CR>
 nnoremap ,P :pu! "<CR>
@@ -19951,7 +20298,8 @@ nnoremap ,P :pu! "<CR>
 VimTip	{{{1 587: Preview current file in Mozilla through localhost
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is something I 'discovered'  whilst trying to preview html or php files in mozilla using the apache server locally.
+This is something I 'discovered'  whilst trying to preview html or php files in
+mozilla using the apache server locally.
 
 Put the path as the first line of a file wrapped in the appropriate comments. 
 eg: php:
@@ -19964,7 +20312,8 @@ Place the following mappings in your .vimrc file
 nmap <S-F12> :sil! !start mozilla "<cfile>"<CR> 
 imap <S-F12> <esc>:sil! !start mozilla "<cfile>"<CR>i
 
-As I'm working through Wellings PHP and MySQL Web Development I can use my tokens plugin to speed creating the first line as follows:
+As I'm working through Wellings PHP and MySQL Web Development I can use my
+tokens plugin to speed creating the first line as follows:
  
 Add these as the string parts of the array:
 (for php)
@@ -20496,7 +20845,15 @@ nnoremap <silent> <End> :call ToggleEnd()<CR>
 VimTip	{{{1 593: basic postfix abbreviations
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-     I'm learning VIM in order to be more competitive in online programming competitions where speed of accurate typing is a factor. This may be a basic tip for some more advanced VIM users out there. I'm very used to editors that provide prefix abbreviation expansion; for example, in jEdit I'd type FA,array,<C-ENTER> in order to make a basic for loop that scanned the array. I wanted this in VIm as well, but found that it was harder to program. When I discovered that I could use a postfix abbreviation instead of a prefix one, I realized that I really didn't need any programming, but rather a long :ab statement like this:
+     I'm learning VIM in order to be more competitive in online programming
+     competitions where speed of accurate typing is a factor. This may be a
+     basic tip for some more advanced VIM users out there. I'm very used to
+     editors that provide prefix abbreviation expansion; for example, in jEdit
+     I'd type FA,array,<C-ENTER> in order to make a basic for loop that scanned
+     the array. I wanted this in VIm as well, but found that it was harder to
+     program. When I discovered that I could use a postfix abbreviation instead
+     of a prefix one, I realized that I really didn't need any programming, but
+     rather a long :ab statement like this:
 
 "this is for java, c++,c# can reshape as necessary
 :ab ff <ESC>^d$ifor(int i=0;i<<ESC>pi.length;i++){<CR><CR>}//end for loop over array <ESC>pi[i]<ESC>==k==k==ji<TAB>
@@ -20616,7 +20973,10 @@ Hope this helps
 VimTip	{{{1 599: vim plugin for clearcase
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The ccase.vim vim clearcase plugin is very useful. But there is a bug in clearcase, if you are doing multisite development, even if you checkout file unreserved, it still hold the mastership. So your partner on other side still cannot checkin code. 
+The ccase.vim vim clearcase plugin is very useful. But there is a bug in
+clearcase, if you are doing multisite development, even if you checkout file
+unreserved, it still hold the mastership. So your partner on other side still
+cannot checkin code. 
 
 The default unreserved checkout swith on ccase.vim is "-unreserved", need to change to "-unreserved -nma".
 
@@ -20802,7 +21162,8 @@ Although very simple, I think this is nifty:
 
 :nmap <enter> _i<enter><esc>
 
-Now one can press enter in normal mode to insert an empty line. This spares me from alot of typing.
+Now one can press enter in normal mode to insert an empty line. This spares me
+from alot of typing.
 
 
 
@@ -20924,7 +21285,11 @@ Be carefull about identation in python part. This text provide command
 :PyEv
 This command evaluate expression in line under cursor and print result in echo area. With r argument
 :PyEv r
-evaluate expression and replased it by resalt of evaluation. And other arg in argument searching the arg backword from the end of current line and evaluate followed expression. For example: let we have string
+
+evaluate expression and replased it by resalt of evaluation. And other arg in
+argument searching the arg backword from the end of current line and evaluate
+followed expression. For example: let we have string
+
 \setlength{\textwidth}{450-63
 :PyEv r {
 \setlength{\textwidth}{387
@@ -20940,11 +21305,15 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Inspired by vimtip #608.
 
-To execute python from a range within the current text file and write the output to that file (replacing the python), add the snippet below to .vimrc (or other suitable *rc file).
+To execute python from a range within the current text file and write the
+output to that file (replacing the python), add the snippet below to .vimrc (or
+other suitable *rc file).
 
 Requires a 'proper' python setup so that the imported modules can be found.
 
-I find it a handy intermediate step between using the python interpreter on command line and running a complete script. Can be used for easy buffer manipulation, filtering input, preprocessing text and templating-like tasks.
+I find it a handy intermediate step between using the python interpreter on
+command line and running a complete script. Can be used for easy buffer
+manipulation, filtering input, preprocessing text and templating-like tasks.
 
 def PyExecReplace(line1,line2):
     r = vim.current.buffer.range(int(line1),int(line2))
@@ -21050,9 +21419,11 @@ PPS: we could also disable syntax highlighting and restore it for small files, b
 VimTip	{{{1 612: save a nanosecond with marks
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Instead of marking all the time with "ma", mark with "ml".  When you need to return to the mark, `l is a little quicker to type than `a.  
+Instead of marking all the time with "ma", mark with "ml".  When you need to
+return to the mark, `l is a little quicker to type than `a.  
 
-If you save a fraction of a second many times, you'll have saved as much time as it took to read this tip!
+If you save a fraction of a second many times, you'll have saved as much time
+as it took to read this tip!
 
 
 
@@ -21062,7 +21433,8 @@ If you save a fraction of a second many times, you'll have saved as much time as
 VimTip	{{{1 613: open last edited file, AKA lvim for bash
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The starting.txt help file (http://vim.org/htmldoc/starting.html) tells you how to open the last edited file in csh. In bash, do it like so:
+The starting.txt help file (http://vim.org/htmldoc/starting.html) tells you how
+to open the last edited file in csh. In bash, do it like so:
 
 alias lvim='vim -c "normal '\''0"'
 
@@ -21322,7 +21694,8 @@ The [comment] is the easiest: it's for the human reader of the keymap, not for V
 VimTip	{{{1 620: getting to know the function prototypes
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Use "[ i" for display of function prototypes at bottom or "[ ctl i" for jumping to the file containing the prototype. also can use " I" for listing of proto.
+Use "[ i" for display of function prototypes at bottom or "[ ctl i" for jumping
+to the file containing the prototype. also can use " I" for listing of proto.
 
 
 
@@ -21368,7 +21741,11 @@ Kwbd stands for:  Keep window (layout) and delete the associated buffer.
 VimTip	{{{1 623: External Paste Buffer
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-We are forever using copy and paste to copy information from application to application. Inevitably however we need to edit/reformat the buffer contents . This tip allows you to quickly open a separate VIM containing just the paste contents. You may then edit these contents as required, writing or closing VIM automatically causes the changed contents to be rewritten to the paste buffer.
+We are forever using copy and paste to copy information from application to
+application. Inevitably however we need to edit/reformat the buffer contents .
+This tip allows you to quickly open a separate VIM containing just the paste
+contents. You may then edit these contents as required, writing or closing VIM
+automatically causes the changed contents to be rewritten to the paste buffer.
 
 The following is a CygWin script (could just as easily be a Win32 batch file)
 
@@ -21396,14 +21773,16 @@ autocmd bufWritePost c:/aaa/xp normal ggVG"*y
 VimTip	{{{1 624: Insert template files into buffer ( HTML editing for example)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-While editing HTML I want to use template files to be expanded on my html pages. Say for example I have something like this on my html file:
+While editing HTML I want to use template files to be expanded on my html
+pages. Say for example I have something like this on my html file:
 
 <!--"header.html"-->
 <p>html code here</p>
 <p>more html code here...</p>
 <!--"footer.tml"-->
 
-I want the files "header.html" and "footer.html" to be inserted on my page, you can do this with the following global command:
+I want the files "header.html" and "footer.html" to be inserted on my page, you
+can do this with the following global command:
 
 :g%<!--"\w\+.\w\+"--\>%exe ":r " . matchstr(getline("."), "\\w\\+\\.\\w\\+")
 
@@ -21420,13 +21799,28 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Guess what the most common word is in the C++ language? I wager it is 'cout'.
 
-Interactive debuggers and logging libraries are all very well, but most of us still have in our debugging toolboxes the technique of adding short-lived statements to our programs whose only purpose is to help us figure out the bug currently occupying us by printing the value of a variable. If you find yourself often typing such statements they are worth optimizing for.
+Interactive debuggers and logging libraries are all very well, but most of us
+still have in our debugging toolboxes the technique of adding short-lived
+statements to our programs whose only purpose is to help us figure out the bug
+currently occupying us by printing the value of a variable. If you find
+yourself often typing such statements they are worth optimizing for.
 
-For example, strings in most languages are surrounded by double quotes which require an extra motion and keystroke for the left shift key. With my coding style I multiply that motion towards the shift key by 4-6 times per print statement and 10-100 print statements everyday. The result is to significant slow me down and bring me closer to the Home for the Aged Wrist. The analogous cout statement in c++ is even more egregious in this regard. Consider statements like the following that I frequently find myself typing:
+For example, strings in most languages are surrounded by double quotes which
+require an extra motion and keystroke for the left shift key. With my coding
+style I multiply that motion towards the shift key by 4-6 times per print
+statement and 10-100 print statements everyday. The result is to significant
+slow me down and bring me closer to the Home for the Aged Wrist. The analogous
+cout statement in c++ is even more egregious in this regard. Consider
+statements like the following that I frequently find myself typing:
 
 cout << "AAA: " << someVarName << ": " << someOtherVarName << "\n" ;
 
-That's *12* times my left hand moves towards the shift key for *one* statement! Unacceptable. My solution is to remap keys to interchange '<' and ',' as well as double quotes and single quotes. Rather than force myself to learn a new keyboard mapping within vim I cause the mappings to trigger in a context-sensitive mannter, within only a cout statement, from the time I type 'cout' to the time I type the ';' in the end.
+That's *12* times my left hand moves towards the shift key for *one* statement!
+Unacceptable. My solution is to remap keys to interchange '<' and ',' as well
+as double quotes and single quotes. Rather than force myself to learn a new
+keyboard mapping within vim I cause the mappings to trigger in a
+context-sensitive mannter, within only a cout statement, from the time I type
+'cout' to the time I type the ';' in the end.
 
 Here's my code fragment to do this:
 function! CppSetupCout ()
@@ -21634,7 +22028,9 @@ I was looking for that feature for the very long time.
 
 I use vim for programming and I always keep forgetting about closing the parents, quotes etc.
 
-I wanted to remap the keyboard in insert mode in that way that when I open a quote or parent I will get the closing one and the cursor would be placed between these two characters.
+I wanted to remap the keyboard in insert mode in that way that when I open a
+quote or parent I will get the closing one and the cursor would be placed
+between these two characters.
 
 here is the stuff I put in my ~/.vimrc file 
 <pre>
@@ -22493,7 +22889,15 @@ in my text.
 VimTip	{{{1 638: Editing ActiveState Perl batch files
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-To run Perl scripts under Windows, you can either add the .pl extension to the PATHEXT env variable, or use pl2bat, which comes with ActiveState's Perl and makes a very nice batch file.  A quirk of Perl under Win32 is that piping doesn't work with .pl files (as in bar.pl | foo.pl) but works fine with the batch files.  It has something to do with how Windows loads files.  Anyway, this all works fine, but every time I do any extensive edits to a perl/batch file, I have to set cindent and syntax=perl or it drives me crazy.  This tip modifies filetype.vim to check batch files to see if they're really perl scripts in disguise.
+To run Perl scripts under Windows, you can either add the .pl extension to the
+PATHEXT env variable, or use pl2bat, which comes with ActiveState's Perl and
+makes a very nice batch file.  A quirk of Perl under Win32 is that piping
+doesn't work with .pl files (as in bar.pl | foo.pl) but works fine with the
+batch files.  It has something to do with how Windows loads files.  Anyway,
+this all works fine, but every time I do any extensive edits to a perl/batch
+file, I have to set cindent and syntax=perl or it drives me crazy.  This tip
+modifies filetype.vim to check batch files to see if they're really perl
+scripts in disguise.
 
 --->First, find these lines:
 
@@ -22840,8 +23244,9 @@ map <C-X><C-X> diw:exe "normal i".@"<cr>
 VimTip	{{{1 650: abbreviation that prompts whether to expand it or not
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-You can define abbreviation in such a way that it will ask whether to expand it or not. The trick is to define it as insert-mode mapping with special body, not as abbreviation.
-Here is how to define it:
+You can define abbreviation in such a way that it will ask whether to expand it
+or not. The trick is to define it as insert-mode mapping with special body, not
+as abbreviation. Here is how to define it:
 
    function! MyExpand(abbr,expansion)
      let answer=confirm("Expand '".a:abbr."' [y] ", "&Yes\n&No")
@@ -22863,9 +23268,12 @@ imap XYZ <esc>:call AskExpand("XYZ","...expansion for XYZ ...")<cr>a
 VimTip	{{{1 651: Edit gnupg-encrypted files.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It can be somewhat laborious to edit a file which you have encrypted: first you have to decrypt to plaintext, then use vim and save; then encrypt again.  The method below lets vim take care of some of the dirty work.
+It can be somewhat laborious to edit a file which you have encrypted: first you
+have to decrypt to plaintext, then use vim and save; then encrypt again.  The
+method below lets vim take care of some of the dirty work.
 
-First, be sure you have gnupg setup to the point where you can ascii-armor encrypt a file using your own public key, and decrypt it again.
+First, be sure you have gnupg setup to the point where you can ascii-armor
+encrypt a file using your own public key, and decrypt it again.
 
 Then put this into your .vimrc (don't duplicate the 'if has("autocmd")' part if it is already there):
   if has("autocmd")
@@ -22879,16 +23287,23 @@ Then put this into your .vimrc (don't duplicate the 'if has("autocmd")' part if 
       augroup END
   endif " has ("autocmd")
  
-you might also want to add these options to your ~/.gnupg/options file to decrease the messages gnupg outputs:
+you might also want to add these options to your ~/.gnupg/options file to
+decrease the messages gnupg outputs:
+
     no-greeting
     quiet
     default-recipient-self  #to always encrypt for yourself.
 
 Now vim a new file, the name of which ends with .asc:
      vim important.asc
-and edit.  When you save and quit, gnupg may prompt for gnupg ids to encrypt for (if you don't have default-recipient-self set).  Enter your own.  To edit, just vim it again and you'll be prompted for your passphrase.
 
-This isn't perfect -- in particular, you occasionally have to tell vim to redraw with ctrl-L to get rid of gnupg crud -- but it works pretty well for me.  I'd love to hear about improvements!
+and edit.  When you save and quit, gnupg may prompt for gnupg ids to encrypt
+for (if you don't have default-recipient-self set).  Enter your own.  To edit,
+  just vim it again and you'll be prompted for your passphrase.
+
+This isn't perfect -- in particular, you occasionally have to tell vim to
+redraw with ctrl-L to get rid of gnupg crud -- but it works pretty well for me.
+I'd love to hear about improvements!
 
 
 
@@ -22926,11 +23341,16 @@ nmap <F12> :call SaveBuffers()<CR>
 VimTip	{{{1 653: doxygen '///' :comments setting
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This will continue lines of '///' doxygen comments when you reach the end of a line while typing a comment.  It also works if you use 'o' to open a new line while on a comment starting with '///'.  It only works if there is a space between the last '/' and the first letter of the comment, that is no big deal, since it lends itself to readability.  So for example:
-/// This will work.
-///This won't.
+This will continue lines of '///' doxygen comments when you reach the end of a
+line while typing a comment.  It also works if you use 'o' to open a new line
+while on a comment starting with '///'.  It only works if there is a space
+  between the last '/' and the first letter of the comment, that is no big
+  deal, since it lends itself to readability.  So for example: /// This will
+  work. ///This won't.
 
-Here is the magic line.  Make sure you put it somewhere that will get sourced whenever you open a file you want to use with doxygen.  I have it in ~/.vim/after/ftplugin/c/c.vim, so it gets sourced for all C and C++ files.
+Here is the magic line.  Make sure you put it somewhere that will get sourced
+whenever you open a file you want to use with doxygen.  I have it in
+~/.vim/after/ftplugin/c/c.vim, so it gets sourced for all C and C++ files.
 
 set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,bO:///,O://
 
@@ -23023,7 +23443,11 @@ Can this be done in insert mode?
 VimTip	{{{1 656: Recursive mappings - (2 examples to learn from)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Recursive mappings are fun to learn and really handy when you want to do repetitive tasks.  One way to do this is Tip#144 (recording).  This is another way when you find that you are using the same **editing pattern** again and again.  Recursion may seem a bit complicated at first but it is very intuitive once you get the hang of it.   Here are two examples for you to learn from.
+Recursive mappings are fun to learn and really handy when you want to do
+repetitive tasks.  One way to do this is Tip#144 (recording).  This is another
+way when you find that you are using the same **editing pattern** again and
+again.  Recursion may seem a bit complicated at first but it is very intuitive
+once you get the hang of it.   Here are two examples for you to learn from.
 
 For example, you have a file with the following contents -
 
@@ -23082,7 +23506,9 @@ Also see
 :help CTRL-A
 :help nowrapscan  // when using recursion with searching.
 
-There may be many ways to solve the above problems... this is just another way which I like to use.  Recursion is very powerful espcially when I manipulate many open windows where the content of one is to be used in another.  
+There may be many ways to solve the above problems... this is just another way
+which I like to use.  Recursion is very powerful espcially when I manipulate
+many open windows where the content of one is to be used in another.  
 
 
 
@@ -23092,9 +23518,13 @@ There may be many ways to solve the above problems... this is just another way w
 VimTip	{{{1 658: Switching to unit test module for python
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Doing a lot of programming in Python, I need to switch quickly between Python module and corresponding unit-test module. Often there is one unit-testing module for multiple python modules. 
+Doing a lot of programming in Python, I need to switch quickly between Python
+module and corresponding unit-test module. Often there is one unit-testing
+module for multiple python modules. 
 
-This function allows you to switch to correct unit testing module quickly, using the filename hardcoded at the end of the file. Idea is stolen from Twisted sources.
+This function allows you to switch to correct unit testing module quickly,
+using the filename hardcoded at the end of the file. Idea is stolen from
+Twisted sources.
 
 Put this to your ftplugin/python.vim:
 
@@ -23119,8 +23549,12 @@ endfun
 VimTip	{{{1 659: Collect filenames of current subtree
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-In vim you can edit directories, but sometimes for me it is more convenienant to have the names of all files in the complete subtree listed in one buffer. The below function does just this. In essential, it globs the file names of the current directory and iterates throught all the names, globbing it again if it is a directory.
-The following mapping abbreviates the invocation to pressing '_L':
+In vim you can edit directories, but sometimes for me it is more convenienant
+to have the names of all files in the complete subtree listed in one buffer.
+The below function does just this. In essential, it globs the file names of the
+current directory and iterates throught all the names, globbing it again if it
+is a directory. The following mapping abbreviates the invocation to pressing
+'_L':
 
 map _L :call ListTree('.')<CR>
 
@@ -23543,11 +23977,14 @@ iab wq <bs><esc>:call WQHelper()<CR>
 VimTip	{{{1 674: One-liner Replacement for ':sb(uffer) | e(dit) somefile'
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I prefer to use buffers and split windows [unlike a coworker who shall remain nameless (Bob) who insists on having many, many gvim instances open ;) ].
+I prefer to use buffers and split windows [unlike a coworker who shall remain
+nameless (Bob) who insists on having many, many gvim instances open ;) ].
 
-While rather tedious and error-prone, I was satisfied with the built-in method of splitting the buffer and editing a file... Until today, that is.
+While rather tedious and error-prone, I was satisfied with the built-in method
+of splitting the buffer and editing a file... Until today, that is.
 
-Critical mass was achieved after I fat-fingered ':sb | e somefile' four times in a row, leading to these, my first user commands:
+Critical mass was achieved after I fat-fingered ':sb | e somefile' four times
+in a row, leading to these, my first user commands:
 
 "Put this in your .vimrc
 command! -nargs=1 -complete=file Sedit sbuffer | edit <args>
@@ -23575,8 +24012,6 @@ Enjoy!
 
 VimTip	{{{1 675: How to turn off all colors
 http://vim.sourceforge.net/tip_view.php?tip_id=
-
-     If you're like me, you don't want a colorful editor.  I spent hours looking for a "turn off all those colors right now!!" command and I couldn't find any help.  After some poking around for a while, I found the commands you need.  Just put these at the end of  your .vimrc file.
 
 syntax off
 set nohlsearch
@@ -23632,6 +24067,13 @@ insert the following in your .vimrc file
 
 " Opening and closing braces
 imap <C-F> {<CR>}<C-O>O
+Example:
+int main() Ctrl-F
+will produce:
+int main() {
+    |
+}
+</code>
 
 
 
@@ -23694,9 +24136,10 @@ G   =  Goto line [count], default last line, on the first
 VimTip	{{{1 680: 'Verbose' vs. "File not found"
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Problem
--------
-I want to run vim with 'verbose' set, but then it gives out a lot of "file not found" messages at startup and at closedown. I'd like to avoid those messages, while still seeing where an option was set whenever I interrogate its value.
+Problem ------- I want to run vim with 'verbose' set, but then it gives out a
+lot of "file not found" messages at startup and at closedown. I'd like to avoid
+those messages, while still seeing where an option was set whenever I
+interrogate its value.
 
 Solution
 --------
@@ -23894,7 +24337,8 @@ finish
 VimTip	{{{1 682: errorformat for Intel ifort 8.0
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Intel changed the errorformat for their fortran compiler with version 8.0. An errorformat string that works with the new compiler is:
+Intel changed the errorformat for their fortran compiler with version 8.0. An
+errorformat string that works with the new compiler is:
 
 set efm=%E%.%#rror:\ %f\\,\ line\ %l:\ %m,\%-C%.%#,\%-Z\%p^
 
@@ -23962,9 +24406,10 @@ There are a few tips on previewing current HTML documents in a Windows browser, 
 VimTip	{{{1 685: Search without need to escape frontslashes
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This comes in handy if you have the full path of a file in your clipboard, and want to find it in your current buffer.
-Instead of using "/" to search, use "?" then paste.  You don't need to escape the frontslashes, so no need to edit the pattern.
-If you wish to search forward, just hit "/" and Enter.
+This comes in handy if you have the full path of a file in your clipboard, and
+want to find it in your current buffer. Instead of using "/" to search, use "?"
+then paste.  You don't need to escape the frontslashes, so no need to edit the
+pattern. If you wish to search forward, just hit "/" and Enter.
 
 If you want to use it again, use the "?" history, not the "/".
 
@@ -23981,7 +24426,10 @@ If someone knows an easier way, please let me know!
 VimTip	{{{1 686: Easier Buffer Switching
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The <C-^> command is very handy for fast buffer switching.  Used by itself, it switches you to the previous buffer you were editing.  With a number before it, it switches to that buffer number.  However, I find it's location on the keyboard inconvenient.
+The <C-^> command is very handy for fast buffer switching.  Used by itself, it
+switches you to the previous buffer you were editing.  With a number before it,
+it switches to that buffer number.  However, I find it's location on the
+keyboard inconvenient.
 
 With a few extra mappings, buffer switching can be easy indeed.  Pick an unused, easy-to-type char - I picked \ :
    :nnoremap  \  <C-^>
@@ -24090,7 +24538,6 @@ For example, on Windows in western Europe, the default encoding is latin1. Howev
 VimTip	{{{1 691: gf for standard URL, like file:///C:/myfile.txt
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-
 To make gf worked for URL, say, file:///C:/myfile.txt
 I copy the following to my _vimrc on Windows
 
@@ -24107,13 +24554,16 @@ http://groups.yahoo.com/group/vim/message/49108
 VimTip	{{{1 692: runtime syntax check for php
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Ever wanted to just check your php script to see if it had any syntax errors ? Similar to perl -c ?.  You could always do it by doing php -l, with this little macro, you can do it in your buffer. 
+Ever wanted to just check your php script to see if it had any syntax errors ?
+Similar to perl -c ?.  You could always do it by doing php -l, with this little
+macro, you can do it in your buffer. 
 
 Just add the following line in your .vimrc, and whenever you want to test, press ctrl b
 
 voila. 
 
 
+VimTip	{{{1 692: runtime syntax check for php
 map <C-B> :!php -l %<CR>
 
 
@@ -24364,7 +24814,9 @@ the renaming and
 VimTip	{{{1 700: indenting for Java
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I needed to do a few tweaks to .vimrc get Java code looking smooth in vim and I'm passing the joy.  This is probably good for at least 80% of Java programmers.  Hope this helps my fellow Java/Vim peeps.
+I needed to do a few tweaks to .vimrc get Java code looking smooth in vim and
+I'm passing the joy.  This is probably good for at least 80% of Java
+programmers.  Hope this helps my fellow Java/Vim peeps.
 
 Randy Solomonson
 
@@ -24564,8 +25016,7 @@ Yakov Lerner
 
 
 
-
-
+"xxxx50
 
 VimTip	{{{1 710: Save time by typing and running templates instead of routine code.
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -25048,7 +25499,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I think it would be convenient to have Vim automatically remove the white spaces before saving to a file.
 
-Just put the following line in your vimrc file. Everytime you issue a :w command, Vim will automatically have white spaces removed before saving.
+Just put the following line in your vimrc file. Everytime you issue a :w
+command, Vim will automatically have white spaces removed before saving.
 
 autocmd BufWritePre * :%s/\s\+$//
 
@@ -25163,7 +25615,7 @@ nnoremap <Leader>H yypVr-o<Esc>
 
 
 
-
+"xxxx49
 
 
 VimTip	{{{1 725: Quick mapping for backing up the file
@@ -25186,7 +25638,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 " A panic button! So no one accidentally sees words they arn't supposed to.
 noremap <Leader>r ggg?G``
 
-with this in your vimrc you can hit \r in a panic and all the text goes to gibberish. So in case you can't type :wqa! fast enough or :mksession
+with this in your vimrc you can hit \r in a panic and all the text goes to
+gibberish. So in case you can't type :wqa! fast enough or :mksession
 
 running this again reverses it. Basically it uses VIM's rot13 command on the whole file. quick simple and easy.
 
@@ -25275,7 +25728,9 @@ Enjoy vimming on Windows...
 VimTip	{{{1 733: Python the SciTe way...
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I just discovered vim, I really liked 'split' capability, I'm so used to edit Python source code on SciTe editor, I really missed the default CTRL-1 to check the sintax and F5 to run the script...
+I just discovered vim, I really liked 'split' capability, I'm so used to edit
+Python source code on SciTe editor, I really missed the default CTRL-1 to check
+the sintax and F5 to run the script...
 
 So, this is my suggestion, add these lines to your _vimrc file:
 
@@ -25396,12 +25851,18 @@ http://www.vi-improved.org/wiki/index.php/FileFormat
 VimTip	{{{1 737: Fine tuning syntax colors
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you want to change just one or two colors in your syntax highlighting, there is a simpler way other than editing color files (or creating new ones).  For example, I wanted to tweak the default colors a bit, so I added the following lines to my vimrc file:
+If you want to change just one or two colors in your syntax highlighting, there
+is a simpler way other than editing color files (or creating new ones).  For
+example, I wanted to tweak the default colors a bit, so I added the following
+lines to my vimrc file:
 
 highlight comment ctermfg=lightblue
 highlight constant ctermfg=red
 
-This made the comments and constants easier to read on my screen.  Replace "comment" or "constant" with whatever text type you want to change the color of.  Try experimenting with different colors to see what looks best to you.  (This was NOT gone in the gui vim, as I don't use it/have it installed).
+This made the comments and constants easier to read on my screen.  Replace
+"comment" or "constant" with whatever text type you want to change the color
+of.  Try experimenting with different colors to see what looks best to you.
+(This was NOT gone in the gui vim, as I don't use it/have it installed).
 
 For more info see
 /usr/share/vim/doc/usr_06.txt
@@ -25459,9 +25920,15 @@ To fix META-keys definitions manually key-by-key:
 VimTip	{{{1 739: Writing a valid statusline
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I wanted to write a good looking statusline, grouping all the informations I need about a file and the environment. The needed things were the filename, the format of this file, its type, the position (line, column) of the cursor, the relative position in the file (%) and the date (day/month/year - hours:minutes).
+I wanted to write a good looking statusline, grouping all the informations I
+need about a file and the environment. The needed things were the filename, the
+format of this file, its type, the position (line, column) of the cursor, the
+relative position in the file (%) and the date (day/month/year -
+hours:minutes).
 
-There is *one* thing to always remember when you write a statusline. You have to escape all the blank characters and the " characters. To escape a character you have to use \, so if you want a whitespace you have to do "\ ". 
+There is *one* thing to always remember when you write a statusline. You have
+to escape all the blank characters and the " characters. To escape a character
+you have to use \, so if you want a whitespace you have to do "\ ". 
 
 Now here is the statusline:
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
@@ -25599,7 +26066,8 @@ VimTip	{{{1 745: Find $VIMRUNTIME in a bash script
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-I recently needed the value of $VIMRUNTIME in a bash shell script and was forwarded these two terrific solutions I wanted to post publically:
+I recently needed the value of $VIMRUNTIME in a bash shell script and was
+forwarded these two terrific solutions I wanted to post publically:
 
 1. by Luc St-Louis
 
@@ -25645,9 +26113,17 @@ see :h guicursor for more options.
 VimTip	{{{1 747: Easily keep runtime files up to date
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I try to always keep up to date on the latest and greatest patches and runtime files.  It's pretty easy to install the patches against the source code, but there are no patches for the runtime files.
+I try to always keep up to date on the latest and greatest patches and runtime
+files.  It's pretty easy to install the patches against the source code, but
+there are no patches for the runtime files.
 
-What I do is use an FTP mirroring tool (with a shell script wrapper) that keeps the runtime directory in my source code up-to-date.  I personally use the fmirror tool (from ftp://ftp.sunet.se/pub/nir/ftp/utilities/fmirror/) but I would think any decent tool would work.  Every so often, usually when applying a source patch, I run this script, and watch the output to see if any of the runtime files have been updated.  If so, I change into the vim63/src directory (or whatever version we're at) and do a "make installruntime".
+What I do is use an FTP mirroring tool (with a shell script wrapper) that keeps
+the runtime directory in my source code up-to-date.  I personally use the
+fmirror tool (from ftp://ftp.sunet.se/pub/nir/ftp/utilities/fmirror/) but I
+would think any decent tool would work.  Every so often, usually when applying
+a source patch, I run this script, and watch the output to see if any of the
+runtime files have been updated.  If so, I change into the vim63/src directory
+(or whatever version we're at) and do a "make installruntime".
 
 Here's the command I use for fmirror:
 
@@ -25681,7 +26157,10 @@ Pretty simple and it works for me!  :-)
 VimTip	{{{1 748: Get bright background colors in linux console (framebuffer)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-To get 16 background colors in a linux framebuffer console to achieve an appearance like in a 16 color xterm, place the following in your .vimrc (you have to use a real escape character instead of <ESC>, try something like <Ctrl-V><ESC>):
+To get 16 background colors in a linux framebuffer console to achieve an
+appearance like in a 16 color xterm, place the following in your .vimrc (you
+have to use a real escape character instead of <ESC>, try something like
+<Ctrl-V><ESC>):
 
 if &term =~ "linux"
     if has("terminfo")
@@ -25778,7 +26257,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I do not know if this tips has been given before (not found by searching :-)
 
-A "go to line" mapping, nice if you compile your source code in command prompt and need to go to some specific line quickly while in insert mode
+A "go to line" mapping, nice if you compile your source code in command prompt
+and need to go to some specific line quickly while in insert mode
 
 function! GoToLine()
      let ln = inputdialog("Go to line")
@@ -25858,19 +26338,26 @@ def to_pattern(text)
   text.gsub(/x/,"\\n|[^ab]").gsub(/a/,"\\{").gsub(/b/,"\\}")
 end
 
-ax = generate("a%(x)*b", 12).sub(/b$/,"")
-# a = starting brace, b = ending brace, x = characters in between
-puts to_pattern( "/\\v%(%##{ax}b)|%(#{ax}%#b)/" )
-=== ruby script end ===============
-"a" and "b" are synonyms for the starting/ending brace, "x" holds the characters in between, if any. Using recursion, the original pattern "a(x)*b" is expanded to the monstrous pattern seen below.
-Btw. - have to use %() for grouping in the pattern, as the normal (captivating) variant cannot be used that often in one pattern...
+ax = generate("a%(x)*b", 12).sub(/b$/,"") # a = starting brace, b = ending
+brace, x = characters in between puts to_pattern(
+"/\\v%(%##{ax}b)|%(#{ax}%#b)/" ) === ruby script end =============== "a" and
+"b" are synonyms for the starting/ending brace, "x" holds the characters in
+between, if any. Using recursion, the original pattern "a(x)*b" is expanded to
+the monstrous pattern seen below. Btw. - have to use %() for grouping in the
+pattern, as the normal (captivating) variant cannot be used that often in one
+pattern...
 
 Append the following to your .vimrc (_vimrc on windows):
 highlight ShowMatches guibg=darkgrey guifg=white
+
 au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
+
 set ut=30
+
 vimtip #396, vimtip #177
-Up to now, creating a pattern for mixing curly braces and brackets haven't been very successful. The resulting patterns grow far too fast.
+
+Up to now, creating a pattern for mixing curly braces and brackets haven't been
+very successful. The resulting patterns grow far too fast.
 
 
 
@@ -25918,7 +26405,9 @@ Happy vimming :)
 VimTip	{{{1 756: Windows key as <Esc> in console (FreeBSD)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I accidentally found that pressing the Windows key or the right mouse key (present on most modern keyboards for PC's) function as <Esc> in FreeBSD 5.1 in the console version of Vim 6.2 (not tested on other versions or *nixes). 
+I accidentally found that pressing the Windows key or the right mouse key
+(present on most modern keyboards for PC's) function as <Esc> in FreeBSD 5.1 in
+the console version of Vim 6.2 (not tested on other versions or *nixes). 
 
 
 
@@ -26038,7 +26527,7 @@ command! SmallerFont call SmallerFont()
 
 
 
-
+"xxxx48
 
 
 
@@ -26154,7 +26643,10 @@ way of doing it in vim?
 VimTip	{{{1 764: Unhighlighting searched-for text
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you have hlsearch on, you might find it bothersome that a string you've searched for stays highlighted until you make another search or type something like "/asothuse," searching for a random string of characters, as the FAQ recommends.
+If you have hlsearch on, you might find it bothersome that a string you've
+searched for stays highlighted until you make another search or type something
+like "/asothuse," searching for a random string of characters, as the FAQ
+recommends.
 
 With a simple mapping, this is a breeze. Add this line to your .vimrc:
 
@@ -26225,13 +26717,12 @@ Also, I have something not work out yet. I'd like to position the cursor at the 
 
 
 VimTip	{{{1 767: multiple commands at once
-http://vim.sourceforge.net/tip_view.php?tip_id=
-
 you can easily execute more then one command by placing a | between two commands. 
 
 e.g. argdo %s/foo/bar/gc | w 
 
-by adding | w in tyhe above example the multiple find and replace command doesn't get interupted because the last edited file isn't saved.
+by adding | w in tyhe above example the multiple find and replace command
+doesn't get interupted because the last edited file isn't saved.
 
 
 
@@ -26301,7 +26792,8 @@ see:
 VimTip	{{{1 769: Highlighting Current Line
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There is another tip vimtip#421 and a script vimscript#555 on how to highlight the current line. But I think that this is much simpler than those.
+There is another tip vimtip#421 and a script vimscript#555 on how to highlight
+the current line. But I think that this is much simpler than those.
 
 \%# matches to the current cursor position. Using this one can highlight the whole line
 
@@ -26315,7 +26807,6 @@ hi CurrentLine guifg=white guibg=lightblue
 to switch off the highlightline, simply do
 
 syntax match CurrentLine "NONE"
-
 
 I have tested this in (g)vim 6.3 on windows XP 
 
@@ -26337,9 +26828,12 @@ imap <silent> ti <Esc>:let &insertmode=1-&insertmode<CR>
 map <silent> ta :let &insertmode=1-&insertmode ^V| if &insertmode ^V| :startinsert! ^V| endif<CR>
 imap <silent> ta <Esc>:let &insertmode=1-&insertmode ^V| if &insertmode ^V| :startinsert! ^V| endif<CR>
 
-The difference between ti and ta is the former toggles inserting at the cursor position while the latter toggles inserting at the end of the line.
+The difference between ti and ta is the former toggles inserting at the cursor
+position while the latter toggles inserting at the end of the line.
 
-Note:  You have to use one pardigm or the other at one time.  Combinations of 'i' and <Esc> work fine.  Combinations of ti and ta also work fine, they just don't mix!
+Note:  You have to use one pardigm or the other at one time.  Combinations of
+'i' and <Esc> work fine.  Combinations of ti and ta also work fine, they just
+don't mix!
 
 That is, if you ti into insert, you must ti or ta out, <Esc> won't do it.  On the other hand, if you 'i' into insert, ti or ta will take you out and back in again.
 
@@ -26556,8 +27050,14 @@ Hope this helps somebody out there....
 VimTip	{{{1 775: Remapping Caps to Shift
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-In "keyword #166" a tip for mapping Caps_Lock to Esc was posted.  I never liked having Caps_Lock as Escape though.  I didn't want an easier way to hit Escape, I wanted to prevent unexpected things from happening when I accidently hit Caps_Lock when I was trying to hit Shift.  With Caps_Lock mapped to escape i still got unexpected results.  So here is how your bind Caps lock to the Shift key under Xwindows:
+In "keyword #166" a tip for mapping Caps_Lock to Esc was posted.  I never liked
+having Caps_Lock as Escape though.  I didn't want an easier way to hit Escape,
+I wanted to prevent unexpected things from happening when I accidently hit
+Caps_Lock when I was trying to hit Shift.  With Caps_Lock mapped to escape i
+still got unexpected results.  So here is how your bind Caps lock to the Shift
+key under Xwindows:
 
+VimTip	{{{1 775: Remapping Caps to Shift
 Just put this in a file in your home directory called .Xmodmap
 remove lock = Caps_Lock
 keycode 66 = Shift_R
@@ -26917,9 +27417,17 @@ vmap     <C-I>  y:/<C-R>=substitute(escape(@", '\/.*$^~[]'), "[ \t\n]\\+", "\\\\
 VimTip	{{{1 781: Changing the hotkey for "&Diff with Vim"
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-"&Diff with Vim" is a handy tool to have in Explorer, but it's more common to "&Delete" multiple files via the File menu or context menu by hitting the 'd' hotkey. Personally, I'd rather have the hotkey be changed to 'f', which isn't occupied, making the command "Di&ff with Vim".
+"&Diff with Vim" is a handy tool to have in Explorer, but it's more common to
+"&Delete" multiple files via the File menu or context menu by hitting the 'd'
+hotkey. Personally, I'd rather have the hotkey be changed to 'f', which isn't
+occupied, making the command "Di&ff with Vim".
 
-To do this, edit the gvimext.dll file in your vim installation directory (e.g., C:\Program Files\Vim\vim63\gvimext.dll). Note that this is a binary file but you can still get it done with Vim. Look for the string "Diff with Vim", and simply move the '&' from its original position to a new one (in our case, before one of the f's). Restart your computer (or at least the explorer process) and you'll see the new menu item.
+To do this, edit the gvimext.dll file in your vim installation directory (e.g.,
+C:\Program Files\Vim\vim63\gvimext.dll). Note that this is a binary file but
+you can still get it done with Vim. Look for the string "Diff with Vim", and
+simply move the '&' from its original position to a new one (in our case,
+before one of the f's). Restart your computer (or at least the explorer
+process) and you'll see the new menu item.
 
 
 
@@ -27161,7 +27669,9 @@ to achieve the same effect
 VimTip	{{{1 791: How to Search for a "non-Ascii Character"
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Occasionally when you've pasted into VIM from some other application, you get a pesky visible non-ascii character. You can do a ga command to see what it is, but you might want to search for it or substitute it; here's a technique:-
+Occasionally when you've pasted into VIM from some other application, you get a
+pesky visible non-ascii character. You can do a ga command to see what it is,
+but you might want to search for it or substitute it; here's a technique:-
 
 place cursor on the character.
 
@@ -27182,9 +27692,6 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 There never seem to be enough spare keys for maps.
 
-It's possible however to preload VIMs registers in .vimrc with your frequent commands eg
-
-
 let @m=":'a,'bs/"
 let @s=":%!sort -u"
 
@@ -27193,7 +27700,8 @@ let @y='yy@"'
 
 The command is executed by doing a @m
 
-You can overwrite them of course when doing a recording or a plain yank; I prefer to leave registers a-q for yanks or recordings and preload the others
+You can overwrite them of course when doing a recording or a plain yank; I
+prefer to leave registers a-q for yanks or recordings and preload the others
 
 
 
@@ -27231,7 +27739,9 @@ has 2,2,2,2,2,4,4 backslashes.
 VimTip	{{{1 794: Scripting - Indirectly Referencing Variables
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It is possible to indirectly reference a variable using {} (curly braces) in your VIM script. This give you the ability to build up variable names on-the-fly and subseqnetly reference the data that those variables hold.
+It is possible to indirectly reference a variable using {} (curly braces) in
+your VIM script. This give you the ability to build up variable names
+on-the-fly and subseqnetly reference the data that those variables hold.
 
 For example:
 
@@ -27255,16 +27765,14 @@ will display "Richard" then "Alan" on screen.
 
 
 
-
-
-
-
-
+"xxxx47 
 
 VimTip	{{{1 795: Simulating arrays with VIM
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It is possible to simulate arrays in VIM, without recourse to third party scripts or libraries. This can be done by dynamically constructing variable names, and then referencing their data.
+It is possible to simulate arrays in VIM, without recourse to third party
+scripts or libraries. This can be done by dynamically constructing variable
+names, and then referencing their data.
 
 For example, implementing a 1 dimensional array :
 
@@ -27325,7 +27833,9 @@ Or arrays of records :
 VimTip	{{{1 796: Search only over a visual range
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you want to be able to select an area of text within a file and then search for occurrences of a string only within that selection.  Then you can add the following to your .vimrc.
+If you want to be able to select an area of text within a file and then search
+for occurrences of a string only within that selection.  Then you can add the
+  following to your .vimrc.
 
 This creates 2 visual maps, / and ?, the same command you would use in normal mode.  Visually select a range and press /, enter your usual regex and hit enter.
 
@@ -27357,7 +27867,9 @@ The execute is performed outside of the function so that the values remain highl
 VimTip	{{{1 797: All folds open at startup or just openen file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-when you set foldmethod=indent all folds are closed when you open a file. If you set the foldlevel to a high setting files are always started with opened folds. Put the settings below in your .vimrc
+when you set foldmethod=indent all folds are closed when you open a file. If
+you set the foldlevel to a high setting files are always started with opened
+folds. Put the settings below in your .vimrc
 
 set foldmethod=indent
 set foldlevel=20
@@ -27417,7 +27929,12 @@ Or, better still:
 
 	:map zm :let @/=expand("<cword>") <BAR> split <BAR> execute 'normal n'<CR>
 
-This just splits the current window and starts you at the next occurrence of the word under the cursor in the new split.  Repeat search as usual.  Close the split window when you're done.  You return to the original window at the cursor position you left.
+This just splits the current window and starts you at the next occurrence of
+the word under the cursor in the new split.  Repeat search as usual.  Close the
+split window when you're done.  You return to the original window at the cursor
+position you left.
+
+	:map zm :let @/=expand("<cword>") <BAR> split <BAR> execute 'normal n'<CR>
 
 HTH:
 
@@ -27446,9 +27963,15 @@ fun! FindFiles()
 endfun
 nmap \f :call FindFiles()<CR>
 
-Then, when in normal mode, type "\f" (or any other mapping that you prefer). This will give a prompt for a file name pattern to search for. Then, all the file names that match this pattern (under the current directory) will be displayed in the quich fix window, along with a description of each of one of them.
+Then, when in normal mode, type "\f" (or any other mapping that you prefer).
+This will give a prompt for a file name pattern to search for. Then, all the
+file names that match this pattern (under the current directory) will be
+displayed in the quich fix window, along with a description of each of one of
+them.
 
-Notice, the search is done in a recursive manner. It is case insensitive, and you can use wildcards. If you want to use a regular expression, you can call "find" with the "-regex" or "-iregex" flags.
+Notice, the search is done in a recursive manner. It is case insensitive, and
+you can use wildcards. If you want to use a regular expression, you can call
+"find" with the "-regex" or "-iregex" flags.
 
 Background:
 The function uses some standard gnu *nix utitlities: find, file. 
@@ -27502,7 +28025,13 @@ the first tab.
 VimTip	{{{1 801: Folding of (gnu)make output
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I regularly use the compiler output window of the QuickFix feature (see help on 'quickfix' and 'copen') to navigate the compiler output. Working on a largish software system with multiple directories with subdirectories in them, the list can get quite long. I use the following entries in my .vimrc to automatically fold on each subdirectory, and open folds containing errors (the string 'error:'). Aditionally 'zw' open also the folds containing the string 'warning:', while 'zq' switches back to the original.
+I regularly use the compiler output window of the QuickFix feature (see help on
+'quickfix' and 'copen') to navigate the compiler output. Working on a largish
+software system with multiple directories with subdirectories in them, the list
+can get quite long. I use the following entries in my .vimrc to automatically
+fold on each subdirectory, and open folds containing errors (the string
+'error:'). Aditionally 'zw' open also the folds containing the string
+'warning:', while 'zq' switches back to the original.
 
 "Folding of (gnu)make output
 au BufReadPost quickfix setlocal foldmethod=marker
@@ -27521,58 +28050,94 @@ au BufReadPost quickfix normal zq
 VimTip	{{{1 802: Specify what you do not want to have in a search and other helpful searches.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Sometimes, I found useful to specify in a search or a substitution what I do not want to have. There is a way with Vim to do such a thing:
+Sometimes, I found useful to specify in a search or a substitution what I do
+not want to have. There is a way with Vim to do such a thing:
 /^\(\(The_Regular_Expression\)\@!.\)*$
 
-This will find everything but the regular expression you have specified. For example, if we want to find all the lines not containing the word 'foo', simply do:
+This will find everything but the regular expression you have specified. For
+example, if we want to find all the lines not containing the word 'foo', simply
+do:
 /^\(\(.*foo.*\)\@!.\)*$
 
 If we want to find a more complex regular expression on multiple lines, like all the lines which do not begin with 'foo' with 'bar' somewhere else and the word 'magic' at the end of the next line, do:
 /^\(\(^foo.*bar.*\n.*magic$\)\@!.\)*$
 
-Another thing useful in searches and substitutions is to ommit some information, for instance, suppose we want to find every 'foo' with 'bar' somewhere else on the line, but we do not want to take the 'bar' part in the search (let's say not highlight it if the hlsearch is set), we can do:
+Another thing useful in searches and substitutions is to ommit some
+information, for instance, suppose we want to find every 'foo' with 'bar'
+somewhere else on the line, but we do not want to take the 'bar' part in the
+search (let's say not highlight it if the hlsearch is set), we can do:
+
 /foo\(.*bar\)\@=
 /foo.*\(bar\)\@=
 /foo.\{-}\(bar\)\@=
 
-The first one will highlight only 'foo' in lines containing both 'foo' and 'bar'. The second one will highlight 'foo' and everything up to the longest much where 'bar' appear on the line. The third one, will do the same thing, but with the shortest match (non-greedy). So, if there is more than one 'bar' on the same line, the search will stop right before the first occurrence of 'bar'.
+The first one will highlight only 'foo' in lines containing both 'foo' and
+'bar'. The second one will highlight 'foo' and everything up to the longest
+much where 'bar' appear on the line. The third one, will do the same thing, but
+with the shortest match (non-greedy). So, if there is more than one 'bar' on
+the same line, the search will stop right before the first occurrence of 'bar'.
 
-We can also do the opposite. Let's say for example finding all the 'foo' with 'bar' some place else without highlighting the 'foo', we can do:
+We can also do the opposite. Let's say for example finding all the 'foo' with
+'bar' some place else without highlighting the 'foo', we can do:
+
 /\(foo.*\)\@<=bar
 /\(foo\)\@<=.*bar
 /\(foo\)\@<=.\{-}bar
 
-The first one will highlight only 'bar' in lines containing both 'foo' and 'bar'. The second one will highlight everything right after 'foo' up to the last 'bar' on the line. The third one will highlight everything right after 'foo' and up to the first 'bar' (non-greedy).
+The first one will highlight only 'bar' in lines containing both 'foo' and
+'bar'. The second one will highlight everything right after 'foo' up to the
+last 'bar' on the line. The third one will highlight everything right after
+'foo' and up to the first 'bar' (non-greedy).
 
-There is also a way to specify that a part of the regular expression should not be there. As an example, if we want to search for all the lines where there is no word 'foo' preceding the word 'bar', we can do:
+There is also a way to specify that a part of the regular expression should not
+be there. As an example, if we want to search for all the lines where there is
+no word 'foo' preceding the word 'bar', we can do:
+
 /\(foo.*\)\@<!bar
 
-Or, on the other sie, find all the word 'foo' where there is no 'bar' following, we can do:
+Or, on the other sie, find all the word 'foo' where there is no 'bar'
+following, we can do:
+
 /foo\(.*bar\)\@!
 
-Now, let's see another kind of search. Imagine we want to find every 'bar' where there is no 'foo' before it. We can do such a thing 
+Now, let's see another kind of search. Imagine we want to find every 'bar'
+where there is no 'foo' before it. We can do such a thing 
 
-There is a way with vim to specify where the beginning of the search pattern should start. As an example, suppose we want to find the lines beginning with 'foo', with the word 'bar' somewhere else and then 'magic', but that we only want to highlight 'magic' and everything up to the end to the line. We can use 'zs' for that like this:
+There is a way with vim to specify where the beginning of the search pattern
+should start. As an example, suppose we want to find the lines beginning with
+'foo', with the word 'bar' somewhere else and then 'magic', but that we only
+want to highlight 'magic' and everything up to the end to the line. We can use
+'zs' for that like this:
 /^foo.*bar.*\zsmagic.*
 
-We can also do the opposite, specify where the search sould stop highlight, for example, if we want to highlight every 'foo' with 'bar' with 'magic' but not highlighting 'magic', we can do:
+We can also do the opposite, specify where the search sould stop highlight, for
+example, if we want to highlight every 'foo' with 'bar' with 'magic' but not
+highlighting 'magic', we can do:
 /foo.*bar.*\zemagic
 /foo.*bar.\{-}\zemagic
 
-The last example was non-greedy, that is, mathches up to the first occurence of the word 'magic' in a line.
+The last example was non-greedy, that is, mathches up to the first occurence of
+the word 'magic' in a line.
 
-Other interesting searches are the beginning of a file. For example to find the first word of a file, we can do (this one needs the +syntax feature when compiled):
+Other interesting searches are the beginning of a file. For example to find the
+first word of a file, we can do (this one needs the +syntax feature when
+compiled):
+
 /\%^\_.\{-}\<.\{-}\>
 
 Or the first occurence of a word in a file:
 /\%^\_.\{-}\zsVIM
 
-We can also search for something at the end of a file. For example, the last occurence of 'VIM' in a file (this one is tricky):
+We can also search for something at the end of a file. For example, the last
+occurence of 'VIM' in a file (this one is tricky):
+
 /VIM\ze\(\(VIM\)\@!\_.\)*\%$
 
-It finds the word 'VIM' where there is no word 'VIM' after it until the end of the file!
+It finds the word 'VIM' where there is no word 'VIM' after it until the end of
+the file!
 
-There are a lot of other searches of substitutions pattern out there. But I use these very often for complex substitution (often for multiple line purpose).
+There are a lot of other searches of substitutions pattern out there. But I use
+these very often for complex substitution (often for multiple line purpose).
 
 For more information, you can type:
 :h /\@=
@@ -27621,9 +28186,12 @@ Then, set the tags option in ~/.vimrc as
 
 set tags=tags;
 
-The last semicolon is the key here.  When Vim tries to locate the 'tags' file, it first looks at the current directory, and then looks at the parent directory, then the parent of the parent...
+The last semicolon is the key here.  When Vim tries to locate the 'tags' file,
+it first looks at the current directory, and then looks at the parent
+directory, then the parent of the parent...
 
-This setting works nicely together with 'set autochdir'.  You need +path-extra feature for this tip.  Also see *file-searching* .
+This setting works nicely together with 'set autochdir'.  You need +path-extra
+feature for this tip.  Also see *file-searching* .
 
 
 
@@ -27697,7 +28265,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 When I use Vim I have multiple windows open which are all maximized after becoming active, see for example vimtip #173
 
-This makes debugging code in combination with the quickfix window a little difficult. After switching from the quickfix window to the code, the quickfix window is minimized and the error message is out of sight. Put the following in your .gvimrc to keep the quickfix window at a user specified height:
+This makes debugging code in combination with the quickfix window a little
+difficult. After switching from the quickfix window to the code, the quickfix
+window is minimized and the error message is out of sight. Put the following in
+your .gvimrc to keep the quickfix window at a user specified height:
 
 
 " Maximize the window after entering it, be sure to keep the quickfix window
@@ -27772,9 +28343,12 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 Hi,
 1) BACKING UP .VIMRC :You can always easily reinstall VIM however the loss of your .vimrc could be a catastrophe!
 
-So remember to variously back it up. One good place is to store it as, say vimrc.txt, on your free webspace then you can recover it from anywhere.
+So remember to variously back it up. One good place is to store it as, say
+vimrc.txt, on your free webspace then you can recover it from anywhere.
 
-2) COMMENTING .VIMRC : My .vimrc now has 348 lines, but about 50% is deadwood because it's no longer clear to me what it's supposed to do, wish I'd thought of this tip years ago!. In .vimrc you use the double quote as a comment
+2) COMMENTING .VIMRC : My .vimrc now has 348 lines, but about 50% is deadwood
+because it's no longer clear to me what it's supposed to do, wish I'd thought
+of this tip years ago!. In .vimrc you use the double quote as a comment
 
 e.g.
 " open search result in a new window (the comment)
@@ -27966,7 +28540,9 @@ VimTip	{{{1 810: Highlighting Text Beyond 80 Columns
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-Due to oversightedness we are often left with lines of text longer than 80 columns or the set textwidth. One way to spot such lines is to highlight the text  beyond textwidth.
+Due to oversightedness we are often left with lines of text longer than 80
+columns or the set textwidth. One way to spot such lines is to highlight the
+text  beyond textwidth.
 
 I found that lines beyong textwidth in .c and .h files can be highlighted using the below line in .vimrc.
 
@@ -28004,7 +28580,19 @@ You'll be surprised how much whitespace crud there is in source files everywhere
 VimTip	{{{1 812: Keep modified [+] flag after writing to a file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I have seen this being asked in vim mailing list several times, including the recent one which suggested that it should work this way when 'cp' is reset. Basically what happens is that when you modify a file and write contents to a different file, Vim resets the 'modified' flag, which is a Vi compatible behavior. For those who don't want the 'modified' flag reset, the suggested alternative is to use :saveas command instead of :write command, but this changes the name of the current buffer rather than what is wanted. So I have cooked up the following solution which seems to work for regular files, but it is not a fool proof mechanism. The problem is plugins like netrw that catch the event that is triggered when you try to write contents to a different file, and the below solution also uses the same mechanism, so it would end up getting triggered unexpectedly (actually, netrw might work just fine, but you would get ugly error messages in addition).
+I have seen this being asked in vim mailing list several times, including the
+recent one which suggested that it should work this way when 'cp' is reset.
+Basically what happens is that when you modify a file and write contents to a
+different file, Vim resets the 'modified' flag, which is a Vi compatible
+behavior. For those who don't want the 'modified' flag reset, the suggested
+alternative is to use :saveas command instead of :write command, but this
+changes the name of the current buffer rather than what is wanted. So I have
+cooked up the following solution which seems to work for regular files, but it
+is not a fool proof mechanism. The problem is plugins like netrw that catch the
+event that is triggered when you try to write contents to a different file, and
+the below solution also uses the same mechanism, so it would end up getting
+triggered unexpectedly (actually, netrw might work just fine, but you would get
+ugly error messages in addition).
 
 I have provided a simple workaround for taking care of at least netrw. Basically, it checks if netrw would react to the event and if so skip itself. A more sophisticated solution would actually parse the output of ":au BufWriteCmd" and automatically check if there are other event handlers for this file, but there are not all that many plugins that take advantage of this event (actually I am aware of only netrw), so the workaround should be sufficient (actually, I haven't tested the netrw filenames, so I am not sure it would work). What you should do is to run the ":au BufWriteCmd" before installing this solution and see what other autocommands exist, other than those that are for netrw. You will have to then tweek the code that returns early from the BufWrite() function.
 
@@ -28130,7 +28718,10 @@ This is certainly a simple, stupid map trick. But it is a superb example IMHO of
 VimTip	{{{1 816: JAVH: Just another VIM Hacker
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Perl has it's JAPH Just Another Perl Hacker (a short script that produces the output 'Just another Perl hacker' (Just Google for it)) I thought one day I'd try to something similar with VIM , the trick being to make it as obscure as possible:-
+Perl has it's JAPH Just Another Perl Hacker (a short script that produces the
+output 'Just another Perl hacker' (Just Google for it)) I thought one day I'd
+try to something similar with VIM , the trick being to make it as obscure as
+possible:-
 
 vim -c ":%s%s*%Cyrnfr)fcbafbe[Oenz(Zbbyranne%|:%s)[[()])-)Ig|norm Vg?"
 
@@ -28157,7 +28748,9 @@ So over to you! can you do any better!
 VimTip	{{{1 817: Non-blinking block cursor in the linux console
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you are a Linux user editing with Vim in the console, you can put the following in your .vimrc to have a nice non-blinking block cursor like in a xterm:
+If you are a Linux user editing with Vim in the console, you can put the
+following in your .vimrc to have a nice non-blinking block cursor like in a
+xterm:
 
 if &term == "linux"
         set t_ve+=^[[?81;0;112c
@@ -28243,7 +28836,6 @@ Staale Flock
 VimTip	{{{1 821: Simplest buffer explorer ever
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-In the footsteps of vimscript #42 and vimscript #159, here's perhaps the simplest way to select a buffer from the list of all buffers:
     nnoremap :e :ls<CR>:e<Space>
 
 Just type ':e' and continue typing '#' and the number of a filename from the list (or a new filename).
@@ -28293,16 +28885,23 @@ I hit F1 (:make), then hit F9 (add import for keword found under cursor)...then 
 VimTip	{{{1 823: Add your note files to vim's help system.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I guess you have one or more files containing short notes regarding your computer, stuff you study and suche. If you have several years of notes laying around, and are like me..:o), You tend to forget what's in your notes and you start grepping through your files ore start over again to figure stuff out. 
+I guess you have one or more files containing short notes regarding your
+computer, stuff you study and suche. If you have several years of notes laying
+around, and are like me..:o), You tend to forget what's in your notes and you
+start grepping through your files ore start over again to figure stuff out. 
 
-One of my solution has been to vim-helpify my note files and add a link to them from my ~/.vim/doc/ folder. 
+One of my solution has been to vim-helpify my note files and add a link to them
+from my ~/.vim/doc/ folder. 
 
 This is the process:
 Make a few changes to your note file.
 
 ---- sample notes file start -------------------------------
 " vim: filetype=help foldmetod=tags foldtags=<<<,>>> modifiable noreadonly
-NOTE! You need the noreadonly and modifiable keywords in the vim modeline above. help files are by default regarded as readonly and nomodifiable files by vim.
+
+NOTE! You need the noreadonly and modifiable keywords in the vim modeline
+above. help files are by default regarded as readonly and nomodifiable files by
+vim.
 
 Notes about sed		*sed* *sfsed*	<<<
 swapping word's in stream (I know, you don't need the cat)
@@ -28329,6 +28928,7 @@ Telephonelist		*sfphone*	<<<
 As you can see from my sample I tend to prepend my keywords with sf so I can get a handy list with <CTRL+d> later.
 
 I have tried to index files placed in an arbitray place. Sadly enough the helptags command does not seem to like this, so my solution has been to make a soft link from the ~/.vim/doc/ folder to my file. You can do this from vim:
+
 	:!ln -s ~/.vim/doc/mynotes.txt ~/Documents/mynotesfile.myext
 To have vim create the tags
 	:helptags ~/.vim/doc
@@ -28346,7 +28946,11 @@ function! AddMyHelpTags()
 	exe 'mv -f /tmp/foo.vim.tags ~/.vim/doc/tags'
 endfunction
 
-NOTE! I do not use such a AddMyHelpTags function myself. But I have tested the principle (The sample function it self is not tested, only the commands). This is just a sample to get you going. Remember that you probably would have to run this AddMyHelpTags function each time :helptags has been called, so as-is it is not very convinient..:o(
+NOTE! I do not use such a AddMyHelpTags function myself. But I have tested the
+principle (The sample function it self is not tested, only the commands). This
+is just a sample to get you going. Remember that you probably would have to run
+this AddMyHelpTags function each time :helptags has been called, so as-is it is
+not very convinient..:o(
 
 Happy viming, regards
 Staale Flock
@@ -28362,7 +28966,9 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Recently someone wants me to post the solutions of this.
 
-I just want to change the font when vim is launched in vimdiff mode, since you'll not be able to change the font later while retain the 1:1 split, (in other cases, I can change the font before :diffs)
+I just want to change the font when vim is launched in vimdiff mode, since
+you'll not be able to change the font later while retain the 1:1 split, (in
+other cases, I can change the font before :diffs)
 
 Just add something like the following in .gvimrc:
 
@@ -28439,7 +29045,9 @@ http://www.cs.albany.edu/~mosh
 VimTip	{{{1 826: PHP manual in VIM help format
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Download http://planetxml.de/php_manual.txt and put it into your vim/doc folder, then run :helptags [path to vim/doc]. Documentation for PHP functions can be shown by pressing K while the cursor is on a function name.
+Download http://planetxml.de/php_manual.txt and put it into your vim/doc
+folder, then run :helptags [path to vim/doc]. Documentation for PHP functions
+can be shown by pressing K while the cursor is on a function name.
 
 The manual was created using a modified version of script found at http://www.phpvolcano.com/articles/manual/index.php.
 
@@ -28451,7 +29059,9 @@ The manual was created using a modified version of script found at http://www.ph
 VimTip	{{{1 827: XTerm and 256 Colors
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-XTerm supports 256 colors when compiled with the --enable-256-color configure option.  To actually enable the colors set the TERM enviroment variable to TERM=xterm-256color
+XTerm supports 256 colors when compiled with the --enable-256-color configure
+option.  To actually enable the colors set the TERM enviroment variable to
+TERM=xterm-256color
 
 Some of the colorschemes support the 256 color format.
 
@@ -28617,7 +29227,7 @@ Credit where credit due, it was Kevin Lyda who posted this.
 
 
 
-
+"xxxx46 ???
 
 VimTip	{{{1 833: Google lookup as a contextual spell check and phrase verifier.
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -28668,9 +29278,9 @@ if __name__ == '__main__':
 VimTip	{{{1 834: Word-wise cut, copy & paste
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Word-wise cut, copy & paste over the current word. There's nothing special or magical about these bindings, just that I find them really useful for coding, and I thought I'd share.
-
-Add the following lines to _vimrc:
+Word-wise cut, copy & paste over the current word. There's nothing special or
+magical about these bindings, just that I find them really useful for coding,
+and I thought I'd share.
 
 map <A-v> viw"+gPb
 map <A-c> viw"+y
@@ -28686,12 +29296,22 @@ These bindings follow the Windows-style keys of control-V, control-C, and contro
 VimTip	{{{1 835: Get Intellisense for C++ to search CWD/PWD
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I searched the tips database and didn't find this.  Do not know the best place for this tip.
+I searched the tips database and didn't find this.  Do not know the best place
+for this tip.
 
-This tip is relevant to those who use the "Intellisense" functionality for vim (insenvim.sourceforge.net) for C++.  This requires, as a part of its setup, that the paths for the all the included header files in a C++ file be present in the $INCLUDE variable.  This is fine so long as all your header files are in one (invariant) location (say the MSVC's include directory).  However, if your C++ file includes header files in locations relative to the current file, updating the INCLUDE environment variable is not an option.
+This tip is relevant to those who use the "Intellisense" functionality for vim
+(insenvim.sourceforge.net) for C++.  This requires, as a part of its setup,
+that the paths for the all the included header files in a C++ file be present
+in the $INCLUDE variable.  This is fine so long as all your header files are in
+one (invariant) location (say the MSVC's include directory).  However, if your
+C++ file includes header files in locations relative to the current file,
+updating the INCLUDE environment variable is not an option.
 
-E.g., if your header files are in the same directory as your source file, simply add the following line to the cpp_vis.vim file that is delivered to the vimfiles\ftplugin location:
+E.g., if your header files are in the same directory as your source file,
+simply add the following line to the cpp_vis.vim file that is delivered to the
+vimfiles\ftplugin location:
 
+VimTip	{{{1 835: Get Intellisense for C++ to search CWD/PWD
 let $INCLUDE = expand("%:p:h") . ";" . $INCLUDE
 
 To include other relative paths, simply tweak the argument to expand().  For more info, see
@@ -28710,7 +29330,9 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Following is a BIG timesaver if you need to open lots of files.
 
-Assume you have a text file containing filenames with or without paths (created by for instance 'grep -Erl "^" * > files.txt'). Following opens all these files in the same vim.
+Assume you have a text file containing filenames with or without paths (created
+by for instance 'grep -Erl "^" * > files.txt'). Following opens all these files
+in the same vim.
 
 Asumming that only this text file is opened:
 
@@ -28769,13 +29391,18 @@ endfun
 VimTip	{{{1 840: Show tags in a separate preview window
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I love using exuberant ctags (especially ctags -R).  But I dislike how the show-tag-under-cursor command (Control-]) replaces the current buffer and loses my cursor position.  Instead I want to view the tag definition in a separate 'preview' window so I can, for example, view a C/C++ type declaration while coding a call.
+I love using exuberant ctags (especially ctags -R).  But I dislike how the
+show-tag-under-cursor command (Control-]) replaces the current buffer and loses
+my cursor position.  Instead I want to view the tag definition in a separate
+'preview' window so I can, for example, view a C/C++ type declaration while
+coding a call.
 
 Add the following to your _vimrc/.vimrc file:
 
 nnoremap <C-]> <Esc>:exe "ptjump " . expand("<cword>")<Esc>
-
-This will make Control-] pop open a window and show the tag there.  The :ptjump command shows the tag in a preview window without changing the current buffer or your cursor position.
+Control-] pop open a window and show the tag there.  The :ptjump
+command shows the tag in a preview window without changing the current buffer
+or your cursor position.
 
 This is especially handy for referencing C/C++ function declarations while entering code.
 
@@ -28787,8 +29414,8 @@ This is especially handy for referencing C/C++ function declarations while enter
 VimTip	{{{1 841: Vim reference card of common commands
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Charles E. Campbell wrote an excellent Vim reference card in 1999 for Vim 5.7.  I revised it for Vim 6.3.
-
+Charles E. Campbell wrote an excellent Vim reference card in 1999 for Vim 5.7.
+I revised it for Vim 6.3.
 http://utools.com/vimrefcard.pdf
 
 
@@ -28853,13 +29480,19 @@ Happy vimming
 VimTip	{{{1 843: Moving between buffers using mouse and minibufexpl.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-After some time using mini buffer explorer (http://www.vim.org/scripts/script.php?script_id=159), here is the way for moving between buffers using mouse (thus GVim only) and minibufexpl I feel comfortable with (Who knows you might feel the same :)
+After some time using mini buffer explorer
+(http://www.vim.org/scripts/script.php?script_id=159), here is the way for
+moving between buffers using mouse (thus GVim only) and minibufexpl I feel
+comfortable with (Who knows you might feel the same :)
 
-1. download the minibufexpl script and put it in the plugin directory (~/.vim/plugin or %HOME%\vimfiles\plugin in windows). Thus we have a pseudo tabbar in GVim window.
-2. map the right click to <Esc> by adding this line to vimrc
-imap <RightMouse> <Esc>
-nmap <RightMouse> <Esc>
-3. Then when we want to switch buffer in insert mode (or normal mode), instead having to press the <Esc> key, then move the mouse and click the buffer name, we instead just need to right click and click the buffer name using the mouse. Quite easier I think.
+1. download the minibufexpl script and put it in the plugin directory
+(~/.vim/plugin or %HOME%\vimfiles\plugin in windows). Thus we have a pseudo
+tabbar in GVim window. 2. map the right click to <Esc> by adding this line to
+vimrc imap <RightMouse> <Esc> nmap <RightMouse> <Esc> 3. Then when we want to
+switch buffer in insert mode (or normal mode), instead having to press the
+  <Esc> key, then move the mouse and click the buffer name, we instead just
+  need to right click and click the buffer name using the mouse. Quite easier I
+  think.
 
 Drawback, you lose your right click menu, but do you use it anyway ?
 
@@ -28872,11 +29505,11 @@ VimTip	{{{1 844: Simple Macros to quote and unquote a word
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-Here are some simple mappings that can be used to quote and unquote a word. Place the cursor over a word and
-press qw to place single quotes, or qd to place double quotes around the word. To remove quotes press wq.
+Here are some simple mappings that can be used to quote and unquote a word.
+Place the cursor over a word and press qw to place single quotes, or qd to
+place double quotes around the word. To remove quotes press wq.
 
 The mnemonic used is perls qw() operator.
-
   " 'quote' a word
   nnoremap qw :silent! normal mpea'<esc>bi'<esc>`pl
   " double "quote" a word
@@ -28967,27 +29600,67 @@ endif
 VimTip	{{{1 848: Installing several releases in parallel, even with matchit
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It is possible to install several different releases of Vim (for instance, Vim 6.3 "stable" and Vim 7.0 "alpha") on a single computer and decide at run-time which one to use. The present tip tells how. However, it does not solve all of the problems; in particular, it tells how to use either one or the other but not both by the same user at the same time. (It is possible to use both at the same time if "users" are different, or if the matchit plugin is not used.)
+It is possible to install several different releases of Vim (for instance, Vim
+6.3 "stable" and Vim 7.0 "alpha") on a single computer and decide at run-time
+which one to use. The present tip tells how. However, it does not solve all of
+the problems; in particular, it tells how to use either one or the other but
+not both by the same user at the same time. (It is possible to use both at the
+same time if "users" are different, or if the matchit plugin is not used.)
 
-1. One version should be chosen as "default", normally the stabler one. It will be accessible via the PATH, through one of the following methods:
+1. One version should be chosen as "default", normally the stabler one. It will
+be accessible via the PATH, through one of the following methods:
 
-a) Put the name of its directory in the PATH: for example, on Windows 98, AUTOEXEC.BAT may contain:
-...
-set VIM=C:\PROGRA~1\vim
-...
-path %VIM%\vim63;%PATH%
+a) Put the name of its directory in the PATH: for example, on Windows 98,
+AUTOEXEC.BAT may contain: ... set VIM=C:\PROGRA~1\vim ... path
+%VIM%\vim63;%PATH%
 
-b) Have a soft link to it in a directory in the PATH, for example on Unix you may have a soft link /usr/bin/vim pointing to /usr/share/vim/vim63/vim
+b) Have a soft link to it in a directory in the PATH, for example on Unix you
+may have a soft link /usr/bin/vim pointing to /usr/share/vim/vim63/vim
 
-To use the non-default version (or, on Windows, the default when you are in the directory of the other one), use a full path: in the case above, you will invoke the default Vim as "vim" and the other one as (for example, on Windows) %VIM%\vim70aa\vim
+To use the non-default version (or, on Windows, the default when you are in the
+directory of the other one), use a full path: in the case above, you will
+invoke the default Vim as "vim" and the other one as (for example, on Windows)
+%VIM%\vim70aa\vim
 
-2. The permanent environment may possibly contain a VIM variable (which may for instance be set to C:\PROGRA~1\vim on Windows or to /usr/share/vim on Unix) but not a VIMRUNTIME variable. Each executable will select a different $VIMRUNTIME according to its version number. If VIM is unset, Vim will normally set it correctly; but even if you use the default it can be useful to set VIM in the permanent environment so that the shell can see it: indeed, it is much easier to type cd $VIM than cd /usr/share/vim; or %VIM%\vim70aa\gvim filename.ext than "C:\Program Files\vim\vim70aa\gvim" filename.ext. For best results on Windows, use "short" directory names in the value of VIM, HOME, etc. (as in the W98 example above).
+2. The permanent environment may possibly contain a VIM variable (which may for
+instance be set to C:\PROGRA~1\vim on Windows or to /usr/share/vim on Unix) but
+not a VIMRUNTIME variable. Each executable will select a different $VIMRUNTIME
+according to its version number. If VIM is unset, Vim will normally set it
+correctly; but even if you use the default it can be useful to set VIM in the
+permanent environment so that the shell can see it: indeed, it is much easier
+to type cd $VIM than cd /usr/share/vim; or %VIM%\vim70aa\gvim filename.ext than
+"C:\Program Files\vim\vim70aa\gvim" filename.ext. For best results on Windows,
+use "short" directory names in the value of VIM, HOME, etc. (as in the W98
+example above).
 
-3. The "system-wide customizations" in $VIM/vimfiles and the "user-specific customizations" in $HOME/.vim or $HOME/vimfiles will be common to the different versions; any differences can be resolved by testing the value of v:version at run-time.
+3. The "system-wide customizations" in $VIM/vimfiles and the "user-specific
+customizations" in $HOME/.vim or $HOME/vimfiles will be common to the different
+versions; any differences can be resolved by testing the value of v:version at
+run-time.
 
-4. Each distribution should have its own distribution tree at the proper place under $VIM, for instance $VIM/vim63 for stable release 6.3 (at any patchlevel) or $VIM/vim70aa for alpha release 7.0aa (at any snapshot date). If you install via a pre-compiled archive or installer, it should select the proper default. If you compile your own, the subdirectory name is the value of the constant VIM_VERSION_NODOT defined in src/version.h
+4. Each distribution should have its own distribution tree at the proper place
+under $VIM, for instance $VIM/vim63 for stable release 6.3 (at any patchlevel)
+or $VIM/vim70aa for alpha release 7.0aa (at any snapshot date). If you install
+via a pre-compiled archive or installer, it should select the proper default.
+If you compile your own, the subdirectory name is the value of the constant
+VIM_VERSION_NODOT defined in src/version.h
 
-5. Now we come to the ticklish point: the matchit plugin. It comes with each distribution, with its own script and helpfile, but they are deactivated by default and they may vary from version to version. They are however, very useful; but how can we sure of using the right one? Here is how I solve the dilemma: I use a small "system-wide" plugin $VIM/matchit.vim to automatically select the right plugin at run-time (the first line takes care of the plugin itself; the rest is for the help file. This "fancy footwork" is needed to avoid changing the distribution files in or under $VIMRUNTIME.) Note that the following assumes that different users may use both versions at the same time, but that a single user will not. The contents of that scriptlet is shown here between -----start and -----end; it assumes that +eval (expression evaluation) and +windows (the ability to use split windows) have been compiled-in. In other words, the "normal" feature set should be enough. (With only "small" features, we can't use the :if statement and that's a big handicap.) This plugin also assumes that there exists a "doc" subdirectory in ~/vimfiles or ~/.vim for "user help files". You should create that directory if it doesn't yet exist.
+5. Now we come to the ticklish point: the matchit plugin. It comes with each
+distribution, with its own script and helpfile, but they are deactivated by
+default and they may vary from version to version. They are however, very
+useful; but how can we sure of using the right one? Here is how I solve the
+dilemma: I use a small "system-wide" plugin $VIM/matchit.vim to automatically
+select the right plugin at run-time (the first line takes care of the plugin
+itself; the rest is for the help file. This "fancy footwork" is needed to avoid
+changing the distribution files in or under $VIMRUNTIME.) Note that the
+following assumes that different users may use both versions at the same time,
+but that a single user will not. The contents of that scriptlet is shown here
+between -----start and -----end; it assumes that +eval (expression evaluation)
+and +windows (the ability to use split windows) have been compiled-in. In other
+words, the "normal" feature set should be enough. (With only "small" features,
+we can't use the :if statement and that's a big handicap.) This plugin also
+assumes that there exists a "doc" subdirectory in ~/vimfiles or ~/.vim for
+"user help files". You should create that directory if it doesn't yet exist.
 
 $VIM/vimfiles/plugin/matchit.vim:
 ----- start
@@ -29066,9 +29739,9 @@ line, and does automatic word-wrapping as u type in text.
 To set textwidth as of your screen with do
 :set textwidth=0 (If u want to set it yourself do :set textwidth=78.)
 
-If you want to apply this to specific areas; bring the cursor at
-the beginning of the text u want to format and type gq. Now specify the range,
-say $ to format a large line.
+If you want to apply this to specific areas; bring the cursor at the beginning
+of the text u want to format and type gq. Now specify the range, say $ to
+format a large line.
 
 For more help
 :help wn
@@ -29159,9 +29832,15 @@ nnoremap <Leader>ba :call WriteBackup()<CR>
 VimTip	{{{1 855: Automatically add closing brace to block when coding
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I got fed up with having to add the closing brace to a code block, so I've got my Vim to automatically add a closing brace when coding in c#. Add the following to any appropriate ftplugin files (prefereably in vimfiles/ftplugin) so they don't get overwritten on upgrades.
+I got fed up with having to add the closing brace to a code block, so I've got
+my Vim to automatically add a closing brace when coding in c#. Add the
+following to any appropriate ftplugin files (prefereably in vimfiles/ftplugin)
+so they don't get overwritten on upgrades.
 
-The script will automatically add the closing brace and position the cursor on a line between the opening and closing braces. It ignores braces in comments, strings and if the word new is in the line (e.g. for string[] myArray = new string[] {"a", "b"}.
+The script will automatically add the closing brace and position the cursor on
+a line between the opening and closing braces. It ignores braces in comments,
+strings and if the word new is in the line (e.g. for string[] myArray = new
+string[] {"a", "b"}.
 
 There are maps for enclosing code in a set of braces.
 
@@ -29189,6 +29868,32 @@ nmap <leader>{} O{<esc>ddj>>ddkP
 vmap <leader>{} <esc>o{<esc>ddgv>gvdp
 
 
+"yyyyy
+
+"AAA----------------------------------------------------------------------------------
+VimTip	{{{1 937: tip on looking up vim help topics
+http://vim.sourceforge.net/tip_view.php?tip_id=
+
+In addition to the existing techniques for searching vim help pages, such as
+the built-in :helpgrep and other grep techniques such as using external
+grep/id-utils, here is another technique that you can use to quickly lookup
+help topics.
+
+You are probably already aware that Vim creates tags to lookup help topics
+(using :helptags command), and commands such as :tselect (or :ts in short) do
+work in the help windows (it is automatically scoped to only the tags files in
+your runtime doc directories). This other than providing a way to use familiar
+tag commands to lookup help topics (such as tag completion and using regex to
+lookup), allows us to take advantage of any tools that enhance the Vim built-in
+tag commands. I would like to show here one such tool that you can use.
+
+This requires the tagselect.vim plugin (vimscript #1282), and its dependent
+plugins (vimscript #171 and vimscript #197). The plugin allows you execute a
+:tselect command and view the results in a new window. You can then use Vim's
+navigation (such as search) to find the tag you want and press enter to jump to
+it. When used inside a help window, this naturally works on the help topics
+too. E.g., say you want to view all the topics that have "shell" in its name,
+one way to do this is use tag completion 
 
 
 
@@ -29299,7 +30004,7 @@ Now we can write something like:
 to enable highlighting of code pieces for c, cpp and sql.
 
 
-
+"???
 
 
 
@@ -29382,7 +30087,9 @@ nnoremap % :let line=line(".")^M%:echo line(".") - line^M
 VimTip	{{{1 860: count number of matches of a pattern
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-mfyahya asked at #vim on freenode this question and I told him to try a simple substitude command such like :s/pattern/foo/g, to watch the status line and to press "u" (ndo) ;) Happy vimming!
+mfyahya asked at #vim on freenode this question and I told him to try a simple
+substitude command such like :s/pattern/foo/g, to watch the status line and to
+press "u" (ndo) ;) Happy vimming!
 
 
 
@@ -29425,7 +30132,7 @@ REGEDIT4
 
 
 
-
+"xxxx45
 
 
 
@@ -29470,7 +30177,12 @@ This tip was written in response to a request in comp.editors and now shared in 
 VimTip	{{{1 863: Vimsessions utilization
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I often use vimsession-files to save set of options, buffers, etc., that are specific for each job (see :help mksession).  To save some additional settings, which are not saved in vimsession (like commands, autocommands, functions), I use vimsession-extra file.  When I want modify that extra-file, it had to type something like :new <c-r>=v:this_session<cr>, then edit commandline to get proper extra-file name and edit it.  It was tiring.  So I wrote this plugin:
+I often use vimsession-files to save set of options, buffers, etc., that are
+specific for each job (see :help mksession).  To save some additional settings,
+which are not saved in vimsession (like commands, autocommands, functions), I
+use vimsession-extra file.  When I want modify that extra-file, it had to type
+something like :new <c-r>=v:this_session<cr>, then edit commandline to get
+proper extra-file name and edit it.  It was tiring.  So I wrote this plugin:
 
 	command! -bar SessSave call SessSave()
 
@@ -29496,9 +30208,9 @@ I often use vimsession-files to save set of options, buffers, etc., that are spe
 	command! -bar SessExtraOpen   exe 'new '.SessExtraFname()
 	command! -bar SessExtraReread exe 'source '.SessExtraFname()
 
-I also put following mapping there:
-	nmap <c-z>l :SessSave<cr>
-Of course, you can change lhs to whatever you want, or add some extra mappings, for example for SessExtraOpen or SessExtraReread.
+I also put following mapping there: nmap <c-z>l :SessSave<cr> Of course, you
+can change lhs to whatever you want, or add some extra mappings, for example
+for SessExtraOpen or SessExtraReread.
 
 
 
@@ -29626,9 +30338,12 @@ See also tip #278.
 VimTip	{{{1 869: Opening new buffer below the current
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Have you ever been annoyed with that fact that :new opens buffer above current?  If yes, then try :below new.  You'll like it!
+Have you ever been annoyed with that fact that :new opens buffer above current?
+If yes, then try :below new.  You'll like it!
 
-It seems to be a basic feature, but I've been vimming for 4 years before I discovered it.  So/ I think, it should be placed here in case there are another people knowing not about it.
+It seems to be a basic feature, but I've been vimming for 4 years before I
+discovered it.  So/ I think, it should be placed here in case there are another
+people knowing not about it.
 
 
 
@@ -29674,7 +30389,8 @@ Thanks
 VimTip	{{{1 872: Finding phone numbers
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I have a little script making the my modem dial phone numbers. As the numbers are contained in a file I edit with Vim, I call the script by
+I have a little script making the my modem dial phone numbers. As the numbers
+are contained in a file I edit with Vim, I call the script by
 
 func CPhone( ...)
   " Get phone number under cursor
@@ -29779,25 +30495,20 @@ The resulting line should look about the same as the default, without removing t
 VimTip	{{{1 875: grep and bar---AKA |, OR, or alternation
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It took me a little while to notice this in the help file: 
-
-cmdline.txt - (help)
-                                                   *:bar* *:\bar*
-'|' can be used to separate commands, so you can give multiple commands
-in one line.  If you want to use '|' in an argument, precede it with
-'\'.
-
 When using bar in grep from a shell prompt you would use something like:
 
 grep -i "main\(menu\|tool\)" *
 or
 grep -iE "main(menu|tool)" *
 
-but you must remember to add an extra escape the '|' character in your regex when using grep from Vim like so:
+but you must remember to add an extra escape the '|' character
+in your regex when using grep from Vim like so:
 
 grep -i "main\(menu\\|tool\)" *
 or
 grep -iE "main(menu\|tool)" *
+
+
 
 
 
@@ -29877,7 +30588,7 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 
 
-
+"xxxx44 29000
 
 
 VimTip	{{{1 880: Shebang line automatically generated
@@ -29970,7 +30681,7 @@ Notes:
 
 
 
-
+"xxxx43 30000
 
 VimTip	{{{1 885: Switching between different statuslines
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -30126,6 +30837,7 @@ I find it really useful to have a line in the header of my sourcecode such as "L
 
 Insert the following code into your .vimrc and vim will automatically update the date time when you save.
 
+"Last modified: Sun Mar 06, 2005  01:56PM"
 " Search the first 20 lines for Last modified: and update the current datetime.
 function! LastMod()
     if line("$") > 20
@@ -31133,7 +31845,7 @@ The mappings of Ctrl(-Shift)-Tab may not work with terminal versions of Vim (in 
 The imaps are for insert mode, not while in replace mode.
 
 
-
+"xxxx42 ???
 
 
 
@@ -31287,11 +31999,19 @@ bye :)
 VimTip	{{{1 913: Add a command to remove a file from vim
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-You can of course create a command/map to execute the external "rm" or "del" command depending on the OS and environment, but Vim has a delete() function which works very well, and I like to do it this way because it works on all environments without much effort. Put the following in your vimrc (all on one line) and you can use the "Remove" command with the normal vim command-line arguments (such as "%" to remove the current file). It also has filename completion.
+You can of course create a command/map to execute the external "rm" or "del"
+command depending on the OS and environment, but Vim has a delete() function
+which works very well, and I like to do it this way because it works on all
+environments without much effort. Put the following in your vimrc (all on one
+line) and you can use the "Remove" command with the normal vim command-line
+arguments (such as "%" to remove the current file). It also has filename
+completion.
 
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
-Once you execute the command, watch out for the "SUCCEEDED" status for confirmation. This only removes the file on the filesystem, so if you want, you can explicitly delete/wipeout the vim buffer too.
+Once you execute the command, watch out for the "SUCCEEDED" status for
+confirmation. This only removes the file on the filesystem, so if you want, you
+can explicitly delete/wipeout the vim buffer too.
 
 Hari
 
@@ -31332,7 +32052,10 @@ Afterwards start gvim and and choose the font or insert
 VimTip	{{{1 915: An alternative to :s
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I re-fell in love with :g/ when I discovered "norm f{char}".  Say you want to delete the two words between the url and the IP address, and "has address" isn't spelled the same consistently throughout (preventing us from doing 
+I re-fell in love with :g/ when I discovered "norm f{char}".  Say you want to
+delete the two words between the url and the IP address, and "has address"
+isn't spelled the same consistently throughout (preventing us from doing 
+
 :s/has address//). You can do this:
 
   :g/-/norm f w2dw
@@ -31375,7 +32098,9 @@ I re-fell in love with :g/ when I discovered "norm f{char}".  Say you want to de
     amazon.com            207.171.163.90
     amazon.com            207.171.163.30
 
-Of course, the example I've displayed doesn't demonstrate much power (you could do "2dw" then "j." 14 times), but many many keystrokes could be avoided in a given situation.
+Of course, the example I've displayed doesn't demonstrate much power (you could
+do "2dw" then "j." 14 times), but many many keystrokes could be avoided in a
+  given situation.
 
 For more info on the bits and pieces of the command:
 
@@ -31434,23 +32159,43 @@ To hide more functions, add more if-endif blocks substituting "sub foo_" with th
 
 
 
-
+"xxxx41
 
 
 VimTip	{{{1 917: Word, down/up, Home/End, PageUp/PageDown visual selection & Word deletion
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Perhaps the most useful thing I do in Windows editing (be it in MS Word or Notepad-variant) is to hold down both Ctrl-Shift keys and press either up/down/left/right arrow keys or Home/End/PageUp/PageDown keys to select an area that could encompass word-by-word, line-by-line or page-by-page. This allows me to quickly edit or delete my text. This feature is prominent in Windows and I find myself using it too often with any edit box, like in a web browser or chat messenger.
+Perhaps the most useful thing I do in Windows editing (be it in MS Word or
+Notepad-variant) is to hold down both Ctrl-Shift keys and press either
+up/down/left/right arrow keys or Home/End/PageUp/PageDown keys to select an
+area that could encompass word-by-word, line-by-line or page-by-page. This
+allows me to quickly edit or delete my text. This feature is prominent in
+Windows and I find myself using it too often with any edit box, like in a web
+browser or chat messenger.
 
-Also, holding down the Ctrl key and pressing either Backspace or Delete keys delete word-by-word.
+Also, holding down the Ctrl key and pressing either Backspace or Delete keys
+delete word-by-word.
 
-The features mentioned above work differently and are somewhat clumsy in Vim - requiring many keystrokes and often a change from insert to normal mode and back from visual. Some features do not exist. Hence, I thought of combining these features with Vim as a way of bringing Vim closer to the standard editing tools most textboxes have. Plus, this would be a great way for new users to get acquainted with Vim.
+The features mentioned above work differently and are somewhat clumsy in Vim -
+requiring many keystrokes and often a change from insert to normal mode and
+back from visual. Some features do not exist. Hence, I thought of combining
+these features with Vim as a way of bringing Vim closer to the standard editing
+tools most textboxes have. Plus, this would be a great way for new users to get
+acquainted with Vim.
 
-NOTE1: These mappings utilize the Ctrl & Shift keys that may *NOT* work with terminal versions of Vim. They SHOULD work with GVim.
+NOTE1: These mappings utilize the Ctrl & Shift keys that may *NOT* work with
+terminal versions of Vim. They SHOULD work with GVim.
 
-NOTE2: I have set up these mappings to work just the way I would like it to do. They may not conform to how it actually is when the same keystrokes are performed in another editor (e.g. textboxes in Windows or X11). Try it and see if you like it :)
+NOTE2: I have set up these mappings to work just the way I would like it to do.
+They may not conform to how it actually is when the same keystrokes are
+performed in another editor (e.g. textboxes in Windows or X11). Try it and see
+if you like it :)
 
-NOTE3: No, v<End><C-d><End> is not the same as v<PageDown>. Both <End>'s are necessary to give its effect. I'm slightly dissatisfied with the <C-Del> mapping done when the cursor is at the end of a line. It pulls the next line up and _deletes the first word_. Any ideas on how to prevent it from taking the first word, but still take the eol?
+NOTE3: No, v<End><C-d><End> is not the same as v<PageDown>. Both <End>'s are
+necessary to give its effect. I'm slightly dissatisfied with the <C-Del>
+mapping done when the cursor is at the end of a line. It pulls the next line up
+and _deletes the first word_. Any ideas on how to prevent it from taking the
+first word, but still take the eol?
 
 NOTE4: Feedback is appreciated. Let me know if the mappings break for some reason.
 
@@ -31564,8 +32309,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I just came across this in the vim mailing list. I had wanted to this sort of thing for a long time.
 
-Using 'gj' and 'gk' instead of just 'j' and 'k' allows moving down and up by screen lines instead of file lines. This is the behaviour common in most word processors and other text editors (notepad and the like)
-Thanks to Tony for this mail.
+Using 'gj' and 'gk' instead of just 'j' and 'k' allows moving down and up by
+screen lines instead of file lines. This is the behaviour common in most word
+processors and other text editors (notepad and the like) Thanks to Tony for
+this mail.
 
 Here is the text from that mail:
 
@@ -31804,7 +32551,12 @@ These still need a little work but this is the basics...
 VimTip	{{{1 925: Not So Quick generic option toggling
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This allows "toggling" of more complex operations, like switching off "diffthis".  It also reduces the number of key mappings used overall by placing the operations under a key activated command window menu.  It is quick to use (mapped key + one more keystroke), even if it isn't as quick to write.  I stuck it in my plugin directory as "ToggleOptions.vim".  Maybe it should be submitted as a script, but it's kinda small, and I was inspired by 
+This allows "toggling" of more complex operations, like switching off
+"diffthis".  It also reduces the number of key mappings used overall by placing
+the operations under a key activated command window menu.  It is quick to use
+(mapped key + one more keystroke), even if it isn't as quick to write.  I stuck
+it in my plugin directory as "ToggleOptions.vim".  Maybe it should be submitted
+as a script, but it's kinda small, and I was inspired by 
 
 Tip #920: Quick generic option toggling
 author:   Piet Delport <pjd@satori.za.net>      
@@ -31973,7 +32725,8 @@ VimTip	{{{1 927: A better autowrite?
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-I'm curious whether this is a good idea.  I saw that an "autowrite" was in the "todo.txt" helpful, but wasn't implemented yet, so I did this.
+I'm curious whether this is a good idea.  I saw that an "autowrite" was in the
+"todo.txt" helpful, but wasn't implemented yet, so I did this.
 
 
 map <leader>aw :call Myautowrite()<CR>
@@ -32038,6 +32791,7 @@ We still use InstallShield MP 5.x and I find the lack of search functionality in
 My solution for sometime was to set 'foldmethod' to "indent" and after searching for the bean, carefully open the folds up one by one and locate the parents (this works because the beans are indented nicely by their level in the bean tree). Once you reach to the top most bean (under the root), you get an idea how to locate it, which solved the problem, but I still felt that it is a bit tedious to do this (especially because of the several folds you need to open up keeping track of the cursor position).
 
 My new solution to this problem is still using folds, but in a different way (You need Vim 6.3). The displayName property of the beans is what we are interested in to locate the bean, so I create an outline of the entire bean structure using the following command (you need vimscript #158, and the vimscript #171 and vimscript #197 that this depends on):
+
 
              FoldMatching "displayName" -1
 
@@ -32351,20 +33105,42 @@ endfunction
 VimTip	{{{1 937: tip on looking up vim help topics
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-In addition to the existing techniques for searching vim help pages, such as the built-in :helpgrep and other grep techniques such as using external grep/id-utils, here is another technique that you can use to quickly lookup help topics.
+In addition to the existing techniques for searching vim help pages, such as
+the built-in :helpgrep and other grep techniques such as using external
+grep/id-utils, here is another technique that you can use to quickly lookup
+help topics.
 
-You are probably already aware that Vim creates tags to lookup help topics (using :helptags command), and commands such as :tselect (or :ts in short) do work in the help windows (it is automatically scoped to only the tags files in your runtime doc directories). This other than providing a way to use familiar tag commands to lookup help topics (such as tag completion and using regex to lookup), allows us to take advantage of any tools that enhance the Vim built-in tag commands. I would like to show here one such tool that you can use.
+You are probably already aware that Vim creates tags to lookup help topics
+(using :helptags command), and commands such as :tselect (or :ts in short) do
+work in the help windows (it is automatically scoped to only the tags files in
+your runtime doc directories). This other than providing a way to use familiar
+tag commands to lookup help topics (such as tag completion and using regex to
+lookup), allows us to take advantage of any tools that enhance the Vim built-in
+tag commands. I would like to show here one such tool that you can use.
 
-This requires the tagselect.vim plugin (vimscript #1282), and its dependent plugins (vimscript #171 and vimscript #197). The plugin allows you execute a :tselect command and view the results in a new window. You can then use Vim's navigation (such as search) to find the tag you want and press enter to jump to it. When used inside a help window, this naturally works on the help topics too. E.g., say you want to view all the topics that have "shell" in its name, one way to do this is use tag completion 
+This requires the tagselect.vim plugin (vimscript #1282), and its dependent
+plugins (vimscript #171 and vimscript #197). The plugin allows you execute a
+:tselect command and view the results in a new window. You can then use Vim's
+navigation (such as search) to find the tag you want and press enter to jump to
+it. When used inside a help window, this naturally works on the help topics
+too. E.g., say you want to view all the topics that have "shell" in its name,
+one way to do this is use tag completion 
 
 :h shell<Tab>
 
-and go one by one. But this is not easy as often you find tens, if not hundreds of matches for a keyword, so going through the list and using :tnext and :tprevious commands to navigate to other matching results is painful. But if you use the :Tselect command provided by the plugin, it becomes relatively simpler.
+and go one by one. But this is not easy as often you find tens, if not hundreds
+of matches for a keyword, so going through the list and using :tnext and
+:tprevious commands to navigate to other matching results is painful. But if
+you use the :Tselect command provided by the plugin, it becomes relatively
+simpler.
 
 :h
 :Tselect /.*shell.*
 
-The above gives you the full matching results for all the topics containing "shell" in their names. You can try other regular expressions (see :help tag-regexp), but the above is probably the most useful, so you can create a command for it:
+The above gives you the full matching results for all the topics containing
+"shell" in their names. You can try other regular expressions (see :help
+tag-regexp), but the above is probably the most useful, so you can create a
+command for it:
 
 :command! -nargs=+ -complete=tag Helpt :Tselect /.*<args>.*
 
@@ -32372,7 +33148,8 @@ You can put the above command definition in your vimrc. You can then say:
 
 :Helpt tag
 
-The best part of this is that you will discover topics that you overlooked several times, including any help topics for plugins.
+The best part of this is that you will discover topics that you overlooked
+several times, including any help topics for plugins.
 
 
 
@@ -32444,7 +33221,16 @@ Enjoy!
 VimTip	{{{1 941: Adding MPI and PVM syntax highlighting
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-    The MPI standard and the PVM library are commonly used to parallelize codes to run them across multiprocessor systems.  The lines below can be added to the c.vim syntax file to highlight all MPI and PVM function calls, as well as the MPI data types.  The Fortran syntax is the same except that PVM uses the pvmf prefix instead of pvm_.  You will also need to add a line to your favorite colorization file to  highlight the new Communicator group.  I use a Yellow background which shows up well on both light and dark backgrounds to really illustrate where the communications calls are in a program.  If the powers that be ever wish to include these capabilities in the official VIM release, I'd be happy to add OpenMP functions as well.
+    The MPI standard and the PVM library are commonly used to parallelize codes
+    to run them across multiprocessor systems.  The lines below can be added to
+    the c.vim syntax file to highlight all MPI and PVM function calls, as well
+    as the MPI data types.  The Fortran syntax is the same except that PVM uses
+    the pvmf prefix instead of pvm_.  You will also need to add a line to your
+    favorite colorization file to  highlight the new Communicator group.  I use
+    a Yellow background which shows up well on both light and dark backgrounds
+    to really illustrate where the communications calls are in a program.  If
+    the powers that be ever wish to include these capabilities in the official
+    VIM release, I'd be happy to add OpenMP functions as well.
 
                         Dave Turner
 
@@ -32763,7 +33549,11 @@ Simple function to add pylint and pychecker support to Vim.
 VimTip	{{{1 950: search multiple buffers for next match
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When editing multiple files I like to have a search operation that behaves a bit like "/*" in less (to search multiple buffers looking for the next match).  The Nextmatch function (below) does this, although it doesn't behave quite as I would like.  I'm kind of hoping somebody will tell me a better way of doing this ...
+When editing multiple files I like to have a search operation that behaves a
+bit like "/*" in less (to search multiple buffers looking for the next match).
+The Nextmatch function (below) does this, although it doesn't behave quite as I
+would like.  I'm kind of hoping somebody will tell me a better way of doing
+this ...
 
     function! Nextmatch()
         let v:errmsg = "X"
@@ -32779,7 +33569,8 @@ When editing multiple files I like to have a search operation that behaves a bit
         endwhile
     endfunction
 
-And on a related note, can anyone tell me why this bufdo command doesn't work properly (to show all matching lines in all buffers):
+And on a related note, can anyone tell me why this bufdo command doesn't work
+properly (to show all matching lines in all buffers):
 
     bufdo g/pattern/p
 
@@ -32793,7 +33584,12 @@ It always seems to miss a few lines.
 VimTip	{{{1 951: Vim Tutorials
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-At http://psy.swan.ac.uk/staff/carter/unix/ there are a number of web pages with how-to explanations of various tasks in Vim. Various examples of search and replace are provided, an enhanced vimrc, general tips, and a guide on writing an indent script, using Pascal as the indented language.
+At http://psy.swan.ac.uk/staff/carter/unix/
+
+there are a number of web pages with how-to explanations of various tasks in
+Vim. Various examples of search and replace are provided, an enhanced vimrc,
+general tips, and a guide on writing an indent script, using Pascal as the
+indented language.
 
 
 
@@ -32826,7 +33622,7 @@ Just put it in your $HOME/.vimrc and have fun.
 
 
 
-
+"xxxx40 ???
 
 
 VimTip	{{{1 954: restore the circumstance of edited files when we reopen them
@@ -32834,7 +33630,11 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 autocmd+mksession+expand+wviminfo
 
-when using vim/gvim, we often open many subwindows in one vim/gvim. but when we terminate vim/gvim, the subwindows, marks, and contents in registers will be lost. using the pasted contents below, we can keep all and bring us back to the original circumstance.when we reopen a file edited before, it seems we have never close them. it's very useful to develop projects. 
+when using vim/gvim, we often open many subwindows in one vim/gvim. but when we
+terminate vim/gvim, the subwindows, marks, and contents in registers will be
+lost. using the pasted contents below, we can keep all and bring us back to the
+original circumstance.when we reopen a file edited before, it seems we have
+never close them. it's very useful to develop projects. 
 
 enjoy!
 
@@ -32859,7 +33659,10 @@ fi
 VimTip	{{{1 955: Switch between the two styles of Pan Shizhu's color scheme by a single key stroke
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Pan Shizhu's color scheme ps_color (vimscript #760) supports two styles, a cool (dark) and a warm (light) style. If you want to switch between these styles by just a single key stroke, you may define the following function in your vimrc file:
+Pan Shizhu's color scheme ps_color (vimscript #760) supports two styles, a cool
+(dark) and a warm (light) style. If you want to switch between these styles by
+just a single key stroke, you may define the following function in your vimrc
+file:
 
 function! <SID>SwitchPSCStyle()
     if exists("g:psc_style")
@@ -32889,7 +33692,9 @@ Happy Vimming!
 VimTip	{{{1 956: Text-object for quoted strings
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I really like the text-objects in Vim (:h text-objects), like ciw, or da>, but I really wanted one that would work on quoted sentences.  Here's what I came up with (add to your vimrc):
+I really like the text-objects in Vim (:h text-objects), like ciw, or da>, but
+I really wanted one that would work on quoted sentences.  Here's what I came up
+with (add to your vimrc):
 
 " Quote motions for operators: da" will delete a quoted string.
 omap i" :normal vT"ot"<CR>
@@ -32897,7 +33702,9 @@ omap a" :normal vF"of"<CR>
 omap i' :normal vT'ot'<CR>
 omap a' :normal vF'of'<CR>
 
-Now, with your cursor on the "a" of "you are here", you can type ci" and add new text between the quotation marks!  Note that it doesn't work for visual mode (vi" only puts you in visual mode).
+Now, with your cursor on the "a" of "you are here", you can type ci" and add
+new text between the quotation marks!  Note that it doesn't work for visual
+mode (vi" only puts you in visual mode).
 
 
 
@@ -32981,9 +33788,11 @@ used by specifying F1 through F12 in place of F9,F10 above.
 VimTip	{{{1 960: "copy all to clipboard" howto
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Once my fried asked me: how to copy all the buffer into clipboard?  That time I answered: ggVG<c-ins> (he used to word under windows, so <c-ins> was ok for him.)
+Once my fried asked me: how to copy all the buffer into clipboard?  That time I
+answered: ggVG<c-ins> (he used to word under windows, so <c-ins> was ok for
+him.)
 
-Today I've found another way.  I like it much more.  It is:
+ how to copy all the buffer into clipboard?  That time I
  :%y+
 
 Happy vimming!  :)
@@ -32996,7 +33805,9 @@ Happy vimming!  :)
 VimTip	{{{1 961: Search through files
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When searching all your source files where you left a /TODO/ or where you had version conflicts />>>>/, you may quickly step through all files using a mapping like
+When searching all your source files where you left a /TODO/ or where you had
+version conflicts />>>>/, you may quickly step through all files using a
+mapping like
 
 nmap <F3> :while !search( @/, "W") \| bnext \| endwhile<cr>
 
@@ -33073,11 +33884,17 @@ exe expand("set backupdir=".this_backup_dir)
 VimTip	{{{1 963: Highlight tabs which do not appear at the beginning of lines
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Tabs are fine - as long as they're only used for indentation.  That way, everyone editing the code can change the tab width to their preferred size and be happy.  If tabs are used for lining things up relative to normal characters the spacing looks different for different tab widths.  I like to highlight these tabs for manual cleanup by adding:
+Tabs are fine - as long as they're only used for indentation.  That way,
+everyone editing the code can change the tab width to their preferred size and
+be happy.  If tabs are used for lining things up relative to normal characters
+the spacing looks different for different tab widths.  I like to highlight
+these tabs for manual cleanup by adding:
 
     syn match cTodo display "\(\_^\|\_^\t\+\)\@<!\t"
 
-to my syntax file. (see http://vimdoc.sourceforge.net/htmldoc/syntax.html#mysyntaxfile-add for how to add your own syntax options)
+to my syntax file. (see
+http://vimdoc.sourceforge.net/htmldoc/syntax.html#mysyntaxfile-add for how to
+add your own syntax options)
 
 
 
@@ -33556,7 +34373,7 @@ for scrolling I used 5 lines because window size can't be calculated. Increase o
 
 
 
-
+"xxxx39 
 
 
 VimTip	{{{1 971: Substitute with incrementing numbers
@@ -33735,7 +34552,9 @@ I have it as a single line in my vimrc:
 VimTip	{{{1 977: Quickly align whole file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-gg=G would quickly align the whole file, but you will be at the beginiing of the file after that. To align and still remain in the same line where you were, just add this mapping to your .vimrc
+gg=G would quickly align the whole file, but you will be at the beginiing of
+the file after that. To align and still remain in the same line where you were,
+just add this mapping to your .vimrc
 
 map <F7> mzgg=G'z<CR>
 
@@ -33787,7 +34606,11 @@ Bill :-)
 VimTip	{{{1 979: Map search to space bar increased
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-My favorite way to move around is to use the pattern search. It is mapped to / by default, but this key is a little difficult to reach with the little finger, i.e. when touch typing. Thus, I mapped the search command to the biggest key on the keyboard: the space bar, because I noticed that I never used its default mapping (move the cursor forward one character).
+My favorite way to move around is to use the pattern search. It is mapped to /
+by default, but this key is a little difficult to reach with the little finger,
+i.e. when touch typing. Thus, I mapped the search command to the biggest key on
+the keyboard: the space bar, because I noticed that I never used its default
+mapping (move the cursor forward one character).
 
 nmap <Space>  /
 nmap <C-Space>  ?
@@ -33849,7 +34672,11 @@ for example; and it could use some extra blank lines.  However, it illustrates t
 VimTip	{{{1 982: Inserting a new-line without entering insert mode
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-As you all know with 'o' or 'O' you can insert a new line before/after the current line. But both commands enter the insert mode, which may sometimes not what you want. I put this in my vimrc-file to insert a new-line after the current line by pressing <ENTER> (<SHIFT+ENTER> for inserting a line _before_ the current line):
+As you all know with 'o' or 'O' you can insert a new line before/after the
+current line. But both commands enter the insert mode, which may sometimes not
+what you want. I put this in my vimrc-file to insert a new-line after the
+current line by pressing <ENTER> (<SHIFT+ENTER> for inserting a line _before_
+the current line):
 
 map <S-Enter> O<ESC>
 map <Enter> o<ESC>
@@ -33896,6 +34723,8 @@ Those are so simple they'll work in any version of vi (not just vim).
 Alternatively we can just make one macro (vim specific) which toggles
 the number mode state:
 
+:map gn :set nu^M
+:map gN :set nonu^M
 :map gn :set invnu^M
 
 (The functions in VimTip 757 aren't necessary; if we've read VimTip
@@ -33926,9 +34755,12 @@ vim specific mappings (for foldenable related settings).
 When vi students ask me about line numbering I have to clarify if they
 want the numbers displayed or if they want numbers inserted into
 selected sequences of their text.  vi can handle either case with
+
+:map gn :set nu^M
+:map gN :set nonu^M
+:map gn :set invnu^M
 alacrity.  The following macro will filter a sequence of lines from the
 "n" mark to the current one through the UNIX nl (number lines) filter.
-
 :map g# :'n,. !nl^M
 
 So simple it's almost not worthy of a tip.  Of course one could use 'cat
@@ -34244,7 +35076,6 @@ VimTip	{{{1 988: Surround selection with text
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Inspired by tip #987 I wrote a small function to surround selected text in Visual-mode with text.
-
 e. g. to quote a selection:
 
 before: bla bla Selected Text bla bla
@@ -34304,12 +35135,19 @@ Hope this helps somebody else.
 VimTip	{{{1 989: Word wrap without line breaks
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When editing a text file, if you want word wrapping, but ONLY want line breaks inserted when you explicitly press the enter key, as with some of mine where my parser only understands that 1 line = 1 paragraph,
+When editing a text file, if you want word wrapping, but ONLY want line breaks
+inserted when you explicitly press the enter key, as with some of mine where my
+parser only understands that 1 line = 1 paragraph,
 
 :set formatoptions=l
 :set lbr
 
-lbr tells vim to word wrap visually, but formatoptions=l tells vim to not insert hard newlines when you edit the middle of a 'paragraph.'  This is almost exactly the behavior of Notepad, Wordpad, Word, and other Microsoft products, possibly the only thing I like about them.  Be sure to set formatoptions in your .vimrc _after_ setting compatibility options, or even near the end of your .vimrc.  Check with
+lbr tells vim to word wrap visually, but formatoptions=l tells vim to not
+insert hard newlines when you edit the middle of a 'paragraph.'  This is almost
+exactly the behavior of Notepad, Wordpad, Word, and other Microsoft products,
+possibly the only thing I like about them.  Be sure to set formatoptions in
+your .vimrc _after_ setting compatibility options, or even near the end of your
+.vimrc.  Check with
 
 :set formatoptions
 
@@ -34323,7 +35161,8 @@ lbr tells vim to word wrap visually, but formatoptions=l tells vim to not insert
 VimTip	{{{1 990: Repeat last :command
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The last command entered at the ':' can be repeated with @: and further repeats can be done with @@
+The last command entered at the ':' can be repeated with @:
+and further repeats can be done with @@
 Useful for commands like e.g. :bnext or :cNext.
 
 
@@ -34340,7 +35179,8 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Hey folks,
 
-As you know, you can use :mkview to save folds and such when you close a file--but you have to use :loadview next time you use the file.
+As you know, you can use :mkview to save folds and such when you close a
+file--but you have to use :loadview next time you use the file.
 
 With two lines in your .vimrc, you can make that automatic.
 
@@ -34353,7 +35193,8 @@ And as an added bonus, for those new to text folding, add this to your .vimrc fi
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
-That way whatever folds you set won't get lost when you quit.  I had that happen after spending 15 minutes folding up a 3000+ line file.  Happy vimming!
+That way whatever folds you set won't get lost when you quit.  I had that
+happen after spending 15 minutes folding up a 3000+ line file.  Happy vimming!
 [/snip]
 
 There you go.
@@ -34537,20 +35378,24 @@ like this you can map several commands like make to different keys.
 
 
 
-
+"xxxx38 ??? BOXes
 
 
 
 VimTip	{{{1 998: HOWTO put boxes around comments in code
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Though it is bad practice*, programmers sometimes try to put a box around comments in code, esp. function headers as in the example below (perl). 
-You can do this automatically by just selecting the text and a quick shortcut within vim for commants in any language.
+Though it is bad practice*, programmers sometimes try to put a box around
+comments in code, esp. function headers as in the example below (perl). You can
+do this automatically by just selecting the text and a quick shortcut within
+  vim for commants in any language.
 
-First you need the "boxes" utility. Download and install the boxes utilities from http://boxes.thomasjensen.com/
-You can get the source and compile it yourself or there is binary version available for almost all architectures. 
+First you need the "boxes" utility. Download and install the boxes utilities
+from http://boxes.thomasjensen.com/ You can get the source and compile it
+yourself or there is binary version available for almost all architectures. 
 
-Once you have this, the rest is pretty simple. Select the text you want to "boxify" and press F2.
+Once you have this, the rest is pretty simple. Select the text you want to
+"boxify" and press F2.
 
 Add the following mapping to your .vimrc
 
@@ -34661,9 +35506,13 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Select a block visually and filter it through the unix command "tac" with ":!tac" to reverse the selected lines.
 
-I have found it useful and easy to remember, especially when flipping the order of array definitions or in conjunction with reversing a previously ":!sort"-ed area.
+I have found it useful and easy to remember, especially when flipping the order
+of array definitions or in conjunction with reversing a previously ":!sort"-ed
+area.
 
-Note: Related to vimtip #813 and vimtip #29, but shells out to unix instead of staying within vim.  The mnemonic for "tac" reversing lines in a file is that "tac" is "cat" reversed.
+Note: Related to vimtip #813 and vimtip #29, but shells out to unix instead of
+staying within vim.  The mnemonic for "tac" reversing lines in a file is that
+"tac" is "cat" reversed.
 
 
 
@@ -34730,7 +35579,10 @@ inoremap <M-]> <ESC>:call PreviewTag(1)<CR>
 " close preview
 noremap <M-[> <ESC>:pc<CR>
 
-While I'm at it, here's what I'm using for Python and Quixote (python web framework) exctags generation (FreeBSD user here) - ptl files are Quixote Python Template Language files, essentially Python, and this exctags cmd line builds an appropriate tags file:
+While I'm at it, here's what I'm using for Python and Quixote (python web
+framework) exctags generation (FreeBSD user here) - ptl files are Quixote
+Python Template Language files, essentially Python, and this exctags cmd line
+builds an appropriate tags file:
 
 function WritePythonTags()
 	let foo = system("/usr/bin/ctags --langmap=python:.py.ptl *.py *.ptl")
@@ -34788,7 +35640,8 @@ ab -- <Esc>1hdiw1hpa = <Esc>pa - 1
 VimTip	{{{1 1007: disable F1 built-in help key
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-It can be really annoying when you keep hitting F1 key by accident and help screen keeps popping up. Here is a solution:
+It can be really annoying when you keep hitting F1 key by accident and help
+screen keeps popping up. Here is a solution:
 
 :nmap <F1> :echo<CR>
 :imap <F1> <C-o>:echo<CR>
@@ -34802,7 +35655,7 @@ You could still access help system via :help command or menu.
 
 
 
-VimTip	{{{1 1008: Toggle quickfix Window
+VimTip	{{{1 1008: Toggle quickf
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Using this function & command:
@@ -34853,20 +35706,25 @@ nmap p$ :inoremap <lt>CR> <lt>CR><lt>Esc>:iunmap <lt>lt>CR><lt>CR><CR> c$
 VimTip	{{{1 1010: Chance C++ style comments to MISRA complient C style comments
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Our current development requires everything to be MISRA compliant. One of the MISRA rules are: // style comments are not acceptable. These occurences must be replaced by /* style comments */. The following mapping will do this per line.
+Our current development requires everything to be MISRA compliant. One of the
+MISRA rules are: // style comments are not acceptable. These occurences must be
+replaced by /* style comments */. The following mapping will do this per line.
 
 :map <Functionkey> /\/\/<enter>xxi/*<esc>A*/<esc>
 
 where with Functionkey being a definable key. So with F5 as Functionkey, the map will be  
 :map <F5> /\/\/<enter>xxi/*<esc>A*/<esc>
-This will do the action per found line. Start at the beginning of the file (:G1) And keep on firing <Functionkey> till the red message occurs at the bottom of the window :)
+
+This will do the action per found line. Start at the beginning of the file
+(:G1) And keep on firing <Functionkey> till the red message occurs at the
+bottom of the window :)
 
 
 
 
 
 
-
+"xxxx37
 
 VimTip	{{{1 1011: mappings and commands for visual mode + some bonus mappings to quickly copy and paste
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -34909,7 +35767,8 @@ Happy vimming ;-)
 VimTip	{{{1 1012: Quoted Printable to Plain
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Sometimes I pipe an E-mail into Vim and then I cannot read it because it is encoded in quoted printable. Mentioning this in my .vimrc helps:
+Sometimes I pipe an E-mail into Vim and then I cannot read it because it is
+encoded in quoted printable. Mentioning this in my .vimrc helps:
 
 function s:FromQuoPri( ) range
   exec a:firstline.",".a:lastline.'s/=\(\x\x\|\n\)/\=submatch(1)=="\n"?"":nr2char("0x".submatch(1))/ge'
@@ -34928,11 +35787,14 @@ VimTip	{{{1 1013: Print all available characters (unicode)
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-Here's a fun one-liner to echo all available characters on your system. Just paste (Ctrl-* or Ctrl-+) the following single line at the command line:
+Here's a fun one-liner to echo all available characters on your system. Just
+paste (Ctrl-* or Ctrl-+) the following single line at the command line:
 
 let n = 0 | let i = 32 | let @x = "" | while n+i < 65535 | let @x = @x . nr2char(n+i) | if i % (&columns/2) == 0 | echo @x | let @x = "" | endif | let i = i + 1 | endwhile | echo @x
 
-The line above works best if your system and font supports unicode (http://www.unicode.org). If not, reduce the 65535 upper limit to something smaller like 255 or 512.
+The line above works best if your system and font supports unicode
+(http://www.unicode.org). If not, reduce the 65535 upper limit to something
+smaller like 255 or 512.
 
 
 
@@ -34944,7 +35806,9 @@ VimTip	{{{1 1014: Visual selection of indent block
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 
-This command will make a visual selection of the lines that have the same indent level or more as the current line. Somebody told me that this would be useful when programming Python.
+This command will make a visual selection of the lines that have the same
+indent level or more as the current line. Somebody told me that this would be
+useful when programming Python.
 
 :exe "normal V" | let temp_var=indent(line(".")) | while indent(line(".")+1) >= temp_var | exe "normal j" | endwhile
 
@@ -34993,7 +35857,7 @@ map <C-Left> :call search('\<\<Bar>\u', 'Wb')<CR>
 
 
 
-
+???
 VimTip	{{{1 1017: Highlight text inside matching parentheses
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
@@ -35025,7 +35889,7 @@ Personally I prefer <M-p> for the key.
 
 
 
-
+"xxxx36
 
 
 VimTip	{{{1 1018: Look up tags using regular expressions
@@ -35077,14 +35941,24 @@ At least, now if I pasted some text after pressing <Enter>, it starts from the c
 VimTip	{{{1 1020: Auto end-quote html/xml attribute values as you type in insert mode
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I often use Vim with the xml.vim plugin script from Devin Weaver (vimscript #301) for html/xml editing, however it seem to lack the auto-quoting of xml attribute values feature that you find in a lot of IDEs these days. So here is a simplistic but still pretty useful mapping tip you might want to add to your favorite xml plugin Vim script or vimrc:
+I often use Vim with the xml.vim plugin script from Devin Weaver (vimscript
+#301) for html/xml editing, however it seem to lack the auto-quoting of xml
+attribute values feature that you find in a lot of IDEs these days. So here is
+a simplistic but still pretty useful mapping tip you might want to add to your
+favorite xml plugin Vim script or vimrc:
 
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 
-It simply replaces the double or single quotation mark character that you just typed with a pair of them and then moves the cursor in between the pair so you are ready to type the attribute's value. 
+It simply replaces the double or single quotation mark character that you just
+typed with a pair of them and then moves the cursor in between the pair so you
+are ready to type the attribute's value. 
 
-This mapping can get annoying if you find yourself typing quote characters for reasons other than attributes, and you don't want the matching end-quote--you could make it better using a function along the lines of vimtip #102 to maybe only do it when the prior charater is an equal sign '=' , but I ended up liking it this simple way. 
+This mapping can get annoying if you find yourself typing quote characters for
+reasons other than attributes, and you don't want the matching end-quote--you
+could make it better using a function along the lines of vimtip #102 to maybe
+only do it when the prior charater is an equal sign '=' , but I ended up liking
+it this simple way. 
 
 
 
@@ -35274,7 +36148,7 @@ xtermcontrol --geometry=$GEO
 
 
 
-
+"xxxx35
 
 VimTip	{{{1 1028: This tip will let vim  read tag files from all of the directories in your path
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -35320,13 +36194,26 @@ call BuildTagsFromPath()
 VimTip	{{{1 1029: of the usefulness of the ". register
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I sometimes want to insert text at the beginning of a line, but if I happen to already be at the beginning of that line, I use the i command instead of the I (capital i). Then, I realize that the same text has to be inserted at the beginning of other lines as well: I go there and hit ".", and the text gets inserted wherever I am in the line (which is of course seldom the beginning). So I have to "u"ndo, hit "I", retype my text and go one moving around and hit "." whenever I want the same text at the beginning of that line.
+I sometimes want to insert text at the beginning of a line, but if I happen to
+already be at the beginning of that line, I use the i command instead of the I
+(capital i). Then, I realize that the same text has to be inserted at the
+beginning of other lines as well: I go there and hit ".", and the text gets
+inserted wherever I am in the line (which is of course seldom the beginning).
+So I have to "u"ndo, hit "I", retype my text and go one moving around and hit
+"." whenever I want the same text at the beginning of that line.
 
-What bothers me is the retyping. I would like to change the "repeat last command", so that it becomes "insert at the beginning" instead of "insert wherever you happen to be".
+What bothers me is the retyping. I would like to change the "repeat last
+command", so that it becomes "insert at the beginning" instead of "insert
+wherever you happen to be".
 
-Here comes the ". register. All I do now, is "u"ndo to remove the text that was wrongly inserted in the middle of the line, hit "I" to start inserting at the beginning of the line, then <C-R>. (that's Ctrl-R followed by a dot), which inserts whatever I had just inserted with the "i" command, and <esc>, of course.
+Here comes the ". register. All I do now, is "u"ndo to remove the text that was
+wrongly inserted in the middle of the line, hit "I" to start inserting at the
+beginning of the line, then <C-R>. (that's Ctrl-R followed by a dot), which
+inserts whatever I had just inserted with the "i" command, and <esc>, of
+course.
 
-Now the "repeat command" (.) will rightfully insert at the beginning of the lines where I invoke it, and I didn't have to retype my inserted text in full.
+Now the "repeat command" (.) will rightfully insert at the beginning of the
+lines where I invoke it, and I didn't have to retype my inserted text in full.
 
 
 
@@ -35336,7 +36223,11 @@ Now the "repeat command" (.) will rightfully insert at the beginning of the line
 VimTip	{{{1 1030: Show diff view of current buffer compared to the unmodified file
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-RichiH asked on #vim for a way to see a diff between the currently edited file and its unmodified version in the filesystem, here is a function/command to do this. Just put this in your .vimrc or in the plugins directory, open a file, make some modifications without saving them and do  :Diff  (or choose a better name if you like)
+RichiH asked on #vim for a way to see a diff between the currently edited file
+and its unmodified version in the filesystem, here is a function/command to do
+this. Just put this in your .vimrc or in the plugins directory, open a file,
+make some modifications without saving them and do  :Diff  (or choose a better
+name if you like)
 
 function! s:DiffWithSaved()
   diffthis
@@ -35357,7 +36248,13 @@ To get out off diff view you can use the :diffoff command on vim7 or the nodiff.
 VimTip	{{{1 1031: Vim inside Java
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you would like to embed VIM inside your java application I found, that best way how to do it, is java terminal emulation. Download jta26.jar from http://javassh.org/space/start . Then start VIM from your java program and redirect STDIN and STDOUT to and from terminal emulator. For some unknown reason you have to use VIM without GUI support, mean GUI support isn't compiled into binary. You have to use pure terminal VIM. If you are interested in more details please send me an email to firstname.secondname AT gmail.com.
+If you would like to embed VIM inside your java application I found, that best
+way how to do it, is java terminal emulation. Download jta26.jar from
+http://javassh.org/space/start . Then start VIM from your java program and
+redirect STDIN and STDOUT to and from terminal emulator. For some unknown
+reason you have to use VIM without GUI support, mean GUI support isn't compiled
+into binary. You have to use pure terminal VIM. If you are interested in more
+details please send me an email to firstname.secondname AT gmail.com.
 
 
 
@@ -35526,7 +36423,9 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.vis\OpenWithList\gvim.exe]
 ===========================================
 
-Session files make working with many files at a time much more enjoyable.  To remove this registry change delete the registry keys that have the new association.
+Session files make working with many files at a time much more enjoyable.  To
+remove this registry change delete the registry keys that have the new
+association.
 
 
 
@@ -35614,7 +36513,7 @@ Put the above lines in your .vimrc, and you can enjoy highlighting of trailing w
 Basically, no highlighting will occur if your leading whitespace is *only* tabs and there is no trailing whitespace.
 
 
-
+"xxxx34 end1---------------------------------------------------------------------
 
 
 
@@ -35668,15 +36567,15 @@ It reduces the movement and you get pretty addicted to these snippets.
 It's very easy to create similar snippets for other languages.
 
 
-Requirement:
-========================================================
-I have used the modified version of imaps.vim...
-The modified version of imaps.vim is found in the LaTeX-Suite package and it can be downloaded from my own site (http://amix.dk/vim/imaps.vim). This script gives the needed functionality.
+Requirement: ======================================================== I have
+used the modified version of imaps.vim... The modified version of imaps.vim is
+found in the LaTeX-Suite package and it can be downloaded from my own site
+(http://amix.dk/vim/imaps.vim). This script gives the needed functionality.
 
 
-My vimrc:
-========================================================
-While I am at it I have also uploaded my very good documented vimrc (it's about 800 lines). Check it out at http://www.amix.dk/vim/vimrc.html
+My vimrc: ======================================================== While I am
+at it I have also uploaded my very good documented vimrc (it's about 800
+lines). Check it out at http://www.amix.dk/vim/vimrc.html
 
 
 Cya,
@@ -35753,21 +36652,26 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 set wildmenu
 set wildmode=list:longest,full
 
-Put those two in your .vimrc, and you'll enjoy the greatest wildmode that isn't fully documented in the vim help.
-"set wildmenu" first enables a menu at the bottom of the vim/gvim window.
-The meaning of "list:longest,full" is so that when you do completion in the command line via tab, these events will happen:
-1. (on the first tab) a list of completions will be shown and the command will be completed to the longest common command.
+Put those two in your .vimrc, and you'll enjoy the greatest wildmode that isn't
+fully documented in the vim help. "set wildmenu" first enables a menu at the
+bottom of the vim/gvim window. The meaning of "list:longest,full" is so that
+when you do completion in the command line via tab, these events will happen:
+
+1. (on the first tab) a list of completions will be shown and the command will
+be completed to the longest common command.
 2. (on second tab) the wildmenu will show up with all the completions that were listed before.
 
 To test it out, type ":spe" and then hit tab once to see 1 and hit tab again to see 2.
 
 set mouse=a
 
-Put that line in your .vimrc to enable full mouse support in the console.
-This way you won't have to wait for gvim's excessively long startup (1.5 secs) and just run vim in an xterm, having full mouse/scrollwheel support.
+Put that line in your .vimrc to enable full mouse support in the console. This
+way you won't have to wait for gvim's excessively long startup (1.5 secs) and
+just run vim in an xterm, having full mouse/scrollwheel support.
 
 
-With both the above features, vim in the console is practically just as good as gvim. (":emenu" command could be used to access the gvim menus)
+With both the above features, vim in the console is practically just as good as
+gvim. (":emenu" command could be used to access the gvim menus)
 
 
 
@@ -35777,30 +36681,35 @@ With both the above features, vim in the console is practically just as good as 
 VimTip	{{{1 1046: Whitespace hungry backspace/delete
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I saw a tip the other that came close, and I was intrigued.  So I think I figured out good whitespace hungry delete.
+I saw a tip the other that came close, and I was intrigued.  So I think I
+figured out good whitespace hungry delete.
 
 imap <bs> <esc>d?\S?e1<cr>i
 
-In short, it deletes from the cursor position backwards in the file until it finds the first non-whitespace character and then changes the match end offset to avoid deleting that non-whitespace char.  Let me know what you think.
-
-
-
-
+In short, it deletes from the cursor position backwards in the file until it
+finds the first non-whitespace character and then changes the match end offset
+to avoid deleting that non-whitespace char.  Let me know what you think.
 
 
 VimTip	{{{1 1048: add classname based on filename while in input mode
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I often copy or rename java files and then go in and have to change the name of the class to match the filename (minus the path to the file and the .java extension).  To do this I added an abbreviation.  I chose ,f as the abbreviation, but you can use anything.  To try this out put the following lines in your _vimrc or just run it at the : prompt to play with it.
+I often copy or rename java files and then go in and have to change the name of
+the class to match the filename (minus the path to the file and the .java
+extension).  To do this I added an abbreviation.  I chose ,f as the
+abbreviation, but you can use anything.  To try this out put the following
+lines in your _vimrc or just run it at the : prompt to play with it.
 
 " classname (the filename minus the path and extension)
 iab <unique> ,f <c-r>=fnamemodify(getreg('%'), ':r')<cr>
 
-<c-r>= is Control-R followed by the equal sign.  This is very useful in input mode.  getreg() gets the contents of the % register which has the filename (which may or may not have the full path depending on how you loaded the file).  :r is is a filename modifier that removes the path and the extension (:help filename-modifiers for more info).
+<c-r>= is Control-R followed by the equal sign.  This is very useful in input mode.
+getreg() gets the contents of the % register which has the filename
+(which may or may not have the full path depending on how you loaded the file). 
+:r is is a filename modifier that removes the path and the extension
+(:help filename-modifiers for more info).
 
 I believe this may work in older versions of Vim, but I use it in 6.3 and 6.4.
-
-
 
 
 
@@ -35813,7 +36722,9 @@ Let's say you have some C or Java that looks like this:
 // get the age of the person
 age = person.getAge();
 
-If you want to compact your code a bit you might want to stick the comment at the end of the statement instead of on its own line.  Essentially you want to "join up":
+If you want to compact your code a bit you might want to stick the comment at
+the end of the statement instead of on its own line.  Essentially you want to
+"join up":
 
 <map> <CS-j> ddpkJk
 
@@ -35853,14 +36764,20 @@ When working in VIM, I recomend you use the minibuffer explorer: minibufexpl.vim
 VimTip	{{{1 1052: Autoselect the right compiler using the filetype
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Every time you edit a file you have to set the right type of compiler for this file, one solution is to edit the file for your language in ftplugin and add a compiler statement.
-But there's an easier solution. Why not use the name of the type of file to set the right compiler on-the-fly and each time a file is open ? It's as simple as this :
+Every time you edit a file you have to set the right type of compiler for this
+file, one solution is to edit the file for your language in ftplugin and add a
+compiler statement. But there's an easier solution. Why not use the name of the
+type of file to set the right compiler on-the-fly and each time a file is open
+? It's as simple as this :
 
 Modify your vimrc and add this line :
 
 au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry
 
-This runs a the compiler command each and every time a file is open and set the compiler to the filetype which was determined by the file type scripts. If there's no compiler for the filetype you're editing it just fails silently and does not show the list of available compilers
+This runs a the compiler command each and every time a file is open and set the
+compiler to the filetype which was determined by the file type scripts. If
+there's no compiler for the filetype you're editing it just fails silently and
+does not show the list of available compilers
 
 
 
@@ -35983,9 +36900,12 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Assumption: 2-window vertical diff mode
 
-The idea: Use c] and c[ to go to a specific change. Then use M-, and M-. to patch using the version on the left or right respectively. The cursor is then positioned in the file that changed for ease of saving, etc.
+The idea: Use c] and c[ to go to a specific change. Then use M-, and M-. to
+patch using the version on the left or right respectively. The cursor is then
+positioned in the file that changed for ease of saving, etc.
 
-I find this more intuitive than using diffput and diffget because I no longer need to remember which window the cursor is in.
+I find this more intuitive than using diffput and diffget because I no longer
+need to remember which window the cursor is in.
 
 The code:
 function! DiffTake(dir, oppdir)
@@ -36016,7 +36936,7 @@ autocmd FilterWritePost * call SetupDiffMappings()
 
 
 
-
+"xxxx33  ???
 
 VimTip	{{{1 1059: Save each line of a text in separated numbered files
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -36046,7 +36966,10 @@ each containing a single line.
 VimTip	{{{1 1061: SmartHome & SmartEnd over wrapped lines
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The Smart Home function allows the cursor to toggle between the start position and the first non-whitespace character position of the line. This is useful for skipping past indentation, whether it be tabs or spaces. Likewise, the Smart End function toggles past trailing whitespaces at the end of a line.
+The Smart Home function allows the cursor to toggle between the start position
+and the first non-whitespace character position of the line. This is useful for
+skipping past indentation, whether it be tabs or spaces. Likewise, the Smart
+End function toggles past trailing whitespaces at the end of a line.
 
 This topic has been discussed before: "Smart <home>" vimtip#315
 
@@ -36217,15 +37140,26 @@ endif
 
 
 
-
+"xxxx32 ???
 
 
 VimTip	{{{1 1066: Quickly adding and deleting empty lines
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-When programming, I often find myself adding and deleting empty lines. The way I used to do it was to press o (or O) to open a new line, press Enter if I wanted additional lines, and then press ESC to exit insert mode. Often I wanted to find my way back to where I began the insertion, and so had to do a few kkk, jjj:s (this was before I discovered the '[ and '] motions). This was getting cumbersome, and so I came up with another mechanism.
+When programming, I often find myself adding and deleting empty lines. The way
+I used to do it was to press o (or O) to open a new line, press Enter if I
+wanted additional lines, and then press ESC to exit insert mode. Often I wanted
+to find my way back to where I began the insertion, and so had to do a few kkk,
+jjj:s (this was before I discovered the '[ and '] motions). This was getting
+cumbersome, and so I came up with another mechanism.
 
-The following remaps C-j to add empty lines below the cursor and C-k to remove empty lines below the cursor (you'll find these are intuitive "up/down" operations). A-k and A-j do the same thing above the cursor. Lines containing something other than whitespace are not deleted, and so the delete operations can be "hammered on" without risk. The cursor maintains its position in the window if possible. You should probably set scrolloffset to something other than 0 for optimum comfort.
+The following remaps C-j to add empty lines below the cursor and C-k to remove
+empty lines below the cursor (you'll find these are intuitive "up/down"
+operations). A-k and A-j do the same thing above the cursor. Lines containing
+something other than whitespace are not deleted, and so the delete operations
+can be "hammered on" without risk. The cursor maintains its position in the
+window if possible. You should probably set scrolloffset to something other
+than 0 for optimum comfort.
 
 function! AddEmptyLineBelow()
     call append(line("."), "")
@@ -36509,11 +37443,13 @@ It is recommended to use `set encoding=utf-8' in order to ensure successful enco
 VimTip	{{{1 1075: beauty of gf - it can take a count
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-gf stands for "goto file"
-it opens the file under cursor. it is very useful for opening include files. it searches for files in the directories set by path option
-in my case, i have the same include file name in different folders (for different projects, let us say) and my path option includes all these folders.
-SO whenever i use gf on include file, it was opening an include file (which is not the one i want to open).
-while reading the help, i found that gf can take a count and it will open the count' th file that is found
+gf stands for "goto file" it opens the file under cursor. it is very useful for
+opening include files. it searches for files in the directories set by path
+option in my case, i have the same include file name in different folders (for
+different projects, let us say) and my path option includes all these folders.
+SO whenever i use gf on include file, it was opening an include file (which is
+not the one i want to open). while reading the help, i found that gf can take a
+count and it will open the count' th file that is found
 
 try the following:
  gf
@@ -36607,7 +37543,10 @@ function Kwbd(kwbdStage)
 	endif
 endfunction
 
--- That's a very simple function I wrote to enable someone to close the current buffer (like :bd) yet not close any associated windows with that buffer. I haven't seen anything easier and/or simpler than this. To use this function, just do :call Kwbd(1)
+-- That's a very simple function I wrote to enable someone to close the current
+buffer (like :bd) yet not close any associated windows with that buffer. I
+haven't seen anything easier and/or simpler than this. To use this function,
+just do :call Kwbd(1)
 
 
 
@@ -36636,7 +37575,11 @@ imap <F3> <esc>/\<\><left><left><c-r><c-w>
 VimTip	{{{1 1083: Map caps-lock to ESC
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I've always been annoyed about the $*@#! caps-lock key. Every now and then, I inadvertendly hit it instead of the TAB or SHIFT key. Attached is a windows registry file that maps the caps-lock key to the ESC key. Now, it is very easy to switch to command mode, even on notebooks and small keyboards. Of course, the real ESC key is preserved and works as it used to work.
+I've always been annoyed about the $*@#! caps-lock key. Every now and then, I
+inadvertendly hit it instead of the TAB or SHIFT key. Attached is a windows
+registry file that maps the caps-lock key to the ESC key. Now, it is very easy
+to switch to command mode, even on notebooks and small keyboards. Of course,
+the real ESC key is preserved and works as it used to work.
 
 Instructions:
 
@@ -36721,7 +37664,7 @@ Happy vimming.
 
 
 
-
+"xxxx31 
 
 
 VimTip	{{{1 1088: Find and edit any file in a directory using tag-like pattern matching
@@ -36860,8 +37803,14 @@ VimTip	{{{1 1093: A couple folding tips
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
  - Instead of keeping 'zc' and 'zo' in your head, just use 'za' to toggle a fold open or closed.
- - Map '[{V%zf' to some key sequence (I use <leader><leader>) to fold the current code block (in languages which use '{,}' as block delimiters.
- - Use folds liberally.  If you fold every function, when you open the file, you will be presented with a quick reference of what functions are defined in the file.
+
+ - Map '[{V%zf' to some key sequence (I use <leader><leader>) to fold the
+   current code block (in languages which use '{,}' as block delimiters.
+
+ - Use folds liberally.  If you fold every function, when you open the file,
+   you will be presented with a quick reference of what functions are defined
+   in the file.
+
  - Don't nest too many folds, it grows to be a pain if you use more than 2 levels of nested folds.  
  - If you think you need more than 2 levels of folds, you probably need to refactor your code.
 
@@ -36969,12 +37918,21 @@ This will auto expand to the current [editing] directory.  see the vimtip #2, gr
 VimTip	{{{1 1108: Replace selected shell command with full path when editing scripts
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I am in the situation where I write some bash scripts and sudoers file, but it was tiresome going to a bash shell to find the paths of certain commands, so I'd thought that I could use the 'which' command to return the path of the selected word, however, this would not work directly with the 'which' command. To get around this I instead used< drum roll>:
-!which $(cat) . 
+I am in the situation where I write some bash scripts and sudoers file, but it
+was tiresome going to a bash shell to find the paths of certain commands, so
+I'd thought that I could use the 'which' command to return the path of the
+selected word, however, this would not work directly with the 'which' command.
+To get around this I instead used< drum roll>: !which $(cat) . 
 
-So convert a bash command to a fully-explicit bash command the key sequence would be "w!which $(cat)". $(cat) simply uses the selected text from the pipe and uses this text as an argument to the 'which' command. This method is great for using commands that use arguments instead of stdin., however, as far as I know it works only in bash, I don't know enough about other shells to know whether this will be effective or not.
+So convert a bash command to a fully-explicit bash command the key sequence
+would be "w!which $(cat)". $(cat) simply uses the selected text from the pipe
+and uses this text as an argument to the 'which' command. This method is great
+for using commands that use arguments instead of stdin., however, as far as I
+  know it works only in bash, I don't know enough about other shells to know
+  whether this will be effective or not.
 
-This command could be mapped to some key sequence if required, but there are a million other tips that show you how to do this.
+This command could be mapped to some key sequence if required, but there are a
+million other tips that show you how to do this.
 
 
 
@@ -37139,9 +38097,13 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 nnoremap <m-:> :ls\|sleep<enter><enter>
 
-So actually, this uses :ls. However, this is much more convenient. This mapping (alt-:) will show the results of :ls for one second. Pressing alt-: 3 times will show the :ls listing for 3 seconds.
+So actually, this uses :ls. However, this is much more convenient. This mapping
+(alt-:) will show the results of :ls for one second. Pressing alt-: 3 times
+will show the :ls listing for 3 seconds.
 
-You can also hold down alt-: to indefinitely show the file list; and you can press ctrl-c when you're done looking at it. This can be very useful when working with many files.
+You can also hold down alt-: to indefinitely show the file list; and you can
+press ctrl-c when you're done looking at it. This can be very useful when
+working with many files.
 
 
 
@@ -37204,7 +38166,9 @@ vnoremap <tab> <esc>gV
 onoremap <tab> <esc>
 inoremap <tab> <esc>`^
 
-Notes: the gV makes sure to deselect the selection; and the `^ puts the cursor back to where it was last in insert mode (so there is no going back a char when escaping to normal mode).
+Notes: the gV makes sure to deselect the selection; and the `^ puts the cursor
+back to where it was last in insert mode (so there is no going back a char when
+escaping to normal mode).
 
 
 
@@ -37214,13 +38178,22 @@ Notes: the gV makes sure to deselect the selection; and the `^ puts the cursor b
 VimTip	{{{1 1118: repeating an ex command on multiple blocks
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-There are several ways to repeat a command in Vim, but here is the one I like most when it comes to repeating a command on several blocks in a buffer, mainly because this method doesn't require a macro and uses the ex mode, with all its associated benefits (such as the history editing).
+There are several ways to repeat a command in Vim, but here is the one I like
+most when it comes to repeating a command on several blocks in a buffer, mainly
+because this method doesn't require a macro and uses the ex mode, with all its
+associated benefits (such as the history editing).
 
-This can be explained more easily starting with an example. Say you want to sort blocks of text, each separated by a single empty line (including one before the first block and one after the last block, for the sake of simplicity). You can sort a single block after the cursor position using the command:
+This can be explained more easily starting with an example. Say you want to
+sort blocks of text, each separated by a single empty line (including one
+before the first block and one after the last block, for the sake of
+simplicity). You can sort a single block after the cursor position using the
+command:
 
 :/^$/,/^$/-1!sort
 
-Now, the trick is getting this repeated on all such blocks in the buffer. This can be achieved with the ";" Ex command (:help :;) as below (which incidentally works in the plain old Vi too):
+Now, the trick is getting this repeated on all such blocks in the buffer. This
+can be achieved with the ";" Ex command (:help :;) as below (which incidentally
+works in the plain old Vi too):
 
 :g/^$/;,/^$/-1!sort
 
@@ -37235,16 +38208,35 @@ The above command stops when there are no more matches to be found.
 VimTip	{{{1 1119: How to use Vim like an IDE
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I personally use Vim for all text editing, even software development. At one point I stopped using IDEs. One major reason is that Vim can do all the major things I need from IDEs (tabs, file trees, greping, syntax highlighting, indentation, completion, "quickfix"ing, etc.). Vim 7 will be introducing one of the most critical features: completion (intellisense).
+I personally use Vim for all text editing, even software development. At one
+point I stopped using IDEs. One major reason is that Vim can do all the major
+things I need from IDEs (tabs, file trees, greping, syntax highlighting,
+indentation, completion, "quickfix"ing, etc.).
 
-Still Vim needs plugins to do some IDE-like things that aren't built in.
-One thing you might want is the vtreeexplorer (http://vim.org/scripts/script.php?script_id=184) plugin, which allows you to have a "file list" in a vertically split window. Another thing worth considering is the minibufexpl (http://vim.org/scripts/script.php?script_id=159) plugin, which will allow for tabs of all your files (works really well).
+Vim 7 will be introducing one of
+the most critical features: completion (intellisense).
 
-Yet another thing is in a former tip of mine (http://www.vim.org/tips/tip.php?tip_id=1078), which allows you to delete a buffer without actually closing the window. Also, below, I have a new, more complicated version of it. The below script will actually create a scratch buffer if there are no listed buffers left. The script, in addition, takes care of a small annoyance. Before, if you 1) open vim, 2) :e a file, 3) :bd, 4) :e the same file... then there will be two buffers listed (that file and a [no name] buffer). The following script ensures this doesn't happen.
+Still Vim needs plugins to do some IDE-like things that aren't built in. One
+thing you might want is the vtreeexplorer
+(http://vim.org/scripts/script.php?script_id=184) plugin, which allows you to
+have a "file list" in a vertically split window. Another thing worth
+considering is the minibufexpl
+(http://vim.org/scripts/script.php?script_id=159) plugin, which will allow for
+tabs of all your files (works really well).
+
+Yet another thing is in a former tip of mine
+(http://www.vim.org/tips/tip.php?tip_id=1078), which allows you to delete a
+buffer without actually closing the window. Also, below, I have a new, more
+complicated version of it. The below script will actually create a scratch
+buffer if there are no listed buffers left. The script, in addition, takes care
+of a small annoyance. Before, if you 1) open vim, 2) :e a file, 3) :bd, 4) :e
+the same file... then there will be two buffers listed (that file and a [no
+name] buffer). The following script ensures this doesn't happen.
 
 (Everything in this tutorial and in most of my other tips/tutorials assumes the user does "set hidden".)
 Using this Kwbd function (:call Kwbd(1)) will make Vim behave like an IDE; or maybe even better.
 
+"xxxx30 ???
 
 "here is a more exotic version of my original Kwbd script
 "delete the buffer; keep windows; create a scratch buffer if no buffers left
@@ -37751,7 +38743,14 @@ PrepareMap("\a")
 VimTip	{{{1 1128: Detecting non-unicode Xterms
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I like to do my editing work in Unicode (say: UTF-8) and Vim is quite good at this: setting encoding=utf8 does the job. But there are terminals which do not work natively in UTF-8. A good example is the Linux text console: you may set it to Unicode mode, but with a Spanish keymap you won't be able of entering accented characters without reverting to non-Unicode mode. Another example is Xterm, either old Xterms or ones which are not started un UTF-8 mode. My vimrc contains the following snippet which selects the a sane value for termencoding in those terminals:
+I like to do my editing work in Unicode (say: UTF-8) and Vim is quite good at
+this: setting encoding=utf8 does the job. But there are terminals which do not
+work natively in UTF-8. A good example is the Linux text console: you may set
+it to Unicode mode, but with a Spanish keymap you won't be able of entering
+accented characters without reverting to non-Unicode mode. Another example is
+Xterm, either old Xterms or ones which are not started un UTF-8 mode. My vimrc
+contains the following snippet which selects the a sane value for termencoding
+in those terminals:
 
 if has("multi_byte")
     set encoding=utf-8
@@ -37775,7 +38774,10 @@ endif
 VimTip	{{{1 1129: getting alt key to work in terminals
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-xterm, by default, sets eightBitInput to true, meaning that the eighth bit is set for metacharacters (combinations with the Alt key, for instance). Not all terminals have this feature enabled by default, and therefore work differently (they send an ESC before the character key).
+xterm, by default, sets eightBitInput to true, meaning that the eighth bit is
+set for metacharacters (combinations with the Alt key, for instance). Not all
+terminals have this feature enabled by default, and therefore work differently
+(they send an ESC before the character key).
 
 So for the xterm, with enables the eight bit, you can just do something like, map <m-a> ggVG
 However, with the terminal that's in 7 bit mode, you have to do this:
@@ -37798,9 +38800,7 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 = is the formatting command, which has a default behavior of using Vim's internal formatting/indentation features.
 i{ is a text object selection which selects a code block: vi{
-
 combine the two, and you can format a code block by typing =i{
-
 learn more about text object selections by typing :h text-objects
 
 more and more of these text objects keep getting added (by Vim7 I know there are some really useful ones: it (inner tag, for xml editing) and i" (inside quotes) and more)
@@ -37881,8 +38881,9 @@ function DontLoadTwice(globalIdentifier)
   return dltcmd
 endfunction
 
---------------
-Of cause if you want to redistribute your script and the others don't have this function you need at least one comment: (see vim tip .. ;-) So not much gained then. Might be handy for your own quick and dirty scripts
+-------------- Of cause if you want to redistribute your script and the others
+don't have this function you need at least one comment: (see vim tip .. ;-) So
+not much gained then. Might be handy for your own quick and dirty scripts
 
 
 
@@ -38107,7 +39108,9 @@ And I want to change the leading path, I can go to the first one, and type (say)
     .../cram/bar/yup.c
     .../drop/bar/slop.c
 
-Now I can just go the beginning of the second line and hit .j. to change the second and third lines. Of course I could you can also use an RE for stuff like this, but often . is a little faster and saves precious brain cells.
+Now I can just go the beginning of the second line and hit .j. to change the
+second and third lines. Of course I could you can also use an RE for stuff like
+this, but often . is a little faster and saves precious brain cells.
 
 :help .
 
@@ -38158,7 +39161,9 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Hello,
 
-When finetuning my plugins I noticed that vim does not correctly assing maps using <Leader> when the mapleader is functions key (like <F12>),  You have to use execute to get a correct mapping:
+When finetuning my plugins I noticed that vim does not correctly assing maps
+using <Leader> when the mapleader is functions key (like <F12>),  You have to
+use execute to get a correct mapping:
 
     execute "nnoremap <unique> " . escape(g:mapleader . "1" , '\') .      " :call <SID>Set_Font (1) <CR>"
     execute "nnoremap <unique> " . escape(g:mapleader . "2" , '\') .      " :call <SID>Set_Font (2) <CR>"
@@ -38221,9 +39226,12 @@ let theList = SortUnique( theList )
 VimTip	{{{1 1149: Using balloonexpr effectively
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is another Vim 7 tip, the initial idea for which I got from a suggestion in an email from the Vim list (sincere apologies for not remembering who).
+This is another Vim 7 tip, the initial idea for which I got from a suggestion
+in an email from the Vim list (sincere apologies for not remembering who).
 
-Vim 7 allows the use of an option call 'balloonexpr', which basically calls a function and displays the return value in a tooltip whenever the mouse cursor is at rest over a piece of text for a short period of time.  Thus, we have:
+Vim 7 allows the use of an option call 'balloonexpr', which basically calls a
+function and displays the return value in a tooltip whenever the mouse cursor
+is at rest over a piece of text for a short period of time.  Thus, we have:
 
 " Returns either the contents of a fold or spelling suggestions.
 function! BalloonExpr()
@@ -38255,9 +39263,14 @@ endfunction
 
 set balloonexpr=BalloonExpr()
 
-Now, if the mouse is hovering on a fold, this will show the contents of the fold in the tooltip.  If the number of folded lines is too big, it will display the first and last 15 lines only, with a comment in between indicating the number of lines that it ate.
+Now, if the mouse is hovering on a fold, this will show the contents of the
+fold in the tooltip.  If the number of folded lines is too big, it will display
+the first and last 15 lines only, with a comment in between indicating the
+number of lines that it ate.
 
-If, however, the cursor is on a misspelled word (only works if 'spell' -- another Vim 7 feature -- is set), then the tooltip will instead display a small set of suggestions for correction.
+If, however, the cursor is on a misspelled word (only works if 'spell' --
+another Vim 7 feature -- is set), then the tooltip will instead display a small
+set of suggestions for correction.
 
 
 
@@ -38300,7 +39313,7 @@ in that it also fold away JavaDocs -- the {} pair folding is the same effect as 
 I need to improve this to also fold away imports; any suggestions would be great!
 
 
-
+"xxxx29 ???
 
 
 
@@ -38371,7 +39384,7 @@ vimtip#563
 
 
 
-
+"xxxx28 ???
 
 
 VimTip	{{{1 1152: Improved version of Highlight_Matching_Paren
@@ -38586,9 +39599,9 @@ vmap g "gy:silent! exec 'cd C:\Archivos de programa\Mozilla Firefox\ <bar> !Star
 VimTip	{{{1 1158: Duplicate Previous Line, Word by Word
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Hi Vimsters,
-This is a simple tip, which I have found REALLY useful for coding and documentation. So much so that I've allocated it 
-two precious function buttons.
+Hi Vimsters, This is a simple tip, which I have found REALLY useful for coding
+and documentation. So much so that I've allocated it two precious function
+buttons.
 
 Mary had a little lamb<Press F2>
 Mary <press F1>
@@ -38731,12 +39744,15 @@ edited file will be saved to disk.
 
 
 
-
+"xxxx28 ???
 
 VimTip	{{{1 1161: Updating the functionality of :windo
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The :windo, :bufdo, :argdo (and, in Vim 7, :tabdo) series of commands are great.  However, they have one side-effect that I don't like:  they change the current window/buffer/tab and make it the last one.  Toward that end, I have the following commands defined in my environment:
+The :windo, :bufdo, :argdo (and, in Vim 7, :tabdo) series of commands are
+great.  However, they have one side-effect that I don't like:  they change the
+current window/buffer/tab and make it the last one.  Toward that end, I have
+the following commands defined in my environment:
 
 " Just like windo but restores the current window when it's done
 function! WinDo(command)
@@ -38757,7 +39773,8 @@ function! BufDo(command)
 endfunction
 com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 
-Using them is no different from using the standard :windo or :bufdo, except that when you're done, you're right back where you were.
+Using them is no different from using the standard :windo or :bufdo, except
+that when you're done, you're right back where you were.
 
 Examples:
 
@@ -38872,7 +39889,8 @@ Salman.
 VimTip	{{{1 1166: Sort lines - easy use of existing vim capability
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is just a reminder of how to take advantage of existing VIM capability. I had not needed to sort before and took a few minutes to find a good example.
+This is just a reminder of how to take advantage of existing VIM capability. I
+had not needed to sort before and took a few minutes to find a good example.
 
 Sort lines in vim using blocks:
 
@@ -38972,12 +39990,18 @@ imap ^[[1;2A <Up>
 nmap ^[[1;2B <Down>
 imap ^[[1;2B <Down>
 
-But, I found that the default mappings for Alt-(Arrows) and CTRL-(Arrows) sometimes caused Vim to do strange stuff, and I would occasionally hit those by accident, so I remapped those as well:
-" modified arrow keys do bad things by default
+But, I found that the default mappings for Alt-(Arrows) and CTRL-(Arrows)
+sometimes caused Vim to do strange stuff, and I would occasionally hit those by
+accident, so I remapped those as well: " modified arrow keys do bad things by
+default
+
+"xxxx27 ???
+
 " (<S-Up>, <M-Up>, <C-Up>, etc don't seem to work for me in mappings, so I had to type CTRL-V then the key sequence to
 "  get the escape codes you see below.  Unfortunately, since the escape codes begin with an ^] (Esc) character, this
 "  means that 'timeoutlen' now applies to <Esc>, making <Esc> respond slower)
 " Ctrl-(Up, Down, Left, Right)
+
 noremap ^[[1;5A <Nop>
 noremap! ^[[1;5A <Nop>
 noremap ^[[1;5B <Nop>
@@ -39005,7 +40029,9 @@ noremap! ^[[1;3C <Nop>
 VimTip	{{{1 1171: Introduce variable
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-The following is from my .vimrc, and works as a simple "introduce variable". It is sufficient for Python, but for typed languages (e.g. C++, Java) you will need to add a type (int, String, ....) to the start of the new line.
+The following is from my .vimrc, and works as a simple "introduce variable". It
+is sufficient for Python, but for typed languages (e.g. C++, Java) you will
+need to add a type (int, String, ....) to the start of the new line.
 
 "
 " map \v to put x = y on the line above cursor, where
@@ -39017,8 +40043,10 @@ map <leader>v 0wh:put .<CR>a = <Esc>pa<CR><Esc>
 Example, given (Python) source code like:
     if x > 3 * y + 4 * z:
 
-You could position the cursor on the 3, then delete the RHS formula, and insert a name for it. You can do the "delete and insert" separately or in one go, e.g. go to the 3 and press "c/:<Cr>formula<Esc>". Or separately as "d/:<Cr>", followed by "iformula<Esc>". In either case you should now see:
-    if x > formula:
+You could position the cursor on the 3, then delete the RHS formula, and insert
+a name for it. You can do the "delete and insert" separately or in one go, e.g.
+go to the 3 and press "c/:<Cr>formula<Esc>". Or separately as "d/:<Cr>",
+followed by "iformula<Esc>". In either case you should now see: if x > formula:
 
 Then pressing "\v" gives
     formula = 3 * y + 4 * z
@@ -39045,7 +40073,8 @@ http://aivipi.blogspot.com
 VimTip	{{{1 1172: Vim FAQ & misc documentation
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-For those of you who do not realize this already, Vimdoc contains some of the most useful information on Vim found on the Internet:
+For those of you who do not realize this already, Vimdoc contains some of the
+most useful information on Vim found on the Internet:
 
   http://vimdoc.sourceforge.net/
 
@@ -39078,7 +40107,7 @@ Also, a must-read is Bram Moolenaar's "Seven Habits of Effective Text Editing" a
 
 
 
-
+"xxxx26
 
 
 VimTip	{{{1 1173: Spelling suggestions anywhere, even in console mode
@@ -39304,9 +40333,7 @@ Tel/Fax numbers and IM information:  <http://johnsy.com/contact/>
 Bebo and co.       <http://johnsy.com/blog/?entry=20060318201737>
 
 
-
-
-
+"xxxx25 ???
 
 VimTip	{{{1 1182: vim explorer tip using CTRL-6
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -39316,7 +40343,9 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 <ul><b>enter</b> on a filename or the directory name takes you to that particular directory.
 <ul>To return back to the explorer window, you can use <u><b>CTRL-6<b></u> 
 
-[count]CTRL-6 or CTRL-^ is basically a file editing command which helps in alternating between previously edited file. With explorer you can enter file and exit to explorer again.
+[count]CTRL-6 or CTRL-^ is basically a file editing command which helps in
+alternating between previously edited file. With explorer you can enter file
+and exit to explorer again.
 
 More information
 :help file-explorer
@@ -39470,9 +40499,16 @@ inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\%(^\<Bar>[^'.g:camelchar.'
 VimTip	{{{1 1188: Use ptags.py to generate tags file for python
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Ctags is a very useful utility to generate a 'tags' file for C source code which can later be used by vim to locate function definitions, declarations and such even outside of the file you are editing. See vimtip #94 for more details or try :help tags inside vim.
+Ctags is a very useful utility to generate a 'tags' file for C source code
+which can later be used by vim to locate function definitions, declarations and
+such even outside of the file you are editing. See vimtip #94 for more details
+or try :help tags inside vim.
 
-For Python there is a similar program in the standard distribution, usually under /usr/lib/python2.3/Tools/scripts/ptags.py if your Python version is 2.3. This little script will generate a 'tags' file for any number of Python source files and allow you to locate class and function definitions easily while editing a whole set of files.
+For Python there is a similar program in the standard distribution, usually
+under /usr/lib/python2.3/Tools/scripts/ptags.py if your Python version is 2.3.
+This little script will generate a 'tags' file for any number of Python source
+files and allow you to locate class and function definitions easily while
+editing a whole set of files.
 
 The content of ptags.py is:
 
@@ -39555,7 +40591,8 @@ I make sure that all shortcuts and registry entries reference GVim as C:\Program
 VimTip	{{{1 1190: source searching for programmers
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Can be userful for programmers who dig in alien code. Sorta like simplier cscope alternative. Put in ~/.bashrc this bash aliases:
+Can be userful for programmers who dig in alien code. Sorta like simplier
+cscope alternative. Put in ~/.bashrc this bash aliases:
 
 #----8<---------------------------------------
 function f() {
@@ -39663,7 +40700,8 @@ au BufRead *.html set filetype=htmlm4
 VimTip	{{{1 1194: Make ]z navigate to the next open fold
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I think it makes more sense for ]z and [z to navigate to the next/previous open fold, so I added the following to my .vimrc file:
+I think it makes more sense for ]z and [z to navigate to the next/previous open
+fold, so I added the following to my .vimrc file:
 
 function! GoToOpenFold(direction)
 
@@ -39694,7 +40732,10 @@ nmap [z :cal GoToOpenFold("prev")
 VimTip	{{{1 1195: Reload the same file in different encoding
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I often need to edit files with different encodings, which can't be detected automatically (for expample, how to distinguish cp866 from cp1251?). So when the desired file was loaded with wrong encoding, I used to type
+I often need to edit files with different encodings, which can't be detected
+automatically (for expample, how to distinguish cp866 from cp1251?). So when
+the desired file was loaded with wrong encoding, I used to type
+
 :e ++enc=<what_was_really_needed> %:p
 The following function lightened my work, I guess it'd be useful for the community:
 \begin{code}
@@ -39725,9 +40766,11 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 After you have copied/yanked a text into register, you can paste it replacing previous text using visual selection.
 
-For example, you can copy one line with 'yy', than point cursor to another line and replace it with previously copied line with 'Vp'
+For example, you can copy one line with 'yy', than point cursor to another line
+and replace it with previously copied line with 'Vp'
 
-Or if you want cut one word and replace with them another word: cut the word using 'daw', move cursor onto another word and replace with 'vawp'
+Or if you want cut one word and replace with them another word: cut the word
+using 'daw', move cursor onto another word and replace with 'vawp'
 
 
 
@@ -39740,7 +40783,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 I've decided to swap ; and : keys since I use the : key so much more often.
 
-I also made a mapping so that ;; puts you directly into the command line edit window.  My fingers always get into a knot when entering a lot of  :ex  commands and editing them often ( :^F  and q:  are nasty combinations because your little finger is always in the wrong place)
+I also made a mapping so that ;; puts you directly into the command line edit
+window.  My fingers always get into a knot when entering a lot of  :ex
+commands and editing them often ( :^F  and q:  are nasty combinations because
+your little finger is always in the wrong place)
 
 " nothing but '<C-V><C-F>' worked, including combinations of "\<C-F"
 "cnoremap ; <C-R>= getcmdpos() == 1 ? '<C-V><C-F>A' : ';' <CR>
@@ -39754,7 +40800,7 @@ nnoremap <unique> : ;
 
 
 
-
+"xxxx24
 
 
 VimTip	{{{1 1198: Automatic Scrolling of text in the vim
@@ -39806,7 +40852,6 @@ nmap <leader>cp :call Paste(v:register, "v", "p")<CR>
 
 
 
-
 VimTip	{{{1 1200: PHP / Mac Hint
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
@@ -39814,8 +40859,9 @@ Open php.net's documentation with the word underneath the cursor
 
 noremap gd ! open http://php.net/<cword><CR>
 
-this is really basic, I don't have a linux/unix box here at the moment to work out how to open a url from the command line but im sure you could just subsitute open for mozilla or firefox or what ever. 
-
+this is really basic, I don't have a linux/unix box here at the moment to work
+out how to open a url from the command line but im sure you could just
+subsitute open for mozilla or firefox or what ever. 
 
 
 
@@ -39827,12 +40873,19 @@ this is really basic, I don't have a linux/unix box here at the moment to work o
 VimTip	{{{1 1202: Go away and come back
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Like 3 years ago I used to work in program KDevelop and alike. One nice feature that I liked was that I had usually opened more files of one project and when I quit kdevelop and then went back all the files were loaded back again. Using Vim script this can be done in Vim too.
+Like 3 years ago I used to work in program KDevelop and alike. One nice feature
+that I liked was that I had usually opened more files of one project and when I
+quit kdevelop and then went back all the files were loaded back again. Using
+Vim script this can be done in Vim too.
 
-The following script will save plenty of settings (see :h mksession) on vim exit and loads these settings when you enter vim again.
-The settings are associated (by this script) to the directory from where you've started vim. That is, for example you start vim from directory
-/home/mynick/project/foo, edit multiple buffers and then exit without closing these buffers, later when you want to continue this work, you go to the same
-directory, run vim and all the buffers, mappings and other settings will be loaded back as when you've left.
+The following script will save plenty of settings (see :h mksession) on vim
+exit and loads these settings when you enter vim again. The settings are
+associated (by this script) to the directory from where you've started vim.
+That is, for example you start vim from directory /home/mynick/project/foo,
+edit multiple buffers and then exit without closing these buffers, later when
+you want to continue this work, you go to the same directory, run vim and all
+the buffers, mappings and other settings will be loaded back as when you've
+left.
 
 To run it, just paste following script to ~/.vimrc file:
 
@@ -39873,7 +40926,10 @@ Without corrections this script will work only on UN*X like systems.
 VimTip	{{{1 1203: mapping to set up vtreeexplorer and taglist in left side of window
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-A simple mapping to quickly set up a couple of VTreeExplorer (http://www.vim.org/scripts/script.php?script_id=184) and TagList (http://www.vim.org/scripts/script.php?script_id=273) in the left side of your VIM window. Add the following to your vimrc:
+A simple mapping to quickly set up a couple of VTreeExplorer
+(http://www.vim.org/scripts/script.php?script_id=184) and TagList
+(http://www.vim.org/scripts/script.php?script_id=273) in the left side of your
+VIM window. Add the following to your vimrc:
 
 map <F12> <ESC>:Tlist<CR>^Wh^Ws:VTreeExplore<CR>:set nonu<CR>^Wl
 
@@ -39922,8 +40978,7 @@ PPS - Everytime I type ":ha!" I hear Nelson Muntz saying "ha ha!"  LOL
 
 
 
-
-
+"xxxx22
 
 
 
@@ -39949,7 +41004,6 @@ and get the following:
 
 
 Now, you'd like to just have a list of files without the rest of the info...
-
 Issue the global replace as follows:
 
 :%s/^.\{-}\ze\///
@@ -40046,7 +41100,6 @@ Probably some bugs, but MUCH better than before! Please improve.
 
 VimTip	{{{1 1214: Recursive vimgrep
 http://vim.sourceforge.net/tip_view.php?tip_id=
-
 
 It doesn't suggest this in the help for "vimgrep" directly, but 
 
@@ -40245,7 +41298,10 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 VimTip	{{{1 1220: Use Vi shortcuts in terminal.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I got addicted to using vim shortcuts like h,j,k,l, b (back one word), e (forward one word), ... and I miss it every time when I'm not in vim. But there is a way to use basic Vi shortcuts when you are in command line. All you have to do, is write the following lines to /etc/inputrc or ~/.inputrc :
+I got addicted to using vim shortcuts like h,j,k,l, b (back one word), e
+(forward one word), ... and I miss it every time when I'm not in vim. But there
+is a way to use basic Vi shortcuts when you are in command line. All you have
+to do, is write the following lines to /etc/inputrc or ~/.inputrc :
 
 ######################################################
 
@@ -40254,7 +41310,8 @@ set keymap vi
 
 ######################################################
 
-Now exit the terminal and come back. The main difference is that by default you are in INSERT mode and you have to pres Esc to get to normal mode.
+Now exit the terminal and come back. The main difference is that by default you
+are in INSERT mode and you have to pres Esc to get to normal mode.
 
 More info: "http://docs.freebsd.org/info/readline/readline.info.Readline_Init_File_Syntax.html"
 
@@ -40267,6 +41324,7 @@ VimTip	{{{1 1221: Alternative tab navigation
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 Here is an alternative way to open and navigate tabs in vim7.
+
 
 add the following to your .vimrc:
 " tab navigation like firefox
@@ -40308,7 +41366,6 @@ VimTip	{{{1 1224: Toggle Spellcheck with Function Keys
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 If you have gVim toolbars disabled (like myself), here's an easier and quicker way to toggle the spellcheck funcitonality:
-
   :map <F5> :setlocal spell! spelllang=en_us<cr>
 
 Remap to whichever Fx key you require, or switch the dictionary to use.
@@ -40353,17 +41410,22 @@ Note: The .reg files assume Vim was installed in the default location.
 VimTip	{{{1 1226: Use Tab Key To Switch Windows and Current File Path
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This tip allows you to use the Tab key to switch windows created by the :sp command.  It also sets the current file path to that of the file in the window that gains the focus.
+This tip allows you to use the Tab key to switch windows created by the :sp
+command.  It also sets the current file path to that of the file in the window
+that gains the focus.
 
 Add the following two entries to your _vimrc or _gvimrc file:
 set autochdir
 map <Tab> <C-W>W:cd %:p:h<CR>:<CR>
 
-When you use :sp to create multiple windows (viewports), you can press the Tab key to switch between the windows (you must hit Esc key first if Vi is in text input mode).  If you use :e and hit Tab key, you will get the files under the same directory as that of the file in the currently focused window.
+When you use :sp to create multiple windows (viewports), you can press the Tab
+key to switch between the windows (you must hit Esc key first if Vi is in text
+input mode).  If you use :e and hit Tab key, you will get the files under the
+same directory as that of the file in the currently focused window.
 
-Explanation:
-1.  You can do a :help autochdir to find the purpose of the first entry.
-2.  The second entry maps the Tab key to window switch key, set the current file path by ":cd %:p:h", and clear the ":cd %:p:h" at : prompt.
+Explanation: 1.  You can do a :help autochdir to find the purpose of the first
+entry. 2.  The second entry maps the Tab key to window switch key, set the
+current file path by ":cd %:p:h", and clear the ":cd %:p:h" at : prompt.
 
 
 
@@ -40374,7 +41436,9 @@ Explanation:
 VimTip	{{{1 1227: Vim-Shell: Embedded full-strength terminal in vim
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you have ever wanted to drop to a full shell in a window and do things like run ssh, full-color bash, or even another instance of vim (!), you should check out Thomas Wana's Vim-Shell patch:
+If you have ever wanted to drop to a full shell in a window and do things like
+run ssh, full-color bash, or even another instance of vim (!), you should check
+out Thomas Wana's Vim-Shell patch:
 
 http://www.wana.at/vimshell/
 
@@ -40382,13 +41446,17 @@ It currently only works on text-mode vim 6, but the author is in the progress of
 
 
 
-
+"xxxx21
 
 
 VimTip	{{{1 1228: Completion popup selection like other IDEs
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Vim 7's popup menu for completion (omni or otherwise) takes a little getting used to when it comes to selecting the completed word. See ":help ins-completion". The completed word can be selected using the arrow keys, PageUp/Down, Enter and Esc. In addition to that, there is Ctrl-E, Ctrl-Y, Ctrl-N and Ctrl-P.
+Vim 7's popup menu for completion (omni or otherwise) takes a little getting
+used to when it comes to selecting the completed word. See ":help
+ins-completion". The completed word can be selected using the arrow keys,
+PageUp/Down, Enter and Esc. In addition to that, there is Ctrl-E, Ctrl-Y,
+Ctrl-N and Ctrl-P.
 
 Here's an alternative setup that feels a little more like the completion menu of other IDEs. Place in vimrc.
 
@@ -40606,7 +41674,11 @@ I'm working with big, nested workspaces and often I don't remember exact path to
 
 :!find . -name ...
 
-to locate the file and the edit it. I was trying to find if there is some solution directly in vim, and haven't found one. Closest were :find and :globpath(). :find works nearly as I need, but unfortunatelly it opens firs file of a given name without telling me that there are more. For globpath() I was unable to make it work with '**' construction, so that it would look into all subdirectories under current directory.
+to locate the file and the edit it. I was trying to find if there is some solution directly in vim,
+and haven't found one. Closest were :find and :globpath(). :find works nearly as I need,
+but unfortunatelly it opens firs file of a given name without telling me that there are more.
+For globpath() I was unable to make it work with '**' construction, so that it would
+look into all subdirectories under current directory.
 
 So with slight feeling of reinventing wheel I wrote this small function. You can use it like this:
 
@@ -40714,9 +41786,19 @@ mjoy,
 VimTip	{{{1 1237: Simplifying Regular Expressions using \v and \V
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-If you love regular expressions as much as I do, you probably like to use them everywhere (I'm hanging out for regex in Google search, Bram!).  Unfortunately it gets very confusing when you use Vim's regular expressions, perl and posix compliant varieties in PHP, and then command-line grep as well, because they all seem to have different rules as to which characters have special meaning on their own and which do not.  Quite often I will need about 25-50 attempts to write a 10-character search pattern correctly because I can't remember which characters need to be preceded by a '\'.
+If you love regular expressions as much as I do, you probably like to use them everywhere
+(I'm hanging out for regex in Google search, Bram!).  Unfortunately it gets very confusing when you use
+Vim's regular expressions, perl and posix compliant varieties in PHP, and then command-line grep as well,
+because they all seem to have different rules as to which characters have special meaning on their own and which do not. 
+Quite often I will need about 25-50 attempts to write a 10-character search pattern correctly because
+I can't remember which characters need to be preceded by a '\'.
 
-Thankfully, any Vim search pattern can include the special sequence '\v' (for 'very magic'), and this will make every following character except a-zA-Z0-9 and '_' have special meaning.  Using '\V' has the opposite effect, all characters have their literal meaning and must be preceded by '\' to activate their special meaning.  So when I've been using another regex flavour for a while and have forgotten which charactes have special meaning in Vim, I just start the pattern with \v or \V to them all on or off, and I can also rest assured that my search patterns are portable because they don't rely on the 'magic' option.
+Thankfully, any Vim search pattern can include the special sequence '\v' (for 'very magic'),
+and this will make every following character except a-zA-Z0-9 and '_' have special meaning. 
+Using '\V' has the opposite effect, all characters have their literal meaning and must be preceded
+by '\' to activate their special meaning.  So when I've been using another regex flavour for a while and
+have forgotten which charactes have special meaning in Vim, I just start the pattern with \v or \V to them all
+on or off, and I can also rest assured that my search patterns are portable because they don't rely on the 'magic' option.
 
 For more information use ':help /\v'
 
@@ -40979,7 +42061,7 @@ PS: Thanks to the VIM IRC channel for the help they always give.
 
 
 
-
+"xxxx20
 
 VimTip	{{{1 1246: VIM at Wikibooks
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -41255,7 +42337,7 @@ endif
 I just searching for useful colour schemes for 8, 16 and 256 colors in the console. The most are not useful as they do often end with, for example, red foreground on red background or such. But this is another problem.
 
 
-
+"xxxx19
 
 
 
@@ -41512,7 +42594,8 @@ endfunction
 ===
 
 
-
+"xxxx18
+"zzzz1
 
 
 
@@ -42141,7 +43224,7 @@ I use this on OS X running Vim 7.0 under an xterm on X11. I also find "set bs=2"
 
 
 
-
+"xxxx17
 
 
 VimTip	{{{1 1285: change behaviour of builtin commands like :e using special case of cabbrev
@@ -42213,6 +43296,7 @@ works totally automatically.
 The color codes below are Green in normal mode, and  Magenta 
 in insert mode. If you like other colors, just change them.
 
+
 set laststatus=2
 if version >= 700
   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
@@ -42247,7 +43331,7 @@ Place it where you would a modeline. Notice that with the letter v instead of z 
 -- See also vimtip #246
 
 
-
+"xxxx16
 
 
 
@@ -42561,7 +43645,10 @@ This Vim command works around:
 VimTip	{{{1 1293: BEST active window current line highlight
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This tip provides current line highlighting that simulates most word processors which highlight only the current line in the active window. It also works in insert mode too! Have fun! I'm using vim and it works well. Can someone provide the change for gvim? Thanks. Have fun!
+This tip provides current line highlighting that simulates most word processors which highlight only the current line
+in the active window. It also works in insert mode too! Have fun! I'm using vim and it works well.
+Can someone provide the change for gvim? Thanks. Have fun!
+
 
 "Hightlignt current line
 highlight CurrentLine guibg=blue guifg=white ctermbg=blue ctermfg=white
@@ -42764,14 +43851,17 @@ However, if someone knows how to launch the system command in the background, th
 
 
 
-
-
+"xxxx15
 
 VimTip	{{{1 1300: List changes in the current buffer/file.
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-Some times I wonder what was changed in the file currently opend.  By accident I came across the ":changes" command.  This command prints all changes in the file.  With "g;" you can step back to the previouse change in the list, typing "g," you step to the next change.
+Some times I wonder what was changed in the file currently opend. 
+By accident I came across ther
 
+
+With "g;" you can step back to the previouse change in the list, typing "g," you step to the next change.
+":changes" command.  This command prints all changes in the file. 
 Type ":help changes" for more information.
 
 
@@ -42801,7 +43891,8 @@ The windows UI won't let you do this, a total pain working with unix where files
 VimTip	{{{1 1302: custom resizing on the spot
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-This is my first post and it was inspired by vimtip #173. Sometimes you dont want to have your windows on there max or min width (length) so I added the next commands on my vimrc file
+This is my first post and it was inspired by vimtip #173. Sometimes you dont want to have your windows on there max
+or min width (length) so I added the next commands on my vimrc file
 
 "This two change in between vertical windows maximizing there length, and if you keep them pressed they will increase width by 2 columns steps.
 "very nice when lines are too long to fit in just one row.
@@ -43197,7 +44288,7 @@ Thomas
 
 
 
-VimTip	{{{1 1319: Automatica tags generation
+VimTipV	{{{1 1319: Automatica tags generation
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
 You have an number sequence like:
@@ -43261,7 +44352,7 @@ Lets say I wanted to find all places where I do a for loop against MAX_INT, I co
 Please add your own patterns to simplify this, or to match other common code bits.  Also, if anyone knows how to match this with :grep, let me know.
 
 
-
+"xxxx14
 
 
 
@@ -43298,7 +44389,10 @@ Silly little tip, but could save tons of typing:
 
  Move to a blank line, "V" to visually select it, then: "!pwd"
 
-Basically you're using the filter command "!" to filter a null selection and replace it with the output of that command.  "pwd" on unix-like systems returns the current directory, so you can use it to grab the current directory name with "!pwd", listing of files with "!ls", etc.  More useful is to grab a bunch of lines with "V" and do "!sort", but it had never previously occurred to me to intentionally use a non-filtering command.
+Basically you're using the filter command "!" to filter a null selection and replace it with the output of that command. 
+"pwd" on unix-like systems returns the current directory, so you can use it to grab the current directory name
+with "!pwd", listing of files with "!ls", etc. 
+More useful is to grab a bunch of lines with "V" and do "!sort", but it had never previously occurred to me to intentionally use a non-filtering command.
 
 --Robert
 
@@ -43345,7 +44439,7 @@ WARNING: this is very frustrating for the first month or two when you will frequ
 
 
 
-
+ nnnn
 
 VimTip	{{{1 1324: Alternative to hitting Esc
 http://vim.sourceforge.net/tip_view.php?tip_id=
@@ -43411,7 +44505,7 @@ Thanks to Yakov Lerner,  A.J. Mechelynck and Benjamin Esham for providing
 help on that topic.
 
 
-
+"xxxx13
 
 
 
@@ -43607,7 +44701,7 @@ CTRL + rigth arrow >> moves one tab to the right
 
 
 
-
+"xxx12
 
 
 VimTip	{{{1 1348: [Poor man's langmap] using vim key bindings while typing non-latin1 texts
@@ -43846,7 +44940,7 @@ Feel free to post your favorite language/technology URL templates here, and happ
 -Chris
 
 
-
+"xxxx11
 
 
 
@@ -44040,7 +45134,7 @@ return ret
 
 
 
-
+"xxxx
 
 
 
@@ -44654,7 +45748,7 @@ Sorry, this does not work very well for splitted windows.
 
 
 
-
+"xxxx
 
 
 
@@ -44717,9 +45811,7 @@ autocmd CursorMoved,CursorMovedI * call s:Cursor_Moved()
 let g:last_pos=0   
 
 
-
-
-
+"XXXXX
 
 
 VimTip	{{{1 1381: hightlight a kind of special filetype docs in vim
@@ -45108,6 +46200,7 @@ In the above mappings, the first will make "ctrl-n" work the way it normally doe
 Let this tip be a reminder that the possibilities in Vim are endless.
 
 
+"XXXX
 
 
 
@@ -45263,8 +46356,6 @@ if m_lnum > 0
 
 
 
-
-
 VimTip	{{{1 1392: Shell script to use grep with gvim
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
@@ -45283,11 +46374,7 @@ In vim you can set grepprg to vimgrep:
 
 
  
- 
-
-
-
-
+"xxxx 
 
 
 
@@ -45295,7 +46382,9 @@ In vim you can set grepprg to vimgrep:
 VimTip	{{{1 1393: Automatically create/set tmp or backup directories
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
-I needed a way to automate creating the backup/tmp directories.  It is especially annoying when I am in a new environment and I have to manually create the directories.  I also prefer to use _vim rather then .vim on a Windows system so it checks for that.  Hopefully I've discovered all the bugs.
+I needed a way to automate creating the backup/tmp directories.  It is especially annoying when I am in a
+new environment and I have to manually create the directories. 
+I also prefer to use _vim rather then .vim on a Windows system so it checks for that.  Hopefully I've discovered all the bugs.
 
 function InitBackupDir()
 
@@ -45348,8 +46437,7 @@ call InitBackupDir()
 If you found this tip useful, you may also want to check out vimtip #20
 
 
-
-
+"xxxx
 
 
 VimTip	{{{1 1413: Make tar of all files in vim buffer
@@ -45393,10 +46481,12 @@ You can then add the following to ~/.vimrc to create a command that easily lists
   command TODO tselect /^todo djh
 
 
-Note that I'm only interested in TODOs that begin with my initials - you may want to simply use /^todo.  Be careful though! If you have case-insensitivity turned on, you may get false positives for tags of the form 'toDouble'.  This can be fixed by changing your todos to //TODO:
+Note that I'm only interested in TODOs that begin with my initials - you may want to simply use /^todo. 
+Be careful though! If you have case-insensitivity turned on, you may get false positives for tags of the form 'toDouble'. 
+This can be fixed by changing your todos to //TODO:
 
 
-
+"xxxx
 
 
 
@@ -45419,7 +46509,9 @@ Which ? (<enter>=nothing)
 
 Then you type the number next to the file you're searching for and hit enter.
 
-In other words, it's searching with this as its input, "*adm*trol*", the asterisk's being wildcards. The wildcards replace the spaces from your original search and are also added to the beginning and end of your search keywords.
+In other words, it's searching with this as its input, "*adm*trol*", the asterisk's being wildcards.
+The wildcards replace the spaces from your original search and are also added to the beginning and end
+of your search keywords.
 
 I also mapped it to: 
 map ,f :Fi
@@ -45621,7 +46713,7 @@ and wait there, in insert mode already, for some replacement value.  Just type i
 
 
 
-
+"xxxx
 
 
 
@@ -45783,6 +46875,8 @@ highlight MBEVisibleNormal term=bold cterm=bold gui=bold guibg=Gray guifg=Black
 " buffers that have CHANGED and are VISIBLE
 highlight MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black
 
+"XXXX
+
 " --------------------
 " OmniCppComplete
 " --------------------
@@ -45848,10 +46942,6 @@ you can set clear mark by showmark-plugin.
 you can.....
 
 Except the compile and debug :(
-
-
-
-
 
 
 
@@ -46114,7 +47204,9 @@ Reset all user-set options:
 :ResetOption
 
 
-In order to monitor the options setting, I display changed values in &statusline. (The following code is based on some tip by somebody else or a vimrc I found years ago on the web. Don't know who originally came up with this.)
+In order to monitor the options setting, I display changed values in &statusline.
+(The following code is based on some tip by somebody else or a vimrc
+I found years ago on the web. Don't know who originally came up with this.)
 
 set statusline=%1*[%{winnr()}:%02n]%*\ %2t\ %(%M%R%H%W%k%)\ %=%{TmlStatusline()}\ %3*<%l,%c%V,%p%%>%*
 
