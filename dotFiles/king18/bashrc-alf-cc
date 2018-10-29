@@ -208,6 +208,8 @@ fi
 ######################################################################
 # some more ls aliases
 #---------------------
+alias vim='nvim'
+alias nv='nvim'
 
 alias q='exit'
 alias c='clear'

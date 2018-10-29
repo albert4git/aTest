@@ -59,8 +59,8 @@ call plug#begin()
         Plug 'romainl/vim-qf'
         Plug 'sk1418/QFGrep'
         Plug 'AndrewRadev/qftools.vim'
-        Plug 'itchyny/vim-qfedit'
         Plug 'jceb/vim-editqf'
+        "Plug 'itchyny/vim-qfedit'
         "----------
         Plug 'killphi/vim-textobj-signify-hunk'
         Plug 'kshenoy/vim-signature'
@@ -80,7 +80,7 @@ call plug#begin()
         Plug 'tpope/vim-repeat'         " Intelligent repeat with '.'
         Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
-        Plug 'burnettk/vim-angular'
+        "Plug 'burnettk/vim-angular'
         "Plug 'fatih/vim-go'
         Plug 'motemen/git-vim'
         Plug 'nvie/vim-flake8'

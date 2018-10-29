@@ -2109,6 +2109,7 @@ personally, i never let it get to the -1 state by always having an s: set with S
 "bbbb
 
 
+command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
 
 VimTip	{{{1 83: how to indent (useful for source code)
