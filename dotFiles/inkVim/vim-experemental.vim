@@ -1,3 +1,8 @@
+
+
+By default it creates the following mapping:
+
+
 By default it creates the following mapping:
     gb
 To change it, modify the `g:pastedtext_select_key` variable. For example:
@@ -50,16 +55,17 @@ The quickfix results window is augmented with these convenience mappings:
 ### Gotchas
 
 To search for a pattern that contains whitespace, you need to enclose the
-pattern in single quotes. For example: `:Ack 'foo bar'` to search for
-'foo bar'.
+pattern in single quotes. For example: 
+:Ack 'foo bar'
 
 Some characters have special meaning, and need to be escaped in your search
-pattern. For instance, `#`. You need to escape it with `:Ack '\\\#define
-foo'` to search for '#define foo'. See [issue #5].
+pattern. For instance, `#`. You need to escape it with 
+
+:Ack '\\\#define foo'
 
 "-----------------------------------------------------------------------------
 "-----------------------------------------------------------------------------
-
+" :Ack '\\\#define foo'
 " #### :Far {pattern} {replace-with} {file-mask} [params]
 " Find the text to replace.
 " #### :Farp [params]
@@ -72,10 +78,6 @@ foo'` to search for '#define foo'. See [issue #5].
 " #### :Farundo [params]
 " Undo last (or all) replacement(s).
 " #### :F {pattern} {file-mask} [params]
-" Find only.
-" #### Need help?
-" :help far.vim
-
 "-----------------------------------------------------------------------------
 "-----------------------------------------------------------------------------
 

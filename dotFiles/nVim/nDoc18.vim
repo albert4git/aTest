@@ -210,6 +210,7 @@ mode (vi" only puts you in visual mode).
   = 2. keywords in the current file                         i_CTRL-X_CTRL-N
   = 3. keywords in 'dictionary'                             i_CTRL-X_CTRL-K
   = 4. keywords in 'thesaurus', thesaurus-style             i_CTRL-X_CTRL-T
+
   = 5. keywords in the current and included files           i_CTRL-X_CTRL-I
   = 6. tags                                                 i_CTRL-X_CTRL-]
   = 7. file names                                           i_CTRL-X_CTRL-F

@@ -9,9 +9,9 @@
         " endfunction
         "-------------------------------------------------------------------
         "TODO TST  ERR  Albert TRUMP
-        match  Todo / TODO /
-        2match Error / ERR /
-        3match Title / Albert /
+        " match  Todo / TODO /
+        " 2match Error / ERR /
+        " 3match Title / Albert /
         "-----------------------------------------------------------
         syn keyword VariableType real void String int nextgroup=VarName skipwhite
         syn match VarName '\i\+' contained
@@ -81,22 +81,18 @@
         "call matchadd('mintBright', '\<map\>')
         "call matchadd('lightGreenBlue', '\<nmap\>')
         "call matchadd('lightGray', '\<imap\>')
+
+
+        "-----------------------------------------------
+        hi customPink   ctermbg=241 ctermfg=White
+        hi lightGray   ctermbg=12
+        hi darkGray   ctermbg=8
         "-----------------------------------------------
         call matchadd('lightGray', '*inore.')
         "-----------------------------------------------
         call matchadd('darkGray', '\<*.nnore.\>')
         call matchadd('darkGray', '\<*.vnore.\>')
         call matchadd('darkGray', '\<*.inore.\>')
-        "-----------------------------------------------
-        call matchadd('customPink', '\<*.C-F.\>')
-        call matchadd('customPink', '\<*.S-F.\>')
-        call matchadd('customPink', '\<*C-x*\>')
-        call matchadd('customPink', '\<*c-x*\>')
-        call matchadd('darkOrange', '\<*-C-F-*\>')
-        call matchadd('redOrange', '\<*C-f\>')
-        "-------------------------------------------------------------------
-        call matchadd('rosaWhite', '\<Leader\>')
-        "-----------------------------------------------
         call matchadd('customPink', '\<F2\>')
         call matchadd('customPink', '\<F3\>')
         call matchadd('customPink', '\<F4\>')
@@ -106,6 +102,11 @@
         call matchadd('customPink', '\<F8\>')
         call matchadd('customPink', '\<F9\>')
         call matchadd('customPink', '\<F10\>')
+        "-----------------------------------------------
+        call matchadd('customPink', '\<*.C-F.\>')
+        call matchadd('customPink', '\<*.S-F.\>')
+        call matchadd('customPink', '\<*C-x*\>')
+        call matchadd('customPink', '\<*c-x*\>')
         "-------------------------------------------------------------------
         call matchadd('customPink', '\<*C-}*\>')
         call matchadd('customPink', '\<*C-]*\>')
@@ -169,3 +170,8 @@
         call matchadd('customPink', '\<*C-Y*\>')
         call matchadd('customPink', '\<*C-z*\>')
         
+        call matchadd('darkOrange', '\<*-C-F-*\>')
+        call matchadd('redOrange', '\<*C-f\>')
+        "-------------------------------------------------------------------
+        call matchadd('rosaWhite', '\<Leader\>')
+        "-----------------------------------------------

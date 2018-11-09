@@ -192,6 +192,7 @@
 " highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
 " highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
 " highlight DiffChange        cterm=bold ctermbg=11 ctermfg=227
+
  highlight DiffChange        cterm=bold ctermbg=10 "greenBright
  highlight DiffChange        cterm=bold ctermbg=9 "red
  highlight DiffChange        cterm=bold ctermbg=8 "gray

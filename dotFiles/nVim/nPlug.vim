@@ -10,9 +10,6 @@ call plug#begin()
         Plug 'mtth/scratch.vim'
         "---TODO--------------------------------------------
         Plug 'tpope/vim-fugitive'
-        Plug 'Shougo/neosnippet.vim'
-        Plug 'Shougo/neosnippet-snippets'
-        Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
         "---NEW----------------------------------------------
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
@@ -52,7 +49,6 @@ call plug#begin()
         Plug 'whatyouhide/vim-textobj-xmlattr'
         Plug 'rsrchboy/vim-textobj-heredocs'
         Plug 'gilligan/textobj-gitgutter'
-        Plug 'gergap/keystroke'
         "--------------------------------------
         Plug 'michaeljsmith/vim-indent-object'
         Plug 'vim-scripts/c.vim'
@@ -71,15 +67,16 @@ call plug#begin()
         Plug 'vim-scripts/ReplaceWithRegister'
         Plug 'ludovicchabant/vim-gutentags'
         Plug 'scrooloose/nerdtree'
-        Plug 'wincent/loupe'
+        "Plug 'wincent/loupe'
         "-------------------------------------------------------------------------
         Plug 'jremmen/vim-ripgrep'
         Plug 'tpope/vim-commentary'
-        Plug 'tomtom/tcomment_vim'
-        Plug 'tpope/vim-abolish'        " Extended abbreviation/substition.
+        "Plug 'tomtom/tcomment_vim'
+        "!"Plug 'tpope/vim-abolish'        " Extended abbreviation/substition.
         Plug 'tpope/vim-repeat'         " Intelligent repeat with '.'
         Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
+        "Plug 'gergap/keystroke'
         "Plug 'burnettk/vim-angular'
         "Plug 'fatih/vim-go'
         Plug 'motemen/git-vim'
@@ -93,8 +90,13 @@ call plug#begin()
         Plug 'brooth/far.vim'
         Plug 'neomake/neomake'
         Plug 'airblade/vim-gitgutter'
-        "Plug '/wincent/command-t'
-        Plug 'dhruvasagar/vim-zoom'
+        Plug 'wincent/command-t'
+        Plug 'echuraev/translate-shell.vim'
+        "Plug 'Rykka/trans.vim'
+        Plug 'ron89/thesaurus_query.vim'
+
+
+        "Plug 'dhruvasagar/vim-zoom'
         Plug 'Shougo/vimshell.vim'
         Plug 'majutsushi/tagbar'
         Plug 'scrooloose/syntastic'
@@ -102,42 +104,49 @@ call plug#begin()
         Plug 'w0rp/ale'
 
         Plug 'roxma/nvim-completion-manager'
-        Plug 'Townk/vim-autoclose'
 
         Plug 'tpope/vim-dispatch'
         Plug 'nixprime/cpsm'
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
 
-        "! Plug 'Shougo/neocomplete.vim'
-        "! Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-        "! Plug 'Valloric/YouCompleteMe'
+"--------------------------------------------------------------------------------- 
+        Plug 'Shougo/neosnippet.vim'
+        Plug 'Shougo/neosnippet-snippets'
         Plug 'balta2ar/deoplete-matcherkey'
         Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
-
                 let g:deoplete#enable_at_startup = 1
                 let g:deoplete#enable_smart_case = 1
-        Plug 'duythinht/inori'
-
+        Plug 'honza/vim-snippets'
+        Plug 'SirVer/ultisnips'
+        Plug 'ervandew/supertab'
+"--------------------------------------------------------------------------------- 
+        Plug 'sophacles/vim-bundle-mako'
+        Plug 'jabbas/vimplates'
+        Plug 'vim-scripts/mako.vim'
+        "Plug ''
+        " language support bundles
+        Plug 'wavded/vim-stylus'                " stylus
+        Plug 'jparise/vim-graphql'              " GraphQL
+        Plug 'octol/vim-cpp-enhanced-highlight' " C++
+        Plug 'pboettch/vim-cmake-syntax'        " CMake
+"--------------------------------------------------------------------------------- 
+         Plug 'garbas/vim-snipmate'
+        "!ohne!  Plug 'Shougo/neocomplete.vim'
+        "! Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+        "! Plug 'Valloric/YouCompleteMe'
+"--------------------------------------------------------------------------------- 
+        Plug 'jalvesaq/Nvim-R'
         Plug 'tpope/vim-eunuch'
         Plug 'rking/ag.vim'
-                Plug 'Shougo/neosnippet.vim'
-                Plug 'Shougo/neosnippet-snippets'
-                Plug 'honza/vim-snippets'
-                Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-        Plug 'jalvesaq/Nvim-R'
-        Plug 'Rykka/trans.vim'
-        Plug 'ron89/thesaurus_query.vim'
 "--------------------------------------------------------------------------------- 
-        Plug 'MarcWeber/vim-addon-mw-utils'
-        "Plug 'garbas/vim-snipmate'
+
+Plug 'tomtom/tlib_vim'       
+Plug 'MarcWeber/vim-addon-mw-utils'
 
         Plug 'ivyl/vim-bling'
-
-        Plug 'junegunn/seoul256.vim'
-
         Plug 'Shougo/unite.vim' 
         Plug 'kmnk/vim-unite-giti'
         Plug 'tsukkee/unite-tag'
@@ -148,26 +157,24 @@ call plug#begin()
         Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
         Plug 'pbogut/fzf-mru.vim'
-
+"--------------------------------------------------------------------------------- 
 
         Plug 'idanarye/vim-vebugger'
         Plug 'davidhalter/jedi-vim'
 
-        Plug 'Shougo/neoyank.vim'
         Plug 'Shougo/neomru.vim'
         Plug 'Shougo/echodoc.vim'
+"--------------------------------------------------------------------------------- 
         "Generic Programming Support
         Plug 'janko-m/vim-test'
         Plug 'aghareza/vim-gitgrep'
         Plug 'AndrewRadev/undoquit.vim'
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'morhetz/gruvbox'
-        Plug 'sonph/onehalf'
         Plug 'tomasr/molokai'
         Plug 'fmoralesc/molokayo'
         "------------------------------------
         Plug 'artur-shaik/vim-javacomplete2'
-        Plug 'ervandew/supertab'
         Plug 'adriaanzon/vim-textobj-matchit'
         Plug 'exvim/ex-matchit'
         Plug 'AndrewRadev/switch.vim'
@@ -181,16 +188,22 @@ call plug#begin()
         Plug 'xolox/vim-misc'
         Plug 'xolox/vim-easytags'
         Plug 'vim-scripts/tagselect'
+        Plug 'vim-scripts/genutils'
+
         Plug 'junegunn/vader.vim'
         Plug 'vim-scripts/paredit.vim'
         Plug 'alvan/vim-closetag'
-        Plug 'Townk/vim-autoclose'
+                Plug 'Townk/vim-autoclose'
+
         Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'maxbrunsfeld/vim-yankstack'
         "-------------------------------------------------------------------------
 call plug#end()
 
 "-------2EXPLORE---------------------------------------------------------------------------
+        "Plug 'sonph/onehalf'
+        "Plug 'duythinht/inori'
+        "Plug 'Shougo/neoyank.vim'
         "Plug 'vim-scripts/TagHighlight'
         "Plug 'christoomey/vim-tmux-navigator'
         "Plug 'bkad/CamelCaseMotion'
