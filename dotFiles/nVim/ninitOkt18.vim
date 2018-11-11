@@ -215,6 +215,7 @@
         "------------------------------------------------------------------------------------------
         set nowrap
         set mouse=a
+        set report=0 " always report changed lines
 "-2SetUp-}}}
 "-AAA3-SyntaxColor------------------------------------------------------------------------------------------{{{
         nnoremap ( <c-x>:y x\|@x<cr>
@@ -293,41 +294,35 @@
         map <m-F7> :cscope find g <C-R>=@m<CR><CR>
 "-4CScope-}}}
 
-"-AAA5-Ulty--NeoSnippet--Ctrl-B--Expander0------------------------------------------------------------------{{{
-        "----------
+"-AAA5Ulty--NeoSnippet--Ctrl-B--Expander0------------------------------------------------------------------{{{
         set runtimepath+=~/.config/nvim/plugged/neosnippet.vim/
         set runtimepath+=~/.config/nvim/plugged/neosnippet-snippets/
         "----------
-        " if has("eval")
-        "         " don't override ^J/^K -- I don't mind ^J, but ^K is digraphs
-        "         let g:UltiSnipsJumpForwardTrigger="<tab>"
-        "         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-        "         let g:UltiSnipsListSnippets="<C-R><tab>"
-        " endif
+        let g:UltiSnipsExpandTrigger="<C-c>"
         "----------
-        " let g:UltiSnipsExpandTrigger="<c-q>"
-        " let g:UltiSnipsJumpForwardTrigger="<c-q>"
-        "----------
-        let g:UltiSnipsExpandTrigger="<C-q>"
-
-        "----------
-        " Plugin key-mappings.
-        inoremap <expr><C-g>     deoplete#undo_completion()
-        inoremap <expr><C-l>     deoplete#refresh()
-        "----------
-        " <C-h>: close popup and delete backword char.
         inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-        inoremap <expr><c-q> deoplete#undo_completion()
+        "?-inoremap <expr><c-g> deoplete#undo_completion()
+        "?-inoremap <expr><C-l>     deoplete#refresh()
         "----------
         imap <C-b>    <Plug>(neosnippet_expand_or_jump)
         smap <C-b>    <Plug>(neosnippet_expand_or_jump)
         xmap <C-b>    <Plug>(neosnippet_expand_target)
         "----------
+        "inoremap <silent> <C-]> <C-x><C-]>
+        "inoremap <silent> <C-u> <C-x><C-u>
+        "-------------------------
+        inoremap <silent> <C-o> <C-x><C-o>
+        inoremap <silent> <C-k> <C-x><C-k>
+        inoremap <silent> <C-d> <C-x><C-d>
+        inoremap <silent> <C-f> <C-x><C-f>
+        inoremap <silent> <C-l> <C-x><C-l>
+        "----Poligon1---------------------
+
+        "----EndPoligon1------------------
         let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
         let g:snipMate.scope_aliases = {}
         let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
         "----------
-
         imap <C-v> <Plug>snipMateNextOrTrigger
         smap <C-v> <Plug>snipMateNextOrTrigger
         inoremap <silent> <Plug>snipMateNextOrTrigger  <C-v>=snipMate#TriggerSnippet()<CR>
@@ -338,30 +333,59 @@
         inoremap <silent> <Plug>snipMateShow           <C-v>=snipMate#ShowAvailableSnips()<CR>
         xnoremap <silent> <Plug>snipMateVisual         :<C-U>call <SID>grab_visual()<CR>gv"_c
         "----------
-
-
-        " let g:snipMate = {}
-        " let g:snipMate.scope_aliases = {}
-        " let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rails,ruby-1.9'
-        "----------
         "let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
         let g:neocomplete#enable_at_startup = 1
         let g:neocomplete#enable_auto_select = 1
         let g:neocomplete#enable_smart_case = 1
-        let g:neocomplete#auto_completion_start_length = 3 "-XXX
         let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
         let g:neocomplete#enable_fuzzy_completion = 1
-        "----------
-        "----------
-        set previewheight=15
-        set report=0 " always report changed lines
-        ""-Expander6--------------------------------------------------------------------------------
-        "!-nice- nnoremap <silent> ;n i<c-r>=neosnippet#expand('func')<cr>
+        let g:neocomplete#auto_completion_start_length = 2 "-www
 
-"-AAA6-Deoplete---------------------------------------------------------------------------------------------{{{
+        "------------------------------------------------------------------------------------------
+        "!-Expander6-nice- nnoremap <silent> ;n i<c-r>=neosnippet#expand('func')<cr>
+        "!-set completeopt=longest,menuone,preview
+        set completeopt=preview
         set omnifunc=syntaxcomplete#Complete
-        set completeopt=longest,menuone,preview
+
+        "-Deoplete---------------------------------------------------------------------------------
+        set pumheight=15
+        hi Pmenu  ctermfg=202 ctermbg=14
+        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
+        hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
+        "----------------------------------------------------------
+        "?-inoremap <silent><CR>       <C-r>=pumvisible()?"\<lt>C-y>":"\<lt>CR>"<CR>  "--Auto Open/Close popup
+        "let g:deoplete#sources#syntax#min_keyword_length=2 "-www
+        let g:deoplete#omni#functions = {}
+        let g:deoplete#sources = {}
+        "----Poligon2----------------
+
+
+        "----EndPoligon2-------------
+        call deoplete#custom#source('_', 'min_pattern_length', 4) "-www
+        call deoplete#custom#option('refresh_always', v:true)
+        call deoplete#custom#source('neosnippet',    'mark', 'Neo')
+        call deoplete#custom#source('ultisnips',     'mark', 'Ult')
+        call deoplete#custom#source('snipmate',      'mark', 'Spm')
+        call deoplete#custom#source('vim',           'mark', 'Vim')
+        call deoplete#custom#source('omni',          'mark', '⌾')
+        call deoplete#custom#source('buffer',        'mark', 'ℬ')
+        call deoplete#custom#source('syntax',        'mark', '♯')
+        call deoplete#custom#source('dictionary',    'mark', 'Dct')
+        call deoplete#custom#source('tag',           'mark', '⌦')
+        call deoplete#custom#source('TernJS',        'mark', 'Trn')
+        call deoplete#custom#source('jedi',          'mark', 'Jdi')
+        call deoplete#custom#source('around',        'mark', '↻')
+        call deoplete#custom#source('member', 'mark', 'Mbr')
         "----------
+        let g:deoplete#enable_ignore_case = 1
+        let g:deoplete#enable_smart_case = 1
+        let g:deoplete#enable_camel_case = 1
+        let g:deoplete#enable_refresh_always = 1
+        let g:deoplete#max_abbr_width = 0
+        let g:deoplete#max_menu_width = 0
+        "----------
+        " Plugin key-mappings.
+        "------------------------------------------------------------------------------------------
         call deoplete#custom#option('sources', {
                                 \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
                                 \})
@@ -377,53 +401,7 @@
                                         \ .')',
                                     \}
                                 \)
-        "-Omni-Completion--------------------------------------------------------------------------
-        set pumheight=10
-        hi Pmenu  ctermfg=202 ctermbg=14
-        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
-        hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
-        "Automatically open and close the popup menu / preview window
-        inoremap <silent><CR>       <C-r>=pumvisible()?"\<lt>C-y>":"\<lt>CR>"<CR>
-        "----------
-        let g:deoplete#sources = {}
-        let g:deoplete#omni#functions = {}
-        let g:deoplete#sources#syntax#min_keyword_length=5
-        let g:min_pattern_length = 2
-        "----------
-        call deoplete#custom#source('_', 'min_pattern_length', 5)
-        call deoplete#custom#option('refresh_always', v:true)
-        call deoplete#custom#source('dictionary',    'mark', '⊶')
-        call deoplete#custom#source('syntax',        'mark', '♯')
-        call deoplete#custom#source('tag',           'mark', '⌦')
-        call deoplete#custom#source('omni',          'mark', '⌾')
-        call deoplete#custom#source('vim',           'mark', 'v')
-        call deoplete#custom#source('neosnippet',    'mark', '⌘')
-        "let g:UltiSnipsJumpForwardTrigger="<tab>"
-        call deoplete#custom#source('ultisnips', 'mark', '⌁')
-        call deoplete#custom#source('TernJS',        'mark', '⊶')
-        call deoplete#custom#source('snipmate', 'mark', '↻')
-        "Plug 'garbas/vim-snipmate'
-        call deoplete#custom#source('jedi',          'mark', '⌁')
-        call deoplete#custom#source('around',        'mark', '↻')
-        call deoplete#custom#source('buffer',        'mark', 'ℬ')
-        call deoplete#custom#source('member', 'mark', '.')
-        "----------
-        "----------
-        let g:deoplete#enable_ignore_case = 1
-        let g:deoplete#enable_smart_case = 1
-        let g:deoplete#enable_camel_case = 1
-        let g:deoplete#enable_refresh_always = 1
-        let g:deoplete#max_abbr_width = 0
-        let g:deoplete#max_menu_width = 0
-        "----------
-        "inoremap <silent> <C-]> <C-x><C-]>
-        "inoremap <silent> <C-u> <C-x><C-u>
-        "----------
-        inoremap <silent> <C-o> <C-x><C-o>
-        inoremap <silent> <C-k> <C-x><C-k>
-        inoremap <silent> <C-d> <C-x><C-d>
-        inoremap <silent> <C-f> <C-x><C-f>
-        inoremap <silent> <C-l> <C-x><C-l>
+        "------------------------------------------------------------------------------------------
 "-6Deoplete-}}}
 
 "-AAA7-Ag--CtrlP--Unite--------------------------------------------------------------------------------------{{{
@@ -489,8 +467,8 @@
         let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
         let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
         "------------------------------------------------------------------------------------------
-        "------------------------------------------------------------------------------------------
         " Use the the_silver_searcher if possible (much faster than Ack)
+        "------------------------------------------------------------------------------------------
         if executable('ag')
                 let g:ackprg = 'ag --vimgrep --smart-case'
         endif
@@ -542,7 +520,7 @@
         command! -bang WA wa<bang>
         command! -bang Wq wq<bang>
         command! -bang WQ wq<bang>
-        "Unfuck my screen
+        "-Unfuck--my--screen-
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
         abb dlin "==================================================================================
@@ -608,7 +586,7 @@
                 endfunction
 
                 nnoremap <C-]> :silent! call JumpToTag()<cr>
-                nnoremap <C-s> :silent! call JumpToTagInSplit()<cr>
+                " nnoremap <C-s> :silent! call JumpToTagInSplit()<cr>
         "------------------------------------------------------------------------------------------
                 function! PreviewTag3(top)
                         set previewheight=25
