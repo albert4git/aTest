@@ -1,9 +1,45 @@
+        "!-Expander6-nice- nnoremap <silent> ;n i<c-r>=neosnippet#expand('func')<cr>
+
+        "?-inoremap <silent><CR>       <C-r>=pumvisible()?"\<lt>C-y>":"\<lt>CR>"<CR>  "--Auto Open/Close popup
+        "!-set completeopt=longest,menuone,preview
+        "?-inoremap <expr><c-g> deoplete#undo_completion()
+        "?-inoremap <expr><C-l>     deoplete#refresh()
+        "let g:UltiSnipsExpandTrigger="<c-;>"
+
+        "let g:deoplete#sources#syntax#min_keyword_length=2 "-www
+        "let g:deoplete#omni#functions = {}
+        "let g:deoplete#sources = {}
+        "------------------------------------------------------------------------------------------
+        " call deoplete#custom#option('sources', {
+        "                         \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
+        "                         \})
+        "------------------------------------------------------------------------------------------
+        " call deoplete#custom#option('sources', {
+        "                         \ 'tex' : ['buffer', 'omni']
+        "                         \})
+        "------------------------------------------------------------------------------------------
+        " call deoplete#custom#source('omni', 'input_patterns', {
+        "                                 \ 'tex' : '\\(?:'
+        "                                 \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+        "                                 \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        "                                 \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+        "                                 \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
+        "                                 \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
+        "                                 \ . '|\w*'
+        "                                 \ .')',
+        "                             \}
+        "                         \)
+        "------------------------------------------------------------------------------------------
+
+
+
 
 " deoplete + neosnippet + autopairs changes
 let g:AutoPairsMapCR=0
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+
 imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
@@ -36,10 +72,8 @@ But if you enable g:neosnippet#enable_snipmate_compatibility, neosnippet will lo
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 
-" Tell Neosnippet about the other snippets
+"??? Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-
 
 
 

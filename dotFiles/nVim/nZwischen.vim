@@ -8,31 +8,33 @@
 
 
 
-" put the cursor over a perl module name and try backslash-pd to see perldoc
-:nmap <Leader>pd :e `perldoc -ml <cword>`<CR>
+        " put the cursor over a perl module name and try backslash-pd to see perldoc
+        :nmap <Leader>pd :e `perldoc -ml <cword>`<CR>
 
-function! MakeSession()
-    let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-    if (filewritable(b:sessiondir) != 2)
-        exe 'silent !mkdir -p ' b:sessiondir
-        redraw!
-    endif
-    let b:filename = b:sessiondir . '/session.vim'
-    exe "mksession! " . b:filename
-endfunction
+        "----------------------------------------------------------------------------------
+        function! MakeSession()
+            let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+            if (filewritable(b:sessiondir) != 2)
+                exe 'silent !mkdir -p ' b:sessiondir
+                redraw!
+            endif
+            let b:filename = b:sessiondir . '/session.vim'
+            exe "mksession! " . b:filename
+        endfunction
 
-function! LoadSession()
-    let b:sessiondir  = $HOME . "/.vim/sessions" . getcwd()
-    let b:sessionfile = b:sessiondir . "/session.vim"
-    if (filereadable(b:sessionfile))
-        exe 'source ' b:sessionfile
-    else
-        echo "No session loaded."
-    endif
-endfunction
+        function! LoadSession()
+            let b:sessiondir  = $HOME . "/.vim/sessions" . getcwd()
+            let b:sessionfile = b:sessiondir . "/session.vim"
+            if (filereadable(b:sessionfile))
+                exe 'source ' b:sessionfile
+            else
+                echo "No session loaded."
+            endif
+        endfunction
 
-au VimEnter * :call LoadSession()
-au VimLeave * :call MakeSession()
+        au VimEnter * :call LoadSession()
+        au VimLeave * :call MakeSession()
+        "----------------------------------------------------------------------------------
 
         function! QFixToggle(forced)
                 if exists("g:qfix_win") && a:forced == 0
@@ -45,48 +47,48 @@ au VimLeave * :call MakeSession()
         endfunction
         command -bang -nargs=? QFix call QFixToggle(<bang>0)
         nmap <silent> \` :QFix<CR>
-"--------------------------------------------------------------------------------- 
-" set background=dark
-" hi SpecialKey    guifg=Blue
-" hi MoreMsg       guifg=Green
-" hi Visual        guifg=NONE guibg=NONE
-" hi Folded        ctermbg=4 guibg=Blue
-" hi FoldColumn    ctermbg=7
-" hi DiffAdd       guibg=Blue
-" hi DiffChange    guibg=Magenta
-" hi DiffDelete    guibg=Cyan
-" hi Normal        guifg=Gray guibg=Black
-" hi Cursor        guibg=White
-" hi lCursor       guibg=White
-" hi Comment       guifg=Cyan
-" hi Constant      guifg=Magenta
-" hi Special       guifg=Red
-" hi Identifier    guifg=Cyan
-" hi Statement     guifg=Yellow
-" hi PreProc       guifg=Blue
-" hi Type          guifg=Green
-" hi Underlined    guifg=Blue
-" hi Todo          guifg=Black
-"
-"--------------------------------------------------------------------------------- 
-" if {
-"
-"         map             <S-F11>         :ShowHighlightGroup<CR>
-"         "-show-syntax-stack under cursor
-"         map             <C-F11>         :ShowSyntaxStack<CR>
-"
-"         }
+        "--------------------------------------------------------------------------------- 
+        " set background=dark
+        " hi SpecialKey    guifg=Blue
+        " hi MoreMsg       guifg=Green
+        " hi Visual        guifg=NONE guibg=NONE
+        " hi Folded        ctermbg=4 guibg=Blue
+        " hi FoldColumn    ctermbg=7
+        " hi DiffAdd       guibg=Blue
+        " hi DiffChange    guibg=Magenta
+        " hi DiffDelete    guibg=Cyan
+        " hi Normal        guifg=Gray guibg=Black
+        " hi Cursor        guibg=White
+        " hi lCursor       guibg=White
+        " hi Comment       guifg=Cyan
+        " hi Constant      guifg=Magenta
+        " hi Special       guifg=Red
+        " hi Identifier    guifg=Cyan
+        " hi Statement     guifg=Yellow
+        " hi PreProc       guifg=Blue
+        " hi Type          guifg=Green
+        " hi Underlined    guifg=Blue
+        " hi Todo          guifg=Black
+        "
+        "--------------------------------------------------------------------------------- 
+        " if {
+        "         map             <S-F11>         :ShowHighlightGroup<CR>
+        "         "-show-syntax-stack under cursor
+        "         map             <C-F11>         :ShowSyntaxStack<CR>
+        "    }
 
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
-"--------------------------------------------------------------------------------------------------------------
-" autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r <CR>
-" autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r && ./%:r <CR>
-" autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r && gdb -tui %:r <CR>
-"--------------------------------------------------------------------------------------------------------------
+        hi VariableType ctermbg=LightYellow
+        hi VariableType ctermfg=brown
+        hi VarName ctermfg=darkblue
+
+        "------------------------------------------------------------------------------------------------------
+        " autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r <CR>
+        " autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r && ./%:r <CR>
+        " autocmd filetype cpp nnoremap <F7> :!g++ % -ggdb -o %:r && gdb -tui %:r <CR>
+        "------------------------------------------------------------------------------------------------------
 
 
-" Java {{{
+"-Java-{{{
         augroup ft_java
                 au!
                 au FileType java setlocal foldmethod=marker
@@ -132,6 +134,4 @@ au VimLeave * :call MakeSession()
                 autocmd!
                 autocmd FileType vim call s:vimscript()
         augroup END
-
-
-" }}}
+"-}}}

@@ -112,17 +112,18 @@
         set cursorcolumn
         let w:persistent_cursorline = 1
         "hi Search                      ctermbg=10
-        hi Pmenue                      ctermbg=16
-        hi Pmenue                      ctermfg=11
-        hi CursorLine                  ctermbg=16
-        hi CursorColumn                ctermbg=16
-        hi ColorColumn                 ctermbg=25
-        hi ColorColumn                 ctermbg=52
+                hi Pmenue                      ctermbg=16
+                hi Pmenue                      ctermfg=11
+                hi CursorLine                  ctermbg=16
+                hi CursorColumn                ctermbg=16
+                hi ColorColumn                 ctermbg=25
+                hi ColorColumn                 ctermbg=126
+                hi ColorColumn                 ctermbg=133
         set colorcolumn=1,8,92,100,112,120
-        hi LineNr ctermfg=1 ctermbg=123 
-        hi Normal  ctermbg=235
-        let g:indentLine_color_term = 133
-        set nuw =5
+                                hi LineNr ctermfg=1 ctermbg=123 
+                                hi Normal  ctermbg=235
+                                let g:indentLine_color_term = 133
+                                set nuw =5
         "highlight Cursor ctermbg=1 term= bold
 "-TOP-------------------------------------------------------------------------------------------------------------------
         "brackets show match
@@ -193,17 +194,17 @@
 " highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
 " highlight DiffChange        cterm=bold ctermbg=11 ctermfg=227
 
- highlight DiffChange        cterm=bold ctermbg=10 "greenBright
- highlight DiffChange        cterm=bold ctermbg=9 "red
- highlight DiffChange        cterm=bold ctermbg=8 "gray
- highlight DiffChange        cterm=bold ctermbg=7 "red
+        highlight DiffChange        cterm=bold ctermbg=10 "greenBright
+        highlight DiffChange        cterm=bold ctermbg=9 "red
+        highlight DiffChange        cterm=bold ctermbg=8 "gray
+        highlight DiffChange        cterm=bold ctermbg=7 "red
 
- set laststatus=2
+        set laststatus=2
 
 
 "-TOP-------------------------------------------------------------------------------------------------------------------
 "  ---------------------------------+------------------------------------------
-"  Mapping                          | Description                              ~
+"  Mapping                          | Description                              
 "  ---------------------------------+------------------------------------------
 "  <plug>(fzf-maps-n)               | Normal mode mappings
 "  <plug>(fzf-maps-i)               | Insert mode mappings

@@ -1,10 +1,14 @@
 "-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix10-"-""-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+ " File: ninitOkt18.vim
+ " Author: yourname
+ " Description: 
+ " Last Modified: November 12, 2018       "---------------------
 "-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
         "set runtimepath+=~/.vim/plugged/vimproc/
         set path+=.,/usr/include,/usr/local/include
         set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
         let s:thesaurus_pat = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
-        set dictionary=/home/red/git/aTest/dotFiles/DICT/english-words.txt
+        set dictionary+=/home/red/git/aTest/dotFiles/DICT/english-words.txt
         set shell=/bin/bash
         set nocompatible
         set nospell
@@ -29,8 +33,67 @@
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
         syntax on
         syntax enable
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
+        set hidden
+
+"-"-"-Petrov-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
+        "Hard-wrap paragraphs of text
+        nnoremap <leader>qp gqip
+
+        "Shortcut to fold tags with leader (usually \) + ft
+        nnoremap <leader>ft Vatzf
+
+        "Opens a vertical split and switches over (\v)
+        nnoremap <leader>v <C-w>v<C-w>l
+
+
+        "Set up an HTML5 template for all new .html files
+        "autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+
+        "Map a change directory to the desktop - Mac specific
+        nmap <leader>d :cd ~/Desktop<cr>:e.<cr>
+
+        "Change zen coding plugin expansion key to shift + e
+        " let g:user_zen_expandabbr_key = '<C-e>'
+
+
+        "----------------------------------------------------------------------------------
+        "http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+        " set completeopt=longest,menuone
+        " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+        " inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+        "                         \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+        " inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+        "                         \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+        "----------------------------------------------------------------------------------
+
+        "Delete all buffers (via Derek Wyatt)
+        nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
+
+
+        " Source the vimrc file after saving it. This way, you don't have to reload Vim to see the changes.
+        " if has("autocmd")
+        "         augroup myvimrchooks
+        "                 au!
+        "                 autocmd bufwritepost .vimrc source ~/.vimrc
+        "         augroup END
+        " endif
+
+
+
+        " Alphabetically sort CSS properties in file with :SortCSS
+        :command! SortCSS :g#\({\n\)\@<=#.,/}/sort
+
+        " Shortcut to opening a virtual split to right of current pane
+        " Makes more sense than opening to the left
+        nmap <leader>bv :bel vsp
+
+        "-show matching brackets
+        "set showmatch
+
+        "-print empty <a> tag
+        map! ;h <a href=""></a><ESC>5hi
+
+"-"-"-Petrov-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
 
 "-AAA0-Tags-BackUp------------------------------------------------------------------------------------------{{{
         " Ctags {
@@ -94,8 +157,8 @@
         cnoremap <C-E> <End>
         cnoremap <C-d> <Del>
         "------------------------------------
-        nnoremap <C-P> <Up>
-        nnoremap <C-N> <Down>
+        nnoremap <C-N> <Up>
+        nnoremap <C-P> <Down>
         nnoremap Q q
         "Underline the current line with '-'
         nmap <silent> <leader>- :t.<CR>Vr-
@@ -133,6 +196,7 @@
         silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
         silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
         set splitbelow splitright
+
         "-AAA2.1-Extra vi-compatibility---------------------------------------------------------{{{
                 set switchbuf=useopen    " reveal already opened files from the
                 set formatoptions-=o     " don't start new lines w/ com leader on press 'o'
@@ -199,6 +263,8 @@
         "-Command line history
         set history=4024
         "-Visual shifting (does not exit Visual mode)
+        nnoremap > v>
+        nnoremap < v<
         vnoremap < <gv
         vnoremap > >gv
         "-Allow using the repeat operator with a visual selection (!)
@@ -221,9 +287,6 @@
         nnoremap ( <c-x>:y x\|@x<cr>
         nnoremap ) <c-a>:y x\|@x<cr>
 
-        set list
-        set listchars=tab:▸\
-        "set listchars=tab:›\ ,trail:•,extends:#,nbsp:. set listchars=tab:▸\ ,eol:¬,trail:⋅
 
         " Show syntax highlighting groups for word under cursor
         nmap <F4> :call <SID>SynStack()<CR>
@@ -295,69 +358,111 @@
 "-4CScope-}}}
 
 "-AAA5Ulty--NeoSnippet--Ctrl-B--Expander0------------------------------------------------------------------{{{
-        set runtimepath+=~/.config/nvim/plugged/neosnippet.vim/
-        set runtimepath+=~/.config/nvim/plugged/neosnippet-snippets/
-        "----------
-        let g:UltiSnipsExpandTrigger="<C-c>"
-        "----------
-        inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-        "?-inoremap <expr><c-g> deoplete#undo_completion()
-        "?-inoremap <expr><C-l>     deoplete#refresh()
-        "----------
-        imap <C-b>    <Plug>(neosnippet_expand_or_jump)
-        smap <C-b>    <Plug>(neosnippet_expand_or_jump)
-        xmap <C-b>    <Plug>(neosnippet_expand_target)
-        "----------
+        "-!!!-Insert completion-!!!---------
+        silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
+        "-----------------------------------
+        set complete=.,w,b,t,i,u,k       " completion buffers
+        "            | | | | | | |
+        "            | | | | | | `-dict
+        "            | | | | | `-unloaded buffers
+        "            | | | | `-include files
+        "            | | | `-tags
+        "            | | `-other loaded buffers
+        "            | `-windows buffers
+        "            `-the current buffer
+        set complete=.,w,b,t,u,k
+        "------------------------------------
+        set completeopt=preview,menuone
+        set completeopt=longest,menuone
+        "------------------------------------
         "inoremap <silent> <C-]> <C-x><C-]>
         "inoremap <silent> <C-u> <C-x><C-u>
-        "-------------------------
+        "------------------------------------
+        set omnifunc=syntaxcomplete#Complete
+        "------------------------------------
         inoremap <silent> <C-o> <C-x><C-o>
         inoremap <silent> <C-k> <C-x><C-k>
         inoremap <silent> <C-d> <C-x><C-d>
         inoremap <silent> <C-f> <C-x><C-f>
         inoremap <silent> <C-l> <C-x><C-l>
-        "----Poligon1---------------------
+        "------------------------------------
+        "-Map code completion to , + tab
+        " imap <leader><tab> <C-x><C-o>
+        "-------------------------------------------------------------
 
-        "----EndPoligon1------------------
-        let g:snipMate = get(g:, 'snipMate', {}) " Allow for vimrc re-sourcing
+
+        "-------------------------------------------------------------
+        set runtimepath+=~/.config/nvim/plugged/neosnippet.vim/
+        set runtimepath+=~/.config/nvim/plugged/neosnippet-snippets/
+        "--------------Ulti-Expander----------------------------------
+        let g:UltiSnipsListSnippets="<C-g>"    "-WAU-
+        let g:UltiSnipsExpandTrigger="<C-c>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        "let g:UltiSnipsJumpBackwardTrigger="<C-q>"
+  
+        "-------------------------------------------------------------
+        function! UltiSnipsCallUnite()
+                Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
+                return ''
+        endfunction
+
+        inoremap <silent> <F10> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+        nnoremap <silent> <F10> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+
+
+
+        "=============================================================
+        inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+        "=============================================================
+        let g:neosnippet#enable_snipmate_compatibility = 1
+        let g:AutoPairsMapCR=0
+        "--------------Neo-Expander-----------------------------------
+        imap <C-s>  <Plug>(neosnippet_start_unite_snippet) "-WAU
+        imap <C-b>    <Plug>(neosnippet_expand_or_jump)
+        smap <C-b>    <Plug>(neosnippet_expand_or_jump)
+        xmap <C-b>    <Plug>(neosnippet_expand_target)
+        
+        "=============================================================
+        "-------------Mate-Expander-???-list-show---------------------
+        let g:snipMate = get(g:, 'snipMate', {}) "-Allow vimrc re-sourcing
         let g:snipMate.scope_aliases = {}
         let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
-        "----------
-        imap <C-v> <Plug>snipMateNextOrTrigger
-        smap <C-v> <Plug>snipMateNextOrTrigger
-        inoremap <silent> <Plug>snipMateNextOrTrigger  <C-v>=snipMate#TriggerSnippet()<CR>
-        snoremap <silent> <Plug>snipMateNextOrTrigger  <Esc>a<C-v>=snipMate#TriggerSnippet()<CR>
-        inoremap <silent> <Plug>snipMateTrigger        <C-v>=snipMate#TriggerSnippet(1)<CR>
-        inoremap <silent> <Plug>snipMateBack           <C-v>=snipMate#BackwardsSnippet()<CR>
-        snoremap <silent> <Plug>snipMateBack           <Esc>a<C-v>=snipMate#BackwardsSnippet()<CR>
-        inoremap <silent> <Plug>snipMateShow           <C-v>=snipMate#ShowAvailableSnips()<CR>
-        xnoremap <silent> <Plug>snipMateVisual         :<C-U>call <SID>grab_visual()<CR>gv"_c
-        "----------
-        "let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
-        let g:neocomplete#enable_at_startup = 1
-        let g:neocomplete#enable_auto_select = 1
-        let g:neocomplete#enable_smart_case = 1
-        let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
-        let g:neocomplete#enable_fuzzy_completion = 1
-        let g:neocomplete#auto_completion_start_length = 2 "-www
+        "-------------------------------------------------------------
+        " let g:?????-Snip???ListSnippets="<C-g>"    "-WAU
+        " inoremap <silent> <Plug>snipMateShow  <C-q>=snipMate#ShowAvailableSnips()<CR>
+        " let g:snipMateShow="<C-q>"
+        "-------------------------------------------------------------
+        imap <C-v> <Plug>snipMateShow 
+        smap <C-v> <Plug>snipMateShow 
+        imap <C-q> <Plug>snipMateNextOrTrigger
+        smap <C-q> <Plug>snipMateNextOrTrigger
 
-        "------------------------------------------------------------------------------------------
-        "!-Expander6-nice- nnoremap <silent> ;n i<c-r>=neosnippet#expand('func')<cr>
-        "!-set completeopt=longest,menuone,preview
-        set completeopt=preview
-        set omnifunc=syntaxcomplete#Complete
+        fun! GetSnipsInCurrentScope()
+                let snips = {}
+                for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
+                        call extend(snips, get(s:snippets, scope, {}), 'keep')
+                        call extend(snips, get(s:multi_snips, scope, {}), 'keep')
+                endfor
+                return snips
+        endf
+        
+        inoremap <silent> <C-F10> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=GetSnipsInCurrentScope()<CR>
+        nnoremap <silent> <C-F10> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=GetSnipsInCurrentScope()<CR>
+        "echo keys(GetSnipsInCurrentScope())
 
-        "-Deoplete---------------------------------------------------------------------------------
-        set pumheight=15
+        " inoremap <silent> <Plug>snipMateNextOrTrigger  <C-v>=snipMate#TriggerSnippet()<CR>
+        " snoremap <silent> <Plug>snipMateNextOrTrigger  <Esc>a<C-v>=snipMate#TriggerSnippet()<CR>
+        " inoremap <silent> <Plug>snipMateTrigger        <C-v>=snipMate#TriggerSnippet(1)<CR>
+        " inoremap <silent> <Plug>snipMateBack           <C-v>=snipMate#BackwardsSnippet()<CR>
+        " xnoremap <silent> <Plug>snipMateVisual         :<C-U>call <SID>grab_visual()<CR>gv"_c
+        "==========================================================
+        set pumheight=12
         hi Pmenu  ctermfg=202 ctermbg=14
         hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
         hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
-        "----------------------------------------------------------
-        "?-inoremap <silent><CR>       <C-r>=pumvisible()?"\<lt>C-y>":"\<lt>CR>"<CR>  "--Auto Open/Close popup
-        "let g:deoplete#sources#syntax#min_keyword_length=2 "-www
-        let g:deoplete#omni#functions = {}
-        let g:deoplete#sources = {}
+        "-Deoplete---------------------------------------------------------------------------------
         "----Poligon2----------------
+        
 
 
         "----EndPoligon2-------------
@@ -365,43 +470,34 @@
         call deoplete#custom#option('refresh_always', v:true)
         call deoplete#custom#source('neosnippet',    'mark', 'Neo')
         call deoplete#custom#source('ultisnips',     'mark', 'Ult')
-        call deoplete#custom#source('snipmate',      'mark', 'Spm')
+        call deoplete#custom#source('snipmate',      'mark', 'Snpm')
         call deoplete#custom#source('vim',           'mark', 'Vim')
         call deoplete#custom#source('omni',          'mark', '⌾')
         call deoplete#custom#source('buffer',        'mark', 'ℬ')
         call deoplete#custom#source('syntax',        'mark', '♯')
-        call deoplete#custom#source('dictionary',    'mark', 'Dct')
+        "call deoplete#custom#source('dictionary',   'mark', 'Dct')
         call deoplete#custom#source('tag',           'mark', '⌦')
         call deoplete#custom#source('TernJS',        'mark', 'Trn')
         call deoplete#custom#source('jedi',          'mark', 'Jdi')
         call deoplete#custom#source('around',        'mark', '↻')
-        call deoplete#custom#source('member', 'mark', 'Mbr')
-        "----------
+        call deoplete#custom#source('member',        'mark', 'Mbr')
+        "------------------------------------------------------------------------------------------
         let g:deoplete#enable_ignore_case = 1
         let g:deoplete#enable_smart_case = 1
         let g:deoplete#enable_camel_case = 1
         let g:deoplete#enable_refresh_always = 1
         let g:deoplete#max_abbr_width = 0
         let g:deoplete#max_menu_width = 0
-        "----------
-        " Plugin key-mappings.
         "------------------------------------------------------------------------------------------
-        call deoplete#custom#option('sources', {
-                                \ 'tex' : ['buffer', 'dictionary', 'file', 'omni']
-                                \})
-        "------------------------------------------------------------------------------------------
-        call deoplete#custom#source('omni', 'input_patterns', {
-                                        \ 'tex' : '\\(?:'
-                                        \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-                                        \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                                        \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-                                        \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-                                        \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-                                        \ . '|\w*'
-                                        \ .')',
-                                    \}
-                                \)
-        "------------------------------------------------------------------------------------------
+        "let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
+        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#enable_auto_select = 1
+        let g:neocomplete#enable_smart_case = 1
+        let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
+        let g:neocomplete#enable_fuzzy_completion = 1
+        let g:neocomplete#auto_completion_start_length = 2 "-www
+        inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
+        "inoremap <expr> <C-e> neocomplete#cancel_popup()
 "-6Deoplete-}}}
 
 "-AAA7-Ag--CtrlP--Unite--------------------------------------------------------------------------------------{{{
@@ -523,6 +619,11 @@
         "-Unfuck--my--screen-
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
+
+        "Spelling corrects. Just for example. Add yours below.
+        iab teh the
+        iab Teh The
+
         abb dlin "==================================================================================
         abb alin "AAA--------------------------------------------------------------------------------
         iabbrev yyy "---------------------------------------------------------------------------------
@@ -557,7 +658,6 @@
 "-9Abbr-}}}
 
 "-AAA10--Jump-----------------------------------------------------------------------------------------------{{{
-        set hidden
         set cinoptions=N-s,g0,+2s,l-s,i2s
         "------------------------------------------------------------------------------------------
         nnoremap <m-right> :vertical resize +3<cr>
@@ -801,6 +901,9 @@
                 execute ":e ".l:line
         endfunction
         command! -nargs=1 Find :call Find("<args>")
+
+        "------------------------------------------------------------------------------------------
+        set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
         "------------------------------------------------------------------------------------------
         "         function! MakeSession()
         "                 let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
@@ -829,6 +932,8 @@
 "-AAA13-NERD-Tree-------------------------------------------------------------------------------------------{{{
         noremap  <F3> :NERDTreeToggle<cr>
         inoremap <F3> <esc>:NERDTreeToggle<cr>
+        "Show hidden files in NerdTree
+        let NERDTreeShowHidden=1
 
         augroup ps_nerdtree
                 au!
@@ -895,26 +1000,26 @@
                  endif
          endfunction
         "------------------------------------------------------------------------------------------
-         augroup ft_diff
-             au!
-             " autocmd FileType diff setlocal foldmethod=expr
-             autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
-         augroup END
-         " See :help DiffOrig
-                command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
-         " Diffget/diffput in visual mode
-                vmap            dg             :diffget<CR>
-                vmap            dp             :diffput<CR>
-         " diff-diff-diff
-                nnoremap <silent> <expr> <leader>d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
-         " Diffoff-Diffoff
-                nnoremap do :diffoff!<cr>
-         " diffoff used to set wrap as a side effect
-                command! Diffoff        diffoff | setlocal nowrap
+        augroup ft_diff
+                au!
+                " autocmd FileType diff setlocal foldmethod=expr
+                autocmd FileType diff setlocal foldexpr=DiffFoldLevel()
+        augroup END
+        " See :help DiffOrig
+        command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis \ | wincmd p | diffthis
+        " Diffget/diffput in visual mode
+        vmap            dg             :diffget<CR>
+        vmap            dp             :diffput<CR>
+        " diff-diff-diff
+        nnoremap <silent> <expr> <leader>d ":\<C-u>".(&diff?"diffoff":"diffthis")."\<CR>"
+        " Diffoff-Diffoff
+        nnoremap do :diffoff!<cr>
+        " diffoff used to set wrap as a side effect
+        command! Diffoff        diffoff | setlocal nowrap
 "-15Diff-}}}
 
 "-AAA16-SyntasticCheck--------------------------------------------------------------------------------------{{{
-        noremap <C-F10> :SyntasticCheck<CR>
+        "noremap <C-F10> :SyntasticCheck<CR>
         let g:syntastic_always_populate_loc_list = 1
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
@@ -950,7 +1055,7 @@
                 execute s:cmd
                 redraw!
         endfunction
-        map <F10> :call OnlineDoc8()<CR>
+        "map <F10> :call OnlineDoc8()<CR>
         "------------------------------------------------------------------------------------------
         function! OpenUrlUnderCursor()
                 let path="/Applications/Safari.app"
@@ -975,9 +1080,6 @@
         highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
 "-}}}
 "-AAA18-Cyan------------------------------------------------------------------------------------------------{{{
-         let g:indent_guides_enable_on_vim_startup = 1
-         autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=19
-         "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
         "------------------------------------------------------------------------------------------
         " highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
         " highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
@@ -1001,38 +1103,47 @@
                 set tabpagemax=15
                 set cursorline
                 set cursorcolumn
-        let w:persistent_cursorline = 1
-        "hi Search                  ctermbg=10
-        hi CursorLine                  ctermbg=8
-        hi CursorColumn                ctermbg=8
-        hi ColorColumn                 ctermbg=4
-        set colorcolumn=1,8,92,100,112,120
-        hi LineNr ctermfg=5 ctermbg=184 
-        hi Normal  ctermbg=236
-        "hi Visual        guifg=NONE guibg=NONE
-        highlight Visual cterm=bold ctermbg=2 ctermfg=NONE
-        let g:indentLine_color_term = 133
-        set nuw =5
+                let w:persistent_cursorline = 1
+        hi Search  ctermbg=11 ctermfg=9 term= bold
+                hi CursorLine                  ctermbg=8
+                hi CursorColumn                ctermbg=8
+                hi ColorColumn                 ctermbg=9
+                set colorcolumn=1,8,92,100,112,120
+        "hi Visual guifg=NONE guibg=NONE
+        "hi LineNr ctermfg=5 ctermbg=184 
+                hi LineNr ctermfg=5 ctermbg=14 
+                hi Normal  ctermbg=236
+                highlight Visual cterm=bold ctermbg=2 ctermfg=NONE
+                "set listchars=tab:›\ ,trail:•,extends:#,nbsp:. set listchars=tab:▸\ ,eol:¬,trail:⋅
+                "let g:indentLine_leadingSpaceChar = '.'
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=9 
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
         highlight Cursor ctermbg=2 term= bold
         hi Comment         ctermfg=14
         hi Number          ctermfg=12
+        set nuw =5
+        "-------------------------------------------------------------------------------
+        au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
+        set ut=30
 "-18Cyan-}}}
+
 "-AAA19-Airline---------------------------------------------------------------------------------------------{{{
-        let g:airline_theme='powerlineish'
-        "--Airline------------------------------
+        "let g:airline_theme='light' "Light-is-das-was-war??
+        " let g:airline_theme='powerlineish'
+        " let g:airline_theme='solarized'
+        " let g:airline_theme='badwolf'
+        let g:airline_theme='light' "Light-is-das-was-war??
+        "-------------------------------------------------------------------------------
         let g:ctags_statusline=1
         let generate_tags=1
-        set noshowmode
+        "set noshowmode
         set showmode            "-Display the current mode
-        set showcmd             "-Show partial commands in status line and
+        set showcmd             "-Show partial commands in status line 
         "-------------------------------------------------------------------------------
         let g:airline#extensions#tabline#enabled = 2
         let g:airline#extensions#tabline#fnamemod = ':t'
         let g:airline#extensions#tabline#buffer_min_count = 1
         let g:airline_section_c = '%{strftime("%D - %H:%M")}'
-        "let g:airline_theme='powerlineish'
-        "let g:airline_theme='solarized'
-        let g:airline_theme='light'
         let g:airline_powerline_fonts=1
         let g:airline#extensions#branch#enabled=1
         let g:airline#extensions#whitespace#enabled = 1
@@ -1041,10 +1152,6 @@
         hi statusline ctermbg=Cyan ctermfg=Black  cterm=bold
         hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
         hi signcolumn  ctermbg=15
-        "-----------------------------------------------------------
-        hi VariableType ctermbg=LightYellow
-        hi VariableType ctermfg=brown
-        hi VarName ctermfg=darkblue
         "-----------------------------------------------------------
         if &term =~ "xterm\\|rxvt"
                 "use an orange cursor in insert mode
@@ -1059,6 +1166,7 @@
 "-19-}}}
 
 "-AAA20-Wildmenu--------------------------------------------------------------------------------------------{{{
+        " More useful command-line completion
         au FocusLost * :silent! wall     "Save when losing focus
         set wildmenu
         set wildmode=list:longest
@@ -1094,8 +1202,8 @@
         nnoremap <m-j> :bn<cr>
         nnoremap <m-k> :bp<cr>
         "-SCROLL-----------------------------------------------------------------------------------
-        noremap <expr> <C-up> (line('w0') <= 1         ? 'k' : "\<C-y>")
-        noremap <expr> <C-down> (line('w$') >= line('$') ? 'j' : "\<C-e>")
+        "! noremap <expr> <C-up> (line('w0') <= 1         ? 'k' : "\<C-y>")
+        "! noremap <expr> <C-down> (line('w$') >= line('$') ? 'j' : "\<C-e>")
 
         "-Reselect last-pasted text----------------------------------------------------------------
         nnoremap gv `[v`]
@@ -1137,12 +1245,12 @@
         "CrossJoinUp"
         nmap <M-s> vas 
         nmap <M-p> vip 
-             nmap <M-o> vio 
-             nmap <M-i> vao 
+        nmap <M-o> vio 
+        nmap <M-i> vao 
         nmap <M-0> vib 
-             nmap <M-b> vaB 
+        nmap <M-b> vaB 
         nmap <M-9> vab 
-             nmap <M-q> viq 
+        nmap <M-q> viq 
         nmap <M-7> vif 
         nmap <M-8> vaf 
         "------------------------------------------------------------------------------------------ 
@@ -1162,7 +1270,6 @@
 
         "------------------------------------------------------------------------------------------
         noremap \\ #*
-        set complete=.,w,b,u,t,k
         "autocmd Syntax * exec('set dict=/usr/share/vim/syntax/' .expand('<amatch>') .'.vim')
         "------------------------------------------------------------------------------------------
         " use style keyword in 'thesaurus', thesaurus-style  i_CTRL-X_CTRL-T
@@ -1223,22 +1330,23 @@
                 exec "normal \<C-W>p" . move . "\<C-W>p"
         endfun
 
+       "----------------------------------------------------------------------------------- 
         nmap <silent> <C-M-Down> :call ScrollOtherWindow("down")<CR>
         nmap <silent> <C-M-Up> :call ScrollOtherWindow("up")<CR>
 
         " Shortcut for closing tags, default is '>'
-        "
         let g:closetag_shortcut = '>'
         let g:closetag_filenames = '*.vim,*.html,*.xhtml,*.phtml'
-        
+       "----------------------------------------------------------------------------------- 
         nnoremap ;d mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
+
         let g:AutoClosePairs = "() {} \""
         " add <angular brackets> and |pipes|
         let g:AutoClosePairs_add = "<> |"
         " don't close apostrophes
         let g:AutoClosePairs_del = "'"
         let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]
-        "-hallo-vim-QF----------------------
+        "-Hallo-Vim-QF------------------------
         nnoremap ;d mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
 
 
@@ -1288,6 +1396,22 @@
         "-  m/           Open location list and display marks from current buffer
 "-23-}}}
 
+        "*indentLine-config -!- Plugin ???
+                let g:indentLine_enabled = 1
+                let g:indent_guides_enable_on_vim_startup = 1
+                let g:indentLine_setColors = 0
+                let g:indentLine_color_term = 133  "-Odd-Even-???
+                " let g:indentLine_concealcursor = 'inc'
+                " let g:indentLine_conceallevel = 2
+                " none X terminal
+                let g:indentLine_color_tty_light = 7 " (default: 4)
+                let g:indentLine_color_dark = 1 " (default: 2)
+                let g:indentLine_leadingSpaceEnabled = 1
+                let g:indentLine_leadingSpaceChar = '·'
+                let g:indentLine_char = '│'
+
+                set list
+                set listchars=tab:▸\
 
 "AAA-----------------------------------------------------------------------------------------------------------
 " There never seem to be enough spare keys for maps.

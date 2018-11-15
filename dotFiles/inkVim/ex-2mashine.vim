@@ -244,6 +244,8 @@
                 endfor
         endfunction
         com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
+        "----------------------------------------------------------------------------------
+
 
         "----------------------------------------------------------------------------------
         function! s:ShowMaps()
@@ -785,6 +787,7 @@ iabbrev todo TODO
                 smap <C-b>    <Plug>(neosnippet_expand_or_jump)
                 xmap <C-b>    <Plug>(neosnippet_expand_target)
                 set omnifunc=syntaxcomplete#Complete
+
 
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         "inoremap <expr> <C-g> neocomplete#undo_completion()

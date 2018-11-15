@@ -198,8 +198,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
         Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'maxbrunsfeld/vim-yankstack'
         "-------------------------------------------------------------------------
+        Plug 'Yggdroot/indentLine'
+        Plug 'sonph/onehalf'
+        Plug 'Shougo/context_filetype.vim'
 call plug#end()
-
 "-------2EXPLORE---------------------------------------------------------------------------
         "Plug 'sonph/onehalf'
         "Plug 'duythinht/inori'
