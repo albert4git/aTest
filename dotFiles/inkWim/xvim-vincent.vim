@@ -1,0 +1,290 @@
+" VIM configuration
+" The original config comes from Vincent Jousse,
+" 99% modified by William Durand <will+git@drnd.me>.
+execute pathogen#infect()
+
+syntax on
+filetype plugin indent on
+
+" color scheme
+set background=dark
+let &t_Co=256
+let g:solarized_termcolors=256
+
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg = 'dark'
+set noshowmode
+
+if $ITERM_PROFILE == 'Presentation Mode' || $ITERM_PROFILE == 'White'
+    set background=light
+    let g:airline_solarized_bg = 'light'
+endif
+
+colorscheme solarized
+
+" map leader
+let mapleader = ","
+
+" Set title on X window
+set title
+
+" Global
+set hidden ruler wmnu               " Hide buffer instead of abandoning when unloading
+
+set wildmenu                        " Enhanced command line completion
+set wildmode=list:longest           " Complete files like a shell
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.xpm,*.pyc,*.pyo,*app/cache/**,*app/logs/**,*/zend/**,*/bootstrap.*.*
+
+" http://vim.wikia.com/wiki/FileName_Completion_in_Shell_Scripts
+set isfname-==
+
+set showcmd                         " Display incomplete commands
+
+set number                          " Show line numbers
+set ruler                           " Show cursor position
+
+set incsearch                       " Highlight matches as you type
+set hlsearch                        " Highlight matches
+set ignorecase                      " set case insensitivity
+set smartcase                       " unless there's a capital letter
+set wrap                            " Turn on line wrapping
+set scrolloff=3                     " Show 3 lines of context around the cursor
+
+set visualbell                      " No beeping
+set shortmess+=filmnrxoOtT          " abbrev. of messages (avoids 'hit enter')
+
+set nobackup                        " Don't make a backup before overwriting a file
+set nowritebackup                   " And again
+set noswapfile                      " Use an SCM instead of swap files
+
+set laststatus=2                    " Show the status line all the time
+
+set backspace=indent,eol,start      " http://vim.wikia.com/wiki/Backspace_and_delete_problems
+
+set expandtab
+set copyindent                      " copy the previous indentation on autoindenting
+set shiftround                      " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch                       " set show matching parenthesis
+set autoindent
+
+" use persistent undo
+let s:undoDir = "/tmp/.undodir_" . $USER
+if !isdirectory(s:undoDir)
+    call mkdir(s:undoDir, "", 0700)
+endif
+let &undodir=s:undoDir
+set undofile
+
+" http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+" F2 = toggle paste mode
+nnoremap <F2> :set invpaste paste?<Enter>
+imap <F2> <C-O><F2>
+set pastetoggle=<F2>
+
+" make the view port scroll faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+nnoremap <C-p> 3<C-p>
+
+" resize splitted views faster
+nnoremap <C-w>< 5<C-w><
+nnoremap <C-w>> 5<C-w>>
+
+" remap the marker char
+nnoremap ' `
+nnoremap ` '
+
+" command and search pattern history
+set history=10000
+
+" make plugins smoother
+set lazyredraw
+
+" always replace all occurences of a line
+set gdefault
+
+" Tabs and indentation
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+" convenient mapping to swith tab/indent settings
+nmap <leader>2 :set tabstop=2<cr>:set shiftwidth=2<cr>:set softtabstop=2<cr>
+nmap <leader>4 :set tabstop=4<cr>:set shiftwidth=4<cr>:set softtabstop=4<cr>
+
+" sudo to write
+command W w !sudo tee % > /dev/null
+
+" pull word under cursor into LHS of a substitute (for quick search and replace)
+nmap <leader>zs :%s/<C-r>=expand("<cword>")<CR>/
+
+" pull word under cursor into ag for a global search
+map <leader>za :Ag "<C-r>=expand("<cword>")<CR>"
+
+" start a substitute
+map <leader>s :%s/
+
+" ag
+nmap <leader>a :Ag<space>
+
+" clear search highlight
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <leader>/ :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+" GitGutter
+set signcolumn=yes
+" see: https://github.com/airblade/vim-gitgutter#faq
+highlight SignColumn        ctermbg=235
+highlight GitGutterAdd      guifg=#009900 guibg=NONE ctermfg=2 ctermbg=235
+highlight GitGutterChange   guifg=#bbbb00 guibg=NONE ctermfg=3 ctermbg=235
+highlight GitGutterDelete   guifg=#ff2222 guibg=NONE ctermfg=1 ctermbg=235
+
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
+" turn off that preview window that shows the issue body
+" see: https://github.com/tpope/vim-rhubarb
+set completeopt-=preview
+
+" When editing a file, always jump to the last known cursor position
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+" allow extended digraphs
+set encoding=utf-8
+
+" disable folding
+set nofoldenable
+
+" My information
+iab xdate <C-R>=strftime("%d/%m/%Y %H:%M:%S")
+iab xname <C-R> William Durand
+iab xsigp <C-R> William Durand <will+git@drnd.me>
+
+" snipMate
+let g:snips_author = 'William Durand <will+git@drnd.me>'
+
+" invisible character
+nmap <leader>l :set list!<CR>
+set listchars=nbsp:¤,tab:>-,trail:¤,extends:>,precedes:<,eol:¬,trail:·
+
+" highlight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" automatically remove trailing whitespace before write
+function! StripTrailingWhitespace()
+    normal mZ
+    %s/\s\+$//e
+    if line("'Z") != line(".")
+        echo "Stripped whitespace\n"
+    endif
+    normal `Z
+endfunction
+autocmd BufWritePre * :call StripTrailingWhitespace()
+
+" create directory if not exists
+au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
+function! <SID>MkdirsIfNotExists(directory)
+    if(!isdirectory(a:directory))
+        call system('mkdir -p '.shellescape(a:directory))
+    endif
+endfunction
+
+" do not auto insert comment chars on newline
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+
+" Gist
+let g:gist_clip_command    = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_post_private    = 1
+
+" ctrlp
+let g:ctrlp_map                 = '<leader>t'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_user_command        = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" make
+map <leader>m :make<cr>
+
+" Highlight words to avoid in tech writing
+" ========================================
+"
+"   http://css-tricks.com/words-avoid-educational-writing/
+"   https://github.com/pengwynn/dotfiles/blob/12159ea233180344be4e25d57056ccd37061a153/vim/vimrc.symlink
+"
+highlight TechWordsToAvoid ctermbg=red ctermfg=white
+match TechWordsToAvoid /\cobviously\|basically\|simply\|of course\|clearly\|just\|everyone knows\|however,\|so,\|easy\|assuming\|intuitively\|however/
+autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of course\|clearly\|just\|everyone knows\|however,\|so,\|easy\|assuming\|intuitively\|however/
+autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of course\|clearly\|just\|everyone knows\|however,\|so,\|easy\|assuming\|intuitively\|however/
+autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of course\|clearly\|just\|everyone knows\|however,\|so,\|easy\|assuming\|intuitively\|however/
+autocmd BufWinLeave * call clearmatches()
+
+" Clipboard
+set clipboard=unnamed
+
+" Read vim config defined in files
+set modeline
+set modelines=1
+
+" Format JSON
+map <leader>j !python -m json.tool<CR>
+
+" display vertical line
+if exists('&colorcolumn')
+    set colorcolumn=80
+endif
+
+" Highlight cursor line
+" https://github.com/chanmix51/vim-config/blob/master/vimrc
+autocmd insertEnter * set cursorline
+autocmd insertLeave * set nocursorline
+autocmd insertEnter *.yml set cursorcolumn
+autocmd insertLeave *.yml set nocursorcolumn
+
+" Always open files from quickfix window into new tab
+" http://stackoverflow.com/questions/6852763/vim-quickfix-list-launch-files-in-new-tab/6853779#6853779
+set switchbuf+=usetab,newtab
+
+" https://blog.hellojs.org/configure-vim-from-scratch-efe5cbc1c563
+" absolute width of netrw window
+let g:netrw_winsize = -28
+
+" tree-view
+let g:netrw_liststyle = 3
+
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" open file in a new tab
+let g:netrw_browse_split = 3
+
+" autoreload files on change (`u` can undo this)
+set autoread
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+" polyglot
+let g:polyglot_disabled = ['go']
+
+" go
+let g:go_auto_type_info = 1
+
+" copy filename to clipboard
+nnoremap <leader>cf :let @*=expand("%:p") \| :echo 'copied!'<CR>

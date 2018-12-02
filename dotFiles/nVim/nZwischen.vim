@@ -1,3 +1,143 @@
+
+        "------------------------------------------------------------------------------------------
+        "-Plugin: insearch + insearch-fuzzy
+        " map <Space>  <Plug>(incsearch-forward)
+         map /        <Plug>(incsearch-forward)
+        " map ?        <Plug>(incsearch-backward)
+        " map g/       <Plug>(incsearch-stay)
+        " map z<Space> <Plug>(incsearch-fuzzyspell-/)
+        " map z/       <Plug>(incsearch-fuzzyspell-/)
+        " map z?       <Plug>(incsearch-fuzzyspell-?)
+        " map zg/      <Plug>(incsearch-fuzzyspell-stay)
+
+
+        "???-:::-Execute VIM colon command under cursor with <⌘-e>
+        "nnoremap <D-e> yy:<C-r>"<backspace><cr>
+
+        "-Strip one layer of nesting
+        "nnoremap <LocalLeader>o [{mzjV]}k<]}dd`zdd
+
+
+        "------------------------------------------------------------------------------------------
+        " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+        " inoremap <expr> <C-e> neocomplete#cancel_popup()
+
+
+
+        " function! s:unite_settings()
+        "         let b:SuperTabDisabled=1
+        "         imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+        "         imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+        "         imap <silent><buffer><expr> <C-x> unite#do_action('split')
+        "         imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+        "         nmap <buffer> <ESC> <Plug>(unite_exit)
+        " endfunction
+
+        "---------1NEO-----------------------------------------------------------------------------
+        "" Enable omni completion.
+        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+        augroup CtrlPDirMRU
+                autocmd!
+                autocmd FileType * if &modifiable | execute 'silent CtrlPBookmarkDirAdd %:p:h' | endif
+        augroup END
+        ""------------------------------------------------------------------------------------------
+        "        nmap ra :<C-u>Ref alc<Space>
+        "        nmap rp :<C-u>Unite ref/phpmanual<Space>
+        "        nmap rr :<C-u>Unite renDoc18.vimf/refe<Space>
+        "        nmap ri :<C-u>Unite ref/ri<Space>
+        "        nmap rm :<C-u>Unite ref/man<Space>
+        "        nmap rp :<C-u>Unite ref/pydoc<Space>
+        ""------------------------------------------------------------------------------------------
+        " :NeoSnippetClearMarkers       
+        " :NeoSnippetSource [filename]
+        " :NeoSnippetMakeCache
+        " :NeoSnippetEdit
+
+
+        "-----------------------------------------------------------
+        if &term =~ "xterm\\|rxvt"
+                "use an orange cursor in insert mode
+                let &t_SI = "\<Esc>]12;orange\x7"
+                "use a red cursor otherwise
+                let &t_EI = "\<Esc>]12;cyan\x7"
+                silent !echo -ne "\033]12;green\007"
+                "reset cursor when vim exits
+                autocmd! VimLeave * silent !echo -ne "\033]112\007"
+                "use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
+        endif
+
+
+        "Hard-wrap paragraphs of text
+        nnoremap <leader>qp gqip
+
+        "Shortcut to fold tags with leader (usually \) + ft
+        nnoremap <leader>ft Vatzf
+
+        "Opens a vertical split and switches over (\v)
+        nnoremap <leader>v <C-w>v<C-w>l
+
+
+        "Set up an HTML5 template for all new .html files
+        "autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+
+        "Map a change directory to the desktop - Mac specific
+        nmap <leader>d :cd ~/Desktop<cr>:e.<cr>
+
+        "Change zen coding plugin expansion key to shift + e
+        " let g:user_zen_expandabbr_key = '<C-e>'
+
+
+        "----------------------------------------------------------------------------------
+        "http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+        " set completeopt=longest,menuone
+        " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+        " inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+        "                         \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+        " inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+        "                         \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+        "----------------------------------------------------------------------------------
+
+        "Delete all buffers (via Derek Wyatt)
+        nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
+
+
+        " Source the vimrc file after saving it. This way, you don't have to reload Vim to see the changes.
+        " if has("autocmd")
+        "         augroup myvimrchooks
+        "                 au!
+        "                 autocmd bufwritepost .vimrc source ~/.vimrc
+        "         augroup END
+        " endif
+
+
+
+        " Alphabetically sort CSS properties in file with :SortCSS
+        :command! SortCSS :g#\({\n\)\@<=#.,/}/sort
+
+        " Shortcut to opening a virtual split to right of current pane
+        " Makes more sense than opening to the left
+
+        nmap <leader>bv :bel vsp
+
+        "-show matching brackets
+        "set showmatch
+
+        "-print empty <a> tag
+        map! ;h <a href=""></a><ESC>5hi
+
+"-"-"-Petrov-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
+
+
+
+
+
+
         au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
         set ut=30
 

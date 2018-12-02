@@ -1,0 +1,6792 @@
+cscope 15 $HOME/git/aTest/dotFiles/nVim               0000034437
+	@nAlt.vim
+
+3 
+highlight
+ 
+SignCŞumn
+ 
+	gguibg
+=
+d¬kg»y
+
+
+4 
+highlight
+ 
+G™Gu‰”Add
+ 
+ù”mfg
+=
+g»’
+
+
+5 
+highlight
+ 
+G™Gu‰”Chªge
+ 
+ù”mfg
+=
+y–low
+
+
+6 
+highlight
+ 
+G™Gu‰”D–‘e
+ 
+ù”mfg
+=
+»d
+
+
+7 
+highlight
+ 
+G™Gu‰”ChªgeD–‘e
+ 
+ù”mfg
+=
+y–low
+
+
+9 
+nm­
+ ]
+c
+ <
+Plug
+>
+G™Gu‰”NextHunk
+
+
+10 
+nm­
+ [
+c
+ <
+Plug
+>
+G™Gu‰”P»vHunk
+
+
+11 
+nm­
+ <
+L—d”
+>
+hs
+ <
+Plug
+>
+G™Gu‰”SgeHunk
+
+
+12 
+nm­
+ <
+L—d”
+>
+hu
+ <
+Plug
+>
+G™Gu‰”UndoHunk
+
+
+18 !
+exi¡s
+('g:ycm_semantic_triggers')
+
+19 
+Ët
+ 
+g
+:
+ycm_£mªtic_Œigg”s
+ = {}
+
+20 
+’dif
+
+
+21 
+Ët
+ 
+g
+:
+EşimCom¶‘iÚM‘hod
+ = 'omnifunc'
+
+22 
+Ët
+ 
+g
+:
+ycm_key_li¡_£Ëù_com¶‘iÚ
+=[]
+
+23 
+Ët
+ 
+g
+:
+ycm_key_li¡_´evious_com¶‘iÚ
+=[]
+
+24 
+Ët
+ 
+g
+:
+ycm_key_švoke_com¶‘iÚ
+ = '<C-b>'
+
+25 "†‘ g:UÉiSnsEx·ndTrigg”="<
+C
+-
+l
+>"
+
+30 
+Ët
+ 
+g
+:
+UÉiSnsEx·ndTrigg”
+="<c-l>"
+
+31 
+Ët
+ 
+g
+:
+UÉiSnsJumpFÜw¬dTrigg”
+="<c-l>"
+
+32 
+Ët
+ 
+g
+:
+UÉiSnsJumpBackw¬dTrigg”
+="<c-m>"
+
+33 "Ëˆg:UÉiSnsEd™S¶™="
+v”tiÿl
+"
+
+35 
+£t
+ 
+wmh
+=0
+
+36 
+m­
+ <
+C
+-
+J
+> <C-
+W
+>
+j
+<C-W>
+_
+
+
+37 
+m­
+ <
+C
+-
+K
+> <C-
+W
+>
+k
+<C-W>
+_
+
+
+38 
+m­
+ <
+C
+-
+H
+> <C-
+W
+>
+h
+<C-W>|
+
+39 
+m­
+ <
+C
+-
+L
+> <C-
+W
+>
+l
+<C-W>|
+
+40 
+m­
+ <
+C
+-=> <C-
+W
+>=
+
+42 
+£t
+ 
+nu
+
+
+43 
+£t
+ 
+cf
+ " Enableƒrror files &ƒrror jumping.
+
+44 
+£t
+ 
+şbßrd
++=
+uÂamed
+
+
+45 
+£t
+ 
+hi¡Üy
+=2024
+
+46 
+£t
+ 
+autowr™e
+ " Writes on make/shell commands
+
+47 
+£t
+ 
+ruËr
+
+
+48 
+£t
+ 
+b¡İ
+=4
+
+49 
+£t
+ 
+soáb¡İ
+=4
+
+50 
+£t
+ 
+shiáwidth
+=4
+
+51 
+£t
+ 
+‹xtwidth
+=80
+
+52 
+£t
+ 
+sm¬‰ab
+
+
+53 
+£t
+ 
+ex·ndb
+
+
+54 
+£t
+ 
+sm¬tšd’t
+
+
+55 
+£t
+ 
+timeou’
+=250 " Timeo wait‡fter ESC (default causes‡n‡nnoying delay)
+
+56 
+£t
+ 
+guifÚt
+=
+MÚo¥aû
+\ 14
+
+57 
+£t
+ 
+cšwÜds
+=,,,do,,,
+
+60 
+£t
+ 
+	gm©
+=5 " Bracket blinking.
+
+61 
+£t
+ 
+visu®b–l
+
+
+62 
+£t
+ 
+Ï¡¡©us
+=2 " Always show status†ine.
+
+63 
+£t
+ 
+mou£
+=
+a
+ " Mouse in‡ll modes
+
+64 
+£t
+ 
+nobackup
+
+
+66 
+syÁax
+ 
+Ú
+
+
+67 
+cŞÜscheme
+ 
+de£¹
+
+
+68 
+cŞÜscheme
+ 
+rÚ
+
+
+69 
+cŞÜscheme
+ 
+d–ek
+
+
+70 
+syÁax
+ 
+’abË
+
+
+71 
+cŞÜscheme
+ 
+d¬kblue
+
+
+72 
+cŞÜscheme
+ 
+mŞokayo
+
+
+73 
+cŞÜscheme
+ 
+ªd”sÚ
+
+
+75 
+hi
+ 
+Comm’t
+ 
+ù”mfg
+=
+D¬kG»y
+ 
+guifg
+=
+G»y
+
+
+76 
+hi
+ 
+¡©u¦še
+ 
+guibg
+=
+O¿nge
+ 
+guifg
+=#0000AA
+
+77 
+hi
+ 
+S—rch
+ 
+guibg
+=
+O¿nge
+
+
+78 
+hi
+ 
+¡©u¦še
+ 
+guibg
+=
+g»’
+
+
+80 
+£t
+ 
+back¥aû
+=
+šd’t
+,
+	geŞ
+,
+	g¡¬t
+ " Backspace for dummies
+
+81 
+£t
+ 
+	glše¥aû
+=0 " Noƒxtra spaces between„ows
+
+82 
+£t
+ 
+numb”
+ " Line‚umbers on
+
+83 
+£t
+ 
+showm©ch
+ " Show matching brackets/parenthesis
+
+84 
+£t
+ 
+šc£¬ch
+ " Find‡s youype search
+
+85 
+£t
+ 
+hl£¬ch
+ " Highlight searcherms
+
+86 
+£t
+ 
+wšmšheight
+=0 " Windows can be 0†ine high
+
+87 
+£t
+ 
+ignÜeÿ£
+ " Case insensitive search
+
+88 
+£t
+ 
+sm¬tÿ£
+ " Case sensitive when uc…resent
+
+89 
+£t
+ 
+wdm’u
+ " Show†ist instead of just completing
+
+90 
+£t
+ 
+wdmode
+=
+li¡
+:
+lÚge¡
+,
+	gfuÎ
+ " Command <Tab> completion,†ist matches,hen†ongest common…art,hen‡ll.
+
+91 
+£t
+ 
+	gwhichw¿p
+=
+b
+,
+	gs
+,
+	gh
+,
+	gl
+,<,>,[,] " Backspace‡nd cursor keys wrapoo
+
+92 
+£t
+ 
+	gsüŞljump
+=5 " Lineso scroll when cursor†eaves screen
+
+93 
+£t
+ 
+süŞloff
+=3 " Minimum†ineso keep‡bove‡nd below cursor
+
+94 
+£t
+ 
+fŞd’abË
+ " Auto fold code
+
+95 
+£t
+ 
+li¡
+
+
+96 
+£t
+ 
+now¿p
+ " Do‚ot wrap†ong†ines
+
+97 
+£t
+ 
+autošd’t
+ " Indent‡the same†evel ofhe…revious†ine
+
+98 
+£t
+ 
+shiáwidth
+=4 " Use indents of 4 spaces
+
+99 
+£t
+ 
+ex·ndb
+ " Tabs‡re spaces,‚otabs
+
+100 
+£t
+ 
+b¡İ
+=4 " An indentationƒvery four columns
+
+101 
+£t
+ 
+soáb¡İ
+=4 " Let backspace delete indent
+
+102 
+£t
+ 
+cšd’t
+
+
+103 
+£t
+ 
+nojoš¥aûs
+ " Prevents insertingwo spaces‡fter…unctuation on‡ join (J)
+
+104 
+£t
+ 
+¥l™right
+ " Puts‚ew vsplit windowsohe„ight ofhe current
+
+105 
+£t
+ 
+¥l™b–ow
+ " Puts‚ew split windowsohe bottom ofhe current
+
+106 
+£t
+ 
+m©ch·œs
++=<:> " Match,o be used with %
+
+107 
+£t
+ 
+·¡‘oggË
+=<
+F12
+> "…astetoggle (sane indentation on…astes)
+
+108 
+£t
+ 
+li¡ch¬s
+=
+b
+:â€º\ ,
+	gŒa
+:â€¢,
+	gex‹nds
+:#,
+nb¥
+:. " Highlight…roblematic whitespace
+
+110 
+£t
+ 
+cursÜlše
+
+
+111 
+highlight
+ 
+CursÜLše
+ 
+ù”m
+=
+bŞd
+ 
+‹rm
+=bŞd 
+guibg
+=
+BÏck
+ 
+ù”mbg
+=Black
+
+112 
+£t
+ 
+cursÜlše
+
+
+115 
+hi
+ 
+¡©u¦še
+ 
+guibg
+=
+Wh™e
+ 
+guifg
+=
+D¬kBlue
+
+
+116 
+hi
+ 
+¡©u¦še
+ 
+ù”mbg
+=
+Wh™e
+ 
+ù”mfg
+=
+D¬kBlue
+
+
+117 
+hi
+ 
+StusLše
+ 
+ù”mfg
+=5 
+ù”mbg
+=4 
+ù”m
+=
+NONE
+
+
+118 
+hi
+ 
+StusLšeNC
+ 
+ù”mfg
+=6 
+ù”mbg
+=3 
+ù”m
+=
+NONE
+
+
+119 
+hi
+ 
+¡©u¦še
+ 
+ù”mfg
+=
+Wh™e
+
+
+120 
+hi
+ 
+StusLše
+ 
+ù”m
+=
+bŞd
+
+
+121 
+hi
+ 
+¡©u¦šeNC
+ 
+ù”mfg
+=
+Wh™e
+
+
+123 
+£t
+ 
+¡©u¦še
+=[%02
+n
+]\ %
+f
+\ %(\[%
+M
+%
+R
+%
+H
+]%)%=\ %4l,%02c%2
+	gV
+\ %
+	gP
+%*
+
+124 
+£t
+ 
+	g¡©u¦še
++=%#w¬nšgmsg#
+ 
+¡©u¦še
++=%{
+SyÁa¡icStu¦šeFÏg
+()}
+
+126 
+£t
+ 
+	g¡©u¦še
++=%*
+
+131 
+šÜem­
+ <
+ex´
+><
+TAB
+> 
+pumvisibË
+() ? "\<C-n>" :
+
+132 \ <
+SID
+>
+check_back_¥aû
+() ? "\<TAB>" :
+
+133 \ 
+Ãocom¶‘e
+#start_manual_complete()
+
+134 
+šÜem­
+ <
+S
+-
+TAB
+> <
+C
+-
+p
+>
+
+137 
+šÜem­
+ <
+s’t
+> <
+C
+-]> <C-
+x
+><C-]>
+
+138 
+šÜem­
+ <
+s’t
+> <
+C
+-
+o
+> <C-
+x
+><C-o>
+
+139 
+šÜem­
+ <
+s’t
+> <
+C
+-
+k
+> <C-
+x
+><C-k>
+
+140 
+šÜem­
+ <
+s’t
+> <
+C
+-
+d
+> <C-
+x
+><C-d>
+
+141 
+šÜem­
+ <
+s’t
+> <
+C
+-
+u
+> <C-
+x
+><C-u>
+
+142 
+šÜem­
+ <
+s’t
+> <
+C
+-
+f
+> <C-
+x
+><C-f>
+
+143 
+šÜem­
+ <
+s’t
+> <
+C
+-
+l
+> <C-
+x
+><C-l>
+
+145 
+f‘y³
+ 
+¶ugš
+ 
+Ú
+
+
+146 
+£t
+ 
+omnifunc
+=
+syÁaxcom¶‘e
+#Complete
+
+147 
+£t
+ 
+com¶‘e
+=.,
+	gw
+,
+	gb
+,
+	gu
+,
+	gt
+,
+	gk
+
+
+149 !
+exi¡s
+('g:neocomplete#sources#omni#input_patterns')
+
+150 
+Ët
+ 
+	gg
+:
+Ãocom¶‘e
+#sources#omni#input_patterns = {}
+
+151 
+’dif
+
+
+153 !
+exi¡s
+('g:neocomplete#force_omni_input_patterns')
+
+154 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#force_omni_input_patterns = {}
+
+155 
+’dif
+
+
+157 
+£t
+ 
+diùiÚ¬y
++=~/
+g™
+/
+aTe¡
+/
+»dVim
+/
+dikt
+/
+’glish
+-
+wÜds
+.
+txt
+
+
+164 
+Ët
+ 
+g
+:
+tq_mthe§ur_fe
+="~/git/aTest/redVim/dikt/mthesaur.txt"
+
+166 
+£t
+ 
+the§urus
+=
+mthe§ur
+.
+txt
+
+
+167 
+Ët
+ 
+s
+:
+the§urus_·t
+ = "~/git/aTest/redVim/dikt/.txt"
+
+	@nPlug.vim
+
+1 
+ÿÎ
+ 
+	g¶ug
+#begin()
+
+6 
+	gPlug
+ 'kien/ctrlp.vim'
+
+7 
+	gPlug
+ 'tpope/vim-unimpaired' " Handy bracket mappings.
+
+9 
+	gPlug
+ 'mtth/scratch.vim'
+
+11 
+	gPlug
+ 'tpope/vim-fugitive'
+
+12 
+	gPlug
+ 'Shougo/neosnippet.vim'
+
+13 
+	gPlug
+ 'Shougo/neosnippet-snippets'
+
+14 
+	gPlug
+ 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+16 
+	gPlug
+ 'vim-airline/vim-airline'
+
+17 
+	gPlug
+ 'vim-airline/vim-airline-themes'
+
+19 
+	gPlug
+ 'yssl/QFEnter'
+
+20 
+	gPlug
+ 'henrik/git-grep-vim'
+
+21 
+	gPlug
+ 'henrik/vim-qargs'
+
+22 
+	gPlug
+ 'mileszs/ack.vim'
+
+23 
+	gPlug
+ 'nathanaelkane/vim-indent-guides'
+
+24 
+	gPlug
+ 'vim-scripts/YankRing.vim'
+
+26 
+	gPlug
+ 'haya14busa/vim-easyoperator-line'
+
+27 
+	gPlug
+ 'easymotion/vim-easymotion'
+
+28 
+	gPlug
+ 'unblevable/quick-scope'
+
+36 
+	gPlug
+ 'saaguero/vim-textobj-pastedtext'
+
+37 
+	gPlug
+ 'reedes/vim-textobj-sentence'
+
+38 
+	gPlug
+ 'kana/vim-textobj-lastpat'
+
+39 
+	gPlug
+ 'kana/vim-textobj-function'
+
+40 
+	gPlug
+ 'kana/vim-textobj-fold'
+
+41 
+	gPlug
+ 'whatyouhide/vim-textobj-erb'
+
+42 
+	gPlug
+ 'kana/vim-textobj-entire'
+
+43 
+	gPlug
+ 'kana/vim-textobj-diff'
+
+44 
+	gPlug
+ 'Julian/vim-textobj-brace'
+
+45 
+	gPlug
+ 'deathlyfrantic/vim-textobj-blanklines'
+
+46 
+	gPlug
+ 'kana/vim-textobj-user'
+
+47 
+	gPlug
+ 'beloglazov/vim-textobj-quotes'
+
+48 
+	gPlug
+ 'kana/vim-textobj-line'
+
+49 
+	gPlug
+ 'glts/vim-textobj-indblock'
+
+50 
+	gPlug
+ 'Julian/vim-textobj-variable-segment'
+
+51 
+	gPlug
+ 'whatyouhide/vim-textobj-xmlattr'
+
+52 
+	gPlug
+ 'rsrchboy/vim-textobj-heredocs'
+
+53 
+	gPlug
+ 'gilligan/textobj-gitgutter'
+
+54 
+	gPlug
+ 'gergap/keystroke'
+
+56 
+	gPlug
+ 'michaeljsmith/vim-indent-object'
+
+57 
+	gPlug
+ 'vim-scripts/c.vim'
+
+58 
+	gPlug
+ 'romainl/vim-qf'
+
+59 
+	gPlug
+ 'sk1418/QFGrep'
+
+60 
+	gPlug
+ 'AndrewRadev/qftools.vim'
+
+61 
+	gPlug
+ 'itchyny/vim-qfedit'
+
+62 
+	gPlug
+ 'jceb/vim-editqf'
+
+64 
+	gPlug
+ 'killphi/vim-textobj-signify-hunk'
+
+65 
+	gPlug
+ 'kshenoy/vim-signature'
+
+66 
+	gPlug
+ 'flazz/vim-colorschemes'
+
+67 
+	gPlug
+ 'rafi/awesome-vim-colorschemes'
+
+68 
+	gPlug
+ 'Chun-Yang/vim-action-ag'
+
+69 
+	gPlug
+ 'rking/ag.vim'
+
+70 
+	gPlug
+ 'vim-scripts/ReplaceWithRegister'
+
+71 
+	gPlug
+ 'ludovicchabant/vim-gutentags'
+
+72 
+	gPlug
+ 'scrooloose/nerdtree'
+
+73 
+	gPlug
+ 'wincent/loupe'
+
+75 
+	gPlug
+ 'jremmen/vim-ripgrep'
+
+76 
+	gPlug
+ 'tpope/vim-commentary'
+
+77 
+	gPlug
+ 'tomtom/tcomment_vim'
+
+78 
+	gPlug
+ 'tpope/vim-abolish' " Extended‡bbreviation/substition.
+
+79 
+	gPlug
+ 'tpope/vim-repeat' " Intelligent„epeat with '.'
+
+80 
+	gPlug
+ 'tpope/vim-sleuth' " indet„eight ?
+
+82 
+	gPlug
+ 'burnettk/vim-angular'
+
+84 
+	gPlug
+ 'motemen/git-vim'
+
+85 
+	gPlug
+ 'nvie/vim-flake8'
+
+87 
+	gPlug
+ 'mbbill/undotree'
+
+88 
+	gPlug
+ 'Shougo/vimfiler.vim'
+
+89 
+	gPlug
+ 'vim-scripts/SearchComplete'
+
+91 
+	gPlug
+ 'thinca/vim-quickrun'
+
+92 
+	gPlug
+ 'brooth/far.vim'
+
+93 
+	gPlug
+ 'neomake/neomake'
+
+94 
+	gPlug
+ 'airblade/vim-gitgutter'
+
+95 
+	gPlug
+ '/wincent/command-t'
+
+96 
+	gPlug
+ 'dhruvasagar/vim-zoom'
+
+97 
+	gPlug
+ 'Shougo/vimshell.vim'
+
+98 
+	gPlug
+ 'majutsushi/tagbar'
+
+99 
+	gPlug
+ 'scrooloose/syntastic'
+
+100 
+	gPlug
+ 'tpope/vim-surround'
+
+101 
+	gPlug
+ 'w0rp/ale'
+
+103 
+	gPlug
+ 'roxma/nvim-completion-manager'
+
+104 
+	gPlug
+ 'Townk/vim-autoclose'
+
+106 
+	gPlug
+ 'tpope/vim-dispatch'
+
+107 
+	gPlug
+ 'nixprime/cpsm'
+
+108 
+	gPlug
+ 'roxma/nvim-yarp'
+
+109 
+	gPlug
+ 'roxma/vim-hug-neovim-rpc'
+
+111 
+	gPlug
+ 'balta2ar/deoplete-matcherkey'
+
+112 
+	gPlug
+ 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+
+113 
+Plug
+ 'zchee/deoplete-jedi'
+
+114 
+Plug
+ 'zchee/deoplete-clang'
+
+115 
+Ët
+ 
+g
+:
+deİË‹
+#enable_at_startup = 1
+
+116 
+Ët
+ 
+g
+:
+deİË‹
+#enable_smart_case = 1
+
+117 
+Plug
+ 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+
+118 
+Plug
+ 'duythinht/inori'
+
+120 
+Plug
+ 'tpope/vim-eunuch'
+
+121 
+Plug
+ 'rking/ag.vim'
+
+123 
+Plug
+ 'Shougo/neosnippet.vim'
+
+124 
+Plug
+ 'Shougo/neosnippet-snippets'
+
+125 
+Plug
+ 'honza/vim-snippets'
+
+126 
+Plug
+ 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+127 
+Plug
+ 'jalvesaq/Nvim-R'
+
+128 
+Plug
+ 'Rykka/trans.vim'
+
+129 
+Plug
+ 'ron89/thesaurus_query.vim'
+
+131 
+Plug
+ 'MarcWeber/vim-addon-mw-utils'
+
+134 
+Plug
+ 'ivyl/vim-bling'
+
+136 
+Plug
+ 'junegunn/seoul256.vim'
+
+137 
+Plug
+ 'junegunn/fzf'
+
+138 
+Plug
+ 'junegunn/fzf.vim'
+
+139 
+Plug
+ 'pbogut/fzf-mru.vim'
+
+140 
+Plug
+ 'cskeeters/unite-fzf'
+
+142 
+Plug
+ 'Shougo/unite.vim'
+
+143 
+Plug
+ 'kmnk/vim-unite-giti'
+
+144 
+Plug
+ 'tsukkee/unite-tag'
+
+145 
+Plug
+ 'SpaceVim/unite-ctags'
+
+146 
+Plug
+ 'Shougo/unite-outline/'
+
+147 
+Plug
+ 'tsukkee/unite-help'
+
+149 
+Plug
+ 'idanarye/vim-vebugger'
+
+150 
+Plug
+ 'davidhalter/jedi-vim'
+
+152 
+Plug
+ 'Shougo/neoyank.vim'
+
+153 
+Plug
+ 'Shougo/neomru.vim'
+
+154 
+Plug
+ 'Shougo/echodoc.vim'
+
+156 
+Plug
+ 'janko-m/vim-test'
+
+157 
+Plug
+ 'aghareza/vim-gitgrep'
+
+158 
+Plug
+ 'AndrewRadev/undoquit.vim'
+
+159 
+Plug
+ 'MattesGroeger/vim-bookmarks'
+
+160 
+Plug
+ 'morhetz/gruvbox'
+
+161 
+Plug
+ 'sonph/onehalf'
+
+162 
+Plug
+ 'tomasr/molokai'
+
+163 
+Plug
+ 'fmoralesc/molokayo'
+
+165 
+Plug
+ 'artur-shaik/vim-javacomplete2'
+
+166 
+Plug
+ 'ervandew/supertab'
+
+167 
+Plug
+ 'adriaanzon/vim-textobj-matchit'
+
+168 
+Plug
+ 'exvim/ex-matchit'
+
+169 
+Plug
+ 'AndrewRadev/switch.vim'
+
+170 
+Plug
+ 'itchyny/calendar.vim'
+
+171 
+Plug
+ 'guns/xterm-color-table.vim'
+
+172 
+Plug
+ 'termhn/i3-vim-nav'
+
+174 
+Plug
+ 'brookhong/cscope.vim'
+
+175 
+Plug
+ 'abudden/EasyColour'
+
+177 
+Plug
+ 'xolox/vim-misc'
+
+178 
+Plug
+ 'xolox/vim-easytags'
+
+179 
+Plug
+ 'vim-scripts/TagHighlight'
+
+180 
+ÿÎ
+ 
+¶ug
+#end()
+
+186 "!"
+Plug
+ 'vim-scripts/marvim'
+
+	@ninitOkt18.vim
+
+3 
+£t
+ 
+	g·th
++=.,/
+	gu¤
+/
+	gšşude
+,/u¤/
+	gloÿl
+/
+šşude
+
+
+4 
+£t
+ 
+	gthe§urus
+=~/
+g™
+/
+aTe¡
+/
+dÙFes
+/
+DICT
+/
+mthe§ur
+.
+txt
+
+
+5 
+Ët
+ 
+s
+:
+the§urus_·t
+ = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
+
+6 
+£t
+ 
+diùiÚ¬y
+=/
+home
+/
+»d
+/
+g™
+/
+aTe¡
+/
+dÙFes
+/
+DICT
+/
+’glish
+-
+wÜds
+.
+txt
+
+
+7 
+£t
+ 
+gs
+=""
+
+8 
+£t
+ 
+gs
+=~/
+g™
+/
+aTe¡
+/
+dÙFes
+/
+nVim
+/tags
+
+9 
+£t
+ 
+nocom·tibË
+
+
+13 
+£t
+ 
+no¥–l
+
+
+14 
+£t
+ 
+sh–l
+=/
+bš
+/
+bash
+
+
+16 
+f‘y³
+ 
+Ú
+
+
+17 
+f‘y³
+ 
+¶ugš
+ 
+Ú
+
+
+18 
+f‘y³
+ 
+šd’t
+ 
+Ú
+
+
+19 
+syÁax
+ 
+’abË
+
+
+21 
+Ët
+ 
+m­loÿÎ—d”
+= ','
+
+22 
+Ët
+ 
+m­Ëad”
+=' '
+
+23 
+£t
+ 
+vb
+ 
+t_vb
+= " disable beep sound
+
+25 
+s’t
+! 
+£t
+ 
+w¿psÿn
+ 
+ignÜeÿ£
+ 
+sm¬tÿ£
+ 
+šc£¬ch
+ 
+hl£¬ch
+ 
+magic
+
+
+27 
+sourû
+ ~/
+g™
+/
+aTe¡
+/
+dÙFes
+/
+nVim
+/
+nPlug
+.
+vim
+
+
+30 
+syÁax
+ 
+Ú
+
+
+31 
+syÁax
+ 
+’abË
+
+
+39 
+cŞÜscheme
+ 
+mİkai
+
+
+41 
+£t
+ 
+nu
+
+
+42 
+£t
+ 
+cf
+ " Enableƒrror files &ƒrror jumping.
+
+43 
+£t
+ 
+autowr™e
+ " Writes on make/shell commands
+
+44 
+£t
+ 
+guifÚt
+=
+MÚo¥aû
+\ 14
+
+45 
+£t
+ 
+cšwÜds
+=,,,do,,,
+
+49 
+im­
+ 
+	gjj
+ <
+	gEsc
+>
+
+50 
+nÜem­
+ 
+	gss
+ :
+wa
+<
+ü
+>
+
+51 
+nÜem­
+ 
+sq
+ :
+wa
+<
+ü
+> :
+qa
+<cr>
+
+52 
+nÜem­
+ 
+qq
+ :
+w
+<
+ü
+> :
+bd
+<cr>
+
+53 
+nÜem­
+ 
+xz
+ :
+qa
+!<
+ü
+>
+
+54 
+nÜem­
+ 
+xc
+ :
+q
+<
+ü
+>
+
+56 
+nm­
+ 
+ge
+ :
+w
+<
+CR
+>:
+e
+ #<CR>
+
+57 
+nÜem­
+ 
+“
+ :
+e
+#<
+CR
+>
+
+59 
+augroup
+ 
+vimrc
+
+
+60 
+autocmd
+!
+
+61 
+augroup
+ 
+END
+
+
+63 
+nÜem­
+ 
+j
+ 
+gj
+
+
+64 
+nÜem­
+ 
+k
+ 
+gk
+
+
+65 
+nÜem­
+ 
+gj
+ 
+j
+
+
+66 
+nÜem­
+ 
+gk
+ 
+k
+
+
+68 
+úÜem­
+ <
+C
+-
+A
+> <
+Home
+>
+
+69 
+úÜem­
+ <
+C
+-
+E
+> <
+End
+>
+
+70 
+úÜem­
+ <
+C
+-
+d
+> <
+D–
+>
+
+72 
+ÂÜem­
+ <
+C
+-
+P
+> <
+Up
+>
+
+73 
+ÂÜem­
+ <
+C
+-
+N
+> <
+Down
+>
+
+75 "ÂÜem­ x "
+_x
+
+
+77 
+ÂÜem­
+ 
+Q
+ 
+q
+
+
+79 
+nm­
+ <
+s’t
+> <
+Ëad”
+>- :
+t
+.<
+CR
+>
+Vr
+-
+
+81 
+ÂÜem­
+ 
+¯
+ 
+ggVG
+
+
+83 
+ÂÜem­
+ <
+c
+-
+o
+> <c-o>
+zz
+
+
+84 
+ÂÜem­
+ <
+c
+-
+i
+> <c-i>
+zz
+
+
+86 
+Ët
+ 
+g
+:
+blšg_time
+ = 42
+
+87 
+Ët
+ 
+g
+:
+blšg_cŞÜ_fg
+ = 'green'
+
+88 
+Ët
+ 
+g
+:
+blšg_cŞÜ_ù”m
+ = 'reverse'
+
+90 
+ÂÜem­
+ <
+s’t
+> <
+L—d”
+>
+u
+ :<
+C
+-u>
+upd©e
+<
+CR
+>
+
+92 
+ÂÜem­
+ 
+Y
+ 
+y$
+
+
+94 
+vnÜem­
+ 
+W
+ 
+gq
+
+
+95 
+ÂÜem­
+ 
+W
+ 
+gq
+
+
+97 
+ÂÜem­
+ 
+H
+ 
+mzJ
+`
+z
+
+
+99 
+ÂÜem­
+ 
+S
+ 
+i
+<
+ü
+><
+esc
+>^
+mwgk
+:
+s’t
+! 
+s
+/\
+v
+ +
+$
+
+
+101 
+au
+ 
+BufR—dPo¡
+ * 
+lše
+("'\""è> 1 &&†še("'\""è<ğlše("$"è| 
+exe
+ "nÜm®! g'\"" | 
+’dif
+
+
+103 
+ÂÜem­
+ <
+s’t
+> 
+vv
+ <
+C
+-
+w
+>
+v
+
+
+105 
+ÂÜem­
+ <
+C
+-
+down
+> :
+m
+ .+1<
+CR
+>==
+
+106 
+ÂÜem­
+ <
+C
+-
+up
+> :
+m
+ .-2<
+CR
+>==
+
+110 &
+com·tibË
+ | 
+£t
+ 
+nocom·tibË
+ | 
+’dif
+
+
+112 
+s’t
+! 
+£t
+ 
+w¿psÿn
+ 
+ignÜeÿ£
+ 
+sm¬tÿ£
+ 
+šc£¬ch
+ 
+hl£¬ch
+ 
+magic
+
+
+113 
+£t
+ 
+no¥–l
+
+
+115 
+s’t
+! 
+di¥Ïy
+=
+Ï¡lše
+,
+uhex
+ 
+now¿p
+ 
+	gw¿pm¬gš
+=0 
+guiİtiÚs
+=
+û
+ 
+key
+=
+
+116 
+s’t
+! 
+£t
+ 
+noshowm©ch
+ 
+noshowmode
+ 
+shÜtmess
++=
+I
+ 
+cmdheight
+=1 
+cmdwšheight
+=10 
+showb»ak
+=
+
+117 
+s’t
+! 
+£t
+ 
+noshowcmd
+ 
+nÜuËr
+ 
+ruËrfÜm©
+ğ
+Ï¡¡©us
+=2 
+¡©u¦še
+=%
+t
+\ %=\ %
+m
+%
+r
+%
+y
+%
+w
+\ %3l:%-2c
+
+118 
+s’t
+! 
+£t
+ 
+t™Ë
+ 
+t™ËËn
+=100 
+t™ËŞd
+ğ
+t™Ë¡ršg
+=%
+f
+ 
+noicÚ
+ 
+nÜigheá
+ 
+showblše
+=1
+
+119 
+s’t
+! 
+£t
+ 
+cursÜlše
+ 
+nocursÜcŞumn
+ 
+cŞÜcŞumn
+ğ
+cÚû®cursÜ
+=
+nvc
+ 
+cÚû®Ëv–
+=0 
+nÜ–©iv’umb”
+
+
+120 
+s’t
+! 
+£t
+ 
+li¡
+ 
+li¡ch¬s
+=
+b
+:>\ ,
+	gnb¥
+:
+_
+ 
+synmaxcŞ
+=3000 
+ambiwidth
+=
+b»akšd’t
+ 
+b»akšd’tİt
+=
+
+121 
+s’t
+! 
+£t
+ 
+no¥l™b–ow
+ 
+no¥l™Ëá
+ 
+¡¬toæše
+ 
+lše¥aû
+=0 
+whichw¿p
+=
+b
+,
+s
+ 
+	gsüŞloff
+=1 
+sidesüŞl
+=0
+
+122 
+s’t
+! 
+£t
+ 
+equ®®ways
+ 
+nowšfixwidth
+ 
+nowšfixheight
+ 
+wšmšwidth
+=3 
+wšmšheight
+=3 
+now¬n
+ 
+nocÚfœm
+
+
+123 
+s’t
+! 
+£t
+ 
+flch¬s
+=
+v”t
+:\|,
+	gfŞd
+:\ 
+ev’tignÜe
+ğ
+h–¶ªg
+=
+’
+ 
+v›wİtiÚs
+=
+İtiÚs
+,
+cursÜ
+ 
+	gvœtu®ed™
+=
+
+124 
+£t
+ 
+¥l™b–ow
+ 
+¥l™right
+
+
+125 
+£t
+ 
+numb”
+
+
+127 
+£t
+ 
+sw™chbuf
+=
+u£İ’
+ "„eveal‡lready opened files fromhe
+
+128 
+£t
+ 
+fÜm©İtiÚs
+-=
+o
+ " don't start‚ew†ines w/ com†eader on…ress 'o'
+
+129 
+au
+ 
+f‘y³
+ 
+vim
+ 
+£t
+ 
+fÜm©İtiÚs
+-=
+o
+
+
+132 
+s’t
+! 
+£t
+ 
+imš£¹
+=0 
+im£¬ch
+=0 
+nİa¡e
+ 
+·¡‘oggË
+ğ
+nogdeçuÉ
+ 
+comm’ts
+& 
+comm’t¡ršg
+=#\ %
+s
+
+
+133 
+s’t
+! 
+£t
+ 
+sm¬tšd’t
+ 
+autošd’t
+ 
+shiáround
+ 
+shiáwidth
+=8 
+ex·ndb
+ 
+b¡İ
+=4 
+sm¬‰ab
+ 
+soáb¡İ
+=8
+
+134 
+s’t
+! 
+£t
+ 
+fŞdşo£
+=
+®l
+ 
+fŞdcŞumn
+=0 
+nofŞd’abË
+ 
+fŞdËv–
+=0 
+fŞdm¬k”
+& 
+fŞdm‘hod
+=
+šd’t
+
+
+135 
+s’t
+! 
+£t
+ 
+‹xtwidth
+=0 
+back¥aû
+=
+šd’t
+,
+	geŞ
+,
+¡¬t
+ 
+	gÄfÜm©s
+=
+hex
+ 
+fÜm©İtiÚs
+=
+cmMj
+ 
+nojoš¥aûs
+
+
+136 
+s’t
+! 
+£t
+ 
+nohidd’
+ 
+autÜ—d
+ 
+nßutowr™e
+ 
+nßutowr™—Î
+ 
+nŞšeb»ak
+ 
+mou£
+ğ
+mod–še
+& 
+mod–šes
+&
+
+137 
+s’t
+! 
+£t
+ 
+nßutochdœ
+ 
+wr™e
+ 
+nowr™—ny
+ 
+wr™ed–ay
+=0 
+v”bo£
+=0 
+v”bo£fe
+ğ
+nÙdeİ
+ 
+noš£¹mode
+
+
+139 
+s’t
+! 
+£t
+ 
+gs
+ñags,./
+	ggs
+
+
+142 
+highlight
+ 
+FŞded
+ 
+	gù”mbg
+=1
+
+143 
+£oÿl
+ 
+fŞdm¬k”
+={{{,}}}
+
+144 
+£oÿl
+ 
+fŞdm‘hod
+=
+m¬k”
+
+
+145 
+£oÿl
+ 
+fŞdmšlšes
+=6
+
+146 
+£t
+ 
+fŞdcŞumn
+=1
+
+148 
+ÂÜem­
+ 
+z1
+ :
+£t
+ 
+fŞdËv–
+=1<
+ü
+>
+
+149 
+ÂÜem­
+ 
+z2
+ :
+£t
+ 
+fŞdËv–
+=2<
+ü
+>
+
+150 
+ÂÜem­
+ 
+z3
+ :
+£t
+ 
+fŞdËv–
+=3<
+ü
+>
+
+151 
+ÂÜem­
+ 
+z4
+ :
+£t
+ 
+fŞdËv–
+=4<
+ü
+>
+
+152 
+ÂÜem­
+ 
+z5
+ :
+£t
+ 
+fŞdËv–
+=5<
+ü
+>
+
+153 "£ˆwhichw¿p=b,s,h,l,<,>,[,] " 
+Back¥aû
+ 
+ªd
+ 
+cursÜ
+ 
+keys
+ 
+w¿p
+ 
+too
+
+
+155 
+s’t
+! 
+£t
+ 
+şbßrd
+=
+uÂamed
+
+
+156 
+s’t
+! 
+£t
+ 
+şbßrd
++=
+uÂamed¶us
+
+
+158 
+s’t
+! 
+£t
+ 
+upd©‘ime
+=300 
+timeout
+ 
+timeou’
+=300 
+‰imeout
+ 
+‰imeou’
+=50 
+‰yç¡
+ 
+Ïzy»d¿w
+
+
+160 
+s’t
+! 
+£t
+ 
+nÛ¼Üb–ls
+ 
+visu®b–l
+ 
+t_vb
+=
+
+162 
+autocmd
+ 
+vimrc
+ 
+BufEÁ”
+ * 
+s’t
+! 
+lcd
+ %:
+p
+:
+h
+
+
+164 
+autocmd
+ 
+vimrc
+ 
+FeTy³
+ 
+h–p
+ &
+l
+:
+buáy³
+ ==#'help' | wincmd K |ƒndif
+
+166 
+autocmd
+ 
+vimrc
+ 
+Sw­Exi¡s
+ * 
+Ët
+ 
+v
+:
+sw­choiû
+ = 'o'
+
+171 
+autocmd
+ 
+vimrc
+ 
+VimEÁ”
+ * 
+»d¿w
+
+
+173 
+ÂÜem­
+ <
+ü
+> 
+o
+<
+esc
+>
+
+175 
+šÜem­
+ <
+s’t
+><
+ex´
+> <
+CR
+> (
+pumvisibË
+(è&& 
+buâame
+('%'è!=#'[
+Commªd
+ 
+Lše
+]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
+
+177 
+nÜem­
+ } }^
+
+179 
+ÂÜem­
+ <
+ex´
+> 
+gp
+ '`['.
+¡½¬t
+(
+g‘»gty³
+(), 0, 1).'`]'
+
+181 
+£t
+ 
+	ghi¡Üy
+=4024
+
+183 
+vnÜem­
+ < <
+gv
+
+
+184 
+vnÜem­
+ > >
+gv
+
+
+186 
+vnÜem­
+ . :
+nÜm®
+ .<
+CR
+>
+
+188 
+cm­
+ 
+w
+!! w !
+sudo
+ 
+‹e
+ % >/
+dev
+/
+nuÎ
+
+
+190 
+m­
+ 
+cd
+ :cd %:
+p
+:
+h
+<
+ü
+>
+
+191 
+£t
+ 
+now¿p
+
+
+192 
+£t
+ 
+mou£
+=
+a
+
+
+196 
+£t
+ 
+li¡
+
+
+197 
+£t
+ 
+li¡ch¬s
+=
+b
+:â–¸\
+
+201 
+ÂÜem­
+ ( <
+c
+-
+x
+>:
+y
+ x\|@x<
+ü
+>
+
+202 
+ÂÜem­
+ ) <
+c
+-
+a
+>:
+y
+ 
+x
+\|@x<
+ü
+>
+
+205 
+nm­
+ <
+F4
+> :
+ÿÎ
+ <
+SID
+>
+SynSck
+()<
+CR
+>
+
+206 
+funùiÚ
+! <
+SID
+>
+	$SynSck
+()
+
+207 !
+	`exi¡s
+("*synstack")
+
+209 
+’dif
+
+
+210 
+echo
+ 
+	`m­
+(
+	`syn¡ack
+(
+	`lše
+('.'), 
+	`cŞ
+('.')), 'synIDattr(v:val, "name")')
+
+211 
+’dfunc
+
+
+213 
+funùiÚ
+! 
+	$ShowFuncKeys
+(
+bªg
+)
+
+214 
+i
+ 
+š
+ 
+	$¿nge
+(1,12)
+
+215 
+»dœ
+! => 
+m­
+
+
+216 
+exe
+ "s’ˆ" . (
+a
+:
+bªg
+ =ğ"!" ? 'v”bo£' : ''è. " m­<F" . 
+i
+ . ">"
+
+217 
+»dœ
+ 
+’d
+
+
+218 
+m­
+ !~ 'No mapping found'
+
+219 
+echomsg
+ 
+m­
+
+
+220 
+’dif
+
+
+221 
+’dfÜ
+
+
+222 
+’dfunùiÚ
+
+
+223 
+com
+! -
+bªg
+ 
+ShowFuncKeys
+ :
+ÿÎ
+ 
+	`ShowFuncKeys
+(<
+q
+-bang>)
+
+225 
+funùiÚ
+! 
+s
+:
+	$ShowM­s
+()
+
+226 
+Ët
+ 
+Şd_»g
+ = 
+	`g‘»g
+("a") " savehe current content of„egister‡
+
+227 
+Ët
+ 
+Şd_»g_ty³
+ = 
+	`g‘»gty³
+("a") " saveheype ofhe„egister‡s well
+
+228 
+Œy
+
+
+229 
+»dœ
+ @
+a
+ "„edirect outputo„egister‡
+
+232 
+s’t
+ 
+m­
+ | 
+ÿÎ
+ 
+	`ãedkeys
+("\<CR>")
+
+233 
+»dœ
+ 
+END
+ "ƒnd output„edirection
+
+234 
+vÃw
+ "‚ew buffer in vertical window
+
+235 
+put
+ 
+a
+ "…ut content of„egister
+
+237 %!
+sÜt
+ -
+k1
+.4,1.4
+
+238 
+fš®ly
+ " Executeƒven ifƒxception is„aised
+
+239 
+ÿÎ
+ 
+	`£Œeg
+("a", 
+Şd_»g
+, 
+Şd_»g_ty³
+) "„estore„egister‡
+
+240 
+’dŒy
+
+
+241 
+’dfunùiÚ
+
+
+242 
+com
+! 
+ShowM­s
+ 
+ÿÎ
+ 
+s
+:
+	`ShowM­s
+() " Enable :ShowMapso callhe function
+
+243 
+ÂÜem­
+ \
+m
+ :
+ShowM­s
+<
+CR
+> " Map keyso callhe function
+
+248 
+au
+ 
+FocusLo¡
+ * :
+s’t
+! 
+w®l
+
+
+249 
+£t
+ 
+wdm’u
+
+
+250 
+£t
+ 
+wdmode
+=
+li¡
+:
+lÚge¡
+
+
+251 
+£t
+ 
+wdignÜe
++=.
+hg
+,.
+g™
+,.
+svn
+ " Version control
+
+252 
+£t
+ 
+wdignÜe
++=*.
+aux
+,*.
+out
+,*.
+toc
+ " LaTeX intermediate files
+
+253 
+£t
+ 
+wdignÜe
++=*.
+jpg
+,*.
+bmp
+,*.
+gif
+,*.
+²g
+,*.
+j³g
+ " binary images
+
+254 
+£t
+ 
+wdignÜe
++=*.
+o
+,*.
+obj
+,*.
+exe
+,*.
+dÎ
+,*.
+mªiã¡
+ " compiled object files
+
+255 
+£t
+ 
+wdignÜe
++=*.
+¥l
+ " compiled spelling word†ists
+
+256 
+£t
+ 
+wdignÜe
++=*.
+sw
+? " Vim swap files
+
+257 
+£t
+ 
+wdignÜe
++=*.
+DS_StÜe
+ " OSX bullshit
+
+258 
+£t
+ 
+wdignÜe
++=*.
+luac
+ " Lua byte code
+
+259 
+£t
+ 
+wdignÜe
++=
+mig¿tiÚs
+ " Django migrations
+
+260 
+£t
+ 
+wdignÜe
++=*.
+pyc
+ " Python byte code
+
+261 
+£t
+ 
+wdignÜe
++=*.
+Üig
+ " Merge„esolution files
+
+262 
+£t
+ 
+wdignÜe
++=*.
+ç¦
+ " Lisp FASLs
+
+263 
+£t
+ 
+wdignÜe
++=*.
+dx64f¦
+ " CCL
+
+265 
+£t
+ 
+wdignÜe
++=
+şas£s
+
+
+266 
+£t
+ 
+wdignÜe
++=
+lib
+
+
+270 
+ÂÜem­
+ 
+ff
+ :
+ÿÎ
+ 
+	`CscİeFšdIÁ”aùive
+(
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+271 
+ÂÜem­
+ <
+Ëad”
+>
+f
+ :
+ÿÎ
+ 
+	`CscİeFšdIÁ”aùive
+(
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+272 
+ÂÜem­
+ <
+Ëad”
+>\ :
+ÿÎ
+ 
+	`ToggËLoÿtiÚLi¡
+()<
+CR
+>
+
+274 
+ÂÜem­
+ <
+Ëad”
+>
+fs
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('s', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+276 
+ÂÜem­
+ <
+Ëad”
+>
+fg
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('g', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+278 
+ÂÜem­
+ <
+Ëad”
+>
+fd
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('d', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+280 
+ÂÜem­
+ <
+Ëad”
+>
+fc
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('c', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+282 
+ÂÜem­
+ <
+Ëad”
+>
+á
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('t', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+284 
+ÂÜem­
+ <
+Ëad”
+>
+ã
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('e', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+286 
+ÂÜem­
+ <
+Ëad”
+>
+ff
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('f', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+288 
+ÂÜem­
+ <
+Ëad”
+>
+fi
+ :
+ÿÎ
+ 
+	`CscİeFšd
+('i', 
+	`ex·nd
+('<cwÜd>'))<
+CR
+>
+
+292 
+ÿÎ
+ 
+deİË‹
+#custom#option('sources', {
+
+294 \
+	}
+})
+
+295 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('omni', 'input_patterns', {
+
+308 
+£t
+ 
+	gomnifunc
+=
+syÁaxcom¶‘e
+#Complete
+
+310 
+ÿÎ
+ 
+deİË‹
+#cu¡om#İtiÚ('»äesh_®ways', 
+	gv
+:
+Œue
+)
+
+311 
+Ët
+ 
+g
+:
+deİË‹
+#enable_ignore_case = 1
+
+312 
+Ët
+ 
+g
+:
+deİË‹
+#enable_smart_case = 1
+
+313 
+Ët
+ 
+g
+:
+deİË‹
+#enable_camel_case = 1
+
+314 
+Ët
+ 
+g
+:
+deİË‹
+#enable_refresh_always = 1
+
+315 
+Ët
+ 
+g
+:
+deİË‹
+#max_abbr_width = 0
+
+316 
+Ët
+ 
+g
+:
+deİË‹
+#max_menu_width = 0
+
+317 
+ÿÎ
+ 
+deİË‹
+#custom#source('_', 'min_pattern_length', 4)
+
+320 
+	gšÜem­
+ <
+	gs’t
+> <
+	gC
+-
+	go
+> <C-
+	gx
+><C-o>
+
+321 
+	gšÜem­
+ <
+	gs’t
+> <
+	gC
+-
+	gk
+> <C-
+	gx
+><C-k>
+
+322 
+	gšÜem­
+ <
+	gs’t
+> <
+	gC
+-
+	gd
+> <C-
+	gx
+><C-d>
+
+323 
+	gšÜem­
+ <
+	gs’t
+> <
+	gC
+-
+	gf
+> <C-
+	gx
+><C-f>
+
+324 
+	gšÜem­
+ <
+	gs’t
+> <
+	gC
+-
+	gl
+> <C-
+	gx
+><C-l>
+
+326 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('dictionary', 'mark', 'âŠ¶')
+
+327 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('syntax', 'mark', 'â™¯')
+
+328 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('tag', 'mark', 'âŒ¦')
+
+329 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('omni', 'mark', 'âŒ¾')
+
+330 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('vim', 'mark', 'vi')
+
+331 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('neosnippet', 'mark', 'âŒ˜')
+
+332 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('jedi', 'mark', 'âŒ')
+
+333 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('around', 'mark', 'â†»')
+
+334 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('buffer', 'mark', 'â„¬')
+
+335 
+ÿÎ
+ 
+	gdeİË‹
+#custom#source('member', 'mark', '.')
+
+342 "!" 
+	gcommªd
+! -
+	gÇrgs
+=+ -
+com¶‘e
+=
+fe
+ -
+b¬
+ 
+Ag
+ 
+s’t
+! 
+g»p
+! <
+¬gs
+>|
+cwšdow
+|
+»d¿w
+!
+
+344 
+execubË
+('ag')
+
+345 
+Ët
+ 
+g
+:
+ag_wÜkšg_·th_mode
+="r"
+
+347 
+£t
+ 
+g»µrg
+=
+ag
+\ --
+nogroup
+\ --
+nocŞÜ
+
+
+349 
+Ët
+ 
+g
+:
+ù¾p_u£r_commªd
+ = 'ag %s -l --nocolor -g ""'
+
+351 
+Ët
+ 
+g
+:
+ù¾p_u£_ÿchšg
+ = 0
+
+352 
+’dif
+
+
+357 
+Ët
+ 
+g
+:
+g™gu‰”_signs
+ = 1
+
+358 
+Ët
+ 
+g
+:
+g™gu‰”_max_signs
+ = 2000
+
+360 
+nm­
+ ]
+c
+ <
+Plug
+>
+G™Gu‰”NextHunk
+
+
+361 
+nm­
+ [
+c
+ <
+Plug
+>
+G™Gu‰”P»vHunk
+
+
+362 
+nm­
+ <
+L—d”
+>
+hs
+ <
+Plug
+>
+G™Gu‰”SgeHunk
+
+
+363 
+nm­
+ <
+L—d”
+>
+hu
+ <
+Plug
+>
+G™Gu‰”UndoHunk
+
+
+365 
+highlight
+ 
+G™Gu‰”Add
+ 
+ù”mfg
+=
+g»’
+
+
+366 
+highlight
+ 
+G™Gu‰”Chªge
+ 
+ù”mfg
+=
+y–low
+
+
+367 
+highlight
+ 
+G™Gu‰”D–‘e
+ 
+ù”mfg
+=
+»d
+
+
+368 
+highlight
+ 
+G™Gu‰”ChªgeD–‘e
+ 
+ù”mfg
+=
+y–low
+
+
+370 
+exi¡s
+("*gitgutter#highlight#define_highlights")
+
+372 
+ÿÎ
+ 
+g™gu‰”
+#highlight#define_highlights()
+
+373 
+’dif
+
+
+377 
+commªd
+! -
+bªg
+ 
+E
+ 
+e
+<bang>
+
+378 
+commªd
+! -
+bªg
+ 
+Q
+ 
+q
+<bang>
+
+379 
+commªd
+! -
+bªg
+ 
+W
+ 
+w
+<bang>
+
+380 
+commªd
+! -
+bªg
+ 
+QA
+ 
+qa
+<bang>
+
+381 
+commªd
+! -
+bªg
+ 
+Qa
+ 
+qa
+<bang>
+
+382 
+commªd
+! -
+bªg
+ 
+Wa
+ 
+wa
+<bang>
+
+383 
+commªd
+! -
+bªg
+ 
+WA
+ 
+wa
+<bang>
+
+384 
+commªd
+! -
+bªg
+ 
+Wq
+ 
+wq
+<bang>
+
+385 
+commªd
+! -
+bªg
+ 
+WQ
+ 
+wq
+<bang>
+
+387 
+ÂÜem­
+ 
+U
+ :
+syÁax
+ 
+sync
+ 
+äom¡¬t
+<
+ü
+>:
+»d¿w
+!<cr>
+
+389 
+Ÿbb»v
+ 
+yyy
+ "---------------------------------------------------------------------------------
+
+390 
+Ÿbb»v
+ 
+yyy1
+ "---------------------------------------------------------------------------------------------
+
+391 
+Ÿbb»v
+ 
+yyy2
+ "-----------------------------------------------------------------------------------------------------{{{
+
+392 
+Ÿbb»v
+ 
+yyy3
+ "-}}}
+
+393 
+Ÿbb»v
+ 
+yyyr
+ "....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8....+....9....+...10....+...11....+..12<esc>
+
+395 
+Ÿbb»v
+ 
+¡r
+ 
+¡¬t
+
+
+396 
+Ÿbb»v
+ 
+su³
+ 
+su³ru£r
+
+
+397 
+Ÿbb»v
+ 
+que
+ 
+que¡iÚ
+
+
+398 
+Ÿbb»v
+ #i #include
+
+399 
+Ÿbb»v
+ #d #define
+
+400 
+Ÿbb»v
+ 
+cmÁ
+ <
+Up
+>
+
+401 
+Ÿbb»v
+ @@ 
+®f
+@
+noma
+.
+com
+
+
+402 
+Ÿbb»v
+ 
+ccİy
+ 
+Cİyright
+ 2013 
+Alf
+ , 
+no
+ 
+rights
+ 
+»£rved
+.
+
+403 
+Ÿbb»v
+ 
+xd©e
+ <
+c
+-
+r
+>=
+¡ráime
+("%d/%m/%y %H:%M:%S")<
+ü
+>
+
+404 
+Ÿbb»v
+ 
+yd©e
+ <
+c
+-
+r
+>=
+¡ráime
+("%Y %b %d")<
+ü
+>
+
+405 
+Ÿbb»v
+ 
+todo
+ 
+TODO
+
+
+409 
+£t
+ 
+hidd’
+
+
+410 
+£t
+ 
+cšİtiÚs
+=
+N
+-
+s
+,
+g0
+,+2s,
+l
+-s,
+i2s
+
+
+412 
+ÂÜem­
+ <
+m
+-
+right
+> :
+v”tiÿl
+ 
+»size
+ +3<
+ü
+>
+
+413 
+ÂÜem­
+ <
+m
+-
+Ëá
+> :
+v”tiÿl
+ 
+»size
+ -3<
+ü
+>
+
+414 
+ÂÜem­
+ <
+m
+-
+up
+> :
+»size
+ +3<
+ü
+>
+
+415 
+ÂÜem­
+ <
+m
+-
+down
+> :
+»size
+ -3<
+ü
+>
+
+417 
+funùiÚ
+! 
+	$JumpTo
+(
+jumpcommªd
+)
+
+418 
+execu‹
+ 
+a
+:
+jumpcommªd
+
+
+419 
+ÿÎ
+ 
+	$FocusLše
+()
+
+420 
+Pul£
+
+
+421 
+’dfunùiÚ
+
+
+423 
+funùiÚ
+! 
+	$JumpToInS¶™
+(
+jumpcommªd
+)
+
+424 
+execu‹
+ "normal! \<c-w>v"
+
+425 
+execu‹
+ 
+a
+:
+jumpcommªd
+
+
+426 
+Pul£
+
+
+427 
+’dfunùiÚ
+
+
+429 
+funùiÚ
+! 
+	$JumpToTag
+()
+
+430 
+ÿÎ
+ 
+	`JumpTo
+("normal! \<c-]>")
+
+431 
+’dfunùiÚ
+
+
+433 
+funùiÚ
+! 
+	$JumpToTagInS¶™
+()
+
+434 
+ÿÎ
+ 
+	`JumpToInS¶™
+("normal! \<c-]>")
+
+435 
+’dfunùiÚ
+
+
+437 
+ÂÜem­
+ <
+C
+-]> :
+s’t
+! 
+ÿÎ
+ 
+	`JumpToTag
+()<
+ü
+>
+
+438 
+ÂÜem­
+ <
+C
+-
+s
+> :
+s’t
+! 
+ÿÎ
+ 
+	`JumpToTagInS¶™
+()<
+ü
+>
+
+440 
+funùiÚ
+ 
+	$P»v›wTag3
+(
+tİ
+)
+
+441 
+£t
+ 
+´ev›wheight
+=25
+
+442 
+exe
+ "silent!…close"
+
+443 &
+´ev›wwšdow
+ " don't dohis inhe…review window
+
+445 
+’dif
+
+
+446 
+Ët
+ 
+w
+ = 
+	`ex·nd
+("<cword>") " gethe word under cursor
+
+447 
+exe
+ "±jum°" . 
+w
+
+
+449 
+a
+:
+tİ
+
+
+451 
+’dif
+
+
+453 
+exe
+ "silent! wincmd P"
+
+454 &
+´ev›wwšdow
+ " if we„eally gethere...
+
+455 
+	`has
+("folding")
+
+456 
+s’t
+! .
+fŞdİ’
+ " don't want‡ closed fold
+
+457 
+’dif
+
+
+458 
+wšcmd
+ 
+L
+ " move…review windowohe†eft
+
+459 
+wšcmd
+ 
+p
+ " backo caller
+
+460 !&
+´ev›wwšdow
+ " got back
+
+461 
+wšcmd
+ 
+_
+ 
+’dif
+
+
+462 
+’dif
+
+
+463 
+’dfunùiÚ
+
+
+488 
+Ët
+ 
+g
+:
+bookm¬k_auto_şo£
+ = 1
+
+489 
+Ët
+ 
+g
+:
+bookm¬k_highlight_lšes
+ = 1
+
+490 
+Ët
+ 
+g
+:
+bookm¬k_show_w¬nšg
+ = 0
+
+491 
+Ët
+ 
+g
+:
+bookm¬k_show_toggË_w¬nšg
+ = 0
+
+492 
+Ët
+ 
+g
+:
+bookm¬k_sign
+ = 'â™¥'
+
+493 
+Ët
+ 
+g
+:
+bookm¬k_highlight_lšes
+ = 1
+
+494 
+Ët
+ 
+g
+:
+bookm¬k_§ve_³r_wÜkšg_dœ
+ = 1
+
+495 
+Ët
+ 
+g
+:
+bookm¬k_auto_§ve
+ = 1
+
+497 
+nm­
+ <
+L—d”
+>
+m
+ <
+Plug
+>
+Bookm¬kShowAÎ
+
+
+507 
+Ët
+ 
+g
+:
+bookm¬k_no_deçuÉ_key_m­pšgs
+ = 1
+
+508 
+funùiÚ
+! 
+	$Bookm¬kM­Keys
+()
+
+509 
+nm­
+ 
+mm
+ :
+Bookm¬kToggË
+<
+CR
+>
+
+510 
+nm­
+ 
+mi
+ :
+Bookm¬kAÂÙ©e
+<
+CR
+>
+
+511 
+nm­
+ 
+mn
+ :
+Bookm¬kNext
+<
+CR
+>
+
+512 
+nm­
+ 
+mp
+ :
+Bookm¬kP»v
+<
+CR
+>
+
+513 
+nm­
+ 
+ma
+ :
+Bookm¬kShowAÎ
+<
+CR
+>
+
+514 
+nm­
+ 
+mc
+ :
+Bookm¬kCË¬
+<
+CR
+>
+
+515 
+nm­
+ 
+mx
+ :
+Bookm¬kCË¬AÎ
+<
+CR
+>
+
+516 
+nm­
+ 
+mkk
+ :
+Bookm¬kMoveUp
+
+
+517 
+nm­
+ 
+mjj
+ :
+Bookm¬kMoveDown
+
+
+518 
+’dfunùiÚ
+
+
+520 
+funùiÚ
+! 
+	$Bookm¬kUnm­Keys
+()
+
+521 
+unm­
+ 
+mm
+
+
+522 
+unm­
+ 
+mi
+
+
+523 
+unm­
+ 
+mn
+
+
+524 
+unm­
+ 
+mp
+
+
+525 
+unm­
+ 
+ma
+
+
+526 
+unm­
+ 
+mc
+
+
+527 
+unm­
+ 
+mx
+
+
+528 
+unm­
+ 
+mkk
+
+
+529 
+unm­
+ 
+mjj
+
+
+530 
+’dfunùiÚ
+
+
+531 
+autocmd
+ 
+BufEÁ”
+ * :
+ÿÎ
+ 
+	$Bookm¬kM­Keys
+()
+
+532 
+autocmd
+ 
+BufEÁ”
+ 
+NERD_Œ“_
+* :
+ÿÎ
+ 
+	`Bookm¬kUnm­Keys
+()
+
+537 
+	`has
+("eval")
+
+539 
+Ët
+ 
+g
+:
+UÉiSnsJumpFÜw¬dTrigg”
+="<tab>"
+
+540 
+Ët
+ 
+g
+:
+UÉiSnsJumpBackw¬dTrigg”
+="<s-tab>"
+
+542 
+Ët
+ 
+g
+:
+UÉiSnsLi¡Sn³ts
+="<C-R><tab>"
+
+543 
+’dif
+
+
+544 
+im­
+ <
+C
+-
+b
+> <
+Plug
+>(
+Ão¢³t_ex·nd_Ü_jump
+)
+
+545 
+sm­
+ <
+C
+-
+b
+> <
+Plug
+>(
+Ão¢³t_ex·nd_Ü_jump
+)
+
+546 
+xm­
+ <
+C
+-
+b
+> <
+Plug
+>(
+Ão¢³t_ex·nd_rg‘
+)
+
+547 
+£t
+ 
+omnifunc
+=
+syÁaxcom¶‘e
+#Complete
+
+552 "šÜem­ <ex´><Tab>…umvisibË(è? "\<
+C
+-
+n
+>" : "\<
+Tab
+>"
+
+553 "šÜem­ <ex´> <BS>‚eocom¶‘e#sm¬t_şo£_pİup()."\<
+C
+-
+h
+>"
+
+556 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#enable_at_startup = 1
+
+557 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#enable_auto_select = 1
+
+558 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#enable_smart_case = 1
+
+559 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#auto_completion_start_length = 2
+
+560 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#sources#tags#cache_limit_size = 16777216 " 16MB
+
+561 
+Ët
+ 
+g
+:
+Ãocom¶‘e
+#enable_fuzzy_completion = 1
+
+563 
+£t
+ 
+´ev›wheight
+=15
+
+564 
+£t
+ 
+»pÜt
+=0 "‡lways„eport changed†ines
+
+569 
+commªd
+! 
+E¼ÜsToggË
+ 
+ÿÎ
+ 
+	$E¼ÜsToggË
+()
+
+570 
+funùiÚ
+! 
+	`E¼ÜsToggË
+() " {{{
+
+571 
+	`exi¡s
+("w:is_error_window")
+
+572 
+uÆ‘
+ 
+w
+:
+is_”rÜ_wšdow
+
+
+573 
+exec
+ "q"
+
+575 
+exec
+ "Errors"
+
+576 
+lİ’
+
+
+577 
+Ët
+ 
+w
+:
+is_”rÜ_wšdow
+ = 1
+
+578 
+’dif
+
+
+579 
+’dfunùiÚ
+ " }}}
+
+581 
+commªd
+! 
+LoÿtiÚToggË
+ 
+ÿÎ
+ 
+	$LoÿtiÚToggË
+()
+
+582 
+funùiÚ
+! 
+	`LoÿtiÚToggË
+() " {{{
+
+583 
+	`exi¡s
+("w:is_location_window")
+
+584 
+uÆ‘
+ 
+w
+:
+is_loÿtiÚ_wšdow
+
+
+585 
+exec
+ "q"
+
+587 
+lİ’
+
+
+588 
+Ët
+ 
+w
+:
+is_loÿtiÚ_wšdow
+ = 1
+
+589 
+’dif
+
+
+590 
+’dfunùiÚ
+ " }}}
+
+592 
+commªd
+! -
+bªg
+ -
+Çrgs
+=? 
+QFixToggË
+ 
+ÿÎ
+ 
+	`QFixToggË
+(<bang>0)
+
+593 
+funùiÚ
+! 
+	`QFixToggË
+(
+fÜûd
+) " {{{
+
+594 
+	`exi¡s
+("g:qfix_wš"è&& 
+a
+:
+fÜûd
+ == 0
+
+595 
+cşo£
+
+
+596 
+uÆ‘
+ 
+g
+:
+qfix_wš
+
+
+598 
+cİ’
+ 10
+
+599 
+Ët
+ 
+g
+:
+qfix_wš
+ = 
+	`buâr
+("$")
+
+600 
+’dif
+
+
+601 
+’dfunùiÚ
+ " }}}
+
+605 
+autocmd
+ 
+vimrc
+ 
+QuickfixCmdPo¡
+ [^
+l
+]* 
+Ã¡ed
+ 
+cİ’
+ | 
+wšcmd
+ 
+p
+
+
+606 
+autocmd
+ 
+vimrc
+ 
+QuickfixCmdPo¡
+ 
+l
+* 
+Ã¡ed
+ 
+lİ’
+ | 
+wšcmd
+ 
+p
+
+
+609 
+m­
+ <
+F7
+> :
+Fœ¡OrNextInLi¡
+<
+CR
+>
+
+610 
+im­
+ <
+F7
+> <
+C
+-
+O
+><F7>
+
+612 
+m­
+ <
+S
+-
+F7
+> :
+P»vInLi¡
+<
+CR
+>
+
+613 
+im­
+ <
+S
+-
+F7
+> <
+C
+-
+O
+><S-F7>
+
+615 
+m­
+ <
+C
+-
+F7
+> :
+CurInLi¡
+<
+CR
+>
+
+616 
+im­
+ <
+C
+-
+F7
+> <C-
+O
+><C-F7>
+
+618 
+nm­
+ <
+s’t
+> <
+F9
+> :
+QFixToggË
+<
+ü
+>
+
+619 
+m­
+ <
+S
+-
+F9
+> :
+cİ’
+<
+CR
+>
+
+620 
+im­
+ <
+S
+-
+F9
+> <
+C
+-
+O
+><C-F9>
+
+621 
+m­
+ <
+C
+-
+F9
+> :
+cşo£
+<
+CR
+>
+
+622 
+im­
+ <
+C
+-
+F9
+> <C-
+O
+><C-F9>
+
+624 
+ÂÜem­
+ <
+LoÿlL—d”
+>
+b
+ :
+ı»v
+<
+ü
+>
+zvzz
+
+
+625 
+ÂÜem­
+ <
+LoÿlL—d”
+>
+n
+ :
+úext
+<
+ü
+>
+zvzz
+
+
+627 
+nm­
+ <
+s’t
+> <
+f8
+> :
+LoÿtiÚToggË
+<
+ü
+>
+
+628 
+m­
+ <
+S
+-
+F8
+> :
+lİ’
+<
+CR
+>
+
+629 
+im­
+ <
+S
+-
+F8
+> <
+C
+-
+O
+><C-F8>
+
+630 
+m­
+ <
+C
+-
+F8
+> :
+lşo£
+<
+CR
+>
+
+631 
+im­
+ <
+C
+-
+F8
+> <C-
+O
+><
+S
+-F8>
+
+632 
+ÂÜem­
+ <
+L—d”
+>
+n
+ :
+Êext
+<
+ü
+>
+zvzz
+
+
+633 
+ÂÜem­
+ <
+L—d”
+>
+b
+ :
+Í»v
+<
+ü
+>
+zvzz
+
+
+635 
+s’t
+! 
+£t
+ 
+w¿psÿn
+ 
+ignÜeÿ£
+ 
+sm¬tÿ£
+ 
+šc£¬ch
+ 
+hl£¬ch
+ 
+magic
+
+
+637 
+ÂÜem­
+ <
+LoÿlL—d”
+>
+w
+ :%
+s
+#\<<
+C
+-
+r
+>=
+	`ex·nd
+("<cwÜd>")<
+CR
+>\>#
+ <LoÿlL—d”>
+z
+ :%s#\<<C-r>=
+	`g‘lše
+(".")<CR>\>#
+"-------------------------------------------------------------------------
+
+641 
+ÂÜem­
+ <
+s’t
+> <
+Esc
+><Esc> :<
+C
+-
+u
+>
+£t
+ 
+nİa¡e
+<
+CR
+>:
+nohl£¬ch
+<CR>
+
+643 
+nm­
+ <
+s’t
+> 
+n
+ 
+nzz
+
+
+644 
+nm­
+ <
+s’t
+> 
+N
+ 
+Nzz
+
+
+645 
+nm­
+ <
+s’t
+> 
+g
+* g*
+zz
+
+
+646 
+nm­
+ <
+s’t
+> 
+g
+#g#zz
+
+648 
+ÂÜem­
+ <
+F12
+> :
+Tagb¬ToggË
+<
+CR
+>
+
+650 
+autocmd
+ 
+f‘y³
+ 
+vim
+ 
+nÜem­
+! <
+bufãr
+> <
+F2
+> <
+Esc
+>:
+h–p
+ <
+C
+-
+r
+><C-
+w
+><
+CR
+>
+
+653 
+vnÜem­
+ <
+s’t
+> * :<
+C
+-
+u
+>
+ÿÎ
+ 
+	`Visu®S–eùiÚ
+('', '')<
+CR
+>/<C-
+R
+>=@/<CR><CR>
+
+654 
+vnÜem­
+ <
+s’t
+> #:<
+C
+-
+u
+>
+ÿÎ
+ 
+	`Visu®S–eùiÚ
+('', '')<
+CR
+>?<C-
+R
+>=@/<CR><CR>
+
+658 
+ÂÜem­
+ <
+L—d”
+>
+l
+ :
+lg»p
+ -
+R
+ <
+cwÜd
+> .<
+ü
+>
+
+659 
+ÂÜem­
+ <
+Ëad”
+>
+g
+ :
+execu‹
+ "vimg»°/" . 
+	`ex·nd
+("<cwÜd>"è. "/j **" <
+B¬
+> 
+cw
+<
+CR
+>
+
+660 
+ÂÜem­
+ <
+L—d”
+>
+a
+ :
+Ag
+ <
+cwÜd
+> .<
+ü
+>
+
+666 
+nÜem­
+ <
+F3
+> :
+NERDT»eToggË
+<
+ü
+>
+
+667 
+šÜem­
+ <
+F3
+> <
+esc
+>:
+NERDT»eToggË
+<
+ü
+>
+
+669 
+augroup
+ 
+ps_ÃrdŒ“
+
+
+670 
+au
+!
+
+672 
+au
+ 
+F‘y³
+ 
+ÃrdŒ“
+ 
+£oÿl
+ 
+nŞi¡
+
+
+673 
+au
+ 
+F‘y³
+ 
+ÃrdŒ“
+ 
+ÂÜem­
+ <
+bufãr
+> 
+H
+ :
+v”tiÿl
+ 
+»size
+ -10<
+ü
+>
+
+674 
+au
+ 
+F‘y³
+ 
+ÃrdŒ“
+ 
+ÂÜem­
+ <
+bufãr
+> 
+L
+ :
+v”tiÿl
+ 
+»size
+ +10<
+ü
+>
+
+676 
+augroup
+ 
+END
+
+
+678 
+Ët
+ 
+NERDT»eHighlightCursÜlše
+ = 1
+
+679 
+Ët
+ 
+NERDT»eIgnÜe
+ = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
+
+689 
+Ët
+ 
+NERDT»eMšim®UI
+ = 1
+
+690 
+Ët
+ 
+NERDT»eDœA¼ows
+ = 1
+
+691 
+Ët
+ 
+NERDChri¡masT»e
+ = 1
+
+692 
+Ët
+ 
+NERDT»eChDœMode
+ = 2
+
+693 
+Ët
+ 
+NERDT»eM­JumpFœ¡Chd
+ = 'gK'
+
+697 
+augroup
+ 
+á_fug™ive
+
+
+698 
+au
+!
+
+699 
+ÂÜem­
+ <
+Ëad”
+>
+gd
+ :
+Gdiff
+<
+ü
+>
+
+700 
+ÂÜem­
+ <
+Ëad”
+>
+gs
+ :
+G¡©us
+<
+ü
+>
+
+701 
+ÂÜem­
+ <
+Ëad”
+>
+gw
+ :
+Gwr™e
+<
+ü
+>
+
+702 
+ÂÜem­
+ <
+Ëad”
+>
+ga
+ :
+Gadd
+<
+ü
+>
+
+703 
+ÂÜem­
+ <
+Ëad”
+>
+gb
+ :
+GbÏme
+<
+ü
+>
+
+704 
+ÂÜem­
+ <
+Ëad”
+>
+gco
+ :
+Gcheckout
+<
+ü
+>
+
+705 
+ÂÜem­
+ <
+Ëad”
+>
+gci
+ :
+Gcomm™
+<
+ü
+>
+
+706 
+ÂÜem­
+ <
+Ëad”
+>
+gm
+ :
+Gmove
+<
+ü
+>
+
+707 
+ÂÜem­
+ <
+Ëad”
+>
+gr
+ :
+G»move
+<
+ü
+>
+
+708 
+ÂÜem­
+ <
+Ëad”
+>
+gl
+ :
+Sh–l
+ 
+g™
+ gÈ-18<
+ü
+>:
+wšcmd
+ \|<cr>
+
+709 
+au
+ 
+BufNewFe
+,
+BufR—d
+ .
+g™
+/
+šdex
+ 
+£oÿl
+ 
+nŞi¡
+
+
+710 
+augroup
+ 
+END
+
+
+722 
+funùiÚ
+! 
+	$DiffFŞdLev–
+()
+
+723 
+Ët
+ 
+l
+:
+lše
+=
+	$g‘lše
+(
+v
+:
+Êum
+)
+
+724 
+l
+:
+lše
+ =~#'^\(
+diff
+\|
+Index
+\)' " file
+
+726 
+–£if
+ 
+l
+:
+lše
+ =~#'^\(@@\|\
+d
+\)' " hunk
+
+728 
+–£if
+ 
+l
+:
+lše
+ =~#'^\*\*\* \
+d
+\+,\d\+ \*\*\*\*
+$
+' " context: file1
+
+730 
+–£if
+ 
+l
+:
+lše
+ =~#'^--- \
+d
+\+,\d\+ ----
+$
+' " context: file2
+
+734 
+’dif
+
+
+735 
+’dfunùiÚ
+
+
+737 
+augroup
+ 
+á_diff
+
+
+738 
+au
+!
+
+740 
+autocmd
+ 
+FeTy³
+ 
+diff
+ 
+£oÿl
+ 
+fŞdex´
+=
+	$DiffFŞdLev–
+()
+
+741 
+augroup
+ 
+END
+
+
+743 
+commªd
+! 
+DiffOrig
+ 
+v”t
+ 
+Ãw
+ | 
+£t
+ 
+bt
+=
+nofe
+ | 
+r
+ #| 0d
+_
+ | 
+difáhis
+ \ | 
+wšcmd
+ 
+p
+ | diffthis
+
+745 
+vm­
+ 
+dg
+ :
+diffg‘
+<
+CR
+>
+
+746 
+vm­
+ 
+dp
+ :
+difåut
+<
+CR
+>
+
+748 
+ÂÜem­
+ <
+s’t
+> <
+ex´
+> <
+Ëad”
+>
+d
+ ":\<C-u>".(&
+diff
+?"diffoff":"diffthis")."\<CR>"
+
+750 
+ÂÜem­
+ dØ:
+diffoff
+!<
+ü
+>
+
+752 
+commªd
+! 
+Diffoff
+ 
+diffoff
+ | 
+£oÿl
+ 
+now¿p
+
+
+756 
+nÜem­
+ <
+C
+-
+F10
+> :
+SyÁa¡icCheck
+<
+CR
+>
+
+757 
+Ët
+ 
+g
+:
+syÁa¡ic_®ways_pİuÏ‹_loc_li¡
+ = 1
+
+758 
+Ët
+ 
+g
+:
+syÁa¡ic_auto_loc_li¡
+ = 1
+
+759 
+Ët
+ 
+g
+:
+syÁa¡ic_check_Ú_İ’
+ = 1
+
+760 
+Ët
+ 
+g
+:
+syÁa¡ic_check_Ú_wq
+ = 0
+
+761 ""
+Ët
+ 
+g
+:
+syÁa¡ic_java_check”s
+ = ['checkstyle']
+
+762 
+Ët
+ 
+g
+:
+syÁa¡ic_java_javac_execubË
+ = '~/.vim/plugged/syntastic/syntax_checkers/java/javac.vim'
+
+763 
+Ët
+ 
+g
+:
+sy¡a¡ic_pythÚ_check”s
+ = ['pylint', 'python']
+
+764 
+Ët
+ 
+g
+:
+syÁa¡ic_mode_m­
+ = {'mode': 'aùive'
+	}
+}
+
+765 
+Ët
+ 
+g
+:
+syÁa¡ic_pythÚ_pylšt_qu›t_mes§ges
+ = {}
+
+766 
+Ët
+ 
+g
+:
+syÁa¡ic_’abË_signs
+ = 1
+
+767 
+Ët
+ 
+g
+:
+syÁa¡ic_auto_jump
+ = 1
+
+768 
+Ët
+ 
+g
+:
+syÁa¡ic_’abË_highlightšg
+ = 1
+
+769 
+Ët
+ 
+g
+:
+syÁa¡ic_echo_cu¼’t_”rÜ
+ = 1
+
+770 
+Ët
+ 
+g
+:
+syÁa¡ic_javasüt_check”s
+=['jshint']
+
+771 
+Ët
+ 
+g
+:
+syÁa¡ic_php_check”s
+=['php']
+
+772 
+Ët
+ 
+g
+:
+syÁa¡ic_css_check”s
+=['csslint']
+
+773 
+Ët
+ 
+g
+:
+syÁa¡ic_check_Ú_w
+ = 1
+
+779 
+highlight
+ 
+Tagb¬Highlight
+ 
+ù”mfg
+=051 
+ù”mbg
+=
+nÚe
+ 
+ù”m
+=
+bŞd
+
+
+780 
+highlight
+ 
+TagLi¡TagName
+ 
+ù”mfg
+=250
+
+781 
+£t
+ 
+b·gemax
+=15 " Only show 15abs
+
+782 
+£t
+ 
+ruËr
+ " Showhe„uler
+
+783 
+£t
+ 
+ruËrfÜm©
+=%30(%=\:
+b
+%
+n
+%
+y
+%
+m
+%
+r
+%
+w
+\ %
+l
+,%
+	gc
+%
+	gV
+\ %
+	gP
+%) " A„uler on steroids
+
+784 
+£t
+ 
+cursÜlše
+
+
+785 
+£t
+ 
+cursÜcŞumn
+
+
+786 
+Ët
+ 
+	gw
+:
+³rsi¡’t_cursÜlše
+ = 1
+
+788 
+hi
+ 
+Pm’ue
+ 
+ù”mfg
+=17
+
+789 
+hi
+ 
+CursÜLše
+ 
+ù”mbg
+=16
+
+790 
+hi
+ 
+CursÜCŞumn
+ 
+ù”mbg
+=16
+
+791 
+hi
+ 
+CŞÜCŞumn
+ 
+ù”mbg
+=52
+
+792 
+hi
+ 
+CŞÜCŞumn
+ 
+ù”mbg
+=32
+
+793 
+£t
+ 
+cŞÜcŞumn
+=1,8,92,100,112,120
+
+794 
+hi
+ 
+LšeNr
+ 
+	gù”mfg
+=1 
+ù”mbg
+=153
+
+795 
+hi
+ 
+NÜm®
+ 
+ù”mbg
+=235
+
+796 
+Ët
+ 
+g
+:
+šd’tLše_cŞÜ_‹rm
+ = 133
+
+797 
+£t
+ 
+nuw
+ =5
+
+798 
+highlight
+ 
+CursÜ
+ 
+ù”mbg
+=2 
+‹rm
+ğ
+bŞd
+
+
+809 
+Ët
+ 
+g
+:
+ùags_¡©u¦še
+=1
+
+810 
+Ët
+ 
+g’”©e_gs
+=1
+
+811 
+£t
+ 
+noshowmode
+
+
+812 
+£t
+ 
+showmode
+ " Displayhe current mode
+
+813 
+£t
+ 
+showcmd
+ " Show…artial commands in status†ine‡nd
+
+815 
+Ët
+ 
+g
+:
+aœlše
+#extensions#tabline#enabled = 2
+
+816 
+Ët
+ 
+g
+:
+aœlše
+#extensions#tabline#fnamemod = ':t'
+
+817 
+Ët
+ 
+g
+:
+aœlše
+#extensions#tabline#buffer_min_count = 1
+
+818 
+Ët
+ 
+g
+:
+aœlše_£ùiÚ_c
+ = '%{strftime("%D - %H:%M")}'
+
+821 
+Ët
+ 
+g
+:
+aœlše_theme
+='light'
+
+822 
+Ët
+ 
+g
+:
+aœlše_pow”lše_fÚts
+=1
+
+823 
+Ët
+ 
+g
+:
+aœlše
+#extensions#branch#enabled=1
+
+824 
+Ët
+ 
+g
+:
+aœlše
+#extensions#whitespace#enabled = 1
+
+825 
+Ët
+ 
+g
+:
+aœlše
+#extensions#hunks#non_zero_only = 1
+
+827 
+hi
+ 
+¡©u¦še
+ 
+ù”mbg
+=
+Cyª
+ 
+ù”mfg
+=
+BÏck
+ 
+ù”m
+=
+bŞd
+
+
+828 
+hi
+ 
+StusLšeNC
+ 
+ù”mbg
+=5 
+ù”mfg
+=0 
+ù”m
+=
+NONE
+
+
+837 
+highlight
+ 
+DiffChªge
+ 
+ù”m
+=
+bŞd
+ 
+ù”mbg
+=10 "greenBright
+
+838 
+highlight
+ 
+DiffChªge
+ 
+ù”m
+=
+bŞd
+ 
+ù”mbg
+=8 "gray
+
+839 
+highlight
+ 
+DiffChªge
+ 
+ù”m
+=
+bŞd
+ 
+ù”mbg
+=7 "red
+
+843 
+£t
+ 
+nosm
+
+
+844 
+£t
+ 
+now¿p
+
+
+845 
+£t
+ 
+wmh
+=0
+
+847 
+m­
+ <
+C
+-
+J
+> <C-
+W
+>
+j
+<C-W>
+_
+
+
+848 
+m­
+ <
+C
+-
+K
+> <C-
+W
+>
+k
+<C-W>
+_
+
+
+849 
+m­
+ <
+C
+-
+H
+> <C-
+W
+>
+h
+<C-W>|
+
+850 
+m­
+ <
+C
+-
+L
+> <C-
+W
+>
+l
+<C-W>|
+
+851 
+m­
+ <
+C
+-=> <C-
+W
+>=
+
+853 
+ÂÜem­
+ <
+S
+-
+j
+> :
+bn
+<
+ü
+>
+
+854 
+ÂÜem­
+ <
+S
+-
+k
+> :
+bp
+<
+ü
+>
+
+855 
+ÂÜem­
+ <
+m
+-
+j
+> :
+bn
+<
+ü
+>
+
+856 
+ÂÜem­
+ <
+m
+-
+k
+> :
+bp
+<
+ü
+>
+
+858 
+highlight
+ 
+Visu®
+ 
+ù”m
+=
+bŞd
+ 
+ù”mbg
+=0 
+ù”mfg
+=
+NONE
+
+
+862 
+£t
+ 
+shÜtmess
++=
+I
+
+
+863 
+highlight
+ 
+E¼ÜMsg
+ 
+guifg
+=
+»d
+ 
+guibg
+=
+wh™e
+
+
+865 
+highlight
+ 
+FŞded
+ 
+ù”mbg
+=10
+
+867 
+highlight
+ 
+FŞdCŞumn
+ 
+ù”mbg
+=9 
+ù”mfg
+=0 
+guibg
+=#ffffd7
+
+869 
+highlight
+ 
+DiffText
+ 
+ù”mbg
+=1
+
+	@
+1
+.
+1
+/usr/include
+3
+34
+nAlt.vim
+nPlug.vim
+ninitOkt18.vim

@@ -112,24 +112,16 @@ You may also use wildchars (whatever find(1) knows)
 2       ./src/core/o_stream.c
 3       ./src/core/streamio.c
 Which ? (CR=nothing)
+
 "AAA------------------------------------------------------------------------------------------------------------------
 
 If you press: ctrl+[ it will put you in normal mode just like hitting esc.  
-
 (  	previous sentence
-
 )  	Next Sentence
-
 d)  	Deletes upto the end of the current sentence.
-
 d(  	If in middle of sentences deletes to the begining. OR if at the
-begining deletes the previous sentence.
-
 d{ 
 d} operations move over paragraphs.
-
-{ and } operations move over paragraphs.
-
 [[ and ]] move over sections.
 
 "AAA------------------------------------------------------------------------------------------------------------------
@@ -164,32 +156,8 @@ G   - jump to end of file
   +  first character of next line 
   -  first character of previous line 
 
- *[b*     |:bprevious|
- *]b*     |:bnext|
- *[B*     |:bfirst|
- *]B*     |:blast|
- *[l*     |:lprevious|
- *]l*     |:lnext|
- *[L*     |:lfirst|
- *]L*     |:llast|
- *[<C-L>* |:lpfile|
- *]<C-L>* |:lnfile|
- *[q*     |:cprevious|
- *]q*     |:cnext|
- *[Q*     |:cfirst|
- *]Q*     |:clast|
 
 "AAA-------------------------------------------------------------------------------------------------------------------
-   [vif]   -Visually select the code Inside a Function.
-   [daf]   -Delete A Function, and
-   '-viq-' -QUTES-
-   '-cq-'  -QUTES-
-   '-dq-'  -QUTES-
-   '-yq-'  -QUTES-
-   `vgb`   -Select last pasted text.
-   `=gb`   -Re-indent last pasted text.
-   `dgb`   -Delete last pasted text.
-   `gcgb`  -Comment last pasted text
 
 I really like the text-objects in Vim (:h text-objects), like ciw, or da>, but
 I really wanted one that would work on quoted sentences.  Here's what I came up
@@ -393,3 +361,48 @@ combine the two, and you can format a code block by typing =i{
 " | `Helptags`        | Help tags <sup id="a1">[1](#helptags)</sup>                             |
 " | `Filetypes`       | File types
 "------------------------------------------------------------------------------------------------------------------
+"nnoremap <C-h> :<C-u>help<Space>
+"nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <Space>w <C-w>
+noremap ; :
+noremap : ;
+noremap j gj
+noremap k gk
+
+noremap gj j
+noremap gk k
+nnoremap <C-t> <Nop>
+nnoremap <C-t>n :<C-u>tabnew<CR>
+nnoremap <C-t>c :<C-u>tabclose<CR>
+nnoremap <C-t>o :<C-u>tabonly<CR>
+nnoremap <C-t>j :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 -1) % tabpagenr('$')<CR>
+nnoremap <C-t>k gT
+"nnoremap t <Nop>
+        "------------------------------------
+        " surround.vim
+        "------------------------------------
+        nmap ,( csw(
+        nmap ,) csw)
+        nmap ,{ csw{
+        nmap ,} csw}
+        nmap ,[ csw[
+        nmap ,] csw]
+        nmap ,' csw'
+        nmap ," csw"
+"----------------------------------------
+" vim-git
+"----------------------------------------
+"{{{
+"vim上からgitを使う 便利
+nmap <Space>gd :GitDiff<CR>
+nmap <Space>gB :GitBlame<CR>
+nmap <Space>gb :Gitblanch<CR>
+nmap <Space>gp :GitPush<CR>
+nmap <Space>gD :GitDiff --cached<CR>
+nmap <Space>gs :GitStatus<CR>
+nmap <Space>gl :GitLog<CR>
+nmap <Space>ga :GitAdd
+nmap <Space>gA :GitAdd -A<CR>
+nmap <Space>gm :GitCommit<CR>
+nmap <Space>gM :GitCommit --amend<CR>
+"}}}
