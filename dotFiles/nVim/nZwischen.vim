@@ -1,4 +1,85 @@
 
+        Plug 'wesleyche/SrcExpl'
+        Plug 'vim-scripts/tinykeymap'
+        Plug 'nathanaelkane/vim-indent-guides'
+        Plug 'skywind3000/vim-preview'
+        Plug 'vim-scripts/vim-signature'
+        Plug 'krisajenkins/vim-pipe'
+
+        Plug 'c9s/helper.vim'
+        Plug 'c9s/treemenu.vim'
+        Plug 'c9s/hypergit.vim'
+
+
+if has("eval")
+  let g:ale_sign_error = '☞ '
+  let g:ale_sign_warning = '☞ '
+  let g:ale_statusline_format = ['{%d}', '{%d}', '']
+
+  " if I become annoyed about ALE showing errors for half-typed text, perhaps
+  " I'll want to uncomment these:
+  ""let g:ale_lint_on_save = 1
+  ""let g:ale_lint_delay = 1000
+  ""let g:ale_lint_on_text_changed = 0
+endif
+
+
+
+        " py-test-runner.vim                                            {{{2
+        map             ,t              :CopyTestUnderCursor<cr>
+
+        if has("user_commands")
+        " :Co now expands to :CommandT, but I'm used to type it as a shortcut for
+        " :CopyTestUnderCursor
+        command! Co CopyTestUnderCursor
+        endif
+
+        " surround.vim (which I no longer use)                          {{{2
+        " make it not clobber 's' in visual mode
+        vmap <Leader>s <Plug>Vsurround
+        vmap <Leader>S <Plug>VSurround
+
+        " :Python3 and :Python2 to toggle Syntastic/flake8 mode         {{{2
+        function! Flake8(exe, args, recheck_now)
+        let g:ale_python_flake8_executable = a:exe
+        let g:ale_python_flake8_options = a:args
+        let g:syntastic_python_flake8_exe = a:exe . ' ' . a:args
+        if a:recheck_now && exists('*SyntasticCheck')
+        SyntasticCheck
+        endif
+        if a:recheck_now && exists('*ALELint')
+        ALELint
+        endif
+        endf
+
+        function! Python2(recheck_now)
+        call Flake8('python2', '-m flake8', a:recheck_now)
+        let g:coverage_script = 'coverage'
+        endf
+        function! Python3(recheck_now)
+        call Flake8('python3', '-m flake8', a:recheck_now)
+        let g:coverage_script = 'python3 -m coverage'
+        endf
+        command! -bar Python2 call Python2(1)
+        command! -bar Python3 call Python3(1)
+
+
+        " Jumping to lint errors with Ctrl-J/K                          {{{2
+        nmap <silent>   <C-K>           <Plug>(ale_previous_wrap)
+        nmap <silent>   <C-J>           <Plug>(ale_next_wrap)
+
+        " <F4> = next error/grep match
+        "" depends on plugin/quickloclist.vim
+        map             <F4>            :FirstOrNextInList<CR>
+        imap            <F4>            <C-O><F4>
+        " <S-F4> = previous error/grep match
+        map             <S-F4>          :PrevInList<CR>
+        imap            <S-F4>          <C-O><S-F4>
+        " <C-F4> = current error/grep match
+        map             <C-F4>          :CurInList<CR>
+        imap            <C-F4>          <C-O><C-F4>
+
+
         "------------------------------------------------------------------------------------------
         "-Plugin: insearch + insearch-fuzzy
         " map <Space>  <Plug>(incsearch-forward)

@@ -990,8 +990,9 @@ endif
         fun! OpenInSplitWindow() abort
         endfun
 
-        " Vim :help
+        "-Vim-:help-
         au FileType vim,help nnoremap K :exec "help" expand("<cword>")<CR>
+
         " Shell/man $ man
         au FileType sh,man,zsh setlocal keywordprg="man -s"
         " C $ man
@@ -1191,8 +1192,6 @@ endif
           "au BufWritePost *.bin if &bin | %!xxd
           "au BufWritePost *.bin set nomod | endif
         "augroup END
-
-
 " }}}
 
 " [ local/project specific vimrc ] {{{
@@ -2097,6 +2096,7 @@ filetype plugin indent on " required !
 syntax on
 " }}}
 
+"AAA XXX
 " [ Program ] {{{
     " [ syntax ] {{{
         " TagHighlight {{{ highlight names of class, variable, types in code.
@@ -2607,6 +2607,7 @@ syntax on
                         "\ : "\<C-x>\<C-u>"
             " }}}
 
+" AAA XXX
             " [ key mappings ] {{{
             " if !exists('*neocomplcache#is_enabled')
             if !exists('g:loaded_neocomplcache')
@@ -2673,6 +2674,8 @@ syntax on
                 "             \ UltiSnips_ExpandSnippet()
                 "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
 
+                "AAA XXX UUU
+
                 imap <expr> <C-Tab> UltiSnips_ListSnippets() ?
                             \ UltiSnips_ExpandSnippet()
                             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -2725,6 +2728,7 @@ syntax on
 
             " how long the time retains: completion, insert, session
             let g:SuperTabRetainCompletionDuration = 'insert'
+
             " prevent completion after ...
             let g:SuperTabNoCompleteBefore = []
             let g:SuperTabNoCompleteAfter = ['^', '\s', ',']
@@ -2821,6 +2825,8 @@ syntax on
                 set conceallevel=2 concealcursor=i
             endif
         " }}}
+
+
 
         " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
             " commands:
@@ -3107,6 +3113,7 @@ syntax on
             let g:TagSignatureAllowFileLoading = 1
             let g:TagSignatureMaxMatches = 1
 
+"AAA 
         " easytags {{{ Automated tag file generation & syntax highlighting of tags
             " Usage:
             " :UpdateTags[!]
@@ -4050,6 +4057,7 @@ syntax on
         " }}}
     " }}}
 
+"AAA XXX
     " [ quickfix & location list ] {{{
         " quickfixsigns {{{ marks, quickfix & location list items with signs.
             " Usage:
@@ -4442,7 +4450,7 @@ syntax on
             let g:TagmaTasksPrefix = '<Leader>t'
             let g:TagmaTasksTokens = g:TasksListTokens
         " }}}
-
+"AAA
         " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
             map <Leader>tl <Plug>TaskList
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
@@ -5941,6 +5949,8 @@ syntax on
         " }}}
     " }}}
 
+"AAA
+
     " [ completion ] {{{
         " unite.vim {{{ Ultimate interface to unite all sources
             " Usage:
@@ -6046,7 +6056,7 @@ syntax on
         " StarRange.vim | Select a string in visual mode. Press * or # key.
 
         " visualstar: | *,#,g*,g# for visual mode.
-
+"AAA
         " exjumplist | a Vim plugin to provide extra commands for |jumplist|
             nmap <C-M-i>  <Plug>(exjumplist-go-last)
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
@@ -6090,7 +6100,7 @@ syntax on
             let g:SignaturePurgeConfirmation = 1
             let g:SignaturePeriodicRefresh = 1 " periodic auto refresh
         " }}}
-
+"AAA
         " vmark.vim--Visual_Bookmarking {{{
         " Toggle visual bookmarking and jump through bookmarks
         " Usage:
@@ -6132,6 +6142,8 @@ syntax on
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
         " }}}
 
+
+"AAA
         " DynamicSigns {{{ Use Signs for different things.
             let g:Signs_IndentationLevel = 1 " numeric indentation level.
             let g:SignsMixedIndentation = 1 " mixed indentation
@@ -6312,6 +6324,8 @@ syntax on
             au FileType html let b:vimpipe_command="lynx -dump -stdin" " HTML
             " au FileType javascript let b:vimpipe_command='jslint <(cat)' " JSLint (JavaScript)
         " }}}
+
+"AAA
 
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
             " simulate an embedded shell in vim by allowing you convert vim
@@ -6645,6 +6659,8 @@ syntax on
             " colorscheme hybrid
         " Lucius
     " }}}
+
+"AAA bagatel
 
     " [ syntax for *** ] {{{
         " Txtfmt_The_Vim_Highlighter {{{ "Rich text" highlighting formatted with Vim

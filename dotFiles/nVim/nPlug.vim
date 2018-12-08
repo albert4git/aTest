@@ -1,5 +1,28 @@
 "---Paredit ???---
 call plug#begin()
+
+        Plug 'wesleyche/SrcExpl'
+        Plug 'vim-scripts/tinykeymap'
+        Plug 'nathanaelkane/vim-indent-guides'
+        Plug 'skywind3000/vim-preview'
+        "Plug 'vim-scripts/vim-signature'
+        Plug 'kshenoy/vim-signature'
+        Plug 'krisajenkins/vim-pipe'
+
+        Plug 'c9s/helper.vim'
+        Plug 'c9s/treemenu.vim'
+        Plug 'c9s/hypergit.vim'
+
+        Plug 'jiangmiao/auto-pairs'
+        Plug 'xolox/vim-session'
+        Plug 'machakann/vim-highlightedyank'
+            let g:highlightedyank_highlight_duration = -1
+        Plug 'machakann/vim-sandwich'
+        Plug 'tyru/capture.vim'
+        Plug 'wellle/visual-split.vim'
+        Plug 'gastonsimone/vim-dokumentary/'
+        Plug 'zefei/vim-colortuner'
+
         "----------
         "Plug 'Shougo/vimproc.vim'
         "----------
@@ -60,7 +83,6 @@ call plug#begin()
         "Plug 'itchyny/vim-qfedit'
         "----------
         Plug 'killphi/vim-textobj-signify-hunk'
-        Plug 'kshenoy/vim-signature'
         Plug 'flazz/vim-colorschemes'
         Plug 'rafi/awesome-vim-colorschemes'
         Plug 'Chun-Yang/vim-action-ag'
@@ -327,3 +349,24 @@ call plug#end()
 "                 bd!
 "         endif
 " endfunction
+"----------------------------------------------------------------------------------
+    "" Eclim {{{ bring Eclipse functionality to Vim support various languages
+        " code complete: <C-X><C-U>
+        " :Validate/:w to check syntax error.
+        "let java_highlight_java_lang_ids=1 " highlight Identifiers in java.lang.*
+
+        " javacomplete
+        " http://www.vim.org/scripts/script.php?script_id=1785
+
+        " Vim JDE : Vim - Just a Development Envirement (Java/C++)
+        " http://www.vim.org/scripts/script.php?script_id=1213
+     ""}}}
+"----------------------------------------------------------------------------------
+
+
+    " " Initialize Help Syntax
+    " syntax match HelpComment +^#.*+
+    " syntax match String      +".\{-}"+
+    " hi HelpComment ctermfg=blue
+    " hi String      ctermfg=red
+

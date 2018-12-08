@@ -266,7 +266,7 @@ let g:netrw_winsize = -28
 " tree-view
 let g:netrw_liststyle = 3
 
-" sort is affecting only: directories on the top, files below
+"sort is affecting only: directories on the top, files below
 let g:netrw_sort_sequence = '[\/]$,*'
 
 " open file in a new tab

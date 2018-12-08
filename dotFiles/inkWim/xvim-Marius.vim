@@ -527,7 +527,6 @@ if has("eval")
 endif
 
 " Command-t                                                     {{{2
-
 if has("eval")
   let g:CommandTCursorEndMap = ['<C-e>', '<End>']       " add End
   let g:CommandTCursorStartMap = ['<C-a>', '<Home>']    " add Home
@@ -861,7 +860,6 @@ command! -nargs=? EditSnippets
   \ exe ":e ~/.vim/UltiSnips/".(<q-args> != "" ? <q-args> : &ft != "" ? &ft : "all").".snippets"
 
 " :Python3 and :Python2 to toggle Syntastic/flake8 mode         {{{2
-
 function! Flake8(exe, args, recheck_now)
   let g:ale_python_flake8_executable = a:exe
   let g:ale_python_flake8_options = a:args
@@ -873,6 +871,7 @@ function! Flake8(exe, args, recheck_now)
     ALELint
   endif
 endf
+
 function! Python2(recheck_now)
   call Flake8('python2', '-m flake8', a:recheck_now)
   let g:coverage_script = 'coverage'
@@ -950,7 +949,6 @@ noremap <silent> <expr> <c-l>   <sid>redrawcommand()
 inoremap        <Esc>.          <C-R>=split(getline(line(".")-1))[-1]<CR>
 
 " Digraphs                                                      {{{2
-
 if has("digraphs")
   digraph -- 8212               " em dash
   digraph `` 8220               " left double quotation mark
