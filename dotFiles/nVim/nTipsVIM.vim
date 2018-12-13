@@ -16,31 +16,6 @@ if filereadable($VIMRUNTIME . "/macros/matchit.vim")
 endif
 
 "AAA--------------------------------------------------------------------------------- 
-VimTip	{{{1 342: Remap <ESC>
-http://vim.sourceforge.net/tip_view.php?tip_id=
-
-Tired of hunting down <ESC> at upper-left of your keyboard while using a keyboard with useless Windows keys?
-
-Well, remap them -- use xmodmap. I'm using Debian and my xmodmap config file is in /etc/X11/xinit/xmodmap, ymmv. 
-You may have to use xmodmap directly (from ~/.xinitrc  in *BSD or whatever).
-
-Anyway, here's my xmodmap:
-[ .. other irrelevant mappings skipped ... ]
-keycode 115 = braceleft
-keycode 116 = Escape
-keycode 117 = braceright
-
-Btw, the keys are:
-    * 115 - Windows key, between the left-hand Ctrl and Alt keys
-    * 116 - Windows key, to the right of the AltGr key
-    * 117 - Menu key, to the left of the right-hand Ctrl key
-
-Valid for all environments with X, on *BSD as well as on Linux.
-You get the same mappings under ordinary console by modifying the console keymap file (pretty self-explanatory), in my case it's 
-/usr/share/keymaps/i386/qwerty/et.kmap.gz.
-
-I'm using mapping braces to winkeys because of my Estonian keyboard.
-"AAA--------------------------------------------------------------------------------- 
 VimTip	{{{1 367: What is this $VIMRUNTIME ?
 http://vim.sourceforge.net/tip_view.php?tip_id=
 
@@ -290,3 +265,29 @@ here may be one solution by combining several steps:
 nmap gt ... place the above steps into key combinations "g" "t" so next time use "gt" instead of "gf" on the error tag!
 
 
+"AAA--------------------------------------------------------------------------------- 
+
+VimTip	{{{1 342: Remap <ESC>
+http://vim.sourceforge.net/tip_view.php?tip_id=
+
+Tired of hunting down <ESC> at upper-left of your keyboard while using a keyboard with useless Windows keys?
+
+Well, remap them -- use xmodmap. I'm using Debian and my xmodmap config file is in /etc/X11/xinit/xmodmap, ymmv. 
+You may have to use xmodmap directly (from ~/.xinitrc  in *BSD or whatever).
+
+Anyway, here's my xmodmap:
+[ .. other irrelevant mappings skipped ... ]
+keycode 115 = braceleft
+keycode 116 = Escape
+keycode 117 = braceright
+
+Btw, the keys are:
+    * 115 - Windows key, between the left-hand Ctrl and Alt keys
+    * 116 - Windows key, to the right of the AltGr key
+    * 117 - Menu key, to the left of the right-hand Ctrl key
+
+Valid for all environments with X, on *BSD as well as on Linux.
+You get the same mappings under ordinary console by modifying the console keymap file (pretty self-explanatory), in my case it's 
+/usr/share/keymaps/i386/qwerty/et.kmap.gz.
+
+I'm using mapping braces to winkeys because of my Estonian keyboard.

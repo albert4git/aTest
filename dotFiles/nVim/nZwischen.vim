@@ -11,6 +11,75 @@
         Plug 'c9s/hypergit.vim'
 
 
+        "-???--------------------------------------------------------------------------------------
+        let g:project_use_nerdtree = 1
+        set runtimepath+=~/.config/nvim/plugged/vim-project/
+        call project#rc("~/git/aTest/dotFiles/nVim/")
+        Project  'scratch'
+        Project  'nVim'
+        File     'nVim/ninitOkt18.vim'                 , 'vimrc'
+        File     'nVim/nPlug.vim'                      , 'plugged'
+        "------------------------------------------------------------------------------------------
+        function! FT_Mako()
+                setf html
+                setlocal includeexpr=substitute(v:fname,'^/','','')
+                setlocal indentexpr=
+                setlocal indentkeys-={,}
+                map <buffer> <C-F6>  :SwitchCodeAndTest<CR>
+        endf
+        "------------------------------------------------------------------------------------------
+        augroup Mako_templ
+                autocmd!
+                autocmd BufRead,BufNewFile *.mako call FT_Mako()
+        augroup END
+
+        "Default templates directory is `.vim/templates` or (if you use pathogen) `.vim/bundle/vimplates/templates` you can change it by adding this line to your `.vimrc`:
+        " let g:vimplates_templates_dirs = ['/path/to/templates', '/another/path/to/templates']
+        " let g:vimplates_username (default: "John Doe")
+        " let g:vimplates_email (default: "john.doe@nothing.com")
+        " let g:vimplates_website (default: "http://nothing.com")
+        " let g:vimplates_license (default: "GPL-3")
+
+        "------------------------------------------------------------------------------------------
+        " let g:expand_region_text_objects = {
+        "                         \ 'iw'  :0,
+        "                         \ 'iW'  :0,
+        "                         \ 'i"'  :0,
+        "                         \ 'i''' :0,
+        "                         \ 'i]'  :1, 
+        "                         \ 'ib'  :1, 
+        "                         \ 'iB'  :1, 
+        "                         \ 'il'  :0, 
+        "                         \ 'ip'  :0,
+        "                         \ 'ie'  :0, 
+        "                         \ }
+
+        let g:CtrlXA_Toggles = [
+              \ ['true', 'false'], ['True', 'False'], ['TRUE', 'FALSE'],
+              \ ['yes', 'no'], ['Yes', 'No'], ['YES', 'NO'],
+              \ ['on', 'off'], ['On', 'Off'], ['ON', 'OFF'],
+              \ ['up', 'down'], ['Up', 'Down'] ,['UP', 'DOWN'],
+              \ ['set', 'unset'],
+              \ ['is', 'isnot'] ,
+              \ ['==', '!='] , ['<', '>'], ['<=', '>='], ['=~', '!~'],
+              \ ['enable', 'disable'], ['Enable', 'Disable'],
+              \ ['enabled', 'disabled'], ['Enabled', 'Disabled'],
+              \ ['maximum', 'minimum'], ['Maximum', 'Minimum'],
+              \ ['maximal', 'minimal'], ['Maximal', 'Minimal'],
+              \ ['upper', 'lower'], ['Upper', 'Lower'],
+              \ ['top', 'bottom'], ['Top', 'Bottom'],
+              \ ['above', 'below'], ['Above', 'Below'],
+              \ ['forward', 'backward'], ['Forward', 'Backward'],
+              \ ['right', 'middle', 'left'], ['Right', 'Middle', 'Left'],
+              \ ['next', 'previous'], ['Next', 'Previous'],
+              \ ['first', 'last'], ['First', 'Last'],
+              \ ['before', 'after'], ['Before', 'After'],
+              \ ['more', 'less'], ['More', 'Less'],
+              \ ['fast', 'slow'], ['Fast', 'Slow'],
+              \ ]
+
+
+
 if has("eval")
   let g:ale_sign_error = '☞ '
   let g:ale_sign_warning = '☞ '

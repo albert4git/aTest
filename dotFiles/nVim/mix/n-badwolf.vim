@@ -107,6 +107,22 @@ let s:bwc.toffee = ['b88853', 137]
 let s:bwc.coffee    = ['c7915b', 173]
 let s:bwc.darkroast = ['88633f', 95]
 
+
+let s:bwc.myRed = ['800000', 1]
+let s:bwc.myGreen = ['008000', 2]
+let s:bwc.myBrown = ['808000', 3]
+let s:bwc.myBlue = ['000080', 4]
+let s:bwc.myPurple = ['008080', 6]
+let s:bwc.myRed2 = ['ff0000', 9]
+let s:bwc.myGreen2 = ['00ff00', 9]
+let s:bwc.myGelb = ['ffff00', 11]
+let s:bwc.myBlue2 = ['0000ff', 12]
+let s:bwc.myPurple2 = ['00ffff', 13]
+
+
+" 0 #000000    1 #800000    2 #008000    3 #808000    4 #000080    5 #800080    6 #008080    7 #c0c0c0
+" 8 #808080    9 #ff0000   10 #00ff00   11 #ffff00   12 #0000ff   13 #ff00ff   14 #00ffff   15 #ffffff
+
 " }}}
 " Highlighting Function {{{
 function! s:HL(group, fg, ...)
@@ -220,6 +236,7 @@ call s:HL('WarningMsg', 'dress',       '',   'bold')
 " This is a ctags tag, not an HTML one.  'Something you can use c-] on'.
 call s:HL('Tag', '', '', 'bold')
 
+"-call s:HL('japan',    'red', 'dalespale', 'bold')
 " hi IndentGuides                  guibg=#373737
 " hi WildMenu        guifg=#66D9EF guibg=#000000
 
@@ -318,12 +335,18 @@ call s:HL('DiffText',   'snow', 'deepergravel', 'bold')
 " }}}
 " Spelling {{{
 
-if has("spell")
-    call s:HL('SpellCap', 'dalespale', 'bg', 'undercurl,bold', 'dalespale')
-    call s:HL('SpellBad', '', 'bg', 'undercurl', 'dalespale')
-    call s:HL('SpellLocal', '', '', 'undercurl', 'dalespale')
-    call s:HL('SpellRare', '', '', 'undercurl', 'dalespale')
-endif
+        if has("spell")
+        "call s:HL('SpellCap', 'dalespale', 'bg', 'undercurl,bold', 'dalespale')
+        call s:HL('SpellCap', 'snow', 'bg', 'undercurl,bold', 'dalespale')
+        "---main--lime!-coffee-
+        call s:HL('SpellBad', 'myRed2', 'bg', 'undercurl', 'deepgravel')
+
+        "-----------------
+        call s:HL('SpellLocal', 'snow', 'bg', 'undercurl', 'dalespale')
+        call s:HL('SpellRare', 'tardis', 'bg', 'undercurl', 'dalespale')
+        endif
+
+
 
 " }}}
 

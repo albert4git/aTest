@@ -1,48 +1,185 @@
 "---Paredit ???---
 call plug#begin()
 
+        Plug 'mattboehm/vim-accordion'
+        Plug 'godlygeek/tabular'
+
+        "Some shrt from,some over phrase
+        "A much longer phrase here,and another long phrase
+        "Tabular
+
+        " abc,def,ghi , some , shrt 
+        " a,b,c
+
+        Plug 'Raimondi/delimitMate'
+        Plug 'vim-scripts/SpellCheck'
+        Plug 'justinmk/vim-dirvish'
+
+"--------------------------------------------------------------------------------- 
+        Plug 'echuraev/translate-shell.vim'
+            let g:trans_directions_list = [
+                        \['en', 'de'],
+                        \['de', 'en'],
+                        \['en', 'ru'],
+                        \['ru', 'en'],
+                        \['en', 'ru', 'de'],
+                        \['', 'ru'],
+                        \['en', 'ja'],
+                        \['en', 'zh-CN'],
+                        \['en', 'zh-TW'],
+                        \['en', 'la'],
+                        \['en', 'es'],
+                        \['', ''],
+                        \]
+            let g:trans_save_history = 1
+"--------------------------------------------------------------------------------- 
+        Plug 'tpope/vim-vinegar'
         Plug 'wesleyche/SrcExpl'
+            let g:SrcExpl_pluginList = [
+                        \ "__Tag_List__",
+                        \ "_NERD_tree_",
+                        \ "Source_Explorer",
+                        \ "*unite*"
+                        \ ]
+            let g:SrcExpl_colorSchemeList = [
+                        \ "Red",
+                        \ "Cyan",
+                        \ "Green",
+                        \ "Yellow",
+                        \ "Magenta"
+                        \ ]
+            " // The switch of the Source Explorer 
+            nmap <F4> :SrcExplToggle<CR>  
+            " // Set the height of Source Explorer window 
+            let g:SrcExpl_winHeight = 8 
+            " // Set 100 ms for refreshing the Source Explorer 
+            let g:SrcExpl_refreshTime = 100 
+            " // Set "Enter" key to jump into the exact definition context 
+            let g:SrcExpl_jumpKey = "<ENTER>" 
+            " // Set "Space" key for back from the definition context 
+            let g:SrcExpl_gobackKey = "<SPACE>" 
+"--------------------------------------------------------------------------------- 
         Plug 'vim-scripts/tinykeymap'
         Plug 'nathanaelkane/vim-indent-guides'
+            let g:indent_guides_auto_colors = 0
+            hi IndentGuidesOdd   ctermbg=235
+            hi IndentGuidesEven  ctermbg=242
         Plug 'skywind3000/vim-preview'
-        "Plug 'vim-scripts/vim-signature'
         Plug 'kshenoy/vim-signature'
         Plug 'krisajenkins/vim-pipe'
+            let b:vimpipe_command="lynx -dump -stdin"
+            let b:vimpipe_command='jslint <(cat)'
+            autocmd BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
+            let b:vimpipe_command="python -m json.tool"
+            let b:vimpipe_command="multimarkdown"
+            "let b:vimpipe_filetype="html"
+"--------------------------------------------------------------------------------- 
+        Plug 'junegunn/gv.vim'
+            " o or <cr> on a commit to display the content of it
+            " o or <cr> on commits to display the diff in the range
+            " O opens a new tab instead
+            " gb for :Gbrowse
+            " ]] and [[ to move between commits
+            " . to start command-line with :Git [CURSOR] SHA à la fugitive
+            " q to close
 
+        Plug 'alfredodeza/coveragepy.vim'
+            ":Coveragepy report
+            let g:coveragepy_uncovered_sign = '-'
+        Plug 'osyo-manga/vim-brightest'
+            " let g:brightest#highlight = { "group" : "DiffText" }
+            " let g:brightest#highlight = { "group" : "CtrlPNoEntries" }
+            " let g:brightest#highlight = { "group" : "Exception" }
+             let g:brightest#highlight = { "group" : "Define" }
+"--------------------------------------------------------------------------------- 
         Plug 'c9s/helper.vim'
         Plug 'c9s/treemenu.vim'
-        Plug 'c9s/hypergit.vim'
 
-        Plug 'jiangmiao/auto-pairs'
+"--------------------------------------------------------------------------------- 
+        Plug 'tpope/vim-fugitive'
+        Plug 'int3/vim-extradite'
+        Plug 'kmnk/vim-unite-giti'
+        Plug 'gilligan/textobj-gitgutter'
+        Plug 'henrik/git-grep-vim'
+"--------------------------------------------------------------------------------- 
+        Plug 'aghareza/vim-gitgrep'
+        Plug 'airblade/vim-gitgutter'
+        Plug 'motemen/git-vim'
+        Plug 'c9s/hypergit.vim'
+            " <leader>G    toggle hypergit menu
+            " <leader>ci   commit current file changes
+            " <leader>ca   commit all changes
+            " <leader>ga   add file to git repository
+            " <leader>gb   branch manager buffer
+            " <leader>gs   status manager buffer
+            " <leader>gh   stash manager buffer
+            " :GitCommit
+            " :GitCommitAll
+            " :GitCommitAmend
+            " :GitStatus
+            " :GitStash
+            " :GitPush
+            " :GitPull
+"--------------------------------------------------------------------------------- 
         Plug 'xolox/vim-session'
+            " Persist the options of the session plug-in using the session plug-in...
+            let g:session_persist_globals = ['&sessionoptions']
+            call add(g:session_persist_globals, 'g:session_autoload')
+            call add(g:session_persist_globals, 'g:session_autosave')
+            call add(g:session_persist_globals, 'g:session_default_to_last')
+            call add(g:session_persist_globals, 'g:session_persist_globals')
+            "let g:loaded_session = 1
+            let g:session_autosave = 'yes'
+"--------------------------------------------------------------------------------- 
         Plug 'machakann/vim-highlightedyank'
             let g:highlightedyank_highlight_duration = -1
+        "sd,sr, sa{motion/textobject}{addition}	(normal and visual mode)
         Plug 'machakann/vim-sandwich'
+        Plug 'tpope/vim-surround'
+        Plug 'jiangmiao/auto-pairs'
+"---------------------------------------------------------------------------------
         Plug 'tyru/capture.vim'
         Plug 'wellle/visual-split.vim'
         Plug 'gastonsimone/vim-dokumentary/'
-        Plug 'zefei/vim-colortuner'
+        "??? apt-get install dictd dict-gcide dict
+"--------------------------------------------------------------------------------- 
+        " Plug 'zefei/vim-colortuner'
+        " Plug 'jabbas/vimplates'
+        Plug 'sophacles/vim-bundle-mako'
+        Plug 'aperezdc/vim-template'
+        Plug 'vim-scripts/mako.vim'
 
-        "----------
-        "Plug 'Shougo/vimproc.vim'
-        "----------
+        Plug 'amiorin/vim-project'
+        "-Language-Support-Bundles-
+        Plug 'wavded/vim-stylus'                " stylus
+        Plug 'octol/vim-cpp-enhanced-highlight' " C++
+        Plug 'pboettch/vim-cmake-syntax'        " CMake
+
         "---TESTED-----------------------------------------
         Plug 'kien/ctrlp.vim'
         Plug 'tpope/vim-unimpaired'  " Handy bracket mappings.
         "---PreTESTED--------------------------------------
         Plug 'mtth/scratch.vim'
-        "---TODO--------------------------------------------
-        Plug 'tpope/vim-fugitive'
         "---NEW----------------------------------------------
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
         "----------------------------------------------------
-        Plug 'yssl/QFEnter'
-        Plug 'henrik/git-grep-vim'
         Plug 'henrik/vim-qargs'
         Plug 'mileszs/ack.vim'
-        Plug 'nathanaelkane/vim-indent-guides'
         Plug 'vim-scripts/YankRing.vim'
+                ":YRShow
+                "let g:yankring_n_keys = 'Y D x X'
+                "let g:yankring_window_use_right = 1
+                let g:yankring_window_use_bottom = 1
+                let g:yankring_window_use_horiz = 1  " Use vertical split 0
+                let g:yankring_window_height = 12
+                let g:yankring_record_insert = 1
+                let g:yankring_window_auto_close = 1
+                let g:yankring_window_use_separate = 1
+                let g:yankring_persist = 1
+                let g:yankring_max_history = 100
+                "let g:yankring_replace_n_pkey = '<m-p>'
+                let g:yankring_replace_n_nkey = 'zb'
         "-NewNew----------------------------------------------
         Plug 'haya14busa/vim-easyoperator-line'
         Plug 'easymotion/vim-easymotion'
@@ -72,15 +209,15 @@ call plug#begin()
         Plug 'Julian/vim-textobj-variable-segment'
         Plug 'whatyouhide/vim-textobj-xmlattr'
         Plug 'rsrchboy/vim-textobj-heredocs'
-        Plug 'gilligan/textobj-gitgutter'
         "--------------------------------------
         Plug 'michaeljsmith/vim-indent-object'
         Plug 'vim-scripts/c.vim'
+        "--------------------------------------
         Plug 'romainl/vim-qf'
+        Plug 'yssl/QFEnter'
         Plug 'sk1418/QFGrep'
         Plug 'AndrewRadev/qftools.vim'
         Plug 'jceb/vim-editqf'
-        "Plug 'itchyny/vim-qfedit'
         "----------
         Plug 'killphi/vim-textobj-signify-hunk'
         Plug 'flazz/vim-colorschemes'
@@ -90,19 +227,12 @@ call plug#begin()
         Plug 'vim-scripts/ReplaceWithRegister'
         Plug 'ludovicchabant/vim-gutentags'
         Plug 'scrooloose/nerdtree'
-        "Plug 'wincent/loupe'
         "-------------------------------------------------------------------------
         Plug 'jremmen/vim-ripgrep'
         Plug 'tpope/vim-commentary'
-        "Plug 'tomtom/tcomment_vim'
-        "!"Plug 'tpope/vim-abolish'        " Extended abbreviation/substition.
         Plug 'tpope/vim-repeat'         " Intelligent repeat with '.'
         Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
-        "Plug 'gergap/keystroke'
-        "Plug 'burnettk/vim-angular'
-        "Plug 'fatih/vim-go'
-        Plug 'motemen/git-vim'
         Plug 'nvie/vim-flake8'
         "-------------------------------------------------------------------------
         Plug 'mbbill/undotree'
@@ -111,17 +241,14 @@ call plug#begin()
         Plug 'thinca/vim-quickrun'
         Plug 'brooth/far.vim'
         Plug 'neomake/neomake'
-        Plug 'airblade/vim-gitgutter'
         Plug 'wincent/command-t'
-        Plug 'echuraev/translate-shell.vim'
+
         "Plug 'Rykka/trans.vim'
         Plug 'ron89/thesaurus_query.vim'
 
-        "Plug 'dhruvasagar/vim-zoom'
         Plug 'Shougo/vimshell.vim'
         Plug 'majutsushi/tagbar'
         Plug 'scrooloose/syntastic'
-        Plug 'tpope/vim-surround'
         Plug 'w0rp/ale'
 
         Plug 'tpope/vim-dispatch'
@@ -130,13 +257,6 @@ call plug#begin()
         Plug 'roxma/vim-hug-neovim-rpc'
 
         Plug 'roxma/nvim-completion-manager'
-"--------------------------------------------------------------------------------- 
-                " Plug 'balta2ar/deoplete-matcherkey'
-                " Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-                " Plug 'zchee/deoplete-jedi'
-                " Plug 'zchee/deoplete-clang'
-                "         let g:deoplete#enable_at_startup = 1
-                "         let g:deoplete#enable_smart_case = 1
 "--------------------------------------------------------------------------------- 
          Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
          Plug 'Valloric/YouCompleteMe'
@@ -150,21 +270,6 @@ call plug#begin()
         Plug 'Shougo/neosnippet.vim'
         Plug 'Shougo/neosnippet-snippets'
 "--------------------------------------------------------------------------------- 
-        Plug 'sophacles/vim-bundle-mako'
-        "Plug 'jabbas/vimplates'
-        Plug 'aperezdc/vim-template'
-
-        Plug 'vim-scripts/mako.vim'
-
-        Plug 'amiorin/vim-project'
-        Plug 'int3/vim-extradite'
-
-        " language support bundles
-        Plug 'wavded/vim-stylus'                " stylus
-        Plug 'jparise/vim-graphql'              " GraphQL
-        Plug 'octol/vim-cpp-enhanced-highlight' " C++
-        Plug 'pboettch/vim-cmake-syntax'        " CMake
-"--------------------------------------------------------------------------------- 
          Plug 'garbas/vim-snipmate'
 "--------------------------------------------------------------------------------- 
         Plug 'AndrewRadev/switch.vim'
@@ -174,12 +279,7 @@ call plug#begin()
         Plug 'rstacruz/vim-fastunite'
         "Plug ''
         "Plug ''
-"-Next-----------------------------------------------------------------------
-"Plug 'Valloric/ListToggle'
-"let g:lt_height = 10
-"Plug 'baabelfish/nvim-nim'
 "--------------------------------------------------------------------------------- 
-
         Plug 'jalvesaq/vimcmdline'
         Plug 'terryma/vim-expand-region'
 "--------------------------------------------------------------------------------- 
@@ -190,10 +290,8 @@ call plug#begin()
         Plug 'tomtom/tlib_vim'       
         Plug 'MarcWeber/vim-addon-mw-utils'
 "--------------------------------------------------------------------------------- 
-
         Plug 'ivyl/vim-bling'
         Plug 'Shougo/unite.vim' 
-        Plug 'kmnk/vim-unite-giti'
         Plug 'tsukkee/unite-tag'
         Plug 'SpaceVim/unite-ctags'
         Plug 'Shougo/unite-outline/'
@@ -203,15 +301,12 @@ call plug#begin()
         Plug 'junegunn/fzf.vim'
         Plug 'pbogut/fzf-mru.vim'
 "--------------------------------------------------------------------------------- 
-
         Plug 'idanarye/vim-vebugger'
-
         Plug 'Shougo/neomru.vim'
         Plug 'Shougo/echodoc.vim'
 "--------------------------------------------------------------------------------- 
         "Generic Programming Support
         Plug 'janko-m/vim-test'
-        Plug 'aghareza/vim-gitgrep'
         Plug 'AndrewRadev/undoquit.vim'
         Plug 'MattesGroeger/vim-bookmarks'
         Plug 'morhetz/gruvbox'
@@ -224,12 +319,7 @@ call plug#begin()
         Plug 'AndrewRadev/switch.vim'
         Plug 'itchyny/calendar.vim'
         Plug 'guns/xterm-color-table.vim'
-
-"Plug 'rstacruz/vim-fastunite'
-"Plug 'Shougo/vimfiler.vim', { 'on': 'VimFiler' }
-
-        "Plug 'termhn/i3-vim-nav'
-        "Plug 'vim-scripts/spreadsheet.vim'
+"--------------------------------------------------------------------------------- 
         Plug 'brookhong/cscope.vim'
         Plug 'abudden/EasyColour'
         "------------------------------------
@@ -241,10 +331,6 @@ call plug#begin()
         Plug 'junegunn/vader.vim'
         Plug 'vim-scripts/paredit.vim'
         Plug 'alvan/vim-closetag'
-"Plug 'Shougo/denite.nvim'
-"Plug 'Townk/vim-autoclose'
-"delimitMate 
-
 
         Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'maxbrunsfeld/vim-yankstack'
@@ -258,23 +344,46 @@ call plug#end()
 
 
 
-"-------2EXPLORE---------------------------------------------------------------------------
-        "Plug 'sonph/onehalf'
-        "Plug 'duythinht/inori'
-        "Plug 'Shougo/neoyank.vim'
-        "Plug 'vim-scripts/TagHighlight'
-        "Plug 'christoomey/vim-tmux-navigator'
-        "Plug 'bkad/CamelCaseMotion'
-        "Plug 'tpope/vim-sensible'
-        "!Plug 'vim-scripts/marvim'
-        "Plug 'Yggdroot/indentLine'
-        "Plug 'xero/sourcerer.vim'
-        "Plug 'Shougo/neco-vim'
-        "Plug 'zchee/deoplete-zsh'
-        "Plug 'mantiz/vim-plugin-dirsettings'
+"----------------------------------------------------------------------------------
+    "Plug 'reedes/vim-lexical'
+    " zg	- Mark as a good word
+    " zw	- Like zg but mark the word as a wrong (bad) word.
+    " zug - Unmark as good word
+    " zuw - Unmark as wrong (bad) word
+    " z=	- For the word under/after the cursor suggest correctly spelled words
+    " 1z=	- Use the first suggestion, without prompting
+    " . - Redo - repeat last word replacement
+    " :spellr - Repeat the replacement done by z= for all matches with the replaced word in the current window
+    " For spelling suggestions while in Insert mode:
+    " «CTRL-X» «CTRL-S» (or «CTRL-X» «s» for terminal users) - suggest spelling, using «CTRL-P» and «CTRL-N» to navigate.
 
+    " augroup lexical
+    "     autocmd!
+    "     autocmd FileType markdown,mkd call lexical#init()
+    "     autocmd FileType textile call lexical#init()
+    "     autocmd FileType text call lexical#init({ 'spell': 0 })
+    " augroup END
 
+    " let g:lexical#spell = 1         " 0=disabled, 1=enabled
+    " let g:lexical#spelllang = ['en_us','en_ca',]
+    " help spellfile.vim
+    " let g:lexical#dictionary = ['/usr/share/dict/words',]
+    " let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 
+    " let g:lexical#spell_key = '<leader>s'
+    " let g:lexical#thesaurus_key = '<leader>t'
+    " let g:lexical#dictionary_key = '<leader>k'
+    " command -nargs=0 LexMed call lexical#init({ 
+    "             \ 'spell': 1, 
+    "             \ 'spelllang':  ['en', 'medical'],
+    "             \ 'dictionary': ['~/.vim/dictionary/medical_terms.txt',
+    "             \                '/usr/share/dict/words',
+    "             \               ],
+    "             \ 'thesaurus':  ['~/.vim/dictionary/medical_synonyms.txt',
+    "             \                '~/.vim/thesaurus/mthesaur.txt',
+    "             \               ],
+    "             \ 'spellfile':  ['~/.vim/spell/en.add'],
+    "             \ })
 "----------------------------------------------------------------------------------
         " fun! JumpToDef()
         "         if exists("*GotoDefinition_" . &filetype)
@@ -363,10 +472,117 @@ call plug#end()
      ""}}}
 "----------------------------------------------------------------------------------
 
-
     " " Initialize Help Syntax
     " syntax match HelpComment +^#.*+
     " syntax match String      +".\{-}"+
     " hi HelpComment ctermfg=blue
     " hi String      ctermfg=red
+
+"-AAA----------------------------------------------------------------------------------------------------------
+" ctrl+[ it will put you in normal mode just like hitting esc.  
+" :ab php           : list of abbreviations beginning php
+" :map ,            : list of maps beginning ,
+" # For use in Maps
+" <CR>             : carriage Return for maps
+" <ESC>            : Escape
+" <LEADER>         : normally \
+" <BAR>            : | pipe
+"-AAA----------------------------------------------------------------------------------------------------------
+" Ack .vim -inspired mappings available only in location/quickfix windows:
+"  s - open entry in a new horizontal window
+"  v - open entry in a new vertical window
+"  t - open entry in a new tab
+"  o - open entry and come back
+"  O - open entry and close the location/quickfix window
+"  p - open entry in a preview window
+" :Keep
+" :Reject
+" :Restore
+" :Doline s/^/--
+" :SaveList
+" :SaveList curlist
+" :SaveListAdd curlist
+" :LoadList curlist
+" :ListLists
+"AAA-----------------------------------------------------------------------------------------------------------
+"let g:indentLine_color_term = 000 There never seem to be enough spare keys for maps.
+" The command is executed by doing a @m
+" let @m=":'a,'bs/"
+"AAA-----------------------------------------------------------------------------------------------------------
+" function! SaveCurrentSession()
+"   if v:this_session != ""
+"     exe "mksession! " . v:this_session
+"   endif
+" endfunction
+" au BufRead Session.vim so %
+" au VimLeave * call SaveCurrentSession()
+"--------------------------------------------------------------------------------------------------------------
+"   help jump-motions
+" )   - jump forward one sentence
+" (   - jump backward one sentence
+" }   - jump forward one paragraph
+" {   - jump backward one paragraph
+" H   - jump to the top of the display       
+" M   - jump to the middle of the display   
+" L   - jump to the bottom of the display
+" 'm  - jump to the beginning of the line of mark m
+" `m  - jump to the location of mark m
+" ''  - return to the line where the cursor was before the latest jump
+" ``  - return to the cursor position before the latest jump (undo the jump).
+" %   - jump to corresponding item, e.g. from an open brace to its 
+"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-""-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
+" execute 'nnoremap \, :edit' resolve(expand('~/.bashrc')) '<CR>'
+" nnoremap ,l mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
+" vnoremap ,l may`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
+"--------------------------------------------------------------------------------------------------------------
+"-Plugin: insearch + insearch-fuzzy
+" map <Space>  <Plug>(incsearch-forward)
+" map /        <Plug>(incsearch-forward)
+" map ?        <Plug>(incsearch-backward)
+" map g/       <Plug>(incsearch-stay)
+" map z<Space> <Plug>(incsearch-fuzzyspell-/)
+" map z/       <Plug>(incsearch-fuzzyspell-/)
+" map z?       <Plug>(incsearch-fuzzyspell-?)
+" map zg/      <Plug>(incsearch-fuzzyspell-stay)
+"--------------------------------------------------------------------------------------------------------------
+" Plugin: qf
+" nmap <F5>   <Plug>QfSwitch
+" nmap <F6>   <Plug>QfCtoggle
+" nmap <F7>   <Plug>QfCprevious
+" nmap <F8>   <Plug>QfCnext
+" nmap <C-F6> <Plug>QfLtoggle
+" nmap <C-F7> <Plug>QfLprevious
+" nmap <C-F8> <Plug>QfLnext
+"--------------------------------------------------------------------------------------------------------------
+"--------------------------------------------------------------------------------------------------------------
+        " " Run tests
+        " " Plugin: test
+        " nmap <Leader>rt :w<CR>:TestToggleStrategy<CR>
+        " nmap <Leader>rs :w<CR>:TestSuite<CR>
+        " nmap <Leader>rf :w<CR>:TestFile<CR>
+        " nmap <Leader>rl :w<CR>:TestLast<CR>
+        " nmap <Leader>rn :w<CR>:TestNearest<CR>
+        " nmap <Leader>rv :w<CR>:TestVisit<CR>
+
+        "----------------------------------------------------------------------------------
+        " if dein#tap('completor.vim')
+        "         let g:completor_python_binary = '/usr/bin/python3'
+        "         let g:completor_racer_binary = '/usr/bin/racer'
+        "         let g:completor_clang_binary = '/usr/bin/clang'
+        "         let g:completor_node_binary = '/usr/bin/node'
+        "         let g:completor_disable_ultisnips = 1
+        "         let g:completor_min_chars = 3
+        " elseif dein#tap('deoplete.nvim')
+        "         let g:deoplete#enable_at_startup = 1
+        "         call deoplete#custom#set('buffer', 'min_pattern_length', 3)
+        "         if dein#tap('deoplete-clang')
+        "         let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+        "         let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+        "         endif
+        " endif
+        "----------------------------------------------------------------------------------
+        " Then rebuild **helptags** in vim:
+        " :helptags ~/.vim/doc/
+        " let g:pymode_python = 'python3'
+        " :help pymode-faq
 

@@ -48,9 +48,8 @@ hi Constant       ctermfg=33       ctermbg=NONE     gui=bold       cterm=bold   
 hi Character      ctermfg=207      ctermbg=NONE     gui=NONE       cterm=NONE      guifg=#ff5fff     guibg=NONE
 hi Conditional    ctermfg=201      ctermbg=NONE     gui=bold       cterm=bold      guifg=#ff00ff     guibg=NONE
 
-hi Comment        ctermfg=15      ctermbg=NONE      gui=NONE       cterm=NONE      guifg=#808080     guibg=NONE
 "hi Comment       ctermfg=103                                                                       
-
+hi Comment        ctermfg=15      ctermbg=NONE      gui=NONE       cterm=NONE      guifg=#808080     guibg=NONE
 hi CursorLine     ctermfg=NONE     ctermbg=235      gui=NONE       cterm=NONE      guifg=NONE        guibg=#262626
 hi cursorcolumn   ctermfg=NONE     ctermbg=235      gui=NONE       cterm=NONE      guifg=NONE        guibg=#262626
 hi CursorLineNr   ctermfg=45       ctermbg=235      gui=bold       cterm=bold      guifg=#00d7ff     guibg=#262626
