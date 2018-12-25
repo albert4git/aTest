@@ -487,23 +487,6 @@ call plug#end()
 " <ESC>            : Escape
 " <LEADER>         : normally \
 " <BAR>            : | pipe
-"-AAA----------------------------------------------------------------------------------------------------------
-" Ack .vim -inspired mappings available only in location/quickfix windows:
-"  s - open entry in a new horizontal window
-"  v - open entry in a new vertical window
-"  t - open entry in a new tab
-"  o - open entry and come back
-"  O - open entry and close the location/quickfix window
-"  p - open entry in a preview window
-" :Keep
-" :Reject
-" :Restore
-" :Doline s/^/--
-" :SaveList
-" :SaveList curlist
-" :SaveListAdd curlist
-" :LoadList curlist
-" :ListLists
 "AAA-----------------------------------------------------------------------------------------------------------
 "let g:indentLine_color_term = 000 There never seem to be enough spare keys for maps.
 " The command is executed by doing a @m
@@ -586,3 +569,11 @@ call plug#end()
         " let g:pymode_python = 'python3'
         " :help pymode-faq
 
+        "----------------------------------------------------------------------------------
+        " :nmap - Display normal mode maps
+        " :imap - Display insert mode maps
+        " :vmap - Display visual and select mode maps
+        " :smap - Display select mode maps
+        " :xmap - Display visual mode maps
+        " :cmap - Display command-line mode maps
+        " :omap - Display operator pending mode maps

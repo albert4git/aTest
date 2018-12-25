@@ -5,7 +5,7 @@ Vim 7 will be introducing one of the most critical features: completion (intelli
 "AAA--------------------------------------------------------------------------------------------------------------------
 
 "AAA--------------------------------------------------------------------------------------------------------------------
-To define abbreviations, use the ab[breviate] command.
+" To define abbreviations, use the ab[breviate] command.
 
 :ab rtfm read the fine manual  -  Whenever you type 'rtfm' followed by a <space> (or <esc> or <cr>) vim
                                   will expand this to 'read the fine manual'.
@@ -22,22 +22,13 @@ http://vim.sourceforge.net/tip_view.php?tip_id=
 
 To mark one or more positions in a file, use the m[ark] command.
 
-Examples:
-
 ma       -    set current cursor location as mark a
-
 'a       -    jump to beginning of line of mark a
-
 `a       -    jump to postition of mark a
-
 d'a      -    delete from current line to line of mark a
-
 d`a      -    delete from current cursor position to mark a
-
 c'a      -    change text from current line to line of mark a
-
 y`a      -    yank text to unnamed buffer from cursor to mark a
-
 :marks   -    list all the current marks
 
 NB: Lowercase marks (a-z) are valid within one file. Uppercase marks

@@ -1,18 +1,18 @@
 import string
 a= string.lower('XXXyyCCC');
 a= string.capwords(
-#b= string.count(9)
-print ("This line will be printed.")
+    #b= string.count(9)
+    print ("This line will be printed.")
+
 x = 1
 if x == 1:
     print "x is 1."
 
 print "I will now count my chickens:"
-
 print "Hens", 25 + 30 / 6
 print "Roosters", 100 - 25 * 3 % 4
-print "Now I will count the eggs:"
 
+print "Now I will count the eggs:"
 print 3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6
 
 print "Is it greater?", 5 > -2
@@ -97,6 +97,8 @@ print "So, you're %r old, %r tall and %r heavy." % (
 "--------------------------------------"
 "--------------------------------------"
 print 'EAT ME'
+
+"--------------------------------------"
 from sympy import *
 print "Hens", 25 + 30 / 6
 a = Rational(1,2)
@@ -108,6 +110,7 @@ print "I said x: %r." % x
 print "I also said y: '%s'." % y
 print "I said Py: %r." % pi.evalf()
 print "Pi + e : %r " % (pi+exp(1)).evalf()
+
 # print
 print x+y+x-y
 print (x+y)**2
@@ -115,6 +118,8 @@ print expand((x+y)**3)
 print expand(x+y, complex=True)
 print expand(cos(x+y), trig=True)
 print simplify((x+x*y)/x)
+
+
 #Limits are easy to use in SymPy,
 #they follow the syntax limit(function, variable, point),
 #f(x) as x -> 0, you would issue limit(f, x, 0):
@@ -205,7 +210,7 @@ pylab.show()
 pylab.plot(bins, n)
 pylab.show()
 
-#---------
+#---------Works!------
 from pylab import *
 
 def plot2d(xmin, xmax, func):
@@ -224,13 +229,26 @@ plot2d(0,10,func)
 #---------
 #---------
 #--------------------------------------"
+#---------Works!------
+from pylab import *
+
+def plot2d(xmin, xmax, func):
+    x=np.linspace(xmin,xmax,num=50)
+    y=func(x)
+    plot(x,y)
+    show()
+
+def func(x):
+    y=x**2
+    return y
+plot2d(0,10,func)
 #--------------------------------------"
 
-# from sympy import *
-# x = Symbol('x')
-# y = Symbol('y')
-# print f(x).diff(x, x) + f(x)
-# print dsolve(f(x).diff(x, x) + f(x), f(x))
+from sympy import *
+x = Symbol('x')
+y = Symbol('y')
+print f(x).diff(x, x) + f(x)
+print dsolve(f(x).diff(x, x) + f(x), f(x))
 
 from sympy import *
 x = Symbol('x')
@@ -249,9 +267,9 @@ print python(1/x)
 print python(Integral(x**2, x))
 #----------------------------------------------
 def fib(n): # write Fibonacci series up to n
-a, b = 0, 1
-while b < n:
-    print b; a, b = b, a+b;
+    a, b = 0, 1
+    while b < n:
+	print b; a, b = b, a+b;
 
 # Now call the function we just defined:
 fib(200)

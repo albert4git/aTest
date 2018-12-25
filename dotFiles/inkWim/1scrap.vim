@@ -1,3 +1,43 @@
+
+The second piece is the :nohlsearch command. This simply clears the search highlighting from the search we just performed so it's not distracting.
+
+The final piece is a sequence of three normal mode commands:
+
+    k: move up a line. Since we were on the first character of the line of equal signs, we're now on the first character of the heading text.
+    v: enter (characterwise) visual mode.
+    g_: move to the last non-blank character of the current line. We use this instead of $ because $ would highlight the newline character as well, and this isn't what we want.
+
+Results
+
+That was a lot of work, but now we've looked at each part of the mapping. To recap:
+
+    We created a operator-pending mapping for "inside this section's heading".
+    We used execute and normal! to run the normal commands we needed to select the heading, and allowing us to use special characters in those.
+    Our mapping searches for the line of equal signs which denotes a heading and visually selects the heading text above that.
+    Vim handles the rest.
+
+Let's look at one more mapping before we move on. Run the following command:
+
+:onoremap ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+
+Try it by putting your cursor in a section's text and typing cah. This time Vim will delete not only the heading's text but also the line of equal signs that denotes a heading. You can think of this movement as "around this section's heading".
+
+What's different about this mapping? Let's look at them side by side:
+
+:onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+:onoremap ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+
+The only difference from the previous mapping is the very end, where we select the text to operate on:
+
+inside heading: kvg_
+around heading: g_vk0
+
+The rest of the mapping is the same, so we still start on the first character of the line of equal signs. From there:
+
+    g_: move to the last non-blank character in the line.
+    v: enter (characterwise) visual mode.
+    k: move up a line. This puts us on the line containing the heading's text.
+    0: move to the first character of the line.
         """A   (>^.^<)  A"""""""""""""""""
         """"""""""""""""""""""""""""""""""
         """A   (>^.^<)  A"""""""""""""""""

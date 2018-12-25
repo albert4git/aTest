@@ -8,7 +8,7 @@ def Iinj(t,tjump,Iamp):
     creates a current pulse with amplitude Iamp that starts at tjump[0] and stops at tjump[1]
     """
     return where(array(t)<tjump[0],0,Iamp) * where(array(t)>tjump[1],0,1)
-    
+
 # integration parameters
 dt = 1e-4   # all times in seconds
 tmax = 0.05

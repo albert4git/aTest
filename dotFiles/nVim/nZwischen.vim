@@ -1,4 +1,93 @@
+"-AAA9--BookMarks------------------------------------------------------------------------------------------{{{
+        "----------------------------------------------------------------------------------
+        " dmx          Remove mark 'x' where x is a-zA-Z
+        " m,           Place the next available mark
+        " m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+        " m-           Delete all marks from the current line
+        " m<Space>     Delete all marks from the current buffer
+        " ]`           Jump to next mark
+        " [`           Jump to prev mark
+        " ]'           Jump to start of next line containing a mark
+        " ['           Jump to start of prev line containing a mark
+        " `]           Jump by alphabetical order to next mark
+        " `[           Jump by alphabetical order to prev mark
+        " ']           Jump by alphabetical order to start of next line having a mark
+        " '[           Jump by alphabetical order to start of prev line having a mark
+        " m/           Open location list and display marks from current buffer
+        "----------------------------------------------------------------------------------
+        " m[0-9]       Toggle the corresponding marker !@#$%^&*()
+        " m<S-[0-9]>   Remove all markers of the same type
+        " ]-           Jump to next line having a marker of the same type
+        " [-           Jump to prev line having a marker of the same type
+        " ]=           Jump to next line having a marker of any type
+        " [=           Jump to prev line having a marker of any type
+        " m?           Open location list and display markers from current buffer
+        " m<BS>        Remove all markers
+        "----------------------------------------------------------------------------------
+"-9BookMarks-}}}
 
+        "------------------------------------------------------------------------------------------
+        "! setlocal completefunc=thesaurus_query#auto_complete_integrate
+        "! vnoremap  <Leader>c "ky:ThesaurusQueryReplace <C-r>k<CR>
+        "! nnoremap  <Leader>c :ThesaurusQueryReplaceCurrentWord<CR>
+        "! nnoremap <LocalLeader>c :ThesaurusQueryReplaceCurrentWord<CR>
+        "! vnoremap <LocalLeader>c "ky:ThesaurusQueryReplace <C-r>k<CR>
+        "------------------------------------------------------------------------------------------
+        " If the cursor is on foo_bar_baz , then switching would produce "fooBarBaz"
+        " and vice-versa. The logic is as follows:
+        " inoremap <silent> <leader>t <ESC>:Trans<CR>
+        " nnoremap <silent> <leader>t :Trans<CR>
+        " vnoremap <silent> <leader>t :Trans<CR>
+        " nnoremap <silent> <leader>td :TransSelectDirection<CR>
+        " vnoremap <silent> <leader>td :TransSelectDirection<CR>
+        "! sudo apt install translate-shell
+        " set keywordprg=trans\ :en
+        " Use <Shift-k> to view the translation of the word under the cursor.
+        "------------------------------------------------------------------------------------------
+
+
+        "---------------------------------------------------------
+        "---This plugin map `gag` to do Ag search.
+        " - `gagiw` to search the word
+        " - `gagi'` to search the words inside single quotes.
+        " - `gag` to search the selected text
+
+       "---------NoAutoClose-YCM------------------------------------------------------------------- 
+        "-Shortcut for closing tags, default is '>'
+        " let g:closetag_shortcut = '>'
+        " let g:closetag_filenames = '*.vim,*.html,*.xhtml,*.phtml'
+        " let g:AutoClosePairs = "() {} \""
+        " " add <angular brackets> and |pipes|
+        " let g:AutoClosePairs_add = "<> |"
+        " " don't close apostrophes
+        " let g:AutoClosePairs_del = "'"
+        " let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]
+        "---------------------------------------------------------
+
+        "------------------------------------------------------------------------------------------ 
+        "This adds :G <pattern> command which runs "git grep <pattern>".
+        fun! Git2GREP(...)
+                let save = &grepprg
+                set grepprg=git\ grep\ -n\ $*
+                let s = 'grep'
+                for i in a:000
+                        let s = s . ' ' . i
+                endfor
+                exe s
+                let &grepprg = save
+        endfun
+        command! -nargs=? GGR call Git2GREP(<f-args>)
+
+
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+  augroup END
+endif
+
+#!/usr/bin/env bash
+
+        "-???--------------------------------------------------------------------------------------
         Plug 'wesleyche/SrcExpl'
         Plug 'vim-scripts/tinykeymap'
         Plug 'nathanaelkane/vim-indent-guides'
@@ -40,19 +129,6 @@
         " let g:vimplates_website (default: "http://nothing.com")
         " let g:vimplates_license (default: "GPL-3")
 
-        "------------------------------------------------------------------------------------------
-        " let g:expand_region_text_objects = {
-        "                         \ 'iw'  :0,
-        "                         \ 'iW'  :0,
-        "                         \ 'i"'  :0,
-        "                         \ 'i''' :0,
-        "                         \ 'i]'  :1, 
-        "                         \ 'ib'  :1, 
-        "                         \ 'iB'  :1, 
-        "                         \ 'il'  :0, 
-        "                         \ 'ip'  :0,
-        "                         \ 'ie'  :0, 
-        "                         \ }
 
         let g:CtrlXA_Toggles = [
               \ ['true', 'false'], ['True', 'False'], ['TRUE', 'FALSE'],
@@ -110,24 +186,24 @@ endif
 
         " :Python3 and :Python2 to toggle Syntastic/flake8 mode         {{{2
         function! Flake8(exe, args, recheck_now)
-        let g:ale_python_flake8_executable = a:exe
-        let g:ale_python_flake8_options = a:args
-        let g:syntastic_python_flake8_exe = a:exe . ' ' . a:args
-        if a:recheck_now && exists('*SyntasticCheck')
-        SyntasticCheck
-        endif
-        if a:recheck_now && exists('*ALELint')
-        ALELint
-        endif
+          let g:ale_python_flake8_executable = a:exe
+          let g:ale_python_flake8_options = a:args
+          let g:syntastic_python_flake8_exe = a:exe . ' ' . a:args
+          if a:recheck_now && exists('*SyntasticCheck')
+            SyntasticCheck
+          endif
+          if a:recheck_now && exists('*ALELint')
+            ALELint
+          endif
         endf
 
         function! Python2(recheck_now)
-        call Flake8('python2', '-m flake8', a:recheck_now)
-        let g:coverage_script = 'coverage'
+          call Flake8('python2', '-m flake8', a:recheck_now)
+          let g:coverage_script = 'coverage'
         endf
         function! Python3(recheck_now)
-        call Flake8('python3', '-m flake8', a:recheck_now)
-        let g:coverage_script = 'python3 -m coverage'
+          call Flake8('python3', '-m flake8', a:recheck_now)
+          let g:coverage_script = 'python3 -m coverage'
         endf
         command! -bar Python2 call Python2(1)
         command! -bar Python3 call Python3(1)
@@ -136,7 +212,6 @@ endif
         " Jumping to lint errors with Ctrl-J/K                          {{{2
         nmap <silent>   <C-K>           <Plug>(ale_previous_wrap)
         nmap <silent>   <C-J>           <Plug>(ale_next_wrap)
-
         " <F4> = next error/grep match
         "" depends on plugin/quickloclist.vim
         map             <F4>            :FirstOrNextInList<CR>
@@ -425,3 +500,27 @@ endif
                 autocmd FileType vim call s:vimscript()
         augroup END
 "-}}}
+
+        function! TableCreator()
+                let curline=getline('.')
+                call inputsave()
+                let cols = input('Enter number of columns: ')
+                let caption = input('Caption: ')
+                let centering = input('Fixed width? (y/n) :')
+                call inputrestore()
+                exe "normal a\\begin{table}[!h]\r\\caption{" . caption . "\\label{tab:}}\r\\begin{center}\r\\begin{tabular}{\e"
+                let numcols = cols
+                while cols > 0
+                        if centering == 'y'
+                                exe "normal ap{4cm}\e"
+                        else
+                                exe "normal ac\e"
+                        endif
+                        let cols = cols-1
+                endwhile
+                exe "normal a}\e"
+                let cols = numcols - 1
+                exe "normal a\r\r\r\e"
+                exe "normal a\\end{tabular}\r\\end{center}\r\\end{table}\\ \\\\"
+        endfunction
+        map <F4> :call TableCreator()<CR>

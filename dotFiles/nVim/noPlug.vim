@@ -1,3 +1,141 @@
+        "-Language-Support-Bundles-
+        Plug 'wavded/vim-stylus'                " stylus
+        Plug 'octol/vim-cpp-enhanced-highlight' " C++
+        Plug 'pboettch/vim-cmake-syntax'        " CMake
+        "---TESTED-----------------------------------------
+"------------------------------------------------------------------------------------------
+        " Plug 'michaeljsmith/vim-indent-object'
+        "         let g:indent_object_except_first_level = 0
+                " <count>ai      (A)n (I)ndentation level and line above.
+                " <count>ii      (I)nner (I)ndentation level (no line above).
+"------------------------------------------------------------------------------------------
+        " Plug 'killphi/vim-textobj-signify-hunk'
+"--------------------------------------------------------------------------------- 
+        Plug 'michaeljsmith/vim-indent-object'
+                let g:indent_object_except_first_level = 0
+                        " <count>ai      (A)n (I)ndentation level and line above.
+                        " <count>ii      (I)nner (I)ndentation level (no line above).
+                        " <count>ii      (I)nner (I)ndentation level (no line above).
+                        " <count>ii      (I)nner (I)ndentation level (no line above).
+"--------------------------------------------------------------------------------- 
+        " input:  [foo, bar()] (press (<M-e> at |)
+        " output: ([foo, bar()])
+"--------------------------------------------------------------------------------- 
+        Plug 'jiangmiao/auto-pairs'
+                "   <M-o> : newline with indentation
+                "   <M-a> : jump to of line
+                "   <M-n> : jump to next pairs
+                "   <M-e> : jump to end of pairs.
+                "   Ctrl-V ) : insert )' without trigger the plugin.
+                "let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+                "let g:AutoPairscutToggle = '<another key>'
+                "let g:AutoPairsShortcuts = 1
+                "------------------------------------------------------------------------
+                let g:AutoPairsShortcutToggle = '<M-p>'
+                let g:AutoPairsShortcutFastWrap = '<M-e>'
+                let g:AutoPairsShortcutJump = '<M-n>'
+                let g:AutoPairsShortcutBackInsert = '<M-b>'
+                let g:AutoPairsMapBS = 1
+                let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
+                " error in vimwiki <CR> Enter. but use upper inoremap can solve.
+                let g:AutoPairsMapSpace = 0
+                " error in abbreviations <space> auto expand.
+                let g:AutoPairsCenterLine = 1
+                let g:AutoPairsFlyMode = 0
+                let g:AutoPairsMapCR=0
+"--------------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------------- 
+        "Plug 'vim-scripts/c.vim'
+        "--------------------------------------
+        "Plug 'python-mode/python-mode', { 'branch': 'develop' }
+        "Plug 'rkulla/pydiction'
+        "-Python-$-pydoc
+        " au FileType python nnoremap H :exec "!pydoc" expand("<cword>")<CR>
+        "--------------------------------------
+        "Plug 'artur-shaik/vim-javacomplete2'
+        "--------------------------------------
+        "Plug 'rstacruz/sparkup'
+        "-------------------------------------------------------------------------
+        "Plug 'janko-m/vim-test'
+        Plug 'junegunn/vader.vim'   " test vim.files ?
+        "Plug 'idanarye/vim-vebugger'
+        "Plug 'Shougo/echodoc.vim'
+        "--------------------------------------
+        "-------------------------------------------------------------------------
+        "Plug 'itchyny/calendar.vim'
+        "Plug 'jiangmiao/advancer-abbreviation'
+        "-------------------------------------------------------------------------
+        Plug 'mbbill/undotree'
+        "-------------------------------------------------------------------------
+        "Plug 'abudden/EasyColour'
+        "--------------------------------------
+        "Plug 'w0rp/ale'
+        "--------------------------------------
+        "Plug 'morhetz/gruvbox'
+        "Plug 'tomasr/molokai'
+        "Plug 'fmoralesc/molokayo'
+        "--------------------------------------
+        " Plug 'saaguero/vim-textobj-pastedtext'
+        " Plug 'kana/vim-textobj-lastpat'
+        " Plug 'kana/vim-textobj-line'
+        " Plug 'kana/vim-textobj-fold'
+        " Plug 'Julian/vim-textobj-variable-segment'
+
+        "------------------------------------------------------
+        "Plug 'whatyouhide/vim-textobj-erb'
+        "Plug 'rsrchboy/vim-textobj-heredocs'
+        "Plug 'deathlyfrantic/vim-textobj-blanklines'
+        "Plug 'whatyouhide/vim-textobj-xmlattr'
+        "Plug 'vim-scripts/paredit.vim' "lisp
+        "Plug 'alvan/vim-closetag'
+        "Plug 'jceb/vim-editqf'
+        "------------------------------------------------------
+
+        "Plug 'sgur/vim-textobj-parameter'
+        "Plug 'vimtaku/vim-textobj-keyvalue'
+        "Plug 'rhysd/vim-textobj-continuous-line'
+        "Plug 'paulhybryant/vim-textobj-path'
+        "Plug 'mattn/vim-textobj-url'
+        "Plug 'jceb/vim-textobj-uri'
+        "Plug 'jceb/vim-textobj-uri'
+
+
+"--------------------------------------------------------------------------------- 
+        Plug 'nathanaelkane/vim-indent-guides'
+                let g:indentLine_enabled = 1
+                let g:indent_guides_auto_colors = 1
+                hi IndentGuidesOdd   ctermbg=235
+                hi IndentGuidesEven  ctermbg=242
+"--------------------------------------------------------------------------------- 
+        Plug 'wesleyche/SrcExpl'
+                let g:SrcExpl_pluginList = [
+                                \ "__Tag_List__",
+                                \ "_NERD_tree_",
+                                \ "Source_Explorer",
+                                \ "*unite*"
+                                \ ]
+                let g:SrcExpl_colorSchemeList = [
+                                \ "Red",
+                                \ "Cyan",
+                                \ "Green",
+                                \ "Yellow",
+                                \ "Magenta"
+                                \ ]
+                " // The switch of the Source Explorer 
+                nmap <F4> :SrcExplToggle<CR>  
+                " // Set the height of Source Explorer window 
+                let g:SrcExpl_winHeight = 8 
+                " // Set 100 ms for refreshing the Source Explorer 
+                let g:SrcExpl_refreshTime = 100 
+                " // Set "Enter" key to jump into the exact definition context 
+                let g:SrcExpl_jumpKey = "<ENTER>" 
+                " // Set "Space" key for back from the definition context 
+                let g:SrcExpl_gobackKey = "<SPACE>" 
+        "Plug 'Raimondi/delimitMate'
+
+        "Plug 'justinmk/vim-dirvish'
+        "Plug 'tpope/vim-vinegar'
+
 vim-scripts/argtextobj.vim 71 stars. Text objects for arguments
 alfredodeza/coveragepy.vim 77 stars. Coverage.py integration.
 
