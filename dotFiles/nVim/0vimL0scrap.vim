@@ -1,8 +1,5 @@
 
         g_: move to the last non-blank character in the line.
-        v: enter (characterwise) visual mode.
-        k: move up a line. This puts us on the line containing the heading's text.
-        0: move to the first character of the line.
 
             """A   (>^.^<)  A"""""""""""""""""
             """"""""""""""""""""""""""""""""""

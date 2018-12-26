@@ -538,6 +538,7 @@ call plug#begin()
         Plug 'glts/vim-textobj-indblock'
         Plug 'beloglazov/vim-textobj-quotes'
         "---gi---------------------------------------------------
+        Plug 'bps/vim-textobj-python'
         "---gi---------------------------------------------------
         Plug 'terryma/vim-expand-region'
                  "-Default-settings. 
@@ -837,6 +838,42 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'auwsmit/vim-hydra'
+
+        Plug 'vim-vdebug/vdebug'
+                " <F5>: start/run (to next breakpoint/end of script)
+                " <F2>: step over
+                " <F3>: step into
+                " <F4>: step out
+                " <F6>: stop debugging (kills script)
+                " <F7>: detach script from debugger
+                " <F9>: run to cursor
+                " <F10>: toggle line breakpoint
+                " <F11>: show context variables (e.g. after "eval")
+                " <F12>: evaluate variable under cursor
+                " :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
+                " :VdebugEval <code>: evaluate some code and display the result
+                " <Leader>e: evaluate the expression under visual highlight and display the result
+
+        "Plug 'vim-scripts/VimPdb'
+                " * Highlighting of currently debugged line and breakpoint lines.
+                " * F5 - Run/continue running.
+                " * F2 - Toggle breakpoint at current line
+                " * Ctrl-F2 / Shift-F2 - Toggle conditional/temporary breakpoint.
+                " * F7 / F8 - Step into/over
+                " * F12 - Print stack trace
+                " * F3 / Ctrl-F3 - Eval/Exec a given statement (in the current debugging context)
+                " * Save/load breakpoints into session files.
+                " * Cross-platform
+
+        Plug 'artur-shaik/vim-javacomplete2'
+        imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
+        Plug 'wsdjeg/JavaUnit.vim'
+        autocmd FileType java setlocal omnifunc=javacomplete#Complete
+        " nmap <F4> <Plug>(JavaComplete-Imports-Add)
+        " nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+        " nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+
+
         "--------------------------------------------------------------------------------- 
 call plug#end()
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
@@ -916,10 +953,10 @@ call plug#end()
         "--------------------------------------------
         "set complete+=ispell
 
-        "set completeopt=menuone,menu,longest,preview
-        set completeopt=longest,menuone
+        "set completeopt=longest,menuone
+        set completeopt=menuone,menu,longest,preview
         "--------------------------------------------
-        set omnifunc=syntaxcomplete#Complete
+        "### ??? set omnifunc=syntaxcomplete#Complete
         "------------------------------------------------------------------------------------------
         "inoremap <silent> <C-]> <C-x><C-]>
         "inoremap <silent> <C-u> <C-x><C-u>
@@ -1635,31 +1672,31 @@ call plug#end()
         let g:ycm_key_list_stop_completion = ['<C-y>']
         map <C-;> :YcmCompleter GoToImprecise<CR>
         "===SetPLAY7===============================================================================
-        autocmd! FileType python setlocal omnifunc=jedi#completions
-        let g:jedi#completions_enabled = 0
-        let g:jedi#auto_vim_configuration = 0
-        let g:jedi#popup_on_dot = 0
-        let g:jedi#goto_assignments_command = "<localleader>g"
-        let g:jedi#goto_definitions_command = "<localleader>d"
-        let g:jedi#documentation_command = "K"
-        let g:jedi#usages_command = "<localleader>u"
-        "let g:jedi#rename_command = "<localleader>r"
-        let g:jedi#show_call_signatures = "0"
-        "let g:jedi#completions_command = "<C-q>"
+        "autocmd! FileType python setlocal omnifunc=jedi#completions
+                let g:jedi#completions_enabled = 0
+                let g:jedi#auto_vim_configuration = 0
+                let g:jedi#popup_on_dot = 0
+                let g:jedi#goto_assignments_command = "<localleader>g"
+                let g:jedi#goto_definitions_command = "<localleader>d"
+                let g:jedi#documentation_command = "K"
+                let g:jedi#usages_command = "<localleader>u"
+                "let g:jedi#rename_command = "<localleader>r"
+                let g:jedi#show_call_signatures = "0"
+                let g:jedi#completions_command = "<C-z>"
         "===SetPLAY8===============================================================================
-        let g:ycm_semantic_triggers =  {
-                                \   'c': ['->', '.'],
-                                \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-                                \            're!\[.*\]\s'],
-                                \   'ocaml': ['.', '#'],
-                                \   'cpp,cuda,objcpp': ['->', '.', '::'],
-                                \   'perl': ['->'],
-                                \   'php': ['->', '::'],
-                                \   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,python,scala,typescript,vb': ['.'],
-                                \   'ruby,rust': ['.', '::'],
-                                \   'lua': ['.', ':'],
-                                \   'erlang': [':'],
-                                \ }
+        " let g:ycm_semantic_triggers =  {
+        "                         \   'c': ['->', '.'],
+        "                         \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+        "                         \            're!\[.*\]\s'],
+        "                         \   'ocaml': ['.', '#'],
+        "                         \   'cpp,cuda,objcpp': ['->', '.', '::'],
+        "                         \   'perl': ['->'],
+        "                         \   'php': ['->', '::'],
+        "                         \   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,python,scala,typescript,vb': ['.'],
+        "                         \   'ruby,rust': ['.', '::'],
+        "                         \   'lua': ['.', ':'],
+        "                         \   'erlang': [':'],
+        "                         \ }
 
         "------------------------------------------------------------------------------------------
         " automatically open and close the popup menu / preview window

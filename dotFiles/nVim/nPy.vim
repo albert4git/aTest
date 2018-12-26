@@ -1,4 +1,13 @@
 
+"apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+apt-get install flake8
+sudo apt-get install   python-libxml2  python-matplotlib python-numpy ipython python-scipy python-tk
+
+git clone https://github.com/rtqichen/torchdiffeq.git
+cd torchdiffeq
+pip install -e .
+
+
         " [ IDE ] {{{
             " Python-mode-klen {{{ Python IDE.
                 " K: doc <C-space>: Rope autocomp

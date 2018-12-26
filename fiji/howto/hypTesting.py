@@ -15,6 +15,7 @@ mdiff = 5
 stnum = 25
 
 f, axarr = plt.subplots(len(all_std), len(all_ssize))
+
 for i, std in enumerate(all_std):
     for j, ssize in enumerate(all_ssize):
         data1 = np.random.normal(loc=stnum, scale=std, size=ssize)
