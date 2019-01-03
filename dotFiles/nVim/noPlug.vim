@@ -1,3 +1,52 @@
+        "--------------------------------------------------------------------------------- 
+
+        "--------------------------------------------------------------------------------- 
+        "Plug 'vim-scripts/YankRing.vim'
+        "        ":YRShow
+        "        "let g:yankring_n_keys = 'Y D x X'
+        "        "let g:yankring_window_use_right = 1
+        "        let g:yankring_window_use_bottom = 1
+        "        let g:yankring_window_use_horiz = 1  " Use vertical split 0
+        "        let g:yankring_window_height = 12
+        "        let g:yankring_record_insert = 1
+        "        let g:yankring_window_auto_close = 1
+        "        let g:yankring_window_use_separate = 1
+        "        let g:yankring_persist = 1
+        "        let g:yankring_max_history = 100
+        "        "let g:yankring_replace_n_pkey = '<m-p>'
+        "        let g:yankring_replace_n_nkey = 'zb'
+        "--------------------------------------------------------------------------------- 
+
+        "--------------------------------------------------------------------------------- 
+
+        "--------------------------------------------------------------------------------- 
+
+        "--------------------------------------------------------------------------------- 
+        "Plug 'google/vim-codefmt'
+        " augroup autoformat_settings
+        " autocmd FileType bzl AutoFormatBuffer buildifier
+        " autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+        " autocmd FileType dart AutoFormatBuffer dartfmt
+        " autocmd FileType go AutoFormatBuffer gofmt
+        " autocmd FileType gn AutoFormatBuffer gn
+        " autocmd FileType html,css,json AutoFormatBuffer js-beautify
+        " autocmd FileType java AutoFormatBuffer google-java-format
+        " autocmd FileType python AutoFormatBuffer yapf
+        " " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+        " augroup END
+        "--------------------------------------------------------------------------------- 
+        "Plug 'vim-scripts/VimPdb'
+                " * Highlighting of currently debugged line and breakpoint lines.
+                " * F5 - Run/continue running.
+                " * F2 - Toggle breakpoint at current line
+                " * Ctrl-F2 / Shift-F2 - Toggle conditional/temporary breakpoint.
+                " * F7 / F8 - Step into/over
+                " * F12 - Print stack trace
+                " * F3 / Ctrl-F3 - Eval/Exec a given statement (in the current debugging context)
+                " * Save/load breakpoints into session files.
+                " * Cross-platform
+
+
         "-Language-Support-Bundles-
         Plug 'wavded/vim-stylus'                " stylus
         Plug 'octol/vim-cpp-enhanced-highlight' " C++

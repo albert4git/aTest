@@ -1,16 +1,11 @@
-import string
-a= string.lower('XXXyyCCC');
-a= string.capwords(
-    #b= string.count(9)
-    print ("This line will be printed.")
 
 x = 1
 if x == 1:
     print "x is 1."
 
-print "I will now count my chickens:"
-print "Hens", 25 + 30 / 6
-print "Roosters", 100 - 25 * 3 % 4
+    print "I will now count my chickens:"
+    print "Hens", 25 + 30 / 6
+    print "Roosters", 100 - 25 * 3 % 4
 
 print "Now I will count the eggs:"
 print 3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6
@@ -39,7 +34,7 @@ w = "This is the left side of..."
 e = "a string with a right side."
 
 print w + e
-"--------------------------------------"
+#--------------------------------------"
 formatter = "%r %r %r %r"
 
 print formatter % (1, 2, 3, 4)
@@ -52,9 +47,9 @@ print formatter % (
     "But it didn't sing.",
     "So I said goodnight."
 )
-"--------------------------------------"
-"--------------------------------------"
-"--------------------------------------"
+#--------------------------------------"
+#--------------------------------------"
+#--------------------------------------"
 tabby_cat = "\tI'm tabbed in."
 persian_cat = "I'm split\non a line."
 backslash_cat = "I'm \\ a \\ cat."
@@ -70,7 +65,7 @@ print tabby_cat
 print persian_cat
 print backslash_cat
 print fat_cat
-"--------------------------------------"
+#--------------------------------------"
 # Here's some new strange stuff, remember type it exactly.
 
 days = "Mon Tue Wed Thu Fri Sat Sun"
@@ -85,7 +80,7 @@ With the three double-quotes.
 We'll be able to type as much as we like.
 Even 4 lines if we want, or 5, or 6.
 """
-"--------------------------------------"
+#--------------------------------------"
 print "How old are you?",
 age = raw_input()
 print "How tall are you?",
@@ -94,11 +89,10 @@ print "How much do you weigh?",
 weight = raw_input()
 print "So, you're %r old, %r tall and %r heavy." % (
     age, height, weight)
-"--------------------------------------"
-"--------------------------------------"
+#--------------------------------------"
 print 'EAT ME'
 
-"--------------------------------------"
+#--------------------------------------"
 from sympy import *
 print "Hens", 25 + 30 / 6
 a = Rational(1,2)
@@ -157,9 +151,6 @@ print factor(f, modulus=5)
 print satisfiable(x & y)
 #--------------------------------------"
 #--------------------------------------"
-#---------
-#---------
-#---------
 from sympy import *
 from pylab import *
 from numpy import *
@@ -210,7 +201,7 @@ pylab.show()
 pylab.plot(bins, n)
 pylab.show()
 
-#---------Works!------
+#---------Works!----------------------------
 from pylab import *
 
 def plot2d(xmin, xmax, func):
@@ -223,63 +214,48 @@ def func(x):
     y=x**2
     return y
 plot2d(0,10,func)
-#---------
-#---------
-#---------
-#---------
-#---------
-#--------------------------------------"
-#---------Works!------
-from pylab import *
 
-def plot2d(xmin, xmax, func):
-    x=np.linspace(xmin,xmax,num=50)
-    y=func(x)
-    plot(x,y)
-    show()
-
-def func(x):
-    y=x**2
-    return y
-plot2d(0,10,func)
-#--------------------------------------"
-
+#----------------------------------------------
 from sympy import *
 x = Symbol('x')
 y = Symbol('y')
 print f(x).diff(x, x) + f(x)
 print dsolve(f(x).diff(x, x) + f(x), f(x))
 
+#----------------------------------------------
 from sympy import *
 x = Symbol('x')
 print (1/cos(x)).series(x, 0, 10)
-print f(x).diff(x, x) + f(x)
-
+#? print f(x).diff(x, x) + f(x)
+#----------------------------------------------
 from sympy import Integral, preview
 from sympy.abc import x
 preview(Integral(x**2, x))
 
+#------------------------------------------------------
 from sympy.printing.python import python
 from sympy import Integral
 from sympy.abc import x
 print python(x**2)
 print python(1/x)
 print python(Integral(x**2, x))
-#----------------------------------------------
+#------------------------------------------------------
 def fib(n): # write Fibonacci series up to n
     a, b = 0, 1
     while b < n:
 	print b; a, b = b, a+b;
-
 # Now call the function we just defined:
 fib(200)
-
-#----------------------------------------------
+#------------------------------------------------------
 import numpy as np
 import matplotlib.pyplot as plt
-
 # evenly sampled time at 200ms intervals
 t = np.arange(0., 5., 0.2)
-
 # red dashes, blue squares and green triangles
 plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
+#------------------------------------------------------
+
+
+
+
+

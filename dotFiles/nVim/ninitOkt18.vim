@@ -244,6 +244,41 @@ call plug#begin()
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
         Plug 'tomtom/tlib_vim'       
+
+        Plug 'google/vim-maktaba'
+        "-Strongly recommended: easy configuration of maktaba plugins.
+        Plug 'google/vim-glaive'
+                let g:myplugin_enablefeature = 1
+                let g:myplugin_defaultdir = $HOME
+                let g:myplugin_weirdmode = 'm'
+
+                ""???### Add helloworld to the runtime path. (Normally this would be done with another
+                "" Plugin command, but helloworld doesn't have a repository of its own.)
+                "call maktaba#plugin#Install(maktaba#path#Join([maktaba#Maktaba().location,
+                "                        \ 'examples', 'helloworld']))
+                ""-------------------------------------------
+                "call glaive#Install()
+                ""-------------------------------------------
+                "" Configure helloworld using glaive.
+                "Glaive helloworld plugin[mappings] name='Bram'
+                "" Real world example: configure vim-codefmt
+                "Glaive codefmt google_java_executable='java -jar /path/to/google-java-format.jar'
+
+        Plug 'google/vim-codefmt'
+        augroup autoformat_settings
+                autocmd FileType bzl AutoFormatBuffer buildifier
+                autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+                autocmd FileType dart AutoFormatBuffer dartfmt
+                autocmd FileType go AutoFormatBuffer gofmt
+                autocmd FileType gn AutoFormatBuffer gn
+                autocmd FileType html,css,json AutoFormatBuffer js-beautify
+                autocmd FileType java AutoFormatBuffer google-java-format
+                autocmd FileType python AutoFormatBuffer yapf
+                " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+        augroup END
+
+        "Plug 'google/vim-colorscheme-primary'
+        Plug 'google/vim-syncopate'
         "------------------------------------------------------------------------- 
         Plug 'tyru/capture.vim'
                 ":Capture mes
@@ -294,7 +329,7 @@ call plug#begin()
                                                 \     },
                                                 \   }
                                                 \ ]
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'brookhong/cscope.vim'
                 nnoremap ff :call CscopeFindInteractive(expand('<cword>'))<CR>
         Plug 'unblevable/quick-scope'
@@ -362,18 +397,19 @@ call plug#begin()
         Plug 'thinca/vim-quickrun'
         Plug 'ivyl/vim-bling'
         Plug 'brooth/far.vim'
-        Plug 'xolox/vim-easytags'
-                " let g:easytags_file = '~/.vim/tags'
-                let g:easytags_auto_highlight = 1
-                let g:easytags_syntax_keyword = 'always'
-                let g:easytags_events = ['BufWritePost']
+        "Plug 'xolox/vim-easytags'
+                "let g:easytags_file = '~/.vim/tags'
+                "let g:easytags_auto_highlight = 1
+                "let g:easytags_syntax_keyword = 'always'
+                "let g:easytags_events = ['BufWritePost']
+
         Plug 'vim-scripts/tagselect'
         Plug 'ludovicchabant/vim-gutentags'
         "------------------------------------------------------------------------------------------
         Plug 'majutsushi/tagbar'
                 highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
                 highlight TagListTagName    ctermfg=250
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         "Plug 'xolox/vim-session'
         "        " Persist the options of the session plug-in using the session plug-in...
         "        let g:session_persist_globals = ['&sessionoptions']
@@ -406,14 +442,14 @@ call plug#begin()
         "------------------------------------------------------------------------------------------
         Plug 'haya14busa/vim-easyoperator-line'
                 xmap <LocalLeader>l <Plug>(easyoperator-line-select)
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'mattboehm/vim-accordion'
                 let g:accordion_mode="v"
         Plug 'godlygeek/tabular'
                 " abc,def,ghi , some , shrt 
                 " a,b,c
         Plug 'vim-scripts/SpellCheck'
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'echuraev/translate-shell.vim'
                 let g:trans_directions_list = [
                                         \['en', 'de'],
@@ -430,12 +466,12 @@ call plug#begin()
                                         \['', ''],
                                         \]
                 let g:trans_save_history = 1
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         "Plug 'vim-scripts/tinykeymap'
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'skywind3000/vim-preview'
                 "VSSplit
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'kshenoy/vim-signature'
                 " :SignatureListMarkers         : List all markers
                 " :SignatureListMarkers 1       : List only the '!' marker
@@ -452,7 +488,33 @@ call plug#begin()
                 "let b:vimpipe_filetype="html"
                 " g:vimpipe_invoke_map    <LocalLeader>r
                 " g:vimpipe_close_map     <LocalLeader>p
-"--------------------------------------------------------------------------------- 
+
+        "--------------------------------------------------------------------------------- 
+        " Plug 'vim-scripts/dbext.vim'
+        " Plug 'NLKNguyen/pipe.vim' "required
+        " Plug 'NLKNguyen/pipe-mysql.vim'
+        " let g:pipemysql_login_info = [
+        "                         \ {
+        "                         \    'description' : 'my server 1',
+        "                         \    'ssh_address' : 'root@server1',
+        "                         \    'ssh_port' : '',
+        "                         \    'mysql_hostname' : 'somehostname',
+        "                         \    'mysql_username' : 'my_username',
+        "                         \    'mysql_password' : 'my_password',
+        "                         \    'mysql_database' : 'cs332h20'
+        "                         \ },
+        "                         \ {
+        "                         \    'description' : 'my local',
+        "                         \    'mysql_hostname' : 'localhost',
+        "                         \    'mysql_username' : 'root',
+        "                         \    'mysql_password' : 'mypass',
+        "                         \ }
+        "                         \ ]
+        "--------------------------------------------------------------------------------- 
+        "Plug 'kezhenxu94/vim-mysql-plugin'
+        "Plug 'integralist/vim-mypy'
+        "Plug 'leafOfTree/vim-imagine'
+        "--------------------------------------------------------------------------------- 
         Plug 'junegunn/gv.vim'
                 " o or <cr> on a commit to display the content of it
                 " o or <cr> on commits to display the diff in the range
@@ -479,7 +541,6 @@ call plug#begin()
         "------------------------------------------------------
         Plug 'tpope/vim-fugitive'
         "----------------------------------------------------------------------------------
-        " fugitive  Intuitive and Simple Git wrapper for Vim.
                 " vnoremap <leader>H :Gbrowse<cr>
                 " nnoremap <leader>H V:Gbrowse<cr>
                 " vnoremap <leader>u :Gbrowse @upstream<cr>
@@ -555,7 +616,6 @@ call plug#begin()
                                          \ 'ip'  :1,
                                          \ 'ih'  :1
                                          \ }
-
         "----------------------------------------------------------------------------------
         nmap <m-1> <esc>viq<left> 
                 nmap <m-q> <esc>vaq<left> 
@@ -579,12 +639,6 @@ call plug#begin()
         "----------------------------------------------------------------------------------
         nnoremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
         nnoremap <buffer> <C-F2> <Esc>:helpgrep <C-r><C-w><CR>
-        "----------------------------------------------------------------------------------
-        "Python runners
-        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
         "----------------------------------------------------------------------------------
         " Maybe these mappings should be moved into FT_C() ?
         " Toggle between .c (.cc, .cpp) and .h                          
@@ -638,8 +692,6 @@ call plug#begin()
                 nnoremap <Leader>b :cprev<cr>zvzz
                 nnoremap <Leader>n :cnext<cr>zvzz
         "----------------------------------------------------------------------------------
-                nnoremap <F10> :SyntasticCheck<CR>
-        "----------------------------------------------------------------------------------
                 nnoremap <F12> :TagbarToggle<CR>
         "----------------------------------------------------------------------------------
         Plug 'adriaanzon/vim-textobj-matchit'
@@ -659,16 +711,14 @@ call plug#begin()
                 "(Sandwitch) 
                 nmap s <Nop>
                 xmap s <Nop>
-        "--------------------------------------------------------------
+        "-------------------------------------------------------------
                 let g:textobj_sandwich_no_default_key_mappings = 1
                 omap ia <Plug>(textobj-sandwich-auto-i)
                 xmap ia <Plug>(textobj-sandwich-auto-i)
                 omap aa <Plug>(textobj-sandwich-auto-a)
                 xmap aa <Plug>(textobj-sandwich-auto-a)
         "--------------------------------------------------------------
-         "[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
-
-         "D-Day"
+        "[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
 
         "----------------------------------------------------------------------------------
         "-wrap <b></b> around selected text
@@ -685,7 +735,6 @@ call plug#begin()
                 let g:qf_auto_open_loclist = 0
                 let g:qf_max_height = 8
                 let g:qf_nowrap = 1
-
         "----------------------------------------------------------------------------------
         "---NoAutoClose-YCM----------------------------------------------------------------
         Plug 'jiangmiao/auto-pairs'
@@ -711,7 +760,7 @@ call plug#begin()
                 let g:AutoPairsMapCR=0
                 "let g:AutoPairsDelete = '<C-h>'
 
-"---------------------------------------------------------------------------------
+        "---------------------------------------------------------------------------------
         Plug 'wellle/visual-split.vim'
                 " :VSSplit, :VSSplitAbove or :VSSplitBelow to create the split
                 " :VSResize to execute the VSResize ex command on the selected range
@@ -719,32 +768,18 @@ call plug#begin()
                 nmap <C-W>s <Plug>(Visual-Split-Split)
         Plug 'gastonsimone/vim-dokumentary/'
                 "??? apt-get install dictd dict-gcide dict
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'vim-scripts/mako.vim'
                 "g:mako_detect_lang_from_ext = 1
         Plug 'sophacles/vim-bundle-mako'
         Plug 'aperezdc/vim-template'
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         "Plug 'amiorin/vim-project'
-"--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'tpope/vim-unimpaired'  "Handy bracket mappings.
         Plug 'mtth/scratch.vim'
         "----------------------------------------------------
         Plug 'henrik/vim-qargs'
-        Plug 'vim-scripts/YankRing.vim'
-                ":YRShow
-                "let g:yankring_n_keys = 'Y D x X'
-                "let g:yankring_window_use_right = 1
-                let g:yankring_window_use_bottom = 1
-                let g:yankring_window_use_horiz = 1  " Use vertical split 0
-                let g:yankring_window_height = 12
-                let g:yankring_record_insert = 1
-                let g:yankring_window_auto_close = 1
-                let g:yankring_window_use_separate = 1
-                let g:yankring_persist = 1
-                let g:yankring_max_history = 100
-                "let g:yankring_replace_n_pkey = '<m-p>'
-                let g:yankring_replace_n_nkey = 'zb'
         Plug 'maxbrunsfeld/vim-yankstack'
                 nmap zp <Plug>yankstack_substitute_older_paste
                 nmap zn <Plug>yankstack_substitute_newer_paste
@@ -762,6 +797,7 @@ call plug#begin()
         Plug 'neomake/neomake'
         "Plug 'Rykka/trans.vim'
         Plug 'ron89/thesaurus_query.vim'
+        "-TODO-
         Plug 'Shougo/vimshell.vim'
         "--------------------------------------------------------------------------------- 
         "Plug 'roxma/nvim-completion-manager'
@@ -838,6 +874,9 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'auwsmit/vim-hydra'
+        "--------------------------------------------------------------------------------- 
+        Plug 'gotcha/vimpdb'
+        "--------------------------------------------------------------------------------- 
 
         Plug 'vim-vdebug/vdebug'
                 " <F5>: start/run (to next breakpoint/end of script)
@@ -853,31 +892,34 @@ call plug#begin()
                 " :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
                 " :VdebugEval <code>: evaluate some code and display the result
                 " <Leader>e: evaluate the expression under visual highlight and display the result
-
-        "Plug 'vim-scripts/VimPdb'
-                " * Highlighting of currently debugged line and breakpoint lines.
-                " * F5 - Run/continue running.
-                " * F2 - Toggle breakpoint at current line
-                " * Ctrl-F2 / Shift-F2 - Toggle conditional/temporary breakpoint.
-                " * F7 / F8 - Step into/over
-                " * F12 - Print stack trace
-                " * F3 / Ctrl-F3 - Eval/Exec a given statement (in the current debugging context)
-                " * Save/load breakpoints into session files.
-                " * Cross-platform
-
-        Plug 'artur-shaik/vim-javacomplete2'
-        imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
-        Plug 'wsdjeg/JavaUnit.vim'
-        autocmd FileType java setlocal omnifunc=javacomplete#Complete
-        " nmap <F4> <Plug>(JavaComplete-Imports-Add)
-        " nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
-        " nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
-
-
         "--------------------------------------------------------------------------------- 
+        "Plug 'ashisha/image.vim'
+        "Plug 'rbgrouleff/bclose.vim'
+        " Plug 'francoiscabrol/ranger.vim'
+        "         let g:NERDTreeHijackNetrw = 0 
+        "         let g:ranger_replace_netrw = 1 
+        "         let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+        "         map <leader>f :Ranger<CR>
+        "--------------------------------------------------------------------------------- 
+        "Plug 'wsdjeg/JavaUnit.vim'
+        Plug 'artur-shaik/vim-javacomplete2'
+                imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
+                autocmd FileType java setlocal omnifunc=javacomplete#Complete
+                " nmap <F4> <Plug>(JavaComplete-Imports-Add)
+                " nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+                " nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+        "--------------------------------------------------------------------------------- 
+        " :setlocal omnifunc=javacomplete#Complete
+        " :setlocal completefunc=javacomplete#CompleteParamsInfo
+        " if has("autocmd")
+        " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+        " autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+        " endif
+
 call plug#end()
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
         source ~/git/aTest/dotFiles/nVim/myPlug/nHydra.vim 
+
 "-nPlugEnd-nPlugStop3-}}}
 
 "-AAA4-SyntaxColor------------------------------------------------------------------------------------------{{{
@@ -1028,7 +1070,7 @@ call plug#end()
 
         abb dlin "==================================================================================
         abb alin "AAA--------------------------------------------------------------------------------
-        iabbrev yyy "---------------------------------------------------------------------------------
+        iabbrev yyy  "---------------------------------------------------------------------------------
         iabbrev yyy1 "---------------------------------------------------------------------------------------------
         iabbrev yyy2 "--------------------------------------------------------------------------------------{{{
         iabbrev yyy3 "-}}}
@@ -1073,12 +1115,6 @@ call plug#end()
                         execute "keepjumps normal! mzzMzvzt25\<c-y>\<cr>"
                         let &scrolloff = oldscrolloff
                 endfunction
-
-
-
-
-
-
 
                 "-Mappings to easily toggle fold levels
                 "-Make zO recursively open whatever fold we're in, even if it's partially open.
@@ -1223,7 +1259,7 @@ call plug#end()
 "-12Diff-}}}
 "-AAA13-SyntasticCheck--------------------------------------------------------------------------------------{{{
         let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
+        "let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
         ""let g:syntastic_java_checkers = ['checkstyle']
@@ -1232,22 +1268,22 @@ call plug#end()
         let g:syntastic_mode_map = {'mode': 'active'}
         let g:syntastic_python_pylint_quiet_messages = {}
         let g:syntastic_enable_signs = 1
-        let g:syntastic_auto_jump = 1
+        "let g:syntastic_auto_jump = 1
         let g:syntastic_enable_highlighting = 1
-        let g:syntastic_echo_current_error  = 1
+        "let g:syntastic_echo_current_error  = 1
         let g:syntastic_javascript_checkers=['jshint']
         let g:syntastic_php_checkers=['php']
         let g:syntastic_css_checkers=['csslint']
-        let g:syntastic_check_on_w = 1
-
+        let g:syntastic_python_checkers = ['flake8']
         "-fun-with-unicode-
         let g:syntastic_error_symbol = '⚡'
         let g:syntastic_warning_symbol = '⚠'
+        "let g:syntastic_check_on_w = 1
+
         " let g:syntastic_python_checkers=['python', 'flake8']
         " let g:syntastic_python_flake8_post_args='--ignore=W391'
         " For forcing the use of flake8, pyflakes, or pylint set
         " let g:syntastic_python_checkers = ['pyflakes']
-        let g:syntastic_python_checkers = ['flake8']
 
 "-13-}}}
 
@@ -1399,7 +1435,13 @@ call plug#end()
 
 "-18-}}}
 
-"-AAA19-Py--------------------------------------------------------------------------------------------------{{{
+"-AAA19-PyStart--PythonStart----------------------------------------------------------------------------------------{{{
+        "Python runners
+        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
+        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+        "----------------------------------------------------------------------------------
         augroup python_files 
                 " This function detects, based on Python content, whether this is a
                 " Django file, which may enabling snippet completion for it
@@ -1426,6 +1468,10 @@ call plug#end()
                 autocmd! filetype python setlocal textwidth=119
                 autocmd! filetype python match ErrorMsg '\%>120v.\+'
 
+        "----------------------------------------------------------------------------------
+                autocmd! filetype python nnoremap <C-F10> :SyntasticCheck<CR>
+                autocmd! filetype python nnoremap <F10>  :LocationToggle<cr>
+        "----------------------------------------------------------------------------------
                 " Folding for Python (uses syntax/python.vim for fold definitions)
                 "autocmd filetype python,rst setlocal nofoldenable
                 "autocmd filetype python setlocal foldmethod=expr
@@ -1434,7 +1480,7 @@ call plug#end()
                 "autocmd! filetype python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
 
                 " Run a quick static syntax check every time we save a Python file
-                autocmd! BufWritePost *.py call Flake8()
+                "autocmd! BufWritePost *.py call Flake8()
 
                 " defer to isort for sorting python imports (instead of using unix sort)
                 "autocmd! filetype python nnoremap <leader>s mx:%!isort -<cr>`x:redraw!<cr>
@@ -1826,10 +1872,11 @@ call plug#end()
                 " nmap <Leader><Leader>h :Helptags!<CR>
         "===PLAY8========(C-o)====================================================================
                 inoremap <silent> <C-o> <C-x><C-o>
-                inoremap <silent> <C-k> <C-x><C-k>
+                "inoremap <silent> <C-k> <C-x><C-k>
                 inoremap <silent> <C-d> <C-x><C-d>
                 inoremap <silent> <C-f> <C-x><C-f>
                 inoremap <silent> <C-l> <C-x><C-l>
+
         "===PLAY9=========FZF=====================================================================
                 imap <expr><C-\> fzf#vim#complete#word({'left': '15%'})
                 imap <C-l> <plug>(fzf-complete-line)

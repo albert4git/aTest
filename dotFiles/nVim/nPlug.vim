@@ -592,4 +592,25 @@ call plug#end()
         "----------------------------------------------------------------------------------
         "----------------------------------------------------------------------------------
         "----------------------------------------------------------------------------------
+        " 5. Compile `YouCompleteMe` to get nice support for code completion:
+        "     * This step is optional but recommended. If you do not need code completion, 
+        "     just delete the directory `~/.vim/bundle/YouCompleteMe`.
+        "     * To be able to compile, it depends on [CMake](https://cmake.org) and Python headers (`python-dev` package in Ubuntu)
+        "     * `cd ~/.vim/bundle/YouCompleteMe`
+        "     * `./install.py` # for regular install
+        "     * `./install.py --clang-completer` # for install with support for C-family languages. Refer to `.vim/bundle/YouCompleteMe/README.md` for more more details. 
         "----------------------------------------------------------------------------------
+        " TDD
+        " Write a test
+        " Watch it fail
+        " Make it compile
+        " Make it pass
+        " Refactor the code
+        " Refactor the test (and elaborate)
+        " Rinse and repeat
+
+        " unittest
+        " pymock
+        " nose
+        " nosy
+        " py.test
