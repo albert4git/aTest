@@ -15,6 +15,9 @@ call plug#begin()
         Plug 'vim-scripts/SpellCheck'
         Plug 'justinmk/vim-dirvish'
 
+        " {(hh kkk55k  ) (hhhh)hh (hhhh)}
+        " [uuu]k ['i555'bbb]
+
 "--------------------------------------------------------------------------------- 
         Plug 'echuraev/translate-shell.vim'
             let g:trans_directions_list = [
@@ -247,6 +250,7 @@ call plug#begin()
         Plug 'ron89/thesaurus_query.vim'
 
         Plug 'Shougo/vimshell.vim'
+
         Plug 'majutsushi/tagbar'
         Plug 'scrooloose/syntastic'
         Plug 'w0rp/ale'

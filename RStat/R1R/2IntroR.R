@@ -7,7 +7,7 @@
 #============================================
 # Set working directory to where csv file is located
 setwd("/home/alf/git/aTest/RStat/R1R/")
-mydata<- read.csv("/home/alf/git/aTest/RStat/R1R/bea5roi.csv")
+mydata<- read.csv("/home/red/git/aTest/RStat/R1R/bea5roi.csv")
 attach(mydata)
 library("ggplot2") # wird das Packet dann geladen.
 pp <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()

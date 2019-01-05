@@ -1715,36 +1715,23 @@ augroup ft_python
     " Strip REPL-session marks from just-pasted text
     au FileType python nnoremap <localleader>s mz`[v`]:v/\v^(\>\>\>\|[.][.][.])/d<cr>gv:s/\v^(\>\>\> \|[.][.][.] \|[.][.][.]$)//<cr>:noh<cr>`z
 
-    " Set up some basic neorepl mappings.
-    "
-    " key  desc                   mnemonic
-    " \o - connect neorepl        [o]pen repl
-    " \l - send current line      [l]ine
-    " \p - send current paragraph [p]aragraph
-    " \e - send top-level hunk    [e]val
-    " \e - send selected hunk     [e]val
-    " \r - send entire file       [r]eload file
-    " \c - send ctrl-l            [c]lear
+        " Set up some basic neorepl mappings.
+        " key  desc                   mnemonic
+        " \o - connect neorepl        [o]pen repl
+        " \l - send current line      [l]ine
+        " \p - send current paragraph [p]aragraph
+        " \e - send top-level hunk    [e]val
+        " \e - send selected hunk     [e]val
+        " \r - send entire file       [r]eload file
+        " \c - send ctrl-l            [c]lear
+        au FileType python nnoremap <buffer> <silent> <localleader>o :call OpenPythonRepl()<cr>
+        au FileType python nnoremap <buffer> <silent> <localleader>l :call SendPythonLine()<cr>
+        au FileType python nnoremap <buffer> <silent> <localleader>p :call SendPythonParagraph()<cr>
+        au FileType python nnoremap <buffer> <silent> <localleader>e :call SendPythonTopLevelHunk()<cr>
+        au FileType python vnoremap <buffer> <silent> <localleader>e :<c-u>call SendPythonSelection()<cr>
+        au FileType python nnoremap <buffer> <silent> <localleader>r :call SendPythonBuffer()<cr>
+        au FileType python nnoremap <buffer> <silent> <localleader>c :call NeoReplSendRaw("")<cr>
 
-    au FileType python nnoremap <buffer> <silent> <localleader>o :call OpenPythonRepl()<cr>
-
-    " Send the current line to the REPL
-    au FileType python nnoremap <buffer> <silent> <localleader>l :call SendPythonLine()<cr>
-
-    " Send the current paragraph to the REPL
-    au FileType python nnoremap <buffer> <silent> <localleader>p :call SendPythonParagraph()<cr>
-
-    " " Send the current top-level hunk to the REPL
-    au FileType python nnoremap <buffer> <silent> <localleader>e :call SendPythonTopLevelHunk()<cr>
-
-    " Send the current selection to the REPL
-    au FileType python vnoremap <buffer> <silent> <localleader>e :<c-u>call SendPythonSelection()<cr>
-
-    " Send the entire buffer to the REPL ([r]eload)
-    au FileType python nnoremap <buffer> <silent> <localleader>r :call SendPythonBuffer()<cr>
-
-    " Clear the REPL
-    au FileType python nnoremap <buffer> <silent> <localleader>c :call NeoReplSendRaw("")<cr>
 augroup END
 
 " }}}
@@ -2573,6 +2560,12 @@ let g:vlime_compiler_policy = {
             \ }
 
 " let g:vlime_indent_keywords = {"defsystem": 1}
+
+
+"============================================
+        set omnifunc=syntaxcomplete#Complete
+        set completeopt=menu
+"============================================
 
 function! CleanVlimeWindows()
     call vlime#plugin#CloseWindow("preview")

@@ -4,8 +4,9 @@
 
 #============================================
 # Set working directory to where csv file is located
-setwd("/Users/neuro/aTest/aTest/RStat/R1R/")
-mydata<- read.csv("/Users/neuro/aTest/aTest/RStat/R1R/bea5roi.csv")
+setwd("/home/red/git/aTest/aTest/RStat/R1R/")
+
+mydata<- read.csv("/home/red/git/aTest/RStat/R1R/bea5roi.csv")
 attach(mydata)
 library("ggplot2") # wird das Packet dann geladen.
 pp <- ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
@@ -208,8 +209,9 @@ sd(MO1)
 
 #====================================================================
 # Read the data
-mydata<- read.csv("/Users/neuro/aTest/aTest/RStat/R1R/intro_auto.csv")
-mydata<- read.csv("/Users/neuro/aTest/aTest/RStat/R1R/bea5roi.csv")
+mydata<- read.csv("/home/red/git/aTest/aTest/RStat/R1R/bea5roi.csv")
+#====================================================================
+mydata<- read.csv("/home/red/git/aTest/RStat/R1R/intro_auto.csv")
 attach(mydata)
 
 # List the variables
@@ -226,7 +228,6 @@ sd(mpg)
 length(mpg)
 summary(price)
 sd(price)
-
 
 # Plotting data --???---
 plot (mpg ~ weight)

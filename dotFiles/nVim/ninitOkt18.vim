@@ -59,7 +59,8 @@
         set background=dark
         syntax on
         syntax enable
-        let g:pymode = 1
+        "###Pymode???
+
         set diffopt+=vertical 
         "------------------------------------------------------------------------------
         setlocal spell
@@ -445,9 +446,6 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         Plug 'mattboehm/vim-accordion'
                 let g:accordion_mode="v"
-        Plug 'godlygeek/tabular'
-                " abc,def,ghi , some , shrt 
-                " a,b,c
         Plug 'vim-scripts/SpellCheck'
         "--------------------------------------------------------------------------------- 
         Plug 'echuraev/translate-shell.vim'
@@ -619,9 +617,9 @@ call plug#begin()
         "----------------------------------------------------------------------------------
         nmap <m-1> <esc>viq<left> 
                 nmap <m-q> <esc>vaq<left> 
-                        nmap <m-b> <esc>vab<left> 
+                        nmap <m-0> <esc>vab<left> 
                                 nmap <m-3> <esc>viB 
-                                        nmap <m-o> <esc>vio 
+                                        nmap <m-i> <esc>vio 
                                         nmap <m-9> <esc>vif 
                         nmap <m-8> <esc>vaf 
                 nmap <m-7> <esc>vip 
@@ -707,8 +705,8 @@ call plug#begin()
                 " sr Replace surroundings: mapped to the key sequence sr
                 " ib Search and select a sandwiched text automatically: mapped to the key sequence ib and ab
                 " is Search and select a sandwiched text with query: mapped to the key sequence is and as
-                " da" will delete a quoted string.
-                "(Sandwitch) 
+                " da" will delete a quoted sympy.pprint(string.) 
+                "(<b>'Sbandawitch'</b>) 
                 nmap s <Nop>
                 xmap s <Nop>
         "-------------------------------------------------------------
@@ -720,11 +718,13 @@ call plug#begin()
         "--------------------------------------------------------------
         "[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
 
-        "----------------------------------------------------------------------------------
+        "---------------SYMPY-SANDWICH-----------------------------------------------------
+                vmap sb "zdi sympy.pprint(<c-r>z)<esc>
+                vmap sn "zdi print(<c-r>z)<esc> 
         "-wrap <b></b> around selected text
-                vmap sb "zdi<b><c-r>z</b><esc>
+                "vmap sb "zdi<b><c-r>z</b><esc>
         "-wrap <?=   ?> around visually selected text
-                vmap st "zdi<?= <c-r>z ?><esc> 
+                "vmap st "zdi<?= <c-r>z ?><esc> 
        "---------NoAutoClose-YCM----------------------------------------------------------- 
         Plug 'romainl/vim-qf'
         Plug 'yssl/QFEnter'
@@ -743,22 +743,22 @@ call plug#begin()
                 "   <M-n> : jump to next pairs
                 "   <M-e> : jump to end of pairs.
                 "   Ctrl-V ) : insert ) without trigger the plugin.
-                " let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-                " let g:AutoPairscutToggle = '<another key>'
-                let g:AutoPairsShortcuts = 1
+                let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
                 let g:AutoPairsShortcutToggle = '<M-p>'
                 let g:AutoPairsShortcutFastWrap = '<M-e>'
                 let g:AutoPairsShortcutJump = '<M-n>'
                 let g:AutoPairsShortcutBackInsert = '<M-b>'
+                let g:AutoPairsShortcuts = 1
                 let g:AutoPairsMapBS = 1
                 let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
                 " error in vimwiki <CR> Enter. but use upper inoremap can solve.
                 let g:AutoPairsMapSpace = 0
                 " error in abbreviations <space> auto expand.
                 let g:AutoPairsCenterLine = 1
-                let g:AutoPairsFlyMode = 0
+                let g:AutoPairsFlyMode = 1
                 let g:AutoPairsMapCR=0
-                "let g:AutoPairsDelete = '<C-h>'
+                let g:AutoPairsMapCh=1
+                let g:AutoPairsDelete = '<M-5>'
 
         "---------------------------------------------------------------------------------
         Plug 'wellle/visual-split.vim'
@@ -766,7 +766,7 @@ call plug#begin()
                 " :VSResize to execute the VSResize ex command on the selected range
                 nmap <C-W>r  <Plug>(Visual-Split-Resize)
                 nmap <C-W>s <Plug>(Visual-Split-Split)
-        Plug 'gastonsimone/vim-dokumentary/'
+        "Plug 'gastonsimone/vim-dokumentary/'
                 "??? apt-get install dictd dict-gcide dict
         "--------------------------------------------------------------------------------- 
         Plug 'vim-scripts/mako.vim'
@@ -798,7 +798,7 @@ call plug#begin()
         "Plug 'Rykka/trans.vim'
         Plug 'ron89/thesaurus_query.vim'
         "-TODO-
-        Plug 'Shougo/vimshell.vim'
+        "Plug 'Shougo/vimshell.vim'
         "--------------------------------------------------------------------------------- 
         "Plug 'roxma/nvim-completion-manager'
         "--------------------------------------------------------------------------------- 
@@ -817,16 +817,91 @@ call plug#begin()
         Plug 'haya14busa/incsearch.vim'
         Plug 'vim-scripts/SearchComplete'
         "--------------------------------------------------------------------------------- 
+        "--------------------------repl--REPL--------------------------------------------- 
         Plug 'jalvesaq/vimcmdline'
+                " vimcmdline mappings
+                let cmdline_map_start          = '<LocalLeader>s'
+                let cmdline_map_send           = '<Space>'
+                let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
+                let cmdline_map_source_fun     = '<LocalLeader>f'
+                let cmdline_map_send_paragraph = '<LocalLeader>p'
+                let cmdline_map_send_block     = '<LocalLeader>b'
+                let cmdline_map_quit           = '<LocalLeader>q'
+                " vimcmdline options
+                let cmdline_vsplit      = 1      " Split the window vertically
+                let cmdline_esc_term    = 1      " Remap <Esc> to :stopinsert in Neovim's terminal
+                let cmdline_in_buffer   = 1      " Start the interpreter in a Neovim's terminal
+                let cmdline_term_height = 15     " Initial height of interpreter window or pane
+                let cmdline_term_width  = 80     " Initial width of interpreter window or pane
+                let cmdline_tmp_dir     = '/tmp' " Temporary directory to save files
+                let cmdline_outhl       = 1      " Syntax highlight the output
+                let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
+                let cmdline_app           = {}
+                " let cmdline_app['python'] = 'ptipython3'
+                " let cmdline_app['ruby']   = 'pry'
+                " let cmdline_app['sh']     = 'bash'
+                if has('gui_running') || &termguicolors
+                    let cmdline_color_input    = '#9e9e9e'
+                    let cmdline_color_normal   = '#00afff'
+                    let cmdline_color_number   = '#00ffff'
+                    let cmdline_color_integer  = '#00ffff'
+                    let cmdline_color_float    = '#00ffff'
+                elseif &t_Co == 256
+                    let cmdline_color_input    = 247
+                    let cmdline_color_normal   =  39
+                    let cmdline_color_number   =  51
+                    let cmdline_color_integer  =  51
+                    let cmdline_color_float    =  51
+                    let cmdline_color_complex  =  51
+                    let cmdline_color_negnum   = 183
+                    let cmdline_color_negfloat = 183
+                    let cmdline_color_date     =  43
+                    let cmdline_color_true     =  78
+                    let cmdline_color_false    = 203
+                    let cmdline_color_inf      =  39
+                    let cmdline_color_constant =  75
+                    let cmdline_color_string   =  79
+                    let cmdline_color_stderr   =  33
+                    let cmdline_color_error    =  15
+                    let cmdline_color_warn     =   1
+                    let cmdline_color_index    = 186
+                endif
         "--------------------------------------------------------------------------------- 
-        Plug 'jalvesaq/Nvim-R'
+        "Plug 'vim-scripts/Vim-R-plugin'
+        "Plug 'jalvesaq/Nvim-R'
+        "let R_path = '/path/to/my/preferred/R/version/bin'
+        ""<LocalLeader>rf command because the plugin was designed to
+        "nmap <LocalLeader>; :RSend
+        "nmap <LocalLeader>sr <Plug>RStart
+        "imap <LocalLeader>sr <Plug>RStart
+        "vmap <LocalLeader>sr <Plug>RStart
+        "vmap <Leader>m <Plug>RDSendSelection
+        "nmap <Leader>s <Plug>RDSendLine
+        ":Rhelp topic
+        "--------------------------------------------------------------------------------- 
+        "--------------------------------------------------------------------------------- 
         Plug 'tpope/vim-eunuch'
+                " :Delete[!]            
+                " :Unlink[!]            
+                " :Remove[!]            
+                " :Move[!] {file}       
+                " :Rename[!] {file}     
+                " :Chmod {mode}         
+                " :Mkdir {dir}          
+                " :Mkdir! {dir}         
+                " :Mkdir[!]             
+                " :Cfind[!] {args}      
+                " :Lfind[!] {args}      
+                " :Clocate[!] {args}    
+                " :Llocate[!] {args}
         "--------------------------------------------------------------------------------- 
         Plug 'MarcWeber/vim-addon-mw-utils'
         "--------------------------------------------------------------------------------- 
         Plug 'Shougo/neomru.vim'
+        "--------------------------------------
         Plug 'kien/ctrlp.vim'
         Plug 'wincent/command-t'
+        "--------------------------------------
         Plug 'Shougo/unite.vim' 
         Plug 'tsukkee/unite-tag'
         Plug 'SpaceVim/unite-ctags'
@@ -862,6 +937,9 @@ call plug#begin()
         "--------------------------------------
         Plug 'guns/xterm-color-table.vim'
         "--------------------------------------------------------------------------------- 
+        Plug 'godlygeek/tabular'
+                " abc,def,ghi , some , shrt 
+                " a,b,c
         Plug 'dhruvasagar/vim-table-mode'
                 let g:table_mode_corner_corner='+'
                 let g:table_mode_header_fillchar='='
@@ -871,8 +949,9 @@ call plug#begin()
                 " +=======+=========+========+
                 " | isr   | student | id     |
                 " +-------+---------+--------+
+        "=================================================================================
+
         "--------------------------------------------------------------------------------- 
-        Plug 'python-mode/python-mode', { 'branch': 'develop' }
         Plug 'auwsmit/vim-hydra'
         "--------------------------------------------------------------------------------- 
         Plug 'gotcha/vimpdb'
@@ -994,11 +1073,9 @@ call plug#end()
         "            `-the current buffer
         "--------------------------------------------
         "set complete+=ispell
-
-        "set completeopt=longest,menuone
-        set completeopt=menuone,menu,longest,preview
-        "--------------------------------------------
-        "### ??? set omnifunc=syntaxcomplete#Complete
+        "set completeopt=menuone,menu,longest,preview
+        set omnifunc=syntaxcomplete#Complete
+        set completeopt=menu
         "------------------------------------------------------------------------------------------
         "inoremap <silent> <C-]> <C-x><C-]>
         "inoremap <silent> <C-u> <C-x><C-u>
@@ -1046,6 +1123,7 @@ call plug#end()
 "-AAA7--Abbr------------------------------------------------------------------------------------------------{{{
         "-Unfuck--my--screen-
         nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+        "------------------------------------------------------------------------------------------
         "-Command mode related ???
         cno $h e ~/
         cno $d e ~/Desktop/
@@ -1064,16 +1142,17 @@ call plug#end()
         "??? Map auto complete of (, ", ', [
         inoremap $q ''<esc>i
         inoremap $e ""<esc>i
-        "Spelling corrects. Just for example. Add yours below.
-        iab teh the
-        iab Teh The
 
+
+        "-PYTHON-ABBR-
+        iabbrev yypl print '-------------------------------------------------------'
+        "-PYTHON-ABBR-
         abb dlin "==================================================================================
         abb alin "AAA--------------------------------------------------------------------------------
         iabbrev yyy  "---------------------------------------------------------------------------------
-        iabbrev yyy1 "---------------------------------------------------------------------------------------------
         iabbrev yyy2 "--------------------------------------------------------------------------------------{{{
         iabbrev yyy3 "-}}}
+
 
         iabbrev mispell misspell
         iabbrev funciton function
@@ -1089,8 +1168,6 @@ call plug#end()
         iabbrev foreahc foreach
         iabbrev forech foreach
 
-        iabbrev str start
-        iabbrev que question
         iabbrev #i #include
         iabbrev #d #define
         iabbrev cmnt /*<CR><CR>*/<Up>
@@ -1098,10 +1175,8 @@ call plug#end()
         iabbrev ccopy Copyright 2013 Alf , no rights reserved.
         iabbrev xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
         iabbrev ydate <c-r>=strftime("%Y %b %d")<cr>
-        iabbrev todo TODO
         " My information
-        iab xname <C-R> William Durand
-        iab xsigp <C-R> William Durand <will+git@drnd.me>
+        iab xname <C-R> Alf Durak
 "-7Abbr-}}}
 "-AAA8--Jump-----------------------------------------------------------------------------------------------{{{
         set cinoptions=N-s,g0,+2s,l-s,i2s
@@ -1462,30 +1537,35 @@ call plug#end()
                 endfunction 
                 autocmd! BufNewFile,BufRead *.py call s:DetectPythonVariant()
 
+                "--------------------------------------------------------------------------
                 autocmd! filetype python setlocal formatoptions-=t " But disable autowrapping as it is super annoying
                 "--------------------------------------------------------------------------
                 " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set earlier, as it is important)
                 autocmd! filetype python setlocal textwidth=119
                 autocmd! filetype python match ErrorMsg '\%>120v.\+'
 
-        "----------------------------------------------------------------------------------
+                "----------------------------------------------------------------------------------
                 autocmd! filetype python nnoremap <C-F10> :SyntasticCheck<CR>
                 autocmd! filetype python nnoremap <F10>  :LocationToggle<cr>
-        "----------------------------------------------------------------------------------
-                " Folding for Python (uses syntax/python.vim for fold definitions)
-                "autocmd filetype python,rst setlocal nofoldenable
-                "autocmd filetype python setlocal foldmethod=expr
-
-                " Automatic insertion of breakpoints
+                "------------------------------------------------- 
+                "Automatic insertion of breakpoints
                 "autocmd! filetype python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
-
-                " Run a quick static syntax check every time we save a Python file
-                "autocmd! BufWritePost *.py call Flake8()
-
-                " defer to isort for sorting python imports (instead of using unix sort)
-                "autocmd! filetype python nnoremap <leader>s mx:%!isort -<cr>`x:redraw!<cr>
-                "--------------------------------------------------------------------------
-        augroup end 
+                "===============================================================
+                autocmd! FileType python setlocal omnifunc=jedi#completions
+                "==JediYes=Mit=C-z==============================================
+                        let g:jedi#completions_command = "<C-z>"
+                        let g:jedi#popup_on_dot = 1
+                        let g:jedi#completions_enabled = 1
+                        let g:jedi#documentation_command = "G"
+                        "let g:jedi#auto_vim_configuration = 0
+                        "let g:jedi#goto_assignments_command = "<localleader>g"
+                        "let g:jedi#goto_definitions_command = "<localleader>d"
+                        "let g:jedi#usages_command = "<localleader>u"
+                        ""let g:jedi#rename_command = "<localleader>r"
+                        "let g:jedi#show_call_signatures = "0"
+                "===============================================================
+                "----------------------------------------------------------------------------------
+                autocmd FileType python setlocal completeopt-=preview
 "-19py-}}}
 
 "-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
@@ -1504,7 +1584,16 @@ call plug#end()
         "------------------------------------------------------------------------------------------
         nnoremap ( <c-x>:y x\|@x<cr>
         nnoremap ) <c-a>:y x\|@x<cr>
+
         "------------------------------------------------------------------------------------------
+        "???makes macros even easier to remember: hit qq to record, q to stop recording, and Q to apply.
+        nnoremap Q @q
+        vnoremap Q :norm @q<cr>
+
+
+        "------------------------------------------------------------------------------------------
+        "Number 7: Align Current Paragraph 
+        noremap <LocalLeader>a =ip
         "------------------------------------------------------------------------------------------
         nmap q <nop>
         nnoremap q q
@@ -1514,6 +1603,7 @@ call plug#end()
         nnoremap qa :qa!<cr>
         nnoremap ge :w<cr>:e #<cr>
         "------------------------------------------------------------------------------------------
+        nnoremap <BS> X
         "------------------------------------------------------------------------------------------
         " Split previously opened file ('#') in a split window
         " nnoremap <leader>w :execute "leftabove vsplit" bufname('#')<cr>
@@ -1704,6 +1794,7 @@ call plug#end()
         "noYet- let g:ycm_show_diagnostics_ui = 1
         "let g:ycm_enable_diagnostic_highlighting = 1
         "------------------------------------------------------------------------------------------
+        "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
         let g:ycm_autoclose_preview_window_after_completion = 1
         let g:ycm_error_symbol = 'x>'
         let g:ycm_warning_symbol = 'w>'
@@ -1718,17 +1809,6 @@ call plug#end()
         let g:ycm_key_list_stop_completion = ['<C-y>']
         map <C-;> :YcmCompleter GoToImprecise<CR>
         "===SetPLAY7===============================================================================
-        "autocmd! FileType python setlocal omnifunc=jedi#completions
-                let g:jedi#completions_enabled = 0
-                let g:jedi#auto_vim_configuration = 0
-                let g:jedi#popup_on_dot = 0
-                let g:jedi#goto_assignments_command = "<localleader>g"
-                let g:jedi#goto_definitions_command = "<localleader>d"
-                let g:jedi#documentation_command = "K"
-                let g:jedi#usages_command = "<localleader>u"
-                "let g:jedi#rename_command = "<localleader>r"
-                let g:jedi#show_call_signatures = "0"
-                let g:jedi#completions_command = "<C-z>"
         "===SetPLAY8===============================================================================
         " let g:ycm_semantic_triggers =  {
         "                         \   'c': ['->', '.'],

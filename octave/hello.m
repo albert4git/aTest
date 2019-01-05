@@ -3,13 +3,17 @@
  # a sample Octave program
  printf ("Hello, world!\n");
 
+###YES#####################################################################
 #!/usr/bin/octave -qf
 x = linspace(0, 2*pi, 100);
 y = sin(x);
 plot(x, y);
-figure;
+print -dpng -color "-S800,800" sin1.png
+open ("sin1.png");
+
 printf ("Hello, world!\n");
 
+figure;
 ###########################################################################
 # example octave script 2
 #!/usr/bin/octave -qf
@@ -25,13 +29,17 @@ xlabel ("x");
 ylabel ("erf (x)");
 title ("erf (x) with text annotation");
 set (hf, "visible", "off");
+
+print -dpng -color "-S800,800" sin2.png
+open ("sin2.png");
+
 print (hf, "plot15_7.pdf", "-dpdflatexstandalone");
 set (hf, "visible", "on");
 system ("pdflatex plot15_7");
 open ("plot15_7.pdf");
 
 
-###########################################################################
+####YES####################################################################
 # example octave script 3
 #!/usr/bin/octave -qf
 x=1:.1:10;
@@ -40,23 +48,16 @@ xlabel("x")
 ylabel("sin(x)")
 print -dpng -color "-S800,800" setSize3.png
 open ("setSize3.png");
-
-print -dpng -color "-S200,200" setSize1.png
-print -dpng -color "-S500,500" setSize2.png
-open ("setSize1.png");
+##################################################
 
 # example octave script 4
 #!/usr/bin/octave -qf
 x=0:.1:10;
-%increase line width
 plot(x,sin(x),"linewidth",4);
  
-%xlabel("x","fontweight","bold","fontsize",50)
 xlabel("x","fontweight","bold")
-%ylabel("sin(x)","fontweight","bold","fontsize",50)
 ylabel("sin(x)","fontweight","bold")
  
-%get axes handle to use for setting properties
 h=get (gcf, "currentaxes");
 set(h,"fontweight","bold","linewidth",2)
  

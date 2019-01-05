@@ -52,6 +52,29 @@
         endfunction
 
 
+        function! myfunction() abort
+                echo 'euro'
+        endfunction
+
+        function! myplugin#hello()
+
+        call s:Initialize()
+        call s:Initialize("hello")
+        echo "Result: " . s:Initialize()
+
+        "==???=WhatsThat=====================
+        function! infect(...)
+                echo a:0    "=> 2
+                echo a:1    "=> jake
+                echo a:2    "=> bella
+
+                for s in a:000  " a list
+                        echon 'cambridge' . s
+                endfor
+        endfunction
+
+        infect('jake', 'bella')
+
         "==Err================================
         let x =0
         while x < 9
@@ -74,12 +97,25 @@
         a is b
         a isnot b
         "----------
+        echo 'tabstop is ' . &tabstop
+
+        "----???--- Prefix Vim options with & ----------------
+        if &insertmode
+                echo &g:option
+                echo &l:option
+        endif
+        "----------
+        let g:ack_options = '-s -H'    " g: global
+        let s:ack_program = 'ack'      " s: local (to script)
+        let l:foo = 'bar'              " l: local (to function)
+
 
         "Boolean logic
         if g:use_dispatch && s:has_dispatch
             echo 'yes'
         endif
-        "----------
+        "---------------------------------------
+        let mylist = [1, 5, 3, 0]
         let mylist = [1, 'two', 3, 'four']
         echo mylist 
         let shortlist = mylist[2:-1]
@@ -89,7 +125,39 @@
         let shortlist = mylist[2:2]    " one item
         echo shortlist
 
+        echo len(mylist)
+        "??? empty(mylist)
+        echo mylist 
 
+        let sortedlist = sort(copy(mylist))
+        echo sortedlist 
+        echo mylist 
+
+        echo sort(mylist)
+        echo mylist 
+
+        strlen(str)    " length
+        len(str)       " same
+        strchars(str)  " character length
+
+        "------------------------------------------------------
+        let mylist = split('hello there world', ' ')
+        echo mylist 
+
+        split("one two three")       "=> ['one', 'two', 'three']
+        split("one.two.three", '.')  "=> ['one', 'two', 'three']
+
+        echo join(['a', 'b'], ',')
+        "------------------------------------------------------
+        let longlist = mylist + [5, 6]
+        let mylist += [7, 8]
+        echo longlist 
+
+        let alist = [1, 2, 3]
+        let alist = add(alist, 4)
+        echo alist 
+
+        "------------------------------------------------------
         "----------
         echoerr 'oh it failed'
         echomsg 'hello there'
@@ -108,29 +176,84 @@
         <silent> 	no echo
         <nowait> 	 
 
+        "-----------------------
+        au Filetype markdown setlocal spell
+        "----------------------
         augroup filetypedetect
             au! BufNewFile,BufRead *.json setf javascript
         augroup END
+        "-----------------------
 
-        au Filetype markdown setlocal spell
 
+        "-Silencing----------
+        silent g/Aap/p
         "=============Exec===========================
+        "Command are often used as shortcut for
+        " functions and subprograms:
+
+        command C -nargs=* call F ( <f-args> )
+        command C source ~/vimfiles/s.vim
+
         command! Saave :set fo=want tw=80 nowrap
 
+        "--------------------------------------------
+        "Prefixes (s:, g:, l:, etc) are actually dictionaries.
+        "------------<SID>-s:unic-ID-----------------
+        command! Save call <SID>foo()
+
+        function! s:foo()
+                echo 'USA'
+        endfunction
+
+        function! SuperTab()
+          let l:part = strpart(getline('.'),col('.')-2,1)
+          if (l:part=~'^\W\?$')
+              return "\<Tab>"
+          else
+              return "\<C-n>"
+          endif
+        endfunction
+
+        imap <Tab> <C-R>=SuperTab()<CR>
+        "===========================================
+
+
+
+        " command! -nargs=? Save call script#foo(<args>)
+        "         -nargs=0 	0 arguments, default
+        "         -nargs=1 	1 argument, includes spaces
+        "         -nargs=? 	0 or 1 argument
+        "         -nargs=* 	0+ arguments, space separated
+        "         -nargs=+ 	1+ arguments, space reparated
+
+        "-----------------------
         execute "vsplit"
         execute "e " . fnameescape(filename)
 
+        "-----------------------
+        normal G
+        normal! G   " skips key mappings
+        "--Nice-----------------
+        execute "normal! gg/foo\<cr>yy"
+        "-----------------------
+
+        " Use :normal to execute keystrokes as if you are typing them in normal mode.
+        " Combine with :execute for special keystrokes. See: Running keystrokes
 
         "============================================
         let colors = {
             \ "apple": "red",
             \ "banana": "yellow" }
-
         "==================================
         for key in keys(colors)
             echo key.'-::-'.key 
         endfor
         "==================================
+        "-???-let colors = remove(colors, "apple")
+        "==================================
+        for key in keys(colors)
+            echo key.'-::-'.key 
+        endfor
 
         "==================================
         echo get(colors, "apple")
@@ -154,6 +277,20 @@
         else
             echo 'is not empty..'
         endif
+
+        "??empty??Single line
+        "if empty(mylist) | return [] | endif
+        a ? b : c
+
+        if 1 | echo "true"  | endif
+        if 0 | echo "false" | endif
+
+        "-???-
+        " if ("hello" =~ '/e/')
+        "     echo 'is empty..'
+        " endif 
+        "hello" !~ '/x/'
+
 
         "==NoErr===============================================================================
         if empty(colors)
@@ -308,18 +445,39 @@
 
         "=================================================================================
         "Functions that can be used with a Dictionary: >
-        :help E715
-        :if has_key(dict, 'foo')	      " TRUE if dict has entry with key "foo"
-        :if empty(dict)		    	      " TRUE if dict is empty
-        :let l = len(dict)		          " number of items in dict
-        :let big = max(dict)		      " maximum value in dict
-        :let small = min(dict)		      " minimum value in dict
-        :let xs = count(dict, 'x')	      " count nr of times 'x' appears in dict
-        :let s = string(dict)		      " String representation of dict
-        :call map(dict, '">> " . v:val')  " prepend >>  to each item
+        " :help E715
+        " :if has_key(dict, 'foo')	      " TRUE if dict has entry with key "foo"
+        " :if empty(dict)		    	      " TRUE if dict is empty
+        " :let l = len(dict)		          " number of items in dict
+        " :let big = max(dict)		      " maximum value in dict
+        " :let small = min(dict)		      " minimum value in dict
+        " :let xs = count(dict, 'x')	      " count nr of times 'x' appears in dict
+        " :let s = string(dict)		      " String representation of dict
+        "??? :call map(dict, '">> " . v:val')  " prepend >>  to each item
 
+        "??? remove(colors, "apple")
+        " if has_key(dict, 'foo')
+        " if empty(dict)
+        " keys(dict)
+        " len(dict)
+        " max(dict)
+        " min(dict)
+        " count(dict, 'x')
+        " string(dict)
+        "??? map(dict, '<>> " . v:val')
 
+        "======================================
+        let Dictionary_1 = {
+                                \ 1: 'one', 
+                                \ 2: 'two',
+                                \ 3: 'three'}
 
+        for key in keys(Dictionary_1)
+            echo key.'-::-'.val
+        endfor
+        "=======================================
+
+        "=======================================
         expand('<cword>')      " word under cursor
         expand('%')            " current file
         " <cword>  current word on cursor
@@ -338,14 +496,62 @@
 
 
 
-        "==Err===============================================================================
-        if empty(colors){
-            echo 'is empty..'
-            } else
-            {
-            echo 'is not empty..'
-            }
-        "==Err===============================================================================
-        if has_key(colors, 'red'){
-            echo 'RED is in..'
-            }
+        "-Conceal
+        set conceallevel=2
+        syn match newLine "<br>" conceal cchar=}
+        hi newLine guifg=green
+
+        syn region inBold concealends matchgroup=bTag start="<b>" end="</b>"
+        hi inBold gui=bold
+        hi bTag guifg=blue
+
+        "-Syntax
+        syn match :name ":regex" :flags
+        syn region Comment  start="/\*"  end="\*/"
+        syn region String   start=+"+    end=+"+	 skip=+\\"+
+
+        flags:
+        keepend
+        oneline
+        nextgroup=
+        contains=
+                syn cluster :name contains=:n1,:n2,:n3...
+        contained
+
+        hi def link markdownH1 htmlH1
+
+        "**Include guards**************************************
+        if exists('g:loaded_myplugin')
+        finish
+        endif
+
+        let g:loaded_myplugin = 1
+        "******************************************************
+
+
+
+        "==Built-ins=========================================================================
+
+            has("feature")  " :h feature-list
+            executable("python")
+            globpath(&rtp, "syntax/c.vim")
+
+            exists("$ENV")
+            exists(":command")
+            exists("variable")
+            exists("+option")
+            exists("g:...")
+
+        "******************************************************
+        runtime :uses a search path and allows wildcards to findr
+                the sub-program while
+        source  :needs the full path.
+
+        runtime setup.vim
+        source  ~/vimfiles/setup.vim
+        "******************************************************
+
+
+        "******************************************************
+
+        "******************************************************
