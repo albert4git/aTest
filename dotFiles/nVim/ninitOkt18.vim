@@ -1550,22 +1550,33 @@ call plug#end()
                 "------------------------------------------------- 
                 "Automatic insertion of breakpoints
                 "autocmd! filetype python nnoremap <buffer> <leader>bp :normal oimport pdb; pdb.set_trace()  # TODO: BREAKPOINT  # noqa<Esc>
-                "===============================================================
-                autocmd! FileType python setlocal omnifunc=jedi#completions
-                "==JediYes=Mit=C-z==============================================
+                "==========================================================================
+                "==JediYes=Mit=C-z=========================================================
                         let g:jedi#completions_command = "<C-z>"
                         let g:jedi#popup_on_dot = 1
                         let g:jedi#completions_enabled = 1
                         let g:jedi#documentation_command = "G"
+                        let g:jedi#popup_select_first = 1
+                        let g:jedi#show_call_signatures = "1"
+                        let g:jedi#goto_command = "gg"
+
+                        "=====================================================
                         "let g:jedi#auto_vim_configuration = 0
                         "let g:jedi#goto_assignments_command = "<localleader>g"
                         "let g:jedi#goto_definitions_command = "<localleader>d"
                         "let g:jedi#usages_command = "<localleader>u"
-                        ""let g:jedi#rename_command = "<localleader>r"
-                        "let g:jedi#show_call_signatures = "0"
-                "===============================================================
-                "----------------------------------------------------------------------------------
-                autocmd FileType python setlocal completeopt-=preview
+                        "let g:jedi#rename_command = "<localleader>r"
+                        "=====================================================
+                        " let g:jedi#goto_command = "<leader>d"
+                        " let g:jedi#goto_assignments_command = "<leader>g"
+                        " let g:jedi#goto_definitions_command = ""
+                        " let g:jedi#usages_command = "<leader>n"
+                        " let g:jedi#rename_command = "<leader>r"
+
+                "=================================================================================
+                autocmd! FileType python setlocal omnifunc=jedi#completions
+                autocmd! FileType python setlocal completeopt-=preview
+                "=================================================================================
 "-19py-}}}
 
 "-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
