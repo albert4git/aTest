@@ -1,10 +1,11 @@
-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix10-"-""-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix52Jedi-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
 " File: ninitOkt18.vim
 " Author: yourname
-" Last Modified: Fr 21. Dez 13:21:43 CET 2018
+" Last Modified: 4 Jan 2019
 "-This-can-be-fixed-by-running-
 ":filetype detect
 "-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
+"======================================================================================================================
         set path+=.,/usr/include,/usr/local/include
         "set runtimepath+=~/.vim/plugged/vimproc/
         "let $PATH=substitute("~/bin:~/local/bin:~/.rbenv/shims:~/.svm/current/rt/bin:", "\\~", $HOME, "g").$PATH
@@ -398,18 +399,50 @@ call plug#begin()
         Plug 'thinca/vim-quickrun'
         Plug 'ivyl/vim-bling'
         Plug 'brooth/far.vim'
+        "------------------------------------------------------------------------------------------
         "Plug 'xolox/vim-easytags'
-                "let g:easytags_file = '~/.vim/tags'
-                "let g:easytags_auto_highlight = 1
-                "let g:easytags_syntax_keyword = 'always'
-                "let g:easytags_events = ['BufWritePost']
+        "        let g:easytags_file = '~/.vim/tags'
+        "        let g:easytags_auto_highlight = 1
+        "        let g:easytags_syntax_keyword = 'always'
+        "        let g:easytags_events = ['BufWritePost']
+        "        "------------------------------------------------------
+        "        " let g:easytags_events = ['BufReadPost', 'BufWritePost']
+        "        let g:easytags_async = 1
+        "        let g:easytags_resolve_links = 1
+        "        " let g:easytags_dynamic_files = 2
+        "        " let g:easytags_suppress_ctags_warning = 1
+        " " Prevent automatic ctag updates
+        "     let g:easytags_auto_update = 0
+        "     let g:easytags_auto_highlight = 0
+        "     let g:easytags_on_cursorhold = 0
+        "     " Scan recursively, not just current file
+        "     let g:easytags_autorecurse = 1
+        "     " Follow symbolic links
+        "     let g:easytags_resolve_links = 1
+        "     " Close tagbar after jumping to a tag
+        "     let g:tagbar_autoclose = 1
 
+        "------------------------------------------------------------------------------------------
         Plug 'vim-scripts/tagselect'
         Plug 'ludovicchabant/vim-gutentags'
         "------------------------------------------------------------------------------------------
         Plug 'majutsushi/tagbar'
-                highlight TagbarHighlight   ctermfg=051 ctermbg=none cterm=bold
+                highlight TagbarHighlight   ctermfg=051 ctermbg=9 cterm=bold
                 highlight TagListTagName    ctermfg=250
+                highlight TagbarFoldIcon    ctermfg=051 ctermbg=9 
+                highlight TagbarHelp        ctermfg=051 ctermbg=9
+
+                " highlight default link TagbarHelp       Comment
+                " highlight default link TagbarHelpKey    Identifier
+                " highlight default link TagbarHelpTitle  PreProc
+                " highlight default link TagbarKind       Identifier
+                " highlight default link TagbarNestedKind TagbarKind
+                " highlight default link TagbarScope      Title
+                " highlight default link TagbarType       Type
+                " highlight default link TagbarSignature  SpecialKey
+                " highlight default link TagbarPseudoID   NonText
+                " highlight default link TagbarFoldIcon   Statement
+                "highlight default link TagbarHighlight  Search
         "--------------------------------------------------------------------------------- 
         "Plug 'xolox/vim-session'
         "        " Persist the options of the session plug-in using the session plug-in...
@@ -558,6 +591,27 @@ call plug#begin()
                 "   - :[range]Gblame {flags}
                 "   - :[range]Gbrowse {revision}
                 " auto open quickfix window for :Ggrep.
+                " nnoremap <leader>gs :Gstatus<CR>
+                " nnoremap <leader>gc :Gcommit -v -q<CR>
+                " nnoremap <leader>ga :Gcommit --amend<CR>
+                " nnoremap <leader>gt :Gcommit -v -q %<CR>
+                " nnoremap <leader>gd :Gdiff<CR>
+                " nnoremap <leader>ge :Gedit<CR>
+                " nnoremap <leader>gr :Gread<CR>
+                " nnoremap <leader>gw :Gwrite<CR><CR>
+                " nnoremap <leader>gl :silent! Glog<CR>
+                " nnoremap <leader>gp :Ggrep<Space>
+                " nnoremap <leader>gm :Gmove<Space>
+                " nnoremap <leader>gb :Git branch<Space>
+                " nnoremap <leader>go :Git checkout<Space>
+                " nnoremap <leader>gps :Dispatch! git push<CR>
+                " nnoremap <leader>gpl :Dispatch! git pull<CR>
+                " With that configuration, my workflow is:
+                " <leader>gl to view history
+                " ]q and [q to move between versions (unimpaired.vim)
+                " <leader>gd to open diff
+                " :q to end diff
+
         "--------------------------------------------------------------------------------- 
         Plug 'int3/vim-extradite'
                 ":Extradite | :Extradite! -- vertical.
@@ -894,6 +948,19 @@ call plug#begin()
                 " :Lfind[!] {args}      
                 " :Clocate[!] {args}    
                 " :Llocate[!] {args}
+                "-------------------------------------------------------------------------
+                " :Delete: Delete a buffer and the file on disk simultaneously.
+                " :Unlink: Like :Delete, but keeps the now empty buffer.
+                " :Move: Rename a buffer and the file on disk simultaneously.
+                " :Rename: Like :Move, but relative to the current file's containing directory.
+                " :Chmod: Change the permissions of the current file.
+                " :Mkdir: Create a directory, defaulting to the parent of the current file.
+                " :Cfind: Run find and load the results into the quickfix list.
+                " :Clocate: Run locate and load the results into the quickfix list.
+                " :Lfind/:Llocate: Like above, but use the location list.
+                " :Wall: Write every open window. Handy for kicking off tools like guard.
+                " :SudoWrite: Write a privileged file with sudo.
+                " :SudoEdit: Edit a privileged file with sudo.
         "--------------------------------------------------------------------------------- 
         Plug 'MarcWeber/vim-addon-mw-utils'
         "--------------------------------------------------------------------------------- 
@@ -1575,8 +1642,9 @@ call plug#end()
 
                 "=================================================================================
                 autocmd! FileType python setlocal omnifunc=jedi#completions
-                autocmd! FileType python setlocal completeopt-=preview
+                autocmd FileType python setlocal completeopt-=preview
                 "=================================================================================
+                "----------------------------------------------------------------------------------
 "-19py-}}}
 
 "-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
@@ -1676,6 +1744,30 @@ call plug#end()
                 let g:unite_source_grep_recursive_opt = ''
         endif
         "===SetPLAY2===============================================================================
+        " In Neovim, you can set up fzf window using a Vim command
+        let g:fzf_layout = { 'window': 'enew' }
+        let g:fzf_layout = { 'window': '-tabnew' }
+        let g:fzf_layout = { 'window': '10split enew' }
+
+        "let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+        " Customize fzf colors to match your color scheme
+        let g:fzf_colors =
+                                \ { 'fg':      ['fg', 'Normal'],
+                                \ 'bg':      ['bg', 'Normal'],
+                                \ 'hl':      ['fg', 'Comment'],
+                                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                                \ 'hl+':     ['fg', 'Statement'],
+                                \ 'info':    ['fg', 'PreProc'],
+                                \ 'border':  ['fg', 'Ignore'],
+                                \ 'prompt':  ['fg', 'Conditional'],
+                                \ 'pointer': ['fg', 'Exception'],
+                                \ 'marker':  ['fg', 'Keyword'],
+                                \ 'spinner': ['fg', 'Label'],
+                                \ 'header':  ['fg', 'Comment'] }
+
+
         "g:fzf_command_prefix = 'Fzf'
         let g:fzf_action = {
                                 \ 'ctrl-t': 'tab split',
@@ -1696,6 +1788,45 @@ call plug#end()
                 setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
         endfunction
         autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+        "**********************************************************************************
+        " command! FZFTagFile if !empty(tagfiles()) | call fzf#run({
+        " \   'source': "cat " . tagfiles()[0] . ' | grep "' . expand('%:@') . '"' . " | sed -e '/^\\!/d;s/\t.*//' ". ' |  uniq',
+        " \   'sink':   'tag',
+        " \   'options':  '+m',
+        " \   'left':     60,
+        " \ }) | else | echo 'No tags' | endif
+        " nnoremap <silent> <Leader>t :FZFTagFile<cr>
+        "********NiceNope****************************************************************
+        " command! FZFTagP call fzf#run({
+        " \   'source': "ctags -f - --sort=no --excmd=pattern --language-force=" . expand(&filetype) . " " . expand('%:@') . ' | grep "' . expand('%:@') . '"' . " | sed -e '/^\\!/d;s/\t.*//' ". ' |  uniq',
+        " \   'sink':     'e ',
+        " \   'options':  '+m',
+        " \   'left':     60,
+        " \ })
+        " nnoremap <silent> <Leader>t :FZFTagP<cr>
+        "********NiceNice*****************************************************************
+        command! FZFTagA if !empty(tagfiles()) | call fzf#run({
+        \ 'source': "cat " . join(tagfiles()) . ' | grep -P "' . expand('%:t') . '"',
+        \ 'sink': function('<sid>tag_handler'),
+        \ 'options': '+m --with-nth=1',
+        \ 'down': '50%'
+        \ }) | else | echo 'No tags' | endif
+
+        function! s:tag_handler(tag)
+            if !empty(a:tag)
+                let token = split(split(a:tag, '\t')[2],';"')[0]
+                let m = &magic
+                setlocal nomagic
+                execute token
+                if m
+                    setlocal magic
+                endif
+            endif
+        endfunction
+        nnoremap <silent> <Leader>t :FZFTagA<cr>
+        "**********************************************************************************
+
 
         "------------------------------------------------------------------------------------------
         "-[Buffers] Jump to the existing window if possible
