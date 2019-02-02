@@ -213,6 +213,8 @@ alias nv='nvim'
 alias ni='nvim'
 alias lnv='nvim -c "normal '\''0"'
 
+alias mux='tmuxinator'
+
 alias q='exit'
 alias c='clear'
 alias h='history'

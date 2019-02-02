@@ -1,3 +1,13 @@
+
+pip install rope ropevim takes care of the first one while for the second you will need to create a separate mapping according to your taste in keystrokes! Now the key to the whole puzzle: 
+
+" Rope AutoComplete
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback","django.*", "xml.etree"]
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+
+
         let g:pymode = 1
         "---PyMode------------------------------------------------------------------------ 
         Plug 'python-mode/python-mode', { 'branch': 'develop' }

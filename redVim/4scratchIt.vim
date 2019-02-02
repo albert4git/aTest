@@ -187,7 +187,6 @@ Plugin 'scratch'
 Plugin 'quickrun.vim'
 Plugin 'fontzoom.vim'
 Plugin 'UltiSnips'
-Plugin 'fontzoom.vim'
 "Plugin 'UltiSnips'
 "Plugin 'command-t'
 "My stuff ---------------------------

@@ -71,26 +71,13 @@ ln -b king18/18-gitignore.AB     ~/.gitignore
 ls -a ~/
 
 #---------------------------------------------------
-ln -b  ~/git/aTest/2run/vim-plug.vim           ~/vim-plug.vim
-ln -b  ~/git/aTest/2run/vim-preSet.vim         ~/vim-preSet.vim
-
-ln -b  ~/git/aTest/2run/vim-2optic.vim         ~/vim-2optic.vim
-ln -b  ~/git/aTest/2run/vim-2syntastic.vim     ~/vim-2syntastic.vim
-ln -b  ~/git/aTest/2run/vim-abbr.vim           ~/vim-abbr.vim
-
-ln -b  ~/git/aTest/2run/vim-deopleteA.vim      ~/vim-deopleteA.vim
-ln -b  ~/git/aTest/2run/vim-make.vim           ~/vim-make.vim
-ln -b  ~/git/aTest/2run/vim-maps.vim           ~/vim-maps.vim
-ln -b  ~/git/aTest/2run/vim-searchA.vim        ~/vim-searchA.vim
-
-ln -b  ~/git/aTest/2run/vim-postSet.vim        ~/vim-postSet.vim
-ln -b  ~/git/aTest/2run/viminfo                ~/viminfo
-
-ln -b  ~/git/aTest/2run/vim-1lab.vim         ~/vim-1lab.vim
-ln -b  ~/git/aTest/2run/vim-2lab.vim         ~/vim-2lab.vim
-ln -b  ~/git/aTest/2run/vim-3lab.vim         ~/vim-3lab.vim
+#ln -ls local-config/project-name.yml ~/.tmuxninator
+ln -s ~/git/aTest/dotFiles/tMUX/bank1.yml ~/.tmuxinator/
+ln -s ~/git/aTest/dotFiles/tMUX/bank2.yml ~/.tmuxinator/
+ln -s ~/git/aTest/dotFiles/tMUX/ctagsDotRedHome ~/.ctags
 #---------------------------------------------------
-
+ln -s ~/git/aTest/dotFiles/tMUX/tmux.conf ~/.tmux.conf
+#---------------------------------------------------
 
 ln -b  ~/git/aTest/dotFiles/inkVim/vimrc-ink.vim ~/.vimrc
 

@@ -62,7 +62,7 @@ find ~/.mozilla/firefox -name '*.sqlite' -print -exec sqlite3 {} "VACUUM; REINDE
 
 Количество процессов для пользователя (Linux only)
 
-pgrep -cu boombick
+pgrep -cu red
 
 Сравнить вывод двух команд
 
@@ -256,6 +256,7 @@ export full_name="Charles the Great"
 echo $full_name
 #=====================================
 grep dictionary /usr/share/dict/words
+grep dictionary /home/red/Desktop/dikis/words.txt
 echo $_
 echo $$
 echo $0

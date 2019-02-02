@@ -7,7 +7,7 @@ calculator.title("CALCULATOR")
 calculator.resizable(0, 1)
 
 
-class Application(Frame):
+ class Application(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
         self.createWidgets()
@@ -15,7 +15,6 @@ class Application(Frame):
     def replaceText(self, text):
         self.display.delete(0, END)
         self.display.insert(0, text)
-        self.bind_all
 
     def appendToDisplay(self, text):
         self.entryText = self.display.get()

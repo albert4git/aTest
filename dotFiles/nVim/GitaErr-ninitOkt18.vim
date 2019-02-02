@@ -256,15 +256,13 @@ call plug#begin()
         "Plug 'Shougo/vimshell.vim'
         "--------------------------------------------------------------------------------- 
         Plug 'vim-jp/vital.vim'
-        Plug 'lambdalisue/vital-Whisky/'
         Plug 'prabirshrestha/async.vim'
+        "Plug 'lambdalisue/gina.vim'
+        "Plug 'lambdalisue/vim-gita'
+        "Plug 'lambdalisue/suda.vim'
         "--------------------------------------------------------------------------------- 
-        Plug 'lambdalisue/gina.vim'
-        Plug 'lambdalisue/vim-gita'
-        Plug 'lambdalisue/suda.vim'
-        "--------------------------------------------------------------------------------- 
-        Plug 'tpope/vim-tbone'
-        Plug 'tmux-plugins/vim-tmux'
+        " Plug 'tpope/vim-tbone'
+        " Plug 'tmux-plugins/vim-tmux'
 
         Plug 'google/vim-maktaba'
         "-Strongly recommended: easy configuration of maktaba plugins.
@@ -428,17 +426,7 @@ call plug#begin()
         "        let g:easytags_syntax_keyword = 'always'
         "        let g:easytags_events = ['BufWritePost']
         "        "------------------------------------------------------
-        "        let g:easytags_languages = {
-        "        \   'haskell': {
-        "        \       'cmd': '~/.cabal/bin/lushtags',
-        "        \       'args': [],
-        "        \       'fileoutput_opt': '-f',
-        "        \       'stdout_opt': '-f-',
-        "        \       'recurse_flag': '-R'
-        "        \   }
-        "        \}
-        "        "------------------------------------------------------
-        "        "let g:easytags_events = ['BufReadPost', 'BufWritePost']
+        "        " let g:easytags_events = ['BufReadPost', 'BufWritePost']
         "        let g:easytags_async = 1
         "        let g:easytags_resolve_links = 1
         "        " let g:easytags_dynamic_files = 2
@@ -453,14 +441,6 @@ call plug#begin()
         "        let g:easytags_resolve_links = 1
         "        " Close tagbar after jumping to a tag
         "        let g:tagbar_autoclose = 1
-        "        My current easytags config:
-        "        set cpoptions+=d
-        "        set tags=./.tags;,~/.vim/.vimtags
-        "        let g:easytags_file = '~/.vim/.vimtags'
-        "        let g:easytags_async = 1⋅
-        "        let g:easytags_dynamic_files = 2 " create and use local tag files instead of global one
-        "        let g:easytags_events = ['BufReadPost', 'BufWritePost'] " Update tags on read and save only
-        "        let g:easyt
         "------------------------------------------------------------------------------------------
         Plug 'vim-scripts/tagselect'
         Plug 'ludovicchabant/vim-gutentags'
@@ -901,7 +881,7 @@ call plug#begin()
         "-------------------------------------------------------------------------
         Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
-        "Plug 'neomake/neomake'
+        Plug 'neomake/neomake'
         "Plug 'Rykka/trans.vim'
         Plug 'ron89/thesaurus_query.vim'
         "-TODO-
@@ -1120,9 +1100,6 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         "Plug 'ashisha/image.vim'
         "Plug 'rbgrouleff/bclose.vim'
-        "-------------------------------------------------------------------------
-        Plug 'scrooloose/nerdtree'
-        "-------------------------------------------------------------------------
         Plug 'francoiscabrol/ranger.vim'
         "         let g:NERDTreeHijackNetrw = 0 
         "         let g:ranger_replace_netrw = 1 
@@ -1191,23 +1168,10 @@ call plug#begin()
         " let g:user_emmet_expandabbr_key = '<c-e>'
         " let g:use_emmet_complete_tag = 1
         "--------------------------------------------------------------------------------- 
-        Plug 'gko/vim-coloresque'
+        "Plug 'gko/vim-coloresque'
         Plug 'lepture/vim-jinja'
         "Plug 'godlygeek/tabular'
-        Plug 'hyiltiz/vim-plugins-profile'
-        Plug 'nickstenning/honcho'
-        "4Go
-        Plug 'mattn/gom'
-        Plug 'roxma/python-support.nvim'
-                let g:python_support_python2_require = 0
-                let g:python_support_python3_require = 0
-        "--------------------------------------------------------------------------------- 
-        function! DoRemote(arg)
-                UpdateRemotePlugins
-        endfunction
 
-        Plug 'neovim/pynvim'
-        "Plug '5t111111/nvim-example-python3-plugin', { 'do': function('DoRemote') }
 
 call plug#end()
 
@@ -2347,90 +2311,6 @@ call plug#end()
         "python print_pyhel()
         function! InsertCountry()
                 python print("Hello from Python source code!")
-                python print_pyhel()
+                python '/home/red/git/aTest/dotFiles/nVim/myPy4Vim/00PyWhat.py'
         endfunction
         command! -nargs=0 InsertCountry call InsertCountry()
-
-
-        " I have found it helpful to print all Vim activity to a file by starting Vim with the -V option:
-        " vim -V12log
-        " This provides the maximum verbosity (level 12) and outputs it to the file log.
-        " You can then perform some Vim actions which you know to be slow, and then see
-        " which functions/mappings are being called internally.
-
-
-        " function! SomeExample()
-        "         python << endPython
-
-        "                 def example():
-        "                         print("Python stuff")
-
-        "                 example()
-
-        "         endPython
-        " endfunction
-
-
-" Vim comments start with a double quote.
-" Function definition is VimL. We can mix VimL and Python in
-" function definition.
-function! Reddit()
-
-" We start the python code like the next line.
-
-python << EOF
-# the vim module contains everything we need to interface with vim from
-# python. We need urllib2 for the web service consumer.
-import vim, urllib2
-# we need json for parsing the response
-import json
-
-# we define a timeout that we'll use in the API call. We don't want
-# users to wait much.
-TIMEOUT = 20
-URL = "http://reddit.com/.json"
-
-try:
-    # Get the posts and parse the json response
-    response = urllib2.urlopen(URL, None, TIMEOUT).read()
-    json_response = json.loads(response)
-
-    posts = json_response.get("data", "").get("children", "")
-
-    # vim.current.buffer is the current buffer. It's list-like object.
-    # each line is an item in the list. We can loop through them delete
-    # them, alter them etc.
-    # Here we delete all lines in the current buffer
-    del vim.current.buffer[:]
-
-    # Here we append some lines above. Aesthetics.
-    vim.current.buffer[0] = 80*"-"
-
-    for post in posts:
-        # In the next few lines, we get the post details
-        post_data = post.get("data", {})
-        up = post_data.get("ups", 0)
-        down = post_data.get("downs", 0)
-        title = post_data.get("title", "NO TITLE").encode("utf-8")
-        score = post_data.get("score", 0)
-        permalink = post_data.get("permalink").encode("utf-8")
-        url = post_data.get("url").encode("utf-8")
-        comments = post_data.get("num_comments")
-
-        # And here we append line by line to the buffer.
-        # First the upvotes
-        vim.current.buffer.append("↑ %s"%up)
-        # Then the title and the url
-        vim.current.buffer.append("    %s [%s]"%(title, url,))
-        # Then the downvotes and number of comments
-        vim.current.buffer.append("↓ %s    | comments: %s [%s]"%(down, comments, permalink,))
-        # And last we append some "-" for visual appeal.
-        vim.current.buffer.append(80*"-")
-
-except Exception, e:
-    print e
-
-EOF
-" Here the python code is closed. We can continue writing VimL or python again.
-endfunction
-command! -nargs=0 Reddit call Reddit()
