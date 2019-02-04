@@ -207,7 +207,7 @@ fi
 
 ######################################################################
 # some more ls aliases
-#---------------------
+#-----------------------------------------------------
 alias vim='nvim'
 alias nv='nvim'
 alias ni='nvim'
@@ -225,7 +225,10 @@ alias lsl='ls -l'
 alias pd='pwd'
 alias t='time'
 alias k='kill'
-#--------------------
+#-----------------------------------------------------
+alias l='ls -CF'
+alias l='ls -CFlh'
+#----------------------------------------------------
 alias g='git'
 alias st='git status'
 alias com='git commit -a'
@@ -235,7 +238,7 @@ alias gl='git log'
 alias gu='git add -u'
 alias gall='git add .'
 alias gpush='git push -u origin master'
-#--------------------
+#----------------------------------------------------
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
 # Remove a directory and all files
@@ -255,9 +258,6 @@ alias ll='ls -Fls' # long listing format
 alias labc='ls -lap' #alphabetical sort
 alias lf="ls -l | egrep -v '^d'" # files only
 alias ldir="ls -l | egrep '^d'" # directories only
-#--------------------
-alias l='ls -CF'
-alias l='ls -CFlh'
 #--------------------
 alias h="history | grep " # Search command line history
 alias p="ps aux | grep " # Search running processes

@@ -1,0 +1,177 @@
+#=============================================================
+export EDITOR="vim"
+export ZPLUG_HOME=$HOME/.zplug
+# zplug initialization
+[[ ! -f $ZPLUG_HOME/init.zsh ]] && git clone https://github.com/zplug/zplug $ZPLUG_HOME
+source $ZPLUG_HOME/init.zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+#=============================================================
+# Use color specifications already set up GNU version of `ls`
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#=============================================================
+# export PATH="$PATH:$HOME/bin:$HOME/.config/local/bin"
+# export MANPATH="$MANPATH:$HOME/.config/local/share/man"
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.config/local/lib"
+#=============================================================
+alias so="source ~/.zshrc"
+alias vim='nvim'
+alias nv='nvim'
+alias ni='nvim'
+alias lnv='nvim -c "normal '\''0"'
+alias mux='tmuxinator'
+alias q='exit'
+alias c='clear'
+alias pd='pwd'
+alias t='time'
+alias k='kill'
+alias ls='ls --color=auto'
+alias lsc='ls --color=auto'
+alias l='ls -CF --color=auto'
+alias l='ls -CFlh --color=auto'
+alias lsa='ls -a --color=auto'
+alias lsl='ls -l --color=auto'
+alias d='dirs -v | head -10'
+
+#turn on tab completion and make it fancy
+autoload -U compinit && compinit
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+#zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+
+#=Export paths================================================
+# export PATH=${PATH}:/bin
+# export PATH=${PATH}:/usr/bin
+# export PATH=${PATH}:/usr/local/bin
+# export PATH=${PATH}:/sbin
+# export PATH=${PATH}:/usr/sbin
+# export PATH=${PATH}:/usr/local/sbin
+# export PATH=${PATH}:/usr/local/git/bin
+# export PATH=${PATH}:~/.composer/vendor/bin
+# export PATH=${PATH}:/home/vagrant/bin
+# export PATH=${PATH}:vendor/bin
+
+#=HISTORY=====================================================
+#HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=1717
+
+setopt inc_append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt hist_allow_clobber
+
+#ZSH OPTS
+setopt noclobber
+setopt extendedglob
+setopt correct
+setopt autolist
+setopt auto_resume
+#setopt short_loops #for file in *.pdf; lp ${file}
+unset beep
+set nobeep
+
+#=LOAD=PROFILE===============================================
+#if [ -x /etc/profile ]; then
+#    setopt -G
+#    . /etc/profile
+#    setopt +G
+#fi
+#=============================================================
+# MNML_USER_CHAR=$USER
+# MNML_INSERT_CHAR='do:'
+# zplug 'subnixr/minimal', use:minimal.zsh, as:theme
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+#=============================================================
+zplug "themes/bira", from:oh-my-zsh, as:theme
+#=============================================================
+zplug "lib/completion",   from:oh-my-zsh
+zplug "lib/history",      from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
+#=============================================================
+# zplug 'zsh-users/zsh-autosuggestions'
+# zplug 'zsh-users/zsh-completions'
+# zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+# zplug 'zsh-users/zsh-history-substring-search', defer:3
+#=============================================================
+# zplug 'modules/environment', from:prezto
+# zplug 'modules/terminal', from:prezto
+# zplug 'modules/directory', from:prezto
+# zplug 'modules/utility', from:prezto
+# zplug 'modules/history', from:prezto
+# zplug 'modules/completion', from:prezto
+# zplug 'zsh-users/zsh-completions', from:github
+#=============================================================
+# zplug "plugins/git", from:oh-my-zsh
+# zplug "plugins/history", from:oh-my-zsh
+# zplug "plugins/tmux", from:oh-my-zsh
+# zplug "plugins/z", from:oh-my-zsh
+#=============================================================
+# zplug "lukechilds/zsh-better-npm-completion"
+# zplug "BuonOmo/yarn-completion"
+# zplug "hlissner/zsh-autopair"
+# zplug "MikeDacre/careful_rm"
+# zplug "denysdovhan/spaceship-prompt", as:theme
+#=============================================================
+# zplug 'zdharma/fast-syntax-highlighting', defer:2, hook-load:'FAST_HIGHLIGHT=()'
+#==========================================================================================
+
+#=Theme=settings===========================================================================
+#SPACESHIP_DIR_COLOR="yellow"
+#SPACESHIP_USER_SHOW="true"
+#SPACESHIP_CHAR_COLOR_SUCCESS="white"
+#SPACESHIP_CHAR_COLOR_FAILURE="white"
+#SPACESHIP_PROMPT_ORDER=(
+#  user          # Username section
+#  dir           # Current directory section
+#  host          # Hostname section
+#  #custom_git
+#  line_sep      # Line break
+#  vi_mode       # Vi-mode indicator
+#  jobs          # Background jobs indicator
+#  char          # Prompt character
+#)
+#alias h='history'
+#=============================================================
+# https://github.com/olivierverdier/zsh-git-prompt
+# ZSH_GIT_PROMPT="$HOME/zsh-git-prompt/zshrc.sh"
+# CUSTOM_GIT="$HOME/dotfiles/scripts/custom_git.zsh"
+# [ -s $ZSH_GIT_PROMPT ] && source $ZSH_GIT_PROMPT
+# [ -s $CUSTOM_GIT ] && source $CUSTOM_GIT
+#=============================================================
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
+# ZSH_THEME_GIT_PROMPT_PREFIX=" "
+# ZSH_THEME_GIT_PROMPT_SUFFIX=" "
+# ZSH_THEME_GIT_PROMPT_SEPARATOR=" "
+# ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{●%G%}"
+# ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[blue]%}%{✚%G%}"
+# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[blue]%}◒"
+#=============================================================
+
+#==========================================================================================
+# # Setting ag as the default source for fzf - include hidden files
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# # To apply the command to CTRL-T as well
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# # Preview files when highlighting
+# export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+# # Default options
+# export FZF_DEFAULT_OPTS="--multi --inline-info --height 40%"
+# # Use a split pane in tmux
+# export FZF_TMUX=1
+# export FZF_TMUX_HEIGHT=40%
+# Shell integration
+# [ -s ~/.fzf.zsh ] && source ~/.fzf.zsh
+#==========================================================================================
+#==========================================================================================
+# finally install and load those plugins
+zplug check || zplug install
+zplug load
+#==========================================================================================
+# returning command and folder completion when line is empty like a bash, but better
+blanktab() { [[ $#BUFFER == 0 ]] && CURSOR=3 zle list-choices || zle expand-or-complete }
+zle -N blanktab && bindkey '^I' blanktab
+#==========================================================================================
+#==========================================================================================

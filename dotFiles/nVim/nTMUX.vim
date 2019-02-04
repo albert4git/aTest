@@ -59,6 +59,7 @@ set -g status-right '#[fg=colour69] #(hostname)@#(hostname -I | cut -d " " -f 1)
 "--------------------------------------------------------------------------------- 
 
 "--------------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------------- 
 tbone.vim
 Basic tmux support for Vim.
 
@@ -67,6 +68,8 @@ Basic tmux support for Vim.
     :Twrite sends a chunk of text to another pane. Give an argument like windowtitle.2, top-right, or last, or let it default to the previously given argument.
     :Tattach lets you use a specific tmux session from outside of it.
 
+"--------------------------------------------------------------------------------- 
+"--------------------------------------------------------------------------------- 
 
 tmux.vim
 

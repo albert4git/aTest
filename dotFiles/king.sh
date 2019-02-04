@@ -75,6 +75,7 @@ ls -a ~/
 ln -s ~/git/aTest/dotFiles/tMUX/bank1.yml ~/.tmuxinator/
 ln -s ~/git/aTest/dotFiles/tMUX/bank2.yml ~/.tmuxinator/
 ln -s ~/git/aTest/dotFiles/tMUX/ctagsDotRedHome ~/.ctags
+ln -s ~/git/aTest/dotFiles/zSH/zshrcFeb2019 ~/.zshrc
 #---------------------------------------------------
 ln -s ~/git/aTest/dotFiles/tMUX/tmux.conf ~/.tmux.conf
 #---------------------------------------------------

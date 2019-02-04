@@ -506,6 +506,17 @@ call plug#begin()
         "         map fd :VimFilerCurrentDir<CR>
         "------------------------------------------------------------------------------------------
         Plug 'scrooloose/syntastic'
+                " Linting
+                " let g:ale_sign_column_always = 1
+                " let g:ale_sign_error = '>>'
+                " let g:ale_sign_warning = '--'
+                " let g:ale_linters = {
+                " \   'javascript': ['eslint'],
+                " \   'jsx': ['eslint'],
+                " \   'python': ['flake8'],
+                " \}
+        "Plug 'w0rp/ale'
+        "------------------------------------------------------------------------------------------
         Plug 'nvie/vim-flake8'
         "------------------------------------------------------------------------------------------
         Plug 'easymotion/vim-easymotion'
@@ -1084,6 +1095,25 @@ call plug#begin()
         Plug 'guns/xterm-color-table.vim'
         "--------------------------------------------------------------------------------- 
         Plug 'godlygeek/tabular'
+                " Tabularize {
+                nmap <Leader>a& :Tabularize /&<CR>
+                vmap <Leader>a& :Tabularize /&<CR>
+                nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+                vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+                nmap <Leader>a=> :Tabularize /=><CR>
+                vmap <Leader>a=> :Tabularize /=><CR>
+                nmap <Leader>a: :Tabularize /:<CR>
+                vmap <Leader>a: :Tabularize /:<CR>
+                nmap <Leader>a:: :Tabularize /:\zs<CR>
+                vmap <Leader>a:: :Tabularize /:\zs<CR>
+                nmap <Leader>a, :Tabularize /,<CR>
+                vmap <Leader>a, :Tabularize /,<CR>
+                nmap <Leader>a,, :Tabularize /,\zs<CR>
+                vmap <Leader>a,, :Tabularize /,\zs<CR>
+                nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+                vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+                " }
+
                 " abc,def,ghi , some , shrt 
                 " a,b,c
         Plug 'dhruvasagar/vim-table-mode'
@@ -1102,7 +1132,6 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         Plug 'gotcha/vimpdb'
         "--------------------------------------------------------------------------------- 
-
         "Plug 'vim-vdebug/vdebug'
                 " <F5>: start/run (to next breakpoint/end of script)
                 " <F2>: step over
@@ -1122,6 +1151,42 @@ call plug#begin()
         "Plug 'rbgrouleff/bclose.vim'
         "-------------------------------------------------------------------------
         Plug 'scrooloose/nerdtree'
+         "" NERDTree
+         let NERDTreeShowBookmarks=1
+         let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+         let NERDTreeChDirMode=0
+         let NERDTreeQuitOnOpen=1
+         let NERDTreeMouseMode=2
+         let NERDTreeShowHidden=1
+         let NERDTreeKeepTreeInNewTab=1
+
+         " Defines a function which calls NERDTreeFind if we have an open
+         " buffer, but NERDTreeToggle if we don't. This makes it so we can
+         " always open NERDTree in the appropriate directory.
+         function! NERDTreeToggleInCurDir()
+           " If NERDTree is open in the current buffer
+           if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+             exe ":NERDTreeClose"
+           else
+             if (expand("%:t") != '')
+               exe ":NERDTreeFind"
+             else
+               exe ":NERDTreeToggle"
+             endif
+           endif
+         endfunction
+
+         map <leader>e :call NERDTreeToggleInCurDir()<CR>
+         map <S-F2> :call NERDTreeToggleInCurDir()<CR>
+         map <F4> :call NERDTreeToggleInCurDir()<CR>
+         nmap <leader>nt :call NERDTreeToggleInCurDir()<CR>
+
+         "" NERDCommenter
+         let g:NERDDefaultAlign = 'left'
+         let g:NERDCommentEmptyLines = 1
+         let g:NERDTrimTrailingWhitespace = 1
+         
+
         "-------------------------------------------------------------------------
         Plug 'francoiscabrol/ranger.vim'
         "         let g:NERDTreeHijackNetrw = 0 
@@ -1205,7 +1270,9 @@ call plug#begin()
         function! DoRemote(arg)
                 UpdateRemotePlugins
         endfunction
-
+        "--------------------------------------------------------------------------------- 
+        Plug 'zyedidia/vim-snake'
+        Plug 'tpope/vim-dispatch'
         Plug 'neovim/pynvim'
         "Plug '5t111111/nvim-example-python3-plugin', { 'do': function('DoRemote') }
 
@@ -1350,7 +1417,7 @@ call plug#end()
                 endif
         endfunction
 
-        nnoremap <leader>e :call JumpToCSS()<CR>zz
+        "nnoremap <leader>e :call JumpToCSS()<CR>zz
         "------------------------------------------------------------------------------------------
         imap <expr> <c-z> TabComplete()
         smap <expr> <c-z> TabComplete()
