@@ -13,8 +13,19 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # export MANPATH="$MANPATH:$HOME/.config/local/share/man"
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.config/local/lib"
 #=============================================================
+# Use vi key bindings in ZSH
+setopt vi
+setopt histignorealldups
+# Switching directories for lazy people
+setopt autocd
+# See: http://zsh.sourceforge.net/Intro/intro_6.html
+setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+# Don't kill background jobs when I logout
+setopt nohup
+# See: http://zsh.sourceforge.net/Intro/intro_2.html
+setopt extendedglob
+#=============================================================
 alias so="source ~/.zshrc"
-alias vim='nvim'
 alias nv='nvim'
 alias ni='nvim'
 alias lnv='nvim -c "normal '\''0"'
@@ -24,7 +35,7 @@ alias c='clear'
 alias pd='pwd'
 alias t='time'
 alias k='kill'
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias lsc='ls --color=auto'
 alias l='ls -CF --color=auto'
 alias l='ls -CFlh --color=auto'
@@ -33,9 +44,36 @@ alias lsl='ls -l --color=auto'
 alias d='dirs -v | head -10'
 
 #turn on tab completion and make it fancy
+autoload -U compinit
+compinit -C
 autoload -U compinit && compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 #zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+
+#-------------------------------------------------------------------------------
+# Set vi-mode and create a few additional Vim-like mappings
+#-------------------------------------------------------------------------------
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+# Common emacs bindings for vi mode
+bindkey '\e[3~'   delete-char
+bindkey '^A'      beginning-of-line
+bindkey '^E'      end-of-line
+bindkey '^R'      history-incremental-pattern-search-backward
+# Tmux home/end
+bindkey '\e[1~'      beginning-of-line
+bindkey '\e[4~'      end-of-line
+# user-friendly command output
+export CLICOLOR=1
+ls --color=auto &> /dev/null && alias ls='ls --color=auto'
+
+#-------------------------------------------------------------------------------
+# For example, this would bind <kbd>ctrl</kbd> + <kbd>space</kbd> to accept the current suggestion.
+# bind <kbd>ctrl</kbd> + <kbd>space</kbd>
+#-------------------------------------------------------------------------------
 
 #=Export paths================================================
 # export PATH=${PATH}:/bin
@@ -63,9 +101,9 @@ setopt hist_verify
 setopt hist_allow_clobber
 
 #ZSH OPTS
-setopt noclobber
-setopt extendedglob
-setopt correct
+# setopt noclobber
+# setopt extendedglob
+# setopt correct
 setopt autolist
 setopt auto_resume
 #setopt short_loops #for file in *.pdf; lp ${file}
@@ -83,18 +121,69 @@ set nobeep
 # MNML_INSERT_CHAR='do:'
 # zplug 'subnixr/minimal', use:minimal.zsh, as:theme
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+# zplug "denysdovhan/spaceship-prompt", as:theme
+zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
+# Just comment a section if you want to disable it
+SPACESHIP_PROMPT_ORDER=(
+  # time        # Time stamps section (Disabled)
+  #user          # Username section
+  battery       # Battery level and status
+  git           # Git section (git_branch + git_status)
+  dir           # Current directory section
+  #host          # Hostname section
+  hg            # Mercurial section (hg_branch  + hg_status)
+  # package     # Package version (Disabled)
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  # xcode       # Xcode section (Disabled)
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  # julia       # Julia section (Disabled)
+  # docker      # Docker section (Disabled)
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  # ember       # Ember.js section (Disabled)
+  kubecontext   # Kubectl context section
+  terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  # vi_mode     # Vi-mode indicator (Disabled)
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
 #=============================================================
-zplug "themes/bira", from:oh-my-zsh, as:theme
+#zplug "themes/bira", from:oh-my-zsh, as:theme
+#zplug "dracula/zsh", as:theme
+#zplug "eendroroy/alien"
+#zplug "eendroroy/alien-minimal"
+#zplug "subnixr/minimal"
+# zplug "geometry-zsh/geometry"
+#=============================================================
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
 #=============================================================
 zplug "lib/completion",   from:oh-my-zsh
 zplug "lib/history",      from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/termsupport", from:oh-my-zsh
 #=============================================================
-# zplug 'zsh-users/zsh-autosuggestions'
-# zplug 'zsh-users/zsh-completions'
-# zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-# zplug 'zsh-users/zsh-history-substring-search', defer:3
+#-???-source ~/.dotfiles/zsh/vi-mode.zsh
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug 'zsh-users/zsh-history-substring-search', defer:3
 #=============================================================
 # zplug 'modules/environment', from:prezto
 # zplug 'modules/terminal', from:prezto
@@ -113,10 +202,21 @@ zplug "lib/termsupport", from:oh-my-zsh
 # zplug "BuonOmo/yarn-completion"
 # zplug "hlissner/zsh-autopair"
 # zplug "MikeDacre/careful_rm"
-# zplug "denysdovhan/spaceship-prompt", as:theme
 #=============================================================
-# zplug 'zdharma/fast-syntax-highlighting', defer:2, hook-load:'FAST_HIGHLIGHT=()'
+ zplug 'zdharma/fast-syntax-highlighting', defer:2, hook-load:'FAST_HIGHLIGHT=()'
 #==========================================================================================
+
+#==========================================================================================
+zstyle ':vcs_info:*' stagedstr '%F{green}●%f '
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}●%f '
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git*' formats "%F{blue}%b%f %u%c"
+PS1=" %(?.%F{blue}.%F{red})$GLYPH%f %(1j.%F{cyan}[%j]%f .)%F{blue}%~%f %(!.%F{red}#%f .)"
+RPROMPT="$vcs_info_msg_0_"
+#==========================================================================================
+
+
+
 
 #=Theme=settings===========================================================================
 #SPACESHIP_DIR_COLOR="yellow"
@@ -174,4 +274,19 @@ zplug load
 blanktab() { [[ $#BUFFER == 0 ]] && CURSOR=3 zle list-choices || zle expand-or-complete }
 zle -N blanktab && bindkey '^I' blanktab
 #==========================================================================================
+# cd ../.. = ...
+# cd ../../.. = ....
+# mkdir -p = md
+# rmdir = rd
+# git add = ga
+# git add --all = gaa
+# git branch = gb
+# git commit -m = gcmsg
+# git checkout = gco
+# git pull origin currentbranch = ggpull
+# git push origin currentbranch = ggpush
+# systemctl start = sc-start
+# systemctl stop = sc-stop
+# systemctl status = sc-status
+# systemctl enable = sc-enable
 #==========================================================================================

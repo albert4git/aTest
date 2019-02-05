@@ -50,7 +50,7 @@ PATH=/usr/local/mysql/bin/:$PATH
 #setopt correctall
 unsetopt correct_all
 
-#turn on tab completion and make it fancy
+#==========================================================================================#turn on tab completion and make it fancy
 #autoload -U compinit && compinit
 #zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 #zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
