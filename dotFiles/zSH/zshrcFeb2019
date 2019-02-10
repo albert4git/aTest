@@ -6,25 +6,36 @@ export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 #=============================================================
-# Use color specifications already set up GNU version of `ls`
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#=============================================================
 # export PATH="$PATH:$HOME/bin:$HOME/.config/local/bin"
 # export MANPATH="$MANPATH:$HOME/.config/local/share/man"
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.config/local/lib"
 #=============================================================
-# Use vi key bindings in ZSH
 setopt vi
 setopt histignorealldups
-# Switching directories for lazy people
 setopt autocd
-# See: http://zsh.sourceforge.net/Intro/intro_6.html
 setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
-# Don't kill background jobs when I logout
 setopt nohup
-# See: http://zsh.sourceforge.net/Intro/intro_2.html
 setopt extendedglob
 #=============================================================
+setopt inc_append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt hist_allow_clobber
+#=============================================================
+# setopt noclobber
+# setopt correct
+setopt autolist
+setopt auto_resume
+unset beep
+set nobeep
+#=============================================================
+# Dircolors
+LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+#=============================================================
+export LS_COLORS
 alias so="source ~/.zshrc"
 alias nv='nvim'
 alias ni='nvim'
@@ -35,24 +46,62 @@ alias c='clear'
 alias pd='pwd'
 alias t='time'
 alias k='kill'
-#alias ls='ls --color=auto'
 alias lsc='ls --color=auto'
 alias l='ls -CF --color=auto'
 alias l='ls -CFlh --color=auto'
 alias lsa='ls -a --color=auto'
 alias lsl='ls -l --color=auto'
 alias d='dirs -v | head -10'
+alias exat='exa -lT'
+#-Pretty print the path--------------------------------------------------------------------
+alias ips="ip a | grep 'inet ' | sed -e 's/^.*inet //g' -e 's/\/.*//g' | grep -v '127.0.0.1'"
+alias lss='LC_COLLATE=C ls -A --color -h --group-directories-first'
+alias addr="ip -o a | cut -d ' ' -f2,7"
+alias mpath='echo $PATH | tr -s ":" "\n"'
 
+# cd ../.. = ...
+# cd ../../.. = ....
+# mkdir -p = md
+# git add = ga
+# git add --all = gaa
+# git branch = gb
+# git commit -m = gcmsg
+# git checkout = gco
+# git pull origin currentbranch = ggpull
+# git push origin currentbranch = ggpush
+# systemctl start = sc-start
+# systemctl stop = sc-stop
+# systemctl status = sc-status
+# systemctl enable = sc-enable
+
+#=If you want to check out the whole list, again the=======================================
+# https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet
+
+#==========================================================================================
+function mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+#==========================================================================================
+function tre() {
+    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+#==========================================================================================
+fkill() {
+  pid=$(ps -ux | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+#==========================================================================================
 #turn on tab completion and make it fancy
 autoload -U compinit
 compinit -C
 autoload -U compinit && compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-#zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-
-#-------------------------------------------------------------------------------
-# Set vi-mode and create a few additional Vim-like mappings
-#-------------------------------------------------------------------------------
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#==========================================================================================
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
@@ -69,111 +118,84 @@ bindkey '\e[4~'      end-of-line
 # user-friendly command output
 export CLICOLOR=1
 ls --color=auto &> /dev/null && alias ls='ls --color=auto'
-
-#-------------------------------------------------------------------------------
-# For example, this would bind <kbd>ctrl</kbd> + <kbd>space</kbd> to accept the current suggestion.
-# bind <kbd>ctrl</kbd> + <kbd>space</kbd>
-#-------------------------------------------------------------------------------
-
-#=Export paths================================================
-# export PATH=${PATH}:/bin
-# export PATH=${PATH}:/usr/bin
-# export PATH=${PATH}:/usr/local/bin
-# export PATH=${PATH}:/sbin
-# export PATH=${PATH}:/usr/sbin
-# export PATH=${PATH}:/usr/local/sbin
-# export PATH=${PATH}:/usr/local/git/bin
-# export PATH=${PATH}:~/.composer/vendor/bin
-# export PATH=${PATH}:/home/vagrant/bin
-# export PATH=${PATH}:vendor/bin
-
-#=HISTORY=====================================================
+#==========================================================================================
 #HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=1717
-
-setopt inc_append_history
-setopt extended_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt hist_verify
-setopt hist_allow_clobber
-
-#ZSH OPTS
-# setopt noclobber
-# setopt extendedglob
-# setopt correct
-setopt autolist
-setopt auto_resume
-#setopt short_loops #for file in *.pdf; lp ${file}
-unset beep
-set nobeep
-
-#=LOAD=PROFILE===============================================
-#if [ -x /etc/profile ]; then
-#    setopt -G
-#    . /etc/profile
-#    setopt +G
-#fi
+#==========================================================================================
+# zplug "themes/bira", from:oh-my-zsh, as:theme
+# zplug "dracula/zsh", as:theme
+# zplug "eendroroy/alien"
+# zplug "eendroroy/alien-minimal"
+# zplug "subnixr/minimal"
+# zplug "geometry-zsh/geometry"
 #=============================================================
 # MNML_USER_CHAR=$USER
 # MNML_INSERT_CHAR='do:'
 # zplug 'subnixr/minimal', use:minimal.zsh, as:theme
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 # zplug "denysdovhan/spaceship-prompt", as:theme
+
+#==========================================================================================
+# zplug "themes/bira", from:oh-my-zsh, as:theme
+
+# ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
+# ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[blue]%}?"
+# ZSH_THEME_GIT_PROMPT_CLEAN=""
+#==========================================================================================
+# define RPS1 in order to avoid the annoying vim status
+# export RPS1=" "
+# zplug 'plugins/vi-mode', from:oh-my-zsh
+#==========================================================================================
 zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
-# Just comment a section if you want to disable it
+#=============================================================
 SPACESHIP_PROMPT_ORDER=(
-  # time        # Time stamps section (Disabled)
-  #user          # Username section
-  battery       # Battery level and status
+  time          # Time stamps section (Disabled)
   git           # Git section (git_branch + git_status)
+  user          # Username section
+  host          # Hostname section
+  vi_mode       # Vi-mode indicator (Disabled)
   dir           # Current directory section
-  #host          # Hostname section
-  hg            # Mercurial section (hg_branch  + hg_status)
+  battery       # Battery level and status
   # package     # Package version (Disabled)
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  # xcode       # Xcode section (Disabled)
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  # julia       # Julia section (Disabled)
-  # docker      # Docker section (Disabled)
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
   pyenv         # Pyenv section
-  dotnet        # .NET section
-  # ember       # Ember.js section (Disabled)
-  kubecontext   # Kubectl context section
-  terraform     # Terraform workspace section
   exec_time     # Execution time
   line_sep      # Line break
-  # vi_mode     # Vi-mode indicator (Disabled)
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 )
-#=============================================================
-#zplug "themes/bira", from:oh-my-zsh, as:theme
-#zplug "dracula/zsh", as:theme
-#zplug "eendroroy/alien"
-#zplug "eendroroy/alien-minimal"
-#zplug "subnixr/minimal"
-# zplug "geometry-zsh/geometry"
-#=============================================================
-ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-#=============================================================
+#=====================================================
+# red:dirty, white:ahead, and green:clean.
+SPACESHIP_CHAR_COLOR_SUCCESS="green"
+SPACESHIP_CHAR_COLOR_FAILURE="red"
+SPACESHIP_CHAR_COLOR_SECONDARY="yellow"
+#==========================================
+SPACESHIP_BATTERY_SHOW="always"
+SPACESHIP_USER_SHOW="true"
+#?SPACESHIP_USER_SHOW="always"
+SPACESHIP_USER_PREFIX="USeR"
+SPACESHIP_USER_COLOR="cyan"
+#=====================================================
+spaceship_vi_mode_enable="true"
+SPACESHIP_VI_MODE_SHOW="true"
+SPACESHIP_VI_MODE_COLOR="cyan"
+SPACESHIP_VI_MODE_INSERT="InMODE"
+SPACESHIP_VI_MODE_NORMAL="NMODE"
+#=====================================================
+SPACESHIP_GIT_STATUS_SHOW="true"
+SPACESHIP_GIT_BRANCH_SUFFIX="-GiT"
+SPACESHIP_GIT_STATUS_COLOR="cyan"
+SPACESHIP_TIME_COLOR="green"
+SPACESHIP_TIME_SHOW="true"
+SPACESHIP_DIR_COLOR="yellow"
+#=====================================================
+SPACESHIP_CHAR_COLOR_SUCCESS="white"
+SPACESHIP_CHAR_COLOR_FAILURE="red"
+#==========================================================================================
+#==========================================================================================
 zplug "lib/completion",   from:oh-my-zsh
 zplug "lib/history",      from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
@@ -185,54 +207,29 @@ zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-history-substring-search', defer:3
 #=============================================================
-# zplug 'modules/environment', from:prezto
-# zplug 'modules/terminal', from:prezto
-# zplug 'modules/directory', from:prezto
-# zplug 'modules/utility', from:prezto
-# zplug 'modules/history', from:prezto
-# zplug 'modules/completion', from:prezto
-# zplug 'zsh-users/zsh-completions', from:github
+zplug 'modules/environment', from:prezto
+zplug 'modules/terminal', from:prezto
+zplug 'modules/directory', from:prezto
+zplug 'modules/utility', from:prezto
+zplug 'modules/history', from:prezto
+zplug 'modules/completion', from:prezto
+zplug 'zsh-users/zsh-completions', from:github
 #=============================================================
-# zplug "plugins/git", from:oh-my-zsh
-# zplug "plugins/history", from:oh-my-zsh
-# zplug "plugins/tmux", from:oh-my-zsh
-# zplug "plugins/z", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/history", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+zplug "plugins/z", from:oh-my-zsh
 #=============================================================
-# zplug "lukechilds/zsh-better-npm-completion"
-# zplug "BuonOmo/yarn-completion"
-# zplug "hlissner/zsh-autopair"
-# zplug "MikeDacre/careful_rm"
+zplug "lukechilds/zsh-better-npm-completion"
+zplug "BuonOmo/yarn-completion"
+zplug "hlissner/zsh-autopair"
+zplug "MikeDacre/careful_rm"
 #=============================================================
- zplug 'zdharma/fast-syntax-highlighting', defer:2, hook-load:'FAST_HIGHLIGHT=()'
-#==========================================================================================
-
-#==========================================================================================
-zstyle ':vcs_info:*' stagedstr '%F{green}●%f '
-zstyle ':vcs_info:*' unstagedstr '%F{yellow}●%f '
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%F{blue}%b%f %u%c"
-PS1=" %(?.%F{blue}.%F{red})$GLYPH%f %(1j.%F{cyan}[%j]%f .)%F{blue}%~%f %(!.%F{red}#%f .)"
-RPROMPT="$vcs_info_msg_0_"
+zplug 'zdharma/fast-syntax-highlighting', defer:2, hook-load:'FAST_HIGHLIGHT=()'
 #==========================================================================================
 
 
 
-
-#=Theme=settings===========================================================================
-#SPACESHIP_DIR_COLOR="yellow"
-#SPACESHIP_USER_SHOW="true"
-#SPACESHIP_CHAR_COLOR_SUCCESS="white"
-#SPACESHIP_CHAR_COLOR_FAILURE="white"
-#SPACESHIP_PROMPT_ORDER=(
-#  user          # Username section
-#  dir           # Current directory section
-#  host          # Hostname section
-#  #custom_git
-#  line_sep      # Line break
-#  vi_mode       # Vi-mode indicator
-#  jobs          # Background jobs indicator
-#  char          # Prompt character
-#)
 #alias h='history'
 #=============================================================
 # https://github.com/olivierverdier/zsh-git-prompt
@@ -240,14 +237,6 @@ RPROMPT="$vcs_info_msg_0_"
 # CUSTOM_GIT="$HOME/dotfiles/scripts/custom_git.zsh"
 # [ -s $ZSH_GIT_PROMPT ] && source $ZSH_GIT_PROMPT
 # [ -s $CUSTOM_GIT ] && source $CUSTOM_GIT
-#=============================================================
-# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
-# ZSH_THEME_GIT_PROMPT_PREFIX=" "
-# ZSH_THEME_GIT_PROMPT_SUFFIX=" "
-# ZSH_THEME_GIT_PROMPT_SEPARATOR=" "
-# ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{●%G%}"
-# ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[blue]%}%{✚%G%}"
-# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[blue]%}◒"
 #=============================================================
 
 #==========================================================================================
@@ -266,14 +255,6 @@ RPROMPT="$vcs_info_msg_0_"
 # [ -s ~/.fzf.zsh ] && source ~/.fzf.zsh
 #==========================================================================================
 #==========================================================================================
-# finally install and load those plugins
-zplug check || zplug install
-zplug load
-#==========================================================================================
-# returning command and folder completion when line is empty like a bash, but better
-blanktab() { [[ $#BUFFER == 0 ]] && CURSOR=3 zle list-choices || zle expand-or-complete }
-zle -N blanktab && bindkey '^I' blanktab
-#==========================================================================================
 # cd ../.. = ...
 # cd ../../.. = ....
 # mkdir -p = md
@@ -290,3 +271,35 @@ zle -N blanktab && bindkey '^I' blanktab
 # systemctl status = sc-status
 # systemctl enable = sc-enable
 #==========================================================================================
+#=Export paths================================================
+# export PATH=${PATH}:/bin
+# export PATH=${PATH}:/usr/bin
+# export PATH=${PATH}:/usr/local/bin
+# export PATH=${PATH}:/sbin
+# export PATH=${PATH}:/usr/sbin
+# export PATH=${PATH}:/usr/local/sbin
+# export PATH=${PATH}:/usr/local/git/bin
+# export PATH=${PATH}:~/.composer/vendor/bin
+# export PATH=${PATH}:/home/vagrant/bin
+# export PATH=${PATH}:vendor/bin
+#=LOAD=PROFILE===============================================
+#if [ -x /etc/profile ]; then
+#    setopt -G
+#    . /etc/profile
+#    setopt +G
+#fi
+#==========================================================================================
+# export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
+# export GOPATH="$HOME/go"
+#==========================================================================================
+# returning command and folder completion when line is empty like a bash, but better
+# blanktab() { [[ $#BUFFER == 0 ]] && CURSOR=3 zle list-choices || zle expand-or-complete }
+# zle -N blanktab && bindkey '^I' blanktab
+
+#==========================================================================================
+# finally install and load those plugins
+zplug check || zplug install
+zplug load
+#==========================================================================================
+# We have environment variables available in our shells. Sometimes we want to
+# manipulate the value of these variables or just visually inspect them

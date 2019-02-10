@@ -1,3 +1,34 @@
+Aliases
+
+Git allows us to create aliases. It’s a really nice utility, if you know your most used git combinations. As a DevOps Engineer I have to init repositories with some infrastructure setup. After generating templates I just run git this. What is git this?
+this = !git init && git add -A && git commit -m \"Initial commit.\"
+
+Or let’s say it’s time to clean up your work before pushing commits to the remote.
+undo = reset --soft HEAD^
+amend = commit --amend --no-edit
+log-line = log --oneline --graph --decorate
+Git integrate
+
+Git smoothly integrates with external tools in zplug setup you can find a tool called icdiff. It’s my replacement for the standard git diff command, the output of which is pretty unreadable. By using git-difftool variables icdiff is able to analyze data in the same way that git does, but in more readable way.
+    renames = true
+    tool = icdiff
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = icdiff --line-numbers $LOCAL $REMOTE
+
+Let’s check the results of this integration!
+
+We can do the same integration for mergetool. I will use PyCharm because I love VCS tools shipped by JetBrains.
+[merge]
+    tool = pycharm
+[mergetool "pycharm"]
+    cmd = /usr/local/bin/charm merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+
+Done!
+How to exit Vim and come back
+
+"=========================================================
 git log --pretty=format:"[%h] %ae, %ar: %s"
 These settings can be passed to Git without changing any configuration files:
 

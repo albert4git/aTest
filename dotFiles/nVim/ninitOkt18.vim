@@ -31,6 +31,7 @@
         let maplocalleader=','
         let mapleader=' '
         set encoding=utf-8
+        set shell=/bin/zsh
         "BUDISM harosho
         "------------------------------------------------------------------------------------------
         augroup vimrc
@@ -1132,7 +1133,7 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         Plug 'gotcha/vimpdb'
         "--------------------------------------------------------------------------------- 
-        "Plug 'vim-vdebug/vdebug'
+        Plug 'vim-vdebug/vdebug'
                 " <F5>: start/run (to next breakpoint/end of script)
                 " <F2>: step over
                 " <F3>: step into
@@ -1178,8 +1179,8 @@ call plug#begin()
 
          map <leader>e :call NERDTreeToggleInCurDir()<CR>
          map <S-F2> :call NERDTreeToggleInCurDir()<CR>
-         map <F4> :call NERDTreeToggleInCurDir()<CR>
          nmap <leader>nt :call NERDTreeToggleInCurDir()<CR>
+         "map <F4> :call NERDTreeToggleInCurDir()<CR>
 
          "" NERDCommenter
          let g:NERDDefaultAlign = 'left'
@@ -1860,10 +1861,14 @@ call plug#end()
         let s:python_command = s:using_python3 ? "py3 " : "py "
         "----------------------------------------------------------------------------------
         "Python runners
-        autocmd! filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-        autocmd! filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-        autocmd! filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-        autocmd! filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+        "Python runners
+        autocmd! filetype python noremap <buffer> <F4> :w<CR>:!python %<CR>
+        autocmd! filetype python inoremap <buffer> <C-F4> <Esc>:w<CR>:!python %<CR>
+        autocmd! filetype python noremap <buffer> <S-F4> :w<CR>:!ipython %<CR>
+        autocmd! filetype python inoremap <buffer> <S-F4> <Esc>:w<CR>:!ipython %<CR>
+        noremap <buffer> <F4> :w<CR>:!python %<CR>
+        noremap <buffer> <C-F4> :w<CR>:!clear;python %<CR>
+        noremap <buffer> <S-F4> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
         "----------------------------------------------------------------------------------
         augroup python_files 
                 " This function detects, based on Python content, whether this is a
@@ -2438,22 +2443,21 @@ call plug#end()
         " endfunction
 
 
+"===============================================================================================================
+"===============================================================================================================
+"===============================================================================================================
 " Vim comments start with a double quote.
 " Function definition is VimL. We can mix VimL and Python in
 " function definition.
-function! Reddit()
-
 " We start the python code like the next line.
+function! Reddit()
 
 python << EOF
 # the vim module contains everything we need to interface with vim from
 # python. We need urllib2 for the web service consumer.
 import vim, urllib2
-# we need json for parsing the response
 import json
 
-# we define a timeout that we'll use in the API call. We don't want
-# users to wait much.
 TIMEOUT = 20
 URL = "http://reddit.com/.json"
 
@@ -2501,3 +2505,6 @@ EOF
 " Here the python code is closed. We can continue writing VimL or python again.
 endfunction
 command! -nargs=0 Reddit call Reddit()
+"===============================================================================================================
+"===============================================================================================================
+"===============================================================================================================
