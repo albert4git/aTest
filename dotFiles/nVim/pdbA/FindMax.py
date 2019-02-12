@@ -9,10 +9,13 @@
 
 #import vimpdb; vimpdb.set_trace()
 import pdb
+import logging
 
 
 def find_max(nums):
     #pdb.set_trace()
+    pdb.set_trace()
+
     max = nums[0]
     for x in nums:
         if x > max:

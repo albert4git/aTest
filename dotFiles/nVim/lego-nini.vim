@@ -1,254 +1,8 @@
-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
-" File: ninitOkt18.vim
-" Author: yourname
-" Last Modified: 10 Feb 2019
-"-This-can-be-fixed-by-running-
-":filetype detect
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-
-"======================================================================================================================
-" file:///home/red/Desktop/SUCHE/AAA%20big%20collection%20of%20Unix_Linux%20%E2%80%98find%E2%80%99%20command%20examples%20|%20alvinalexander.com.shtml
-"======================================================================================================================
-        "set path+=.,~/git/aTest/pyLabGitPdbPythonMode27/, ~/git/aTest/dotFiles/nVim/
-        set path+=.,/home/red/git/aTest/pyLabGitPdbPythonMode27
-        "set runtimepath+=~/.vim/plugged/vimproc/
-        "???  let &runtimepath.=',/home/red/git/aTest/dotFiles/nVim/myPy4Vim/'
-        "nope let runtimepath+=/home/red/git/aTest/dotFiles/nVim/myPy4Vim/
-        "let $PATH=substitute("~/bin:~/local/bin:~/.rbenv/shims:~/.svm/current/rt/bin:", "\\~", $HOME, "g").$PATH
-        "-----------------------------------------------------------------------------------
-        set runtimepath+=~/vim-amake
-        "-----------------------------------------------------------------------------------
-        let $MYVIMRC='~/.config/nvim/init.vim'
-        set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
-        let s:thesaurus_pat = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
-        set dictionary+=/home/red/git/aTest/dotFiles/DICT/english-words.txt
-        "set dictionary="/usr/dict/words"     
-        set shell=/bin/bash
-        set nocompatible
-        filetype on
-        set helplang=en,de
-        filetype plugin on
-        filetype indent on
-        let maplocalleader=','
-        let mapleader=' '
-        set encoding=utf-8
-        set shell=/bin/zsh
-        "BUDISM harosho
-        "------------------------------------------------------------------------------------------
-        augroup vimrc
-                autocmd!
-        augroup END
-        "------------------------------------------------------------------------------------------
-        "Ex: :Ex Pull word under cursor into :Ex LHS of a subs ztitute (replace)
-        ">> 1y$  //yank current row to register 1
-        ">> CTRL-R 1  
-        "<C-r>a to paste from register a
-        nnoremap <LocalLeader>w :<C-r>=expand("<cword>")<CR>
-        nnoremap <LocaLeader>z :<C-r>=getline(".")<CR>
-        "------------------------------------------------------------------------------------------
-        function! ScriptExecute()
-                :!chmod u+x %
-                :w
-        endfunction
-        "------------------------------------------------------------------------------------------
-        augroup ScriptExecutePermission
-                autocmd!
-                autocmd BufWritePost *.sh :call ScriptExecute()
-        augroup END
-        "------------------------------------------------------------------------------------------
-        augroup SourceVimrc
-                autocmd!
-                autocmd bufwritepost .vimrc source $MYVIMRC
-        augroup END
-        "------------------------------------------------------------------------------------------
-        set background=dark
-        syntax on
-        syntax enable
-        "###Pymode???
-        let g:pymode_python = 'python3'
-
-
-        set diffopt+=vertical 
-        "???2019
-        set iskeyword+=.
-        "------------------------------------------------------------------------------
-        setlocal spell
-        set nospell
-        set spelllang=en_us
-        set spellsuggest=best    " default and fast list.
-        " set spelllang=de,tech_speak spell
-        " set spellfile=~/.vim/spell/techspeak.utf-8.add
-        " set spellfile=~/.vim/spell/en.utf-8.add           " 'zg': add, 'zw': remove.
-        "------------------------------------------------------------------------------
-        function! FixVimSpellcheck()
-                if &spell
-                        normal! 1z=
-                else
-                        set spell
-                        normal! 1z=
-                        set nospell
-                endif
-        endfunction
-        nnoremap z= :call FixVimSpellcheck()<cr>
-        "???, disable the zg (add to dictionary) shortcut
-        nnoremap zg z=
-        "------------------------------------------------------------------------------------------
-        " error: zg, zG, zw, zW, zug, zuG, zuw,
-        " zuW, z=, u
-        " For z=, all identical misspellings in the buffer are
-        " replaced with the chosen suggestion (via :spellrepall).
-        "------------------------------------------------------------------------------------------
-        " I use two languages: Lithuanian and English. But I also want to add
-        " a special pseudo-language to contain identifiers extracted from tags
-        " file (this will eliminate false hits like printf).
-        " set spelllang=lt,en,fromtags
-        " https://rtfb.lt/projects/vim-dox-spell/index.html
-        "------------------------------------------------------------------------------------------
-        "char = can be removed from the list of valid filename char. JAVA_HOME=/opt/java/jdk1.4
-        set isfname-==
-        "------------------------------------------------------------------------------------------
-        "- go to last edit position when opening files -
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"-AAA14-Doc8------------------------------------------------------------------------------------------------{{{
-        let wordUnderCursor = expand("<cword>")
-        let currentLine   = getline(".")
-"-14--}}}
-
-"-AAA1-Tags-BackUp------------------------------------------------------------------------------------------{{{
-        set tags=./tags;/,~/.vimtags
-        " Make tags placed in .git/tags file available in all levels of a repository
-        let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-        if gitroot != ''
-                let &tags = &tags . ',' . gitroot . '/.git/tags'
-        endif
-        "------------------------------------------------------------------------------------------
-        set noswapfile
-        set backup                               " enable backups
-        set undodir=~/.config/nvim/undoDir/      " undo files
-        set backupdir=~/.config/nvim/backUpDir/  " backups
-        set directory=~/.config/nvim/swapDir/    " swap files
-        "------------------------------------------------------------------------------------------
-        if !isdirectory(expand(&undodir))
-                call mkdir(expand(&undodir), "p")
-        endif
-        if !isdirectory(expand(&backupdir))
-                call mkdir(expand(&backupdir), "p")
-        endif
-        if !isdirectory(expand(&directory))
-                call mkdir(expand(&directory), "p")
-        endif
-        "------------------------------------------------------------------------------------------
-        set undofile
-        set undoreload=10000
-        set matchtime=3
-        set showbreak=↪
-        set linebreak
-        set colorcolumn=+1
-        "------------------------------------------------------------------------------------------
-        set nu
-        set cf         " Enable error files & error jumping.
-        set autowrite  " Writes on make/shell commands
-        set guifont=Monospace\ 12
-        set cinwords=if,else,while,do,for,switch,case
-        set matchpairs=(:),{:},[:],<:>
-"-1Tags-}}}
-"-AAA2--PreSetUp-Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter------------------------------{{{
-        let g:bling_time = 42
-        let g:bling_color_fg = 'green'
-        let g:bling_color_cterm = 'reverse'
-        "-magic--------    
-        silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
-            " \v: 'very magic', make every character except a-zA-Z0-9 and '_' have special meaning
-            " use \v and \V to switch 'very magic' on or off.
-            " \m, \M: 'magic' mode.
-            " use \m and \M to switch 'magic' on or off.
-        "-Appearance--- 
-        silent! display=lastline,uhex nowrap wrapmargin=0 guioptions=ce key=
-        silent! set noshowmatch  noshowmode cmdheight=1 cmdwinheight=10 
-        silent! set noshowcmd noruler rulerformat= laststatus=2 statusline=%t\ %=\ %m%r%y%w\ %3l:%-2c
-        silent! set title titlelen=100 titleold= titlestring=%f noicon norightleft showtabline=1
-        silent! set cursorline nocursorcolumn colorcolumn= concealcursor=nvc conceallevel=0 norelativenumber
-        silent! set list listchars=tab:>\ ,nbsp:_ synmaxcol=500 ambiwidth=double breakindent breakindentopt=
-        silent! set nosplitbelow nosplitleft startofline linespace=0 whichwrap=b,s scrolloff=1 sidescroll=0
-        silent! set equalalways nowinfixwidth nowinfixheight winminwidth=3 winminheight=3 nowarn noconfirm
-        silent! set fillchars=vert:\|,fold:\  eventignore= helplang=en viewoptions=options,cursor virtualedit=
-        set splitbelow splitright
-        set noruler
-        set viminfo='20,\"80            " read/write a .viminfo file, don't store more
-                                        "    means that the current buffer can be put
-                                        "    to background without being written; and
-                                        "    that marks and undo history are preserved
-        "-Editing----------------------------------------------------------------------------------
-        silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
-        silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=4 smarttab softtabstop=8
-        silent! set foldclose=all foldcolumn=0 nofoldenable foldlevel=0 foldmarker& foldmethod=indent
-        silent! set textwidth=0 backspace=indent,eol,start nrformats=hex formatoptions=cmMj nojoinspaces
-        silent! set nohidden autoread noautowrite noautowriteall nolinebreak mouse= modeline& modelines&
-        silent! set noautochdir write nowriteany writedelay=0 verbose=0 verbosefile= notildeop noinsertmode
-        set modelines=0
-        "-AAA2.1-Extra vi-compatibility---------------------------------------------------------{{{
-                set switchbuf=useopen    " reveal already opened files from the
-                set formatoptions-=o     " don't start new lines w/ com leader on press 'o'
-                " do not auto insert comment chars on newline
-                autocmd! FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-                " Global
-                set hidden               " Hide buffer instead of abandoning when unloading
-                set ruler                " ???
-        "-2.1-}}}
-        "------------------------------------------------------------------------------------------
-        set synmaxcol=801
-        highlight Folded ctermbg=1
-        setlocal foldmarker={{{,}}}
-        setlocal foldmethod=marker
-        setlocal foldminlines=6
-        set foldcolumn=1 
-        "------------------------------------------------------------------------------------------
-        "set whichwrap=b,s,h,l,<,>,[,]
-        silent! set clipboard=unnamed
-        silent! set clipboard+=unnamedplus
-        "-Performance
-        silent! set updatetime=300 timeout timeoutlen=300 ttimeout ttimeoutlen=50 ttyfast lazyredraw
-        silent! set noerrorbells visualbell t_vb=
-
-        "-Always open read-only when a swap file is found
-        autocmd! vimrc SwapExists * let v:swapchoice = 'o'
-        "-Setting lazyredraw causes a problem on startup
-        autocmd! vimrc VimEnter * redraw
-        "-Enter-I-never-use the default behavior of <cr> and this saves me a keystroke...
-        nnoremap <cr> o<esc>
-        "-Smart Enter -???-
-        inoremap <silent><expr> <CR> (pumvisible() && bufname('%') !=# '[Command Line]' ? "\<C-e>\<CR>" : "\<C-g>u\<CR>")
-        "-Go to the first non-blank character of the line after paragraph motions
-        noremap } }^
-        "-Command line history
-        set history=4024
-        "-Visual shifting (does not exit Visual mode)
-        nnoremap > v>
-        nnoremap < v<
-        vnoremap < <gv
-        vnoremap > >gv
-        "-Allow using the repeat operator with a visual selection (!)
-        vnoremap . :normal .<CR>
-        "-For when you forget to sudo.. Really Write the file.
-        cmap w!! w !sudo tee % >/dev/null
-        "-Move to the directory each buffer
-        autocmd! vimrc BufEnter * silent! lcd %:p:h
-        "-SWITCH TO THE DIRECTORY OF THE OPEN BUFFER
-        map cd :cd %:p:h<cr>
-        "------------------------------------------------------------------------------------------
-        set nosm
-        set wmh=0
-        "------------------------------------------------------------------------------------------
-        set nowrap
-        set mouse=a
-        set report=0 " always report changed lines
-        "------------------------------------------------------------------------------------------
-"-2SetUp-}}}
 
 "-AAA3-UnPlug-nPlugStart------------------------------------------------------------------------------------{{{
 call plug#begin()
         Plug 'c9s/helper.vim'
         Plug 'c9s/treemenu.vim'
-        Plug 'tpope/vim-dispatch'
         Plug 'nixprime/cpsm'
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
@@ -263,16 +17,6 @@ call plug#begin()
         Plug 'lambdalisue/gina.vim'
         Plug 'lambdalisue/vim-gita'
         Plug 'lambdalisue/suda.vim'
-        "--------------------------------------------------------------------------------- 
-        Plug 'tpope/vim-tbone'
-        Plug 'tmux-plugins/vim-tmux'
-
-        Plug 'google/vim-maktaba'
-        "-Strongly recommended: easy configuration of maktaba plugins.
-        Plug 'google/vim-glaive'
-                let g:myplugin_enablefeature = 1
-                let g:myplugin_defaultdir = $HOME
-                let g:myplugin_weirdmode = 'm'
 
                 ""???### Add helloworld to the runtime path. (Normally this would be done with another
                 "" Plugin command, but helloworld doesn't have a repository of its own.)
@@ -286,191 +30,8 @@ call plug#begin()
                 "" Real world example: configure vim-codefmt
                 "Glaive codefmt google_java_executable='java -jar /path/to/google-java-format.jar'
         "------------------------------------------------------------------------- 
-        Plug 'google/vim-codefmt'
-                augroup autoformat_settings
-                        autocmd FileType bzl AutoFormatBuffer buildifier
-                        autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-                        autocmd FileType dart AutoFormatBuffer dartfmt
-                        autocmd FileType go AutoFormatBuffer gofmt
-                        autocmd FileType gn AutoFormatBuffer gn
-                        autocmd FileType html,css,json AutoFormatBuffer js-beautify
-                        autocmd FileType java AutoFormatBuffer google-java-format
-                        autocmd FileType python AutoFormatBuffer yapf
-                        " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-                augroup END
         "------------------------------------------------------------------------- 
-        Plug 'google/vim-syncopate'
         "------------------------------------------------------------------------- 
-        Plug 'tyru/capture.vim'
-                ":Capture mes
-                ":Capture map | map! | lmap
-                ":Capture scriptnames
-                ":Capture digraphs
-        "-------------------------------------------------------------------------
-        Plug 'exvim/ex-matchit'
-        Plug 'AndrewRadev/undoquit.vim'
-                let g:undoquit_mapping = ';q' 
-                "c-w u 
-        "-------------------------------------------------------------------------
-        Plug 'AndrewRadev/switch.vim'
-                let g:switch_mapping = "-"
-                let g:switch_custom_definitions =
-                                \ [
-                                        \ ['true', 'false'], ['True', 'False'], ['TRUE', 'FALSE'],
-                                        \ ['yes', 'no'], ['Yes', 'No'], ['YES', 'NO'],
-                                        \ ['on', 'off'], ['On', 'Off'], ['ON', 'OFF'],
-                                        \ ['up', 'down'], ['Up', 'Down'] ,['UP', 'DOWN'],
-                                        \ ['set', 'unset'],
-                                        \ ['is', 'isnot'] ,
-                                        \ ['==', '!='] , ['<', '>'], ['<=', '>='], ['=~', '!~'],
-                                        \ ['enable', 'disable'], ['Enable', 'Disable'],
-                                        \ ['enabled', 'disabled'], ['Enabled', 'Disabled'],
-                                        \ ['maximum', 'minimum'], ['Maximum', 'Minimum'],
-                                        \ ['maximal', 'minimal'], ['Maximal', 'Minimal'],
-                                        \ ['upper', 'lower'], ['Upper', 'Lower'],
-                                        \ ['top', 'bottom'], ['Top', 'Bottom'],
-                                        \ ['above', 'below'], ['Above', 'Below'],
-                                        \ ['forward', 'backward'], ['Forward', 'Backward'],
-                                        \ ['right', 'middle', 'left'], ['Right', 'Middle', 'Left'],
-                                        \ ['next', 'previous'], ['Next', 'Previous'],
-                                        \ ['first', 'last'], ['First', 'Last'],
-                                        \ ['before', 'after'], ['Before', 'After'],
-                                        \ ['more', 'less'], ['More', 'Less'],
-                                        \ ['fast', 'slow'], ['Fast', 'Slow'],
-                                        \ ['green', 'yellow', 'red'],
-                                        \ ['one', 'two', 'three']
-                                \ ]
-                "--------------------------------------------------------------------------
-                        let b:switch_custom_definitions = [
-                                                \   {
-                                                \     '\<[a-z0-9]\+_\k\+\>': {
-                                                \       '_\(.\)': '\U\1'
-                                                \     },
-                                                \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
-                                                \       '\([A-Z]\)': '_\l\1'
-                                                \     },
-                                                \   }
-                                                \ ]
-        "--------------------------------------------------------------------------------- 
-        Plug 'brookhong/cscope.vim'
-                nnoremap ff :call CscopeFindInteractive(expand('<cword>'))<CR>
-        Plug 'unblevable/quick-scope'
-                "let g:qs_enable=0
-                augroup qs_colors
-                        autocmd!
-                        autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=10 cterm=underline
-                        autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=50 cterm=underline
-                augroup END
-        "--------------------------------------
-        Plug 'flazz/vim-colorschemes'
-        Plug 'rafi/awesome-vim-colorschemes'
-        "--------------------------------------
-        Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
-        "--------------------------------------
-        Plug 'MattesGroeger/vim-bookmarks'
-                "-AAA-------------------------------------------------------------------{{{
-                let g:bookmark_no_default_key_mappings = 1
-                function! BookmarkMapKeys()
-                        nmap mm :BookmarkToggle<CR>
-                        nmap mi :BookmarkAnnotate<CR>
-                        nmap mn :BookmarkNext<CR>
-                        nmap mp :BookmarkPrev<CR>
-                        nmap ma :BookmarkShowAll<CR>
-                        nmap mc :BookmarkClear<CR>
-                        nmap mx :BookmarkClearAll<CR>
-                        nmap mkk :BookmarkMoveUp
-                        nmap mjj :BookmarkMoveDown
-                endfunction
-                "------------------------------------------------------
-                autocmd! BufEnter * :call BookmarkMapKeys()
-                highlight BookmarkSign ctermbg=9 ctermfg=1
-                highlight BookmarkLine ctermbg=9 ctermfg=1
-                highlight BookmarkAnnotationLine ctermbg=9 ctermfg=1
-                highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
-                "------------------------------------------------------
-                let g:bookmark_auto_close = 1
-                let g:bookmark_highlight_lines = 1          
-                let g:bookmark_show_warning = 0           
-                let g:bookmark_show_toggle_warning = 0      
-                let g:bookmark_sign = '♥'
-                let g:bookmark_highlight_lines = 1
-                let g:bookmark_save_per_working_dir = 1
-                let g:bookmark_auto_save = 1
-                let g:bookmark_save_per_working_dir = 1  
-                "------------------------------------------------------
-                "let g:bookmark_manage_per_buffer = 1`        
-                "let g:bookmark_auto_save_file = '/bookmarks'`
-                " |------------------------------------------|-------------|------------------------------|
-                " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
-                " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
-                " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
-                " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
-                " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
-                " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
-                " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
-                " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
-                " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
-                " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
-                " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
-                " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
-                " |------------------------------------------|-------------|------------------------------|
-                "-AAE-}}}
-        Plug 'xolox/vim-misc'
-        Plug 'tpope/vim-commentary'
-        "-Intelligent-repeat-with '.'
-        Plug 'tpope/vim-repeat'
-        Plug 'thinca/vim-quickrun'
-        Plug 'ivyl/vim-bling'
-        "------------------------------------------------------------------------------------------
-        "Plug 'xolox/vim-easytags'
-        "        let g:easytags_file = '~/.vim/tags'
-        "        let g:easytags_auto_highlight = 1
-        "        let g:easytags_syntax_keyword = 'always'
-        "        let g:easytags_events = ['BufWritePost']
-        "        "------------------------------------------------------
-        "        let g:easytags_languages = {
-        "        \   'haskell': {
-        "        \       'cmd': '~/.cabal/bin/lushtags',
-        "        \       'args': [],
-        "        \       'fileoutput_opt': '-f',
-        "        \       'stdout_opt': '-f-',
-        "        \       'recurse_flag': '-R'
-        "        \   }
-        "        \}
-        "        "------------------------------------------------------
-        "        "let g:easytags_events = ['BufReadPost', 'BufWritePost']
-        "        let g:easytags_async = 1
-        "        let g:easytags_resolve_links = 1
-        "        " let g:easytags_dynamic_files = 2
-        "        " let g:easytags_suppress_ctags_warning = 1
-        "        " Prevent automatic ctag updates
-        "        let g:easytags_auto_update = 0
-        "        let g:easytags_auto_highlight = 0
-        "        let g:easytags_on_cursorhold = 0
-        "        " Scan recursively, not just current file
-        "        let g:easytags_autorecurse = 1
-        "        " Follow symbolic links
-        "        let g:easytags_resolve_links = 1
-        "        " Close tagbar after jumping to a tag
-        "        let g:tagbar_autoclose = 1
-        "        My current easytags config:
-        "        set cpoptions+=d
-        "        set tags=./.tags;,~/.vim/.vimtags
-        "        let g:easytags_file = '~/.vim/.vimtags'
-        "        let g:easytags_async = 1⋅
-        "        let g:easytags_dynamic_files = 2 " create and use local tag files instead of global one
-        "        let g:easytags_events = ['BufReadPost', 'BufWritePost'] " Update tags on read and save only
-        "        let g:easyt
-        "------------------------------------------------------------------------------------------
-        Plug 'vim-scripts/tagselect'
-        Plug 'ludovicchabant/vim-gutentags'
-        "------------------------------------------------------------------------------------------
-        Plug 'majutsushi/tagbar'
-                highlight TagbarHighlight   ctermfg=051 ctermbg=9 cterm=bold
-                highlight TagListTagName    ctermfg=250
-                highlight TagbarFoldIcon    ctermfg=051 ctermbg=9 
-                highlight TagbarHelp        ctermfg=051 ctermbg=9
 
                 " highlight default link TagbarHelp       Comment
                 " highlight default link TagbarHelpKey    Identifier
@@ -494,29 +55,12 @@ call plug#begin()
         "        "let g:loaded_session = 1
         "        let g:session_autosave = 'yes'
         "------------------------------------------------------------------------------------------
-        Plug 'vim-scripts/genutils'
-        Plug 'Yggdroot/indentLine'
-                let g:indentLine_enabled = 1
-                let g:indentLine_noConcealCursor='nc'
-                let g:indentLine_color_term = 9
-                "let g:indentLine_setConceal = 0
-                "let g:indentLine_bgcolor_term = 202
         "-------------------------------------------------------------------------
         " Plug 'Shougo/vimfiler.vim'
         "         map fv :VimFiler<CR>
         "         map fd :VimFilerCurrentDir<CR>
         "------------------------------------------------------------------------------------------
         Plug 'scrooloose/syntastic'
-                " Linting
-                " let g:ale_sign_column_always = 1
-                " let g:ale_sign_error = '>>'
-                " let g:ale_sign_warning = '--'
-                " let g:ale_linters = {
-                " \   'javascript': ['eslint'],
-                " \   'jsx': ['eslint'],
-                " \   'python': ['flake8'],
-                " \}
-        "Plug 'w0rp/ale'
         "------------------------------------------------------------------------------------------
         Plug 'nvie/vim-flake8'
         "------------------------------------------------------------------------------------------
@@ -622,47 +166,6 @@ call plug#begin()
                 nmap hs <Plug>GitGutterStageHunk
                 nmap hu <Plug>GitGutterUndoHunk
         "------------------------------------------------------
-        Plug 'tpope/vim-fugitive'
-        "----------------------------------------------------------------------------------
-                " vnoremap <leader>H :Gbrowse<cr>
-                " nnoremap <leader>H V:Gbrowse<cr>
-                " vnoremap <leader>u :Gbrowse @upstream<cr>
-                " nnoremap <leader>u V:Gbrowse @upstream<cr>
-                " Usage:
-                "   - :Git[!] [args]
-                "   - :Gstatus
-                "   - :Gcommit [args]
-                "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
-                "   - :Gwrite/:Gwq {path}
-                "   - :Gmove {destination}
-                "   - :Gremove
-                "   - :{range}Gread [revision]/[args]
-                "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
-                "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
-                "   - :Glog [args] -- load all previous revisions of current file into quickfix
-                "   - :[range]Gblame {flags}
-                "   - :[range]Gbrowse {revision}
-                " auto open quickfix window for :Ggrep.
-                " nnoremap <leader>gs :Gstatus<CR>
-                " nnoremap <leader>gc :Gcommit -v -q<CR>
-                " nnoremap <leader>ga :Gcommit --amend<CR>
-                " nnoremap <leader>gt :Gcommit -v -q %<CR>
-                " nnoremap <leader>gd :Gdiff<CR>
-                " nnoremap <leader>ge :Gedit<CR>
-                " nnoremap <leader>gr :Gread<CR>
-                " nnoremap <leader>gw :Gwrite<CR><CR>
-                " nnoremap <leader>gl :silent! Glog<CR>
-                " nnoremap <leader>gp :Ggrep<Space>
-                " nnoremap <leader>gm :Gmove<Space>
-                " nnoremap <leader>gb :Git branch<Space>
-                " nnoremap <leader>go :Git checkout<Space>
-                " nnoremap <leader>gps :Dispatch! git push<CR>
-                " nnoremap <leader>gpl :Dispatch! git pull<CR>
-                " With that configuration, my workflow is:
-                " <leader>gl to view history
-                " ]q and [q to move between versions (unimpaired.vim)
-                " <leader>gd to open diff
-                " :q to end diff
         "---------------------------------------------------------------------------------- 
         Plug 'int3/vim-extradite'
                 ":Extradite | :Extradite! -- vertical.
@@ -885,17 +388,6 @@ call plug#begin()
         Plug 'aperezdc/vim-template'
         "--------------------------------------------------------------------------------- 
         "Plug 'amiorin/vim-project'
-        "--------------------------------------------------------------------------------- 
-        Plug 'tpope/vim-unimpaired'  "Handy bracket mappings.
-        Plug 'mtth/scratch.vim'
-        "----------------------------------------------------
-        Plug 'henrik/vim-qargs'
-        Plug 'maxbrunsfeld/vim-yankstack'
-                nmap zp <Plug>yankstack_substitute_older_paste
-                nmap zn <Plug>yankstack_substitute_newer_paste
-        "--------------------------------------
-        Plug 'mileszs/ack.vim'
-        Plug 'jremmen/vim-ripgrep'
         "----------------------------------------------------------------------------------
                 " save the buffers for each file found by GitGrep in the previous search.
                 " :GitGrep foo.*bar
@@ -911,7 +403,6 @@ call plug#begin()
         "--------------------------------------
         "Plug 'vim-scripts/ReplaceWithRegister'
         "-------------------------------------------------------------------------
-        Plug 'tpope/vim-sleuth'         " indet reight ?
         "-------------------------------------------------------------------------
         "Plug 'neomake/neomake'
         "Plug 'Rykka/trans.vim'
@@ -930,60 +421,6 @@ call plug#begin()
         Plug 'garbas/vim-snipmate'
         Plug 'Shougo/neosnippet.vim'
         Plug 'Shougo/neosnippet-snippets'
-        "--------------------------------------------------------------------------------- 
-        Plug 'haya14busa/incsearch.vim'
-        Plug 'vim-scripts/SearchComplete'
-        "--------------------------------------------------------------------------------- 
-        "------------------------ repl --REPL--------------------------------------------- 
-        Plug 'jalvesaq/vimcmdline'
-                " vimcmdline mappings
-                let cmdline_map_start          = '<LocalLeader>s'
-                let cmdline_map_send           = '<Space>'
-                let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
-                let cmdline_map_source_fun     = '<LocalLeader>f'
-                let cmdline_map_send_paragraph = '<LocalLeader>p'
-                let cmdline_map_send_block     = '<LocalLeader>b'
-                let cmdline_map_quit           = '<LocalLeader>q'
-                " vimcmdline options
-                let cmdline_vsplit      = 1      " Split the window vertically
-                let cmdline_esc_term    = 1      " Remap <Esc> to :stopinsert in Neovim's terminal
-                let cmdline_in_buffer   = 1      " Start the interpreter in a Neovim's terminal
-                let cmdline_term_height = 15     " Initial height of interpreter window or pane
-                let cmdline_term_width  = 80     " Initial width of interpreter window or pane
-                let cmdline_tmp_dir     = '/tmp' " Temporary directory to save files
-                let cmdline_outhl       = 1      " Syntax highlight the output
-                let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
-                let cmdline_app         = {}
-                " let cmdline_app['python'] = 'ptipython3'
-                " let cmdline_app['ruby']   = 'pry'
-                " let cmdline_app['sh']     = 'bash'
-                if has('gui_running') || &termguicolors
-                    let cmdline_color_input    = '#9e9e9e'
-                    let cmdline_color_normal   = '#00afff'
-                    let cmdline_color_number   = '#00ffff'
-                    let cmdline_color_integer  = '#00ffff'
-                    let cmdline_color_float    = '#00ffff'
-                elseif &t_Co == 256
-                    let cmdline_color_input    = 247
-                    let cmdline_color_normal   =  39
-                    let cmdline_color_number   =  51
-                    let cmdline_color_integer  =  51
-                    let cmdline_color_float    =  51
-                    let cmdline_color_complex  =  51
-                    let cmdline_color_negnum   = 183
-                    let cmdline_color_negfloat = 183
-                    let cmdline_color_date     =  43
-                    let cmdline_color_true     =  78
-                    let cmdline_color_false    = 203
-                    let cmdline_color_inf      =  39
-                    let cmdline_color_constant =  75
-                    let cmdline_color_string   =  79
-                    let cmdline_color_stderr   =  33
-                    let cmdline_color_error    =  15
-                    let cmdline_color_warn     =   1
-                    let cmdline_color_index    = 186
-                endif
-        "--------------------------------------------------------------------------------- 
         "Plug 'vim-scripts/Vim-R-plugin'
         "Plug 'jalvesaq/Nvim-R'
         "let R_path = '/path/to/my/preferred/R/version/bin'
@@ -995,36 +432,6 @@ call plug#begin()
         "vmap <Leader>m <Plug>RDSendSelection
         "nmap <Leader>s <Plug>RDSendLine
         ":Rhelp topic
-        "--------------------------------------------------------------------------------- 
-        "--------------------------------------------------------------------------------- 
-        Plug 'tpope/vim-eunuch'
-                " :Delete[!]            
-                " :Unlink[!]            
-                " :Remove[!]            
-                " :Move[!] {file}       
-                " :Rename[!] {file}     
-                " :Chmod {mode}         
-                " :Mkdir {dir}          
-                " :Mkdir! {dir}         
-                " :Mkdir[!]             
-                " :Cfind[!] {args}      
-                " :Lfind[!] {args}      
-                " :Clocate[!] {args}    
-                " :Llocate[!] {args}
-                "-------------------------------------------------------------------------
-                " :Delete: Delete a buffer and the file on disk simultaneously.
-                " :Unlink: Like :Delete, but keeps the now empty buffer.
-                " :Move: Rename a buffer and the file on disk simultaneously.
-                " :Rename: Like :Move, but relative to the current file's containing directory.
-                " :Chmod: Change the permissions of the current file.
-                " :Mkdir: Create a directory, defaulting to the parent of the current file.
-                " :Cfind: Run find and load the results into the quickfix list.
-                " :Clocate: Run locate and load the results into the quickfix list.
-                " :Lfind/:Llocate: Like above, but use the location list.
-                " :Wall: Write every open window. Handy for kicking off tools like guard.
-                " :SudoWrite: Write a privileged file with sudo.
-                " :SudoEdit: Edit a privileged file with sudo.
-        "--------------------------------------------------------------------------------- 
         Plug 'MarcWeber/vim-addon-mw-utils'
         "--------------------------------------------------------------------------------- 
         Plug 'Shougo/neomru.vim'
@@ -1032,47 +439,6 @@ call plug#begin()
         Plug 'kien/ctrlp.vim'
         Plug 'wincent/command-t'
 
-        "--------------------------------------
-        Plug 'Shougo/unite.vim' 
-        Plug 'tsukkee/unite-tag'
-        Plug 'SpaceVim/unite-ctags'
-        Plug 'Shougo/unite-outline/'
-        Plug 'tsukkee/unite-help'
-        Plug 'rstacruz/vim-fastunite'
-        Plug 'kmnk/vim-unite-giti'
-        "--------------------------------------
-        Plug 'cskeeters/unite-fzf'
-        Plug 'junegunn/fzf'
-        Plug 'pbogut/fzf-mru.vim'
-        Plug 'junegunn/fzf.vim'
-
-        "------------------------------------------------------------------
-        Plug 'ddrscott/vim-side-search'
-        " How should we execute the search?
-        " --heading and --stats are required!
-        let g:side_search_prg = 'ag --word-regexp'
-                                \. " --ignore='*.js.map'"
-                                \. " --heading --stats -B 1 -A 4"
-        "---------------------------------------------------------
-        " Can use `vnew` or `new`
-        let g:side_search_splitter = 'vnew'
-        " I like 40% splits, change it if you don't
-        let g:side_search_split_pct = 0.4
-        " SideSearch current word and return to original window
-        nnoremap <Leader>ss :SideSearch <C-r><C-w><CR> | wincmd p
-        " Create an shorter `SS` command
-        command! -complete=file -nargs=+ SS execute 'SideSearch <args>'
-        " or command abbreviation
-        cabbrev SS SideSearch
-
-        "----SEARCH-search--POISK-poisk-SUCHE--suche------------------------------------------------ 
-        Plug 'vim-scripts/Lynx-Offline-Documentation-Browser'
-        Plug 'rhysd/open-pdf.vim'
-        "------------------------------------------------------------------------------------------
-        Plug 'alok/notational-fzf-vim'
-        "USA FIRST
-        let g:nv_search_paths = ['~/git/aTest/dotFiles/nVim', '~/git/aTest/pyLabGitPdbPythonMode27' ]
-        "------------------------------------------------------------------------------------------
                 " nmap <Leader>f :GFiles<CR>
                 " nmap <Leader>F :Files<CR>
                 " nmap <Leader>t :BTags<CR>
@@ -1092,44 +458,10 @@ call plug#begin()
                 " nmap <Leader><Leader>h :Helptags!<CR>
         "--------------------------------------------------------------------------------- 
         Plug 'Shougo/context_filetype.vim'
-        "--------------------------------------
-        Plug 'guns/xterm-color-table.vim'
-        "--------------------------------------------------------------------------------- 
-        Plug 'godlygeek/tabular'
-                " Tabularize {
-                nmap <Leader>a& :Tabularize /&<CR>
-                vmap <Leader>a& :Tabularize /&<CR>
-                nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-                vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-                nmap <Leader>a=> :Tabularize /=><CR>
-                vmap <Leader>a=> :Tabularize /=><CR>
-                nmap <Leader>a: :Tabularize /:<CR>
-                vmap <Leader>a: :Tabularize /:<CR>
-                nmap <Leader>a:: :Tabularize /:\zs<CR>
-                vmap <Leader>a:: :Tabularize /:\zs<CR>
-                nmap <Leader>a, :Tabularize /,<CR>
-                vmap <Leader>a, :Tabularize /,<CR>
-                nmap <Leader>a,, :Tabularize /,\zs<CR>
-                vmap <Leader>a,, :Tabularize /,\zs<CR>
-                nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-                vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-                " }
-
-                " abc,def,ghi , some , shrt 
-                " a,b,c
-        Plug 'dhruvasagar/vim-table-mode'
-                let g:table_mode_corner_corner='+'
-                let g:table_mode_header_fillchar='='
-                " :TableModeToggle
-                " +-------+---------+--------+
-                " | hallo | albert  | montag |
-                " +=======+=========+========+
-                " | isr   | student | id     |
-                " +-------+---------+--------+
         "=================================================================================
 
         "--------------------------------------------------------------------------------- 
-        Plug 'auwsmit/vim-hydra'
+        "Plug 'auwsmit/vim-hydra'
         "--------------------------------------------------------------------------------- 
         Plug 'gotcha/vimpdb'
         "--------------------------------------------------------------------------------- 
@@ -1151,65 +483,7 @@ call plug#begin()
         "Plug 'ashisha/image.vim'
         "Plug 'rbgrouleff/bclose.vim'
         "-------------------------------------------------------------------------
-        Plug 'scrooloose/nerdtree'
-         "" NERDTree
-         let NERDTreeShowBookmarks=1
-         let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-         let NERDTreeChDirMode=0
-         let NERDTreeQuitOnOpen=1
-         let NERDTreeMouseMode=2
-         let NERDTreeShowHidden=1
-         let NERDTreeKeepTreeInNewTab=1
-
-         " Defines a function which calls NERDTreeFind if we have an open
-         " buffer, but NERDTreeToggle if we don't. This makes it so we can
-         " always open NERDTree in the appropriate directory.
-         function! NERDTreeToggleInCurDir()
-           " If NERDTree is open in the current buffer
-           if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-             exe ":NERDTreeClose"
-           else
-             if (expand("%:t") != '')
-               exe ":NERDTreeFind"
-             else
-               exe ":NERDTreeToggle"
-             endif
-           endif
-         endfunction
-
-         map <leader>e :call NERDTreeToggleInCurDir()<CR>
-         map <S-F2> :call NERDTreeToggleInCurDir()<CR>
-         nmap <leader>nt :call NERDTreeToggleInCurDir()<CR>
-         "map <F4> :call NERDTreeToggleInCurDir()<CR>
-
-         "" NERDCommenter
-         let g:NERDDefaultAlign = 'left'
-         let g:NERDCommentEmptyLines = 1
-         let g:NERDTrimTrailingWhitespace = 1
-         
-
         "-------------------------------------------------------------------------
-        Plug 'francoiscabrol/ranger.vim'
-        "         let g:NERDTreeHijackNetrw = 0 
-        "         let g:ranger_replace_netrw = 1 
-        "         let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
-        "         map <leader>f :Ranger<CR>
-        "--------------------------------------------------------------------------------- 
-        "Plug 'wsdjeg/JavaUnit.vim'
-        Plug 'xolox/vim-pyref'
-        Plug 'fs111/pydoc.vim'
-                let g:pydoc_cmd = 'python -m pydoc'
-                let g:pydoc_open_cmd = 'vsplit'
-                " If you want pydoc to switch to an already open tab with pydoc page,
-                let g:pydoc_use_drop=1
-                " Pydoc files are open with 10 lines height, if you want to change this value
-                " put this in your .vimrc:
-                let g:pydoc_window_lines=15
-                " let g:pydoc_window_lines=0.5
-                " let g:pydoc_cmd = '/usr/bin/pydoc'
-                " let g:pydoc_highlight=0
-        "--------------------------------------------------------------------------------- 
-        Plug 'vim-scripts/javaDoc.vim'
         Plug 'artur-shaik/vim-javacomplete2'
                 imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
                 autocmd FileType java setlocal omnifunc=javacomplete#Complete
@@ -1223,25 +497,6 @@ call plug#begin()
         " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
         " autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
         " endif
-        Plug 'tylerhunt/vim-spark'
-        "Plug 'sjl/vim-sparkup'
-        Plug 'vim-scripts/Emmet.vim'
-        let g:user_emmet_settings = {
-                                \  'indentation' : '  ',
-                                \  'perl' : {
-                                \    'aliases' : {
-                                \      'req' : 'require '
-                                \    },
-                                \    'snippets' : {
-                                \      'use' : "use strict\nuse warnings\n\n",
-                                \      'warn' : "warn \"|\";",
-                                \    }
-                                \  }
-                                \}
-
-        let g:user_emmet_expandabbr_key = '<c-\>'
-        let g:use_emmet_complete_tag = 1
-
         " let g:user_emmet_settings = {
         "                         \  'php' : {
         "                         \    'extends' : 'html',
@@ -1257,8 +512,6 @@ call plug#begin()
         " let g:user_emmet_expandabbr_key = '<c-e>'
         " let g:use_emmet_complete_tag = 1
         "--------------------------------------------------------------------------------- 
-        Plug 'gko/vim-coloresque'
-        Plug 'lepture/vim-jinja'
         "Plug 'godlygeek/tabular'
         Plug 'hyiltiz/vim-plugins-profile'
         Plug 'nickstenning/honcho'
@@ -1669,102 +922,6 @@ call plug#end()
 "-12Diff-}}}
 
 
-"-AAA14-Cyan------------------------------------------------------------------------------------------------{{{
-        " highlight DiffAdd         cterm=bold ctermbg=none ctermfg=119
-        " highlight DiffDelete      cterm=bold ctermbg=none ctermfg=167
-        " highlight DiffChange      cterm=bold ctermbg=11 ctermfg=227
-        highlight DiffChange        cterm=bold ctermbg=7 
-        "------------------------------------------------------------------------------------------
-        "???-Highlight VCS conflict markers
-        match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-        highlight ErrorMsg  guifg=red guibg=white
-        " highlight conflict markers
-        match ErrorMsg '\v^[<\|=|>]{7}([^=].+)?$'
-        "-???-ccc-shortcut to jump to next conflict marker
-        nnoremap <silent> <leader>c /\v^[<\|=>]{7}([^=].+)?$<CR>
-        "easier on the eyes
-        highlight Folded ctermbg=10
-        highlight FoldColumn ctermbg=9 ctermfg=0 guibg=#ffffd7
-        highlight DiffText ctermbg=1
-                " let s:bwc.myGelb = ['ffff00', 11]
-                " let s:bwc.myRed = ['800000', 1]
-                " let s:bwc.myGreen = ['008000', 2]
-                " let s:bwc.myBrown = ['808000', 3]
-                " let s:bwc.myBlue = ['000080', 4]
-                " let s:bwc.myPurple = ['008080', 6]
-                if has('spell')
-                         hi SpellBad     ctermfg=11    ctermbg=160
-                         hi SpellCap     ctermfg=11    ctermbg=166
-                         hi SpellLocal   ctermfg=11    ctermbg=9
-                endif
-                "--------------------------------------------------------------------------
-                hi Define         ctermfg=11       ctermbg=22 
-                hi MatchParen     ctermfg=11       ctermbg=39   cterm=bold
-                hi Delimiter      ctermfg=51       ctermbg=56  cterm=bold
-                "--------------------------------------------------------------------------
-                hi NonText        ctermfg=201      ctermbg=88 
-                hi Error          ctermfg=196      ctermbg=232  
-                hi ErrorMsg       ctermfg=196      ctermbg=232  
-                hi Exception      ctermfg=201      ctermbg=103 
-                hi Keyword        ctermfg=201      ctermbg=1 
-                hi Label          ctermfg=201      ctermbg=3 
-                "--------------------------------------------------------------------------
-                " hi Identifier     ctermfg=11      ctermbg=3 
-                " hi Function       ctermfg=38       ctermbg=NONE 
-                " hi ModeMsg        ctermfg=39       ctermbg=232  
-                " hi MoreMsg        ctermfg=46       ctermbg=NONE 
-                " hi DefinedName    ctermfg=200      ctermbg=NONE 
-                "  [x{y(z(bbb) (ccc))}]
-                "--------------------------------------------------------------------------
-                set tabpagemax=15
-                set cursorline
-                set cursorcolumn
-                let w:persistent_cursorline = 1
-                hi Search  ctermbg=11 ctermfg=9 term= bold
-                hi CursorLine                  ctermbg=8
-                hi CursorColumn                ctermbg=8
-                "hi ColorColumn                 ctermbg=9
-                hi ColorColumn                 ctermbg=237
-                set colorcolumn=8,92,100,112,120
-                " GitGutter
-                set signcolumn=yes
-                hi signcolumn  ctermbg=7
-                hi LineNr ctermfg=9 ctermbg=14 
-                hi Normal  ctermbg=235
-                highlight Visual cterm=bold ctermbg=2 ctermfg=NONE
-                "set listchars=tab:\|\ 
-                set listchars=tab:▸\
-                set list
-
-                hi Cursor ctermbg=2 term= bold
-                hi Comment         ctermfg=14
-                hi Number          ctermfg=11
-                set nuw =5
-        highlight ShowMatches ctermbg=16 
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
-        au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
-"-14Cyan-}}}
-"-AAA15-Airline---------------------------------------------------------------------------------------------{{{
-        let g:airline_theme='light'
-        set showmode                "-Display the current mode
-        set showcmd                 "-Show partial commands in status line 
-        "-------------------------------------------------------------------------------
-        let g:airline_section_c = '%{strftime("%Y %b %d %X")}'
-        let g:airline#extensions#tabline#enabled = 2
-        let g:airline#extensions#tabline#buffer_min_count = 1
-        "-----------------------------------------------------------
-        let g:airline#extensions#syntastic#enabled = 1
-        let g:airline#extensions#branch#enabled = 1
-        "-----------------------------------------------------------
-        if !exists('g:airline_symbols')
-                let g:airline_symbols = {}
-        endif
-        "---------------------------------------------------------------------
-        hi statusline ctermbg=10 ctermfg=Black  cterm=bold
-        hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
-        "---------------------------------------------------------------------
-
-"-15-}}}
 "-AAA16-Wildmenu--------------------------------------------------------------------------------------------{{{
         " More useful command-line completion
         au! FocusLost * :silent! wall     "Save when losing focus
@@ -1925,9 +1082,6 @@ call plug#end()
                         let g:jedi#auto_close_doc = 0  " close preview window after completion
                         let g:jedi#documentation_command = "gj"
                         "==-USA-U-=============================================================
-                        let g:pyref_mapping = 'gu'
-                        let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
-                        "let g:pyref_python = $HOME . '/docs/python'
                         "==================================================================
                         "file:///usr/share/doc/python2.7/html/index.html
                         "file:///usr/share/doc/python/python-policy.html/index.html
@@ -1968,87 +1122,6 @@ call plug#end()
         au! FileType vim,help nnoremap M :exec "help" expand("<cword>")<CR>
         "----------------------------------------------------------------------------------
 
-"-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
-        inoremap jk <esc>
-        "-Unfuck--my--screen------------------------------------
-        nnoremap fu :syntax sync fromstart<cr>:redraw!<cr>
-        "------------------------------------------------------------------------------------------
-        nnoremap zu :<c-u>update<cr>
-        "------------------------------------------------------------------------------------------
-        nnoremap ;e :ls<cr>:b<space>
-        nnoremap ;v <c-w>v<c-w>l
-        "------------------------------------------------------------------------------------------
-        nnoremap ;f :set tw=70<cr>v<s-}>gq<end>
-        nnoremap W gwip
-        "------------------------------------------------------------------------------------------
-        "Number 7: Align Current Paragraph 
-        noremap <LocalLeader>a =ip
-        "------------------------------------------------------------------------------------------
-        imap            ;;              <ESC>
-        "-open a file with same basename but different extension        
-        map <expr>      ,R              ":e ".expand("%:r")."."
-        "------------------------------------------------------------------------------------------
-        nnoremap ( <c-x>:y x\|@x<cr>
-        nnoremap ) <c-a>:y x\|@x<cr>
-        "------------------------------------------------------------------------------------------
-        "???makes macros even easier to remember: hit qq to record, q to stop recording, and Q to apply.
-        nnoremap Q @q
-        vnoremap Q :norm @q<cr>
-        "------------------------------------------------------------------------------------------
-        nmap q <nop>
-        nnoremap q q
-        nnoremap ss :wa<cr>
-        nnoremap qq :wa<cr> :bd<cr>
-        nnoremap qs :wa<cr> :qa<cr>
-        nnoremap qa :qa!<cr>
-        nnoremap ge :w<cr>:e #<cr>
-        nnoremap qw <C-w>q<CR>
-        nnoremap qo <C-w>o<CR>
-        "------------------------------------------------------------------------------------------
-        nnoremap ZZ  <Nop> 
-        nnoremap ZZ mzzt3<c-u>`z
-        nnoremap zs mzzt3<c-u>`z
-        nnoremap zx mzzt35<c-u>`z
-        nnoremap zh mzzt10<c-u>`z
-        nnoremap EE :source $MYVIMRC<CR>
-        nnoremap BB ggVG
-        "------------------------------------------------------------------------------------------
-        nnoremap <BS> X
-        "-it's-2018--------------------------------------------------------------------------------
-        noremap j gj
-        noremap k gk
-        noremap gj j
-        noremap gk k
-        "-Bash-like-keys-for-the-command-line
-        cnoremap <C-A> <Home>
-        cnoremap <C-E> <End>
-        cnoremap <C-d> <Del>
-        "Same when jumping around
-        nnoremap <c-o> <c-o>zz
-        nnoremap <c-i> <c-i>zz
-        "Yank to end of line
-        nnoremap Y y$
-        "-HHJ- Keep the cursor in place while joining lines
-        nnoremap H mzJ`z
-        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
-        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-        "-Reselect-last-pasted text----------------------------------------------------------------
-        nnoremap gv `[v`]
-        "------------------------------------------------------------------------------------------
-        noremap \\ #*
-        "------------------------------------------------------------------------------------------
-        " make it so that if I acidentally pres ^W or ^U in insert mode,
-        " then <ESC>u wil undo just the ^W/^U, and not the whole insert
-        " This is docmented in :help ins-special-special, a few pages down
-        inoremap <C-W> <C-G>u<C-W>
-        inoremap <C-U> <C-G>u<C-U>
-        "------------------------------------------------------------------------------------------
-        vmap     dg  :dffget<CR>
-        vmap     dp  :diffput<CR>
-        nnoremap do  :diffoff!<cr>
-        "------------------------------------------------------------------------------------------
-        inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
-"-20Remap-}}}
 
 "-AAA21--PLAY--Start--Ag--CtrlP--Unite--CommandT--BigList-400-------------------------------------------------------{{{
 
@@ -2384,18 +1457,6 @@ call plug#end()
 "-AAA21--PLAY--STOP--BigList800-}}}
 
 
-        ":::::::::::::::::::::::::::-=NAVI2=-::::::::::::::::::::::::::::::::::::::::::::::
-        " Split previously opened file ('#') in a split window
-        nnoremap ;l :execute "leftabove vsplit" bufname('#')<cr>
-        nnoremap ;r :execute "rightbelow vsplit" bufname('#')<cr>
-        "----------------------------------------------------------------------------------
-        nnoremap <C-j> :bn<cr>
-        nnoremap <C-k> :bp<cr>
-        "--------------------------------------------------
-        nnoremap <m-right> :vertical resize +3<cr>
-        nnoremap <m-left> :vertical resize -3<cr>
-        nnoremap <m-up> :resize +3<cr>
-        nnoremap <m-down> :resize -3<cr>
         "--------------------------------------------------
         " inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
         " inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
