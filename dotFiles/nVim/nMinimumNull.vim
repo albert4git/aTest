@@ -1,4 +1,3 @@
-
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -34,10 +33,9 @@ call plug#begin('~/.config/nvim/plugged/')
                 "let g:indentLine_setConceal = 0
                 "let g:indentLine_bgcolor_term = 202
 
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
+
 call plug#end()
 
- let g:deoplete#enable_at_startup = 1
- call deoplete#enable_logging('DEBUG', 'deoplete.log')
- call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+" Required for operations modifying multiple buffers like rename.
+set hidden
+

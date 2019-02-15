@@ -1,4 +1,3 @@
-
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -33,11 +32,27 @@ call plug#begin('~/.config/nvim/plugged/')
                 let g:indentLine_color_term = 10
                 "let g:indentLine_setConceal = 0
                 "let g:indentLine_bgcolor_term = 202
+        Plug 'Shougo/neocomplete.vim'
 
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
 call plug#end()
 
- let g:deoplete#enable_at_startup = 1
- call deoplete#enable_logging('DEBUG', 'deoplete.log')
- call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+        " Required for operations modifying multiple buffers like rename.
+        set hidden
+        "" neocomplete
+        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#enable_ignore_case = 1
+        let g:neocomplete#enable_smart_case = 1
+        if !exists('g:neocomplete#keyword_patterns')
+                let g:neocomplete#keyword_patterns = {}
+        endif
+        let g:neocomplete#keyword_patterns._ = '\h\w*'
+        """
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+        " Enable heavy omni completion.
+        if !exists('g:neocomplete#sources#omni#input_patterns')
+                let g:neocomplete#sources#omni#input_patterns = {}
+        endif
+        if !exists('g:neocomplete#force_omni_input_patterns')
+                let g:neocomplete#force_omni_input_patterns = {}
+        endif

@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+t	00velocity_ex_08_01.py	/^t = Symbol('t')$/;"	v
+f	00velocity_ex_08_01.py	/^f = Function('f')$/;"	v
+x	00velocity_ex_08_01.py	/^x = Float(0.2)*t**2 + 10.4$/;"	v
+v	00velocity_ex_08_01.py	/^v = diff(x, t)$/;"	v
+a	00velocity_ex_08_01.py	/^a = diff(v, t)$/;"	v
+main	3nPlus1.py	/^def main():$/;"	f
+n31	3nPlus1.py	/^    def n31(a):  # a = initial number$/;"	f	function:main
+calculator	50calculator.py	/^calculator = Tk()$/;"	v
+Application	50calculator.py	/^ class Application(Frame):$/;"	c
+__init__	50calculator.py	/^    def __init__(self, master, *args, **kwargs):$/;"	m	class:Application
+replaceText	50calculator.py	/^    def replaceText(self, text):$/;"	m	class:Application
+appendToDisplay	50calculator.py	/^    def appendToDisplay(self, text):$/;"	m	class:Application
+calculateExpression	50calculator.py	/^    def calculateExpression(self):  #python's calculate function$/;"	m	class:Application
+clearText	50calculator.py	/^    def clearText(self):  #clears imput on pressing C on Calculator$/;"	m	class:Application
+createWidgets	50calculator.py	/^    def createWidgets(self):$/;"	m	class:Application
+app	50calculator.py	/^app = Application(calculator).grid()$/;"	v
+absMax	absMax.py	/^def absMax(x):$/;"	f
+main	absMax.py	/^def main():$/;"	f
+absMin	absMin.py	/^def absMin(x):$/;"	f
+main	absMin.py	/^def main():$/;"	f
+absVal	abs.py	/^def absVal(num):$/;"	f
+main	abs.py	/^def main():$/;"	f
+find_hcf	find_hcf.py	/^def find_hcf(num_1, num_2):$/;"	f
+main	find_hcf.py	/^def main():$/;"	f
+find_lcm	find_lcm.py	/^def find_lcm(num_1, num_2):$/;"	f
+main	find_lcm.py	/^def main():$/;"	f
+find_max	FindMax.py	/^def find_max(nums):$/;"	f
+main	FindMax.py	/^def main():$/;"	f
+main	FindMin.py	/^def main():$/;"	f
+findMin	FindMin.py	/^    def findMin(x):$/;"	f	function:main

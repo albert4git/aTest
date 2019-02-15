@@ -66,7 +66,7 @@
         set undoreload=10000
         "-4undo-}}}
 
-        "-AAA5--PreSetUp-Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter----------------------{{{
+"-AAA5--PreSetUp-Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter------------------------------{{{
         "-magic--------    
         silent! set wrapscan ignorecase smartcase incsearch hlsearch magic
         " \v: 'very magic', make every character except a-zA-Z0-9 and '_' have special meaning
@@ -148,13 +148,44 @@
         "------------------------------------------------------------------------------------------
 "-5SetUp-}}}
 
-highlight ShowMatches ctermbg=15 
-au! VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
-au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
+"-AAA2-------------------------------------------------------------------------------------------------{{{
+        function! ScriptExecute()
+                :!chmod u+x %
+                :w
+        endfunction
+        "------------------------------------------------------------------------------------------
+        augroup ScriptExecutePermission
+                autocmd!
+                autocmd BufWritePost *.sh :call ScriptExecute()
+        augroup END
+        "------------------------------------------------------------------------------------------
+        augroup SourceVimrc
+                autocmd!
+                autocmd bufwritepost .vimrc source $MYVIMRC
+        augroup END
+        "------------------------------------------------------------------------------------------
+        set diffopt+=vertical 
+        "???2019
+        set iskeyword+=.
+        "------------------------------------------------------------------------------------------
+        "char = can be removed from the list of valid filename char. JAVA_HOME=/opt/java/jdk1.4
+        set isfname-==
+        "- go to last edit position when opening files -
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+        set autowrite  " Writes on make/shell commands
+        set cf         " Enable error files & error jumping.
+        set nu
+"-2Remap-}}}
 
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        "source ~/git/aTest/dotFiles/nVim/logo1.vim
         "source ~/git/aTest/dotFiles/nVim/mix/n-mopkai.vim
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
-        source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
-        "source ~/git/aTest/dotFiles/nVim/logo1.vim
+        "source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumRC.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumNeo.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumLangServ.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumNull.vim
+        source ~/git/aTest/dotFiles/nVim/nMinimumDeoJedi.vim
+        source ~/git/aTest/dotFiles/nVim/legoCyan.vim
 

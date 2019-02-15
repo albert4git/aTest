@@ -1,7 +1,49 @@
+" Plug 'xolox/vim-easytags'
+"        let g:easytags_file = '~/.nvimtags'
+"        let g:easytags_auto_highlight = 1
+"        let g:easytags_syntax_keyword = 'always'
+"        let g:easytags_events = ['BufWritePost']
+"        let g:easytags_async = 1
+"        let g:easytags_file = '~/.vim/.vimtags'
+"        "------------------------------------------------------
+"        let g:easytags_languages = {
+"        \   'haskell': {
+"        \       'cmd': '~/.cabal/bin/lushtags',
+"        \       'args': [],
+"        \       'fileoutput_opt': '-f',
+"        \       'stdout_opt': '-f-',
+"        \       'recurse_flag': '-R'
+"        \   }
+"        \}
+"        "------------------------------------------------------
+"        "let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"        let g:easytags_resolve_links = 1
+"        " let g:easytags_dynamic_files = 2
+"        " let g:easytags_suppress_ctags_warning = 1
+"        " Prevent automatic ctag updates
+"        let g:easytags_auto_update = 0
+"        let g:easytags_auto_highlight = 0
+"        let g:easytags_on_cursorhold = 0
+"        " Scan recursively, not just current file
+"        let g:easytags_autorecurse = 1
+"        " Follow symbolic links
+"        let g:easytags_resolve_links = 1
+"        " Close tagbar after jumping to a tag
+"        let g:tagbar_autoclose = 1
+"        My current easytags config:
+"        set cpoptions+=d
+"        let g:easytags_async = 1⋅
+"        let g:easytags_dynamic_files = 2 " create and use local tag files instead of global one
+"        let g:easytags_events = ['BufReadPost', 'BufWritePost'] " Update tags on read and save only
+"        let g:easyt
+" nmap <F3>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! htags.vim<CR>/^<CR><F4>
+" nmap <F4>  :so htags.vim<CR>
+" highlight ShowMatches ctermbg=240 
+" au! VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
+" au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
 
 
-
-"-AAA15-Plug1Start------------------------------------------------------------------------------------------{{{
+"-AAA15-Plug1Start--------------------------------------------------------------------------------------------------{{{
 call plug#begin('~/.config/nvim/plugged/')
         "------------------------------------------------------------------------- 
         Plug 'google/vim-codefmt'
@@ -129,38 +171,6 @@ call plug#begin('~/.config/nvim/plugged/')
                 " |------------------------------------------|-------------|------------------------------|
                 "-AAE-}}}
         "------------------------------------------------------------------------------------------
-        "        let g:easytags_file = '~/.vim/.vimtags'
-        "        "------------------------------------------------------
-        "        let g:easytags_languages = {
-        "        \   'haskell': {
-        "        \       'cmd': '~/.cabal/bin/lushtags',
-        "        \       'args': [],
-        "        \       'fileoutput_opt': '-f',
-        "        \       'stdout_opt': '-f-',
-        "        \       'recurse_flag': '-R'
-        "        \   }
-        "        \}
-        "        "------------------------------------------------------
-        "        "let g:easytags_events = ['BufReadPost', 'BufWritePost']
-        "        let g:easytags_resolve_links = 1
-        "        " let g:easytags_dynamic_files = 2
-        "        " let g:easytags_suppress_ctags_warning = 1
-        "        " Prevent automatic ctag updates
-        "        let g:easytags_auto_update = 0
-        "        let g:easytags_auto_highlight = 0
-        "        let g:easytags_on_cursorhold = 0
-        "        " Scan recursively, not just current file
-        "        let g:easytags_autorecurse = 1
-        "        " Follow symbolic links
-        "        let g:easytags_resolve_links = 1
-        "        " Close tagbar after jumping to a tag
-        "        let g:tagbar_autoclose = 1
-        "        My current easytags config:
-        "        set cpoptions+=d
-        "        let g:easytags_async = 1⋅
-        "        let g:easytags_dynamic_files = 2 " create and use local tag files instead of global one
-        "        let g:easytags_events = ['BufReadPost', 'BufWritePost'] " Update tags on read and save only
-        "        let g:easyt
         "------------------------------------------------------------------------------------------
         "------------------------ repl --REPL--------------------------------------------- 
         Plug 'jalvesaq/vimcmdline'
@@ -211,57 +221,10 @@ call plug#begin('~/.config/nvim/plugged/')
                     let cmdline_color_warn     =   1
                     let cmdline_color_index    = 186
                 endif
-        "--------------------------------------------------------------------------------- 
-        Plug 'mtth/scratch.vim'
-        "----------------------------------------------------
-        Plug 'henrik/vim-qargs'
-        "----------------------------------------------------
-        Plug 'maxbrunsfeld/vim-yankstack'
-                nmap zp <Plug>yankstack_substitute_older_paste
-                nmap zn <Plug>yankstack_substitute_newer_paste
         "--------------------------------------
-        Plug 'mileszs/ack.vim'
-        Plug 'jremmen/vim-ripgrep'
-        "--------------------------------------
-        Plug 'Shougo/unite.vim' 
-        Plug 'tsukkee/unite-tag'
-        Plug 'SpaceVim/unite-ctags'
-        Plug 'Shougo/unite-outline/'
-        Plug 'tsukkee/unite-help'
-        Plug 'rstacruz/vim-fastunite'
-        Plug 'kmnk/vim-unite-giti'
-        "--------------------------------------
-        Plug 'cskeeters/unite-fzf'
-        Plug 'junegunn/fzf'
-        Plug 'pbogut/fzf-mru.vim'
-        Plug 'junegunn/fzf.vim'
-
-        "------------------------------------------------------------------
-        Plug 'ddrscott/vim-side-search'
-        " How should we execute the search?
-        " --heading and --stats are required!
-        let g:side_search_prg = 'ag --word-regexp'
-                                \. " --ignore='*.js.map'"
-                                \. " --heading --stats -B 1 -A 4"
-        "---------------------------------------------------------
-                " Can use `vnew` or `new`
-                let g:side_search_splitter = 'vnew'
-                " I like 40% splits, change it if you don't
-                let g:side_search_split_pct = 0.4
-                " SideSearch current word and return to original window
-                nnoremap <Leader>ss :SideSearch <C-r><C-w><CR> | wincmd p
-                " Create an shorter `SS` command
-                command! -complete=file -nargs=+ SS execute 'SideSearch <args>'
-                " or command abbreviation
-                cabbrev SS SideSearch
-
         "----SEARCH-search--POISK-poisk-SUCHE--suche------------------------------------------------ 
         Plug 'vim-scripts/Lynx-Offline-Documentation-Browser'
         Plug 'rhysd/open-pdf.vim'
-        "------------------------------------------------------------------------------------------
-        Plug 'alok/notational-fzf-vim'
-                "USA FIRST"
-                let g:nv_search_paths = ['~/git/aTest/dotFiles/']
         "--------------------------------------------------------------------------------- 
         Plug 'godlygeek/tabular'
                 " Tabularize {
@@ -296,53 +259,6 @@ call plug#begin('~/.config/nvim/plugged/')
                 " | isr   | student | id     |
                 " +-------+---------+--------+
         "------------------------------------------------------------------------------------------ 
-        Plug 'gko/vim-coloresque'
-        Plug 'lepture/vim-jinja'
-        Plug 'tylerhunt/vim-spark'
-        "Plug 'sjl/vim-sparkup'
-        Plug 'vim-scripts/Emmet.vim'
-        let g:user_emmet_settings = {
-                                \  'indentation' : '  ',
-                                \  'perl' : {
-                                \    'aliases' : {
-                                \      'req' : 'require '
-                                \    },
-                                \    'snippets' : {
-                                \      'use' : "use strict\nuse warnings\n\n",
-                                \      'warn' : "warn \"|\";",
-                                \    }
-                                \  }
-                                \}
-        let g:user_emmet_expandabbr_key = '<c-\>'
-        let g:use_emmet_complete_tag = 1
-        "------------------------------------------------------------------------------------------ 
-        Plug 'scrooloose/nerdtree'
-                "" NERDTree
-                let NERDTreeShowBookmarks=1
-                let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-                let NERDTreeChDirMode=0
-                let NERDTreeQuitOnOpen=1
-                let NERDTreeMouseMode=2
-                let NERDTreeShowHidden=1
-                let NERDTreeKeepTreeInNewTab=1
-                " always open NERDTree in the appropriate directory.
-                function! NERDTreeToggleInCurDir()
-                        if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-                                exe ":NERDTreeClose"
-                        else
-                                if (expand("%:t") != '')
-                                        exe ":NERDTreeFind"
-                                else
-                                        exe ":NERDTreeToggle"
-                                endif
-                        endif
-                endfunction
-
-                map <S-F2> :call NERDTreeToggleInCurDir()<CR>
-                "" NERDCommenter
-                let g:NERDDefaultAlign = 'left'
-                let g:NERDCommentEmptyLines = 1
-                let g:NERDTrimTrailingWhitespace = 1
         "-------------------------------------------------------------------------
         Plug 'francoiscabrol/ranger.vim'
         "        let g:NERDTreeHijackNetrw = 0 
@@ -351,22 +267,6 @@ call plug#begin('~/.config/nvim/plugged/')
                  noremap <leader>r :Ranger<CR>
         "--------------------------------------------------------------------------------- 
         "Plug 'wsdjeg/JavaUnit.vim'
-        Plug 'xolox/vim-pyref'
-                let g:pyref_mapping = 'gu'
-                let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
-                "let g:pyref_python = $HOME . '/docs/python'
-        "--------------------------------------------------------------------------------- 
-        Plug 'fs111/pydoc.vim'
-                let g:pydoc_cmd = 'python -m pydoc'
-                let g:pydoc_open_cmd = 'vsplit'
-                " If you want pydoc to switch to an already open tab with pydoc page,
-                let g:pydoc_use_drop=1
-                " Pydoc files are open with 10 lines height, if you want to change this value
-                " put this in your .vimrc:
-                let g:pydoc_window_lines=15
-                " let g:pydoc_window_lines=0.5
-                " let g:pydoc_cmd = '/usr/bin/pydoc'
-                " let g:pydoc_highlight=0
         "--------------------------------------------------------------------------------- 
         Plug 'vim-scripts/javaDoc.vim'
         "--------------------------------------------------------------------------------- 

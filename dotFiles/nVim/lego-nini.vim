@@ -142,35 +142,12 @@ call plug#begin()
         "Plug 'integralist/vim-mypy'
         "Plug 'leafOfTree/vim-imagine'
         "--------------------------------------------------------------------------------- 
-        Plug 'junegunn/gv.vim'
-                " o or <cr> on a commit to display the content of it
-                " o or <cr> on commits to display the diff in the range
-                " O opens a new tab instead
-                " gb for :Gbrowse
-                " ]] and [[ to move between commits
-                " . to start command-line with :Git [CURSOR] SHA à la fugitive
-                " q to close
-        "--------------------------------------------------------------------------------- 
         Plug 'alfredodeza/coveragepy.vim'
                 ":Coveragepy report
                 let g:coveragepy_uncovered_sign = '-'
         "--------------------------------------------------------------------------------- 
         Plug 'osyo-manga/vim-brightest'
                 let g:brightest#highlight = { "group" : "Define" }
-        "--------------------------------------------------------------------------------- 
-        Plug 'airblade/vim-gitgutter'
-                nmap ]c <Plug>GitGutterNextHunk
-                nmap [c <Plug>GitGutterPrevHunk
-        "------------------------------------------------------
-                nmap hp <Plug>GitGutterPreviewHunk
-                nmap hs <Plug>GitGutterStageHunk
-                nmap hu <Plug>GitGutterUndoHunk
-        "------------------------------------------------------
-        "---------------------------------------------------------------------------------- 
-        Plug 'int3/vim-extradite'
-                ":Extradite | :Extradite! -- vertical.
-                let g:extradite_width = 60
-                let g:extradite_showhash = 1 "show abbre commit hashes.
         "---------------------------------------------------------------------------------- 
         Plug 'brooth/far.vim'
         Plug 'aghareza/vim-gitgrep'
@@ -257,9 +234,6 @@ call plug#begin()
         map       <C-F6>      ,h
         imap      <C-F6>      <C-O><C-F6>
         "----------------------------------------------------------------------------------
-        nnoremap <C-F7> :Scratch<CR>
-        nnoremap <F7> :ScratchPreview<CR>
-        "----------------------------------------------------------------------------------
         " There's no way to close the quickfix window without jumping to it and :q or
         " whatever. That's bad. Let me close it from anywhere
         "----------------------------------------------------------------------------------
@@ -303,42 +277,9 @@ call plug#begin()
                 nnoremap <Leader>b :cprev<cr>zvzz
                 nnoremap <Leader>n :cnext<cr>zvzz
         "----------------------------------------------------------------------------------
-                nnoremap <F12> :TagbarToggle<CR>
         "----------------------------------------------------------------------------------
         Plug 'adriaanzon/vim-textobj-matchit'
         "`am` and `im` :if-ifend , for-endfore ..
-        "----------------------------------------------------------------------------------
-        "#??? Plug 'tpope/vim-surround'
-        Plug 'machakann/vim-sandwich'
-                " sd,sr, sa{motion/textobject}{addition}(normal and visual mode)
-                " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-                " Sandwiched text could be resolved into two parts, {surrounding} and {surrounded text}.
-                " sa add surroundings: mapped to the key sequence sa
-                " sd Delete surroundings: mapped to the key sequence sd
-                " sr Replace surroundings: mapped to the key sequence sr
-                " ib Search and select a sandwiched text automatically: mapped to the key sequence ib and ab
-                " is Search and select a sandwiched text with query: mapped to the key sequence is and as
-                " da" will delete a quoted sympy.pprint(string.) 
-                "(<b>'Sbandawitch'</b>) 
-                nmap s <Nop>
-                xmap s <Nop>
-        "-------------------------------------------------------------
-                let g:textobj_sandwich_no_default_key_mappings = 1
-                omap ia <Plug>(textobj-sandwich-auto-i)
-                xmap ia <Plug>(textobj-sandwich-auto-i)
-                omap aa <Plug>(textobj-sandwich-auto-a)
-                xmap aa <Plug>(textobj-sandwich-auto-a)
-        "--------------------------------------------------------------
-        "[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
-
-        "---------------SYMPY-SANDWICH-----------------------------------------------------
-                vmap sb "zdi sympy.pprint(<c-r>z)<esc>
-                vmap sn "zdi print(<c-r>z)<esc> 
-                "-wrap <b></b> around selected text
-                "vmap sb "zdi<b><c-r>z</b><esc>
-                "-wrap <?=   ?> around visually selected text
-                "vmap st "zdi<?= <c-r>z ?><esc> 
-       "---------NoAutoClose-YCM----------------------------------------------------------- 
         Plug 'romainl/vim-qf'
         Plug 'yssl/QFEnter'
         Plug 'sk1418/QFGrep'
@@ -349,36 +290,6 @@ call plug#begin()
                 let g:qf_max_height = 8
                 let g:qf_nowrap = 1
         "----------------------------------------------------------------------------------
-        "---NoAutoClose-YCM----------------------------------------------------------------
-        Plug 'jiangmiao/auto-pairs'
-                "   <M-o> : neline with indentation
-                "   <M-a> : jump to of line
-                "   <M-n> : jump to next pairs
-                "   <M-e> : jump to end of pairs.
-                "   Ctrl-V ) : insert ) without trigger the plugin.
-                let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-                let g:AutoPairsShortcutToggle = '<M-p>'
-                let g:AutoPairsShortcutFastWrap = '<M-e>'
-                let g:AutoPairsShortcutJump = '<M-n>'
-                let g:AutoPairsShortcutBackInsert = '<M-b>'
-                let g:AutoPairsShortcuts = 1
-                let g:AutoPairsMapBS = 1
-                let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
-                " error in vimwiki <CR> Enter. but use upper inoremap can solve.
-                let g:AutoPairsMapSpace = 0
-                " error in abbreviations <space> auto expand.
-                let g:AutoPairsCenterLine = 1
-                let g:AutoPairsFlyMode = 1
-                let g:AutoPairsMapCR=0
-                let g:AutoPairsMapCh=1
-                let g:AutoPairsDelete = '<M-5>'
-
-        "---------------------------------------------------------------------------------
-        Plug 'wellle/visual-split.vim'
-                " :VSSplit, :VSSplitAbove or :VSSplitBelow to create the split
-                " :VSResize to execute the VSResize ex command on the selected range
-                nmap <C-W>r  <Plug>(Visual-Split-Resize)
-                nmap <C-W>s <Plug>(Visual-Split-Split)
         "Plug 'gastonsimone/vim-dokumentary/'
                 "??? apt-get install dictd dict-gcide dict
         "--------------------------------------------------------------------------------- 
@@ -411,7 +322,6 @@ call plug#begin()
         "Plug 'roxma/nvim-completion-manager'
         "--------------------------------------------------------------------------------- 
         Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-        Plug 'davidhalter/jedi-vim'
         "Plug 'Shougo/neocomplete.vim'
         "--------------------------------------------------------------------------------- 
         Plug 'ervandew/supertab'
@@ -486,7 +396,6 @@ call plug#begin()
         "-------------------------------------------------------------------------
         Plug 'artur-shaik/vim-javacomplete2'
                 imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
-                autocmd FileType java setlocal omnifunc=javacomplete#Complete
                 " nmap <F4> <Plug>(JavaComplete-Imports-Add)
                 " nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
                 " nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
@@ -628,20 +537,6 @@ call plug#end()
         "suppress intro message because the above makes it look bad
         set shortmess+=I
         "--------------------------------------------
-        set complete=.,w,b,t,i,u,kspell
-        "            | | | | | | |
-        "            | | | | | | `-dict
-        "            | | | | | `-unloaded buffers
-        "            | | | | `-include files
-        "            | | | `-tags
-        "            | | `-other loaded buffers
-        "            | `-windows buffers
-        "            `-the current buffer
-        "--------------------------------------------
-        "set complete+=ispell
-        "set completeopt=menuone,menu,longest,preview
-        set omnifunc=syntaxcomplete#Complete
-        set completeopt=menu
         "------------------------------------------------------------------------------------------
         "inoremap <silent> <C-]> <C-x><C-]>
         "inoremap <silent> <C-u> <C-x><C-u>
@@ -1223,7 +1118,7 @@ call plug#end()
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#matcher_default#use(['matcher_fzf'])
 
-        "===SetPLAY4===============================================================================
+        "===SetPLAY5===============================================================================
         "   - :Unite [{options}] {source's'}
         "      - parameters of source
         "          - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
@@ -1235,29 +1130,7 @@ call plug#end()
         "       - foo bar (AND)
         "       - foo|bar (OR)
         "       - foo !bar (negative)
-        "   - :UniteResume, :UniteBookmarkAdd,
-        let g:unite_source_history_yank_save_clipboard = 1
-        let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyz"
-                \ . "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
-        "------------------------------------------------------------------------------------------
-        " let g:unite_no_default_keymappings = 1 " don't map default key mappings
-        let g:unite_candidate_icon = '∘'
-        let g:unite_source_history_yank_enable = 1
-        let g:unite_enable_start_insert = 0
-        let g:unite_enable_short_source_mes = 0
-        let g:unite_force_overwrite_statusline = 1
-        let g:unite_prompt = '::: '
-        let g:unite_marked_icon = '✓'
-        let g:unite_winheight = 15
-        let g:unite_winwidth = 50
-        let g:unite_update_time = 200
-        let g:unite_split_rule = 'botright'
-        let g:unite_split_rule = "topleft"
-        let g:unite_data_directory ='~/.config/nvim/tmp/unite'
-        let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-        let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-        let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-        "===SetPLAY5===============================================================================
+        ":UniteResume, :UniteBookmarkAdd,
         let g:ctrlp_cmd = 'CtrlPMRU'
         let g:ctrlp_extensions = ['tag']
         let g:ctrlp_match_window_bottom = 0
@@ -1369,14 +1242,6 @@ call plug#end()
                 nnoremap <Leader>y :<C-u>Unite -buffer-name=neosnippet neosnippet<CR>
         "==========================================================================================
 
-        "===PLAY3==================================================================================
-                nnoremap <Leader>u :Unite help file_mru file buffer file_rec bookmark <CR>
-                nnoremap <Leader>\ :Unite -silent -vertical -winwidth=40  -direction=botright -toggle outline<CR>
-                nnoremap <Leader>h :UniteWithCursorWord -silent help<CR>
-                nnoremap <Leader>r :<C-u>Unite -buffer-name=register register<CR>
-                nnoremap <Leader>c :<C-u>Unite -buffer-name=change change<CR>
-                nnoremap <Leader>j :<C-u>Unite -buffer-name=jump jump<CR>
-                nnoremap <Leader>' :Unite bookmark <CR>
         "==========================================================================================
 
         "===PLAY4===SUCHE========************======================================================
@@ -1434,15 +1299,6 @@ call plug#end()
         "====Voide=================================================================================
 
 
-        "===PLAY8=========(C-o)====================================================================
-        inoremap <silent> <C-o> <C-x><C-o>
-        "inoremap <silent> <C-k> <C-x><C-k>
-        inoremap <silent> <C-d> <C-x><C-d>
-        "inoremap <silent> <C-f> <C-x><C-f>
-        inoremap <silent> <C-l> <C-x><C-l>
-
-        "===PLAY15=================================================================================
-        nnoremap ;d mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
         "==========================================================================================
         let g:tq_language=['en', 'ru', 'de', 'cn']
         "-Presidenti, group, Hotel-

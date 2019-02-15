@@ -1,4 +1,3 @@
-
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -34,10 +33,34 @@ call plug#begin('~/.config/nvim/plugged/')
                 "let g:indentLine_setConceal = 0
                 "let g:indentLine_bgcolor_term = 202
 
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
+
+        Plug 'autozimu/LanguageClient-neovim', {
+                                \ 'branch': 'next',
+                                \ 'do': 'bash install.sh',
+                                \ }
+
+        " (Optional) Multi-entry selection UI.
+        Plug 'junegunn/fzf'
+
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 call plug#end()
 
- let g:deoplete#enable_at_startup = 1
- call deoplete#enable_logging('DEBUG', 'deoplete.log')
- call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ }
+
+let g:LanguageClient_serverCommands.python = ['pyls']
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> M :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+

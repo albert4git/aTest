@@ -1,0 +1,57 @@
+let SessionLoad = 1
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/git/aTest/dotFiles/nVim
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +42 minit.vim
+badd +83 1startNinit19.vim
+badd +583 lego-nini.vim
+badd +308 ~/git/aTest/dotFiles/inkWim/wimConf500.vim
+badd +322 ~/git/aTest/dotFiles/inkWim/wimrc-3000.vim
+badd +57 ~/git/aTest/dotFiles/inkWim/wimrc-mappings-shougu.vim
+badd +32 ~/git/aTest/dotFiles/inkWim/wimrc-itchy-alias.vim
+badd +36 ~/git/aTest/dotFiles/inkWim/wimrc-itchy.vim
+argglobal
+silent! argdel *
+$argadd minit.vim
+$argadd 1startNinit19.vim
+$argadd lego-nini.vim
+edit 1startNinit19.vim
+set splitbelow splitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+argglobal
+if bufexists('1startNinit19.vim') | buffer 1startNinit19.vim | else | edit 1startNinit19.vim | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 416 - ((30 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+416
+normal! 09|
+lcd ~/git/aTest/dotFiles/nVim
+tabnext 1
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 winminheight=0 winminwidth=3 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

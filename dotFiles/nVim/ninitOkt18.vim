@@ -244,6 +244,8 @@
         "------------------------------------------------------------------------------------------
 "-2SetUp-}}}
 
+
+
 "-AAA3-UnPlug-nPlugStart------------------------------------------------------------------------------------{{{
 call plug#begin()
         Plug 'c9s/helper.vim'
@@ -1071,7 +1073,7 @@ call plug#begin()
         "------------------------------------------------------------------------------------------
         Plug 'alok/notational-fzf-vim'
         "USA FIRST
-        let g:nv_search_paths = ['~/git/aTest/dotFiles/nVim', '~/git/aTest/pyLabGitPdbPythonMode27' ]
+        let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
         "------------------------------------------------------------------------------------------
                 " nmap <Leader>f :GFiles<CR>
                 " nmap <Leader>F :Files<CR>
@@ -1956,8 +1958,8 @@ call plug#end()
                 "==================================================================================
 
                 " Map renaming in python
-                autocmd FileType python nnoremap <buffer>
-                                        \ <leader>v :call LanguageClient_textDocument_re
+                " autocmd FileType python nnoremap <buffer>
+                "                         \ <leader>v :call LanguageClient_textDocument_re
                 "====================SSS===========================================================
                 "----------------------------------------------------------------------------------
                 autocmd! FileType python :hi IndentGuidesOdd   ctermbg=16

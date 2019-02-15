@@ -1,0 +1,51 @@
+# ~/.tmuxinator/bank1.yml
+# - guard
+# - logs: tail -f log/development.log
+
+name: bank19A
+root: ~/git/aTest/dotFiles/nVim/
+
+
+windows:
+  - pdbA:
+      layout: main-vertical
+      panes:
+        - CdInPdbA:
+          - nvim pdbA/FindMax.py
+        - SideZSH:
+          - cd pdbA
+          - #empty
+
+  - server: #ipython
+  - databse: mysql -u root -p mypass
+  - logs: tail /var/log/mysql
+
+  - Vert50:
+      layout: main-vertical
+      panes:
+        - Duo1:
+          - nvim 50%
+        - Duo2:
+          - vim 
+
+
+  - Tiled:
+      layout: tiled
+      panes:
+        - Quadro1:
+          - bash
+        - Quadro2:
+          - fish
+        - Quadro3:
+          - sh
+  - One:
+      layout: tiled
+      panes:
+        - BigZSH:
+          - whoami
+  - hrzntl:
+      layout: main-horizontal
+      panes:
+        - htop
+        - ustime
+        - whoami
