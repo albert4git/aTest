@@ -50,9 +50,9 @@ call plug#begin('~/.config/nvim/plugged/')
         " (Optional) Multi-entry selection UI.
 
         Plug 'junegunn/fzf'
-        "USA FIRST
         Plug 'alok/notational-fzf-vim'
-                let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
+        "USA FIRST
+        let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
 
         
 call plug#end()
@@ -95,20 +95,10 @@ call plug#end()
         call deoplete#custom#source('syntax',        'mark', '♯')
         call deoplete#custom#source('member',        'mark', '.')
 
-        " automatically open and close the popup menu / preview window
-        au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set pumheight=12
-        hi Pmenu  ctermfg=1 ctermbg=237
-        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
-        hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
-        "--------------------------------------------------------------------------------
-
         set completeopt-=preview  "close show_docstring
         let g:min_pattern_length=2
         let g:deoplete#auto_complete_delay=0
         let g:auto_refresh_delay=0
-        "--------------------------------------------------------------------------------
-
         
         " Plugin key-mappings.
         inoremap <expr><C-g>     deoplete#undo_completion()
@@ -161,6 +151,9 @@ call plug#end()
 
 "------------------------------------------------------------------------- 
         let g:LanguageClient_serverCommands = {
+        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+        \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+        \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
         \ 'python': ['/usr/local/bin/pyls'],
         \ }
 
@@ -170,7 +163,7 @@ call plug#end()
         let g:deoplete#sources = {}
         let g:deoplete#sources.python = ['LanguageClient']
         let g:deoplete#sources.python3 = ['LanguageClient']
-        "let g:deoplete#sources.vim = ['vim']
+        let g:deoplete#sources.vim = ['vim']
         "let g:deoplete#sources.cpp = ['LanguageClient']
         "let g:deoplete#sources.ruby = ['LanguageClient']
         "let g:deoplete#sources.c = ['LanguageClient']

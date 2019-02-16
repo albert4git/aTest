@@ -47,7 +47,7 @@
                 hi ColorColumn     ctermbg=22
                 set colorcolumn=8,92,100,112,120
                 hi LineNr ctermfg=16 ctermbg=40 
-                hi Normal  ctermbg=234
+                hi Normal  ctermbg=236
                 highlight Visual cterm=bold ctermbg=2 ctermfg=NONE
                 set list
                 set listchars=tab:▸\

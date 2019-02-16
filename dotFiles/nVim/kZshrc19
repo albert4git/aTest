@@ -40,6 +40,11 @@ alias hh='history'
 alias so="source ~/.zshrc"
 alias nv='nvim'
 alias ni2='nvim -U NONE -u ~/git/aTest/dotFiles/nVim/start1ninit19.vim'
+export PATH=${PATH}:/home/red/nvim-linux64/bin/
+alias deo='deonvim NONE -u ~/git/aTest/dotFiles/nVim/minit.vim'
+
+
+
 alias ni='nvim'
 alias lnv='nvim -c "normal '\''0"'
 alias mux='tmuxinator'

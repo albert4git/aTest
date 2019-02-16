@@ -6,6 +6,7 @@ calculator.title("CALCULATOR")
 #remove or change this in order to get different screen sizes
 
 
+
 class Application(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)

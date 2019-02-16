@@ -34,30 +34,33 @@ call plug#begin('~/.config/nvim/plugged/')
                 "let g:indentLine_bgcolor_term = 202
 
 
-        Plug 'Shougo/neocomplete.vim'
+        "--------------------------------------------------------------------------------- 
+        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+        Plug 'davidhalter/jedi-vim'
+        "Plug 'Shougo/neocomplete.vim'
 
 call plug#end()
 
         " Required for operations modifying multiple buffers like rename.
         set hidden
-        "" neocomplete
-        let g:neocomplete#enable_at_startup = 1
-        let g:neocomplete#enable_ignore_case = 1
-        let g:neocomplete#enable_smart_case = 1
-        if !exists('g:neocomplete#keyword_patterns')
-                let g:neocomplete#keyword_patterns = {}
-        endif
-        let g:neocomplete#keyword_patterns._ = '\h\w*'
-        """
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-        " Enable heavy omni completion.
-        if !exists('g:neocomplete#sources#omni#input_patterns')
-                let g:neocomplete#sources#omni#input_patterns = {}
-        endif
-        if !exists('g:neocomplete#force_omni_input_patterns')
-                let g:neocomplete#force_omni_input_patterns = {}
-        endif
+        "" neocomplete """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        " let g:neocomplete#enable_at_startup = 1
+        " let g:neocomplete#enable_ignore_case = 1
+        " let g:neocomplete#enable_smart_case = 1
+        " if !exists('g:neocomplete#keyword_patterns')
+        "         let g:neocomplete#keyword_patterns = {}
+        " endif
+        " let g:neocomplete#keyword_patterns._ = '\h\w*'
+        " """
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " 
+        " " Enable heavy omni completion.
+        " if !exists('g:neocomplete#sources#omni#input_patterns')
+        "         let g:neocomplete#sources#omni#input_patterns = {}
+        " endif
+        " if !exists('g:neocomplete#force_omni_input_patterns')
+        "         let g:neocomplete#force_omni_input_patterns = {}
+        " endif
 
         "===SetPLAY7===============================================================================
         let g:ycm_filetype_blacklist = {
@@ -106,6 +109,24 @@ call plug#end()
         " let g:ycm_autoclose_preview_window_after_insertion = 0
         " let g:ycm_autoclose_preview_window_after_completion = 0
         "===SetPLAY7===============================================================================
+        let g:jedi#use_splits_not_buffers = "left"
+        let g:jedi#popup_on_dot = 0
+        "------------------------------------------------------------------------- 
+        let g:jedi#goto_command = "<leader>d"
+        let g:jedi#goto_assignments_command = "<leader>g"
+        let g:jedi#goto_definitions_command = ""
+        let g:jedi#documentation_command = "M"
+        let g:jedi#usages_command = "<leader>n"
+        let g:jedi#rename_command = "<leader>r"
+        let g:jedi#completions_command = "<C-z>"
+        "let g:jedi#completions_command = "<C-Space>"
+        let g:jedi#popup_on_dot = 1
+        let g:jedi#completions_enabled = 1
+        let g:jedi#popup_select_first = 1
+        let g:jedi#show_call_signatures = "1"
+        let g:jedi#goto_command = "gt"
+        let g:jedi#auto_close_doc = 0  " close preview window after completion
+
         "===SetPLAY8===============================================================================
         " let g:ycm_semantic_triggers =  {
         "                         \   'c': ['->', '.'],
@@ -123,3 +144,7 @@ call plug#end()
         "------------------------------------------------------------------------------------------
         " automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+        set pumheight=10
+        hi Pmenu  ctermfg=231 ctermbg=238
+        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
+        hi PmenuThumb  ctermfg=13 ctermbg=2 cterm=NONE

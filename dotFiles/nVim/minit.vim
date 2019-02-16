@@ -184,8 +184,11 @@
         "source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumRC.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumNeo.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumYcmJedi.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumLangServ.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumNull.vim
-        source ~/git/aTest/dotFiles/nVim/nMinimumDeoJedi.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJedi.vim "LanguageClientStart
+        "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediOne.vim
+        source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediRC.vim
         source ~/git/aTest/dotFiles/nVim/legoCyan.vim
 
