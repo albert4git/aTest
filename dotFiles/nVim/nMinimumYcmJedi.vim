@@ -43,25 +43,6 @@ call plug#end()
 
         " Required for operations modifying multiple buffers like rename.
         set hidden
-        "" neocomplete """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        " let g:neocomplete#enable_at_startup = 1
-        " let g:neocomplete#enable_ignore_case = 1
-        " let g:neocomplete#enable_smart_case = 1
-        " if !exists('g:neocomplete#keyword_patterns')
-        "         let g:neocomplete#keyword_patterns = {}
-        " endif
-        " let g:neocomplete#keyword_patterns._ = '\h\w*'
-        " """
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        " 
-        " " Enable heavy omni completion.
-        " if !exists('g:neocomplete#sources#omni#input_patterns')
-        "         let g:neocomplete#sources#omni#input_patterns = {}
-        " endif
-        " if !exists('g:neocomplete#force_omni_input_patterns')
-        "         let g:neocomplete#force_omni_input_patterns = {}
-        " endif
-
         "===SetPLAY7===============================================================================
         let g:ycm_filetype_blacklist = {
                                 \ 'tagbar': 1,

@@ -896,8 +896,6 @@ call plug#begin()
                 nmap zp <Plug>yankstack_substitute_older_paste
                 nmap zn <Plug>yankstack_substitute_newer_paste
         "--------------------------------------
-        Plug 'mileszs/ack.vim'
-        Plug 'jremmen/vim-ripgrep'
         "----------------------------------------------------------------------------------
                 " save the buffers for each file found by GitGrep in the previous search.
                 " :GitGrep foo.*bar
@@ -907,6 +905,8 @@ call plug#begin()
                 "0read !date 
                 "r find -mtime -8 | xargs grep vim
         "----------------------------------------------------------------------------------
+        Plug 'mileszs/ack.vim'
+        Plug 'jremmen/vim-ripgrep'
         Plug 'Chun-Yang/vim-action-ag'
         Plug 'rking/ag.vim'
         Plug 'jesseleite/vim-agriculture'
@@ -1587,18 +1587,6 @@ call plug#end()
                 endif
         endfunction
 
-        "-------------------------------------------------------------------------
-        "Clear hlsearch and set nopaste
-        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-        "-------------------------------------------------------------------------
-        nmap <silent> n nzz
-        nmap <silent> N Nzz
-        nmap <silent> g* g*zz
-        nmap <silent> g# g#zz
-        " Super useful! From an idea by Michael Naumann
-        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-        "----------------------------------------------------------------------------------
         "---------------------------------------------------------------------------------
 
         " Use grep on filenames instead of relying on find's patterns.

@@ -4,6 +4,10 @@ from tkinter import messagebox
 calculator = Tk()
 calculator.title("CALCULATOR")
 #remove or change this in order to get different screen sizes
+#remove no social change this in order to get different screen sizes
+#remove yes projectet social change this in order to get different screen sizes
+#This is the Third Row
+
 
 
 
@@ -131,7 +135,6 @@ class Application(Frame):
             command=lambda: self.appendToDisplay("%"))
         self.percentageButton.grid(row=2, column=4, sticky="NWNESWSE")
 
-        #This is the Third Row
         self.oneButton = Button(
             self,
             font=("Helvetica", 11),

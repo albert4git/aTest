@@ -175,6 +175,16 @@
         set autowrite  " Writes on make/shell commands
         set cf         " Enable error files & error jumping.
         set nu
+        "---------------------------------------------------------------------------------- 
+        inoremap <F1> <ESC>
+        nnoremap <F1> <ESC>
+        vnoremap <F1> <ESC>
+        "---------------------------------------------------------------------------------- 
+        nnoremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+        nnoremap <buffer> <C-F2> <Esc>:helpgrep <C-r><C-w><CR>
+        "-Fix window position of help------------------------------------------------------
+        au! FileType vim,help nnoremap M :exec "help" expand("<cword>")<CR>
+        "----------------------------------------------------------------------------------
 "-2Remap-}}}
 
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -189,6 +199,136 @@
         "source ~/git/aTest/dotFiles/nVim/nMinimumNull.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJedi.vim "LanguageClientStart
         "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediOne.vim
-        source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediRC.vim
+        "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediRC.vim
+        "source ~/git/aTest/dotFiles/nVim/nProtoDeoLSJediSnip.vim
+        source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
         source ~/git/aTest/dotFiles/nVim/legoCyan.vim
+        ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+"-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
+        "Ex: :Ex Pull word under cursor into :Ex LHS of a subs ztitute (replace)
+        "1y$  //yank current row to register 1
+        "<C-r>a to paste from register a
+        nnoremap <LocalLeader>w :<C-r>=expand("<cword>")<CR>
+        nnoremap <LocaLeader>z :<C-r>=getline(".")<CR>
+        "------------------------------------------------------------------------------------------
+        inoremap jk <esc>
+        "-Unfuck--my--screen------------------------------------
+        nnoremap fu :syntax sync fromstart<cr>:redraw!<cr>
+        "------------------------------------------------------------------------------------------
+        nnoremap zu :<c-u>update<cr>
+        "------------------------------------------------------------------------------------------
+        nnoremap ;e :ls<cr>:b<space>
+        nnoremap ;v <c-w>v<c-w>l
+        "------------------------------------------------------------------------------------------
+        nnoremap ;f :set tw=70<cr>v<s-}>gq<end>
+        nnoremap W gwip
+        "------------------------------------------------------------------------------------------
+        "Number 7: Align Current Paragraph 
+        noremap <LocalLeader>a =ip
+        "------------------------------------------------------------------------------------------
+        imap            ;;              <ESC>
+        "-open a file with same basename but different extension        
+        map <expr>      ,R              ":e ".expand("%:r")."."
+        "------------------------------------------------------------------------------------------
+        nnoremap ( <c-x>:y x\|@x<cr>
+        nnoremap ) <c-a>:y x\|@x<cr>
+        "------------------------------------------------------------------------------------------
+        "???makes macros even easier to remember: hit qq to record, q to stop recording, and Q to apply.
+        nnoremap Q @q
+        vnoremap Q :norm @q<cr>
+        "------------------------------------------------------------------------------------------
+        nmap q <nop>
+        nnoremap q q
+        nnoremap ss :wa<cr>
+        nnoremap qq :wa<cr> :bd<cr>
+        nnoremap qs :wa<cr> :qa<cr>
+        nnoremap qa :qa!<cr>
+        nnoremap ge :w<cr>:e #<cr>
+        nnoremap qw <C-w>q<CR>
+        nnoremap qo <C-w>o<CR>
+        "------------------------------------------------------------------------------------------
+        nnoremap ZZ  <Nop> 
+        nnoremap ZZ mzzt3<c-u>`z
+        nnoremap zs mzzt3<c-u>`z
+        nnoremap zx mzzt35<c-u>`z
+        nnoremap zh mzzt10<c-u>`z
+        nnoremap EE :source $MYVIMRC<CR>
+        nnoremap BB ggVG
+        "------------------------------------------------------------------------------------------
+        nnoremap <BS> X
+        "-it's-2018--------------------------------------------------------------------------------
+        noremap j gj
+        noremap k gk
+        noremap gj j
+        noremap gk k
+        "-Bash-like-keys-for-the-command-line
+        cnoremap <C-A> <Home>
+        cnoremap <C-E> <End>
+        cnoremap <C-d> <Del>
+        "Same when jumping around
+        nnoremap <c-o> <c-o>zz
+        nnoremap <c-i> <c-i>zz
+        "Yank to end of line
+        nnoremap Y y$
+        "-HHJ- Keep the cursor in place while joining lines
+        nnoremap H mzJ`z
+        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
+        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+        "-Reselect-last-pasted text----------------------------------------------------------------
+        nnoremap gv `[v`]
+        "------------------------------------------------------------------------------------------
+        noremap \\ #*
+        "------------------------------------------------------------------------------------------
+        " make it so that if I acidentally pres ^W or ^U in insert mode,
+        " then <ESC>u wil undo just the ^W/^U, and not the whole insert
+        " This is docmented in :help ins-special-special, a few pages down
+        inoremap <C-W> <C-G>u<C-W>
+        inoremap <C-U> <C-G>u<C-U>
+        "------------------------------------------------------------------------------------------
+        vmap     dg  :diffget<CR>
+        vmap     dp  :diffput<CR>
+        nnoremap do  :diffoff!<cr>
+        "------------------------------------------------------------------------------------------
+        "??? inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
+        "-------------------------------------------------------------------------
+        "Clear hlsearch and set nopaste
+        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
+        "-------------------------------------------------------------------------
+        nmap <silent> n nzz
+        nmap <silent> N Nzz
+        nmap <silent> g* g*zz
+        nmap <silent> g# g#zz
+        " Super useful! From an idea by Michael Naumann
+        " vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+        " vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+        "----------------------------------------------------------------------------------
+"-20Remap-}}}
+"-AAA16-Wildmenu--------------------------------------------------------------------------------------------{{{
+        " More useful command-line completion
+        au! FocusLost * :silent! wall     "Save when losing focus
+        set wildmenu
+        "black-List
+        set wildmode=list:longest
+        "blackGreen-List
+        set wildmode=list:full
+        "------------------------------------------------------------------------------------------
+        "set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
+        "------------------------------------------------------------------------------------------
+        set wildignore+=.hg,.git,.svn                    " Version control
+        set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+        set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+        set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+        set wildignore+=*.spl                            " compiled spelling word lists
+        set wildignore+=*.sw?                            " Vim swap files
+        set wildignore+=*.DS_Store                       " OSX bullshit
+        set wildignore+=*.luac                           " Lua byte code
+        set wildignore+=migrations                       " Django migrations
+        set wildignore+=*.pyc                            " Python byte code
+        set wildignore+=*.orig                           " Merge resolution files
+        set wildignore+=*.fasl                           " Lisp FASLs
+        set wildignore+=*.dx64fsl                        " CCL
+        set wildignore+=classes
+        set wildignore+=lib
+"-16-}}}
 

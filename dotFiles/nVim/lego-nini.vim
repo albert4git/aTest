@@ -95,16 +95,6 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         "Plug 'vim-scripts/tinykeymap'
         "--------------------------------------------------------------------------------- 
-        Plug 'skywind3000/vim-preview'
-                "VSSplit
-        "--------------------------------------------------------------------------------- 
-        Plug 'kshenoy/vim-signature'
-                " :SignatureListMarkers         : List all markers
-                " :SignatureListMarkers 1       : List only the '!' marker
-                " :SignatureListMarkers @       : List only the '@' marker
-                " :SignatureListMarkers 0, 2    : List only ) marker with 2 lines of context
-                " :SignatureListMarkers '', 2   : List all markers with 2 lines of context
-                " :SignatureListMarkers '!@', 2 : List only the '!' and '@' markers and show
         "--------------------------------------------------------------------------------- 
         Plug 'krisajenkins/vim-pipe'
                 autocmd BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
@@ -167,9 +157,6 @@ call plug#begin()
                 " :GitStash
                 " :GitPush
                 " :GitPull
-        "--------------------------------------------------------------------------------- 
-        Plug 'machakann/vim-highlightedyank'
-                let g:highlightedyank_highlight_duration = -1
         "----------------------------------------------------------------------------------
         Plug 'kana/vim-textobj-user'
         Plug 'gilligan/textobj-gitgutter'
@@ -219,13 +206,6 @@ call plug#begin()
         "-???- onoremap a i( , da ???-
         " vap / v2ap 
         " diw / daw 
-        "---------------------------------------------------------------------------------- 
-        inoremap <F1> <ESC>
-        nnoremap <F1> <ESC>
-        vnoremap <F1> <ESC>
-        "---------------------------------------------------------------------------------- 
-        nnoremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
-        nnoremap <buffer> <C-F2> <Esc>:helpgrep <C-r><C-w><CR>
         "----------------------------------------------------------------------------------
         " Maybe these mappings should be moved into FT_C() ?
         " Toggle between .c (.cc, .cpp) and .h                          
@@ -308,10 +288,6 @@ call plug#begin()
                 "0read !date 
                 "r find -mtime -8 | xargs grep vim
         "----------------------------------------------------------------------------------
-        Plug 'Chun-Yang/vim-action-ag'
-        Plug 'rking/ag.vim'
-        Plug 'jesseleite/vim-agriculture'
-        "--------------------------------------
         "Plug 'vim-scripts/ReplaceWithRegister'
         "-------------------------------------------------------------------------
         "-------------------------------------------------------------------------
@@ -321,16 +297,8 @@ call plug#begin()
         "-TODO-
         "Plug 'roxma/nvim-completion-manager'
         "--------------------------------------------------------------------------------- 
-        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
         "Plug 'Shougo/neocomplete.vim'
         "--------------------------------------------------------------------------------- 
-        Plug 'ervandew/supertab'
-        "--------------------------------------------------------------------------------- 
-        Plug 'honza/vim-snippets'
-        Plug 'SirVer/ultisnips'
-        Plug 'garbas/vim-snipmate'
-        Plug 'Shougo/neosnippet.vim'
-        Plug 'Shougo/neosnippet-snippets'
         "Plug 'vim-scripts/Vim-R-plugin'
         "Plug 'jalvesaq/Nvim-R'
         "let R_path = '/path/to/my/preferred/R/version/bin'
@@ -342,12 +310,6 @@ call plug#begin()
         "vmap <Leader>m <Plug>RDSendSelection
         "nmap <Leader>s <Plug>RDSendLine
         ":Rhelp topic
-        Plug 'MarcWeber/vim-addon-mw-utils'
-        "--------------------------------------------------------------------------------- 
-        Plug 'Shougo/neomru.vim'
-        "--------------------------------------
-        Plug 'kien/ctrlp.vim'
-        Plug 'wincent/command-t'
 
                 " nmap <Leader>f :GFiles<CR>
                 " nmap <Leader>F :Files<CR>
@@ -426,9 +388,6 @@ call plug#begin()
         Plug 'nickstenning/honcho'
         "4Go
         Plug 'mattn/gom'
-        Plug 'roxma/python-support.nvim'
-                let g:python_support_python2_require = 0
-                let g:python_support_python3_require = 0
         "--------------------------------------------------------------------------------- 
         function! DoRemote(arg)
                 UpdateRemotePlugins
@@ -531,92 +490,6 @@ call plug#end()
         nnoremap sm :ShowMaps<CR>            " Map keys to call the function
 "-4SynColor-}}}
 
-"-AAA5-Ulty--NeoSnippet--Ctrl-B--Expander0------------------------------------------------------------------{{{
-        "-!!!-Insert completion-!!!---------
-        silent! set complete& completeopt=menu infercase pumheight=10 noshowfulltag shortmess+=c
-        "suppress intro message because the above makes it look bad
-        set shortmess+=I
-        "--------------------------------------------
-        "------------------------------------------------------------------------------------------
-        "inoremap <silent> <C-]> <C-x><C-]>
-        "inoremap <silent> <C-u> <C-x><C-u>
-        "----------------------------------------------------
-        let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-        let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-        let g:SuperTabContextDiscoverDiscovery =
-                \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-        "----------------------------------------------------
-        let g:SuperTabContextDefaultCompletionType = "<c-n>"
-        let g:SuperTabDefaultCompletionType = "<c-n>"
-        let g:SuperTabLongestHighlight = 1
-        let g:SuperTabCrMapping = 1
-        let g:SuperTabClosePreviewOnPopupClose = 1
-
-        "------------------------------------------------------------------------------------------
-        function! JumpToCSS()
-                let id_pos = searchpos("id", "nb", line('.'))[1]
-                let class_pos = searchpos("class", "nb", line('.'))[1]
-
-                if class_pos > 0 || id_pos > 0
-                        if class_pos < id_pos
-                                execute ":vim '#".expand('<cword>')."' **/*.less"
-                        elseif class_pos > id_pos
-                                execute ":vim '.".expand('<cword>')."' **/*.less"
-                        endif
-                endif
-        endfunction
-
-        "nnoremap <leader>e :call JumpToCSS()<CR>zz
-        "------------------------------------------------------------------------------------------
-        imap <expr> <c-z> TabComplete()
-        smap <expr> <c-z> TabComplete()
-        xmap <expr> <c-z> TabComplete()
-
-        function! TabComplete()
-                if neosnippet#expandable_or_jumpable()
-                        return "\<Plug>(neosnippet_expand_or_jump)"
-                elseif &filetype =~ 'html\|css' && IsEmmetExpandable()
-                        return "\<plug>(emmet-expand-abbr)"
-                elseif pumvisible()
-                        return "\<c-n>"
-                else
-                        return "\<tab>"
-                endif
-        endfunction
-        "------------------------------------------------------------------
-        " function! TabComplete()
-        " if neosnippet#expandable_or_jumpable()
-        "         return "\<Plug>(neosnippet_expand_or_jump)"
-        "         elseif &filetype =~ 'html\|css' && emmet#isExpandable()
-        "         return "\<plug>(emmet-expand-abbr)"
-        "         elseif pumvisible()
-        "         return "\<c-n>"
-        " endif
-        " endfunction
-
-        "------------------------------------------------------------------------------------------
-        function! IsEmmetExpandable()
-                if !emmet#isExpandable() | return 0 | endif
-                if &filetype =~ 'css' | return 1 | endif
-
-                let expr = matchstr(getline('.')[:col('.')], '\(\S\+\)$')
-                return expr =~ '[.#>+*]' || index(s:emmetElements, expr) >= 0
-        endfunction
-
-        let s:emmetElements = ['a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside', 'audio', 'b', 'base', 'basefont', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'frame', 'frameset', 'h1', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']
-        \ + ['emb', 'btn', 'sty', 'dlg', 'fst', 'fig', 'leg', 'tarea', 'hdr', 'cmd', 'colg', 'art', 'fset', 'src', 'prog', 'bq', 'kg', 'adr' , 'cap', 'datag', 'datal', 'sect', 'str', 'obj', 'ftr', 'optg', 'ifr', 'out', 'det', 'acr', 'opt']
-
-        "------------------------------------------------------------------------------------------
-        " imap <leader><tab> <C-x><C-o>
-        "==========================================================================================
-        set runtimepath+=~/.config/nvim/plugged/neosnippet.vim/
-        set runtimepath+=~/.config/nvim/plugged/neosnippet-snippets/
-        "==========================================================================================
-        set pumheight=12
-        hi Pmenu  ctermfg=202 ctermbg=14
-        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
-        hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
-"-5-Complete-}}}
 "-AAA6--GitGutter-------------------------------------------------------------------------------------------{{{
         let g:gitgutter_signs = 1
         let g:gitgutter_max_signs = 2000
@@ -840,6 +713,7 @@ call plug#end()
         set wildignore+=lib
         "silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
 "-16-}}}
+
 "-AAA17-CMDHeight2--Verbose--MAKE-----------------------------------------------------------------------{{{
         "Instead of setting 'verbose' in your vimrc, use autocommands, as follows (for instance)
         if &cmdheight == 1
@@ -1013,9 +887,6 @@ call plug#end()
         augroup END
 "-19py-}}}
 
-        "-Fix window position of help------------------------------------------------------
-        au! FileType vim,help nnoremap M :exec "help" expand("<cword>")<CR>
-        "----------------------------------------------------------------------------------
 
 
 "-AAA21--PLAY--Start--Ag--CtrlP--Unite--CommandT--BigList-400-------------------------------------------------------{{{
@@ -1031,175 +902,6 @@ call plug#end()
                 let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
                 let g:unite_source_grep_recursive_opt = ''
         endif
-        "===SetPLAY2===============================================================================
-        " In Neovim, you can set up fzf window using a Vim command
-        let g:fzf_layout = { 'window': 'enew' }
-        let g:fzf_layout = { 'window': '-tabnew' }
-        let g:fzf_layout = { 'window': '10split enew' }
-
-        "let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-
-        let g:fzf_colors =
-                                \ { 'fg':      ['fg', 'Comment'],
-                                \ 'bg':      ['bg', 'Normal'],
-                                \ 'hl':      ['fg', 'Comment'],
-                                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-                                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn', 'Normal'],
-                                \ 'hl+':     ['fg', 'Statement'],
-                                \ 'info':    ['fg', 'PreProc'],
-                                \ 'border':  ['fg', 'Ignore'],
-                                \ 'prompt':  ['fg', 'Conditional'],
-                                \ 'pointer': ['fg', 'Exception'],
-                                \ 'marker':  ['fg', 'Keyword'],
-                                \ 'spinner': ['fg', 'Comment'],
-                                \ 'header':  ['fg', 'Comment'] }
-
-        "==========================================================================================
-        function! s:fzf_statusline()
-                highlight fzf1 ctermfg=161 ctermbg=2
-                highlight fzf2 ctermfg=23 ctermbg=9
-                highlight fzf3 ctermfg=237 ctermbg=13
-                setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-        endfunction
-        autocmd! User FzfStatusLine call <SID>fzf_statusline()
-        "---------------------Ctrl-x--Lynx---------------------------------------------------------
-        let g:fzf_command_prefix = 'Fzf'
-        let g:fzf_action = {
-                                \ 'ctrl-t': 'tab split',
-                                \ 'ctrl-x': ':Lynx',
-                                \ 'ctrl-v': 'vsplit' }
-        "------------------------------------------------------------------------------------------
-        " Mapping selecting mappings
-        nmap <leader><tab> <plug>(fzf-maps-n)
-        xmap <leader><tab> <plug>(fzf-maps-x)
-        omap <leader><tab> <plug>(fzf-maps-o)
-
-        imap <expr><C-j> fzf#vim#complete#word({'left': '15%'})
-        imap <C-l> <plug>(fzf-complete-line)
-        "********NiceNice*****************************************************************
-        command! FZFTag if !empty(tagfiles()) | call fzf#run({
-        \ 'source': "cat " . join(tagfiles()) . ' | grep -P "' . expand('%:t') . '"',
-        \ 'sink': function('<sid>tag_handler'),
-        \ 'options': '+m --with-nth=1',
-        \ 'down': '50%'
-        \ }) | else | echo 'No tags' | endif
-
-        function! s:tag_handler(tag)
-            if !empty(a:tag)
-                let token = split(split(a:tag, '\t')[2],';"')[0]
-                let m = &magic
-                setlocal nomagic
-                execute token
-                if m
-                    setlocal magic
-                endif
-            endif
-        endfunction
-        nnoremap <silent> <Leader>t :FZFTagA<cr>
-        "**********************************************************************************
-        "-[Buffers] Jump to the existing window if possible
-        let g:fzf_buffers_jump = 1
-        "-[[B]Commits] Customize the options used by 'git log':
-        let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-        "-[Tags] Command to generate tags file
-        let g:fzf_tags_command = 'ctags -R'
-        "-[Commands] --expect expression for directly executing the command
-        let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-        "---???------------------------------------------------------------------------------------
-        let generate_tags=1
-
-        "===SetPLAY3===============================================================================
-        call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
-                                \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
-
-        "------------------------------------------------------------------------------------------
-        call unite#filters#sorter_default#use(['sorter_rank'])
-        call unite#filters#matcher_default#use(['matcher_fuzzy'])
-        call unite#filters#matcher_default#use(['matcher_fzf'])
-
-        "===SetPLAY5===============================================================================
-        "   - :Unite [{options}] {source's'}
-        "      - parameters of source
-        "          - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
-        "          - e.g. file:foo\:bar -- use \ to escape
-        "          - e.g. file:foo::bar -- ['foo', '', 'bar']
-        "   - press 'I' to search after prompt '>'
-        "       - *word,
-        "       - **/foo (directory recursively)
-        "       - foo bar (AND)
-        "       - foo|bar (OR)
-        "       - foo !bar (negative)
-        ":UniteResume, :UniteBookmarkAdd,
-        let g:ctrlp_cmd = 'CtrlPMRU'
-        let g:ctrlp_extensions = ['tag']
-        let g:ctrlp_match_window_bottom = 0
-        let g:ctrlp_match_window_reversed = 0
-        let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-        let g:ctrlp_dotfiles = 0
-        let g:ctrlp_switch_buffer = 0
-        let g:ctrlp_working_path_mode = 0
-        let g:ctrlp_map = '<leader>p'
-        let g:ctrlp_open_new_file = 'R'
-        "let g:ctrlp_working_path_mode = 'ar'
-        "===SetPLAY6===============================================================================
-        let g:CommandTMaxFiles = 10000 " maximum number of files scan.
-        let g:CommandTMaxDepth = 15
-        let g:CommandTMaxCacheDirectories = 1 " 0: no limit.
-        let g:CommandTMaxHeight = 15 " 0: as much as available space.
-        let g:CommandTMinHeight = 0 " 0: single line.
-        let g:CommandTAlwaysShowDotFiles = 0 " only if entered string contains a dot
-        let g:CommandTNeverShowDotFiles = 0
-        let g:CommandTScanDotDirectories = 0
-        let g:CommandTMatchWindowAtTop = 0 " match window appear at bottom.
-        let g:CommandTMatchWindowReverse = 1 " let the best match at bottom.
-        let g:CommandTTageIncludeFilenames = 1 " include filenames when matches
-        "===SetPLAY7===============================================================================
-        let g:ycm_filetype_blacklist = {
-                                \ 'tagbar': 1,
-                                \ 'qf': 1,
-                                \ 'notes': 1,
-                                \ 'markdown': 1,
-                                \ 'unite': 1,
-                                \ 'text': 1,
-                                \ 'vimwiki': 1,
-                                \ 'pandoc': 1,
-                                \ 'infolog': 1,
-                                \ 'mail': 1
-                                \}
-
-        "let g:ycm_complete_in_comments=1
-        "" load ycm conf by default
-        let g:ycm_confirm_extra_conf=0
-        "" turn on tag completion
-        let g:ycm_collect_identifiers_from_tags_files=1
-        "" start completion from the first character
-        let g:ycm_min_num_of_chars_for_completion=3
-        "" don't cache completion items
-        let g:ycm_cache_omnifunc=0
-        "" complete syntax keywords
-        let g:ycm_seed_identifiers_with_syntax=1
-        "------------------------------------------------------------------------------------------
-        "noYet- let g:ycm_show_diagnostics_ui = 1
-        "let g:ycm_enable_diagnostic_highlighting = 1
-        "------------------------------------------------------------------------------------------
-        "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-        let g:ycm_autoclose_preview_window_after_completion = 1
-        let g:ycm_error_symbol = 'x>'
-        let g:ycm_warning_symbol = 'w>'
-        let g:ycm_enable_diagnostic_signs = 1
-        let g:ycm_add_preview_to_completeopt = 1
-        let g:ycm_use_ultisnips_completer = 1
-        let g:ycm_autoclose_preview_window_after_insertion = 1
-        let g:ycm_key_detailed_diagnostics = '<leader>d'
-        let g:ycm_key_invoke_completion = '<C-Space>'
-        let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-        let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
-        let g:ycm_key_list_stop_completion = ['<C-3>']
-        "used <C-Y>
-        map <C-;> :YcmCompleter GoToImprecise<CR>
-        " let g:ycm_autoclose_preview_window_after_insertion = 0
-        " let g:ycm_autoclose_preview_window_after_completion = 0
         "===SetPLAY7===============================================================================
         "===SetPLAY8===============================================================================
         " let g:ycm_semantic_triggers =  {
@@ -1218,29 +920,6 @@ call plug#end()
         "------------------------------------------------------------------------------------------
         " automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        "------------------------------Ulti-Expander-Unite----------------------------------
-        function! UltiSnipsCallUnite()
-                Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
-                return ''
-        endfunction
-        "===PLAY1==BliZZ==F3+(C-q)=================================================================
-                inoremap <F3> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-                let g:UltiSnipsExpandTrigger="<tab>"
-                let g:UltiSnipsJumpForwardTrigger="<C-q>"
-                let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-        "==========================================================================================
-        "------------------------------------------------------------------
-        "Tell Neosnippet about the other snippets
-        " let g:neosnippet#snippets_directory = '~/.vim/snippets'    
-        "-???-let g:neosnippet#enable_snipmate_compatibility = 1
-        let g:neosnippet#snippets_directory = "~/.config/nvim/plugged/neosnippet-snippets/neosnippets/"
-        "===PLAY2==BLiZZ==(C-s)+(C-b)==============================================================
-                imap <C-s>    <Plug>(neosnippet_start_unite_snippet)
-                imap <C-b>    <Plug>(neosnippet_expand_or_jump)
-                smap <C-b>    <Plug>(neosnippet_expand_or_jump)
-                xmap <C-b>    <Plug>(neosnippet_expand_target)
-                nnoremap <Leader>y :<C-u>Unite -buffer-name=neosnippet neosnippet<CR>
-        "==========================================================================================
 
         "==========================================================================================
 

@@ -52,15 +52,6 @@ call plug#begin('~/.config/nvim/plugged/')
 call plug#end()
 
         "--------------------------------------------------------------------------------
-        autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd! FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd! FileType python setlocal omnifunc=jedi#completions
-        autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd! FileType ruby setlocal omnifunc=rubycomplete#Complete
-        autocmd! FileType haskell setlocal omnifunc=necoghc#omnifunc
-        "--------------------------------------------------------------------------------
         let g:deoplete#enable_at_startup = 1
         "call deoplete#enable_logging('DEBUG', 'deoplete.log')
         call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
@@ -82,7 +73,7 @@ call plug#end()
         let g:jedi#show_call_signatures = "1"
         let g:jedi#goto_command = "gt"
         let g:jedi#auto_close_doc = 0  " close preview window after completion
-        "--------------------------------------------------------------------------------
+        "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         call deoplete#custom#option('refresh_always', v:true)
         let g:deoplete#enable_ignore_case = 1
         let g:deoplete#enable_smart_case = 1
@@ -105,16 +96,6 @@ call plug#end()
                                 \ 'python': ['/usr/local/bin/pyls'],
                                 \ }
 
-        "------------------------------------------------------------------------- 
-        "let g:LanguageClient_serverCommands.python = ['pyls']
-        " set deoplete sources
-        "let g:deoplete#sources = {}
-        "let g:deoplete#sources.python = ['LanguageClient']
-        "let g:deoplete#sources.python3 = ['LanguageClient']
-        "let g:deoplete#sources.vim = ['vim']
-        "let g:deoplete#sources.cpp = ['LanguageClient']
-        "let g:deoplete#sources.ruby = ['LanguageClient']
-        "let g:deoplete#sources.c = ['LanguageClient']
         "------------------------------------------------------------------------- 
         let g:deoplete#sources#jedi#statement_length = 30
         let g:deoplete#sources#jedi#show_docstring = 1
@@ -161,3 +142,41 @@ call plug#end()
         hi Pmenu  ctermfg=1 ctermbg=255
         hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
         hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
+
+        "--------------------------------------------------------------------------------
+        autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd! FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd! FileType python setlocal omnifunc=jedi#completions
+        autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd! FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd! FileType haskell setlocal omnifunc=necoghc#omnifunc
+        "--------------------------------------------------------------------------------
+        autocmd! FileType python setlocal completeopt-=preview
+        "--------------------------------------------------------------------------------
+        set complete=.,w,b,t,i,u,kspell
+        "            | | | | | | |
+        "            | | | | | | `-dict
+        "            | | | | | `-unloaded buffers
+        "            | | | | `-include files
+        "            | | | `-tags
+        "            | | `-other loaded buffers
+        "            | `-windows buffers
+        "            `-the current buffer
+        "--------------------------------------------
+        "set complete+=ispell
+        "set completeopt=menuone,menu,longest,preview
+        set omnifunc=syntaxcomplete#Complete
+        set completeopt=menu
+        "===PLAY8=========(C-o)====================================================================
+        inoremap <silent> <C-o> <C-x><C-o>
+        "inoremap <silent> <C-k> <C-x><C-k>
+        inoremap <silent> <C-d> <C-x><C-d>
+        inoremap <silent> <C-f> <C-x><C-f>
+        inoremap <silent> <C-l> <C-x><C-l>
+        "===PLAY15=================================================================================
+        nnoremap ;d mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
+
+        noremap <F4> :w<CR>:!python %<CR>
+

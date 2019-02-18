@@ -35,12 +35,15 @@ set nobeep
 # Dircolors
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
 #=============================================================
+export PATH=${PATH}:/home/red/nvim-linux64/bin/
+export PATH=${PATH}:/home/red/.fzf/bin/
+#=============================================================
 export LS_COLORS
 alias hh='history'
 alias so="source ~/.zshrc"
 alias nv='nvim'
+alias ni1='nvim -U NONE -u ~/git/aTest/dotFiles/nVim/ninitOkt18.vim'
 alias ni2='nvim -U NONE -u ~/git/aTest/dotFiles/nVim/start1ninit19.vim'
-export PATH=${PATH}:/home/red/nvim-linux64/bin/
 alias deo='deonvim NONE -u ~/git/aTest/dotFiles/nVim/minit.vim'
 
 
