@@ -45,19 +45,9 @@ call plug#begin('~/.config/nvim/plugged/')
                 "--------------------------------------------------------------------------
                 hi statusline ctermbg=10 ctermfg=Black  cterm=bold
                 hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
-
-        Plug 'Yggdroot/indentLine'
-                let g:indentLine_enabled = 1
-                let g:indentLine_noConcealCursor='nc'
-                let g:indentLine_color_term = 10
-                "let g:indentLine_setConceal = 0
-                "let g:indentLine_bgcolor_term = 202
-
-        Plug 'nathanaelkane/vim-indent-guides'
-                let g:indentLine_enabled = 1
-                let g:indent_guides_auto_colors = 1
-                hi IndentGuidesOdd   ctermbg=235
-                hi IndentGuidesEven  ctermbg=242
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------- 
         "----------------------------------------------------------------------------------- 
         "----------------------------------------------------------------------------------
         Plug 'tpope/vim-sleuth'         " indet reight ?
@@ -111,114 +101,7 @@ call plug#begin('~/.config/nvim/plugged/')
                 " <leader>gd to open diff
                 " :q to end diff
                 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        "------------------------------------------------------------------------------------------
-        Plug 'haya14busa/incsearch.vim'
-        Plug 'vim-scripts/SearchComplete'
-        "--------------------------------------------------------------------------------- 
-        Plug 'guns/xterm-color-table.vim'
-        "--------------------------------------------------------------------------------- 
-        Plug 'mtth/scratch.vim'
-                nnoremap <F7> :Scratch<CR>
-                nnoremap <F6> :ScratchPreview<CR>
-        "----------------------------------------------------
-        Plug 'henrik/vim-qargs'
-        "----------------------------------------------------
-        Plug 'maxbrunsfeld/vim-yankstack'
-                nmap zp <Plug>yankstack_substitute_older_paste
-                nmap zn <Plug>yankstack_substitute_newer_paste
-        "--------------------------------------
-        "-------------------------------------------------------------------------
-        Plug 'AndrewRadev/undoquit.vim'
-                let g:undoquit_mapping = ';q' 
-                "---c-w+u------ 
-        "------------------------------------------------------------------------------------------ 
-        Plug 'scrooloose/nerdtree'
-                "" NERDTree
-                let NERDTreeShowBookmarks=1
-                let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-                let NERDTreeChDirMode=0
-                let NERDTreeQuitOnOpen=1
-                let NERDTreeMouseMode=2
-                let NERDTreeShowHidden=1
-                let NERDTreeKeepTreeInNewTab=1
-                " always open NERDTree in the appropriate directory.
-                function! NERDTreeToggleInCurDir()
-                        if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-                                exe ":NERDTreeClose"
-                        else
-                                if (expand("%:t") != '')
-                                        exe ":NERDTreeFind"
-                                else
-                                        exe ":NERDTreeToggle"
-                                endif
-                        endif
-                endfunction
-
-                map <F3> :call NERDTreeToggleInCurDir()<CR>
-                "" NERDCommenter
-                let g:NERDDefaultAlign = 'left'
-                let g:NERDCommentEmptyLines = 1
-                let g:NERDTrimTrailingWhitespace = 1
-        "----------------------------------------------------------------------------------
-        "# Plug 'tpope/vim-surround'
-        Plug 'machakann/vim-sandwich'
-                " sd,sr, sa{motion/textobject}{addition}(normal and visual mode)
-                " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-                " Sandwiched text could be resolved into two parts, {surrounding} and {surrounded text}.
-                " sa add surroundings: mapped to the key sequence sa
-                " sd Delete surroundings: mapped to the key sequence sd
-                " sr Replace surroundings: mapped to the key sequence sr
-                " ib Search and select a sandwiched text automatically: mapped to the key sequence ib and ab
-                " is Search and select a sandwiched text with query: mapped to the key sequence is and as
-                " da" will delete a quoted sympy.pprint(string.) 
-                "(<b>'Sbandawitch'</b>) 
-                nmap s <Nop>
-                xmap s <Nop>
-        "-------------------------------------------------------------
-                let g:textobj_sandwich_no_default_key_mappings = 1
-                omap ia <Plug>(textobj-sandwich-auto-i)
-                xmap ia <Plug>(textobj-sandwich-auto-i)
-                omap aa <Plug>(textobj-sandwich-auto-a)
-                xmap aa <Plug>(textobj-sandwich-auto-a)
-        "--------------------------------------------------------------
-        "[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
-        "---------------SYMPY-SANDWICH---------------------------------
-                vmap sb "zdi sympy.pprint(<c-r>z)<esc>
-                vmap sn "zdi print(<c-r>z)<esc> 
-                "-wrap <b></b> around selected text
-                "vmap sb "zdi<b><c-r>z</b><esc>
-                "-wrap <?=   ?> around visually selected text
-                "vmap st "zdi<?= <c-r>z ?><esc> 
         "---NoAutoClose-YCM----------------------------------------------------------------
-        Plug 'jiangmiao/auto-pairs'
-                "   <M-o> : neline with indentation
-                "   <M-a> : jump to of line
-                "   <M-n> : jump to next pairs
-                "   <M-e> : jump to end of pairs.
-                "   Ctrl-V ) : insert ) without trigger the plugin.
-                let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-                let g:AutoPairsShortcutToggle = '<M-p>'
-                let g:AutoPairsShortcutFastWrap = '<M-e>'
-                let g:AutoPairsShortcutJump = '<M-n>'
-                let g:AutoPairsShortcutBackInsert = '<M-b>'
-                let g:AutoPairsShortcuts = 1
-                let g:AutoPairsMapBS = 1
-                let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
-                " error in vimwiki <CR> Enter. but use upper inoremap can solve.
-                let g:AutoPairsMapSpace = 0
-                " error in abbreviations <space> auto expand.
-                let g:AutoPairsCenterLine = 1
-                let g:AutoPairsFlyMode = 1
-                let g:AutoPairsMapCR=0
-                let g:AutoPairsMapCh=1
-                let g:AutoPairsDelete = '<M-5>'
-        "---------------------------------------------------------------------------------
-        Plug 'wellle/visual-split.vim'
-                " :VSSplit, :VSSplitAbove or :VSSplitBelow to create the split
-                " :VSResize to execute the VSResize ex command on the selected range
-                nmap <C-W>r  <Plug>(Visual-Split-Resize)
-                nmap <C-W>s <Plug>(Visual-Split-Split)
-        "source ~/git/aTest/dotFiles/nVim/logoHtml.vim
 call plug#end()
 "-5plug2Stop-}}}
 

@@ -1,12 +1,6 @@
 
 "-AAA3-UnPlug-nPlugStart------------------------------------------------------------------------------------{{{
 call plug#begin()
-        Plug 'c9s/helper.vim'
-        Plug 'c9s/treemenu.vim'
-        Plug 'nixprime/cpsm'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-        Plug 'tomtom/tlib_vim'       
         "--------------------------------------------------------------------------------- 
         "Plug 'Shougo/vimshell.vim'
         "--------------------------------------------------------------------------------- 
@@ -32,7 +26,6 @@ call plug#begin()
         "------------------------------------------------------------------------- 
         "------------------------------------------------------------------------- 
         "------------------------------------------------------------------------- 
-
                 " highlight default link TagbarHelp       Comment
                 " highlight default link TagbarHelpKey    Identifier
                 " highlight default link TagbarHelpTitle  PreProc
@@ -61,13 +54,6 @@ call plug#begin()
         "         map fd :VimFilerCurrentDir<CR>
         "------------------------------------------------------------------------------------------
         Plug 'scrooloose/syntastic'
-        "------------------------------------------------------------------------------------------
-        Plug 'nvie/vim-flake8'
-        "------------------------------------------------------------------------------------------
-        Plug 'easymotion/vim-easymotion'
-                let g:EasyMotion_smartcase = 1
-                let g:EasyMotion_do_mapping = 0 "-Disable default mappings
-                nmap <LocalLeader><LocalLeader> <Plug>(easymotion-overwin-w)
         "------------------------------------------------------------------------------------------
         Plug 'haya14busa/vim-easyoperator-line'
                 xmap <LocalLeader>l <Plug>(easyoperator-line-select)
@@ -136,9 +122,6 @@ call plug#begin()
                 ":Coveragepy report
                 let g:coveragepy_uncovered_sign = '-'
         "--------------------------------------------------------------------------------- 
-        Plug 'osyo-manga/vim-brightest'
-                let g:brightest#highlight = { "group" : "Define" }
-        "---------------------------------------------------------------------------------- 
         Plug 'brooth/far.vim'
         Plug 'aghareza/vim-gitgrep'
         Plug 'motemen/git-vim'
@@ -157,51 +140,7 @@ call plug#begin()
                 " :GitStash
                 " :GitPush
                 " :GitPull
-        "----------------------------------------------------------------------------------
-        Plug 'kana/vim-textobj-user'
-        Plug 'gilligan/textobj-gitgutter'
-                vmap ih <Plug>(textobj-gitgutter-i)
-        "----------------------------------------------------------------------------------
-        Plug 'kana/vim-textobj-user'
-        Plug 'kana/vim-textobj-diff'
-        Plug 'reedes/vim-textobj-sentence'
-        Plug 'kana/vim-textobj-function'
-        Plug 'Julian/vim-textobj-brace'
-        Plug 'glts/vim-textobj-indblock'
-        Plug 'beloglazov/vim-textobj-quotes'
-        "---gi-----------------------------------------------------------------------------
-        Plug 'bps/vim-textobj-python'
-        "---gi-----------------------------------------------------------------------------
-        Plug 'terryma/vim-expand-region'
-                 "-Default-settings. 
-                 let g:expand_region_text_objects = {
-                                         \ 'iw'  :0,
-                                         \ 'iW'  :0,
-                                         \ 'i"'  :0,
-                                         \ 'i''' :1,
-                                         \ 'ib'  :1,
-                                         \ 'i)'  :1,
-                                         \ 'iB'  :1, 
-                                         \ 'i}'  :1, 
-                                         \ 'i]'  :1,
-                                         \ 'if'  :1,
-                                         \ 'io'  :1,
-                                         \ 'ip'  :1,
-                                         \ 'ih'  :1
-                                         \ }
-        "----------------------------------------------------------------------------------
-        "----------------------------------------------------------------------------------
-        nmap <m-1> <esc>viq<left> 
-                nmap <m-q> <esc>vaq<left> 
-                        nmap <m-0> <esc>vab<left> 
-                                nmap <m-3> <esc>viB 
-                                        nmap <m-i> <esc>vio 
-                                        nmap <m-9> <esc>vif 
-                        nmap <m-8> <esc>vaf 
-                nmap <m-7> <esc>vip 
-        nmap <m-6> <esc>vih 
-        "---------------------------------------------------------------------------------- 
-        "---------------------------------------------------------------------------------- 
+       "---------------------------------------------------------------------------------- 
         " ci'q<<b>>({"  - 'change' insede "})</<b>>q'
         "-???- onoremap a i( , da ???-
         " vap / v2ap 
@@ -606,17 +545,6 @@ call plug#end()
                 endif
         endfunction
 
-        "-------------------------------------------------------------------------
-        "Clear hlsearch and set nopaste
-        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-        "-------------------------------------------------------------------------
-        nmap <silent> n nzz
-        nmap <silent> N Nzz
-        nmap <silent> g* g*zz
-        nmap <silent> g# g#zz
-        " Super useful! From an idea by Michael Naumann
-        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
         "----------------------------------------------------------------------------------
         "---------------------------------------------------------------------------------
 
@@ -690,29 +618,6 @@ call plug#end()
 "-12Diff-}}}
 
 
-"-AAA16-Wildmenu--------------------------------------------------------------------------------------------{{{
-        " More useful command-line completion
-        au! FocusLost * :silent! wall     "Save when losing focus
-        set wildmenu
-        set wildmode=list:longest
-        set wildmode=list:full
-        set wildignore+=.hg,.git,.svn                    " Version control
-        set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-        set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-        set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-        set wildignore+=*.spl                            " compiled spelling word lists
-        set wildignore+=*.sw?                            " Vim swap files
-        set wildignore+=*.DS_Store                       " OSX bullshit
-        set wildignore+=*.luac                           " Lua byte code
-        set wildignore+=migrations                       " Django migrations
-        set wildignore+=*.pyc                            " Python byte code
-        set wildignore+=*.orig                           " Merge resolution files
-        set wildignore+=*.fasl                           " Lisp FASLs
-        set wildignore+=*.dx64fsl                        " CCL
-        set wildignore+=classes
-        set wildignore+=lib
-        "silent! set wildchar=9 nowildmenu wildmode=list:longest wildoptions= wildignorecase cedit=<C-k>
-"-16-}}}
 
 "-AAA17-CMDHeight2--Verbose--MAKE-----------------------------------------------------------------------{{{
         "Instead of setting 'verbose' in your vimrc, use autocommands, as follows (for instance)
@@ -996,19 +901,6 @@ call plug#end()
         " inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
         " inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
         "--------------------------------------------------
-        noremap <S-j> :PreviewScroll -1<cr>
-        noremap <S-l> :PreviewScroll +1<cr>
-        "------------------------------------------------------------------------------------------ 
-        fun! ScrollOtherWindow(dir)
-                if a:dir == "down"
-                        let move = "\<C-E>"
-                elseif a:dir == "up"
-                        let move = "\<C-Y>"
-                endif
-                exec "normal \<C-W>p" . move . "\<C-W>p"
-        endfun
-        nmap <silent> <C-M-Down> :call ScrollOtherWindow("down")<CR>
-        nmap <silent> <C-M-Up> :call ScrollOtherWindow("up")<CR>
         "===AG=====================================================================================
         let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 

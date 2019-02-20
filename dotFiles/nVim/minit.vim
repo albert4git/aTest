@@ -1,7 +1,7 @@
 "-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
-" File: start1ninit19.vim
+" File: minit.vim
 " Author: red
-" Last Modified: 11 Feb 2019
+" Last Modified: 19 Feb 2019
 "======================================================================================================================
         set path+=.,/home/red/git/aTest/pyLabGitPdbPythonMode27
         "-----------------------------------------------------------------------------------
@@ -45,7 +45,8 @@
         nnoremap <m-left> :vertical resize -3<cr>
         nnoremap <m-up> :resize +3<cr>
         nnoremap <m-down> :resize -3<cr>
-        "-AAA4-undo-----------------------------------------------------------------------------{{{
+
+"-AAA4-undo-------------------------------------------------------------------------------------------------{{{
         set noswapfile
         set backup                               " enable backups
         set undodir=~/.config/nvim/undoDir/      " undo files
@@ -64,7 +65,7 @@
         "----------------------------------------------------------------------------------
         set undofile
         set undoreload=10000
-        "-4undo-}}}
+"-4undo-}}}
 
 "-AAA5--PreSetUp-Appearance--Edit--Clipboard--Bell--ExpandTab-Hist--SmartEnter------------------------------{{{
         "-magic--------    
@@ -148,7 +149,7 @@
         "------------------------------------------------------------------------------------------
 "-5SetUp-}}}
 
-"-AAA2-------------------------------------------------------------------------------------------------{{{
+"-AAA2------------------------------------------------------------------------------------------------------{{{
         function! ScriptExecute()
                 :!chmod u+x %
                 :w
@@ -180,11 +181,6 @@
         nnoremap <F1> <ESC>
         vnoremap <F1> <ESC>
         "---------------------------------------------------------------------------------- 
-        nnoremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
-        nnoremap <buffer> <C-F2> <Esc>:helpgrep <C-r><C-w><CR>
-        "-Fix window position of help------------------------------------------------------
-        au! FileType vim,help nnoremap M :exec "help" expand("<cword>")<CR>
-        "----------------------------------------------------------------------------------
 "-2Remap-}}}
 
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -205,7 +201,7 @@
         source ~/git/aTest/dotFiles/nVim/legoCyan.vim
         ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-"-aaa20-PrePLAY0-remap---------------------------------------------------------------------------------------{{{
+"-aaa20-PrePLAY0-remap--------------------------------------------------------------------------------------{{{
         "Ex: :Ex Pull word under cursor into :Ex LHS of a subs ztitute (replace)
         "1y$  //yank current row to register 1
         "<C-r>a to paste from register a
@@ -299,11 +295,25 @@
         nmap <silent> N Nzz
         nmap <silent> g* g*zz
         nmap <silent> g# g#zz
-        " Super useful! From an idea by Michael Naumann
-        " vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-        " vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+        "--Super-useful! From an idea by Michael Naumann--
+        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
         "----------------------------------------------------------------------------------
+        noremap <S-j> :PreviewScroll -1<cr>
+        noremap <S-l> :PreviewScroll +1<cr>
+        "------------------------------------------------------------------------------------------ 
+        fun! ScrollOtherWindow(dir)
+                if a:dir == "down"
+                        let move = "\<C-E>"
+                elseif a:dir == "up"
+                        let move = "\<C-Y>"
+                endif
+                exec "normal \<C-W>p" . move . "\<C-W>p"
+        endfun
+        nmap <silent> <C-M-Down> :call ScrollOtherWindow("down")<CR>
+        nmap <silent> <C-M-Up> :call ScrollOtherWindow("up")<CR>
 "-20Remap-}}}
+
 "-AAA16-Wildmenu--------------------------------------------------------------------------------------------{{{
         " More useful command-line completion
         au! FocusLost * :silent! wall     "Save when losing focus

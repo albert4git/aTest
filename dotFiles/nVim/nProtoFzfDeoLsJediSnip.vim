@@ -3,7 +3,14 @@ let g:python3_host_prog = '/usr/bin/python3'
 "let g:deoplete#sources#jedi#extra_path = $PYTHONPATH
 
 "-AAA3-UnPlug-nPlugStart------------------------------------------------------------------------------------{{{
-        call plug#begin('~/.config/nvim/plugged/')
+call plug#begin('~/.config/nvim/plugged/')
+        Plug 'c9s/helper.vim'
+        Plug 'c9s/treemenu.vim'
+        Plug 'nixprime/cpsm'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+        Plug 'tomtom/tlib_vim'       
+
         " Plug 'eparreno/vim-l9'
         " Plug 'vim-scripts/CRefVim'
         " Plug 'vim-scripts/foo.vim'
@@ -11,23 +18,26 @@ let g:python3_host_prog = '/usr/bin/python3'
         " Plug 'alvan/vim-closetag'
         " Plug 'WolfgangMehner/bash-support'
         " Plug 'KnoP-01/tortus'
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
+        Plug 'osyo-manga/vim-brightest'
+                let g:brightest#highlight = { "group" : "Define" }
+        "---------------------------------------------------------------------------------- 
         Plug 'vim-scripts/TagHighlight'
-        " TagHighlight {{{ highlight names of class, variable, types in code.
-            " Usage: :UpdateTypesFile
-            if !exists('g:TagHighlightSettings')
-                    let g:TagHighlightSettings = {}
-            endif
-            let g:TagHighlightSettings['TagFileName'] = 'tags'
-            let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
-            let g:TagHighlightSettings['CtagsVariant'] = 'exuberant'
-            let g:TagHighlightSettings['CtagsArguments'] = []
-            let g:TagHighlightSettings['CtagsExtraArguments'] = []
-            let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
-            let g:TagHighlightSettings['PythonVariantPriority'] = [
-                                    \ "if_pyth3", "if_pyth", "python", "compiled",
-                                    \ ]
-        "--------------------------------------------------------------------------------- 
+        " TagHighlight highlight names of class, variable, types in code.
+        " Usage: :UpdateTypesFile
+                if !exists('g:TagHighlightSettings')
+                        let g:TagHighlightSettings = {}
+                endif
+                let g:TagHighlightSettings['TagFileName'] = 'tags'
+                let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
+                let g:TagHighlightSettings['CtagsVariant'] = 'exuberant'
+                let g:TagHighlightSettings['CtagsArguments'] = []
+                let g:TagHighlightSettings['CtagsExtraArguments'] = []
+                let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
+                let g:TagHighlightSettings['PythonVariantPriority'] = [
+                                        \ "if_pyth3", "if_pyth", "python", "compiled",
+                                        \ ]
+        "---------------------------------------------------------------------------------- 
         Plug 'Shougo/echodoc.vim'
                 set cmdheight=2
                 let g:echodoc_enable_at_startup = 1
@@ -45,7 +55,7 @@ let g:python3_host_prog = '/usr/bin/python3'
                 "let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
                 "let g:pyref_python = $HOME . '/docs/python'
                 "let g:pyref_python = '/usr/bin/pydoc'
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         " NeoBundle 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
         Plug 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
                 let g:ref_pydoc_cmd = 'pydoc'
@@ -60,7 +70,7 @@ let g:python3_host_prog = '/usr/bin/python3'
                 " " let g:pydoc_window_lines=0.5
                 " let g:pydoc_cmd = '/usr/bin/pydoc'
                 " " let g:pydoc_highlight=0
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'tyru/capture.vim'
         Plug 'thinca/vim-quickrun'
         Plug 'vim-airline/vim-airline'
@@ -83,10 +93,10 @@ let g:python3_host_prog = '/usr/bin/python3'
                 hi statusline ctermbg=10 ctermfg=Black  cterm=bold
                 hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
 
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'skywind3000/vim-preview'
                 "VSSplit
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'kshenoy/vim-signature'
                 " :SignatureListMarkers         : List all markers
                 " :SignatureListMarkers 1       : List only the '!' marker
@@ -94,10 +104,10 @@ let g:python3_host_prog = '/usr/bin/python3'
                 " :SignatureListMarkers 0, 2    : List only ) marker with 2 lines of context
                 " :SignatureListMarkers '', 2   : List all markers with 2 lines of context
                 " :SignatureListMarkers '!@', 2 : List only the '!' and '@' markers and show
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'machakann/vim-highlightedyank'
                 let g:highlightedyank_highlight_duration = -1
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'Yggdroot/indentLine'
                 let g:indentLine_enabled = 1
                 let g:indentLine_noConcealCursor='nc'
@@ -105,17 +115,25 @@ let g:python3_host_prog = '/usr/bin/python3'
                 "let g:indentLine_setConceal = 0
                 "let g:indentLine_bgcolor_term = 202
 
-        "--------------------------------------------------------------------------------- 
+        Plug 'nathanaelkane/vim-indent-guides'
+                let g:indent_guides_indent_levels = 30
+                let g:indent_guides_auto_colors = 1
+                let g:indent_guides_color_change_percent = 10
+                let g:indent_guides_start_level = 1
+                let g:indent_guides_tab_guides = 1
+                hi IndentGuidesOdd   ctermbg=22
+                hi IndentGuidesEven  ctermbg=239
+        "---------------------------------------------------------------------------------- 
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         Plug 'zchee/deoplete-jedi'
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'autozimu/LanguageClient-neovim', {
                                 \ 'branch': 'next',
                                 \ 'do': 'bash install.sh',
                                 \ }
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'vim-scripts/Lynx-Offline-Documentation-Browser'
-        "--------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'mileszs/ack.vim'
         Plug 'jremmen/vim-ripgrep'
         "----------------------------------------------------------------------------------
@@ -266,16 +284,135 @@ let g:python3_host_prog = '/usr/bin/python3'
                                         \   'jsx': ['eslint'],
                                         \   'python': ['flake8'],
                                         \}
-        "-----------------------------------------------------------------------------------
+        "----------------------------------------------------------------------------------
         Plug 'haya14busa/incsearch.vim'
         Plug 'vim-scripts/SearchComplete'
-        "----------------------------------------------------------------------------------- 
+        "---------------------------------------------------------------------------------- 
         Plug 'gko/vim-coloresque'
+
+        "-AAA3----------------------------------------------------------------------------------------------{{{
+        "" Plug 'tpope/vim-surround'
+        Plug 'machakann/vim-sandwich'
+                " sd,sr, sa{motion/textobject}{addition}(normal and visual mode)
+                " let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+                " Sandwiched text could be resolved into two parts, {surrounding} and {surrounded text}.
+                " sa add surroundings: mapped to the key sequence sa
+                " sd Delete surroundings: mapped to the key sequence sd
+                " sr Replace surroundings: mapped to the key sequence sr
+                " ib Search and select a sandwiched text automatically: mapped to the key sequence ib and ab
+                " is Search and select a sandwiched text with query: mapped to the key sequence is and as
+                " da" will delete a quoted sympy.pprint(string.) 
+                "(<b>'Sbandawitch'</b>) 
+                nmap s <Nop>
+                xmap s <Nop>
+        "-------------------------------------------------------------
+                let g:textobj_sandwich_no_default_key_mappings = 1
+                omap ia <Plug>(textobj-sandwich-auto-i)
+                xmap ia <Plug>(textobj-sandwich-auto-i)
+                omap aa <Plug>(textobj-sandwich-auto-a)
+                xmap aa <Plug>(textobj-sandwich-auto-a)
+        "--------------------------------------------------------------
+        "---[ {(hello) ( noch ) ('Mal') ("tomos") } tormos]
+        "---------------SYMPY-SANDWICH---------------------------------
+                vmap sb "zdi sympy.pprint(<c-r>z)<esc>
+                vmap sn "zdi print(<c-r>z)<esc> 
+                "-wrap <b></b> around selected text
+                "vmap sb "zdi<b><c-r>z</b><esc>
+                "-wrap <?=   ?> around visually selected text
+                "vmap st "zdi<?= <c-r>z ?><esc> 
+        Plug 'jiangmiao/auto-pairs'
+                "   <M-o> : neline with indentation
+                "   <M-a> : jump to of line
+                "   <M-n> : jump to next pairs
+                "   <M-e> : jump to end of pairs.
+                "   Ctrl-V ) : insert ) without trigger the plugin.
+                let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+                let g:AutoPairsShortcutToggle = '<M-p>'
+                let g:AutoPairsShortcutFastWrap = '<M-e>'
+                let g:AutoPairsShortcutJump = '<M-n>'
+                let g:AutoPairsShortcutBackInsert = '<M-b>'
+                let g:AutoPairsShortcuts = 1
+                let g:AutoPairsMapBS = 1
+                let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
+                " error in vimwiki <CR> Enter. but use upper inoremap can solve.
+                let g:AutoPairsMapSpace = 0
+                " error in abbreviations <space> auto expand.
+                let g:AutoPairsCenterLine = 1
+                let g:AutoPairsFlyMode = 1
+                let g:AutoPairsMapCR=0
+                let g:AutoPairsMapCh=1
+                let g:AutoPairsDelete = '<M-5>'
+        "-nnn--------------------------------------------------------}}}
+
+        "-AAA3----------------------------------------------------------------------------------------------{{{
+        nnoremap <buffer> <F2> <Esc>:help <C-r><C-w><CR>
+        nnoremap <buffer> <C-F2> <Esc>:helpgrep <C-r><C-w><CR>
+        "-Fix window position of help------------------------------------------------------
+        au! FileType vim,help nnoremap M :exec "help" expand("<cword>")<CR>
+        "----------------------------------------------------------------------------------
+         Plug 'scrooloose/nerdtree'
+                 "" NERDTree
+                 let NERDTreeShowBookmarks=1
+                 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+                 let NERDTreeChDirMode=0
+                 let NERDTreeQuitOnOpen=1
+                 let NERDTreeMouseMode=2
+                 let NERDTreeShowHidden=1
+                 let NERDTreeKeepTreeInNewTab=1
+                 " always open NERDTree in the appropriate directory.
+                 function! NERDTreeToggleInCurDir()
+                         if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+                                 exe ":NERDTreeClose"
+                         else
+                                 if (expand("%:t") != '')
+                                         exe ":NERDTreeFind"
+                                 else
+                                         exe ":NERDTreeToggle"
+                                 endif
+                         endif
+                 endfunction
+                 "" NERDCommenter
+                 let g:NERDDefaultAlign = 'left'
+                 let g:NERDCommentEmptyLines = 1
+                 let g:NERDTrimTrailingWhitespace = 1
+                 "" NERD
+                 map <F3> :call NERDTreeToggleInCurDir()<CR>
+         "----------------------------------------------------------------------------------------- 
+         Plug 'guns/xterm-color-table.vim'
+         "--------------------------------------------------------------------------------- 
+         Plug 'mtth/scratch.vim'
+                 nnoremap <F7> :Scratch<CR>
+                 nnoremap <F6> :ScratchPreview<CR>
+         "-----------------------------------------------------------
+         Plug 'henrik/vim-qargs'
+         "-----------------------------------------------------------
+         Plug 'AndrewRadev/undoquit.vim'
+                 let g:undoquit_mapping = ';q' 
+                 "---c-w+u------ 
+         Plug 'maxbrunsfeld/vim-yankstack'
+                 nmap zp <Plug>yankstack_substitute_older_paste
+                 nmap zn <Plug>yankstack_substitute_newer_paste
+        "------------------------------------------------------------------------------------------
+        Plug 'nvie/vim-flake8'
+        "------------------------------------------------------------------------------------------
+        Plug 'easymotion/vim-easymotion'
+                let g:EasyMotion_smartcase = 1
+                let g:EasyMotion_do_mapping = 0 "-Disable default mappings
+                nmap <LocalLeader><LocalLeader> <Plug>(easymotion-overwin-w)
+        Plug 'wellle/visual-split.vim'
+                " :VSSplit, :VSSplitAbove or :VSSplitBelow to create the split
+                " :VSResize to execute the VSResize ex command on the selected range
+                nmap <C-W>r  <Plug>(Visual-Split-Resize)
+                nmap <C-W>s <Plug>(Visual-Split-Split)
+        "-nnn-----------------------------------------------------}}}
+        source ~/git/aTest/dotFiles/nVim/logoTextObjct.vim
+        "source ~/git/aTest/dotFiles/nVim/logoHtml.vim
+
 call plug#end()
-"-nPlugEnd-nPlugStop3-}}}
+"---nPlugEnd-nPlugStop3}----------------}}
 
         "----------------------------------------------------------------------------------
-        "----------------------------------------------------------------------------------
+        "==================================================================================
         "----------------------------------------------------------------------------------
         let g:jedi#use_splits_not_buffers = "left"
         let g:jedi#popup_on_dot = 0
@@ -529,12 +666,12 @@ call plug#end()
         let g:CommandTMaxHeight = 15 " 0: as much as available space.
         let g:CommandTMinHeight = 0 " 0: single line.
         let g:CommandTAlwaysShowDotFiles = 0 " only if entered string contains a dot
-        let g:CommandTNeverShowDotFiles = 0
+        let g:CommandTNeverShowDotFiles  = 0
         let g:CommandTScanDotDirectories = 0
-        let g:CommandTMatchWindowAtTop = 0 " match window appear at bottom.
+        let g:CommandTMatchWindowAtTop   = 0 " match window appear at bottom.
         let g:CommandTMatchWindowReverse = 1 " let the best match at bottom.
         let g:CommandTTageIncludeFilenames = 1 " include filenames when matches
-        "===PLAY5=================================================================================
+        "===PLAY5==================================================================================
         nnoremap ;p :CtrlP<cr>
         nnoremap ;m :CtrlPMRU<cr>
         "===PLAY6==================================================================================
