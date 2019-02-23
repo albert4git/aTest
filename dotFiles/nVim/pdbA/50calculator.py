@@ -3,12 +3,11 @@ from tkinter import messagebox
 
 calculator = Tk()
 calculator.title("CALCULATOR")
+
 #remove or change this in order to get different screen sizes
 #remove no social change this in order to get different screen sizes
 #remove yes projectet social change this in order to get different screen sizes
 #This is the Third Row
-
-
 
 
 class Application(Frame):
@@ -141,6 +140,7 @@ class Application(Frame):
             text="1",
             borderwidth=0,
             command=lambda: self.appendToDisplay("1"))
+
         self.oneButton.grid(row=3, column=0, sticky="NWNESWSE")
 
         self.twoButton = Button(

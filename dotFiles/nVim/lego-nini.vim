@@ -1,17 +1,320 @@
+Plug 'xolox/vim-easytags'
+       let g:easytags_file = '~/.nvimtags'
+       let g:easytags_auto_highlight = 1
+       let g:easytags_syntax_keyword = 'always'
+       let g:easytags_events = ['BufWritePost']
+       let g:easytags_async = 1
+       let g:easytags_file = '~/.vim/.vimtags'
+       "------------------------------------------------------
+       let g:easytags_languages = {
+       \   'haskell': {
+       \       'cmd': '~/.cabal/bin/lushtags',
+       \       'args': [],
+       \       'fileoutput_opt': '-f',
+       \       'stdout_opt': '-f-',
+       \       'recurse_flag': '-R'
+       \   }
+       \}
+       "------------------------------------------------------
+       "let g:easytags_events = ['BufReadPost', 'BufWritePost']
+       let g:easytags_resolve_links = 1
+       " let g:easytags_dynamic_files = 2
+       " let g:easytags_suppress_ctags_warning = 1
+       " Prevent automatic ctag updates
+       let g:easytags_auto_update = 0
+       let g:easytags_auto_highlight = 0
+       let g:easytags_on_cursorhold = 0
+       " Scan recursively, not just current file
+       let g:easytags_autorecurse = 1
+       " Follow symbolic links
+       let g:easytags_resolve_links = 1
+       " Close tagbar after jumping to a tag
+       let g:tagbar_autoclose = 1
+       My current easytags config:
+       set cpoptions+=d
+       let g:easytags_async = 1⋅
+       let g:easytags_dynamic_files = 2 " create and use local tag files instead of global one
+       let g:easytags_events = ['BufReadPost', 'BufWritePost'] " Update tags on read and save only
+       let g:easyt
+nmap <F3>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! htags.vim<CR>/^<CR><F4>
+nmap <F4>  :so htags.vim<CR>
+highlight ShowMatches ctermbg=240 
+au! VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=16
+au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%(\n|[^\{\}])*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*\})|%(\n|[^\{\}]))*%#\})/'
+
+
+"-AAA15-Plug1Start--------------------------------------------------------------------------------------------------{{{
+call plug#begin('~/.config/nvim/plugged/')
+        "------------------------------------------------------------------------- 
+        Plug 'AndrewRadev/switch.vim'
+        let g:switch_mapping = "-"
+        let g:switch_custom_definitions =
+                                \ [
+                                \ ['true', 'false'], ['True', 'False'], ['TRUE', 'FALSE'],
+                                \ ['yes', 'no'], ['Yes', 'No'], ['YES', 'NO'],
+                                \ ['on', 'off'], ['On', 'Off'], ['ON', 'OFF'],
+                                \ ['up', 'down'], ['Up', 'Down'] ,['UP', 'DOWN'],
+                                \ ['set', 'unset'],
+                                \ ['is', 'isnot'] ,
+                                \ ['==', '!='] , ['<', '>'], ['<=', '>='], ['=~', '!~'],
+                                \ ['enable', 'disable'], ['Enable', 'Disable'],
+                                \ ['enabled', 'disabled'], ['Enabled', 'Disabled'],
+                                \ ['maximum', 'minimum'], ['Maximum', 'Minimum'],
+                                \ ['maximal', 'minimal'], ['Maximal', 'Minimal'],
+                                \ ['upper', 'lower'], ['Upper', 'Lower'],
+                                \ ['top', 'bottom'], ['Top', 'Bottom'],
+                                \ ['above', 'below'], ['Above', 'Below'],
+                                \ ['forward', 'backward'], ['Forward', 'Backward'],
+                                \ ['right', 'middle', 'left'], ['Right', 'Middle', 'Left'],
+                                \ ['next', 'previous'], ['Next', 'Previous'],
+                                \ ['first', 'last'], ['First', 'Last'],
+                                \ ['before', 'after'], ['Before', 'After'],
+                                \ ['more', 'less'], ['More', 'Less'],
+                                \ ['fast', 'slow'], ['Fast', 'Slow'],
+                                \ ['green', 'yellow', 'red'],
+                                \ ['one', 'two', 'three']
+                                \ ]
+                "--------------------------------------------------------------------------
+                let b:switch_custom_definitions = [
+                                        \   {
+                                        \     '\<[a-z0-9]\+_\k\+\>': {
+                                        \       '_\(.\)': '\U\1'
+                                        \     },
+                                        \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+                                        \       '\([A-Z]\)': '_\l\1'
+                                        \     },
+                                        \   }
+                                        \ ]
+        "--------------------------------------------------------------------------------- 
+        Plug 'brookhong/cscope.vim'
+                nnoremap ff :call CscopeFindInteractive(expand('<cword>'))<CR>
+        Plug 'unblevable/quick-scope'
+                "let g:qs_enable=0
+                augroup qs_colors
+                        autocmd!
+                        autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=10 cterm=underline
+                        autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=50 cterm=underline
+                augroup END
+        "--------------------------------------
+        " Plug 'flazz/vim-colorschemes'
+        "--------------------------------------
+        Plug 'MattesGroeger/vim-bookmarks'
+                "-AAA-------------------------------------------------------------------{{{
+                let g:bookmark_no_default_key_mappings = 1
+                function! BookmarkMapKeys()
+                        nmap mm :BookmarkToggle<CR>
+                        nmap mi :BookmarkAnnotate<CR>
+                        nmap mn :BookmarkNext<CR>
+                        nmap mp :BookmarkPrev<CR>
+                        nmap ma :BookmarkShowAll<CR>
+                        nmap mc :BookmarkClear<CR>
+                        nmap mx :BookmarkClearAll<CR>
+                        nmap mkk :BookmarkMoveUp
+                        nmap mjj :BookmarkMoveDown
+                endfunction
+                "------------------------------------------------------
+                autocmd! BufEnter * :call BookmarkMapKeys()
+                highlight BookmarkSign ctermbg=9 ctermfg=1
+                highlight BookmarkLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
+                "------------------------------------------------------
+                let g:bookmark_auto_close = 1
+                let g:bookmark_highlight_lines = 1          
+                let g:bookmark_show_warning = 0           
+                let g:bookmark_show_toggle_warning = 0      
+                let g:bookmark_sign = '♥'
+                let g:bookmark_highlight_lines = 1
+                let g:bookmark_save_per_working_dir = 1
+                let g:bookmark_auto_save = 1
+                let g:bookmark_save_per_working_dir = 1  
+                "------------------------------------------------------
+                "let g:bookmark_manage_per_buffer = 1`        
+                "let g:bookmark_auto_save_file = '/bookmarks'`
+                " |------------------------------------------|-------------|------------------------------|
+                " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
+                " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
+                " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
+                " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
+                " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
+                " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
+                " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
+                " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
+                " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
+                " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
+                " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
+                " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
+                " |------------------------------------------|-------------|------------------------------|
+                "-AAE-}}}
+        "------------------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------------
+        Plug 'jalvesaq/vimcmdline'
+                " vimcmdline mappings
+                let cmdline_map_start          = '<LocalLeader>s'
+                let cmdline_map_send           = '<Space>'
+                let cmdline_map_send_and_stay  = '<LocalLeader><Space>'
+                let cmdline_map_source_fun     = '<LocalLeader>f'
+                let cmdline_map_send_paragraph = '<LocalLeader>p'
+                let cmdline_map_send_block     = '<LocalLeader>b'
+                let cmdline_map_quit           = '<LocalLeader>q'
+                " vimcmdline options
+                let cmdline_vsplit      = 1      " Split the window vertically
+                let cmdline_esc_term    = 1      " Remap <Esc> to :stopinsert in Neovim's terminal
+                let cmdline_in_buffer   = 1      " Start the interpreter in a Neovim's terminal
+                let cmdline_term_height = 15     " Initial height of interpreter window or pane
+                let cmdline_term_width  = 80     " Initial width of interpreter window or pane
+                let cmdline_tmp_dir     = '/tmp' " Temporary directory to save files
+                let cmdline_outhl       = 1      " Syntax highlight the output
+                let cmdline_auto_scroll = 1      " Keep the cursor at the end of terminal (nvim)
+                let cmdline_app         = {}
+                " let cmdline_app['python'] = 'ptipython3'
+                " let cmdline_app['ruby']   = 'pry'
+                " let cmdline_app['sh']     = 'bash'
+                if has('gui_running') || &termguicolors
+                    let cmdline_color_input    = '#9e9e9e'
+                    let cmdline_color_normal   = '#00afff'
+                    let cmdline_color_number   = '#00ffff'
+                    let cmdline_color_integer  = '#00ffff'
+                    let cmdline_color_float    = '#00ffff'
+                elseif &t_Co == 256
+                    let cmdline_color_input    = 247
+                    let cmdline_color_normal   =  39
+                    let cmdline_color_number   =  51
+                    let cmdline_color_integer  =  51
+                    let cmdline_color_float    =  51
+                    let cmdline_color_complex  =  51
+                    let cmdline_color_negnum   = 183
+                    let cmdline_color_negfloat = 183
+                    let cmdline_color_date     =  43
+                    let cmdline_color_true     =  78
+                    let cmdline_color_false    = 203
+                    let cmdline_color_inf      =  39
+                    let cmdline_color_constant =  75
+                    let cmdline_color_string   =  79
+                    let cmdline_color_stderr   =  33
+                    let cmdline_color_error    =  15
+                    let cmdline_color_warn     =   1
+                    let cmdline_color_index    = 186
+                endif
+        "--------------------------------------
+        "----SEARCH-search--POISK-poisk-SUCHE--suche------------------------------------------------ 
+        Plug 'rhysd/open-pdf.vim'
+        "------------------------------------------------------------------------------------------ 
+        "Plug 'wsdjeg/JavaUnit.vim'
+        "--------------------------------------------------------------------------------- 
+        Plug 'vim-scripts/javaDoc.vim'
+        "------------------------------------------------------------------------------------------ 
+        "------------------------------------------------------------------------------------------ 
+
+call plug#end()
+"-5plug1Stop-}}}
+"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+" File: start1ninit19.vim
+" Author: red
+" Last Modified: 11 Feb 2019
+"======================================================================================================================
+        "--------------------------------------------------------------------------
+        autocmd! filetype python setlocal formatoptions-=t " But disable autowrapping as it is super annoying
+        "--------------------------------------------------------------------------
+        " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set earlier, as it is important)
+        autocmd! filetype python setlocal textwidth=149
+        autocmd! filetype python match ErrorMsg '\%>120v.\+'
+
+        " function! s:UsingPython3()
+        "         if has('python3')
+        "                 return 1
+        "         endif
+        "         return 0
+        " endfunction
+
+        " let s:using_python3 = s:UsingPython3()
+        " let s:python_until_eof = s:using_python3 ? "python3 << EOF" : "python << EOF"
+        " let s:python_command = s:using_python3 ? "py3 " : "py "
+
+"-AAA15-Plug2Start---------------------------------------------------------------------------------------------{{{
+call plug#begin('~/.config/nvim/plugged/')
+        Plug 'tyru/capture.vim'
+        Plug 'thinca/vim-quickrun'
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
+                let g:airline_theme='light'
+                set showmode                "-Display the current mode
+                set showcmd                 "-Show partial commands in status line 
+                "--------------------------------------------------------------------------
+                let g:airline_section_c = '%{strftime("%Y %b %d %X")}'
+                let g:airline#extensions#tabline#enabled = 2
+                let g:airline#extensions#tabline#buffer_min_count = 1
+                "-----------------------------------------------------------
+                let g:airline#extensions#syntastic#enabled = 1
+                let g:airline#extensions#branch#enabled = 1
+                "-----------------------------------------------------------
+                if !exists('g:airline_symbols')
+                        let g:airline_symbols = {}
+                endif
+                "--------------------------------------------------------------------------
+                hi statusline ctermbg=10 ctermfg=Black  cterm=bold
+                hi StatusLineNC  ctermbg=5 ctermfg=0 cterm=NONE
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------- 
+        "----------------------------------------------------------------------------------
+        Plug 'tpope/vim-sleuth'         " indet reight ?
+call plug#end()
+"-5plug2Stop-}}}
+
+"-AAA3-Tag8------------------------------------------------------------------------------------------------{{{
+        " Make tags placed in .git/tags file available in all levels of a repository
+        let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+        if gitroot != ''
+                let &tags = &tags . ',' . gitroot . '/.git/tags'
+        endif
+        set tags+=tags,./tags,../tags,../../tags,../../../tags,../../../../tags,~/.nvimtags
+
+
+"-AAA3-Spell------------------------------------------------------------------------------------------------{{{
+        "--------------------------------------------------------------------------------- 
+        Plug 'vim-scripts/SpellCheck'
+        "--------------------------------------------------------------------------------- 
+        setlocal spell
+        set nospell
+        set spelllang=en_us
+        set spellsuggest=best
+        " set spelllang=de,tech_speak spell
+        " set spellfile=~/.vim/spell/techspeak.utf-8.add
+        " set spellfile=~/.vim/spell/en.utf-8.add           " 'zg': add, 'zw': remove.
+        "------------------------------------------------------------------------------
+        function! FixVimSpellcheck()
+                if &spell
+                        normal! 1z=
+                else
+                        set spell
+                        normal! 1z=
+                        set nospell
+                endif
+        endfunction
+        nnoremap z= :call FixVimSpellcheck()<cr>
+        "???, disable the zg (add to dictionary) shortcut
+        nnoremap zg z=
+        "------------------------------------------------------------------------------------------
+        " error: zg, zG, zw, zW, zug, zuG, zuw,
+        " zuW, z=, u
+        " For z=, all identical misspellings in the buffer are
+        " replaced with the chosen suggestion (via :spellrepall).
+        "------------------------------------------------------------------------------------------
+        " I use two languages: Lithuanian and English. But I also want to add
+        " a special pseudo-language to contain identifiers extracted from tags
+        " file (this will eliminate false hits like printf).
+        " set spelllang=lt,en,fromtags
+        " https://rtfb.lt/projects/vim-dox-spell/index.html
+        "------------------------------------------------------------------------------------------
+"-3--}}}
 
 "-AAA3-UnPlug-nPlugStart------------------------------------------------------------------------------------{{{
 call plug#begin()
         "--------------------------------------------------------------------------------- 
         "Plug 'Shougo/vimshell.vim'
         "--------------------------------------------------------------------------------- 
-        Plug 'vim-jp/vital.vim'
-        Plug 'lambdalisue/vital-Whisky/'
-        Plug 'prabirshrestha/async.vim'
-        "--------------------------------------------------------------------------------- 
-        Plug 'lambdalisue/gina.vim'
-        Plug 'lambdalisue/vim-gita'
-        Plug 'lambdalisue/suda.vim'
-
                 ""???### Add helloworld to the runtime path. (Normally this would be done with another
                 "" Plugin command, but helloworld doesn't have a repository of its own.)
                 "call maktaba#plugin#Install(maktaba#path#Join([maktaba#Maktaba().location,
@@ -23,7 +326,6 @@ call plug#begin()
                 "Glaive helloworld plugin[mappings] name='Bram'
                 "" Real world example: configure vim-codefmt
                 "Glaive codefmt google_java_executable='java -jar /path/to/google-java-format.jar'
-        "------------------------------------------------------------------------- 
         "------------------------------------------------------------------------- 
         "------------------------------------------------------------------------- 
                 " highlight default link TagbarHelp       Comment
@@ -53,14 +355,11 @@ call plug#begin()
         "         map fv :VimFiler<CR>
         "         map fd :VimFilerCurrentDir<CR>
         "------------------------------------------------------------------------------------------
-        Plug 'scrooloose/syntastic'
-        "------------------------------------------------------------------------------------------
         Plug 'haya14busa/vim-easyoperator-line'
                 xmap <LocalLeader>l <Plug>(easyoperator-line-select)
         "--------------------------------------------------------------------------------- 
         Plug 'mattboehm/vim-accordion'
                 let g:accordion_mode="v"
-        Plug 'vim-scripts/SpellCheck'
         "--------------------------------------------------------------------------------- 
         Plug 'echuraev/translate-shell.vim'
                 let g:trans_directions_list = [
@@ -121,25 +420,6 @@ call plug#begin()
         Plug 'alfredodeza/coveragepy.vim'
                 ":Coveragepy report
                 let g:coveragepy_uncovered_sign = '-'
-        "--------------------------------------------------------------------------------- 
-        Plug 'brooth/far.vim'
-        Plug 'aghareza/vim-gitgrep'
-        Plug 'motemen/git-vim'
-        Plug 'c9s/hypergit.vim'
-                " <leader>G    toggle hypergit menu
-                " <leader>ci   commit current file changes
-                " <leader>ca   commit all changes
-                " <leader>ga   add file to git repository
-                " <leader>gb   branch manager buffer
-                " <leader>gs   status manager buffer
-                " <leader>gh   stash manager buffer
-                " :GitCommit
-                " :GitCommitAll
-                " :GitCommitAmend
-                " :GitStatus
-                " :GitStash
-                " :GitPush
-                " :GitPull
        "---------------------------------------------------------------------------------- 
         " ci'q<<b>>({"  - 'change' insede "})</<b>>q'
         "-???- onoremap a i( , da ???-
@@ -156,66 +436,6 @@ call plug#begin()
         " There's no way to close the quickfix window without jumping to it and :q or
         " whatever. That's bad. Let me close it from anywhere
         "----------------------------------------------------------------------------------
-        command! LocationToggle call LocationToggle()
-        function! LocationToggle()
-                if exists("w:is_location_window")
-                        unlet w:is_location_window
-                        exec "q"
-                else
-                        lopen
-                        let w:is_location_window = 1
-                endif
-        endfunction
-
-        nnoremap <F8> :LocationToggle<cr>
-                nnoremap <LocalLeader>n :lnext<cr>zvzz
-                nnoremap <LocalLeader>b :lprev<cr>zvzz
-        "----------------------------------------------------------------------------------
-        function! ToggleQuickFix()
-                if exists("g:qwindow")
-                        cclose
-                        execute "wincmd p"
-                        unlet g:qwindow
-                else
-                        try
-                                copen
-                                execute "wincmd J"
-                                let g:qwindow = 1
-                        catch
-                                echo "Error!"
-                        endtry
-                endif
-        endfunction
-
-        "-Open-Quickfix-window-automatically-----------------------------------------------
-        autocmd QuickFixCmdPost grep cwindow
-        autocmd! vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
-        autocmd! vimrc QuickfixCmdPost l* nested lopen | wincmd p
-        "----------------------------------------------------------------------------------
-        nnoremap <F9> :call ToggleQuickFix()<CR>
-                nnoremap <Leader>b :cprev<cr>zvzz
-                nnoremap <Leader>n :cnext<cr>zvzz
-        "----------------------------------------------------------------------------------
-        "----------------------------------------------------------------------------------
-        Plug 'adriaanzon/vim-textobj-matchit'
-        "`am` and `im` :if-ifend , for-endfore ..
-        Plug 'romainl/vim-qf'
-        Plug 'yssl/QFEnter'
-        Plug 'sk1418/QFGrep'
-        Plug 'AndrewRadev/qftools.vim'
-                let g:qf_mapping_ack_style = 1
-                let g:qf_window_bottom = 0
-                let g:qf_auto_open_loclist = 0
-                let g:qf_max_height = 8
-                let g:qf_nowrap = 1
-        "----------------------------------------------------------------------------------
-        "Plug 'gastonsimone/vim-dokumentary/'
-                "??? apt-get install dictd dict-gcide dict
-        "--------------------------------------------------------------------------------- 
-        Plug 'vim-scripts/mako.vim'
-                "g:mako_detect_lang_from_ext = 1
-        Plug 'sophacles/vim-bundle-mako'
-        Plug 'aperezdc/vim-template'
         "--------------------------------------------------------------------------------- 
         "Plug 'amiorin/vim-project'
         "----------------------------------------------------------------------------------
@@ -250,27 +470,9 @@ call plug#begin()
         "nmap <Leader>s <Plug>RDSendLine
         ":Rhelp topic
 
-                " nmap <Leader>f :GFiles<CR>
-                " nmap <Leader>F :Files<CR>
-                " nmap <Leader>t :BTags<CR>
-                " nmap <Leader>T :Tags<CR>
-                " nmap <Leader>m :Methods<CR>
-                " nmap <Leader>b :Buffers<CR>
-                " nmap <Leader>l :BLines<CR>
-                " nmap <Leader>L :Lines<CR>
-                " nmap <Leader>h :History<CR>
-                " nmap <Leader>H :GHistory<CR>
-                " nmap <Leader>: :History:<CR>
-                " nmap <Leader>M :Maps<CR>
-                " nmap <Leader>C :Commands<CR>
-                " nmap <Leader>' :Marks<CR>
-                " nmap <Leader>s :Filetypes<CR>
-                " nmap <Leader>S :Snippets<CR>
-                " nmap <Leader><Leader>h :Helptags!<CR>
         "--------------------------------------------------------------------------------- 
         Plug 'Shougo/context_filetype.vim'
         "=================================================================================
-
         "--------------------------------------------------------------------------------- 
         "Plug 'auwsmit/vim-hydra'
         "--------------------------------------------------------------------------------- 
@@ -331,11 +533,6 @@ call plug#begin()
         function! DoRemote(arg)
                 UpdateRemotePlugins
         endfunction
-        "--------------------------------------------------------------------------------- 
-        Plug 'zyedidia/vim-snake'
-        Plug 'tpope/vim-dispatch'
-        Plug 'neovim/pynvim'
-        "Plug '5t111111/nvim-example-python3-plugin', { 'do': function('DoRemote') }
 
 call plug#end()
 
@@ -429,20 +626,6 @@ call plug#end()
         nnoremap sm :ShowMaps<CR>            " Map keys to call the function
 "-4SynColor-}}}
 
-"-AAA6--GitGutter-------------------------------------------------------------------------------------------{{{
-        let g:gitgutter_signs = 1
-        let g:gitgutter_max_signs = 2000
-        "------------------------------------------------------------------------------------------
-        highlight GitGutterAdd ctermfg=green
-        highlight GitGutterChange ctermfg=yellow
-        highlight GitGutterDelete ctermfg=red
-        highlight GitGutterChangeDelete ctermfg=yellow
-        "------------------------------------------------------------------------------------------
-        if exists("*gitgutter#highlight#define_highlights")
-                " let vim-gitgutter know we changed the SignColumn colors!
-                call gitgutter#highlight#define_highlights()
-        endif
-"-6-}}}
 "-AAA7--Abbr------------------------------------------------------------------------------------------------{{{
         "-Command mode related ???
         " cno $h e ~/
@@ -649,34 +832,6 @@ call plug#end()
 
 "-17-}}}
 
-"-AAA18-SyntasticCheck--------------------------------------------------------------------------------------{{{
-        let g:syntastic_always_populate_loc_list = 1
-        "let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
-        ""let g:syntastic_java_checkers = ['checkstyle']
-        ""let g:syntastic_java_javac_executable = '~/.vim/plugged/syntastic/syntax_checkers/java/javac.vim'
-        let g:systastic_python_checkers = ['pylint', 'python']
-        let g:syntastic_mode_map = {'mode': 'active'}
-        let g:syntastic_python_pylint_quiet_messages = {}
-        let g:syntastic_enable_signs = 1
-        "let g:syntastic_auto_jump = 1
-        let g:syntastic_enable_highlighting = 1
-        "let g:syntastic_echo_current_error  = 1
-        let g:syntastic_javascript_checkers=['jshint']
-        let g:syntastic_php_checkers=['php']
-        let g:syntastic_css_checkers=['csslint']
-        let g:syntastic_python_checkers = ['flake8']
-        let g:syntastic_error_symbol = '⚡'
-        let g:syntastic_warning_symbol = '⚠'
-        "let g:syntastic_check_on_w = 1
-
-        " let g:syntastic_python_checkers=['python', 'flake8']
-        " let g:syntastic_python_flake8_post_args='--ignore=W391'
-        " For forcing the use of flake8, pyflakes, or pylint set
-        " let g:syntastic_python_checkers = ['pyflakes']
-
-"-18-}}}
 
 
 "-AAA19-PyStart--PythonStart----------------------------------------------------------------------------------------{{{
@@ -826,58 +981,6 @@ call plug#end()
         " automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
-        "==========================================================================================
-
-        "===PLAY4===SUCHE========************======================================================
-                nnoremap <Leader>l :lgrep -R <cword> .<cr>
-                nnoremap <Leader>g :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
-                nnoremap <Leader>a :Ack <cword> .<cr>
-                nnoremap ? :Ack
-                nmap <Leader>6 :Rg <cword> .<cr>
-                nmap <Leader>7 :Ag <cword> .<cr>
-                nmap <Leader>8 <Plug>AgRawSearch <cword> .<cr>
-                nmap <Leader>/ <Plug>AgRawSearch
-                "-----------------------------------------------------------------"
-                "  s - open entry in a new horizontal window                      "
-                "  v - open entry in a new vertical window                        "
-                "  t - open entry in a new tab                                    "
-                "  o - open entry and come back                                   "
-                "  O - open entry and close the location/quickfix window          "
-                "  p - open entry in a preview window                             "
-                "-----------------------------------------------------------------"
-                " :Keep                                                           "
-                " :Reject                                                         "
-                " :Restore                                                        "
-                " :Doline s/^/--                                                  "
-                " :SaveList                                                       "
-                " :SaveList curlist                                               "
-                " :SaveListAdd curlist                                            "
-                " :LoadList curlist                                               "
-                " :ListLists                                                      "
-                "-----------------------------------------------------------------"
-        "===PLAY5=================================================================================
-                nnoremap ;p :CtrlP<cr>
-                nnoremap ;m :CtrlPMRU<cr>
-        "===PLAY6==================================================================================
-                nnoremap ;h :CommandTHelp<cr>
-                nnoremap ;b :CommandTBuffer<cr>
-                let g:CommandTCancelMap=['<C-x>', '<C-c>']
-                "------------------------------------------------------------------------------
-                " <Leader>t provide fast, intuitive mechanism for opening files and buffers
-                " <BS> <Del> -- delete
-                " <Left> <C-h> -- move left.
-                " <Right> <C-l> -- move right
-                " <C-a> -- move to the start.
-                " <C-e> -- move to the end.
-                " <C-u> -- clear the contents of the prompt.
-                " <Tab> -- switch focus between the file listing and prompt.
-                "----------------------------------------------------------------------
-                " <C-CR> <C-s> -- split open
-                " <C-v> -- vsplit
-                " <C-t> -- tab
-                " <C-j> <C-n> <Down> -- select next file in file listing.
-                " <C-k> <C-p> <Up> -- select previous file in file listing.
-                " <Esc> <C-c> -- cancel (dismisses file listing)
 
         "====Voide=================================================================================
         "====Voide=================================================================================

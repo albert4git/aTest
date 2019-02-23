@@ -185,8 +185,8 @@
 
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         "source ~/git/aTest/dotFiles/nVim/logo1.vim
-        "source ~/git/aTest/dotFiles/nVim/mix/n-mopkai.vim
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
+        "source ~/git/aTest/dotFiles/nVim/mix/n-mopkai.vim
         "source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumRC.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumNeo.vim
@@ -198,7 +198,7 @@
         "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediRC.vim
         "source ~/git/aTest/dotFiles/nVim/nProtoDeoLSJediSnip.vim
         source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
-        source ~/git/aTest/dotFiles/nVim/legoCyan.vim
+        source ~/git/aTest/dotFiles/nVim/logoCyan.vim
         ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 "-aaa20-PrePLAY0-remap--------------------------------------------------------------------------------------{{{
@@ -239,7 +239,7 @@
         nnoremap ss :wa<cr>
         nnoremap qq :wa<cr> :bd<cr>
         nnoremap qs :wa<cr> :qa<cr>
-        nnoremap qa :qa!<cr>
+        nnoremap qa :bd<cr>
         nnoremap ge :w<cr>:e #<cr>
         nnoremap qw <C-w>q<CR>
         nnoremap qo <C-w>o<CR>
