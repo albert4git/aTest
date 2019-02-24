@@ -43,7 +43,6 @@
                 "------------------------------------------------------------------------------------------
                 set guifont=Monospace\ 16
                 set cinwords=if,else,while,do,for,switch,case
-                hi CursorColumn    ctermbg=8
                 hi ColorColumn     ctermbg=22
                 set colorcolumn=92,100,112,120
                 hi LineNr ctermfg=16 ctermbg=40 

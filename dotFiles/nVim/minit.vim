@@ -1,8 +1,8 @@
-"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
 " File: minit.vim
 " Author: red
 " Last Modified: 19 Feb 2019
-"======================================================================================================================
+"===================================================================================================
         set path+=.,/home/red/git/aTest/pyLabGitPdbPythonMode27
         "-----------------------------------------------------------------------------------
         set runtimepath+=~/vim-amake
@@ -183,9 +183,14 @@
         "---------------------------------------------------------------------------------- 
 "-2Remap-}}}
 
+        source ~/git/aTest/dotFiles/nVim/DEO3.vim
+        "source ~/git/aTest/dotFiles/nVim/DEO2.vim
+        "source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         "source ~/git/aTest/dotFiles/nVim/logo1.vim
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
+        hi ColorColumn     ctermbg=22
+        set colorcolumn=92,100,112,120
         "source ~/git/aTest/dotFiles/nVim/mix/n-mopkai.vim
         "source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumRC.vim
@@ -197,8 +202,14 @@
         "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediOne.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumDeoJediRC.vim
         "source ~/git/aTest/dotFiles/nVim/nProtoDeoLSJediSnip.vim
-        source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
-        source ~/git/aTest/dotFiles/nVim/logoCyan.vim
+        "01-source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
+        "source ~/git/aTest/dotFiles/nVim/logoCyan.vim
+        "------------------------------------------------------------------------------------------- 
+        "source ~/git/aTest/dotFiles/nVim/myPlug/nHydra.vim 
+        "let g:nnv_search_paths = ['~/git/aTest/pyLabGitPdbPythonMode27']
+        "let g:nnv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
+        "------------------------------------------------------------------------------------------- 
+        "source ~/git/aTest/dotFiles/nVim/myPlug/NNV.vim
         ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 "-aaa20-PrePLAY0-remap--------------------------------------------------------------------------------------{{{
@@ -341,4 +352,3 @@
         set wildignore+=classes
         set wildignore+=lib
 "-16-}}}
-

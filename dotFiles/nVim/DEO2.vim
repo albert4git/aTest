@@ -1,3 +1,15 @@
+"-"-"-"-"-"--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-=DEO2=--"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+" File: DEO2.vim
+" Author: red
+" Last Modified: 19 Feb 2019
+"===================================================================================================
+" This plugin sets virtualenv for neovim by default. If you want to use current
+" environment's python2 and python3, for example, the jedi library won't
+" complete for non-venv project if the plugin is running on venv. options disable feature:
+" let g:python_support_python2_venv = 0
+" let g:python_support_python3_venv = 0
+"===================================================================================================
+
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 "let g:deoplete#sources#jedi#extra_path = $PYTHONPATH
@@ -10,6 +22,55 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
         Plug 'tomtom/tlib_vim'       
+
+        "-AAA---------------------------------------------------------------------------{{{
+        Plug 'MattesGroeger/vim-bookmarks'
+                let g:bookmark_no_default_key_mappings = 1
+                function! BookmarkMapKeys()
+                        nmap mm :BookmarkToggle<CR>
+                        nmap mi :BookmarkAnnotate<CR>
+                        nmap mn :BookmarkNext<CR>
+                        nmap mp :BookmarkPrev<CR>
+                        nmap ma :BookmarkShowAll<CR>
+                        nmap mc :BookmarkClear<CR>
+                        nmap mx :BookmarkClearAll<CR>
+                        nmap mkk :BookmarkMoveUp
+                        nmap mjj :BookmarkMoveDown
+                endfunction
+                "------------------------------------------------------
+                autocmd! BufEnter * :call BookmarkMapKeys()
+                highlight BookmarkSign ctermbg=9 ctermfg=1
+                highlight BookmarkLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
+                "------------------------------------------------------
+                let g:bookmark_auto_close = 1
+                let g:bookmark_highlight_lines = 1          
+                let g:bookmark_show_warning = 0           
+                let g:bookmark_show_toggle_warning = 0      
+                let g:bookmark_sign = '♥'
+                let g:bookmark_highlight_lines = 1
+                let g:bookmark_save_per_working_dir = 1
+                let g:bookmark_auto_save = 1
+                let g:bookmark_save_per_working_dir = 1  
+                "------------------------------------------------------
+                "let g:bookmark_manage_per_buffer = 1`        
+                "let g:bookmark_auto_save_file = '/bookmarks'`
+                " |------------------------------------------|-------------|------------------------------|
+                " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
+                " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
+                " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
+                " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
+                " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
+                " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
+                " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
+                " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
+                " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
+                " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
+                " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
+                " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
+                " |------------------------------------------|-------------|------------------------------|
+        "-AAE------------------}}}
 
         "-AAA6--GitGutter-----------------------------------------------------------------------{{{
                 Plug 'airblade/vim-gitgutter'
@@ -53,13 +114,19 @@ call plug#begin('~/.config/nvim/plugged/')
         "-6-}}}
 
         "------TESTING------------------------------------------------------------------ 
-        " Plug 'eparreno/vim-l9'
-        " Plug 'vim-scripts/CRefVim'
-        " Plug 'vim-scripts/foo.vim'
-        " Plug 'vim-scripts/FuzzyFinder'
-        " Plug 'alvan/vim-closetag'
         " Plug 'WolfgangMehner/bash-support'
-        " Plug 'KnoP-01/tortus'
+        " Plug 'vim-scripts/foo.vim'
+        Plug 'eparreno/vim-l9'
+        Plug 'vim-scripts/CRefVim'
+        Plug 'vim-scripts/FuzzyFinder'
+        Plug 'alvan/vim-closetag'
+        Plug 'vim-scripts/c.vim'
+        Plug 'octol/vim-cpp-enhanced-highlight' " C++
+        Plug 'pboettch/vim-cmake-syntax'        " CMake
+        Plug 'itchyny/calendar.vim'
+        Plug 'vim-scripts/spell.vim'
+        Plug 'dhruvasagar/vim-zoom'
+        Plug 'KnoP-01/tortus'
         "---------------------------------------------------------------------------------- 
         Plug 'brooth/far.vim'
         "---------------------------------------------------------------------------------- 
@@ -95,10 +162,11 @@ call plug#begin('~/.config/nvim/plugged/')
                 "let g:dokumentary_docprgs = {'c': 'cdoc {0}', 'python': ''}
                 let g:dokumentary_docprgs = {'c': 'cdoc {0}'}
         "--------------------------------------------------------------------------------- 
-        "-=TTT=-
-        Plug 'xolox/vim-pyref'
-                let g:pyref_mapping = 'T'
-                let g:pyref_python = '/usr/share/doc/python3/html/'
+        ""-=TTT=-
+        "Plug 'xolox/vim-pyref'
+        "        let g:pyref_mapping = 'T'
+        "        let g:pyref_python = '/usr/share/doc/python3/html/'
+        "----------------------------------------------------------- 
                 "let g:pyref_python = '/usr/share/doc/python/'
                 "let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
                 "let g:pyref_python = $HOME . '/docs/python'
@@ -107,6 +175,10 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
                 let g:ref_pydoc_cmd = 'pydoc'
                 let g:ref_pydoc_complete_head = 1
+
+        "-Python-$-pydoc -TTT-
+        au FileType python nnoremap T :exec "!pydoc" expand("<cword>")<CR>
+
                 " let g:pydoc_cmd = 'python -m pydoc'
                 " let g:pydoc_open_cmd = 'vsplit'
                 " " If you want pydoc to switch to an already open tab with pydoc page,
@@ -190,6 +262,9 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         Plug 'davidhalter/jedi-vim'
         Plug 'zchee/deoplete-jedi'
+        "--------------------------------------------------------- 
+        Plug 'balta2ar/deoplete-matcherkey'
+        Plug 'zchee/deoplete-zsh'
         "---------------------------------------------------------------------------------- 
         Plug 'autozimu/LanguageClient-neovim', {
                                 \ 'branch': 'next',
@@ -205,6 +280,7 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'Chun-Yang/vim-action-ag'
         Plug 'rking/ag.vim'
         "----------------------------------------------------------------------------------
+        " - Python 3.5 or higher, for the preview window and filepath shortening.
         Plug 'cskeeters/unite-fzf'
         Plug 'junegunn/fzf'
         Plug 'junegunn/fzf.vim'
@@ -249,6 +325,13 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'alok/notational-fzf-vim'
                 let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
         "----------------------------------------------------------------------
+        " -   `c-x`: Use search string as filename and open in vertical split.
+        " -   `c-v`: Open in vertical split
+        " -   `c-s`: Open in horizontal split
+        " -   `c-t`: Open in new tab
+        " -   `c-y`: Yank the selected filenames
+        " -   `<Enter>`: Open highlighted search result in current buffer
+        "------------------------------------------------------------------------------------------
         Plug 'Shougo/neomru.vim'
         "--------------------------------------
         Plug 'kien/ctrlp.vim'
@@ -537,9 +620,35 @@ call plug#begin('~/.config/nvim/plugged/')
         "source ~/git/aTest/dotFiles/nVim/logoAsyncPy.vim
         "==================================================================================
         Plug 'lambdalisue/gina.vim'
+        "==================================================================================
+        Plug 'rkulla/pydiction'
+        Plug 'lambdalisue/lista.nvim'
+                nnoremap # :<C-u>Lista<CR>
+                nnoremap g# :<C-u>ListaCursorWord<CR>
+        "======================================================
+                let g:lista#custom_mappings = [
+                                        \ ['<C-f>', '<Left>'],
+                                        \ ['<C-b>', '<Right>'],
+                                        \ ['<C-a>', '<Home>'],
+                                        \ ['<C-e>', '<End>'],
+                                        \ ['<C-d>', '<Del>'],
+                                        \ ['<C-P>', '<lista:select_previous_candidate>', 'noremap'],
+                                        \ ['<C-N>', '<lista:select_next_candidate>', 'noremap'],
+                                        \ [';', 'pinkyless#stickyshift#enter(";")', 'expr noremap'],
+                                        \]
+        "==================================================================================
+        "Plug 'Valloric/ListToggle'
+        "let g:lt_height = 10
+        "Plug 'baabelfish/nvim-nim'
 
-call plug#end()
-"---nPlugEnd-nPlugStop3}----------------}}
+        "==================================================================================
+         " Plug 'dahu/vim-zebra'
+         "     let g:zebra = 1
+         "     let zebra_gap = 2
+         "     hi Zebra ctermbg=23 
+
+" call plug#end()
+"---nPlugEnd-nPlugStop3}----------------}}}
 
         "----------------------------------------------------------------------------------
         "==================================================================================
@@ -564,8 +673,10 @@ call plug#end()
         let g:jedi#auto_close_doc = 0  " close preview window after completion
         "::::::::::::::::::::::-=<1>=-:::::::::::::::::::::::::::::::::::::::::::::::::::::
         let g:deoplete#enable_at_startup = 1
-        call deoplete#custom#option('refresh_always', v:true)
-        call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+        " CUST-ERR
+        "call deoplete#custom#option('refresh_always', v:true)
+        "call deoplete#custom#source('_', 'min_pattern_length', 3)
+        "err call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
         "call deoplete#enable_logging('DEBUG', 'deoplete.log')
         "-------------------------------------------------------------------------------- 
         let g:deoplete#enable_ignore_case = 1
@@ -578,7 +689,6 @@ call plug#end()
         let g:deoplete#sources#ternjs#timeout = 3
         let g:deoplete#sources#ternjs#types = 1
         let g:deoplete#sources#ternjs#docs = 1
-        call deoplete#custom#source('_', 'min_pattern_length', 3)
         "--------------------------------------------------------------------------------
         let g:deoplete#skip_chars = ['(', ')', '<', '>']
         let g:deoplete#tag#cache_limit_size = 800000
@@ -646,39 +756,39 @@ call plug#end()
         "===PLAY15=================================================================================
         nnoremap ;d mayiw`a:exe "!dict -P - $(echo " . @" . "\| recode latin1..utf-8)"<CR>
         "--------------------------------------------------------------------------------
-        call deoplete#custom#source('neosnippet',    'rank', 690)
-        call deoplete#custom#source('ultisnips',     'rank', 680)
-        call deoplete#custom#source('padawan',       'rank', 660)
-        call deoplete#custom#source('go',            'rank', 650)
-        call deoplete#custom#source('vim',           'rank', 640)
-        call deoplete#custom#source('flow',          'rank', 630)
-        call deoplete#custom#source('TernJS',        'rank', 620)
-        call deoplete#custom#source('LanguageClient','rank', 610)
-        call deoplete#custom#source('jedi',          'rank', 600)
-        call deoplete#custom#source('tag',           'rank', 550)
-        call deoplete#custom#source('omni',          'rank', 500)
-        call deoplete#custom#source('member',        'rank', 500)
-        call deoplete#custom#source('file_include',  'rank', 420)
-        call deoplete#custom#source('file',          'rank', 410)
-        call deoplete#custom#source('around',        'rank', 330)
-        call deoplete#custom#source('buffer',        'rank', 320)
-        call deoplete#custom#source('dictionary',    'rank', 310)
-        call deoplete#custom#source('tmux-complete', 'rank', 300)
-        call deoplete#custom#source('syntax',        'rank', 200)
-        "--------------------------------------------------------------------------------
-        call deoplete#custom#source('LanguageClient','mark', 'ℰ')
-        call deoplete#custom#source('omni',          'mark', '⌾')
-        call deoplete#custom#source('flow',          'mark', '⌁')
-        call deoplete#custom#source('TernJS',        'mark', '⌁')
-        call deoplete#custom#source('go',            'mark', '⌁')
-        call deoplete#custom#source('jedi',          'mark', '⌁')
-        call deoplete#custom#source('vim',           'mark', '⌁')
-        call deoplete#custom#source('neosnippet',    'mark', '⌘')
-        call deoplete#custom#source('around',        'mark', '↻')
-        call deoplete#custom#source('buffer',        'mark', 'ℬ')
-        call deoplete#custom#source('tmux-complete', 'mark', '⊶')
-        call deoplete#custom#source('syntax',        'mark', '♯')
-        call deoplete#custom#source('member',        'mark', '.')
+        "call deoplete#custom#source('neosnippet',    'rank', 690)
+        "call deoplete#custom#source('ultisnips',     'rank', 680)
+        "call deoplete#custom#source('padawan',       'rank', 660)
+        "call deoplete#custom#source('go',            'rank', 650)
+        "call deoplete#custom#source('vim',           'rank', 640)
+        "call deoplete#custom#source('flow',          'rank', 630)
+        "call deoplete#custom#source('TernJS',        'rank', 620)
+        "call deoplete#custom#source('LanguageClient','rank', 610)
+        "call deoplete#custom#source('jedi',          'rank', 600)
+        "call deoplete#custom#source('tag',           'rank', 550)
+        "call deoplete#custom#source('omni',          'rank', 500)
+        "call deoplete#custom#source('member',        'rank', 500)
+        "call deoplete#custom#source('file_include',  'rank', 420)
+        "call deoplete#custom#source('file',          'rank', 410)
+        "call deoplete#custom#source('around',        'rank', 330)
+        "call deoplete#custom#source('buffer',        'rank', 320)
+        "call deoplete#custom#source('dictionary',    'rank', 310)
+        "call deoplete#custom#source('tmux-complete', 'rank', 300)
+        "call deoplete#custom#source('syntax',        'rank', 200)
+        ""--------------------------------------------------------------------------------
+        "call deoplete#custom#source('LanguageClient','mark', 'ℰ')
+        "call deoplete#custom#source('omni',          'mark', '⌾')
+        "call deoplete#custom#source('flow',          'mark', '⌁')
+        "call deoplete#custom#source('TernJS',        'mark', '⌁')
+        "call deoplete#custom#source('go',            'mark', '⌁')
+        "call deoplete#custom#source('jedi',          'mark', '⌁')
+        "call deoplete#custom#source('vim',           'mark', '⌁')
+        "call deoplete#custom#source('neosnippet',    'mark', '⌘')
+        "call deoplete#custom#source('around',        'mark', '↻')
+        "call deoplete#custom#source('buffer',        'mark', 'ℬ')
+        "call deoplete#custom#source('tmux-complete', 'mark', '⊶')
+        "call deoplete#custom#source('syntax',        'mark', '♯')
+        "call deoplete#custom#source('member',        'mark', '.')
 
         "==========================================================================================
         "===SetPLAY2===============================================================================
@@ -772,12 +882,13 @@ call plug#end()
         "       - foo|bar (OR)
         "       - foo !bar (negative)
         ":UniteResume, :UniteBookmarkAdd,
-        call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
-                                \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
         "------------------------------------------------------------------------------------------
-        call unite#filters#sorter_default#use(['sorter_rank'])
-        call unite#filters#matcher_default#use(['matcher_fuzzy'])
-        call unite#filters#matcher_default#use(['matcher_fzf'])
+        "-- CUST-ERR --
+        "call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
+        "                        \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
+        "call unite#filters#sorter_default#use(['sorter_rank'])
+        "call unite#filters#matcher_default#use(['matcher_fuzzy'])
+        "call unite#filters#matcher_default#use(['matcher_fzf'])
 
         "===SetPLAY5===============================================================================
         let g:ctrlp_cmd = 'CtrlPMRU'

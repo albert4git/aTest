@@ -45,46 +45,6 @@ au! Cursorhold * exe 'match ShowMatches /\v%(%#\{%(%(\{%(%(\{%(%(\{%(%(\{%(%(\{%
 
 "-AAA15-Plug1Start--------------------------------------------------------------------------------------------------{{{
 call plug#begin('~/.config/nvim/plugged/')
-        "------------------------------------------------------------------------- 
-        Plug 'AndrewRadev/switch.vim'
-        let g:switch_mapping = "-"
-        let g:switch_custom_definitions =
-                                \ [
-                                \ ['true', 'false'], ['True', 'False'], ['TRUE', 'FALSE'],
-                                \ ['yes', 'no'], ['Yes', 'No'], ['YES', 'NO'],
-                                \ ['on', 'off'], ['On', 'Off'], ['ON', 'OFF'],
-                                \ ['up', 'down'], ['Up', 'Down'] ,['UP', 'DOWN'],
-                                \ ['set', 'unset'],
-                                \ ['is', 'isnot'] ,
-                                \ ['==', '!='] , ['<', '>'], ['<=', '>='], ['=~', '!~'],
-                                \ ['enable', 'disable'], ['Enable', 'Disable'],
-                                \ ['enabled', 'disabled'], ['Enabled', 'Disabled'],
-                                \ ['maximum', 'minimum'], ['Maximum', 'Minimum'],
-                                \ ['maximal', 'minimal'], ['Maximal', 'Minimal'],
-                                \ ['upper', 'lower'], ['Upper', 'Lower'],
-                                \ ['top', 'bottom'], ['Top', 'Bottom'],
-                                \ ['above', 'below'], ['Above', 'Below'],
-                                \ ['forward', 'backward'], ['Forward', 'Backward'],
-                                \ ['right', 'middle', 'left'], ['Right', 'Middle', 'Left'],
-                                \ ['next', 'previous'], ['Next', 'Previous'],
-                                \ ['first', 'last'], ['First', 'Last'],
-                                \ ['before', 'after'], ['Before', 'After'],
-                                \ ['more', 'less'], ['More', 'Less'],
-                                \ ['fast', 'slow'], ['Fast', 'Slow'],
-                                \ ['green', 'yellow', 'red'],
-                                \ ['one', 'two', 'three']
-                                \ ]
-                "--------------------------------------------------------------------------
-                let b:switch_custom_definitions = [
-                                        \   {
-                                        \     '\<[a-z0-9]\+_\k\+\>': {
-                                        \       '_\(.\)': '\U\1'
-                                        \     },
-                                        \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
-                                        \       '\([A-Z]\)': '_\l\1'
-                                        \     },
-                                        \   }
-                                        \ ]
         "--------------------------------------------------------------------------------- 
         Plug 'brookhong/cscope.vim'
                 nnoremap ff :call CscopeFindInteractive(expand('<cword>'))<CR>
@@ -98,54 +58,7 @@ call plug#begin('~/.config/nvim/plugged/')
         "--------------------------------------
         " Plug 'flazz/vim-colorschemes'
         "--------------------------------------
-        Plug 'MattesGroeger/vim-bookmarks'
-                "-AAA-------------------------------------------------------------------{{{
-                let g:bookmark_no_default_key_mappings = 1
-                function! BookmarkMapKeys()
-                        nmap mm :BookmarkToggle<CR>
-                        nmap mi :BookmarkAnnotate<CR>
-                        nmap mn :BookmarkNext<CR>
-                        nmap mp :BookmarkPrev<CR>
-                        nmap ma :BookmarkShowAll<CR>
-                        nmap mc :BookmarkClear<CR>
-                        nmap mx :BookmarkClearAll<CR>
-                        nmap mkk :BookmarkMoveUp
-                        nmap mjj :BookmarkMoveDown
-                endfunction
-                "------------------------------------------------------
-                autocmd! BufEnter * :call BookmarkMapKeys()
-                highlight BookmarkSign ctermbg=9 ctermfg=1
-                highlight BookmarkLine ctermbg=9 ctermfg=1
-                highlight BookmarkAnnotationLine ctermbg=9 ctermfg=1
-                highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
-                "------------------------------------------------------
-                let g:bookmark_auto_close = 1
-                let g:bookmark_highlight_lines = 1          
-                let g:bookmark_show_warning = 0           
-                let g:bookmark_show_toggle_warning = 0      
-                let g:bookmark_sign = '♥'
-                let g:bookmark_highlight_lines = 1
-                let g:bookmark_save_per_working_dir = 1
-                let g:bookmark_auto_save = 1
-                let g:bookmark_save_per_working_dir = 1  
-                "------------------------------------------------------
-                "let g:bookmark_manage_per_buffer = 1`        
-                "let g:bookmark_auto_save_file = '/bookmarks'`
-                " |------------------------------------------|-------------|------------------------------|
-                " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
-                " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
-                " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
-                " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
-                " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
-                " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
-                " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
-                " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
-                " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
-                " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
-                " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
-                " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
-                " |------------------------------------------|-------------|------------------------------|
-                "-AAE-}}}
+
         "------------------------------------------------------------------------------------------
         "------------------------------------------------------------------------------------------
         Plug 'jalvesaq/vimcmdline'

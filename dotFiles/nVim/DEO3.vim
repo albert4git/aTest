@@ -11,6 +11,55 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'roxma/vim-hug-neovim-rpc'
         Plug 'tomtom/tlib_vim'       
 
+        "-AAA---------------------------------------------------------------------------{{{
+        Plug 'MattesGroeger/vim-bookmarks'
+                let g:bookmark_no_default_key_mappings = 1
+                function! BookmarkMapKeys()
+                        nmap mm :BookmarkToggle<CR>
+                        nmap mi :BookmarkAnnotate<CR>
+                        nmap mn :BookmarkNext<CR>
+                        nmap mp :BookmarkPrev<CR>
+                        nmap ma :BookmarkShowAll<CR>
+                        nmap mc :BookmarkClear<CR>
+                        nmap mx :BookmarkClearAll<CR>
+                        nmap mkk :BookmarkMoveUp
+                        nmap mjj :BookmarkMoveDown
+                endfunction
+                "------------------------------------------------------
+                autocmd! BufEnter * :call BookmarkMapKeys()
+                highlight BookmarkSign ctermbg=9 ctermfg=1
+                highlight BookmarkLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationLine ctermbg=9 ctermfg=1
+                highlight BookmarkAnnotationSign ctermbg=9 ctermfg=1
+                "------------------------------------------------------
+                let g:bookmark_auto_close = 1
+                let g:bookmark_highlight_lines = 1          
+                let g:bookmark_show_warning = 0           
+                let g:bookmark_show_toggle_warning = 0      
+                let g:bookmark_sign = '♥'
+                let g:bookmark_highlight_lines = 1
+                let g:bookmark_save_per_working_dir = 1
+                let g:bookmark_auto_save = 1
+                let g:bookmark_save_per_working_dir = 1  
+                "------------------------------------------------------
+                "let g:bookmark_manage_per_buffer = 1`        
+                "let g:bookmark_auto_save_file = '/bookmarks'`
+                " |------------------------------------------|-------------|------------------------------|
+                " | Add/remove bookmark at current line      | `mm`        | `:BookmarkToggle`            |
+                " | Add/edit/remove annotation at current li | `mi`        | `:BookmarkAnnotate <TEXT>`   |
+                " | Jump to next bookmark in buffer          | `mn`        | `:BookmarkNext`              |
+                " | Jump to previous bookmark in buffer      | `mp`        | `:BookmarkPrev`              |
+                " | Show all bookmarks (toggle)              | `ma`        | `:BookmarkShowAll`           |
+                " | Clear bookmarks in current buffer only   | `mc`        | `:BookmarkClear`             |
+                " | Clear bookmarks in all buffers           | `mx`        | `:BookmarkClearAll`          |
+                " | Move up bookmark at current line         | `[count]mkk`| `:BookmarkMoveUp [<COUNT>]`  |
+                " | Move down bookmark at current line       | `[count]mjj`| `:BookmarkMoveDown [<COUNT>]`|
+                " | Move bookmark at current line to another | `[count]mg` | `:BookmarkMoveToLine <LINE>` |
+                " | Save all bookmarks to a file             |             | `:BookmarkSave <FILE_PATH>`  |
+                " | Load bookmarks from a file               |             | `:BookmarkLoad <FILE_PATH>`  |
+                " |------------------------------------------|-------------|------------------------------|
+        "-AAE------------------}}}
+
         "-AAA6--GitGutter-----------------------------------------------------------------------{{{
                 Plug 'airblade/vim-gitgutter'
                         nmap ]c <Plug>GitGutterNextHunk
@@ -52,14 +101,41 @@ call plug#begin('~/.config/nvim/plugged/')
                         let g:extradite_showhash = 1 "show abbre commit hashes.
         "-6-}}}
 
+
         "------TESTING------------------------------------------------------------------ 
-        " Plug 'eparreno/vim-l9'
-        " Plug 'vim-scripts/CRefVim'
-        " Plug 'vim-scripts/foo.vim'
-        " Plug 'vim-scripts/FuzzyFinder'
-        " Plug 'alvan/vim-closetag'
         " Plug 'WolfgangMehner/bash-support'
-        " Plug 'KnoP-01/tortus'
+        " Plug 'vim-scripts/foo.vim'
+        Plug 'eparreno/vim-l9'
+        Plug 'vim-scripts/CRefVim'
+        Plug 'vim-scripts/FuzzyFinder'
+        Plug 'alvan/vim-closetag'
+        Plug 'vim-scripts/c.vim'
+        Plug 'octol/vim-cpp-enhanced-highlight' " C++
+        Plug 'pboettch/vim-cmake-syntax'        " CMake
+        Plug 'itchyny/calendar.vim'
+        Plug 'vim-scripts/spell.vim'
+        Plug 'dhruvasagar/vim-zoom'
+        Plug 'KnoP-01/tortus'
+        "--------------------------------------------------------------------------------- 
+        Plug 'gotcha/vimpdb'
+        "--------------------------------------------------------------------------------- 
+        Plug 'vim-vdebug/vdebug'
+                " <F5>: start/run (to next breakpoint/end of script)
+                " <F2>: step over
+                " <F3>: step into
+                " <F4>: step out
+                " <F6>: stop debugging (kills script)
+                " <F7>: detach script from debugger
+                " <F9>: run to cursor
+                " <F10>: toggle line breakpoint
+                " <F11>: show context variables (e.g. after "eval")
+                " <F12>: evaluate variable under cursor
+                " :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
+                " :VdebugEval <code>: evaluate some code and display the result
+                " <Leader>e: evaluate the expression under visual highlight and display the result
+        "--------------------------------------------------------------------------------- 
+        "Plug 'ashisha/image.vim'
+
         "---------------------------------------------------------------------------------- 
         Plug 'brooth/far.vim'
         "---------------------------------------------------------------------------------- 
@@ -96,9 +172,10 @@ call plug#begin('~/.config/nvim/plugged/')
                 let g:dokumentary_docprgs = {'c': 'cdoc {0}'}
         "--------------------------------------------------------------------------------- 
         "-=TTT=-
-        Plug 'xolox/vim-pyref'
-                let g:pyref_mapping = 'T'
-                let g:pyref_python = '/usr/share/doc/python3/html/'
+        " Plug 'xolox/vim-pyref'
+        "         let g:pyref_mapping = 'T'
+        "         let g:pyref_python = '/usr/share/doc/python3/html/'
+        "-------------------------------------------------------------- 
                 "let g:pyref_python = '/usr/share/doc/python/'
                 "let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
                 "let g:pyref_python = $HOME . '/docs/python'
@@ -536,7 +613,24 @@ call plug#begin('~/.config/nvim/plugged/')
         "source ~/git/aTest/dotFiles/nVim/logoQF.vim
         "source ~/git/aTest/dotFiles/nVim/logoAsyncPy.vim
         "==================================================================================
+        "==================================================================================
         Plug 'lambdalisue/gina.vim'
+        "==================================================================================
+        Plug 'rkulla/pydiction'
+        Plug 'lambdalisue/lista.nvim'
+                nnoremap # :<C-u>Lista<CR>
+                nnoremap g# :<C-u>ListaCursorWord<CR>
+        "======================================================
+                let g:lista#custom_mappings = [
+                                        \ ['<C-f>', '<Left>'],
+                                        \ ['<C-b>', '<Right>'],
+                                        \ ['<C-a>', '<Home>'],
+                                        \ ['<C-e>', '<End>'],
+                                        \ ['<C-d>', '<Del>'],
+                                        \ ['<C-P>', '<lista:select_previous_candidate>', 'noremap'],
+                                        \ ['<C-N>', '<lista:select_next_candidate>', 'noremap'],
+                                        \ [';', 'pinkyless#stickyshift#enter(";")', 'expr noremap'],
+                                        \]
 
 call plug#end()
 "---nPlugEnd-nPlugStop3}----------------}}
@@ -565,7 +659,7 @@ call plug#end()
         "::::::::::::::::::::::-=<1>=-:::::::::::::::::::::::::::::::::::::::::::::::::::::
         let g:deoplete#enable_at_startup = 1
         call deoplete#custom#option('refresh_always', v:true)
-        call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+        "call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
         "call deoplete#enable_logging('DEBUG', 'deoplete.log')
         "-------------------------------------------------------------------------------- 
         let g:deoplete#enable_ignore_case = 1
