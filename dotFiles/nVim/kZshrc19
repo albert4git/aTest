@@ -37,6 +37,10 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;3
 #=============================================================
 export PATH=${PATH}:/home/red/nvim-linux64/bin/
 export PATH=${PATH}:/home/red/.fzf/bin/
+export PATH=${PATH}:/home/red/Komodo-Edit-11/bin/
+
+#=============================================================
+export PYTHONPATH=${PYTHONPATH}:/home/red/git/aTest/dotFiles/nVim/swamPython3/
 #=============================================================
 export LS_COLORS
 alias hh='history'

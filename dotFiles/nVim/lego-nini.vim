@@ -1,3 +1,13 @@
+                " :Keep                                                           "
+                " :Reject                                                         "
+                " :Restore                                                        "
+                " :Doline s/^/--                                                  "
+                " :SaveList                                                       "
+                " :SaveList curlist                                               "
+                " :SaveListAdd curlist                                            "
+                " :LoadList curlist                                               "
+                " :ListLists                                                      "
+                "================================================================="
 Plug 'xolox/vim-easytags'
        let g:easytags_file = '~/.nvimtags'
        let g:easytags_auto_highlight = 1
@@ -293,16 +303,6 @@ call plug#begin()
         "--------------------------------------------------------------------------------- 
         "Plug 'vim-scripts/tinykeymap'
         "--------------------------------------------------------------------------------- 
-        "--------------------------------------------------------------------------------- 
-        Plug 'krisajenkins/vim-pipe'
-                autocmd BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
-                let b:vimpipe_command="lynx -dump -stdin"
-                let b:vimpipe_command='jslint <(cat)'
-                let b:vimpipe_command="python -m json.tool"
-                let b:vimpipe_command="multimarkdown"
-                " let b:vimpipe_filetype="html"
-                " g:vimpipe_invoke_map    <LocalLeader>r
-                " g:vimpipe_close_map     <LocalLeader>p
 
         "--------------------------------------------------------------------------------- 
         " Plug 'vim-scripts/dbext.vim'

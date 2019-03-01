@@ -116,6 +116,9 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'vim-scripts/spell.vim'
         Plug 'dhruvasagar/vim-zoom'
         Plug 'KnoP-01/tortus'
+        "Plug 'severin-lemaignan/vim-minimap'
+        "Plug 'koron/minimap-vim'
+        Plug 'skywind3000/asyncrun.vim'
         "--------------------------------------------------------------------------------- 
         Plug 'gotcha/vimpdb'
         "--------------------------------------------------------------------------------- 
@@ -173,8 +176,8 @@ call plug#begin('~/.config/nvim/plugged/')
         "--------------------------------------------------------------------------------- 
         "-=TTT=-
         " Plug 'xolox/vim-pyref'
-        "         let g:pyref_mapping = 'T'
-        "         let g:pyref_python = '/usr/share/doc/python3/html/'
+        "        let g:pyref_mapping = 'T'
+        "        let g:pyref_python = '/usr/share/doc/python3/html/'
         "-------------------------------------------------------------- 
                 "let g:pyref_python = '/usr/share/doc/python/'
                 "let g:pyref_python = 'file:///usr/share/doc/python2.7/html/index.html'
@@ -194,6 +197,14 @@ call plug#begin('~/.config/nvim/plugged/')
                 " " let g:pydoc_window_lines=0.5
                 " let g:pydoc_cmd = '/usr/bin/pydoc'
                 " " let g:pydoc_highlight=0
+
+        " function ViewDoc_pydoc(topic, ...)
+        "     return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+        "                 \ 'ft':	'pydoc',
+        "                 \ }
+        " endfunction
+        " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
+        " let g:ViewDoc_python = function('ViewDoc_pydoc')
         "---------------------------------------------------------------------------------- 
         Plug 'tyru/capture.vim'
         Plug 'thinca/vim-quickrun'
@@ -324,6 +335,11 @@ call plug#begin('~/.config/nvim/plugged/')
         "------------------------------------------------------------------------------------------
         "USA FIRST
         Plug 'alok/notational-fzf-vim'
+                "let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
+                let g:nv_search_paths = ['~/' ]
+                let g:nv_search_paths = ['/media/red/A5A1-FBC4/' ]
+                let g:nv_search_paths = ['/media/red/' ]
+                let g:nv_search_paths = ['/media/red/F1E8-C819/hTML-Zp-Link/' ]
                 let g:nv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
         "----------------------------------------------------------------------
         Plug 'Shougo/neomru.vim'
@@ -631,6 +647,60 @@ call plug#begin('~/.config/nvim/plugged/')
                                         \ ['<C-N>', '<lista:select_next_candidate>', 'noremap'],
                                         \ [';', 'pinkyless#stickyshift#enter(";")', 'expr noremap'],
                                         \]
+        "###Pymode???##########################################
+        Plug 'python-mode/python-mode'
+        let g:pymode_python = 'python3'
+        "---Other-stuff---------------------------------------
+        let g:pymode_rope = 0 " Load rope plugin
+        let g:pymode_breakpoint = 1 " Load breakpoints plugin
+        let g:pymode_breakpoint_key = '<LocalLeader>t' " set/unset breakpoint
+        let g:pydoc = 'pydoc' " Executable command for documentation search
+        let g:pymode_doc = 1 " Load show documentation plugin
+        let g:pymode_doc_key = 'T' " Key for show python documentation
+        "let g:pymode_utils_whitespaces = 1 " Autoremove unused whitespaces
+        "let g:pymode_options_indent = 1 " default pymode python indent options
+        "let g:pymode_options_fold = 1 " Set default pymode python fold options
+        "let g:pymode_options_other = 1 " Set default pymode python other options
+        ""======================================================
+        "let g:pymode_syntax = 1
+        "let g:pymode_syntax_all = 0
+        "let g:pymode_syntax_builtin_objs = 1
+        "let g:pymode_syntax_print_as_function = 0
+        "let g:pymode_syntax_space_errors = 0
+        "let g:pymode_run = 0
+        "let g:pymode_lint = 0
+        "let g:pymode_virtualenv = 0
+        "let g:pymode_folding = 0
+        "let g:pymode_options = 0
+        "======================================================
+        let g:pymode_rope = 1 " Load rope plugin
+        let g:pymode_rope_auto_project = 1 " Auto create and open ropeproject
+        let g:pymode_rope_enable_autoimport = 1 " Enable autoimport
+        let g:pymode_rope_autoimport_generate = 1 " Auto generate global cache
+        let g:pymode_rope_autoimport_underlineds = 0
+        let g:pymode_rope_codeassist_maxfixes = 10
+        let g:pymode_rope_sorted_completions = 1
+        let g:pymode_rope_extended_complete = 1
+        let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+        let g:pymode_rope_confirm_saving = 1
+        let g:pymode_rope_global_prefix = "<C-x>p"
+        let g:pymode_rope_local_prefix = "<C-c>r"
+        let g:pymode_rope_vim_completion = 1 " use vim's complete function.
+        let g:pymode_rope_guess_project = 0 " scan project slow completion speed
+        let g:pymode_rope_goto_def_newwin = 1
+        let g:pymode_rope_always_show_complete_menu = 1 " default=0
+        "--------------------------------------------------------------------------------- 
+        " Plug 'krisajenkins/vim-pipe'
+        "         autocmd BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
+        "         let b:vimpipe_command="lynx -dump -stdin"
+        "         let b:vimpipe_command='jslint <(cat)'
+        "         let b:vimpipe_command="python -m json.tool"
+        "         let b:vimpipe_command="multimarkdown"
+        "         " let b:vimpipe_filetype="html"
+        "          g:vimpipe_invoke_map    <localleader>p
+        "          g:vimpipe_close_map     <localleader>c
+        "--------------------------------------------------------------------------------- 
+
 
 call plug#end()
 "---nPlugEnd-nPlugStop3}----------------}}
@@ -645,7 +715,7 @@ call plug#end()
         let g:jedi#goto_assignments_command = "<leader>g"
         let g:jedi#goto_definitions_command = ""
         "--------------MMM--------------------------
-        let g:jedi#documentation_command = "M"
+        let g:jedi#documentation_command = "gj"
         let g:jedi#usages_command = "<leader>n"
         let g:jedi#rename_command = "<leader>r"
         let g:jedi#completions_command = "<C-z>"
@@ -681,7 +751,6 @@ call plug#end()
         let g:LanguageClient_serverCommands = {
                                 \ 'python': ['/usr/local/bin/pyls'],
                                 \ }
-
         "-------------------------------------------------------------------------------- 
         let g:deoplete#sources#jedi#statement_length = 30
         let g:deoplete#sources#jedi#show_docstring = 1
@@ -701,10 +770,6 @@ call plug#end()
         "--------------------------------------------------------------------------------
         " automatically open and close the popup menu / preview window
         au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set pumheight=12
-        hi Pmenu  ctermfg=1 ctermbg=255
-        hi PmenuSbar   ctermfg=11 ctermbg=5 cterm=NONE
-        hi PmenuThumb  ctermfg=12 ctermbg=2 cterm=NONE
         "--------------------------------------------------------------------------------
         autocmd! FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd! FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -714,6 +779,9 @@ call plug#end()
         autocmd! FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd! FileType ruby setlocal omnifunc=rubycomplete#Complete
         autocmd! FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+        "--------------------------------------------------------------------------------
+        autocmd! filetype python setlocal textwidth=100
         "--------------------------------------------------------------------------------
         set complete=.,w,b,t,i,u,kspell
         "            | | | | | | |
@@ -950,15 +1018,18 @@ call plug#end()
                 endif
         endfunction
 
+        " focus
         "-Open-Quickfix-window-automatically-----------------------------------------------
         autocmd QuickFixCmdPost grep cwindow
         autocmd! vimrc QuickfixCmdPost [^l]* nested copen | wincmd p
         autocmd! vimrc QuickfixCmdPost l* nested lopen | wincmd p
-        "===PLAY4===SUCHE========************======================================================
+        "===PLAY4===SUCHE=========************======================================================
                 nnoremap <Leader>l :lgrep -R <cword> .<cr>
                 nnoremap <Leader>g :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
                 nnoremap <Leader>a :Ack <cword> .<cr>
-                "nnoremap ? :Ack
+                "=nnoremap ? :Ack ================================================
+        map <F2> :exec "!xterm -e 'pydoc ".expand("<cword>")."'"<CR><CR>
+        imap <F2> <ESC>:exec "!xterm -e 'pydoc ".expand("<cword>")."'"<CR><CR>i
                 nmap <Leader>5 :Pydoc <cword> .<cr>
                 nmap <Leader>6 :Rg <cword> .<cr>
                 nmap <Leader>7 :Ag <cword> .<cr>
@@ -972,14 +1043,117 @@ call plug#end()
                 "  O - open entry and close the location/quickfix window          "
                 "  p - open entry in a preview window                             "
                 "-----------------------------------------------------------------"
-                " :Keep                                                           "
-                " :Reject                                                         "
-                " :Restore                                                        "
-                " :Doline s/^/--                                                  "
-                " :SaveList                                                       "
-                " :SaveList curlist                                               "
-                " :SaveListAdd curlist                                            "
-                " :LoadList curlist                                               "
-                " :ListLists                                                      "
-                "================================================================="
         "==========================================================================================
+
+"-aaa20-PrePLAY0-remap--------------------------------------------------------------------------------------{{{
+        "Ex: :Ex Pull word under cursor into :Ex LHS of a subs ztitute (replace)
+        "1y$  //yank current row to register 1
+        "<C-r>a to paste from register a
+        nnoremap <LocalLeader>w :<C-r>=expand("<cword>")<CR>
+        nnoremap <LocalLeader>z :<C-r>=getline(".")<CR>
+        "------------------------------------------------------------------------------------------
+        inoremap jk <esc>
+        "-Unfuck--my--screen------------------------------------
+        nnoremap fu :syntax sync fromstart<cr>:redraw!<cr>
+        "------------------------------------------------------------------------------------------
+        nnoremap zu :<c-u>update<cr>
+        "------------------------------------------------------------------------------------------
+        nnoremap ;e :ls<cr>:b<space>
+        nnoremap ;v <c-w>v<c-w>l
+        "------------------------------------------------------------------------------------------
+        nnoremap ;f :set tw=70<cr>v<s-}>gq<end>
+        nnoremap W gwip
+        "------------------------------------------------------------------------------------------
+        "Number 7: Align Current Paragraph 
+        noremap <LocalLeader>a =ip
+        "------------------------------------------------------------------------------------------
+        imap            ;;              <ESC>
+        "-open a file with same basename but different extension        
+        map <expr>      ,R              ":e ".expand("%:r")."."
+        "------------------------------------------------------------------------------------------
+        nnoremap ( <c-x>:y x\|@x<cr>
+        nnoremap ) <c-a>:y x\|@x<cr>
+        "------------------------------------------------------------------------------------------
+        "???makes macros even easier to remember: hit qq to record, q to stop recording, and Q to apply.
+        nnoremap Q @q
+        vnoremap Q :norm @q<cr>
+        "------------------------------------------------------------------------------------------
+        nmap q <nop>
+        nnoremap q q
+        nnoremap ss :wa<cr>
+        nnoremap qq :wa<cr> :bd<cr>
+        nnoremap qs :wa<cr> :qa<cr>
+        nnoremap qa :bd<cr>
+        nnoremap ge :w<cr>:e #<cr>
+        nnoremap qw <C-w>q<CR>
+        nnoremap qo <C-w>o<CR>
+        "------------------------------------------------------------------------------------------
+        nnoremap ZZ  <Nop> 
+        nnoremap ZZ mzzt3<c-u>`z
+        nnoremap zs mzzt3<c-u>`z
+        nnoremap zx mzzt35<c-u>`z
+        nnoremap zh mzzt10<c-u>`z
+        nnoremap EE :source $MYVIMRC<CR>
+        nnoremap BB ggVG
+        "------------------------------------------------------------------------------------------
+        nnoremap <BS> X
+        "-it's-2018--------------------------------------------------------------------------------
+        noremap j gj
+        noremap k gk
+        noremap gj j
+        noremap gk k
+        "-Bash-like-keys-for-the-command-line
+        cnoremap <C-A> <Home>
+        cnoremap <C-E> <End>
+        cnoremap <C-d> <Del>
+        "Same when jumping around
+        nnoremap <c-o> <c-o>zz
+        nnoremap <c-i> <c-i>zz
+        "Yank to end of line
+        nnoremap Y y$
+        "-HHJ- Keep the cursor in place while joining lines
+        nnoremap H mzJ`z
+        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
+        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+        "-Reselect-last-pasted text----------------------------------------------------------------
+        nnoremap gv `[v`]
+        "------------------------------------------------------------------------------------------
+        noremap \\ #*
+        "------------------------------------------------------------------------------------------
+        " make it so that if I acidentally pres ^W or ^U in insert mode,
+        " then <ESC>u wil undo just the ^W/^U, and not the whole insert
+        " This is docmented in :help ins-special-special, a few pages down
+        inoremap <C-W> <C-G>u<C-W>
+        inoremap <C-U> <C-G>u<C-U>
+        "------------------------------------------------------------------------------------------
+        vmap     dg  :diffget<CR>
+        vmap     dp  :diffput<CR>
+        nnoremap do  :diffoff!<cr>
+        "------------------------------------------------------------------------------------------
+        "??? inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
+        "-------------------------------------------------------------------------
+        "Clear hlsearch and set nopaste
+        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
+        "-------------------------------------------------------------------------
+        nmap <silent> n nzz
+        nmap <silent> N Nzz
+        nmap <silent> g* g*zz
+        nmap <silent> g# g#zz
+        "--Super-useful! From an idea by Michael Naumann--
+        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+        "----------------------------------------------------------------------------------
+        noremap <S-j> :PreviewScroll -1<cr>
+        noremap <S-l> :PreviewScroll +1<cr>
+        "------------------------------------------------------------------------------------------ 
+        fun! ScrollOtherWindow(dir)
+                if a:dir == "down"
+                        let move = "\<C-E>"
+                elseif a:dir == "up"
+                        let move = "\<C-Y>"
+                endif
+                exec "normal \<C-W>p" . move . "\<C-W>p"
+        endfun
+        nmap <silent> <C-M-Down> :call ScrollOtherWindow("down")<CR>
+        nmap <silent> <C-M-Up> :call ScrollOtherWindow("up")<CR>
+"-20Remap-}}}

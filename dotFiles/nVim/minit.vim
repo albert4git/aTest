@@ -1,12 +1,12 @@
-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-NeoVimMix65FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
+"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-DEO-FZF-NV-Unite"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"-"
 " File: minit.vim
 " Author: red
 " Last Modified: 19 Feb 2019
-"===================================================================================================
+"===============================================================================================================
         set path+=.,/home/red/git/aTest/pyLabGitPdbPythonMode27
-        "-----------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------
         set runtimepath+=~/vim-amake
-        "-----------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------
         let $MYVIMRC='~/.config/nvim/init.vim'
         set thesaurus=~/git/aTest/dotFiles/DICT/mthesaur.txt
         let s:thesaurus_pat = "~/git/aTest/dotFiles/DICT/mthesaur.txt"
@@ -37,14 +37,16 @@
         " Split previously opened file ('#') in a split window
         nnoremap ;l :execute "leftabove vsplit" bufname('#')<cr>
         nnoremap ;r :execute "rightbelow vsplit" bufname('#')<cr>
-        "----------------------------------------------------------------------------------
+        "------------------------------------------------------------------------------------
         nnoremap <C-j> :bn<cr>
         nnoremap <C-k> :bp<cr>
-        "--------------------------------------------------
+        "---------------------------------------------------
         nnoremap <m-right> :vertical resize +3<cr>
         nnoremap <m-left> :vertical resize -3<cr>
         nnoremap <m-up> :resize +3<cr>
         nnoremap <m-down> :resize -3<cr>
+"===============================================================================================================
+"===============================================================================================================
 
 "-AAA4-undo-------------------------------------------------------------------------------------------------{{{
         set noswapfile
@@ -92,7 +94,7 @@
         " means that the current buffer can be put
         " to background without being written; and
         " that marks and undo history are preserved
-        "-Editing----------------------------------------------------------------------------------
+        "---Editing---------------------------------------------------------------------------------
         silent! set iminsert=0 imsearch=0 nopaste pastetoggle= nogdefault comments& commentstring=#\ %s
         silent! set smartindent autoindent shiftround shiftwidth=8 expandtab tabstop=4 smarttab softtabstop=8
         silent! set foldclose=all foldcolumn=1 nofoldenable foldlevel=0 foldmarker={{{,}}} foldmethod=marker foldminlines=6
@@ -181,16 +183,45 @@
         nnoremap <F1> <ESC>
         vnoremap <F1> <ESC>
         "---------------------------------------------------------------------------------- 
+
 "-2Remap-}}}
 
         source ~/git/aTest/dotFiles/nVim/DEO3.vim
         "source ~/git/aTest/dotFiles/nVim/DEO2.vim
         "source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        "source ~/git/aTest/dotFiles/nVim/logo1.vim
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
-        hi ColorColumn     ctermbg=22
+        hi Normal         ctermbg=235
+        hi ColorColumn    ctermbg=22
+        hi MatchParen     ctermbg=39 ctermfg=11  cterm=bold
+        set signcolumn=yes
+        hi signcolumn     ctermbg=10
+        hi LineNr         ctermbg=199 ctermfg=16 
+        set cursorcolumn
+        hi CursorLine     ctermbg=8
         set colorcolumn=92,100,112,120
+        set pumheight=12
+        hi Pmenu          ctermfg=1 ctermbg=255
+        hi PmenuSbar      ctermfg=11 ctermbg=5 cterm=NONE
+        hi PmenuThumb     ctermfg=12 ctermbg=2 cterm=NONE
+        "------------------------------------------------
+        hi customPink     ctermbg=245 ctermfg=White
+        hi lightGray      ctermbg=12
+        hi darkGray       ctermbg=8
+        "------------------------------------------------
+        highlight Visual cterm=bold ctermbg=2 ctermfg=NONE
+        set list
+        set listchars=tab:▸\
+        "------------------------------------------------
+        call matchadd('customPink', 'aaa')
+        call matchadd('customPink', 'AAA')
+        call matchadd('customPink', '===')
+        call matchadd('customPink', '###')
+        call matchadd('customPink', ':::')
+        call matchadd('customPink', '---')
+        "------------------------------------------------
+        "hi Comment        ctermbg=14
+        "------------------------------------------------------------------------------------------- 
         "source ~/git/aTest/dotFiles/nVim/mix/n-mopkai.vim
         "source ~/git/aTest/dotFiles/nVim/1startNinit19.vim
         "source ~/git/aTest/dotFiles/nVim/nMinimumRC.vim
@@ -207,125 +238,15 @@
         "------------------------------------------------------------------------------------------- 
         "source ~/git/aTest/dotFiles/nVim/myPlug/nHydra.vim 
         "let g:nnv_search_paths = ['~/git/aTest/pyLabGitPdbPythonMode27']
-        "let g:nnv_search_paths = ['~/git/aTest/dotFiles/', '~/git/aTest/pyLabGitPdbPythonMode27' ]
+        "let g:nnv_search_paths = ['/media/red/F1E8-C819/hTML-Zp-Link/2019CollectZip/']
         "------------------------------------------------------------------------------------------- 
-        "source ~/git/aTest/dotFiles/nVim/myPlug/NNV.vim
+        let g:nnv_search_paths = ['~/git/aTest/dotFiles/']
+        source ~/git/aTest/dotFiles/nVim/myPlug/NNV.vim
+        let g:nnv_search_paths = ['~/git/aTest/dotFiles/']
         ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-"-aaa20-PrePLAY0-remap--------------------------------------------------------------------------------------{{{
-        "Ex: :Ex Pull word under cursor into :Ex LHS of a subs ztitute (replace)
-        "1y$  //yank current row to register 1
-        "<C-r>a to paste from register a
-        nnoremap <LocalLeader>w :<C-r>=expand("<cword>")<CR>
-        nnoremap <LocaLeader>z :<C-r>=getline(".")<CR>
-        "------------------------------------------------------------------------------------------
-        inoremap jk <esc>
-        "-Unfuck--my--screen------------------------------------
-        nnoremap fu :syntax sync fromstart<cr>:redraw!<cr>
-        "------------------------------------------------------------------------------------------
-        nnoremap zu :<c-u>update<cr>
-        "------------------------------------------------------------------------------------------
-        nnoremap ;e :ls<cr>:b<space>
-        nnoremap ;v <c-w>v<c-w>l
-        "------------------------------------------------------------------------------------------
-        nnoremap ;f :set tw=70<cr>v<s-}>gq<end>
-        nnoremap W gwip
-        "------------------------------------------------------------------------------------------
-        "Number 7: Align Current Paragraph 
-        noremap <LocalLeader>a =ip
-        "------------------------------------------------------------------------------------------
-        imap            ;;              <ESC>
-        "-open a file with same basename but different extension        
-        map <expr>      ,R              ":e ".expand("%:r")."."
-        "------------------------------------------------------------------------------------------
-        nnoremap ( <c-x>:y x\|@x<cr>
-        nnoremap ) <c-a>:y x\|@x<cr>
-        "------------------------------------------------------------------------------------------
-        "???makes macros even easier to remember: hit qq to record, q to stop recording, and Q to apply.
-        nnoremap Q @q
-        vnoremap Q :norm @q<cr>
-        "------------------------------------------------------------------------------------------
-        nmap q <nop>
-        nnoremap q q
-        nnoremap ss :wa<cr>
-        nnoremap qq :wa<cr> :bd<cr>
-        nnoremap qs :wa<cr> :qa<cr>
-        nnoremap qa :bd<cr>
-        nnoremap ge :w<cr>:e #<cr>
-        nnoremap qw <C-w>q<CR>
-        nnoremap qo <C-w>o<CR>
-        "------------------------------------------------------------------------------------------
-        nnoremap ZZ  <Nop> 
-        nnoremap ZZ mzzt3<c-u>`z
-        nnoremap zs mzzt3<c-u>`z
-        nnoremap zx mzzt35<c-u>`z
-        nnoremap zh mzzt10<c-u>`z
-        nnoremap EE :source $MYVIMRC<CR>
-        nnoremap BB ggVG
-        "------------------------------------------------------------------------------------------
-        nnoremap <BS> X
-        "-it's-2018--------------------------------------------------------------------------------
-        noremap j gj
-        noremap k gk
-        noremap gj j
-        noremap gk k
-        "-Bash-like-keys-for-the-command-line
-        cnoremap <C-A> <Home>
-        cnoremap <C-E> <End>
-        cnoremap <C-d> <Del>
-        "Same when jumping around
-        nnoremap <c-o> <c-o>zz
-        nnoremap <c-i> <c-i>zz
-        "Yank to end of line
-        nnoremap Y y$
-        "-HHJ- Keep the cursor in place while joining lines
-        nnoremap H mzJ`z
-        "Split?? The normal use of S is covered by cc, so don't worry about shadowing it.
-        nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-        "-Reselect-last-pasted text----------------------------------------------------------------
-        nnoremap gv `[v`]
-        "------------------------------------------------------------------------------------------
-        noremap \\ #*
-        "------------------------------------------------------------------------------------------
-        " make it so that if I acidentally pres ^W or ^U in insert mode,
-        " then <ESC>u wil undo just the ^W/^U, and not the whole insert
-        " This is docmented in :help ins-special-special, a few pages down
-        inoremap <C-W> <C-G>u<C-W>
-        inoremap <C-U> <C-G>u<C-U>
-        "------------------------------------------------------------------------------------------
-        vmap     dg  :diffget<CR>
-        vmap     dp  :diffput<CR>
-        nnoremap do  :diffoff!<cr>
-        "------------------------------------------------------------------------------------------
-        "??? inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
-        "-------------------------------------------------------------------------
-        "Clear hlsearch and set nopaste
-        nnoremap <silent> <Esc><Esc> :<C-u>set nopaste<CR>:nohlsearch<CR>
-        "-------------------------------------------------------------------------
-        nmap <silent> n nzz
-        nmap <silent> N Nzz
-        nmap <silent> g* g*zz
-        nmap <silent> g# g#zz
-        "--Super-useful! From an idea by Michael Naumann--
-        vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-        vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-        "----------------------------------------------------------------------------------
-        noremap <S-j> :PreviewScroll -1<cr>
-        noremap <S-l> :PreviewScroll +1<cr>
-        "------------------------------------------------------------------------------------------ 
-        fun! ScrollOtherWindow(dir)
-                if a:dir == "down"
-                        let move = "\<C-E>"
-                elseif a:dir == "up"
-                        let move = "\<C-Y>"
-                endif
-                exec "normal \<C-W>p" . move . "\<C-W>p"
-        endfun
-        nmap <silent> <C-M-Down> :call ScrollOtherWindow("down")<CR>
-        nmap <silent> <C-M-Up> :call ScrollOtherWindow("up")<CR>
-"-20Remap-}}}
 
-"-AAA16-Wildmenu--------------------------------------------------------------------------------------------{{{
+"-AAA16-Wildmenu---------------------------------------------------------------------------------------------{{{
         " More useful command-line completion
         au! FocusLost * :silent! wall     "Save when losing focus
         set wildmenu
@@ -352,3 +273,57 @@
         set wildignore+=classes
         set wildignore+=lib
 "-16-}}}
+"===============================================================================================================
+
+function! KinoMax()
+python3 << endPython
+
+import vim
+
+def find_max(nums):
+    max = nums[0]
+    for x in nums:
+        if x > max:
+            max = x
+    print(max)
+
+find_max([2, 4, 9, 7, 19, 94, 5])
+endPython
+endfunction
+
+command! StudentMax call KinoMax()
+
+"===============================================================================================================
+function! LuaMain()
+lua << EOF
+
+a = "Hello "
+b = "World"
+print("Concatenation of string a with b is ", a..b )
+print("Length of b is ",#b )
+print("Length of b is ",#"Test" )
+
+a = 20
+b = 10
+c = 15
+d = 5
+e = (a + b) * c / d;-- ( 30 * 15 ) / 5
+print("Value of (a + b) * c / d is :",e )
+e = a + (b * c) / d; -- 20 + (150/5)
+print("Value of a + (b * c) / d is :",e )
+
+EOF
+endfunction
+
+command! LLuaMain call LuaMain()
+
+"=============================================PPXX==============================================================
+"===============================================================================================================
+
+
+"=============================================PP4===============================================================
+"===============================================================================================================
+
+
+"=============================================PP4===============================================================
+"===============================================================================================================

@@ -7,7 +7,8 @@ calculator.title("CALCULATOR")
 calculator.resizable(0, 1)
 
 
- class Application(Frame):
+
+class Application(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
         self.createWidgets()

@@ -4,15 +4,18 @@ from tkinter import messagebox
 calculator = Tk()
 calculator.title("CALCULATOR")
 
+
 #remove or change this in order to get different screen sizes
 #remove no social change this in order to get different screen sizes
-#remove yes projectet social change this in order to get different screen sizes
+#remove yes projectet social change this in order to get different screen sizes xxxxxxxxxxxxxxxxxxx
 #This is the Third Row
 
 
 class Application(Frame):
+
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
+        self.createWidgets()
         self.createWidgets()
 
     def replaceText(self, text):
@@ -34,6 +37,7 @@ class Application(Frame):
 
         try:
             self.result = eval(self.expression)
+calculator.transient
             self.replaceText(self.result)
         except:
             messagebox.showinfo(
