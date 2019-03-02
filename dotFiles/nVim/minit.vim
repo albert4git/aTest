@@ -22,6 +22,8 @@
         let mapleader=' '
         set encoding=utf-8
         set shell=/bin/zsh
+        set tags+=.tags;
+        set tags+=tags;
         "------------------------------------------------------------------------------------------
         augroup vimrc
                 autocmd!
@@ -191,6 +193,8 @@
         "source ~/git/aTest/dotFiles/nVim/nProtoFzfDeoLsJediSnip.vim
         ":::::::::::::::::::::::::::-=2=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         source ~/git/aTest/dotFiles/nVim/mix/n-badwolf.vim 
+        "colorscheme dracula
+
         hi Normal         ctermbg=235
         hi ColorColumn    ctermbg=22
         hi MatchParen     ctermbg=39 ctermfg=11  cterm=bold
@@ -245,6 +249,14 @@
         let g:nnv_search_paths = ['~/git/aTest/dotFiles/']
         ":::::::::::::::::::::::::::-=3=-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+        autocmd! User Oblique       normal! zz
+        autocmd! User ObliqueStar   normal! zz
+        autocmd! User ObliqueRepeat normal! zz
+
+        hi! def link ObliqueCurrentMatch Keyword
+        hi! def link ObliquePrompt       Structure
+        hi! def link ObliqueLine         String
+        let g:oblique#clear_highlight =0
 
 "-AAA16-Wildmenu---------------------------------------------------------------------------------------------{{{
         " More useful command-line completion
@@ -274,6 +286,8 @@
         set wildignore+=lib
 "-16-}}}
 "===============================================================================================================
+"===============================================================================================================
+"===============================================================================================================
 
 function! KinoMax()
 python3 << endPython
@@ -291,7 +305,7 @@ find_max([2, 4, 9, 7, 19, 94, 5])
 endPython
 endfunction
 
-command! StudentMax call KinoMax()
+command! KKinoMax call KinoMax()
 
 "===============================================================================================================
 function! LuaMain()
@@ -318,12 +332,57 @@ endfunction
 command! LLuaMain call LuaMain()
 
 "=============================================PPXX==============================================================
+"set statusline+=%{zoom#statusline()}
 "===============================================================================================================
 
+" Update revision info of current file
+function! UpdateRevisionInfo()
+  let b:revision_info = ""
+  let b:repos_type = ""
 
-"=============================================PP4===============================================================
-"===============================================================================================================
+  if expand("%") == ""
+    " No existing file is loaded.
+    return
+  endif
 
+  " lookup path, starts from directory of current file
+  " searching up upward, until file system root.
+  let l:cur_dir_and_up = expand("%:p:h") . ';'
+  let l:repos_info_cmd = ""
 
-"=============================================PP4===============================================================
-"===============================================================================================================
+  " Is this inside a mercurial repository?
+  let l:root = finddir('.hg', l:cur_dir_and_up)
+  if l:root != ""
+    " this is an hg repos.
+    let b:repos_type = "Mercurial"
+    if !exists("g:hg_id_flag")
+      let g:hg_id_flag = '-Bbint'
+    endif
+    let l:repos_info_cmd = "hg id " . g:hg_id_flag
+  else
+    let l:root = finddir('.git', l:cur_dir_and_up)
+    if l:root != ""
+      "  git repository
+      let b:repos_type = "Git"
+      let l:repos_info_cmd = "git branch"
+    endif
+  endif
+  " inside repository
+  if l:repos_info_cmd != ""
+    " root of repository
+    let l:repos_root = fnamemodify(l:root, ":p:h")
+    " try to get revision info
+    let l:info = system("cd " . l:repos_root . " && " . l:repos_info_cmd)
+    if v:shell_error == 0
+      " with return code 0, assuming nothing went wrong
+      if b:repos_type ==# "Git"
+        " git does not provide enough customization for output so we need to
+        " remove first 2 chars manually, e.g, the '* ' part of '* master'
+        let l:info = strpart(l:info, 2)
+      endif
+      let b:revision_info = substitute(l:info, '\n.*', '', 'g')
+    endif
+  endif
+endfunction
+
+command! UUpdateRevisionInfo call UpdateRevisionInfo()

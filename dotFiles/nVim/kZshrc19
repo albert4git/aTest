@@ -39,6 +39,13 @@ export PATH=${PATH}:/home/red/nvim-linux64/bin/
 export PATH=${PATH}:/home/red/.fzf/bin/
 export PATH=${PATH}:/home/red/Komodo-Edit-11/bin/
 
+#GOPATH is the location of your work directory
+#For example my project directory is ~/Projects/Proj1
+# GOPATH = /home/red/go
+export GOROOT=/usr/lib/go-1.10
+export GOPATH=/home/red/git/aTest/dotFiles/nVim/goLab
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 #=============================================================
 export PYTHONPATH=${PYTHONPATH}:/home/red/git/aTest/dotFiles/nVim/swamPython3/
 #=============================================================

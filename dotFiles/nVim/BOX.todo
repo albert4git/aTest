@@ -1,0 +1,119 @@
+===============================================================================================================
+ DESCRIPTION:   Used in .todo files for todo lists turns [ ] into [√]
+
+ EXAMPLE USAGE: Postion a cursor on a line with the following contents
+===============================================================================================================
+[x] Some todo task
+<Leader>c will modified the line to the following:
+[ ] python standart library best tips triks 
+[ ] python doc fuzzy search 
+[ ] python Electro Engineering.html
+[ ] $PYTHONPATH python search path ?
+[ ] komodo Vdebug ?
+[ ] $PYTHONPATH python search path ?
+[ ] 
+===============================================================================================================
+vim -u ~/.vimrc.go
+git clone git@github.com:farazdagi/vim-go-ide.git ~/.vim_go_runtime
+sh ~/.vim_go_runtime/bin/install
+===============================================================================================================
+The problems that Pipenv seeks to solve are multi-faceted:
+
+    You no longer need to use pip and virtualenv separately. They work together.
+    Managing a requirements.txt file can be problematic, so Pipenv uses Pipfile and Pipfile.lock to separate abstract dependency declarations from the last tested combination.
+    Hashes are used everywhere, always. Security. Automatically expose security vulnerabilities.
+    Strongly encourage the use of the latest versions of dependencies to minimize security risks arising from outdated components.
+    Give you insight into your dependency graph (e.g. $ pipenv graph).
+    Streamline development workflow by loading .env files.
+
+You can quickly play with Pipenv right in your browser:
+
+===============================================================================================================
+Writing a remote plugin for neovim in ruby.html
+Module_ Neovim ___ Documentation for alexgenco_neovim-ruby (master).html
+===============================================================================================================
+3.2 Python set up                                          *VdebugSetUpPython*
+
+Python has an standalone debugging tool that you can use from the command line,
+but to use Vdebug in conjunction with your Python scripts you will have to grab
+the "pydbgp" tool, created by ActiveState (who make the Komodo Edit/IDE
+software).
+
+To do this, go to http://code.activestate.com/komodo/remotedebugging/,
+download the Python client for your OS and extract it.
+
+Inside this package is a binary file called pydbgp that we can include when
+running a script, which will allow for remote debugging. If you're using
+version 8 or greater, then you will need to move the dbgp directory, which is
+inside pythonlib, to the same directory that contains the pydbgp executable.
+If you don't do this then you will get an error saying "No module named
+dbgp.client".
+
+To debug a script called "myscript.py", run the following: >
+    python -S path/to/pydbgp -d localhost:9000 myscript.py
+
+adding in the path to the pydbgp binary file. Running it without starting
+Vdebug will give an error saying that it can't connect to the host. If you see
+this, you're ready to go.
+===============================================================================================================
+
+:help Vdebug
+
+Quick guide
+
+Set up any DBGP protocol debugger, e.g. Xdebug. (See :help VdebugSetUp). Start Vdebug with <F5>, which will make it wait for an incoming connection. Run the script you want to debug, with the debugging engine enabled. A new tab will open with the debugging interface.
+
+Once in debugging mode, the following default mappings are available:
+
+    <F5>: start/run (to next breakpoint/end of script)
+    <F2>: step over
+    <F3>: step into
+    <F4>: step out
+    <F6>: stop debugging (kills script)
+    <F7>: detach script from debugger
+    <F9>: run to cursor
+    <F10>: toggle line breakpoint
+    <F11>: show context variables (e.g. after "eval")
+    <F12>: evaluate variable under cursor
+    :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
+    :VdebugEval <code>: evaluate some code and display the result
+    <Leader>e: evaluate the expression under visual highlight and display the result
+
+To stop debugging, press <F6>. Press it again to close the debugger interface.
+
+If you can't get a connection, then chances are you need to spend a bit of time setting up your environment. Type :help Vdebug for more information.
+
+===============================================================================================================
+TOP!!!
+py-pyse-BIG/pycse - Python3 Computations in Science and Engineering.html
+===============================================================================================================
+================================================================================================================
+Typing <C-w> deletes one block of an entered pattern before the cursor, like a
+directory name.
+
+with <C-s> (|g:fuf_keyPrevPattern|) and <C-^> (|g:fuf_keyNextPattern|), You
+can recall patterns which have been entered before from history.
+
+<CR>  (|g:fuf_keyOpen|)        - opens in a previous window.
+<C-j> (|g:fuf_keyOpenSplit|)   - opens in a split window.
+<C-k> (|g:fuf_keyOpenVsplit|)  - opens in a vertical-split window.
+<C-l> (|g:fuf_keyOpenTabpage|) - opens in a new tab page.
+
+|:FufBuffer|       - Buffer mode (|fuf-buffer-mode|)
+|:FufFile|         - File mode (|fuf-file-mode|)
+|:FufCoverageFile| - Coverage-File mode (|fuf-coveragefile-mode|)
+|:FufDir|          - Directory mode (|fuf-dir-mode|)
+|:FufMruFile|      - MRU-File mode (|fuf-mrufile-mode|)
+|:FufMruCmd|       - MRU-Command mode (|fuf-mrucmd-mode|)
+|:FufBookmarkFile| - Bookmark-File mode (|fuf-bookmarkfile-mode|)
+|:FufBookmarkDir|  - Bookmark-Dir mode (|fuf-bookmarkdir-mode|)
+|:FufTag|          - Tag mode (|fuf-tag-mode|)
+|:FufBufferTag|    - Buffer-Tag mode (|fuf-buffertag-mode|)
+|:FufTaggedFile|   - Tagged-File mode (|fuf-taggedfile-mode|)
+|:FufJumpList|     - Jump-List mode (|fuf-jumplist-mode|)
+|:FufChangeList|   - Change-List mode (|fuf-changelist-mode|)
+|:FufQuickfix|     - Quickfix mode (|fuf-quickfix-mode|)
+|:FufLine|         - Line mode (|fuf-line-mode|)
+|:FufHelp|         - Help mode (|fuf-help-mode|)
+===============================================================================================================
+===============================================================================================================

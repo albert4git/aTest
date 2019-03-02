@@ -881,6 +881,7 @@ call plug#begin()
         "Plug 'gastonsimone/vim-dokumentary/'
                 "??? apt-get install dictd dict-gcide dict
         "--------------------------------------------------------------------------------- 
+        Plug 'nvie/vim_bridge'
         Plug 'vim-scripts/mako.vim'
                 "g:mako_detect_lang_from_ext = 1
         Plug 'sophacles/vim-bundle-mako'

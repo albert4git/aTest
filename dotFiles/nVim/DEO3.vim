@@ -232,6 +232,7 @@ call plug#begin('~/.config/nvim/plugged/')
         Plug 'skywind3000/vim-preview'
                 "VSSplit
         "---------------------------------------------------------------------------------- 
+        Plug 'flazz/vim-colorschemes'
         Plug 'rafi/awesome-vim-colorschemes'
         "---------------------------------------------------------------------------------- 
         Plug 'kshenoy/vim-signature'
@@ -631,6 +632,7 @@ call plug#begin('~/.config/nvim/plugged/')
         "==================================================================================
         "==================================================================================
         Plug 'lambdalisue/gina.vim'
+        Plug 'jreybert/vimagit'
         "==================================================================================
         Plug 'rkulla/pydiction'
         Plug 'lambdalisue/lista.nvim'
@@ -700,6 +702,42 @@ call plug#begin('~/.config/nvim/plugged/')
         "          g:vimpipe_invoke_map    <localleader>p
         "          g:vimpipe_close_map     <localleader>c
         "--------------------------------------------------------------------------------- 
+        "Plug 'nvie/vim_bridge'
+        "--------------------------------------------------------------------------------- 
+        Plug 'vim-scripts/mako.vim'
+                "g:mako_detect_lang_from_ext = 1
+        Plug 'sophacles/vim-bundle-mako'
+        Plug 'aperezdc/vim-template'
+        "--------------------------------------------------------------------------------- 
+        Plug 'fatih/vim-go'
+        Plug 'godlygeek/csapprox'
+        Plug 'hdima/python-syntax'
+        "let python_highlight_all = 1
+        let python_highlight_all = 1
+        "--------------------------------------------------------------------------------- 
+        Plug 'junegunn/vim-pseudocl'
+        Plug 'junegunn/vim-oblique'
+        "--------------------------------------------------------------------------------- 
+        Plug 'vim-scripts/javaDoc.vim'
+        Plug 'artur-shaik/vim-javacomplete2'
+                imap <F3> <Plug>(JavaComplete-Imports-RemoveUnused)
+                autocmd FileType java setlocal omnifunc=javacomplete#Complete
+                " nmap <F4> <Plug>(JavaComplete-Imports-Add)
+                " nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+                " nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+        "--------------------------------------------------------------------------------- 
+        " :setlocal omnifunc=javacomplete#Complete
+        " :setlocal completefunc=javacomplete#CompleteParamsInfo
+        " if has("autocmd")
+        " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+        " autocmd Filetype java setlocal completefunc=javacomplete#CompleteParamsInfo
+        " endif
+
+        Plug 'junegunn/vim-easy-align'
+        Plug 'junegunn/seoul256.vim'
+        Plug 'junegunn/goyo.vim'
+        Plug 'junegunn/limelight.vim'
+        Plug 'junegunn/vader.vim'
 
 
 call plug#end()
